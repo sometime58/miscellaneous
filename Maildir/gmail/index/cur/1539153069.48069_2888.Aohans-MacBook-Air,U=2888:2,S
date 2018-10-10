@@ -1,0 +1,1779 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 2002:a9d:6153:0:0:0:0:0 with SMTP id c19-v6csp141773otk;
+        Thu, 13 Sep 2018 18:53:14 -0700 (PDT)
+X-Google-Smtp-Source: ANB0VdaCHeogINuaWvWUk5if4T0Jls1WvS/p9MLefv8elmPzvT3+ML+4bF77ROnx+8pjDiUdUWu7
+X-Received: by 2002:aca:3a03:: with SMTP id h3-v6mr7852283oia.270.1536889994688;
+        Thu, 13 Sep 2018 18:53:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1536889994; cv=none;
+        d=google.com; s=arc-20160816;
+        b=XVuCbnjLV57JKF/N1lgdx9FY4N7fd0r/IVJ9mB4eG7+vk+Aq5mnfAwVuTlhCGVX6NM
+         M4Zntx8NLC1mgOm4FmeiNQlcwWA7zfVN7Qp3qDQsmDuz/5CSqlK974P44oXD7mpskUMk
+         /jE9GqTlaOYEuwXnSPzKH/GqBADNVKlKAXQtw0ID5eA4p7ZdK8ylv8jbVRqlwB4ps4uG
+         n1c2QMr6pbTafL5iBPjthF+9sPkEnxa9l2mBQEwlItEEYI+e254N6LxyY805iHrEbGl4
+         GJEAQRO0NdT+2dMb6ky3baCXZjnSdq/aPGH0WkSfMltxxfbJD2rqxvUcZ+a0Sm4IMU1l
+         jj1g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:mime-version:subject:message-id:to:from:date
+         :dkim-signature;
+        bh=mqmASB05PiCQE8LAFqUd9cwNPoJIFRY9s29I5BCsa2o=;
+        b=fdrh8YAlDpCrDFvaayKQLTdnPQvuC+Y+VUyC8uzSxNnVQvgAPMFqPNPVsvwQRGWSyV
+         VA3jxWk8dEXlH5N0TH7D4+XbYQ3b5zjTzbQcA/FI3whp9fHiIPOArxz5tbG7iU7gYsF7
+         1c129gcokj/1KOm96S4qheIR1d6cNJgXwWIX/HaZBoTS1ctjmmzeTjedW7u7dpr8oGJs
+         6zxKbPU2FALsdrKNvZDuEei5m6AEYLWXIL1UZ/vCjyOTas3L5Du9cBcUuNMa7pledyPc
+         HgLp08wY4mVb2l/Pd4WGla+UokUqo/iD+8Ct5ktFzeSTw5y5x+sjIWH9rFSuDaL+6G5v
+         9eQw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@pmta.sailthru.com header.s=mt header.b=JpWHmrx5;
+       spf=pass (google.com: domain of delivery_20180914015231.5b9b145f5a8f9c0d005f9678@mx.sailthru.com designates 192.64.236.89 as permitted sender) smtp.mailfrom=delivery_20180914015231.5b9b145f5a8f9c0d005f9678@mx.sailthru.com;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=generalassemb.ly
+Return-Path: <delivery_20180914015231.5b9b145f5a8f9c0d005f9678@mx.sailthru.com>
+Received: from ga-a.sailthru.com (ga-a.sailthru.com. [192.64.236.89])
+        by mx.google.com with ESMTPS id v22-v6si1049781ota.331.2018.09.13.18.53.14
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 13 Sep 2018 18:53:14 -0700 (PDT)
+Received-SPF: pass (google.com: domain of delivery_20180914015231.5b9b145f5a8f9c0d005f9678@mx.sailthru.com designates 192.64.236.89 as permitted sender) client-ip=192.64.236.89;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@pmta.sailthru.com header.s=mt header.b=JpWHmrx5;
+       spf=pass (google.com: domain of delivery_20180914015231.5b9b145f5a8f9c0d005f9678@mx.sailthru.com designates 192.64.236.89 as permitted sender) smtp.mailfrom=delivery_20180914015231.5b9b145f5a8f9c0d005f9678@mx.sailthru.com;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=generalassemb.ly
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; s=mt; d=pmta.sailthru.com;
+ h=Date:From:To:Message-ID:Subject:MIME-Version:Content-Type:List-Unsubscribe;
+ bh=JVXSFpYXeWYHTmlBMxgfumchrPA=;
+ b=JpWHmrx5yakZ875g14eUsoD/b7sfu81f5AcxDs9mFE/Lu0MXB7bAJMWwGjBPe7iZ3LMfViurBRKO
+   5otyffDgHoS9m81TchNJwuMKJDD/13ww7WXT8jNJv8pwxfUXs6kHyX5XsMY14iAulOzLAs9/1TDh
+   q/BQzq4AHCa5MMeXld0=
+Received: from nj2mta-16.sailthru.com (204.153.121.16) by ga-a.sailthru.com id hjca8k1qqbse for <sometime5858@gmail.com>; Thu, 13 Sep 2018 21:52:31 -0400 (envelope-from <delivery_20180914015231.5b9b145f5a8f9c0d005f9678@mx.sailthru.com>)
+Date: Fri, 14 Sep 2018 01:52:31 +0000 (UTC)
+From: Chloe at GA <admissions@generalassemb.ly>
+To: sometime5858@gmail.com
+Message-ID: <20180914015231.5b9b145f5a8f9c0d005f9678@sailthru.com>
+Subject: It never hurts to ask
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_388653_415162586.1536889951765"
+X-Feedback-ID: 6703:transactional:sailthru
+X-TM-ID: 20180914015231.5b9b145f5a8f9c0d005f9678
+X-Sail-Id: 6703.21487614.21487614
+X-Info: Message sent by sailthru.com customer General Assembly
+X-Info: We do not permit unsolicited commercial email
+X-Info: Please report abuse by forwarding complete headers to
+X-Info: abuse@sailthru.com
+X-Mailer: sailthru.com
+X-JMailer: nj1-hotlemon.flt
+X-Unsubscribe-Web: https://link.generalassemb.ly/oc/5b98715b95a7a1707d6093eb5b9b145f5a8f9c0d005f9678/310809ff
+List-Unsubscribe: <https://link.generalassemb.ly/oc/5b98715b95a7a1707d6093eb5b9b145f5a8f9c0d005f9678/310809ff>, <mailto:unsubscribe_20180914015231.5b9b145f5a8f9c0d005f9678@mx.sailthru.com>
+X-TUID: igbFdjChFpTE
+
+------=_Part_388653_415162586.1536889951765
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR0cHM6Ly9nZ=
+W5lcmFsYXNzZW1iLmx5Lz91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b25ib2FyZGluZyZ1=
+dG1fY2FtcGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1wbG95ZXItc3BvbnNvcnNoaXAtZnJvbS1=
+hZG1pc3Npb25zJnV0bV9jb250ZW50PW1hcmtldGluZyZ1dG1fdGVybT0mZXh0aWQ9MTUyODlmYm=
+QtYjFhNy00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98715b95a7a1707d6093ebC14d0b284>
+
+ Hi there,=20
+I=E2=80=99m Chelsea, an admissions director at General Assembly. I know tak=
+ing on extra education is a major investment of time and money, no matter y=
+our schedule or goals. Fortunately, over 60% of our students in our part-ti=
+me and remote courses get their employer to pay for their tution, letting t=
+hem get ahead with new skills in data <https://link.generalassemb.ly/click/=
+5b9b145f5a8f9c0d005f9678/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9kYX=
+RhLWFuYWx5dGljcz91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b25ib2FyZGluZyZ1dG1fY=
+2FtcGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1wbG95ZXItc3BvbnNvcnNoaXAtZnJvbS1hZG1p=
+c3Npb25zJnV0bV9jb250ZW50PW1hcmtldGluZyZ1dG1fdGVybT0mZXh0aWQ9MTUyODlmYmQtYjF=
+hNy00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98715b95a7a1707d6093ebD1b0a68fb>, desig=
+n <https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR0cHM6Ly9=
+nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi91c2VyLWV4cGVyaWVuY2UtZGVzaWduP3V0bV9tZW=
+RpdW09ZW1haWwmdXRtX3NvdXJjZT1vbmJvYXJkaW5nJnV0bV9jYW1wYWlnbj1vbmJvYXJkaW5nL=
+WNhbXB1cy1lbXBsb3llci1zcG9uc29yc2hpcC1mcm9tLWFkbWlzc2lvbnMmdXRtX2NvbnRlbnQ9=
+bWFya2V0aW5nJnV0bV90ZXJtPSZleHRpZD0xNTI4OWZiZC1iMWE3LTQ0YzItODkwZS03MjgzN2E=
+2MzlmN2Q/5b98715b95a7a1707d6093ebD87a6fa73>, marketing <https://link.genera=
+lassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L=
+2VkdWNhdGlvbi9kaWdpdGFsLW1hcmtldGluZz91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9=
+b25ib2FyZGluZyZ1dG1fY2FtcGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1wbG95ZXItc3BvbnN=
+vcnNoaXAtZnJvbS1hZG1pc3Npb25zJnV0bV9jb250ZW50PW1hcmtldGluZyZ1dG1fdGVybT0mZX=
+h0aWQ9MTUyODlmYmQtYjFhNy00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98715b95a7a1707d60=
+93ebD3de11632>, coding <https://link.generalassemb.ly/click/5b9b145f5a8f9c0=
+d005f9678/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9mcm9udC1lbmQtd2ViL=
+WRldmVsb3BtZW50P3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vbmJvYXJkaW5nJnV0bV9j=
+YW1wYWlnbj1vbmJvYXJkaW5nLWNhbXB1cy1lbXBsb3llci1zcG9uc29yc2hpcC1mcm9tLWFkbWl=
+zc2lvbnMmdXRtX2NvbnRlbnQ9bWFya2V0aW5nJnV0bV90ZXJtPSZleHRpZD0xNTI4OWZiZC1iMW=
+E3LTQ0YzItODkwZS03MjgzN2E2MzlmN2Q/5b98715b95a7a1707d6093ebD13a1873a>, and p=
+roduct management <https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f=
+9678/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9wcm9kdWN0LW1hbmFnZW1lbn=
+Q_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW9uYm9hcmRpbmcmdXRtX2NhbXBhaWduPW9uY=
+m9hcmRpbmctY2FtcHVzLWVtcGxveWVyLXNwb25zb3JzaGlwLWZyb20tYWRtaXNzaW9ucyZ1dG1f=
+Y29udGVudD1tYXJrZXRpbmcmdXRtX3Rlcm09JmV4dGlkPTE1Mjg5ZmJkLWIxYTctNDRjMi04OTB=
+lLTcyODM3YTYzOWY3ZA/5b98715b95a7a1707d6093ebDa37afdb4>.
+
+Start a conversation with your manager by requesting a syllabus for one of =
+our courses below. By helping you level up, your company isn=E2=80=99t just=
+ investing in your future =E2=80=94 they=E2=80=99re making the entire team =
+stronger. It's a win-win.
+
+* Data Analytics <https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9=
+678/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9kYXRhLWFuYWx5dGljcz9yZXF=
+1ZXN0X3N5bGxhYnVzPXRydWUmdXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW9uYm9hcmRpbm=
+cmdXRtX2NhbXBhaWduPW9uYm9hcmRpbmctY2FtcHVzLWVtcGxveWVyLXNwb25zb3JzaGlwLWZyb=
+20tYWRtaXNzaW9ucyZ1dG1fY29udGVudD1tYXJrZXRpbmcmdXRtX3Rlcm09JmV4dGlkPTE1Mjg5=
+ZmJkLWIxYTctNDRjMi04OTBlLTcyODM3YTYzOWY3ZA/5b98715b95a7a1707d6093ebE44ac0c8=
+6>
+
+* Data Science <https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f967=
+8/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9kYXRhLXNjaWVuY2U_cmVxdWVzd=
+F9zeWxsYWJ1cz10cnVlJnV0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vbmJvYXJkaW5nJnV0=
+bV9jYW1wYWlnbj1vbmJvYXJkaW5nLWNhbXB1cy1lbXBsb3llci1zcG9uc29yc2hpcC1mcm9tLWF=
+kbWlzc2lvbnMmdXRtX2NvbnRlbnQ9bWFya2V0aW5nJnV0bV90ZXJtPSZleHRpZD0xNTI4OWZiZC=
+1iMWE3LTQ0YzItODkwZS03MjgzN2E2MzlmN2Q/5b98715b95a7a1707d6093ebCc5218df8>
+
+* Digital Marketing <https://link.generalassemb.ly/click/5b9b145f5a8f9c0d00=
+5f9678/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9kaWdpdGFsLW1hcmtldGlu=
+Zz9yZXF1ZXN0X3N5bGxhYnVzPXRydWUmdXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW9uYm9=
+hcmRpbmcmdXRtX2NhbXBhaWduPW9uYm9hcmRpbmctY2FtcHVzLWVtcGxveWVyLXNwb25zb3JzaG=
+lwLWZyb20tYWRtaXNzaW9ucyZ1dG1fY29udGVudD1tYXJrZXRpbmcmdXRtX3Rlcm09JmV4dGlkP=
+TE1Mjg5ZmJkLWIxYTctNDRjMi04OTBlLTcyODM3YTYzOWY3ZA/5b98715b95a7a1707d6093ebE=
+2da709c4>
+
+* Front-End Web Development <https://link.generalassemb.ly/click/5b9b145f5a=
+8f9c0d005f9678/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9mcm9udC1lbmQt=
+d2ViLWRldmVsb3BtZW50P3JlcXVlc3Rfc3lsbGFidXM9dHJ1ZSZ1dG1fbWVkaXVtPWVtYWlsJnV=
+0bV9zb3VyY2U9b25ib2FyZGluZyZ1dG1fY2FtcGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1wbG=
+95ZXItc3BvbnNvcnNoaXAtZnJvbS1hZG1pc3Npb25zJnV0bV9jb250ZW50PW1hcmtldGluZyZ1d=
+G1fdGVybT0mZXh0aWQ9MTUyODlmYmQtYjFhNy00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98715=
+b95a7a1707d6093ebE08ca8e61>
+
+* JavaScript Development <https://link.generalassemb.ly/click/5b9b145f5a8f9=
+c0d005f9678/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9qYXZhc2NyaXB0LWR=
+ldmVsb3BtZW50P3JlcXVlc3Rfc3lsbGFidXM9dHJ1ZSZ1dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3=
+VyY2U9b25ib2FyZGluZyZ1dG1fY2FtcGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1wbG95ZXItc=
+3BvbnNvcnNoaXAtZnJvbS1hZG1pc3Npb25zJnV0bV9jb250ZW50PW1hcmtldGluZyZ1dG1fdGVy=
+bT0mZXh0aWQ9MTUyODlmYmQtYjFhNy00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98715b95a7a1=
+707d6093ebC7721a574>
+
+* Product Management <https://link.generalassemb.ly/click/5b9b145f5a8f9c0d0=
+05f9678/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9wcm9kdWN0LW1hbmFnZW1=
+lbnQ_cmVxdWVzdF9zeWxsYWJ1cz10cnVlJnV0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vbm=
+JvYXJkaW5nJnV0bV9jYW1wYWlnbj1vbmJvYXJkaW5nLWNhbXB1cy1lbXBsb3llci1zcG9uc29yc=
+2hpcC1mcm9tLWFkbWlzc2lvbnMmdXRtX2NvbnRlbnQ9bWFya2V0aW5nJnV0bV90ZXJtPSZleHRp=
+ZD0xNTI4OWZiZC1iMWE3LTQ0YzItODkwZS03MjgzN2E2MzlmN2Q/5b98715b95a7a1707d6093e=
+bEb8274a8c>
+
+* User Experience Design <https://link.generalassemb.ly/click/5b9b145f5a8f9=
+c0d005f9678/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi91c2VyLWV4cGVyaWV=
+uY2UtZGVzaWduP3JlcXVlc3Rfc3lsbGFidXM9dHJ1ZSZ1dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3=
+VyY2U9b25ib2FyZGluZyZ1dG1fY2FtcGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1wbG95ZXItc=
+3BvbnNvcnNoaXAtZnJvbS1hZG1pc3Npb25zJnV0bV9jb250ZW50PW1hcmtldGluZyZ1dG1fdGVy=
+bT0mZXh0aWQ9MTUyODlmYmQtYjFhNy00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98715b95a7a1=
+707d6093ebEb952b421>
+
+* Visual Design <https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f96=
+78/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi92aXN1YWwtZGVzaWduP3JlcXVl=
+c3Rfc3lsbGFidXM9dHJ1ZSZ1dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b25ib2FyZGluZyZ=
+1dG1fY2FtcGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1wbG95ZXItc3BvbnNvcnNoaXAtZnJvbS=
+1hZG1pc3Npb25zJnV0bV9jb250ZW50PW1hcmtldGluZyZ1dG1fdGVybT0mZXh0aWQ9MTUyODlmY=
+mQtYjFhNy00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98715b95a7a1707d6093ebCe1730fa4>
+
+Want to talk to us about your career options? We're here to help <https://l=
+ink.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR0cHM6Ly9nZW5lcmFsYXN=
+zZW1iLmx5L2ZpbmR5b3VyY291cnNlP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vbmJvYX=
+JkaW5nJnV0bV9jYW1wYWlnbj1vbmJvYXJkaW5nLWNhbXB1cy1lbXBsb3llci1zcG9uc29yc2hpc=
+C1mcm9tLWFkbWlzc2lvbnMmdXRtX2NvbnRlbnQ9bWFya2V0aW5nJnV0bV90ZXJtPSZleHRpZD0x=
+NTI4OWZiZC1iMWE3LTQ0YzItODkwZS03MjgzN2E2MzlmN2Q/5b98715b95a7a1707d6093ebC9b=
+08d57c> =E2=80=94 and we=E2=80=99re excited about what=E2=80=99s in store f=
+or your career in the coming year.
+
+Get in Touch Arrow <https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005=
+f9678/aHR0cDovL2dlbmVyYWxhc3NlbWIubHkvZmluZHlvdXJjb3Vyc2U_dXRtX21lZGl1bT1lb=
+WFpbCZ1dG1fc291cmNlPW9uYm9hcmRpbmcmdXRtX2NhbXBhaWduPW9uYm9hcmRpbmctY2FtcHVz=
+LWVtcGxveWVyLXNwb25zb3JzaGlwLWZyb20tYWRtaXNzaW9ucyZ1dG1fY29udGVudD1tYXJrZXR=
+pbmcmdXRtX3Rlcm09JmV4dGlkPTE1Mjg5ZmJkLWIxYTctNDRjMi04OTBlLTcyODM3YTYzOWY3ZA=
+/5b98715b95a7a1707d6093ebCd04a48a1>
+
+Best,
+
+Chelsea Baum Regional Admissions Director
+
+<https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR0cHM6Ly93d=
+3cuZmFjZWJvb2suY29tL2ducmxhc3NlbWJseS8_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNl=
+PW9uYm9hcmRpbmcmdXRtX2NhbXBhaWduPW9uYm9hcmRpbmctY2FtcHVzLWVtcGxveWVyLXNwb25=
+zb3JzaGlwLWZyb20tYWRtaXNzaW9ucyZ1dG1fY29udGVudD1tYXJrZXRpbmcmdXRtX3Rlcm09Jm=
+V4dGlkPTE1Mjg5ZmJkLWIxYTctNDRjMi04OTBlLTcyODM3YTYzOWY3ZA/5b98715b95a7a1707d=
+6093ebC605eebbd> <https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9=
+678/aHR0cHM6Ly90d2l0dGVyLmNvbS9HQT91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b25=
+ib2FyZGluZyZ1dG1fY2FtcGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1wbG95ZXItc3BvbnNvcn=
+NoaXAtZnJvbS1hZG1pc3Npb25zJnV0bV9jb250ZW50PW1hcmtldGluZyZ1dG1fdGVybT0mZXh0a=
+WQ9MTUyODlmYmQtYjFhNy00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98715b95a7a1707d6093e=
+bCf57e1e8f> <https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678/a=
+HR0cHM6Ly93d3cuaW5zdGFncmFtLmNvbS9nZW5lcmFsYXNzZW1ibHkvP3V0bV9tZWRpdW09ZW1h=
+aWwmdXRtX3NvdXJjZT1vbmJvYXJkaW5nJnV0bV9jYW1wYWlnbj1vbmJvYXJkaW5nLWNhbXB1cy1=
+lbXBsb3llci1zcG9uc29yc2hpcC1mcm9tLWFkbWlzc2lvbnMmdXRtX2NvbnRlbnQ9bWFya2V0aW=
+5nJnV0bV90ZXJtPSZleHRpZD0xNTI4OWZiZC1iMWE3LTQ0YzItODkwZS03MjgzN2E2MzlmN2Q/5=
+b98715b95a7a1707d6093ebC8656f121> <https://link.generalassemb.ly/click/5b9b=
+145f5a8f9c0d005f9678/aHR0cHM6Ly93d3cubGlua2VkaW4uY29tL2NvbXBhbnkvZ2VuZXJhbC=
+1hc3NlbWItbHk_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW9uYm9hcmRpbmcmdXRtX2Nhb=
+XBhaWduPW9uYm9hcmRpbmctY2FtcHVzLWVtcGxveWVyLXNwb25zb3JzaGlwLWZyb20tYWRtaXNz=
+aW9ucyZ1dG1fY29udGVudD1tYXJrZXRpbmcmdXRtX3Rlcm09JmV4dGlkPTE1Mjg5ZmJkLWIxYTc=
+tNDRjMi04OTBlLTcyODM3YTYzOWY3ZA/5b98715b95a7a1707d6093ebC39726cd3> <https:/=
+/link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR0cHM6Ly93d3cueW91d=
+HViZS5jb20vY2hhbm5lbC9VQ2gxcnJtMDBEYnByUzhVY0xkNG9jaHc_dXRtX21lZGl1bT1lbWFp=
+bCZ1dG1fc291cmNlPW9uYm9hcmRpbmcmdXRtX2NhbXBhaWduPW9uYm9hcmRpbmctY2FtcHVzLWV=
+tcGxveWVyLXNwb25zb3JzaGlwLWZyb20tYWRtaXNzaW9ucyZ1dG1fY29udGVudD1tYXJrZXRpbm=
+cmdXRtX3Rlcm09JmV4dGlkPTE1Mjg5ZmJkLWIxYTctNDRjMi04OTBlLTcyODM3YTYzOWY3ZA/5b=
+98715b95a7a1707d6093ebC0c82ed79> <https://link.generalassemb.ly/click/5b9b1=
+45f5a8f9c0d005f9678/aHR0cHM6Ly90aGVpbmRleC5nZW5lcmFsYXNzZW1iLmx5Lz91dG1fbWV=
+kaXVtPWVtYWlsJnV0bV9zb3VyY2U9b25ib2FyZGluZyZ1dG1fY2FtcGFpZ249b25ib2FyZGluZy=
+1jYW1wdXMtZW1wbG95ZXItc3BvbnNvcnNoaXAtZnJvbS1hZG1pc3Npb25zJnV0bV9jb250ZW50P=
+W1hcmtldGluZyZ1dG1fdGVybT0mZXh0aWQ9MTUyODlmYmQtYjFhNy00NGMyLTg5MGUtNzI4Mzdh=
+NjM5Zjdk/5b98715b95a7a1707d6093ebDc176be24>
+
+Manage your Preferences <https://link.generalassemb.ly/oc/5b98715b95a7a1707=
+d6093eb5b9b145f5a8f9c0d005f9678/310809ff> or Unsubscribe <https://link.gene=
+ralassemb.ly/oc/5b98715b95a7a1707d6093eb5b9b145f5a8f9c0d005f9678/310809ff> =
+General Assembly Inc., 902 Broadway, 4th Floor New York, NY 10010
+------=_Part_388653_415162586.1536889951765
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+=20
+<!doctype html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microso=
+ft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office">
+<head>
+<!-- NAME: 1:2:1 COLUMN -->
+<!--[if gte mso 15]>
+<xml>a
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml>
+<![endif]-->
+<meta charset=3D"UTF-8">
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1"=
+>
+<title>*|MC:SUBJECT|*</title>
+<style type=3D"text/css">
+p{
+margin:10px 0;
+padding:0;
+}
+table{
+border-collapse:collapse;
+}
+h1,h2,h3,h4,h5,h6{
+display:block;
+margin:0;
+padding:0;
+}
+img,a img{
+border:0;
+height:auto;
+outline:none;
+text-decoration:none;
+}
+body,#bodyTable,#bodyCell{
+height:100%;
+margin:0;
+padding:0;
+width:100%;
+}
+#outlook a{
+padding:0;
+}
+img{
+-ms-interpolation-mode:bicubic;
+}
+table{
+mso-table-lspace:0pt;
+mso-table-rspace:0pt;
+}
+.ReadMsgBody{
+width:100%;
+}
+.ExternalClass{
+width:100%;
+}
+p,a,li,td,blockquote{
+mso-line-height-rule:exactly;
+}
+a[href^=3Dtel],a[href^=3Dsms]{
+color:inherit;
+cursor:default;
+text-decoration:none;
+}
+p,a,li,td,body,table,blockquote{
+-ms-text-size-adjust:100%;
+-webkit-text-size-adjust:100%;
+}
+.ExternalClass,.ExternalClass p,.ExternalClass td,.ExternalClass div,.Exter=
+nalClass span,.ExternalClass font{
+line-height:100%;
+}
+a[x-apple-data-detectors]{
+color:inherit !important;
+text-decoration:none !important;
+font-size:inherit !important;
+font-family:inherit !important;
+font-weight:inherit !important;
+line-height:inherit !important;
+}
+#bodyCell{
+padding:10px;
+}
+.templateContainer{
+max-width:600px !important;
+}
+a.mcnButton{
+display:block;
+}
+.mcnImage{
+vertical-align:bottom;
+}
+.mcnTextContent{
+word-break:break-word;
+}
+.mcnTextContent img{
+height:auto !important;
+}
+.mcnDividerBlock{
+table-layout:fixed !important;
+}
+body,#bodyTable{
+background-color:#F6F6F6;
+}
+#bodyCell{
+border-top:0;
+}
+.templateContainer{
+border:0;
+}
+h1{
+color:#202020;
+font-family:Arial;
+font-size:26px;
+font-style:normal;
+font-weight:bold;
+line-height:125%;
+letter-spacing:normal;
+text-align:left;
+}
+h2{
+color:#202020;
+font-family:Arial;
+font-size:22px;
+font-style:normal;
+font-weight:bold;
+line-height:125%;
+letter-spacing:normal;
+text-align:left;
+}
+h3{
+color:#202020;
+font-family:Arial;
+font-size:20px;
+font-style:normal;
+font-weight:bold;
+line-height:125%;
+letter-spacing:normal;
+text-align:left;
+}
+h4{
+color:#202020;
+font-family:Arial;
+font-size:18px;
+font-style:normal;
+font-weight:bold;
+line-height:125%;
+letter-spacing:normal;
+text-align:left;
+}
+#templatePreheader{
+background-color:#F6F6F6;
+background-image:none;
+background-repeat:no-repeat;
+background-position:center;
+background-size:cover;
+border-top:0;
+border-bottom:0;
+padding-top:9px;
+padding-bottom:9px;
+}
+#templatePreheader .mcnTextContent,#templatePreheader .mcnTextContent p{
+color:#000000;
+font-family:Arial;
+font-size:12px;
+line-height:150%;
+text-align:left;
+}
+#templatePreheader .mcnTextContent a,#templatePreheader .mcnTextContent p a=
+{
+color:#656565;
+font-weight:normal;
+text-decoration:underline;
+}
+#templateHeader{
+background-color:#F6F6F6;
+background-image:none;
+background-repeat:no-repeat;
+background-position:center;
+background-size:cover;
+border-top:0;
+border-bottom:0;
+padding-top:9px;
+padding-bottom:0;
+}
+#templateHeader .mcnTextContent,#templateHeader .mcnTextContent p{
+color:#000000;
+font-family:Arial;
+font-size:16px;
+line-height:150%;
+text-align:left;
+}
+#templateHeader .mcnTextContent a,#templateHeader .mcnTextContent p a{
+color:#656565;
+font-weight:normal;
+text-decoration:underline;
+}
+#templateUpperBody{
+background-color:#FFFFFF;
+background-image:none;
+background-repeat:no-repeat;
+background-position:center;
+background-size:cover;
+border-top:0;
+border-bottom:0;
+padding-top:0;
+padding-bottom:0;
+}
+#templateUpperBody .mcnTextContent,#templateUpperBody .mcnTextContent p{
+color:#000000;
+font-family:Arial;
+font-size:16px;
+line-height:150%;
+text-align:left;
+}
+#templateUpperBody .mcnTextContent a,#templateUpperBody .mcnTextContent p a=
+{
+color:#656565;
+font-weight:normal;
+text-decoration:underline;
+}
+#templateColumns{
+background-color:#FFFFFF;
+background-image:none;
+background-repeat:no-repeat;
+background-position:center;
+background-size:cover;
+border-top:0;
+border-bottom:0;
+padding-top:0;
+padding-bottom:0;
+}
+#templateColumns .columnContainer .mcnTextContent,#templateColumns .columnC=
+ontainer .mcnTextContent p{
+color:#202020;
+font-family:Arial;
+font-size:16px;
+line-height:150%;
+text-align:left;
+}
+#templateColumns .columnContainer .mcnTextContent a,#templateColumns .colum=
+nContainer .mcnTextContent p a{
+color:#0D8390;
+font-weight:normal;
+text-decoration:underline;
+}
+#templateLowerBody{
+background-color:#FFFFFF;
+background-image:none;
+background-repeat:no-repeat;
+background-position:center;
+background-size:cover;
+border-top:0;
+border-bottom:2px solid #EAEAEA;
+padding-top:0;
+padding-bottom:9px;
+}
+#templateLowerBody .mcnTextContent,#templateLowerBody .mcnTextContent p{
+color:#202020;
+font-family:Arial;
+font-size:16px;
+line-height:150%;
+text-align:left;
+}
+#templateLowerBody .mcnTextContent a,#templateLowerBody .mcnTextContent p a=
+{
+color:#0D8390;
+font-weight:normal;
+text-decoration:underline;
+}
+#templateFooter{
+background-color:#F6F6F6;
+background-image:none;
+background-repeat:no-repeat;
+background-position:center;
+background-size:cover;
+border-top:0;
+border-bottom:0;
+padding-top:9px;
+padding-bottom:9px;
+}
+#templateFooter .mcnTextContent,#templateFooter .mcnTextContent p{
+color:#656565;
+font-family:Arial;
+font-size:12px;
+line-height:150%;
+text-align:center;
+}
+#templateFooter .mcnTextContent a,#templateFooter .mcnTextContent p a{
+color:#656565;
+font-weight:normal;
+text-decoration:underline;
+}
+@media only screen and (min-width:768px){
+.templateContainer{
+width:600px !important;
+}
+} @media only screen and (max-width: 480px){
+body,table,td,p,a,li,blockquote{
+-webkit-text-size-adjust:none !important;
+}
+} @media only screen and (max-width: 480px){
+body{
+width:100% !important;
+min-width:100% !important;
+}
+} @media only screen and (max-width: 480px){
+#bodyCell{
+padding-top:10px !important;
+}
+} @media only screen and (max-width: 480px){
+.columnWrapper{
+max-width:100% !important;
+width:100% !important;
+}
+} @media only screen and (max-width: 480px){
+.mcnImage{
+width:100% !important;
+}
+} @media only screen and (max-width: 480px){
+.mcnCartContainer,.mcnCaptionTopContent,.mcnRecContentContainer,.mcnCaption=
+BottomContent,.mcnTextContentContainer,.mcnBoxedTextContentContainer,.mcnIm=
+ageGroupContentContainer,.mcnCaptionLeftTextContentContainer,.mcnCaptionRig=
+htTextContentContainer,.mcnCaptionLeftImageContentContainer,.mcnCaptionRigh=
+tImageContentContainer,.mcnImageCardLeftTextContentContainer,.mcnImageCardR=
+ightTextContentContainer{
+max-width:100% !important;
+width:100% !important;
+}
+} @media only screen and (max-width: 480px){
+.mcnBoxedTextContentContainer{
+min-width:100% !important;
+}
+} @media only screen and (max-width: 480px){
+.mcnImageGroupContent{
+padding:9px !important;
+}
+} @media only screen and (max-width: 480px){
+.mcnCaptionLeftContentOuter .mcnTextContent,.mcnCaptionRightContentOuter .m=
+cnTextContent{
+padding-top:9px !important;
+}
+} @media only screen and (max-width: 480px){
+.mcnImageCardTopImageContent,.mcnCaptionBlockInner .mcnCaptionTopContent:la=
+st-child .mcnTextContent{
+padding-top:18px !important;
+}
+} @media only screen and (max-width: 480px){
+.mcnImageCardBottomImageContent{
+padding-bottom:9px !important;
+}
+} @media only screen and (max-width: 480px){
+.mcnImageGroupBlockInner{
+padding-top:0 !important;
+padding-bottom:0 !important;
+}
+} @media only screen and (max-width: 480px){
+.mcnImageGroupBlockOuter{
+padding-top:9px !important;
+padding-bottom:9px !important;
+}
+} @media only screen and (max-width: 480px){
+.mcnTextContent,.mcnBoxedTextContentColumn{
+padding-right:18px !important;
+padding-left:18px !important;
+}
+} @media only screen and (max-width: 480px){
+.mcnImageCardLeftImageContent,.mcnImageCardRightImageContent{
+padding-right:18px !important;
+padding-bottom:0 !important;
+padding-left:18px !important;
+}
+/* added this media query for centering the social buttons*/
+/*    } @media only screen and (max-width: 480px){
+.mcnFollowBlockInner{
+padding-right:20px !important;
+padding-left:18px !important;
+padding-bottom: 20px !important;
+} */
+} @media only screen and (max-width: 480px){
+.mcnButtonBlockInner{
+padding-top: 0 !important;
+padding-right: 18px !important;
+padding-bottom: 18px !important;
+padding-left: 18px !important;
+}
+/*   } @media only screen and (max-width: 480px){
+.mcnFollowContentItemContainer{
+padding-left: 30px;
+text-align: center;
+}
+} @media only screen and (max-width: 480px){
+.mcnFollowContentItem{
+text-align: center;
+}=20
+} @media only screen and (max-width: 480px){
+.mcnFollowIconContent{
+text-align: center;
+}  */
+/* added this media query for centering the social buttons*/
+} @media only screen and (max-width: 480px){
+.mcpreview-image-uploader{
+display:none !important;
+width:100% !important;
+}
+} @media only screen and (max-width: 480px){
+h1{
+font-size:22px !important;
+line-height:125% !important;
+}
+} @media only screen and (max-width: 480px){
+h2{
+font-size:20px !important;
+line-height:125% !important;
+}
+} @media only screen and (max-width: 480px){
+h3{
+font-size:18px !important;
+line-height:125% !important;
+}
+} @media only screen and (max-width: 480px){
+h4{
+font-size:16px !important;
+line-height:150% !important;
+}
+} @media only screen and (max-width: 480px){
+.mcnBoxedTextContentContainer .mcnTextContent,.mcnBoxedTextContentContainer=
+ .mcnTextContent p{
+font-size:14px !important;
+line-height:150% !important;
+}
+} @media only screen and (max-width: 480px){
+#templatePreheader{
+display:block !important;
+}
+} @media only screen and (max-width: 480px){
+#templatePreheader .mcnTextContent,#templatePreheader .mcnTextContent p{
+font-size:14px !important;
+line-height:150% !important;
+}
+} @media only screen and (max-width: 480px){
+#templateHeader .mcnTextContent,#templateHeader .mcnTextContent p{
+font-size:16px !important;
+line-height:150% !important;
+}
+} @media only screen and (max-width: 480px){
+#templateUpperBody .mcnTextContent,#templateUpperBody .mcnTextContent p{
+font-size:16px !important;
+line-height:150% !important;
+}
+} @media only screen and (max-width: 480px){
+#templateColumns .columnContainer .mcnTextContent,#templateColumns .columnC=
+ontainer .mcnTextContent p{
+font-size:16px !important;
+line-height:150% !important;
+}
+} @media only screen and (max-width: 480px){
+#templateLowerBody .mcnTextContent,#templateLowerBody .mcnTextContent p{
+font-size:16px !important;
+line-height:150% !important;
+}
+} @media only screen and (max-width: 480px){
+#templateFooter .mcnTextContent,#templateFooter .mcnTextContent p{
+font-size:14px !important;
+line-height:150% !important;
+}
+} </style> </head>
+<body style=3D"height: 100%;margin: 0;padding: 0;width: 100%;-ms-text-size-=
+adjust: 100%;-webkit-text-size-adjust: 100%;background-color: #F6F6F6;">
+<div style=3D"display:none;font-size:1px;color:#333333;line-height:1px;max-=
+height:0px;max-width:0px;opacity:0;overflow:hidden;">
+</div>
+<center>
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" he=
+ight=3D"100%" width=3D"100%" id=3D"bodyTable" style=3D"border-collapse: col=
+lapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100=
+%;-webkit-text-size-adjust: 100%;height: 100%;margin: 0;padding: 0;width: 1=
+00%;background-color: #F6F6F6;">
+<tr>
+<td align=3D"center" valign=3D"top" id=3D"bodyCell" style=3D"mso-line-heigh=
+t-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;h=
+eight: 100%;margin: 0;padding: 10px;width: 100%;border-top: 0;">
+<!-- BEGIN TEMPLATE // -->
+<!--[if gte mso 9]>
+<table align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" wi=
+dth=3D"600" style=3D"width:600px;">
+<tr>
+<td align=3D"center" valign=3D"top" width=3D"600" style=3D"width:600px;">
+<![endif]-->
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" clas=
+s=3D"templateContainer" style=3D"border-collapse: collapse;mso-table-lspace=
+: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-ad=
+just: 100%;border: 0;max-width: 600px !important;">
+<tr>
+<td valign=3D"top" id=3D"templatePreheader" style=3D"background:#F6F6F6 non=
+e no-repeat center/cover;mso-line-height-rule: exactly;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;background-color: #F6F6F6;background-=
+image: none;background-repeat: no-repeat;background-position: center;backgr=
+ound-size: cover;border-top: 0;border-bottom: 0;padding-top: 9px;padding-bo=
+ttom: 9px;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" class=3D"mcnTextBlock" style=3D"min-width: 100%;border-collapse: =
+collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: =
+100%;-webkit-text-size-adjust: 100%;">
+<tbody class=3D"mcnTextBlockOuter">
+<tr>
+<td valign=3D"top" class=3D"mcnTextBlockInner" style=3D"padding-top: 9px;ms=
+o-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-ad=
+just: 100%;">
+<!--[if mso]>
+<table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" widt=
+h=3D"100%" style=3D"width:100%;">
+<tr>
+<![endif]-->
+<!--[if mso]>
+<td valign=3D"top" width=3D"300" style=3D"width:300px;">
+<![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"max-width: 300px;border-collapse: collapse;mso-table-lspace: 0pt;mso-t=
+able-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;=
+" width=3D"100%" class=3D"mcnTextContentContainer">
+<tbody><tr>
+<td valign=3D"top" class=3D"mcnTextContent" style=3D"padding: 0px 18px 14px=
+;color: #000000;font-family: Arial, sans-serif;font-size: 13px;line-height:=
+ 100%;text-align: left;mso-line-height-rule: exactly;-ms-text-size-adjust: =
+100%;-webkit-text-size-adjust: 100%;word-break: break-word;">
+<a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR=
+0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5Lz91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b25ib2=
+FyZGluZyZ1dG1fY2FtcGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1wbG95ZXItc3BvbnNvcnNoa=
+XAtZnJvbS1hZG1pc3Npb25zJnV0bV9jb250ZW50PW1hcmtldGluZyZ1dG1fdGVybT0mZXh0aWQ9=
+MTUyODlmYmQtYjFhNy00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98715b95a7a1707d6093ebB1=
+4d0b284"><img height=3D"21" src=3D"https://media.sailthru.com/567/1k1/3/m/5=
+8d294e1bef52.png" style=3D"border: 0px;width: 195px;height: 21px;margin: 0p=
+x;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" wid=
+th=3D"195"></a>
+</td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+</td>
+<![endif]-->
+<!--[if mso]>
+<td valign=3D"top" width=3D"300" style=3D"width:300px;">
+<![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"max-width: 300px;border-collapse: collapse;mso-table-lspace: 0pt;mso-t=
+able-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;=
+" width=3D"100%" class=3D"mcnTextContentContainer">
+<tbody><tr>
+<td valign=3D"top" class=3D"mcnTextContent" style=3D"padding: 5px 18px 9px =
+38px;color: #000000;font-family: Arial, sans-serif;font-size: 13px;line-hei=
+ght: 100%;text-align: left;mso-line-height-rule: exactly;-ms-text-size-adju=
+st: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;">
+<!--    <span style=3D"font-size:13px;"><a href=3D"https://link.generalasse=
+mb.ly/click/5b9b145f5a8f9c0d005f9678/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2Fib3=
+V0P3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vbmJvYXJkaW5nJnV0bV9jYW1wYWlnbj1vb=
+mJvYXJkaW5nLWNhbXB1cy1lbXBsb3llci1zcG9uc29yc2hpcC1mcm9tLWFkbWlzc2lvbnMmdXRt=
+X2NvbnRlbnQ9bWFya2V0aW5nJnV0bV90ZXJtPSZleHRpZD0xNTI4OWZiZC1iMWE3LTQ0YzItODk=
+wZS03MjgzN2E2MzlmN2Q/5b98715b95a7a1707d6093ebB95ca9b89" target=3D"_blank" s=
+tyle=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-te=
+xt-size-adjust: 100%;color: #656565;font-weight: normal;text-decoration: un=
+derline;">About Us</a> &nbsp; &nbsp; <a href=3D"https://link.generalassemb.=
+ly/click/5b9b145f5a8f9c0d005f9678/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhd=
+Glvbj91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b25ib2FyZGluZyZ1dG1fY2FtcGFpZ249=
+b25ib2FyZGluZy1jYW1wdXMtZW1wbG95ZXItc3BvbnNvcnNoaXAtZnJvbS1hZG1pc3Npb25zJnV=
+0bV9jb250ZW50PW1hcmtldGluZyZ1dG1fdGVybT0mZXh0aWQ9MTUyODlmYmQtYjFhNy00NGMyLT=
+g5MGUtNzI4MzdhNjM5Zjdk/5b98715b95a7a1707d6093ebB6569e417" target=3D"_blank"=
+ style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-=
+text-size-adjust: 100%;color: #656565;font-weight: normal;text-decoration: =
+underline;">Browse Courses</a> &nbsp; &nbsp; <a href=3D"https://link.genera=
+lassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR0cHM6Ly90aGVpbmRleC5nZW5lcmFsY=
+XNzZW1iLmx5Lz91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b25ib2FyZGluZyZ1dG1fY2Ft=
+cGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1wbG95ZXItc3BvbnNvcnNoaXAtZnJvbS1hZG1pc3N=
+pb25zJnV0bV9jb250ZW50PW1hcmtldGluZyZ1dG1fdGVybT0mZXh0aWQ9MTUyODlmYmQtYjFhNy=
+00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98715b95a7a1707d6093ebBc176be24" target=3D=
+"_blank" style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;=
+-webkit-text-size-adjust: 100%;color: #656565;font-weight: normal;text-deco=
+ration: underline;">The Index</a></span> -->
+</td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+</td>
+<![endif]-->
+<!--[if mso]>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</tbody>
+</table></td>
+</tr>
+<tr>
+<td valign=3D"top" id=3D"templateHeader" style=3D"background:#FFFFFF none n=
+o-repeat center/cover;mso-line-height-rule: exactly;-ms-text-size-adjust: 1=
+00%;-webkit-text-size-adjust: 100%;background-color: #FFFFFF;background-ima=
+ge: none;background-repeat: no-repeat;background-position: center;backgroun=
+d-size: cover;border-top: 0;border-bottom: 0;padding-top: 9px;padding-botto=
+m: 0;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100=
+%" class=3D"mcnTextBlock" style=3D"min-width: 100%;border-collapse: collaps=
+e;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-w=
+ebkit-text-size-adjust: 100%;">
+<tbody class=3D"mcnTextBlockOuter">
+<tr>
+<td valign=3D"top" class=3D"mcnTextBlockInner" style=3D"padding-top: 0px;ms=
+o-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-ad=
+just: 100%;">
+<!--[if mso]>
+<table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" widt=
+h=3D"100%" style=3D"width:100%;">
+<tr>
+<![endif]-->
+<!--[if mso]>
+<td valign=3D"top" width=3D"600" style=3D"width:600px;">
+<![endif]-->
+<!--<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+style=3D"max-width: 100%;min-width: 100%;border-collapse: collapse;mso-tabl=
+e-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text=
+-size-adjust: 100%;" width=3D"100%" class=3D"mcnTextContentContainer">-->
+<!--  <tbody><tr>-->
+<!--    <td valign=3D"top" class=3D"mcnTextContent" style=3D"padding: 0px 1=
+8px 9px;color: #DE3535;font-family: Arial, &quot;Helvetica Neue&quot;, Helv=
+etica, sans-serif;font-size: 14px;font-style: normal;font-weight: bold;line=
+-height: 100%;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-web=
+kit-text-size-adjust: 100%;word-break: break-word;text-align: left;">-->
+<!--      <span style=3D"color:#DE3535; letter-spacing:1px;">WEB DEVELOPMEN=
+T COURSE</span>-->
+<!--    </td>-->
+<!--  </tr>-->
+<!--</tbody></table>-->=20
+<!--[if mso]>
+</td>
+<![endif]-->
+<!--[if mso]>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</tbody>
+</table>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" clas=
+s=3D"mcnTextBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-t=
+able-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-t=
+ext-size-adjust: 100%;">
+<tbody class=3D"mcnTextBlockOuter">
+<tr>
+<td valign=3D"top" class=3D"mcnTextBlockInner" style=3D"padding-top: 0px;ms=
+o-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-ad=
+just: 100%;">
+<!--[if mso]>
+<table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" widt=
+h=3D"100%" style=3D"width:100%;">
+<tr>
+<![endif]-->
+<!--[if mso]>
+<td valign=3D"top" width=3D"600" style=3D"width:600px;">
+<![endif]-->
+<!--           <table align=3D"left" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" style=3D"max-width: 100%;min-width: 100%;border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%;" width=3D"100%" class=3D"mcnTextContentConta=
+iner">
+<tbody><tr>
+<td valign=3D"top" class=3D"mcnTextContent" style=3D"padding: 0px 18px 9px;=
+color: #000000;font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, s=
+ans-serif;font-size: 30px;font-style: normal;font-weight: bold;line-height:=
+ 100%;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text=
+-size-adjust: 100%;word-break: break-word;text-align: left;">
+<span style=3D"font-size:32px"><strong>From Laid-off to Thriving Web Develo=
+per</strong></span>
+</td>
+</tr>
+</tbody></table> -->
+<!--[if mso]>
+</td>
+<![endif]-->
+<!--[if mso]>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<!--text-start-->
+<tr>
+<td valign=3D"top" id=3D"templateUpperBody" style=3D"background:#FFFFFF non=
+e no-repeat center/cover;mso-line-height-rule: exactly;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;background-color: #FFFFFF;background-=
+image: none;background-repeat: no-repeat;background-position: center;backgr=
+ound-size: cover;border-top: 0;border-bottom: 0;padding-top: 0;padding-bott=
+om: 0;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"10=
+0%" class=3D"mcnTextBlock" style=3D"min-width: 100%;border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%;">
+<tbody class=3D"mcnTextBlockOuter">
+<tr>
+<td valign=3D"top" class=3D"mcnTextBlockInner" style=3D"padding-top: 0px;ms=
+o-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-ad=
+just: 100%;">
+<!--[if mso]>
+<table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" widt=
+h=3D"100%" style=3D"width:100%;">
+<tr>
+<![endif]-->
+<!--[if mso]>
+<td valign=3D"top" width=3D"600" style=3D"width:600px;">
+<![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"max-width: 100%;min-width: 100%;border-collapse: collapse;mso-table-ls=
+pace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-siz=
+e-adjust: 100%;" width=3D"100%" class=3D"mcnTextContentContainer">
+<tbody><tr>
+<td valign=3D"top" class=3D"mcnTextContent" style=3D"padding: 0px 18px 9px;=
+color: #000000;font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, s=
+ans-serif;font-size: 16px;mso-line-height-rule: exactly;-ms-text-size-adjus=
+t: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;line-height: =
+150%;text-align: left;">
+<p> Hi there, </p>
+<p>I=E2=80=99m Chloe, an admissions director at General Assembly. I know ta=
+king on extra education is a major investment of time and money, no matter =
+your schedule or goals. Fortunately, <strong>over 60% of our students in ou=
+r part-time and remote courses get their employer to pay for their tution</=
+strong>, letting them get ahead with new skills in  <a href=3D"https://link=
+.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR0cHM6Ly9nZW5lcmFsYXNzZW=
+1iLmx5L2VkdWNhdGlvbi9kYXRhLWFuYWx5dGljcz91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY=
+2U9b25ib2FyZGluZyZ1dG1fY2FtcGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1wbG95ZXItc3Bv=
+bnNvcnNoaXAtZnJvbS1hZG1pc3Npb25zJnV0bV9jb250ZW50PW1hcmtldGluZyZ1dG1fdGVybT0=
+mZXh0aWQ9MTUyODlmYmQtYjFhNy00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98715b95a7a1707=
+d6093ebB1b0a68fb" target=3D"_blank" style=3D"mso-line-height-rule: exactly;=
+-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #0D8390;fo=
+nt-weight: normal;text-decoration: underline;">data</a>, <a href=3D"https:/=
+/link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR0cHM6Ly9nZW5lcmFsY=
+XNzZW1iLmx5L2VkdWNhdGlvbi91c2VyLWV4cGVyaWVuY2UtZGVzaWduP3V0bV9tZWRpdW09ZW1h=
+aWwmdXRtX3NvdXJjZT1vbmJvYXJkaW5nJnV0bV9jYW1wYWlnbj1vbmJvYXJkaW5nLWNhbXB1cy1=
+lbXBsb3llci1zcG9uc29yc2hpcC1mcm9tLWFkbWlzc2lvbnMmdXRtX2NvbnRlbnQ9bWFya2V0aW=
+5nJnV0bV90ZXJtPSZleHRpZD0xNTI4OWZiZC1iMWE3LTQ0YzItODkwZS03MjgzN2E2MzlmN2Q/5=
+b98715b95a7a1707d6093ebB87a6fa73" target=3D"_blank" style=3D"mso-line-heigh=
+t-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;c=
+olor: #0D8390;font-weight: normal;text-decoration: underline;">design</a>, =
+<a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR=
+0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9kaWdpdGFsLW1hcmtldGluZz91dG1fbW=
+VkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b25ib2FyZGluZyZ1dG1fY2FtcGFpZ249b25ib2FyZGluZ=
+y1jYW1wdXMtZW1wbG95ZXItc3BvbnNvcnNoaXAtZnJvbS1hZG1pc3Npb25zJnV0bV9jb250ZW50=
+PW1hcmtldGluZyZ1dG1fdGVybT0mZXh0aWQ9MTUyODlmYmQtYjFhNy00NGMyLTg5MGUtNzI4Mzd=
+hNjM5Zjdk/5b98715b95a7a1707d6093ebB3de11632" target=3D"_blank" style=3D"mso=
+-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adj=
+ust: 100%;color: #0D8390;font-weight: normal;text-decoration: underline;">m=
+arketing</a>, <a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c=
+0d005f9678/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9mcm9udC1lbmQtd2Vi=
+LWRldmVsb3BtZW50P3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vbmJvYXJkaW5nJnV0bV9=
+jYW1wYWlnbj1vbmJvYXJkaW5nLWNhbXB1cy1lbXBsb3llci1zcG9uc29yc2hpcC1mcm9tLWFkbW=
+lzc2lvbnMmdXRtX2NvbnRlbnQ9bWFya2V0aW5nJnV0bV90ZXJtPSZleHRpZD0xNTI4OWZiZC1iM=
+WE3LTQ0YzItODkwZS03MjgzN2E2MzlmN2Q/5b98715b95a7a1707d6093ebB13a1873a" targe=
+t=3D"_blank" style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 1=
+00%;-webkit-text-size-adjust: 100%;color: #0D8390;font-weight: normal;text-=
+decoration: underline;">coding</a>, and <a href=3D"https://link.generalasse=
+mb.ly/click/5b9b145f5a8f9c0d005f9678/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdW=
+NhdGlvbi9wcm9kdWN0LW1hbmFnZW1lbnQ_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW9uY=
+m9hcmRpbmcmdXRtX2NhbXBhaWduPW9uYm9hcmRpbmctY2FtcHVzLWVtcGxveWVyLXNwb25zb3Jz=
+aGlwLWZyb20tYWRtaXNzaW9ucyZ1dG1fY29udGVudD1tYXJrZXRpbmcmdXRtX3Rlcm09JmV4dGl=
+kPTE1Mjg5ZmJkLWIxYTctNDRjMi04OTBlLTcyODM3YTYzOWY3ZA/5b98715b95a7a1707d6093e=
+bBa37afdb4" target=3D"_blank" style=3D"mso-line-height-rule: exactly;-ms-te=
+xt-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #0D8390;font-wei=
+ght: normal;text-decoration: underline;">product management</a>.</p>
+</p>Start a conversation with your manager by requesting a syllabus for one=
+ of our courses below. By helping you level up, your company isn=E2=80=99t =
+just investing in your future =E2=80=94 they=E2=80=99re making the entire t=
+eam stronger. It's a win-win.  </p>
+<ul>
+<li><a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678=
+/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9kYXRhLWFuYWx5dGljcz9yZXF1ZX=
+N0X3N5bGxhYnVzPXRydWUmdXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW9uYm9hcmRpbmcmd=
+XRtX2NhbXBhaWduPW9uYm9hcmRpbmctY2FtcHVzLWVtcGxveWVyLXNwb25zb3JzaGlwLWZyb20t=
+YWRtaXNzaW9ucyZ1dG1fY29udGVudD1tYXJrZXRpbmcmdXRtX3Rlcm09JmV4dGlkPTE1Mjg5ZmJ=
+kLWIxYTctNDRjMi04OTBlLTcyODM3YTYzOWY3ZA/5b98715b95a7a1707d6093ebC44ac0c86" =
+target=3D"_blank" style=3D"mso-line-height-rule: exactly;-ms-text-size-adju=
+st: 100%;-webkit-text-size-adjust: 100%;color: #0D8390;font-weight: normal;=
+text-decoration: underline;">Data Analytics</a></li>
+<li><a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678=
+/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9kYXRhLXNjaWVuY2U_cmVxdWVzdF=
+9zeWxsYWJ1cz10cnVlJnV0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vbmJvYXJkaW5nJnV0b=
+V9jYW1wYWlnbj1vbmJvYXJkaW5nLWNhbXB1cy1lbXBsb3llci1zcG9uc29yc2hpcC1mcm9tLWFk=
+bWlzc2lvbnMmdXRtX2NvbnRlbnQ9bWFya2V0aW5nJnV0bV90ZXJtPSZleHRpZD0xNTI4OWZiZC1=
+iMWE3LTQ0YzItODkwZS03MjgzN2E2MzlmN2Q/5b98715b95a7a1707d6093ebBc5218df8" tar=
+get=3D"_blank" style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust:=
+ 100%;-webkit-text-size-adjust: 100%;color: #0D8390;font-weight: normal;tex=
+t-decoration: underline;">Data Science</a></li>
+<li><a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678=
+/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9kaWdpdGFsLW1hcmtldGluZz9yZX=
+F1ZXN0X3N5bGxhYnVzPXRydWUmdXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW9uYm9hcmRpb=
+mcmdXRtX2NhbXBhaWduPW9uYm9hcmRpbmctY2FtcHVzLWVtcGxveWVyLXNwb25zb3JzaGlwLWZy=
+b20tYWRtaXNzaW9ucyZ1dG1fY29udGVudD1tYXJrZXRpbmcmdXRtX3Rlcm09JmV4dGlkPTE1Mjg=
+5ZmJkLWIxYTctNDRjMi04OTBlLTcyODM3YTYzOWY3ZA/5b98715b95a7a1707d6093ebC2da709=
+c4" target=3D"_blank" style=3D"mso-line-height-rule: exactly;-ms-text-size-=
+adjust: 100%;-webkit-text-size-adjust: 100%;color: #0D8390;font-weight: nor=
+mal;text-decoration: underline;">Digital Marketing</a></li>
+<li><a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678=
+/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9mcm9udC1lbmQtd2ViLWRldmVsb3=
+BtZW50P3JlcXVlc3Rfc3lsbGFidXM9dHJ1ZSZ1dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b=
+25ib2FyZGluZyZ1dG1fY2FtcGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1wbG95ZXItc3BvbnNv=
+cnNoaXAtZnJvbS1hZG1pc3Npb25zJnV0bV9jb250ZW50PW1hcmtldGluZyZ1dG1fdGVybT0mZXh=
+0aWQ9MTUyODlmYmQtYjFhNy00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98715b95a7a1707d609=
+3ebC08ca8e61" target=3D"_blank" style=3D"mso-line-height-rule: exactly;-ms-=
+text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #0D8390;font-w=
+eight: normal;text-decoration: underline;">Front-End Web Development</a></l=
+i>
+<li><a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678=
+/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9qYXZhc2NyaXB0LWRldmVsb3BtZW=
+50P3JlcXVlc3Rfc3lsbGFidXM9dHJ1ZSZ1dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b25ib=
+2FyZGluZyZ1dG1fY2FtcGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1wbG95ZXItc3BvbnNvcnNo=
+aXAtZnJvbS1hZG1pc3Npb25zJnV0bV9jb250ZW50PW1hcmtldGluZyZ1dG1fdGVybT0mZXh0aWQ=
+9MTUyODlmYmQtYjFhNy00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98715b95a7a1707d6093ebB=
+7721a574" target=3D"_blank" style=3D"mso-line-height-rule: exactly;-ms-text=
+-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #0D8390;font-weigh=
+t: normal;text-decoration: underline;">JavaScript Development</a></li>
+<li><a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678=
+/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9wcm9kdWN0LW1hbmFnZW1lbnQ_cm=
+VxdWVzdF9zeWxsYWJ1cz10cnVlJnV0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vbmJvYXJka=
+W5nJnV0bV9jYW1wYWlnbj1vbmJvYXJkaW5nLWNhbXB1cy1lbXBsb3llci1zcG9uc29yc2hpcC1m=
+cm9tLWFkbWlzc2lvbnMmdXRtX2NvbnRlbnQ9bWFya2V0aW5nJnV0bV90ZXJtPSZleHRpZD0xNTI=
+4OWZiZC1iMWE3LTQ0YzItODkwZS03MjgzN2E2MzlmN2Q/5b98715b95a7a1707d6093ebCb8274=
+a8c" target=3D"_blank" style=3D"mso-line-height-rule: exactly;-ms-text-size=
+-adjust: 100%;-webkit-text-size-adjust: 100%;color: #0D8390;font-weight: no=
+rmal;text-decoration: underline;">Product Management</a></li>
+<li><a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678=
+/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi9weXRob24tcHJvZ3JhbW1pbmc_cm=
+VxdWVzdF9zeWxsYWJ1cz10cnVlJnV0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vbmJvYXJka=
+W5nJnV0bV9jYW1wYWlnbj1vbmJvYXJkaW5nLWNhbXB1cy1lbXBsb3llci1zcG9uc29yc2hpcC1m=
+cm9tLWFkbWlzc2lvbnMmdXRtX2NvbnRlbnQ9bWFya2V0aW5nJnV0bV90ZXJtPSZleHRpZD0xNTI=
+4OWZiZC1iMWE3LTQ0YzItODkwZS03MjgzN2E2MzlmN2Q/5b98715b95a7a1707d6093ebB7be75=
+625" target=3D"_blank" style=3D"mso-line-height-rule: exactly;-ms-text-size=
+-adjust: 100%;-webkit-text-size-adjust: 100%;color: #0D8390;font-weight: no=
+rmal;text-decoration: underline;">Python Programming</a></li>
+<li><a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678=
+/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi91c2VyLWV4cGVyaWVuY2UtZGVzaW=
+duP3JlcXVlc3Rfc3lsbGFidXM9dHJ1ZSZ1dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b25ib=
+2FyZGluZyZ1dG1fY2FtcGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1wbG95ZXItc3BvbnNvcnNo=
+aXAtZnJvbS1hZG1pc3Npb25zJnV0bV9jb250ZW50PW1hcmtldGluZyZ1dG1fdGVybT0mZXh0aWQ=
+9MTUyODlmYmQtYjFhNy00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98715b95a7a1707d6093ebC=
+b952b421" target=3D"_blank" style=3D"mso-line-height-rule: exactly;-ms-text=
+-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #0D8390;font-weigh=
+t: normal;text-decoration: underline;">User Experience Design</a></li>
+<li><a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678=
+/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iLmx5L2VkdWNhdGlvbi92aXN1YWwtZGVzaWduP3JlcXVlc3=
+Rfc3lsbGFidXM9dHJ1ZSZ1dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b25ib2FyZGluZyZ1d=
+G1fY2FtcGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1wbG95ZXItc3BvbnNvcnNoaXAtZnJvbS1h=
+ZG1pc3Npb25zJnV0bV9jb250ZW50PW1hcmtldGluZyZ1dG1fdGVybT0mZXh0aWQ9MTUyODlmYmQ=
+tYjFhNy00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98715b95a7a1707d6093ebBe1730fa4" ta=
+rget=3D"_blank" style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;color: #0D8390;font-weight: normal;te=
+xt-decoration: underline;">Visual Design</a></li>
+</ul>
+<p>Want to talk to us about your career options? <a href=3D"https://link.ge=
+neralassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR0cHM6Ly9nZW5lcmFsYXNzZW1iL=
+mx5L2ZpbmR5b3VyY291cnNlP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vbmJvYXJkaW5n=
+JnV0bV9jYW1wYWlnbj1vbmJvYXJkaW5nLWNhbXB1cy1lbXBsb3llci1zcG9uc29yc2hpcC1mcm9=
+tLWFkbWlzc2lvbnMmdXRtX2NvbnRlbnQ9bWFya2V0aW5nJnV0bV90ZXJtPSZleHRpZD0xNTI4OW=
+ZiZC1iMWE3LTQ0YzItODkwZS03MjgzN2E2MzlmN2Q/5b98715b95a7a1707d6093ebB9b08d57c=
+" target=3D"_blank" style=3D"mso-line-height-rule: exactly;-ms-text-size-ad=
+just: 100%;-webkit-text-size-adjust: 100%;color: #0D8390;font-weight: norma=
+l;text-decoration: underline;">We're here to help</a> =E2=80=94 and we=E2=
+=80=99re excited about what=E2=80=99s in store for your career in the comin=
+g year.</p>
+</td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+</td>
+<![endif]-->
+<!--[if mso]>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</tbody>
+</table></td>
+</tr>
+<!--text-end-->
+<!--button-start-->
+<tr>
+<td valign=3D"top" id=3D"templateColumns" style=3D"background:#FFFFFF none =
+no-repeat center/cover;mso-line-height-rule: exactly;-ms-text-size-adjust: =
+100%;-webkit-text-size-adjust: 100%;background-color: #FFFFFF;background-im=
+age: none;background-repeat: no-repeat;background-position: center;backgrou=
+nd-size: cover;border-top: 0;border-bottom: 0;padding-top: 0;padding-bottom=
+: 0;">
+<!--[if gte mso 9]>=20
+<table align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" wi=
+dth=3D"600" style=3D"width:600px;">
+<tr>
+<td align=3D"center" valign=3D"top" width=3D"300" style=3D"width:300px;">
+<![endif]-->
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" wi=
+dth=3D"300" class=3D"columnWrapper" style=3D"border-collapse: collapse;mso-=
+table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-=
+text-size-adjust: 100%;">
+<tr>
+<td valign=3D"top" class=3D"columnContainer" style=3D"mso-line-height-rule:=
+ exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"><table=
+ border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" class=3D"m=
+cnButtonBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-=
+size-adjust: 100%;">
+<tbody class=3D"mcnButtonBlockOuter">
+<tr>
+<td style=3D"padding-top: 0;padding-right: 10px;padding-bottom: 18px;paddin=
+g-left: 18px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;" valign=3D"top" align=3D"center" class=3D"mcnBut=
+tonBlockInner">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" clas=
+s=3D"mcnButtonContentContainer" style=3D"border-collapse: separate !importa=
+nt;border: 2px solid #DE3535;border-radius: 3px;background-color: #FFFFFF;m=
+so-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;">
+<tbody>
+<tr>
+<td align=3D"center" valign=3D"middle" class=3D"mcnButtonContent" style=3D"=
+font-family: Arial;font-size: 16px;padding: 16px;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<a class=3D"mcnButton "  href=3D"https://link.generalassemb.ly/click/5b9b14=
+5f5a8f9c0d005f9678/aHR0cDovL2dlbmVyYWxhc3NlbWIubHkvZmluZHlvdXJjb3Vyc2U_dXRt=
+X21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW9uYm9hcmRpbmcmdXRtX2NhbXBhaWduPW9uYm9hcmR=
+pbmctY2FtcHVzLWVtcGxveWVyLXNwb25zb3JzaGlwLWZyb20tYWRtaXNzaW9ucyZ1dG1fY29udG=
+VudD1tYXJrZXRpbmcmdXRtX3Rlcm09JmV4dGlkPTE1Mjg5ZmJkLWIxYTctNDRjMi04OTBlLTcyO=
+DM3YTYzOWY3ZA/5b98715b95a7a1707d6093ebBd04a48a1" target=3D"_blank" style=3D=
+"font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: cen=
+ter;text-decoration: none;color: #DE3535;mso-line-height-rule: exactly;-ms-=
+text-size-adjust: 100%;-webkit-text-size-adjust: 100%;display: block;">Get =
+in Touch <img src=3D"https://media.sailthru.com/567/1k1/3/k/58d02f95076b4.p=
+ng" width=3D"7" border=3D"0" height=3D"10" alt=3D"Arrow"/></a>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table></td>
+</tr>
+</table>
+<!--[if gte mso 9]>
+</td>
+<td align=3D"center" valign=3D"top" width=3D"300" style=3D"width:300px;">
+<![endif]-->
+<!--[if mso]>
+<table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" widt=
+h=3D"100%" style=3D"width:100%;">
+<tr>
+<![endif]-->
+<!--[if mso]>
+<td valign=3D"top" width=3D"600" style=3D"width:600px;">
+<![endif]-->
+<!--[if mso]>
+</td>
+<![endif]-->
+<!--[if mso]>
+</tr>
+</table>
+<![endif]-->
+<!--                <table align=3D"left" border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" width=3D"300" class=3D"columnWrapper" style=3D"border-colla=
+pse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adj=
+ust: 100%;-webkit-text-size-adjust: 100%;">
+<tr>
+<td valign=3D"top" class=3D"columnContainer" style=3D"mso-line-height-rule:=
+ exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"><table=
+ border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" class=3D"m=
+cnButtonBlock" style=3D"min-width: 100%;border-collapse: collapse;mso-table=
+-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-=
+size-adjust: 100%;">
+<tbody class=3D"mcnButtonBlockOuter">
+<tr>
+<td style=3D"padding-top: 0;padding-right: 18px;padding-bottom: 18px;paddin=
+g-left: 10px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;" valign=3D"top" align=3D"center" class=3D"mcnBut=
+tonBlockInner">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" clas=
+s=3D"mcnButtonContentContainer" style=3D"border-collapse: separate !importa=
+nt;border: 2px solid #DE3535;border-radius: 3px;background-color: #FFFFFF;m=
+so-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;">
+<tbody>
+<tr>
+<td align=3D"center" valign=3D"middle" class=3D"mcnButtonContent" style=3D"=
+font-family: Arial;font-size: 16px;padding: 16px;mso-line-height-rule: exac=
+tly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<a class=3D"mcnButton " title=3D"CTA_TITLE_HERE" href=3D"https://link.gener=
+alassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR0cDovLz91dG1fbWVkaXVtPWVtYWls=
+JnV0bV9zb3VyY2U9b25ib2FyZGluZyZ1dG1fY2FtcGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1=
+wbG95ZXItc3BvbnNvcnNoaXAtZnJvbS1hZG1pc3Npb25zJnV0bV9jb250ZW50PW1hcmtldGluZy=
+Z1dG1fdGVybT0mZXh0aWQ9MTUyODlmYmQtYjFhNy00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98=
+715b95a7a1707d6093ebBa1f4c7e9" target=3D"_blank" style=3D"font-weight: bold=
+;letter-spacing: normal;line-height: 100%;text-align: center;text-decoratio=
+n: none;color: #DE3535;mso-line-height-rule: exactly;-ms-text-size-adjust: =
+100%;-webkit-text-size-adjust: 100%;display: block;">Apply + Save Your Spot=
+ <img src=3D"https://media.sailthru.com/567/1k1/3/k/58d02f95076b4.png" widt=
+h=3D"7" border=3D"0" height=3D"10" alt=3D"Arrow"/></a>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</table> -->
+<!--[if gte mso 9]>
+</td>
+</tr>
+</table>
+<![endif]-->
+<!--[if mso]>
+<table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" widt=
+h=3D"100%" style=3D"width:100%;">
+<tr>
+<![endif]-->
+<!--[if mso]>
+<td valign=3D"top" width=3D"600" style=3D"width:600px;">
+<![endif]-->
+<!--[if mso]>
+</td>
+<![endif]-->
+<!--[if mso]>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+<!--button-end-->
+<!--text-start-->
+<tr>
+<td valign=3D"top" id=3D"templateUpperBody" style=3D"background:#FFFFFF non=
+e no-repeat center/cover;mso-line-height-rule: exactly;-ms-text-size-adjust=
+: 100%;-webkit-text-size-adjust: 100%;background-color: #FFFFFF;background-=
+image: none;background-repeat: no-repeat;background-position: center;backgr=
+ound-size: cover;border-top: 0;border-bottom: 0;padding-top: 0;padding-bott=
+om: 0;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"10=
+0%" class=3D"mcnTextBlock" style=3D"min-width: 100%;border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%;">
+<tbody class=3D"mcnTextBlockOuter">
+<tr>
+<td valign=3D"top" class=3D"mcnTextBlockInner" style=3D"padding-top: 0px;ms=
+o-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-ad=
+just: 100%;">
+<!--[if mso]>
+<table align=3D"left" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" widt=
+h=3D"100%" style=3D"width:100%;">
+<tr>
+<![endif]-->
+<!--[if mso]>
+<td valign=3D"top" width=3D"600" style=3D"width:600px;">
+<![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"max-width: 100%;min-width: 100%;border-collapse: collapse;mso-table-ls=
+pace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-siz=
+e-adjust: 100%;" width=3D"100%" class=3D"mcnTextContentContainer">
+<tbody><tr>
+<td valign=3D"top" class=3D"mcnTextContent" style=3D"padding: 0px 18px 9px;=
+color: #000000;font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, s=
+ans-serif;font-size: 16px;mso-line-height-rule: exactly;-ms-text-size-adjus=
+t: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;line-height: =
+150%;text-align: left;">
+<p>Best,</p>
+<p>Chloe Wilder<br>
+Regional Admissions Director</p>
+</td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+</td>
+<![endif]-->
+<!--[if mso]>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</tbody>
+</table></td>
+</tr>
+<!--text-end-->
+<table align=3D"center">
+<tr>
+<td valign=3D"top" id=3D"templateFooter" style=3D"background:#F6F6F6 none n=
+o-repeat center/cover;mso-line-height-rule: exactly;-ms-text-size-adjust: 1=
+00%;-webkit-text-size-adjust: 100%;background-color: #F6F6F6;background-ima=
+ge: none;background-repeat: no-repeat;background-position: center;backgroun=
+d-size: cover;border-top: 0;border-bottom: 0;padding-top: 30px;padding-bott=
+om: 30px;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" class=3D"mcnFollowBlock" style=3D"min-width: 100%;border-collapse: c=
+ollapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 1=
+00%;-webkit-text-size-adjust: 100%;">
+<tbody class=3D"mcnFollowBlockOuter">
+<tr>
+<!--  <td align=3D"center" valign=3D"top" style=3D"padding: 9px;mso-line-he=
+ight-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100=
+%;" class=3D"mcnFollowBlockInner">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" clas=
+s=3D"mcnFollowContentContainer" style=3D"min-width: 100%;border-collapse: c=
+ollapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 1=
+00%;-webkit-text-size-adjust: 100%;">
+<tbody><tr>
+<td align=3D"center" style=3D"padding-left: 9px;padding-right: 9px;mso-line=
+-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: =
+100%;">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-ta=
+ble-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"=
+ class=3D"mcnFollowContent">
+<tbody><tr>
+<td align=3D"center" valign=3D"top" style=3D"padding-top: 9px;padding-right=
+: 9px;padding-left: 9px;mso-line-height-rule: exactly;-ms-text-size-adjust:=
+ 100%;-webkit-text-size-adjust: 100%;">
+<table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" st=
+yle=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0p=
+t;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<tbody><tr>
+<td align=3D"center" valign=3D"top" style=3D"mso-line-height-rule: exactly;=
+-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"> -->
+<!--[if mso]>
+<table align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+<tr>
+<![endif]-->
+<!--[if mso]>
+<td align=3D"center" valign=3D"top">
+<![endif]-->
+<!--   <table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" style=3D"display: inline;border-collapse: collapse;mso-table-lspace: 0pt=
+;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust:=
+ 100%;">
+<tbody><tr>
+<td valign=3D"top" style=3D"padding-right: 10px;padding-bottom: 9px;mso-lin=
+e-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust:=
+ 100%;" class=3D"mcnFollowContentItemContainer">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" clas=
+s=3D"mcnFollowContentItem" style=3D"border-collapse: collapse;mso-table-lsp=
+ace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size=
+-adjust: 100%;">
+<tbody><tr>
+<td align=3D"center" valign=3D"middle" style=3D"padding-top: 5px;padding-ri=
+ght: 5px;padding-bottom: 5px;padding-left: 5px;mso-line-height-rule: exactl=
+y;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-r=
+space: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<tbody><tr> -->
+<td align=3D"center" valign=3D"middle" width=3D"24" class=3D"mcnFollowIconC=
+ontent" style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%; padding-left: 5px;  padding-right: 5px;">
+<a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR=
+0cHM6Ly93d3cuZmFjZWJvb2suY29tL2ducmxhc3NlbWJseS8_dXRtX21lZGl1bT1lbWFpbCZ1dG=
+1fc291cmNlPW9uYm9hcmRpbmcmdXRtX2NhbXBhaWduPW9uYm9hcmRpbmctY2FtcHVzLWVtcGxve=
+WVyLXNwb25zb3JzaGlwLWZyb20tYWRtaXNzaW9ucyZ1dG1fY29udGVudD1tYXJrZXRpbmcmdXRt=
+X3Rlcm09JmV4dGlkPTE1Mjg5ZmJkLWIxYTctNDRjMi04OTBlLTcyODM3YTYzOWY3ZA/5b98715b=
+95a7a1707d6093ebB605eebbd" target=3D"_blank" style=3D"mso-line-height-rule:=
+ exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"><img s=
+rc=3D"https://media.sailthru.com/567/1k1/2/r/58b45a037ee36.png" style=3D"di=
+splay: block;border: 0;height: auto;outline: none;text-decoration: none;-ms=
+-interpolation-mode: bicubic;" height=3D"24" width=3D"24" class=3D""></a>
+</td>
+<!--=20
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+-->
+<!--[if mso]>
+</td>
+<![endif]-->
+<!--[if mso]>
+<td align=3D"center" valign=3D"top">
+<![endif]-->
+<!-- <table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ style=3D"display: inline;border-collapse: collapse;mso-table-lspace: 0pt;m=
+so-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 1=
+00%;">
+<tbody><tr>
+<td valign=3D"top" style=3D"padding-right: 10px;padding-bottom: 9px;mso-lin=
+e-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust:=
+ 100%;" class=3D"mcnFollowContentItemContainer">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" clas=
+s=3D"mcnFollowContentItem" style=3D"border-collapse: collapse;mso-table-lsp=
+ace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size=
+-adjust: 100%;">
+<tbody><tr>
+<td align=3D"center" valign=3D"middle" style=3D"padding-top: 8px;padding-ri=
+ght: 5px;padding-bottom: 5px;padding-left: 5px;mso-line-height-rule: exactl=
+y;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-r=
+space: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<tbody><tr> -->
+<td align=3D"center" valign=3D"middle" width=3D"24" class=3D"mcnFollowIconC=
+ontent" style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%; padding-left: 5px; padding-right: 5px;">
+<a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR=
+0cHM6Ly90d2l0dGVyLmNvbS9HQT91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b25ib2FyZG=
+luZyZ1dG1fY2FtcGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1wbG95ZXItc3BvbnNvcnNoaXAtZ=
+nJvbS1hZG1pc3Npb25zJnV0bV9jb250ZW50PW1hcmtldGluZyZ1dG1fdGVybT0mZXh0aWQ9MTUy=
+ODlmYmQtYjFhNy00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98715b95a7a1707d6093ebBf57e1=
+e8f" target=3D"_blank" style=3D"mso-line-height-rule: exactly;-ms-text-size=
+-adjust: 100%;-webkit-text-size-adjust: 100%;"><img src=3D"https://link.gen=
+eralassemb.ly/img/5b98715b95a7a1707d6093eb5b9b145f5a8f9c0d005f9678/2767244f=
+.gif" style=3D"display: block; border: 0;height: auto;outline: none;text-de=
+coration: none;-ms-interpolation-mode: bicubic;" height=3D"24" width=3D"24"=
+ class=3D""></a>
+</td>
+<!--=20
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+-->
+<!--[if mso]>
+</td>
+<![endif]-->
+<!--[if mso]>
+<td align=3D"center" valign=3D"top">
+<![endif]-->
+<!--  <table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" style=3D"display: inline;border-collapse: collapse;mso-table-lspace: 0pt;=
+mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: =
+100%;">
+<tbody><tr>
+<td valign=3D"top" style=3D"padding-right: 10px;padding-bottom: 9px;mso-lin=
+e-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust:=
+ 100%;" class=3D"mcnFollowContentItemContainer">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" clas=
+s=3D"mcnFollowContentItem" style=3D"border-collapse: collapse;mso-table-lsp=
+ace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size=
+-adjust: 100%;">
+<tbody><tr>
+<td align=3D"center" valign=3D"middle" style=3D"padding-top: 5px;padding-ri=
+ght: 5px;padding-bottom: 5px;padding-left: 5px;mso-line-height-rule: exactl=
+y;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-r=
+space: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<tbody><tr> -->
+<td align=3D"center" valign=3D"middle" width=3D"24" class=3D"mcnFollowIconC=
+ontent" style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%; padding-left: 5px; padding-right: 5px;">
+<a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR=
+0cHM6Ly93d3cuaW5zdGFncmFtLmNvbS9nZW5lcmFsYXNzZW1ibHkvP3V0bV9tZWRpdW09ZW1haW=
+wmdXRtX3NvdXJjZT1vbmJvYXJkaW5nJnV0bV9jYW1wYWlnbj1vbmJvYXJkaW5nLWNhbXB1cy1lb=
+XBsb3llci1zcG9uc29yc2hpcC1mcm9tLWFkbWlzc2lvbnMmdXRtX2NvbnRlbnQ9bWFya2V0aW5n=
+JnV0bV90ZXJtPSZleHRpZD0xNTI4OWZiZC1iMWE3LTQ0YzItODkwZS03MjgzN2E2MzlmN2Q/5b9=
+8715b95a7a1707d6093ebB8656f121" target=3D"_blank" style=3D"mso-line-height-=
+rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"><=
+img src=3D"https://media.sailthru.com/567/1k1/2/r/58b45a04deac7.png" style=
+=3D"display: block;border: 0;height: auto;outline: none;text-decoration: no=
+ne;-ms-interpolation-mode: bicubic;" height=3D"24" width=3D"24" class=3D"">=
+</a>
+</td>
+<!--=20
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+-->
+<!--[if mso]>
+</td>
+<![endif]-->
+<!--[if mso]>
+<td align=3D"center" valign=3D"top">
+<![endif]-->
+<!--=20
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"display: inline;border-collapse: collapse;mso-table-lspace: 0pt;mso-ta=
+ble-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"=
+>
+<tbody><tr>
+<td valign=3D"top" style=3D"padding-right: 10px;padding-bottom: 9px;mso-lin=
+e-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust:=
+ 100%;" class=3D"mcnFollowContentItemContainer">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" clas=
+s=3D"mcnFollowContentItem" style=3D"border-collapse: collapse;mso-table-lsp=
+ace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size=
+-adjust: 100%;">
+<tbody><tr>
+<td align=3D"center" valign=3D"middle" style=3D"padding-top: 5px;padding-ri=
+ght: 5px;padding-bottom: 5px;padding-left: 5px;mso-line-height-rule: exactl=
+y;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-r=
+space: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<tbody><tr> -->
+<td align=3D"center" valign=3D"middle" width=3D"24" class=3D"mcnFollowIconC=
+ontent" style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%; padding-left: 5px; padding-right: 5px;">
+<a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR=
+0cHM6Ly93d3cubGlua2VkaW4uY29tL2NvbXBhbnkvZ2VuZXJhbC1hc3NlbWItbHk_dXRtX21lZG=
+l1bT1lbWFpbCZ1dG1fc291cmNlPW9uYm9hcmRpbmcmdXRtX2NhbXBhaWduPW9uYm9hcmRpbmctY=
+2FtcHVzLWVtcGxveWVyLXNwb25zb3JzaGlwLWZyb20tYWRtaXNzaW9ucyZ1dG1fY29udGVudD1t=
+YXJrZXRpbmcmdXRtX3Rlcm09JmV4dGlkPTE1Mjg5ZmJkLWIxYTctNDRjMi04OTBlLTcyODM3YTY=
+zOWY3ZA/5b98715b95a7a1707d6093ebB39726cd3" target=3D"_blank" style=3D"mso-l=
+ine-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjus=
+t: 100%;"><img src=3D"https://media.sailthru.com/567/1k1/2/r/58b45a0581579.=
+png" style=3D"display: block;border: 0;height: auto;outline: none;text-deco=
+ration: none;-ms-interpolation-mode: bicubic;" height=3D"24" width=3D"24" c=
+lass=3D""></a>
+</td>
+<!--=20
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+-->
+<!--[if mso]>
+</td>
+<![endif]-->
+<!--[if mso]>
+<td align=3D"center" valign=3D"top">
+<![endif]-->
+<!--=20
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"display: inline;border-collapse: collapse;mso-table-lspace: 0pt;mso-ta=
+ble-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"=
+>
+<tbody><tr>
+<td valign=3D"top" style=3D"padding-right: 10px;padding-bottom: 9px;mso-lin=
+e-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust:=
+ 100%;" class=3D"mcnFollowContentItemContainer">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" clas=
+s=3D"mcnFollowContentItem" style=3D"border-collapse: collapse;mso-table-lsp=
+ace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size=
+-adjust: 100%;">
+<tbody><tr>
+<td align=3D"center" valign=3D"middle" style=3D"padding-top: 8px;padding-ri=
+ght: 5px;padding-bottom: 5px;padding-left: 5px;mso-line-height-rule: exactl=
+y;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-r=
+space: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<tbody><tr>
+-->
+<td align=3D"center" valign=3D"middle" width=3D"24" class=3D"mcnFollowIconC=
+ontent" style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%; padding-left: 5px; padding-right: 5px;">
+<a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR=
+0cHM6Ly93d3cueW91dHViZS5jb20vY2hhbm5lbC9VQ2gxcnJtMDBEYnByUzhVY0xkNG9jaHc_dX=
+RtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW9uYm9hcmRpbmcmdXRtX2NhbXBhaWduPW9uYm9hc=
+mRpbmctY2FtcHVzLWVtcGxveWVyLXNwb25zb3JzaGlwLWZyb20tYWRtaXNzaW9ucyZ1dG1fY29u=
+dGVudD1tYXJrZXRpbmcmdXRtX3Rlcm09JmV4dGlkPTE1Mjg5ZmJkLWIxYTctNDRjMi04OTBlLTc=
+yODM3YTYzOWY3ZA/5b98715b95a7a1707d6093ebB0c82ed79" target=3D"_blank" style=
+=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-s=
+ize-adjust: 100%;"><img src=3D"https://media.sailthru.com/567/1k1/2/r/58b45=
+a0752885.png" style=3D"display: block;border: 0;height: auto;outline: none;=
+text-decoration: none;-ms-interpolation-mode: bicubic;" height=3D"24" width=
+=3D"24" class=3D""></a>
+</td>
+<!--=20
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table> -->
+<!--[if mso]>
+</td>
+<![endif]-->
+<!--[if mso]>
+<td align=3D"center" valign=3D"top">
+<![endif]-->
+<!--   <table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" style=3D"display: inline;border-collapse: collapse;mso-table-lspace: 0pt=
+;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust:=
+ 100%;">
+<tbody><tr>
+<td valign=3D"top" style=3D"padding-right: 0;padding-bottom: 9px;mso-line-h=
+eight-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 10=
+0%;" class=3D"mcnFollowContentItemContainer">
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" clas=
+s=3D"mcnFollowContentItem" style=3D"border-collapse: collapse;mso-table-lsp=
+ace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size=
+-adjust: 100%;">
+<tbody><tr>
+<td align=3D"center" valign=3D"middle" style=3D"padding-top: 5px;padding-ri=
+ght: 5px;padding-bottom: 5px;padding-left: 5px;mso-line-height-rule: exactl=
+y;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"" style=3D"border-collapse: collapse;mso-table-lspace: 0pt;mso-table-r=
+space: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+<tbody><tr> -->
+<td align=3D"center" valign=3D"middle" width=3D"24" class=3D"mcnFollowIconC=
+ontent" style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%; padding-left: 5px; padding-right: 5px;">
+<a href=3D"https://link.generalassemb.ly/click/5b9b145f5a8f9c0d005f9678/aHR=
+0cHM6Ly90aGVpbmRleC5nZW5lcmFsYXNzZW1iLmx5Lz91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3=
+VyY2U9b25ib2FyZGluZyZ1dG1fY2FtcGFpZ249b25ib2FyZGluZy1jYW1wdXMtZW1wbG95ZXItc=
+3BvbnNvcnNoaXAtZnJvbS1hZG1pc3Npb25zJnV0bV9jb250ZW50PW1hcmtldGluZyZ1dG1fdGVy=
+bT0mZXh0aWQ9MTUyODlmYmQtYjFhNy00NGMyLTg5MGUtNzI4MzdhNjM5Zjdk/5b98715b95a7a1=
+707d6093ebCc176be24" target=3D"_blank" style=3D"mso-line-height-rule: exact=
+ly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;"><img src=3D"=
+https://media.sailthru.com/567/1k1/2/r/58b45a05e4a1a.png" style=3D"display:=
+ block;border: 0;height: auto;outline: none;text-decoration: none;-ms-inter=
+polation-mode: bicubic;" height=3D"24" width=3D"24" class=3D""></a>
+</td>
+<!--  </tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table>
+-->
+<!--[if mso]>
+</td>
+<![endif]-->
+<!--[if mso]>
+</tr>
+</table>
+<![endif]-->
+<!--  </td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table> -->
+<!--  </td>
+</tr>
+</tbody></table>
+-->
+<!-- </td> -->
+</tr>
+</tbody>
+</table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"10=
+0%" class=3D"mcnTextBlock" style=3D"min-width: 100%;border-collapse: collap=
+se;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-=
+webkit-text-size-adjust: 100%;">
+<tbody class=3D"mcnTextBlockOuter">
+<tr>
+<td valign=3D"top" class=3D"mcnTextBlockInner" style=3D"padding-top: 40px;m=
+so-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-a=
+djust: 100%;">
+<tr>
+<![endif]-->
+<!--[if mso]>
+<td valign=3D"top" width=3D"600" style=3D"width:600px;">
+<![endif]-->
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" styl=
+e=3D"max-width: 100%;min-width: 100%;border-collapse: collapse;mso-table-ls=
+pace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-siz=
+e-adjust: 100%;" width=3D"100%" class=3D"mcnTextContentContainer">
+<tbody><tr>
+<td valign=3D"top" class=3D"mcnTextContent" style=3D"padding: 0px 18px 9px;=
+font-family: Arial, &quot;Helvetica Neue&quot;, Helvetica, sans-serif;line-=
+height: 200%;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webk=
+it-text-size-adjust: 100%;word-break: break-word;color: #656565;font-size: =
+12px;text-align: center;">
+<!-- <div style=3D"text-align: center; line-height: 12px;"><strong><span st=
+yle=3D"color:#C3C3C3; font-size:14px">YOUR NEAREST CAMPUS</span></strong><b=
+r>
+&nbsp;</div>
+<div style=3D"text-align: center;"><strong style=3D"color:#222222; font-siz=
+e:14px; font-weight:bold">New York City</strong></div>
+<div style=3D"text-align: center; color: #222222; font-size:14px;">902 Broa=
+dway and 10 E. 21st Street<br>
+<span style=3D"color: #222222;">(917) 722-0237</span><br>
+<a href=3D"mailto:hello@ga.co" style=3D"color: #222222;">hello@ga.co</a><br=
+>
+&nbsp;</div>
+-->
+<div style=3D"text-align: center; line-height: 21px;"><u><a href=3D"https:/=
+/link.generalassemb.ly/oc/5b98715b95a7a1707d6093eb5b9b145f5a8f9c0d005f9678/=
+310809ff" style=3D"mso-line-height-rule: exactly;-ms-text-size-adjust: 100%=
+;-webkit-text-size-adjust: 100%;color: #656565;font-weight: normal;text-dec=
+oration: underline;">Manage your Preferences</a></u>&nbsp;or&nbsp;<u><a hre=
+f=3D"https://link.generalassemb.ly/oc/5b98715b95a7a1707d6093eb5b9b145f5a8f9=
+c0d005f9678/310809ff" style=3D"mso-line-height-rule: exactly;-ms-text-size-=
+adjust: 100%;-webkit-text-size-adjust: 100%;color: #656565;font-weight: nor=
+mal;text-decoration: underline;">Unsubscribe</a></u><br>
+General Assembly Inc., 902 Broadway, 4th Floor<br> New York, NY 10010</div>
+<!--<p><small>If you believe this has been sent to you in error, please saf=
+ely <a href=3D"https://link.generalassemb.ly/oc/5b98715b95a7a1707d6093eb5b9=
+b145f5a8f9c0d005f9678/310809ff">unsubscribe</a>.</small></p>-->
+</td>
+</tr>
+</tbody></table>
+<!--[if mso]>
+</td>
+<![endif]-->
+<!--[if mso]>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</table>
+<!--[if gte mso 9]>
+</td>
+</tr>
+</table>
+<![endif]-->
+<!-- // END TEMPLATE -->
+</table>
+</td>
+</tr>
+</table>
+</center>
+</body>
+</html>
+------=_Part_388653_415162586.1536889951765--
+

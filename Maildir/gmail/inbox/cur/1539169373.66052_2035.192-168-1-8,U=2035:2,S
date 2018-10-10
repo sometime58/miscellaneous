@@ -1,0 +1,765 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 10.31.52.202 with SMTP id b193csp1061176vka;
+        Thu, 28 Sep 2017 10:13:31 -0700 (PDT)
+X-Google-Smtp-Source: AOwi7QC2gXP3JsUfAqSE4w5azAzZhpS/hWgJRa/C6ctjolPOo+6/AIjol2JLjl4d+zD2awJz2xC7
+X-Received: by 10.55.15.212 with SMTP id 81mr7879890qkp.262.1506618811483;
+        Thu, 28 Sep 2017 10:13:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1506618811; cv=none;
+        d=google.com; s=arc-20160816;
+        b=IIkdqFzktnDAKTiM20+g4p9reMnYx0M1fGSDFBlwiCHkD+wS9s+hCggZxHq6vsmgsV
+         IUkyg1/Ou2QXIHLbLpaYP8f0jagYGA8+daYjMzneWs85er7+rb4SIlp0UWdRPBUEPIJK
+         +u3rM/RoPUcLU5yrOl0DAsY+SvEySoQi9VXemltkJgmhPREzra3CsqsI/6dW1JgixyNT
+         ej0eK8KSV1IR5Hmurtu+/QQnI5AOUE3bY3dA89wx5Vlu/zrW6w4Bj3XOALRY7E9RZfND
+         tH4+bObyLp04qzA+6lTVH5UhlUzgHdAPC0+k3nE3b70yB2iHi7l2sK6HGpeDzKKR7Xm3
+         IwRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:precedence:mime-version:subject:message-id:to
+         :reply-to:from:date:dkim-signature:dkim-signature
+         :arc-authentication-results;
+        bh=mG19iy7aHHGmeQtdlzfujhLgx8dDZoEyKRSf74WB/ok=;
+        b=h+Hv4txzZvYIvs/UpCAOxT4otMwfgfNGMNcSQygNH1d9h0Ojh2pc1MMmeSs/R4MLsP
+         irs/Kk65oTUg+syVoLKnjlD1Mksakux6QFO2SDMBKZI7LXU6bkIMVGhs1cXlVh3O3yS/
+         6SilS66NB0+Qlf/8IQn1lMbkK2eJZhKKTfNCaxImgOIubxpKHwlW8JxnTLtXH5XD+SCu
+         WNeqGfYMkkneV6MiiZwEmaIFZYB1xzR8ER51Zjp3arNOJzWCMXspnv9Cn/W5dd9pImp5
+         YZM2MftlXROTR9OuVevTkPlNa3XzNaBaNTUGGsQt2R5gxEIkayAbhrVyIJsNhjmsVRzj
+         eJmg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@pmta.sailthru.com header.s=mt header.b=c9Bl3dzM;
+       dkim=pass header.i=@dictionary.com header.s=sailthru header.b=sa4vKY/q;
+       spf=pass (google.com: domain of delivery@mx.sailthru.com designates 192.64.236.106 as permitted sender) smtp.mailfrom=delivery@mx.sailthru.com
+Return-Path: <delivery@mx.sailthru.com>
+Received: from mx-b10.sailthru.com (mx-b10.sailthru.com. [192.64.236.106])
+        by mx.google.com with ESMTPS id g4si1004818qkf.442.2017.09.28.10.13.27
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 28 Sep 2017 10:13:31 -0700 (PDT)
+Received-SPF: pass (google.com: domain of delivery@mx.sailthru.com designates 192.64.236.106 as permitted sender) client-ip=192.64.236.106;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@pmta.sailthru.com header.s=mt header.b=c9Bl3dzM;
+       dkim=pass header.i=@dictionary.com header.s=sailthru header.b=sa4vKY/q;
+       spf=pass (google.com: domain of delivery@mx.sailthru.com designates 192.64.236.106 as permitted sender) smtp.mailfrom=delivery@mx.sailthru.com
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; s=mt; d=pmta.sailthru.com;
+ h=Date:From:Reply-To:To:Message-ID:Subject:MIME-Version:Content-Type:List-Unsubscribe;
+ bh=taqskNCH6sJTbODL/Ozb3eDwh9Q=;
+ b=c9Bl3dzMwEprqSXdp6NDp14QMgRXRg1XDdJ4/vofCxaYB/qabHrDZmpRrRoFPDP4Sqlw65vGSviB
+   +wIamvwYUWJMordcttKP44clzik+z2NxdBX/xsK6acdxWLG7/pjimEB478pKveKklQWRHxRlpFuT
+   CD+KpeArYxs+4/GVmnE=
+Received: from mtast-04.sailthru.com (204.153.121.10) by mx-b10.sailthru.com id hpkmri1qqbsl for <sometime5858@gmail.com>; Thu, 28 Sep 2017 13:10:13 -0400 (envelope-from <delivery@mx.sailthru.com>)
+Received: from nj1-dimpine.flt (172.18.20.21) by mtast-04.sailthru.com id hpkmfa1s6j07 for <sometime5858@gmail.com>; Thu, 28 Sep 2017 13:10:13 -0400 (envelope-from <delivery@mx.sailthru.com>)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple; t=1506618613;
+	s=sailthru; d=dictionary.com;
+	h=Date:From:Reply-To:To:Message-ID:Subject:MIME-Version:Content-Type:List-Unsubscribe;
+	bh=txn6A1JQ6CW+9eki9DFEOWpzLgPX7YHNxY2wk+8jjj4=;
+	b=sa4vKY/q6RIChOna2VIxQwcM293RBN9ShlQMkcxaQA8bZp35bd4YQ6B99zgVh+Wy
+	SSFsdt3itVdkXgQM91kc7jC3/nIfD2jcZZEwf1dgYyb2T9OFhGhdLyVuCRWLNCGWWI0
+	5loyFWH06ErXnzirKTKHbL4H1JhLOSlx/A9K6OBc=
+Date: Thu, 28 Sep 2017 13:10:13 -0400 (EDT)
+From: "Dictionary.com" <doctor@dictionary.com>
+Reply-To: doctor@dictionary.com
+To: sometime5858@gmail.com
+Message-ID: <20170928131013.10777810.686628@sailthru.com>
+Subject: =?utf-8?B?VXBsaWZ0aW5nICYgaGFwcHkgcXVvdGVzIHRvIA==?=
+ =?utf-8?B?Z2V0IHlvdSBzbWlsaW5nIGluIG5vIHRpbWUg8J+Yig==?=
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_9507817_401908655.1506618613452"
+Precedence: bulk
+X-Feedback-ID: 6343:10777810:campaign:sailthru
+X-TM-ID: 20170928131013.10777810.686628
+X-Info: Message sent by sailthru.com customer Dictionary.com, LLC
+X-Info: We do not permit unsolicited commercial email
+X-Info: Please report abuse by forwarding complete headers to
+X-Info: abuse@sailthru.com
+X-Mailer: sailthru.com
+X-Unsubscribe-Web: http://link.dictionary.com/oc/5519e05a3b35d06d728b74f66f07m.ept0/d9e8bba6
+List-Unsubscribe: <http://link.dictionary.com/oc/5519e05a3b35d06d728b74f66f07m.ept0/d9e8bba6>, <mailto:unsubscribe_20170928131013.10777810.686628@mx.sailthru.com>
+X-rpcampaign: stjjz10777810
+X-TUID: YG8I7ve1ZtaF
+
+------=_Part_9507817_401908655.1506618613452
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Dictionary.com <http://link.dictionary.com/click/10777810.686628/aHR0cDovL3=
+d3dy5kaWN0aW9uYXJ5LmNvbS8_cGFyYW09ZW1haWw/5519e05a3b35d06d728b74f6Cce28e815=
+>
+
+Word of the Day Quiz <http://link.dictionary.com/click/10777810.686628/aHR0=
+cDovL2Jsb2cuZGljdGlvbmFyeS5jb20vd29yZC1vZi10aGUtZGF5LXF1aXotamFuLTIxLz9wYXJ=
+hbT1lbWFpbA/5519e05a3b35d06d728b74f6Ba90f27a0>
+
+Ummmm <http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN=
+0aW9uYXJ5LmNvbS9zbGlkZXNob3dzL3Vtd29yZHM_cGFyYW09ZW1haWw/5519e05a3b35d06d72=
+8b74f6B6f755128>
+
+Try to avoid these words! <http://link.dictionary.com/click/10777810.686628=
+/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzL3Vtd29yZHM_cGFyYW09ZW1haW=
+w/5519e05a3b35d06d728b74f6C6f755128>
+6 words that can ruin your sentence =E2=9E=9C <http://link.dictionary.com/c=
+lick/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzL3Vtd2=
+9yZHM_cGFyYW09ZW1haWw/5519e05a3b35d06d728b74f6D6f755128>
+
+Let=E2=80=99s asseverate this: You=E2=80=99ll want to try this week=E2=80=
+=99s Word of the Day quiz.
+
+Take this week=E2=80=99s Word of the Day quiz. =E2=9E=9C
+
+Money! <http://link.dictionary.com/click/10777810.686628/aHR0cDovL2Jsb2cuZG=
+ljdGlvbmFyeS5jb20vcXVpei15b3Vyc2VsZi1tb25leS1zbGFuZy13b3JsZHdpZGUvP3BhcmFtP=
+WVtYWls/5519e05a3b35d06d728b74f6B7a8700c4>
+
+Are you a world traveler? <http://link.dictionary.com/click/10777810.686628=
+/aHR0cDovL2Jsb2cuZGljdGlvbmFyeS5jb20vcXVpei15b3Vyc2VsZi1tb25leS1zbGFuZy13b3=
+JsZHdpZGUvP3BhcmFtPWVtYWls/5519e05a3b35d06d728b74f6C7a8700c4>
+See how many international slang terms for money you know =E2=9E=9C <http:/=
+/link.dictionary.com/click/10777810.686628/aHR0cDovL2Jsb2cuZGljdGlvbmFyeS5j=
+b20vcXVpei15b3Vyc2VsZi1tb25leS1zbGFuZy13b3JsZHdpZGUvP3BhcmFtPWVtYWls/5519e0=
+5a3b35d06d728b74f6D7a8700c4>
+
+This message was sent to sometime5858@gmail.com <mailto:sometime5858@gmail.=
+com> because you are registered at www.dictionary.com <http://link.dictiona=
+ry.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS8_cGFyYW09ZW=
+1haWw/5519e05a3b35d06d728b74f6Dce28e815>. We respect your privacy. View our=
+ Privacy Policy <http://link.dictionary.com/click/10777810.686628/aHR0cDovL=
+3d3dy5kaWN0aW9uYXJ5LmNvbS90ZXJtcz9wYXJhbT1lbWFpbA/5519e05a3b35d06d728b74f6C=
+c9285587>. If you no longer wish to receive emails, safely unsubscribe <htt=
+p://link.dictionary.com/oc/5519e05a3b35d06d728b74f66f07m.ept0/d9e8bba6>.
+<a href=3D"www.dictionary.com"><img src=3D"http://link.dictionary.com/img/5=
+519e05a3b35d06d728b74f66f07m.ept0/bffc639e.gif" alt=3D"" border=3D"0" /></a=
+>
+------=_Part_9507817_401908655.1506618613452
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+
+<!-- Pull out the latest quote content -->
+<!--
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<!--[if gte mso 9]>
+<xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml>
+<![endif]-->
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="format-detection" content="date=no" />
+<meta name="format-detection" content="address=no" />
+<meta name="format-detection" content="telephone=no" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto+Slab:400,700" rel="stylesheet" />
+<title>Get Inspired, Quotes About Words and Language</title>
+<style type="text/css" media="screen">
+/* Linked Styles */
+body { padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#ffffff; -webkit-text-size-adjust:none }
+a { color:#4a4a4a; text-decoration:none }
+p { padding:0 !important; margin:0 !important }
+img { -ms-interpolation-mode: bicubic; /* Allow smoother rendering of resized image in Internet Explorer */ }
+[style*="OS"] { font-family: 'Open Sans', Arial, sans-serif !important; }
+[style*="RS"] { font-family: 'Roboto Slab', Arial, sans-serif !important; }
+/* Mobile styles */
+@media only screen and (max-device-width: 480px), only screen and (max-width: 480px) {
+.mobile-shell { width: 100% !important; min-width: 100% !important; }
+.center { margin: 0 auto !important; }
+.td { width: 100% !important; min-width: 100% !important; }
+.mobile-br-5 { height: 5px !important; }
+.mobile-br-10 { height: 10px !important; }
+.mobile-br-15 { height: 15px !important; }
+.m-td,
+.hide-for-mobile { display: none !important; width: 0 !important; height: 0 !important; font-size: 0 !important; line-height: 0 !important; min-height: 0 !important; }
+.mobile-block { display: block !important; }
+.img-m-center { text-align: center !important; }
+.fluid-img img { width: 100% !important; max-width: 100% !important; height: auto !important; }
+.column,
+.column-top,
+.column-bottom,
+.column-dir { float: left !important; width: 100% !important; display: block !important; }
+.p-15-15-0 { padding: 15px 15px 0 !important; }
+.p-15-0-0 { padding: 15px 0 0 !important; }
+.p15 { padding: 15px !important; }
+.pt15 { padding-top: 15px !important; }
+.p-0-15 { padding: 0 15px !important; }
+.text-title6 { font-size: 16px !important; }
+.text { font-size: 14px !important; }
+.text-white { text-align: center !important; }
+.p0 { padding: 0 !important; }
+.content-spacing { width: 15px !important; }
+}
+</style>
+</head>
+<body class="body" style="padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#f3f3f3; -webkit-text-size-adjust:none">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f3f3f3">
+<!-- Header -->
+<tr>
+<td bgcolor="#3a76c3" style="padding: 12px 15px; ">
+<div class="img-center" style="font-size:0pt; line-height:0pt; text-align:center"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL2Jsb2cuZGljdGlvbmFyeS5jb20vY2F0ZWdvcnkvd29yZC10cmVuZHMvP3BhcmFtPXF1b3RlLWVtYWlsJmNsaWNrPTNqeWU5dQ/5519e05a3b35d06d728b74f6Bfada1933" target="_blank"><img src="http://static.sfdict.com/static/email/header_EAZ_QAWL.png" border="0" width="238" height="74" alt="Quotes About Words and Language" /></a></div>
+</td>
+</tr>
+<!-- END Header -->
+<tr>
+<td align="center" valign="top">
+<table width="700" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
+<tr>
+<td class="td" style="width:700px; min-width:700px; font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; Margin:0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<!-- Main -->
+<tr>
+<td bgcolor="#f3f3f3">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<!-- Section 0 -->
+<tr>
+<td style="padding: 15px 25px 0; " class="p0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+<tr>
+<td style="padding: 20px; " class="p0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top; Margin:0" valign="top" width="394">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><div class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3MvcXVvdGVzLXdpbGwtbGlmdC1zcGlyaXRzP3BhcmFtPXF1b3RlLWVtYWlsJmNsaWNrPTNqeWU5dQ/5519e05a3b35d06d728b74f6B4fa49a22"><img src="http://static.sfdict.com/static/email/contentlibrary/quote_lift_spirit_4.jpg" border="0" width="394" height="254" alt="" /></a></div></td>
+</tr>
+</table>
+</th>
+<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top; Margin:0" valign="top" width="5"></th>
+<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top; Margin:0" valign="top">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td style="padding: 50px 0 0 5px; " class="p-0-15">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td align="center" style="padding-bottom: 10px; ">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td bgcolor="#44beff" style="padding: 3px 20px; ">
+<div class="text-meta" style="color:#ffffff; font-family:Arial,sans-serif,'OS'; font-size:11px; line-height:15px; text-align:center;text-transform:uppercase;"><span class="link-white" style="color:#ffffff; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3MvcXVvdGVzLXdpbGwtbGlmdC1zcGlyaXRzP3BhcmFtPXF1b3RlLWVtYWlsJmNsaWNrPTNqeWU5dQ/5519e05a3b35d06d728b74f6C4fa49a22" target="_blank" class="link-white" style="color:#ffffff; text-decoration:none">quotes</a></span></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="padding-bottom: 5px; ">
+<div class="text-title0" style="color:#393939; font-family:'RS',Arial,sans-serif; font-size:24px; line-height:28px; text-align:center"><span style="color:#393939; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3MvcXVvdGVzLXdpbGwtbGlmdC1zcGlyaXRzP3BhcmFtPXF1b3RlLWVtYWlsJmNsaWNrPTNqeWU5dQ/5519e05a3b35d06d728b74f6D4fa49a22" target="_blank" style="color:#393939; text-decoration:none">Quotes That Will Lift Your Spirits</a></span></div>
+</td>
+</tr>
+<tr>
+<td class="p15">
+<div class="text-c" style="color:#393939; font-family:Arial,sans-serif,'OS'; font-size:16px; line-height:20px; text-align:center"><span style="color:#393939; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3MvcXVvdGVzLXdpbGwtbGlmdC1zcGlyaXRzP3BhcmFtPXF1b3RlLWVtYWlsJmNsaWNrPTNqeWU5dQ/5519e05a3b35d06d728b74f6E4fa49a22" style="color:#393939; text-decoration:none">The best things in life are free and will also make you happy.</a></span></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</th>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!-- END Section 0 -->
+<!-- Section 2 -->
+<tr>
+<td style="padding: 20px 25px 0; " class="p-15-15-0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top; Margin:0" valign="top" width="315" bgcolor="#ffffff">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><div class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzLzYwcy13b3Jkcz9wYXJhbT1xdW90ZS1lbWFpbCZjbGljaz1uOHp5eHI/5519e05a3b35d06d728b74f6Bafa6011d"><img src="http://static.sfdict.com/static/email/contentlibrary/60s_slang_1000x700.jpg" border="0" width="315" height="203" alt="" /></a></div></td>
+</tr>
+<tr>
+<td style="padding: 0 49px 15px; " class="p-0-20-15">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td align="center">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td bgcolor="#44beff" style="padding: 3px 10px; ">
+<div class="text-meta" style="color:#ffffff; font-family:Arial,sans-serif,'OS'; font-size:11px; line-height:15px; text-align:center;text-transform:uppercase;"><span class="link-white" style="color:#ffffff; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzLzYwcy13b3Jkcz9wYXJhbT1xdW90ZS1lbWFpbCZjbGljaz1uOHp5eHI/5519e05a3b35d06d728b74f6Cafa6011d" target="_blank" class="link-white" style="color:#ffffff; text-decoration:none">language</a></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 5px; ">
+<div class="text-title2" style="color:#4a4a4a; font-family:'RS',Arial,sans-serif; font-size:16px; line-height:20px; text-align:center"><span style="color:#393939; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzLzYwcy13b3Jkcz9wYXJhbT1xdW90ZS1lbWFpbCZjbGljaz1uOHp5eHI/5519e05a3b35d06d728b74f6Dafa6011d" target="_blank" style="color:#393939; text-decoration:none">Far Out! Freaky 60s Slang Explained</a></span></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</th>
+<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top; Margin:0" valign="top"></th>
+<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top; Margin:0" valign="top" width="315" bgcolor="#ffffff">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><div class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzL25ldy1wb3J0bWFudGVhdT9wYXJhbT1xdW90ZS1lbWFpbCZjbGljaz1uOHp5eHI/5519e05a3b35d06d728b74f6Ba56781b2"><img src="http://static.sfdict.com/static/email/contentlibrary/its_alive_1000x700.jpg" border="0" width="315" height="203" alt="" /></a></div></td>
+</tr>
+<tr>
+<td style="padding: 0 49px 15px; " class="p-0-20-15">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td align="center">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td bgcolor="#44beff" style="padding: 3px 10px; ">
+<div class="text-meta" style="color:#ffffff; font-family:Arial,sans-serif,'OS'; font-size:11px; line-height:15px; text-align:center;text-transform:uppercase;"><span class="link-white" style="color:#ffffff; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzL25ldy1wb3J0bWFudGVhdT9wYXJhbT1xdW90ZS1lbWFpbCZjbGljaz1uOHp5eHI/5519e05a3b35d06d728b74f6Ca56781b2" target="_blank" class="link-white" style="color:#ffffff; text-decoration:none">language</a></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 5px; ">
+<div class="text-title2" style="color:#4a4a4a; font-family:'RS',Arial,sans-serif; font-size:16px; line-height:20px; text-align:center"><span style="color:#393939; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzL25ldy1wb3J0bWFudGVhdT9wYXJhbT1xdW90ZS1lbWFpbCZjbGljaz1uOHp5eHI/5519e05a3b35d06d728b74f6Da56781b2" target="_blank" style="color:#393939; text-decoration:none">Weird Words Only Millennials Could Think Up</a></span></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</th>
+</tr>
+</table>
+</td>
+</tr>
+<!-- END Section 2 -->
+<!-- Section 2 -->
+<tr>
+<td style="padding: 20px 25px 0; " class="p-15-15-0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top; Margin:0" valign="top" width="315" bgcolor="#ffffff">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><div class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzL25lZ2xlY3RlZC1zd2VhcnM_cGFyYW09cXVvdGUtZW1haWwmY2xpY2s9bjh6eXhy/5519e05a3b35d06d728b74f6Bd4789da9"><img src="http://static.sfdict.com/static/email/contentlibrary/swear_cabulary_1000x700.jpg" border="0" width="315" height="203" alt="" /></a></div></td>
+</tr>
+<tr>
+<td style="padding: 0 49px 15px; " class="p-0-20-15">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td align="center">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td bgcolor="#44beff" style="padding: 3px 10px; ">
+<div class="text-meta" style="color:#ffffff; font-family:Arial,sans-serif,'OS'; font-size:11px; line-height:15px; text-align:center;text-transform:uppercase;"><span class="link-white" style="color:#ffffff; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzL25lZ2xlY3RlZC1zd2VhcnM_cGFyYW09cXVvdGUtZW1haWwmY2xpY2s9bjh6eXhy/5519e05a3b35d06d728b74f6Cd4789da9" target="_blank" class="link-white" style="color:#ffffff; text-decoration:none">language</a></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 5px; ">
+<div class="text-title2" style="color:#4a4a4a; font-family:'RS',Arial,sans-serif; font-size:16px; line-height:20px; text-align:center"><span style="color:#393939; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzL25lZ2xlY3RlZC1zd2VhcnM_cGFyYW09cXVvdGUtZW1haWwmY2xpY2s9bjh6eXhy/5519e05a3b35d06d728b74f6Dd4789da9" target="_blank" style="color:#393939; text-decoration:none">Swear Words You're Neglecting</a></span></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</th>
+<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top; Margin:0" valign="top"></th>
+<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top; Margin:0" valign="top" width="315" bgcolor="#ffffff">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><div class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzL2JlYXJkcz9wYXJhbT1xdW90ZS1lbWFpbCZjbGljaz1uOHp5eHI/5519e05a3b35d06d728b74f6Bacb9b37f"><img src="http://static.sfdict.com/static/email/contentlibrary/badass_beard_1000x700.jpg" border="0" width="315" height="203" alt="" /></a></div></td>
+</tr>
+<tr>
+<td style="padding: 0 49px 15px; " class="p-0-20-15">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td align="center">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td bgcolor="#44beff" style="padding: 3px 10px; ">
+<div class="text-meta" style="color:#ffffff; font-family:Arial,sans-serif,'OS'; font-size:11px; line-height:15px; text-align:center;text-transform:uppercase;"><span class="link-white" style="color:#ffffff; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzL2JlYXJkcz9wYXJhbT1xdW90ZS1lbWFpbCZjbGljaz1uOHp5eHI/5519e05a3b35d06d728b74f6Cacb9b37f" target="_blank" class="link-white" style="color:#ffffff; text-decoration:none">ways to say</a></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 5px; ">
+<div class="text-title2" style="color:#4a4a4a; font-family:'RS',Arial,sans-serif; font-size:16px; line-height:20px; text-align:center"><span style="color:#393939; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzL2JlYXJkcz9wYXJhbT1xdW90ZS1lbWFpbCZjbGljaz1uOHp5eHI/5519e05a3b35d06d728b74f6Dacb9b37f" target="_blank" style="color:#393939; text-decoration:none">How to Name Your Beard</a></span></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</th>
+</tr>
+</table>
+</td>
+</tr>
+<!-- END Section 2 -->
+<!-- Section 2 -->
+<tr>
+<td style="padding: 20px 25px 0; " class="p-15-15-0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top; Margin:0" valign="top" width="315" bgcolor="#ffffff">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><div class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3MvNy1vYnNvbGV0ZS10ZWNoLWRldmljZXMtcGFyZW50cy1zdGlsbC10YWxrP3BhcmFtPXF1b3RlLWVtYWlsJmNsaWNrPW44enl4cg/5519e05a3b35d06d728b74f6B8472a3ba"><img src="http://static.sfdict.com/static/email/contentlibrary/tech_devices_1000x700.jpg" border="0" width="315" height="203" alt="" /></a></div></td>
+</tr>
+<tr>
+<td style="padding: 0 49px 15px; " class="p-0-20-15">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td align="center">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td bgcolor="#44beff" style="padding: 3px 10px; ">
+<div class="text-meta" style="color:#ffffff; font-family:Arial,sans-serif,'OS'; font-size:11px; line-height:15px; text-align:center;text-transform:uppercase;"><span class="link-white" style="color:#ffffff; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3MvNy1vYnNvbGV0ZS10ZWNoLWRldmljZXMtcGFyZW50cy1zdGlsbC10YWxrP3BhcmFtPXF1b3RlLWVtYWlsJmNsaWNrPW44enl4cg/5519e05a3b35d06d728b74f6C8472a3ba" target="_blank" class="link-white" style="color:#ffffff; text-decoration:none">word facts</a></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 5px; ">
+<div class="text-title2" style="color:#4a4a4a; font-family:'RS',Arial,sans-serif; font-size:16px; line-height:20px; text-align:center"><span style="color:#393939; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3MvNy1vYnNvbGV0ZS10ZWNoLWRldmljZXMtcGFyZW50cy1zdGlsbC10YWxrP3BhcmFtPXF1b3RlLWVtYWlsJmNsaWNrPW44enl4cg/5519e05a3b35d06d728b74f6D8472a3ba" target="_blank" style="color:#393939; text-decoration:none">Obsolete Tech Devices In The Dictionary</a></span></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</th>
+<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top; Margin:0" valign="top"></th>
+<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top; Margin:0" valign="top" width="315" bgcolor="#ffffff">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><div class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3Mvd2VpcmQtcGVyc29uYWxpdHktaWRpb21zLWV4cGxvcmVkP3BhcmFtPXF1b3RlLWVtYWlsJmNsaWNrPW44enl4cg/5519e05a3b35d06d728b74f6Be4d940bd"><img src="http://static.sfdict.com/static/email/contentlibrary/personality_idiom_1000x700.gif" border="0" width="315" height="203" alt="" /></a></div></td>
+</tr>
+<tr>
+<td style="padding: 0 49px 15px; " class="p-0-20-15">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td align="center">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td bgcolor="#44beff" style="padding: 3px 10px; ">
+<div class="text-meta" style="color:#ffffff; font-family:Arial,sans-serif,'OS'; font-size:11px; line-height:15px; text-align:center;text-transform:uppercase;"><span class="link-white" style="color:#ffffff; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3Mvd2VpcmQtcGVyc29uYWxpdHktaWRpb21zLWV4cGxvcmVkP3BhcmFtPXF1b3RlLWVtYWlsJmNsaWNrPW44enl4cg/5519e05a3b35d06d728b74f6Ce4d940bd" target="_blank" class="link-white" style="color:#ffffff; text-decoration:none">language</a></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="padding-top: 5px; ">
+<div class="text-title2" style="color:#4a4a4a; font-family:'RS',Arial,sans-serif; font-size:16px; line-height:20px; text-align:center"><span style="color:#393939; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3Mvd2VpcmQtcGVyc29uYWxpdHktaWRpb21zLWV4cGxvcmVkP3BhcmFtPXF1b3RlLWVtYWlsJmNsaWNrPW44enl4cg/5519e05a3b35d06d728b74f6De4d940bd" target="_blank" style="color:#393939; text-decoration:none">Are You Weird? Personality Idioms Explored</a></span></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</th>
+</tr>
+</table>
+</td>
+</tr>
+<!-- END Section 2 -->
+<!-- Section 5 -->
+<tr>
+<td style="padding-top: 40px; " class="pt15">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<!-- Title -->
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#d1d1d1" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%"><tr><td bgcolor="#d1d1d1" height="2" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%">&nbsp;</td></tr></table>
+</td>
+<td class="img" style="font-size:0pt; line-height:0pt; text-align:left" width="5"></td>
+<td width="210"><div class="text-title3" style="color:#4a4a4a; font-family:'RS',Arial,sans-serif; font-size:18px; line-height:22px; text-align:center">OTHERS ARE READING</div></td>
+<td class="img" style="font-size:0pt; line-height:0pt; text-align:left" width="5"></td>
+<td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#d1d1d1" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%"><tr><td bgcolor="#d1d1d1" height="2" class="border" style="font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%">&nbsp;</td></tr></table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!-- END Title -->
+<!-- Section content -->
+<tr>
+<td style="padding: 20px 60px 40px; " class="p15">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td style="padding-bottom: 20px; " align="left">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" style="padding: 0 15px; ">
+<div class="text-numbers" style="color:#4a4a4a; font-family:'RS',Arial,sans-serif; font-size:41px; line-height:45px; text-align:center">1</div>
+</td>
+<td valign="top">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td style="padding-bottom: 3px; ">
+<div class="text-title6" style="color:#4a4a4a; font-family:'RS',Arial,sans-serif; font-size:18px; line-height:22px; text-align:left"><span style="color:#4a4a4a; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3MvMTItZW1vdGlvbmFsLXdvcmRzLWVuZ2xpc2g_cGFyYW09cXVvdGUtZW1haWwmY2xpY2s9bjh6eXhy/5519e05a3b35d06d728b74f6B6df7f057"  style="color:#4a4a4a; text-decoration:none">12 Emotional Words We Need in English</a></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="text" style="color:#393939; font-family:Arial,sans-serif,'OS'; font-size:16px; line-height:20px; text-align:left"><span style="color:#393939; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3MvMTItZW1vdGlvbmFsLXdvcmRzLWVuZ2xpc2g_cGFyYW09cXVvdGUtZW1haWwmY2xpY2s9bjh6eXhy/5519e05a3b35d06d728b74f6C6df7f057" style="color:#393939; text-decoration:none">Words that describe common feelings we have, but can't explain</a></span></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="padding-bottom: 20px; " align="left">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" style="padding: 0 15px; ">
+<div class="text-numbers" style="color:#4a4a4a; font-family:'RS',Arial,sans-serif; font-size:41px; line-height:45px; text-align:center">2</div>
+</td>
+<td valign="top">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td style="padding-bottom: 3px; ">
+<div class="text-title6" style="color:#4a4a4a; font-family:'RS',Arial,sans-serif; font-size:18px; line-height:22px; text-align:left"><span style="color:#4a4a4a; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3Mvc2NpZW50aWZpYy1zZXh5LXRhbGs_cGFyYW09cXVvdGUtZW1haWwmY2xpY2s9bjh6eXhy/5519e05a3b35d06d728b74f6B312a6503" style="color:#4a4a4a; text-decoration:none"> Sexy Science Talk We All Could Be Using</a></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="text" style="color:#393939; font-family:Arial,sans-serif,'OS'; font-size:16px; line-height:20px; text-align:left"><span style="color:#393939; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3Mvc2NpZW50aWZpYy1zZXh5LXRhbGs_cGFyYW09cXVvdGUtZW1haWwmY2xpY2s9bjh6eXhy/5519e05a3b35d06d728b74f6C312a6503" style="color:#393939; text-decoration:none">Woo the heart of any scientist</a></span></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="padding-bottom: 20px; " align="left">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" style="padding: 0 15px; ">
+<div class="text-numbers" style="color:#4a4a4a; font-family:'RS',Arial,sans-serif; font-size:41px; line-height:45px; text-align:center">3</div>
+</td>
+<td valign="top">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td style="padding-bottom: 3px; ">
+<div class="text-title6" style="color:#4a4a4a; font-family:'RS',Arial,sans-serif; font-size:18px; line-height:22px; text-align:left"><span style="color:#4a4a4a; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3MvMTAtY29tbW9ubHktbWlzdXNlZC13b3Jkcz9wYXJhbT1xdW90ZS1lbWFpbCZjbGljaz1uOHp5eHI/5519e05a3b35d06d728b74f6Bd29a9619" style="color:#4a4a4a; text-decoration:none">10 Commonly Misused Words</a></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="text" style="color:#393939; font-family:Arial,sans-serif,'OS'; font-size:16px; line-height:20px; text-align:left"><span style="color:#393939; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3MvMTAtY29tbW9ubHktbWlzdXNlZC13b3Jkcz9wYXJhbT1xdW90ZS1lbWFpbCZjbGljaz1uOHp5eHI/5519e05a3b35d06d728b74f6Cd29a9619" style="color:#393939; text-decoration:none">We'll help you right your wrongs</a></span></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="padding-bottom: 20px; " align="left">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" style="padding: 0 15px; ">
+<div class="text-numbers" style="color:#4a4a4a; font-family:'RS',Arial,sans-serif; font-size:41px; line-height:45px; text-align:center">4</div>
+</td>
+<td valign="top">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td style="padding-bottom: 3px; ">
+<div class="text-title6" style="color:#4a4a4a; font-family:'RS',Arial,sans-serif; font-size:18px; line-height:22px; text-align:left"><span style="color:#4a4a4a; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3MvY2FuLXVudGFuZ2xlLXJlZ2lvbmFsLW1peC11cHM_cGFyYW09cXVvdGUtZW1haWwmY2xpY2s9bjh6eXhy/5519e05a3b35d06d728b74f6Bb27f719b" style="color:#4a4a4a; text-decoration:none">Can You Untangle These Regional Mix-Ups?</a></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="text" style="color:#393939; font-family:Arial,sans-serif,'OS'; font-size:16px; line-height:20px; text-align:left"><span style="color:#393939; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3MvY2FuLXVudGFuZ2xlLXJlZ2lvbmFsLW1peC11cHM_cGFyYW09cXVvdGUtZW1haWwmY2xpY2s9bjh6eXhy/5519e05a3b35d06d728b74f6Cb27f719b" style="color:#393939; text-decoration:none">Some words have different meanings by region</a></span></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td align="left">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="top" style="padding: 0 15px; ">
+<div class="text-numbers" style="color:#4a4a4a; font-family:'RS',Arial,sans-serif; font-size:41px; line-height:45px; text-align:center">5</div>
+</td>
+<td valign="top">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td style="padding-bottom: 3px; ">
+<div class="text-title6" style="color:#4a4a4a; font-family:'RS',Arial,sans-serif; font-size:18px; line-height:22px; text-align:left"><span style="color:#4a4a4a; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3Mvb2ZmZW5zaXZlLXdvcmRzLWhpZGluZy1wbGFpbi1zaWdodD9wYXJhbT1xdW90ZS1lbWFpbCZjbGljaz1uOHp5eHI/5519e05a3b35d06d728b74f6B31b5cfee" style="color:#4a4a4a; text-decoration:none">Common Words With Nasty Pasts</a></span></div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="text" style="color:#393939; font-family:Arial,sans-serif,'OS'; font-size:16px; line-height:20px; text-align:left"><span style="color:#393939; text-decoration:none"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9lL3Mvb2ZmZW5zaXZlLXdvcmRzLWhpZGluZy1wbGFpbi1zaWdodD9wYXJhbT1xdW90ZS1lbWFpbCZjbGljaz1uOHp5eHI/5519e05a3b35d06d728b74f6C31b5cfee" style="color:#393939; text-decoration:none">Phrases used to demean minority groups throughout history</a></span></div>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!-- END Section content -->
+</table>
+</td>
+</tr>
+<!-- END Section 5 -->
+<!-- Grey Bar -->
+<tr>
+<td bgcolor="#444444" style="padding: 15px 30px; " class="p15">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top; Margin:0" valign="top">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>
+<div class="text-white" style="color:#ffffff; font-family:Arial,sans-serif,'OS'; font-size:12px; line-height:16px; text-align:left">&copy; 2017 <a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS8_cGFyYW09ZW1haWw/5519e05a3b35d06d728b74f6Bce28e815" target="_blank" class="link-white" style="color:#ffffff; text-decoration:none"><span class="link-white" style="color:#ffffff; text-decoration:none">Dictionary.com</span></a>, LLC.</div>
+</td>
+</tr>
+</table>
+</th>
+<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top; Margin:0" valign="top" width="280">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td align="right">
+<div style="font-size:0pt; line-height:0pt;" class="mobile-br-15"></div>
+<table border="0" cellspacing="0" cellpadding="0" class="center">
+<tr>
+<td><div class="text-white" style="color:#ffffff; font-family:Arial,sans-serif,'OS'; font-size:12px; line-height:16px; text-align:left"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9hYm91dD9wYXJhbT1xdW90ZS1lbWFpbCZjbGljaz1jYmtoM3c/5519e05a3b35d06d728b74f6B0362ca00" target="_blank" class="link-white" style="color:#ffffff; text-decoration:none"><span class="link-white" style="color:#ffffff; text-decoration:none">ABOUT</span></a></div></td>
+<td class="img" style="font-size:0pt; line-height:0pt; text-align:left" width="40"></td>
+<td><div class="text-white" style="color:#ffffff; font-family:Arial,sans-serif,'OS'; font-size:12px; line-height:16px; text-align:left"><a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9jb250YWN0P3BhcmFtPXF1b3RlLWVtYWlsJmNsaWNrPWNia2gzdw/5519e05a3b35d06d728b74f6B65c9bfc3" target="_blank" class="link-white" style="color:#ffffff; text-decoration:none"><span class="link-white" style="color:#ffffff; text-decoration:none">CONTACT</span></a>
+</div></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</th>
+</tr>
+</table>
+</td>
+</tr>
+<!-- END Grey Bar -->
+<!-- Footer -->
+<tr>
+<td style="padding: 0 15px; ">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top; Margin:0" valign="top" width="340">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td style="padding: 30px 60px; " class="p15">
+<div class="text-footer" style="color:#4a4a4a; font-family:Arial,sans-serif,'OS'; font-size:12px; line-height:16px; text-align:center">
+You are subscribed to the  <br />
+Dictionary.com Quotes email as:  <br />
+<a style="color:#4A4A4A; text-decoration:none;" href="mailto:sometime5858@gmail.com">sometime5858@gmail.com</a><br />
+Subscriber since: March 30, 2015 <br />
+<a href="http://link.dictionary.com/oc/5519e05a3b35d06d728b74f66f07m.ept0/d9e8bba6" target="_blank" class="link-u" style="color:#4a4a4a; text-decoration:underline"><span class="link-u" style="color:#4a4a4a; text-decoration:underline">Unsubscribe</span></a>
+</div>
+</td>
+</tr>
+</table>
+</th>
+<th class="column-top" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top; Margin:0" valign="top">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td style="padding: 30px 60px; " class="p15">
+<div class="text-footer" style="color:#4a4a4a; font-family:Arial,sans-serif,'OS'; font-size:12px; line-height:16px; text-align:center">
+Dictionary.com, LLC. <br />
+555 12th Street <br />
+Suite 500 <br />
+Oakland CA 94607 <br />
+<a href="http://link.dictionary.com/manage/prefcenter-js?email=sometime5858@gmail.com&hash=9101f6746407d5fc6c0ca08c0a3296fd" target="_blank" class="link-u" style="color:#4a4a4a; text-decoration:underline"><span class="link-u" style="color:#4a4a4a; text-decoration:underline">Manage your subscription</span></a><br />
+<a href="http://link.dictionary.com/click/10777810.686628/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS90ZXJtcz9wYXJhbT1xdW90ZS1lbWFpbCZjbGljaz1jYmtoM3c/5519e05a3b35d06d728b74f6B62329a12" target="_blank" class="link-u" style="color:#4a4a4a; text-decoration:underline"><span class="link-u" style="color:#4a4a4a; text-decoration:underline">TERMS &amp; PRIVACY</span></a>
+</div>
+</td>
+</tr>
+</table>
+</th>
+</tr>
+</table>
+</td>
+</tr>
+<!-- END Footer -->
+</table>
+</td>
+</tr>
+<!-- END Main -->
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<a href="www.dictionary.com"><img src="http://link.dictionary.com/img/5519e05a3b35d06d728b74f66f07m.ept0/bffc639e.gif" alt="" border="0" /></a>
+</body>
+</html>
+
+------=_Part_9507817_401908655.1506618613452--
+

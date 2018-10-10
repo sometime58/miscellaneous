@@ -1,0 +1,947 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 2002:a9d:6153:0:0:0:0:0 with SMTP id c19-v6csp1377356otk;
+        Fri, 14 Sep 2018 17:32:09 -0700 (PDT)
+X-Google-Smtp-Source: ANB0VdbDfjumbaL3lRYeTRnHNxz5eUjnhCrxgsHF3rB2SWPVKBtW0/ryPEizrtFgplS1srvUyQ6p
+X-Received: by 2002:a1c:610b:: with SMTP id v11-v6mr4261577wmb.20.1536971529349;
+        Fri, 14 Sep 2018 17:32:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1536971529; cv=none;
+        d=google.com; s=arc-20160816;
+        b=pHQ1Ok++ipUBISmND5DVwRZrHM/XKNAHCTDe1F9T1YH/XGZhzx33zT9vP1wSWiA7sG
+         RXXBhE9mQ0lLyj4Y4aFU4irMu6kqvxg7EbYQl3EzRwugFE7s8sQEQwOjxCH8Vlng9kN9
+         Z7apZl/POj5VI+/bMZWC1ze71YBNQuHdHLxn5/AfsdLMtMK4hu6RiGtZyajyNmVB31HV
+         GviQgh0wDYQk3tlfR5Ftxzs1sqC6jziVp6R7pyN8JRrhLaIfiRFYBvFVNuwqzcQGpezJ
+         F5SMmdK9XnMH2XUIdb/dHHXwiWa3rAwEWLtkPAt1o3Z/9QYMZBgCUIaFRe8Kcs4uO7Tf
+         cpgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:spamdiagnosticmetadata:spamdiagnosticoutput
+         :content-language:accept-language:message-id:deferred-delivery:date
+         :thread-index:thread-topic:subject:from:dkim-signature;
+        bh=6ydisITjFU6aiEvhSkdmRIRMJteEzWNDmoZSK172Dz0=;
+        b=cVVRSohjhXfChcXTOweQmPOfJPyWik2KC6jDaHyNJQbcZ2NMZhlpl1NvXrnMejKW7g
+         0gURix8jk7QDBqR6tCJfUxEHO1DkutnwVFR03OhLEE86CcVgLCv7EzgBlfLzhG7DPUs3
+         glMNUWg26L6u4djwPFnULxdMN+pWdlox93qSD94UOYMYkHeFzez3yIg5VJg7P28EYpHg
+         Pj6VW4zEE+FZ9Uo6k9tqZn7BN77DdVahe1Xw4y3KrAm8iqZVwEuHvucZBvLoGvdTAEOe
+         0KD2mx9xnTonhwJLc/7DqED8QdybvqBSoyK8xEQEEzVic7SSHt1l3I5oLlI9ZmfCSZbe
+         wDOw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@NucleusNetwork.onmicrosoft.com header.s=selector1-nucleusnetwork-com-au header.b=VnCIrRDH;
+       spf=pass (google.com: domain of reply@nucleusnetwork.com.au designates 104.47.116.131 as permitted sender) smtp.mailfrom=reply@nucleusnetwork.com.au
+Return-Path: <reply@nucleusnetwork.com.au>
+Received: from AUS01-ME1-obe.outbound.protection.outlook.com (mail-me1aus01on0131.outbound.protection.outlook.com. [104.47.116.131])
+        by mx.google.com with ESMTPS id g20-v6si377290wme.182.2018.09.14.17.32.06
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Fri, 14 Sep 2018 17:32:09 -0700 (PDT)
+Received-SPF: pass (google.com: domain of reply@nucleusnetwork.com.au designates 104.47.116.131 as permitted sender) client-ip=104.47.116.131;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@NucleusNetwork.onmicrosoft.com header.s=selector1-nucleusnetwork-com-au header.b=VnCIrRDH;
+       spf=pass (google.com: domain of reply@nucleusnetwork.com.au designates 104.47.116.131 as permitted sender) smtp.mailfrom=reply@nucleusnetwork.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=NucleusNetwork.onmicrosoft.com; s=selector1-nucleusnetwork-com-au;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6ydisITjFU6aiEvhSkdmRIRMJteEzWNDmoZSK172Dz0=;
+ b=VnCIrRDHrwEWtnTzAb0N2tGzz4DwHTZg5wjXxg3M/8qomi4SfmsnA16XmhAAaVwIVgejyposr/n9TzdFkRIgzTzde+znrsk3jvqWgwV74sImeqjMQrnvpKVu786iRo9PnVlkytbg4AzmXUM4+IBN6mKtOH01rfaalKcC3RFmS6g=
+Received: from SYXPR01MB0463.ausprd01.prod.outlook.com (10.162.73.19) by
+ SYXPR01MB1279.ausprd01.prod.outlook.com (10.171.36.143) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1143.15; Sat, 15 Sep 2018 00:32:00 +0000
+Received: from SYXPR01MB0463.ausprd01.prod.outlook.com
+ ([fe80::70be:8c4e:bc64:2cfb]) by SYXPR01MB0463.ausprd01.prod.outlook.com
+ ([fe80::70be:8c4e:bc64:2cfb%9]) with mapi id 15.20.1122.021; Sat, 15 Sep 2018
+ 00:32:00 +0000
+From: Centre for Clinical Studies <reply@nucleusnetwork.com.au>
+Subject: Weekly Update | Centre for Clinical Studies
+Thread-Topic: Weekly Update | Centre for Clinical Studies
+Thread-Index: AdRL/gjufUuEFcWZQ5i2IUXRmHbLPw==
+Date: Sat, 15 Sep 2018 00:30:50 +0000
+Deferred-Delivery: Sat, 15 Sep 2018 00:30:00 +0000
+Message-ID:
+ <SYXPR01MB0463ADC3F5AAF26E7BEFED98C5180@SYXPR01MB0463.ausprd01.prod.outlook.com>
+Accept-Language: en-AU, en-US
+Content-Language: en-US
+X-Hashtags: #Newsletters
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator:
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=reply@nucleusnetwork.com.au; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [49.255.134.62]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics:
+ 1;SYXPR01MB1279;6:styJhhVw4a7ZL+JB+1sAp22DEstMTvWNu/wrPcWqlQIXjrd31H5DvFpnaAU1p4LwLxmKGJh4RvdugfRsGlU05F0m6hHym0zr4ahSXgjSHk1JUotCIahVLSVgRTVjhnoJTz+RiMFAu52LLTWcQtQXhKSl/RB5llK1SeNFmBsjWYS/mxDwBk4cf7ZDBAPw08mVRVSBLRQPEy3JPgQ6G6oyg5eaY3/jkY0Bust/nI/1iM6rjX5KkTVtgQ1cokt8oYWlg/K2b3qv88sUKMyflKk27J2aeIK+gs9Jlkv6x/lxZIXdtVVMDZzw8x11WuD0DPWLbDj142riJAiISGRHeujZvzInZjATGC4WiIMVEK2wr2i5my3Rmd9RFvt45sF+XBZ7FwvsvOGcGWNwyxQI4orFQ6DDS65n0CLFi6YeilruD/1YN7UFYyNt0LH4zmklUarK6tb520ueindHYhJR0RiTuA==;5:bCoC4BN5iIOjSQvf1YpKfOhNqzyahAty8hdiG0bsS92egd+1wm61daaG8NjeSy4/y8iWB0A8zY8+k4Sk469OF+RxItdpyThPS/euSkZSthYIRt/EP3+DEvh4swdqYjreDdoJivpB7TsPuz9G+HbDqfewR/s11od7l5vYM9E5mJ4=;7:7eRPOYhnHzAmmhmYGyK9Z6CXEAWB8LsLFTrU2mxKbdpw0h/KXzoWSt7nIxiBsf/f7umzJODBf4DgQIWt/4yeKDUlbE//Jq1cBUTr174wrO9C/f2KyT9t2UgbPe2cyRjSK7+/t8cfNTVLWrH/VsDwOu6edQnaMhx/hFN+2mMiwCkCHxgbmgG9NJcyDqla05L5y/rJpKxn2Mk2GWw7Anwt68ojLoDeyYRhAeHHjDEiALvhIcjRRw+v8brGio66MhuB
+x-ms-office365-filtering-correlation-id: 78ee5e0d-c872-4443-f3c3-08d61aa2a6dc
+x-microsoft-antispam:
+ BCL:0;PCL:0;RULEID:(7020095)(4652040)(8989137)(4534165)(4627221)(201703031133081)(201702281549075)(8990107)(5600074)(711020)(2017052603328)(7153060)(49563074)(7193020);SRVR:SYXPR01MB1279;
+x-ms-traffictypediagnostic: SYXPR01MB1279:
+x-ms-exchange-sharedmailbox-routingagent-processed: True
+x-microsoft-antispam-prvs:
+ <SYXPR01MB1279B5B5273F5AD3A51FA827F4180@SYXPR01MB1279.ausprd01.prod.outlook.com>
+x-exchange-antispam-report-test:
+ UriScan:(28532068793085)(148322886591682)(277860510277777)(28212336023702)(31418570063057)(277809949798613)(254730959083279)(86561027422486)(81227570615382)(46150409022019);
+x-ms-exchange-senderadcheck: 1
+x-exchange-antispam-report-cfa-test:
+ BCL:0;PCL:0;RULEID:(8211001083)(102415395)(6040522)(2401047)(5005006)(8121501046)(3002001)(10201501046)(3231311)(944501410)(52105095)(93006095)(93001095)(149027)(150027)(6041310)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123560045)(20161123564045)(20161123562045)(20161123558120)(201708071742011)(7699050);SRVR:SYXPR01MB1279;BCL:0;PCL:0;RULEID:;SRVR:SYXPR01MB1279;
+x-forefront-prvs: 0796EBEDE1
+x-forefront-antispam-report:
+ SFV:NSPM;SFS:(10019020)(1496009)(366004)(396003)(346002)(376002)(39860400002)(136003)(189003)(9763003)(199004)(55016002)(186003)(5250100002)(25786009)(19627405001)(68770200003)(15650500001)(99286004)(2420400007)(6116002)(790700001)(3846002)(99936001)(10126004)(2900100001)(486006)(109986005)(39060400002)(102836004)(26005)(74316002)(7416002)(733005)(6666003)(6306002)(236005)(53936002)(7736002)(316002)(6506007)(6436002)(7336002)(54896002)(54556002)(7406005)(7276002)(9686003)(7366002)(5660300001)(1671002)(476003)(105586002)(106356001)(861006)(74482002)(33656002)(7066003)(97736004)(65686004)(8676002)(68736007)(881003)(66066001)(606006)(7696005)(478600001)(81156014)(14454004)(88732003)(89122003)(90282003)(76576003)(2906002)(86362001)(81166006)(8936002)(7110500001)(256004)(15398625002);DIR:OUT;SFP:1102;SCL:1;SRVR:SYXPR01MB1279;H:SYXPR01MB0463.ausprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nucleusnetwork.com.au does not
+ designate permitted sender hosts)
+x-microsoft-antispam-message-info:
+ OpvatTg0nHwZwAeDyumHV2t8OCT4V6tUFc+RD3Trt2VMZBHK/OxifMsni7kSQJjD/VfBrDdptX2VqnX4apuTPAWQYHI/7eHY1j4B0LaeviKvnt0k1xufBnu67tOAY3MljcJ9wum9ORIWvFz+PlFnFaqPAnMTvxsD3DWB8h6HyP6so+LjQ/ddknEAixmwGTITS4180o0XH4dQ+1hMoOY7Zx9d8udSd+qoFXGKEp+vH6bIq5RzuqGjuGvz8CcrJmXuJUIMGIzYmsCPUsLtzNngsp4Um79T5YRTITUjt6qtcQLMdXfzvoYz36B7dg6WuoyukaPS5WVVPoFVytyQkbJ6Y2eVjK+1jouozZEBu6Om3w8=
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+Content-Type: multipart/related;
+	boundary="_007_SYXPR01MB0463ADC3F5AAF26E7BEFED98C5180SYXPR01MB0463ausp_";
+	type="multipart/alternative"
+MIME-Version: 1.0
+X-OriginatorOrg: nucleusnetwork.com.au
+X-MS-Exchange-CrossTenant-Network-Message-Id: 78ee5e0d-c872-4443-f3c3-08d61aa2a6dc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Sep 2018 00:30:58.5854
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 789e47a3-a852-4653-860e-4105eaf939ce
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SYXPR01MB1279
+X-TUID: FKtxBKtv1NyM
+
+--_007_SYXPR01MB0463ADC3F5AAF26E7BEFED98C5180SYXPR01MB0463ausp_
+Content-Type: multipart/alternative;
+	boundary="_000_SYXPR01MB0463ADC3F5AAF26E7BEFED98C5180SYXPR01MB0463ausp_"
+
+--_000_SYXPR01MB0463ADC3F5AAF26E7BEFED98C5180SYXPR01MB0463ausp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+
+
+
+Centre for Clinical Studies. It's that time of the week again! Finding the =
+perfect study has never been easier, check out the categories below and fol=
+low the link for more information.
+centrefor
+clinicalstudies
+
+It's that time of the week again! Finding the perfect study has never been =
+easier, check out the categories below and follow the link for more informa=
+tion.
+
+To register your interest, simply respond to this email or feel free to giv=
+e our friendly Recruitment team a call on 1800 243 733.
+
+
+
+***FEATURE STUDY***
+
+THE GIANT STUDY $8,700
+35 Nights Inpatient & 4 Outpatient visit
+This biggest study we have to offer, needs you!
+
+CLICK HERE<http://clinicalstudies.com.au/wp-content/uploads/2018/09/Get-rea=
+dy-for-this-GIANT-study.pdf?utm_source=3Doutlook&utm_campaign=3DOM-feature-=
+1-APL2-101> for more information
+
+
+5 STAR STUDIES
+These studies are 5 star ratings! Check them out
+CLICK HERE<http://clinicalstudies.com.au/wp-content/uploads/2018/09/5SS_NM_=
+16SEP2018.pdf?utm_source=3Doutlook&utm_campaign=3DOM-five-star-studies> for=
+ more information
+
+
+SHORT INPATIENT
+If you can't commit to a long inpatient stay, these easy studies may be jus=
+t the right fit.
+CLICK HERE<http://clinicalstudies.com.au/wp-content/uploads/2018/09/SI-OM-S=
+AT-15-Sept.pdf?utm_source=3Doutlook&utm_campaign=3DOM-short-inpatient> for =
+more information
+
+
+STUDIES WITH A DIFFERENCE
+Looking for something a little bit different? Check out these options
+CLICK HERE<http://clinicalstudies.com.au/wp-content/uploads/2018/09/ALL-SWD=
+-SAT-MON-Sept.pdf?utm_source=3Doutlook&utm_campaign=3DOM-studies-with-a-dif=
+ference> for more information
+
+
+QUICK & EASY
+After a study that is quick and easy ? These studies should suit you!
+CLICK HERE<http://clinicalstudies.com.au/wp-content/uploads/2018/09/QE-OM.p=
+df?utm_source=3Doutlook&utm_campaign=3DOM-quick-and-easy> for more informat=
+ion
+
+
+HIGH REIMBURSEMENT
+These studies are typically longer in duration with a larger time commitmen=
+t.
+CLICK HERE<http://clinicalstudies.com.au/wp-content/uploads/2018/09/HR_MALE=
+S_15-16SEP.pdf?utm_source=3Doutlook&utm_campaign=3DOM-high-reimbursement> f=
+or more information
+
+
+FINISHED IN A FORTNIGHT
+We have a variety of studies that you can complete in a fortnight - follow =
+up visits and all!
+CLICK HERE<http://clinicalstudies.com.au/wp-content/uploads/2018/09/FIF-OM.=
+pdf?utm_source=3Doutlook&utm_campaign=3DOM-finish-in-a-fortnight> for more =
+information
+
+
+SOME THINGS YOU MIGHT WANT TO KNOW ABOUT US
+
+If you're wondering where we are, just view our handy map<http://clinicalst=
+udies.com.au/wp-content/uploads/2018/05/How-to-get-to-CFCS.pdf>
+
+Let us walk you through the Participant Journey<https://clinicalstudies.com=
+.au/participants-journey/>
+
+Spare time? Check out our awesome blog<https://clinicalstudies.com.au/blog/=
+>
+
+Hear what our amazing volunteers have to say in their testimonials<https://=
+clinicalstudies.com.au/testimonial/>!
+
+
+Don't forget, we're also offering
+
+$100 TO REFER A FRIEND!
+Check out our Terms and Conditions<http://clinicalstudies.com.au/wp-content=
+/uploads/2017/12/Referral-Terms-and-Conditions.pdf>
+Kind regards,
+
+Recruitment Team
+
+Centre for Clinical Studies
+Office: | Level 5 Burnet Institute | AMREP Precinct | 89 Commercial Road | =
+Victoria 3004 | Australia
+T: 1800 243 733 | Reception: 03 9076 8957
+reply@nucleusnetwork.com.au<mailto:reply@nucleusnetwork.com.au> | www.clini=
+calstudies.com.au<http://www.clinicalstudies.com.au/>
+Nucleus Network, Australia's Clinical Research Centre, operates in associat=
+ion with Centre for Clinical Studies, Clinical Trials Consulting and its ne=
+twork partners
+1800 243 733
+
+[cid:image002.png@01D244DB.B31610A0]<https://www.facebook.com/CfCStudies/> =
+ [cid:image004.png@01D244DB.B31610A0] <https://www.instagram.com/centreforc=
+linicalstudies/>   [cid:image005.png@01D244DB.B31610A0] <https://twitter.co=
+m/cfcstudies>   [cid:image010.png@01D244DB.B31610A0] <https://www.youtube.c=
+om/channel/UCxWbVDcH-sfT8zaZA4uvQQw>
+Find us on Facebook, Instagram, Twitter and YouTube
+
+If you do not wish to receive any further emails from us then please reply =
+to this email with the word 'UNSUBSCRIBE' in the subject box.
+
+
+
+
+
+To stop receiving messages from Recruitment Team Members<https://outlook.of=
+fice365.com/owa/recruitmentteammembers@nucleusnetwork.com.au/groupsubscript=
+ion.ashx?realm=3Dnucleusnetwork.com.au&source=3DEscalatedMessage&action=3Dc=
+onversations> group, stop following it<https://outlook.office365.com/owa/re=
+cruitmentteammembers@nucleusnetwork.com.au/groupsubscription.ashx?realm=3Dn=
+ucleusnetwork.com.au&source=3DEscalatedMessage&action=3Dunsubscribe>.
+
+
+
+
+
+--_000_SYXPR01MB0463ADC3F5AAF26E7BEFED98C5180SYXPR01MB0463ausp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Segoe UI";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+@font-face
+	{font-family:"Segoe UI Semibold";
+	panose-1:2 11 7 2 4 2 4 2 2 3;}
+@font-face
+	{font-family:"Monotype Corsiva";
+	panose-1:3 1 1 1 1 2 1 1 1 1;}
+@font-face
+	{font-family:"Neue Haas Grotesk Text Pro";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoNoSpacing, li.MsoNoSpacing, div.MsoNoSpacing
+	{mso-style-priority:1;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle20
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle21
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle22
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle23
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle24
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle25
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle26
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle27
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle28
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle29
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle30
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle31
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle32
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle33
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle34
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle35
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle36
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle37
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle38
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle39
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle40
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle41
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle42
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle43
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle44
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle45
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle46
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle47
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle48
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle49
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle51
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-AU" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:6.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:6.0pt;color:white">Centre f=
+or Clinical Studies. It&#8217;s that time of the week again! Finding the pe=
+rfect study has never been easier, check out the categories below and follo=
+w the link</span><span style=3D"color:white">
+ for more information.<o:p></o:p></span></p>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr style=3D"height:33.55pt">
+<td width=3D"557" valign=3D"top" style=3D"width:417.8pt;padding:0cm 5.4pt 0=
+cm 5.4pt;height:33.55pt">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:18.0pt;fo=
+nt-family:&quot;Neue Haas Grotesk Text Pro&quot;,sans-serif;color:#4B54FF">=
+centre</span></b><span lang=3D"EN-US" style=3D"font-size:18.0pt;font-family=
+:&quot;Neue Haas Grotesk Text Pro&quot;,sans-serif;color:#4B54FF">for<b><o:=
+p></o:p></b></span></p>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:18.0pt;fo=
+nt-family:&quot;Neue Haas Grotesk Text Pro&quot;,sans-serif;color:#4B54FF">=
+clinical</span></b><span lang=3D"EN-US" style=3D"font-size:18.0pt;font-fami=
+ly:&quot;Neue Haas Grotesk Text Pro&quot;,sans-serif;color:#4B54FF">studies=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><br>
+It&#8217;s that time of the week again! Finding the perfect study has never=
+ been easier, check out the categories below and follow the link for more i=
+nformation.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt">To register your in=
+terest, simply respond to this email or feel free to give our friendly Recr=
+uitment team a call on
+<b><u>1800 243 733</u></b>. &nbsp;<o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr style=3D"height:3.4pt">
+<td width=3D"556" valign=3D"top" style=3D"width:417.05pt;border:solid white=
+ 2.25pt;border-bottom:solid white 6.0pt;background:#E75A57;padding:0cm 5.4p=
+t 0cm 5.4pt;height:3.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:8.0pt;color:black"><br>
+</span></b><b><span style=3D"font-size:20.0pt;color:white">***FEATURE STUDY=
+***<o:p></o:p></span></b></p>
+</td>
+</tr>
+<tr style=3D"height:3.35pt">
+<td width=3D"556" valign=3D"top" style=3D"width:417.05pt;border-top:none;bo=
+rder-left:solid white 2.25pt;border-bottom:solid white 6.0pt;border-right:s=
+olid white 2.25pt;background:#E75A57;padding:0cm 5.4pt 0cm 5.4pt;height:3.3=
+5pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:16.0pt;color:white">THE GIANT STUDY $8,700<o:p></o:p><=
+/span></b></p>
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b>35 N=
+ights Inpatient &amp; 4 Outpatient visit<o:p></o:p></b></p>
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b>This=
+ biggest study we have to offer, needs you!<o:p></o:p></b></p>
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><o:p=
+>&nbsp;</o:p></b></p>
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><a h=
+ref=3D"http://clinicalstudies.com.au/wp-content/uploads/2018/09/Get-ready-f=
+or-this-GIANT-study.pdf?utm_source=3Doutlook&amp;utm_campaign=3DOM-feature-=
+1-APL2-101">CLICK HERE</a> for more information<o:p></o:p></b></p>
+</td>
+</tr>
+<tr>
+<td width=3D"556" valign=3D"top" style=3D"width:417.05pt;border:solid white=
+ 2.25pt;border-top:none;background:#B9BCFF;padding:0cm 5.4pt 0cm 5.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:12.0pt;text-=
+align:center">
+<b><span style=3D"font-size:8.0pt"><br>
+</span></b><b><span style=3D"font-size:16.0pt">5 STAR STUDIES </span></b><b=
+r>
+<strong><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:bla=
+ck;font-weight:normal">These studies are 5 star ratings! Check them out</sp=
+an></strong><span style=3D"color:#F2F2F2"><br>
+</span><b><a href=3D"http://clinicalstudies.com.au/wp-content/uploads/2018/=
+09/5SS_NM_16SEP2018.pdf?utm_source=3Doutlook&amp;utm_campaign=3DOM-five-sta=
+r-studies">CLICK HERE</a> for more information<span style=3D"color:black"><=
+o:p></o:p></span></b></p>
+</td>
+</tr>
+<tr>
+<td width=3D"556" valign=3D"top" style=3D"width:417.05pt;border:solid white=
+ 2.25pt;border-top:none;background:#979CFF;padding:0cm 5.4pt 0cm 5.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:12.0pt;text-=
+align:center">
+<b><span style=3D"font-size:16.0pt"><br>
+SHORT INPATIENT </span></b><br>
+<strong><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:bla=
+ck;font-weight:normal">If you can&#8217;t commit to a long inpatient stay, =
+these easy studies may be just the right fit.
+</span></strong><b><br>
+<a href=3D"http://clinicalstudies.com.au/wp-content/uploads/2018/09/SI-OM-S=
+AT-15-Sept.pdf?utm_source=3Doutlook&amp;utm_campaign=3DOM-short-inpatient">=
+CLICK HERE</a> for more information<o:p></o:p></b></p>
+</td>
+</tr>
+<tr>
+<td width=3D"556" valign=3D"top" style=3D"width:417.05pt;border:solid white=
+ 2.25pt;border-top:none;background:#B7BAFF;padding:0cm 5.4pt 0cm 5.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:16.0pt;text-=
+align:center">
+<b><span style=3D"font-size:8.0pt"><br>
+</span></b><b><span style=3D"font-size:16.0pt">STUDIES WITH A DIFFERENCE </=
+span></b><br>
+<strong><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;font-weig=
+ht:normal">Looking for something a little bit different? Check out these op=
+tions</span></strong><b><br>
+<a href=3D"http://clinicalstudies.com.au/wp-content/uploads/2018/09/ALL-SWD=
+-SAT-MON-Sept.pdf?utm_source=3Doutlook&amp;utm_campaign=3DOM-studies-with-a=
+-difference">CLICK HERE</a> for more information</b><b><span style=3D"font-=
+size:16.0pt"><o:p></o:p></span></b></p>
+</td>
+</tr>
+<tr>
+<td width=3D"556" valign=3D"top" style=3D"width:417.05pt;border:solid white=
+ 2.25pt;border-top:none;background:#979CFF;padding:0cm 5.4pt 0cm 5.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:12.0pt;text-=
+align:center">
+<b><span style=3D"font-size:8.0pt"><br>
+</span></b><b><span style=3D"font-size:16.0pt">QUICK &amp; EASY </span></b>=
+<br>
+<strong><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;font-weig=
+ht:normal">After a study that is quick and easy ? These studies should suit=
+ you!</span></strong><b><br>
+<a href=3D"http://clinicalstudies.com.au/wp-content/uploads/2018/09/QE-OM.p=
+df?utm_source=3Doutlook&amp;utm_campaign=3DOM-quick-and-easy">CLICK HERE</a=
+> for more information<o:p></o:p></b></p>
+</td>
+</tr>
+<tr>
+<td width=3D"556" valign=3D"top" style=3D"width:417.05pt;border:solid white=
+ 2.25pt;border-top:none;background:#B7BAFF;padding:0cm 5.4pt 0cm 5.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:12.0pt;text-=
+align:center">
+<b><br>
+</b><b><span style=3D"font-size:16.0pt">HIGH REIMBURSEMENT </span></b><br>
+<strong><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:bla=
+ck;font-weight:normal">These studies are typically longer in duration with =
+a larger time commitment.</span></strong><span style=3D"color:black"><br>
+</span><b><a href=3D"http://clinicalstudies.com.au/wp-content/uploads/2018/=
+09/HR_MALES_15-16SEP.pdf?utm_source=3Doutlook&amp;utm_campaign=3DOM-high-re=
+imbursement">CLICK HERE</a> for more information<strong><span style=3D"font=
+-family:&quot;Calibri&quot;,sans-serif;color:black"><o:p></o:p></span></str=
+ong></b></p>
+</td>
+</tr>
+<tr>
+<td width=3D"556" valign=3D"top" style=3D"width:417.05pt;border:solid white=
+ 2.25pt;border-top:none;background:#979CFF;padding:0cm 5.4pt 0cm 5.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"margin-bottom:12.0pt;text-=
+align:center">
+<b><span style=3D"font-size:8.0pt"><br>
+</span></b><b><span style=3D"font-size:16.0pt">FINISHED IN A FORTNIGHT</spa=
+n></b><br>
+<strong><span style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:bla=
+ck;font-weight:normal">We have a variety of studies that you can complete i=
+n a
+</span></strong><strong><span style=3D"font-family:&quot;Calibri&quot;,sans=
+-serif;font-weight:normal">fortnight<span style=3D"color:black">
+</span>- <span style=3D"color:black">follow up visits and all!</span></span=
+></strong><b><br>
+<a href=3D"http://clinicalstudies.com.au/wp-content/uploads/2018/09/FIF-OM.=
+pdf?utm_source=3Doutlook&amp;utm_campaign=3DOM-finish-in-a-fortnight">CLICK=
+ HERE</a> for more information</b><o:p></o:p></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"border-collapse:collapse">
+<tbody>
+<tr style=3D"height:27.65pt">
+<td width=3D"557" style=3D"width:417.8pt;border:solid white 1.0pt;backgroun=
+d:#3B3838;padding:0cm 5.4pt 0cm 5.4pt;height:27.65pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:14.0pt;color:white">SOME THINGS YOU MIGHT WANT TO KNOW=
+ ABOUT US<o:p></o:p></span></b></p>
+</td>
+</tr>
+<tr>
+<td width=3D"557" style=3D"width:417.8pt;border:solid white 1.0pt;border-to=
+p:none;background:#949494;padding:0cm 5.4pt 0cm 5.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">If you&=
+#8217;re wondering where we are, just view our handy
+<a href=3D"http://clinicalstudies.com.au/wp-content/uploads/2018/05/How-to-=
+get-to-CFCS.pdf">
+map</a><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td width=3D"557" style=3D"width:417.8pt;border:solid white 1.0pt;border-to=
+p:none;background:#A6A6A6;padding:0cm 5.4pt 0cm 5.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">Let us =
+walk you through the
+<u><a href=3D"https://clinicalstudies.com.au/participants-journey/">Partici=
+pant Journey</a></u><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td width=3D"557" style=3D"width:417.8pt;border:solid white 1.0pt;border-to=
+p:none;background:#BFBFBF;padding:0cm 5.4pt 0cm 5.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">Spare t=
+ime? Check out our awesome
+<u><a href=3D"https://clinicalstudies.com.au/blog/">blog</a></u><o:p></o:p>=
+</p>
+</td>
+</tr>
+<tr style=3D"height:4.35pt">
+<td width=3D"557" style=3D"width:417.8pt;border:solid white 1.0pt;border-to=
+p:none;background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt;height:4.35pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">Hear wh=
+at our amazing volunteers have to say in their
+<a href=3D"https://clinicalstudies.com.au/testimonial/">testimonials</a>!<o=
+:p></o:p></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b>Don&#8217;t forget, we&#8217;re also offering<o:p=
+></o:p></b></p>
+<p class=3D"MsoNoSpacing" style=3D"margin-bottom:12.0pt"><strong><span styl=
+e=3D"font-size:22.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#4B5=
+4FF">$100</span></strong><b><span style=3D"font-size:22.0pt;color:#4B54FF">
+<strong><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">TO REFER=
+ A&nbsp;FRIEND!</span></strong></span></b><u><span style=3D"color:black"><b=
+r>
+</span></u><b>Check out our <a href=3D"http://clinicalstudies.com.au/wp-con=
+tent/uploads/2017/12/Referral-Terms-and-Conditions.pdf">
+Terms and Conditions</a></b><o:p></o:p></p>
+<p class=3D"MsoNormal">Kind regards,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:22.0pt;font-family:&quot=
+;Monotype Corsiva&quot;;mso-fareast-language:EN-AU">Recruitment Team<o:p></=
+o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;color:#1F497D;mso-fareast-language:EN-AU"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"color:#00B0F0;mso-fareast-language=
+:EN-AU">Centre for Clinical Studies</span></b><span style=3D"color:#99CC00;=
+mso-fareast-language:EN-AU">
+</span><span style=3D"color:#1F497D;mso-fareast-language:EN-AU"><br>
+Office: | Level 5 Burnet Institute | AMREP Precinct | 89 Commercial Road |&=
+nbsp;Victoria 3004 | Australia<br>
+T: </span><span style=3D"color:#1F4E79;mso-fareast-language:EN-AU">1800 243=
+ 733 |&nbsp;</span><span style=3D"color:#1F497D;mso-fareast-language:EN-AU"=
+>Reception: 03 9076 8957
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-AU"><a href=
+=3D"mailto:reply@nucleusnetwork.com.au">reply@nucleusnetwork.com.au</a> |
+<a href=3D"http://www.clinicalstudies.com.au/"><b><span lang=3D"FR" style=
+=3D"color:#00B0F0">www.clinicalstudies.com.au</span></b></a></span><b><span=
+ lang=3D"FR" style=3D"color:#00B0F0;mso-fareast-language:EN-AU"><o:p></o:p>=
+</span></b></p>
+<p class=3D"MsoNormal"><b><i><span style=3D"color:#1F497D;mso-fareast-langu=
+age:EN-AU">Nucleus Network, Australia's Clinical Research Centre, operates =
+in association with Centre for Clinical Studies, Clinical Trials Consulting=
+ and its network partners<o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:24.0pt;color:black;mso-f=
+areast-language:EN-AU">1800 243 733</span></b><span style=3D"color:black;ms=
+o-fareast-language:EN-AU"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-AU"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal"><a href=3D"https://www.facebook.com/CfCStudies/"><sp=
+an style=3D"color:#1F497D;mso-fareast-language:EN-AU;text-decoration:none">=
+<img border=3D"0" width=3D"37" height=3D"37" style=3D"width:.3854in;height:=
+.3854in" id=3D"Picture_x0020_10" src=3D"cid:image001.png@01D3E6F0.68361270"=
+ alt=3D"cid:image002.png@01D244DB.B31610A0"></span></a><span style=3D"color=
+:#1F497D;mso-fareast-language:EN-AU">&nbsp;
+</span><a href=3D"https://www.instagram.com/centreforclinicalstudies/"><spa=
+n style=3D"color:#1F497D;mso-fareast-language:EN-AU;text-decoration:none"><=
+img border=3D"0" width=3D"37" height=3D"37" style=3D"width:.3854in;height:.=
+3854in" id=3D"Picture_x0020_15" src=3D"cid:image002.png@01D3E6F0.68361270" =
+alt=3D"cid:image004.png@01D244DB.B31610A0"></span></a><span style=3D"color:=
+#1F497D;mso-fareast-language:EN-AU">&nbsp;&nbsp;</span><a href=3D"https://t=
+witter.com/cfcstudies"><span style=3D"color:#1F497D;mso-fareast-language:EN=
+-AU;text-decoration:none"><img border=3D"0" width=3D"37" height=3D"37" styl=
+e=3D"width:.3854in;height:.3854in" id=3D"Picture_x0020_9" src=3D"cid:image0=
+03.png@01D3E6F0.68361270" alt=3D"cid:image005.png@01D244DB.B31610A0"></span=
+></a><span style=3D"color:#1F497D;mso-fareast-language:EN-AU">&nbsp;&nbsp;<=
+/span><a href=3D"https://www.youtube.com/channel/UCxWbVDcH-sfT8zaZA4uvQQw">=
+<span style=3D"color:#1F497D;mso-fareast-language:EN-AU;text-decoration:non=
+e"><img border=3D"0" width=3D"37" height=3D"37" style=3D"width:.3854in;heig=
+ht:.3854in" id=3D"Picture_x0020_13" src=3D"cid:image004.png@01D3E6F0.683612=
+70" alt=3D"cid:image010.png@01D244DB.B31610A0"></span></a><span style=3D"co=
+lor:#1F497D;mso-fareast-language:EN-AU">&nbsp;&nbsp;&nbsp;&nbsp;<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;mso-fareast-language:=
+EN-AU">Find us on Facebook, Instagram, Twitter and YouTube<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-AU"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt">If you do not wish t=
+o receive any further emails from us then please reply to this email with t=
+he word &#8216;UNSUBSCRIBE&#8217; in the subject box.</span><span style=3D"=
+font-size:12.0pt;color:#003F80"><o:p></o:p></span></p>
+<div id=3D"a59ada49-a492-4f1d-ac57-74be3a4194fc">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"50" style=3D"width:37.5pt">
+<tbody>
+<tr style=3D"height:13.5pt">
+<td style=3D"border:none;border-bottom:solid #EAEAEA 1.0pt;padding:0cm 0cm =
+0cm 0cm;height:13.5pt">
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-AU">&nbsp;<o:=
+p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><span style=3D"display:none;mso-fareast-language:EN-=
+AU"><o:p>&nbsp;</o:p></span></p>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"90%" style=3D"width:90.0%">
+<tbody>
+<tr style=3D"height:12.75pt">
+<td style=3D"padding:0cm 0cm 0cm 0cm;height:12.75pt">
+<p class=3D"MsoNormal" style=3D"line-height:12.75pt"><span style=3D"mso-far=
+east-language:EN-AU">&nbsp;<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0cm 0cm 0cm 0cm">
+<p class=3D"MsoNormal" style=3D"line-height:12.75pt"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Segoe UI&quot;,sans-serif;color:#666666;mso-fare=
+ast-language:EN-AU">To stop receiving messages from
+<a href=3D"https://outlook.office365.com/owa/recruitmentteammembers@nucleus=
+network.com.au/groupsubscription.ashx?realm=3Dnucleusnetwork.com.au&amp;sou=
+rce=3DEscalatedMessage&amp;action=3Dconversations">
+<span style=3D"font-family:&quot;Segoe UI Semibold&quot;,sans-serif;color:#=
+0072C6;text-decoration:none">Recruitment Team Members</span></a> group,
+<a href=3D"https://outlook.office365.com/owa/recruitmentteammembers@nucleus=
+network.com.au/groupsubscription.ashx?realm=3Dnucleusnetwork.com.au&amp;sou=
+rce=3DEscalatedMessage&amp;action=3Dunsubscribe">
+<span style=3D"font-family:&quot;Segoe UI Semibold&quot;,sans-serif;color:#=
+0072C6;text-decoration:none">stop following it</span></a>.<o:p></o:p></span=
+></p>
+</td>
+</tr>
+<tr style=3D"height:12.75pt">
+<td style=3D"padding:0cm 0cm 0cm 0cm;height:12.75pt">
+<p class=3D"MsoNormal" style=3D"line-height:12.75pt"><span style=3D"mso-far=
+east-language:EN-AU">&nbsp;<o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-AU"><o:p>&nbs=
+p;</o:p></span></p>
+</div>
+</div>
+</body>
+</html>
+
+--_000_SYXPR01MB0463ADC3F5AAF26E7BEFED98C5180SYXPR01MB0463ausp_--
+
+--_007_SYXPR01MB0463ADC3F5AAF26E7BEFED98C5180SYXPR01MB0463ausp_
+Content-Type: image/png; name="image001.png"
+Content-Description: image001.png
+Content-Disposition: inline; filename="image001.png"; size=802;
+	creation-date="Tue, 08 May 2018 07:17:15 GMT";
+	modification-date="Tue, 08 May 2018 07:17:15 GMT"
+Content-ID: <image001.png@01D3E6F0.68361270>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAACUAAAAlCAYAAADFniADAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
+xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAAKiSURBVFhH
+zZjBSxVRFMbzOaZZQagEQWRUWEjQIqiFK4s2LQwSg6JV6cp/QXi9RbtcuZD+gIxeCmq0itwFbdq1
+CIKIxJ1YJkaUz/x9D2cYh3fn3eu7b5oDH+/OnXPP+ebcc8+ceUGpVDoQl2KxeJPrW+AcaAcF0Lr7
+K9WW2LjW9R57sYsK439gG2yBTfAFvAav4KH5qgThADJXGT8Fl0xWmzB/HZtj4CP+xyD2PiLFxBUu
+3oLDTXBsY/IiSkvwuAGxdwGDNiZm/iOhkPQh8YBPn7ZP+XPW5nEy0DmFjyGRupeBMxcXd0Wqz2VF
+BroXRCo6gZ4dfsDegk4WWAd/gUqBjv5p8ByovCSlTYSU6L5lglP02GSUZF5JcRiIlAqjTymnEdp1
+dKQeKVVsX6KKPWlh7HuKTsF3pOTsU9Ih26UHHwYqPcqj4ymkWn0n+QbOftdweI25skUEqyq+IxWe
+rqT/E7aEQlIu+vV0O1FQN5CUjnoL4/d9bd8yRlWXljl5SvakqEVZBKpRun8e9JuI+iL1BjIPTU64
+pw5EqAqJ/0g/zSZ10GV70D2Tpu8rUlHXaEkuNfF9kepgS45BqMJWqSzsEe4pkmoglU+qWSeziNQQ
+TgbBZzBQw+Ft5qZipLqyIKUjL/w0OFOUeiy31nvb8sfguFbtMnL0lVO2QbDSEymnp7Cy2qBSbiPl
+WmMajEPd5dt53L5KbkmpB8qTbClSuST1FWLG3sYxhKby8svBzjdFahboPykfcpSXr/pxvXjDD02d
+7ssOxmdDUk9YlPqStDTai17UzFmuiav94OJFoFaDp3vAxfw+jPheMgqf9WpFZ7AAsTsMp0G3b08W
+9tbQGYfHnHSj1wwTLyG2xNx9MALCD0cLm/tSUd7pg0Lfg8/wvxpa2QGZnZLf4W62fAAAAABJRU5E
+rkJggg==
+
+--_007_SYXPR01MB0463ADC3F5AAF26E7BEFED98C5180SYXPR01MB0463ausp_
+Content-Type: image/png; name="image002.png"
+Content-Description: image002.png
+Content-Disposition: inline; filename="image002.png"; size=1316;
+	creation-date="Tue, 08 May 2018 07:17:15 GMT";
+	modification-date="Tue, 08 May 2018 07:17:15 GMT"
+Content-ID: <image002.png@01D3E6F0.68361270>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAACUAAAAlCAYAAADFniADAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
+xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAASkSURBVFhH
+zZhriFVVFMfVJnvb0MMwekj0IbQoonylQaWFaUJQppSVCPagBI1EiLgz6gf9UBkERQmNmSSiyaiZ
+iUpJD6IcMrQCUYmkiEpKiV4++v2uew+7M/fO3cPMzVnwZ++z99pr/c9+rL3OaWhubu6TSqlUuoLn
+MbQvo76KegvYDT5N9I5RPx6eLX2OkvbZdhT0DZ3W1ff5H7AFrMTXJymHhvgAgYvDgBGUTWAZOB+c
+DtS7KB3YQ/Uh2JmF73cpZ0LugHbLpGhspNgKHgMHweHCm8VZ6SEuHcyMp+UDeLhC38eZepXGq8Ah
+cEa9PGN3E1gCfgcu5SngHOAeuhG4OuMaYCeZewMRleopy5mJ94oO4HB1IDWW+jBn6p5EyQ1Y76Wq
+9NLxINg3TVLDC6TqOVOp89RPOhGjJDWgwCJVsF488t0h7T6qJKnPAZLqn2gdoW78iHFH5djWHTJx
+bGMVI2m4OVVS7bGK+uvh+XI23IfUh4LBwNNSSb6hcTv4GhhGdHoluAlcU2HAs9jVpqc8BtHzqE9N
+dMuk0plKDWlYqfR2O2ifz0laV4Wsse9O+kpgWKJjgH6i2pjQXibV1TCwhDFPQ8hl1fmo4Ng3/gm0
+0fcR2Bgi9WL1axBJu/tK6g5gwIwnI5bp3Wb9NEfi7KtAxii8EFxfdAiZL0+oNr9NOZdng6J2/6xA
+LvVj91FJzQTXgn5hQCzjyYunbzNOXg6EZlM+H/TbKDeCn8EgcDMYCdZARmJNYDf1R2lzSdPLO/UR
+/ZSvmcnAqF5LXgyEDLYS0sjjOHylOBACD9C2FFAt7UPnDeo7QfmlasiPkqp2stKxWzD8Pg7OpvGl
+0PFwcNbBB+1vovsrHet9AeqtpieU7/A8oQapQ2k46Ex3dei8m9KYIknfvqrQvwESK1GYAhzXAtZk
+kPpPjOrMx57QOS6UnRJKDC0PpG4NpEwWa0ruTMXNeUGwuLem5RMK3wa9S0JZ6fR1MJVLKh7buP/M
+gXLEPaj8Ecp4sjsdm0uqMVjZRenpcxk75EUVPBkeFE+ekpVS55Iai8FW4IZvAjPYxM+xmX+o9sr0
+n0Xfk6E/HpTbcqZXUtXSiXT8ZJzMC0HQzTtNgrRNou2XoiPaz6TtLXApWIVOG23esfflksrRG4jS
+HLAAzALXAe+8HThbRGnuLblzgbMxF/il4pXkx4jiRXxZjrPc5dPWMxDYxFt/Rqlj0xwDYYzSvwVS
+0a+fTdPRP4i+15gvlCW5y6cxL+RWHIzHkRt3IvW7KL2m/BLxG3E/8C5cgc5aB4WPgg1UXdIs6cpM
+adALdzuOnsLpUuA1InTeENOZ6Jm26dRfAC5rtnRlpqJRc/rXcPgIpSmJH7Hfgb/CiTNQurwPgTTB
+yyVVTl3SVCJ3oHo3BBhYTVvM7bVn1M8KklWcHdNIOYPshpi8XdiN8cWhRySVdR/1oNNapv6WlKmr
+GWFvkV2SMueZ11sYwWOFx3gnp2YzD7f3AmJfwGFbjFMzePgYeFedLPG/2P1MUvn0+S10gNm6hapx
+J36E/p/knKEH4+dbe0SnwWxyNOTc9EZiL1z76/VryPj4OWgBa/Hf7udf8nFrxQANijMAAAAASUVO
+RK5CYII=
+
+--_007_SYXPR01MB0463ADC3F5AAF26E7BEFED98C5180SYXPR01MB0463ausp_
+Content-Type: image/png; name="image003.png"
+Content-Description: image003.png
+Content-Disposition: inline; filename="image003.png"; size=992;
+	creation-date="Tue, 08 May 2018 07:17:16 GMT";
+	modification-date="Tue, 08 May 2018 07:17:16 GMT"
+Content-ID: <image003.png@01D3E6F0.68361270>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAACUAAAAlCAYAAADFniADAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
+xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAANgSURBVFhH
+zZhbiE1RGMeZc4wHjMktL665lAcl4kHhQcgDXsbLpCQvZDRlkJTjyCUhD5OjjDDIkwgNplzyNuV1
+pORSiBJCTBxnht9/Wztn9uyz1zrXOV/9W2vv9V3++9trfWvvFU8mk0MkiURiFc1GMB3UgjgYZtoa
+2qFAbcwz+H9tLgc0fdz5Y+72mr5/T9e/QQakwUtwAS63pa/AInSSpjmX9wrcn0+MBni0Qmx7nM6K
+QSaU/cxN8LmjTG2pQCbyCbFVpKbkY1EB3cki5c2rKpK4CGmlVZPUVm2m/LpTLdmKKVMqiKWWxzhs
+B0/ACLAYbAbjTaCftG/BjJDANSKlSh0lKQZXg6mOzI+ht5si6FdzmXVQf+TnqCFznvZMFKmo1/cL
+wz3gNLgPJliIXYPMrjAd7iszjRqD4AGaceAHUCazxctUFKnPjGdw2I0jvYKzYGkOYtrP9tuyiZ+x
+6FwFX8DhMH1bjRplnqQHYs/pL8NpE+1OMCng8DXX3TZS+PmEjzXoncilayM10mRGT+YJTltxepHu
+eoMFtPUgHphHoTGxncPAuSjyNlKyPYWjLjMnfGJf6bQJjGmezQJ19GPo6TVGiV5fpNhIvcP6EthA
+wOME1DdQP+HeB24IrlJnU7SRkoN9BE5DqlT1bFqxpDSndoAjENNXYylEq7io1yfjvWTpIaS6bM5s
+4/jRal5u07O9PtmruN3D4UHadsi9tzmNGNeKVdEsOlNy8A1o0teDgkhpZWKr+mYVl0zJyRjwiiw9
+tXrMrbCNodku9q6khuNMm2ojxG65OM7WMQXzkKudKyn50yS9SYAHakEbBHtsgUxxvY5ecOPNaSpS
+tgocNFb11g/kgEIaVISQatINIBtnEamo+qM/V01s/clqPnWAu2RI15ECoXUo6JNnok03MN5nI/Xd
+OL7istnKOWQW0rSAhjzJ+OpWUnPRvPwvVkJZegSegY9AH4B6qNFAr2kRWAmWFEimHymXOTUTi2YD
+GesrQfNKtUcLQAchpZJePal1foREU3bKJRmR0hNXk6QLzVQ5H8LLlL6t55UzSp6+34iUasnaPA3L
+qZ7Sx36nTtCIor+UwZaUjhi9vU9HehDrpLsJ6MxTS1ynMWq17P0zz2LOHbRz+PDPPLVVCS+Azjy9
+zf4vqeft0zTrttYAAAAASUVORK5CYII=
+
+--_007_SYXPR01MB0463ADC3F5AAF26E7BEFED98C5180SYXPR01MB0463ausp_
+Content-Type: image/png; name="image004.png"
+Content-Description: image004.png
+Content-Disposition: inline; filename="image004.png"; size=1282;
+	creation-date="Tue, 08 May 2018 07:17:16 GMT";
+	modification-date="Tue, 08 May 2018 07:17:16 GMT"
+Content-ID: <image004.png@01D3E6F0.68361270>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAACUAAAAlCAYAAADFniADAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
+xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAASCSURBVFhH
+xZhbqFZFFMe9fPqSkV3JCqXIhCC6EpWUVKT2EAplHIpCrIcyPQURQRSHQ48WeSkrFbMHqZcgMSzp
+AlKQEBQF1kM3SVQMKws7memx328zyza77/v2nk/OccGfWTOzZuY/M2vWzN6twcHBMcrAwMBckoXg
+IjARtMCElI4jHQtMxxcN/sun7P+SYUqOpdKjSY8y8/+AI+Aw+AFsgMsW7R1YQi+QPNap91Eov5ox
+FsBjFcT6WyizTzKh8pyXwuddV+rhUViJnCEWS2paTotRsJ0qqcKvGsg+bLaDWWAy+ACcAq5v0DbH
+pCUhT1oTOYATzmfP12H8APpt6P0jQGpizkrNgMQlkPgQXJdmcW+T2WTaFCsVcadJ2z6MXgNrIHgW
+6bUpvzLppvuBh+d14Kr+DJY16TzZjJeUAbGp3Inhs+AVsATsYRsXQXAmqUSnU9aHvhn9L/RPgIEx
+h9Q4SRmpm8plGF7KoDsY9O40oG03pfzn6PegO1HhQTi1aefJriCVs31OwNO3A1wDPIHKIeCVktNX
+J67ZpOwoZi4B7y6lutpx5/VEsmmMKs/KyzQk/DEIFnVs7zG2UMJ/tiFcu5u9kHIg5W9wcdJvhsg3
+EHmRfBCdQ9nXlEX4qCUTBr2QmsdAZyYfmo7+BvrG5OgPoQ+jP046hfRsUp8oWdILqTmMIEKMXSLE
+rXwui0XFuAmpvbRZDnYD/UQnjsda2cHVqw5fjoG2Oxc8Ac7vRrqOlNH4JnzjuxOZebktW7qJ/KeJ
+YNtu60itkRAdXUHr+UAnd8auwHrqvFIKwcZtewRso/zLTpOgbie2L1HvzdATqT2p1eWkT4OIO76r
+3wHHSaW6FaRPgo6kUn+/diJked1KRRDciO1b4FvwBbgLTGDGfljoRz5/DBF/gEOUT2JFDsbA5P0Y
++YWy31NZ13HrSBV90JkOfpDOdfAh8kPoEnwGnAPuA74YXIFHwVPUP4/dMtK15B8E+9DvoOyzbqvU
+ZKWq7cunayqVk8Bp4LwUxc2/CXx39UHi7URoAalhQp9beKKk2r0gXC3F7fJacRW9kBW30yezdbcC
+g6cyA3hndg0FQdbtK99l1Um0IxV+pm3UR5mp/uWBKMct32HvgY+qA7TLSypm3q6++gB0oCCg7ikc
+KjWMMida/pr22/Kq0iS6cRvOJVV+f0nIt9WFILZPIj4EL0irdSCN7qW8HmwDW2tWq5aUA5fF4Bmv
+hK/QvfN2AT+/FK8iw8UU8CrwMfg+2AwMEcuTnT7XSQpS3XzqRup9j4fcgBLb5YnSd34DpyeDW0iN
+VYaJnelE3o5uO/NOQJnZhdRRScXrsZ2d7+3tdLbKStKI8OrlaF6sFGVe3sqP0RllTvrjyNPfYnTj
+Wic5IqnqFlWNV9LR/RQaGHM+Mqr9eEDOAL7tu8nhupWKxnUd1YyTVV2s1E/gyqxmI2u8S1Ivg3kj
+O05W76tbOOJWfEZHXprVdGSMV8NnS/FKQOmHmEFtEfCZ4R3mdWHqsY9/nj19xyX+3hyB+OfpR4X4
+HvjP03g25l9KnE9crz6fyQAAAABJRU5ErkJggg==
+
+--_007_SYXPR01MB0463ADC3F5AAF26E7BEFED98C5180SYXPR01MB0463ausp_--

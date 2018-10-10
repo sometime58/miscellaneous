@@ -1,0 +1,131 @@
+<blockquote>My notes on Org Table Spreadsheet feature.</blockquote>
+
+<div class="ox-hugo-toc toc">
+<div></div>
+
+<div class="heading">Table of Contents</div>
+
+<ul>
+<li><a href="https://scripter.co/categories/emacs/atom.xml#normalizing">Normalizing</a>
+
+<ul>
+<li><a href="https://scripter.co/categories/emacs/atom.xml#equations-breakdown">Equations Breakdown</a></li>
+<li><a href="https://scripter.co/categories/emacs/atom.xml#evaluate-the-whole-table">Evaluate the whole table</a></li>
+</ul></li>
+<li><a href="https://scripter.co/categories/emacs/atom.xml#references">References</a></li>
+</ul>
+
+<p></p></div>
+<p></p>
+
+<h2 id="normalizing">Normalizing</h2>
+
+<div class="ox-hugo-table wide-table">
+<div></div>
+
+<p><a id="org141776d"></a></p>
+
+<div class="table-caption">
+  <span class="table-number">Table 1:</span>
+  Org table Normalizing
+</div>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Normalized col <code>$1</code></th>
+<th></th>
+<th>Normalized col <code>$3</code></th>
+<th>Ratio of col <code>$2</code> / <code>$4</code></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Col <code>$1</code></td>
+<td>Col <code>$2</code></td>
+<td>Col <code>$3</code></td>
+<td>Col <code>$4</code></td>
+<td>Col <code>$5</code></td>
+</tr>
+
+<tr>
+<td>79922.1</td>
+<td>6.85</td>
+<td>0.146993824</td>
+<td>4.27</td>
+<td>1.60</td>
+</tr>
+
+<tr>
+<td>79185.9</td>
+<td>6.78</td>
+<td>0.146976008</td>
+<td>4.27</td>
+<td>1.59</td>
+</tr>
+
+<tr>
+<td>64041.0</td>
+<td>5.48</td>
+<td>0.147067031</td>
+<td>4.27</td>
+<td>1.28</td>
+</tr>
+
+<tr>
+<td>15452.5</td>
+<td>1.32</td>
+<td>0.034456713</td>
+<td>1.00</td>
+<td>1.32</td>
+</tr>
+
+<tr>
+<td>11675.7</td>
+<td>1.00</td>
+<td>0.034460162</td>
+<td>1.00</td>
+<td>1.00</td>
+</tr>
+</tbody>
+</table>
+
+<p></p></div><p></p>
+
+<h3 id="equations-breakdown">Equations Breakdown</h3>
+
+<p>Equation: <code>#+tblfm: $2=$1/@7$1;%0.2f::$4=$3/@7$3;%0.2f::$5=$2/$4;%0.2f</code></p>
+
+<ul>
+<li><code>$2=$1/@7$1</code> – Assign the value of a field in <strong>column</strong> 2 (<code>$2</code>) to
+the value of the field in <strong>column</strong> 1 <strong>in the same row</strong> (<code>$1</code>)
+divided by the value of the field in <strong>row</strong> 7, <strong>column</strong> 1 (<code>@7$1</code>).
+
+<ul>
+<li><code>@</code> is row, <code>$</code> is column.</li>
+<li>Row and column numbers start with <strong>1</strong> (not 0).</li>
+</ul></li>
+<li><code>$4=$3/@7$3</code> – Similar to above, but with different row/column numbers.</li>
+<li><code>$5=$2/$4</code> – Assign the value of a field in <strong>column</strong> 5 (<code>$5</code>) to the
+value of the field in <strong>column</strong> 2 <strong>in the same row</strong> (<code>$2</code>) divided by
+the value of the field in <strong>column</strong> 4 <strong>in the same row</strong> as well (<code>$4</code>).</li>
+<li><code>;</code> is used to separate the equation from the <em>formatting</em>.</li>
+<li>For all the 3 equations, formatting is applied using <code>%0.2f</code>
+i.e. the numbers will be formatted with 2 decimal places. See <a href="https://scripter.co/field-formatters-in-org-table/">Field
+Formatters in Org table</a> for more info.</li>
+<li>Each of those equations are applied to the same table by
+concatenating them with <code>::</code>.</li>
+</ul>
+
+<h3 id="evaluate-the-whole-table">Evaluate the whole table</h3>
+
+<p>Do <code>C-u C-c C-c</code> with point anywhere in the table, or do <code>C-c C-c</code>
+with point on the <code>#+tblfm</code> line.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+<li><a href="https://www.gnu.org/software/emacs/manual/html_node/org/Formula-syntax-for-Calc.html"><abbr title="Read the same section within Emacs by doing 'C-h i g (org) Formula syntax for Calc'">(org) Formula syntax for Calc</abbr></a></li>
+</ul>

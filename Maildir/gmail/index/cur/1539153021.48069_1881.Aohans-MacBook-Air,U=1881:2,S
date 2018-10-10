@@ -1,0 +1,557 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 10.31.64.137 with SMTP id n131csp1078164vka;
+        Tue, 18 Jul 2017 16:16:02 -0700 (PDT)
+X-Received: by 10.55.74.131 with SMTP id x125mr4814271qka.5.1500419762013;
+        Tue, 18 Jul 2017 16:16:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1500419761; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Zj1ov6utyjbtWb72o3MTOrBYR5FeW4ygbroB7Z5s+GUGK2zhbOQ5bGcSfjTSamu7ag
+         i5uqPAKSxi9rQ2Z9uwA2iZeuPqUgOvsdsNg/MGAhg4/5GdjSWHoD2+u4XH0KJmONcVY1
+         ixPQ9XRaQVqDgtapFpqr7SgfsrgQEb7MUYnmKoembFOLPJYYNiPmGo8+7Ts4BvBRvUCf
+         Jlja3adERH9f0ZuXADiZCnDEgb+gMqS9DfMBBfcv5jlAmoW66HqpApts0aYDqRv/vpkr
+         ZWugVjGWmFmnJmDQs72mEMo6bFMLKC/UIIGrLVfGzqgBPq7MK2iL44jk/zjTrcrckBoN
+         PeAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:precedence:mime-version:subject:message-id:to
+         :reply-to:from:date:dkim-signature:dkim-signature
+         :arc-authentication-results;
+        bh=uQJDDzR4foKDm6z8C2gnW2Dg2y5A2SFHC1tFGtyNWN0=;
+        b=ucTr5Koi9Y8byIE3dpauXWxkbT3biaswlF5h26GpucNjcrMuwFUdB7JN7YU3Mxvoye
+         8PdRA/yZuHeSVsLsLiDdCkP+5e9VKFron+mgjwM6lAwnnVovVhUohmf+3lxw5Stg6Q0r
+         mBXmWr9D+z5o5M8QuWeExw12xLi8tkxK7Cx3yxNw3zmMGAE+PXu1wFgusbklYT0fKweT
+         gNh4KXp4RER11NSQJw7wG3bf8qmlQ1+43UwlD1X+CIRxV3wZsCxgD+pXf9P/sksTQnIF
+         8UqsZ0inYt0Kwq2qh1kou63KtZ8b9DGbZx8ngHudnX9EjSq31KxrKAvThJlap7IG5GgY
+         Agbg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@pmta.sailthru.com header.b=EulFOdS2;
+       dkim=pass header.i=@dictionary.com header.b=bUu0P8YU;
+       spf=pass (google.com: domain of delivery@mx.sailthru.com designates 192.64.237.217 as permitted sender) smtp.mailfrom=delivery@mx.sailthru.com
+Return-Path: <delivery@mx.sailthru.com>
+Received: from pmta24.sailthru.com (pmta24.sailthru.com. [192.64.237.217])
+        by mx.google.com with ESMTPS id o11si3403231qtg.78.2017.07.18.16.16.01
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 18 Jul 2017 16:16:01 -0700 (PDT)
+Received-SPF: pass (google.com: domain of delivery@mx.sailthru.com designates 192.64.237.217 as permitted sender) client-ip=192.64.237.217;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@pmta.sailthru.com header.b=EulFOdS2;
+       dkim=pass header.i=@dictionary.com header.b=bUu0P8YU;
+       spf=pass (google.com: domain of delivery@mx.sailthru.com designates 192.64.237.217 as permitted sender) smtp.mailfrom=delivery@mx.sailthru.com
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; s=mt; d=pmta.sailthru.com;
+ h=Date:From:Reply-To:To:Message-ID:Subject:MIME-Version:Content-Type:List-Unsubscribe;
+ bh=g+Fg7lC7CRR/fsTHk7J6SqZUU2U=;
+ b=EulFOdS23KlJ18PbQppldqVdXS0PJie8cjL4CUtg8EhuJiUhytJZMchCSpVdTOrcQGVOedDw6AjO
+   xc2WOfNv0z2Hp6NQnTmSLuQ27CUIeIZCNU6qx7+Yxfwgddi/1q0Oq/V97EvDpy/RbnFb5uCy/ZT1
+   XJYgINUVKPjy+7dCyiw=
+Received: from njmta-53.sailthru.com (173.228.155.53) by pmta24.sailthru.com id hdqbb21qqbsi for <sometime5858@gmail.com>; Tue, 18 Jul 2017 19:11:13 -0400 (envelope-from <delivery@mx.sailthru.com>)
+Received: from nj1-wetmaroon.flt (172.18.20.22) by njmta-53.sailthru.com id hdqap21qqbs1 for <sometime5858@gmail.com>; Tue, 18 Jul 2017 19:11:13 -0400 (envelope-from <delivery@mx.sailthru.com>)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple; t=1500419473;
+	s=sailthru; d=dictionary.com;
+	h=Date:From:Reply-To:To:Message-ID:Subject:MIME-Version:Content-Type:List-Unsubscribe;
+	bh=R9xIfmNaF8jW3/RFG/SeO8WfJgO1cLydQXKuA2TQK6o=;
+	b=bUu0P8YU85l8hY9o7c3ftcdFexb9pQK/e8Vk+vZIJ26sOm8yOCkPZT1mFT5tZcEr
+	mQ8fW0XepmOk0XyS9Ps753Ji45/RUJANo69QuyloDvCAmK6wvw7jBIMbBu2Y04Nl7TI
+	AnS7Q86jEr8bjalLmogLJUJWfbAOfd5ZPSZBrbMQ=
+Date: Tue, 18 Jul 2017 19:11:13 -0400 (EDT)
+From: "Dictionary.com" <doctor@dictionary.com>
+Reply-To: doctor@dictionary.com
+To: sometime5858@gmail.com
+Message-ID: <20170718191113.10074502.468707@sailthru.com>
+Subject: ovine | Word of the Day
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_865005_543408592.1500419473357"
+Precedence: bulk
+X-Feedback-ID: 6343:10074502:campaign:sailthru
+X-TM-ID: 20170718191113.10074502.468707
+X-Info: Message sent by sailthru.com customer Dictionary.com, LLC
+X-Info: We do not permit unsolicited commercial email
+X-Info: Please report abuse by forwarding complete headers to
+X-Info: abuse@sailthru.com
+X-Mailer: sailthru.com
+X-Unsubscribe-Web: http://link.dictionary.com/oc/5519e05a3b35d06d728b74f65zxja.a1nn/c6225a4f
+List-Unsubscribe: <http://link.dictionary.com/oc/5519e05a3b35d06d728b74f65zxja.a1nn/c6225a4f>, <mailto:unsubscribe_20170718191113.10074502.468707@mx.sailthru.com>
+X-rpcampaign: stjjz10074502
+X-TUID: 6eSMazWWah6H
+
+------=_Part_865005_543408592.1500419473357
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+
+
+Dictionary.com Word of the Day for Tuesday July 18, 2017
+
+ \\
+
+
+Origin
+
+
+See full entry:
+http://link.reference.com/click/10074502.468707/aHR0cDovL2RpY3Rpb25hcnkucmVmZXJlbmNlLmNvbS93b3Jkb2Z0aGVkYXkvYXJjaGl2ZS8yMDE3LzA3LzE4Lmh0bWw/5519e05a3b35d06d728b74f6B33d46a4b
+
+--------------------------------------------------------------------------
+
+You are subscribed to the Word of the Day as:
+sometime5858@gmail.com
+
+Subscriber since:
+March 30, 2015
+
+Unsubscribe:
+http://link.dictionary.com/oc/5519e05a3b35d06d728b74f65zxja.a1nn/c6225a4f
+
+(c)2017 by Dictionary, LLC.
+
+555 12th Street
+Suite 500
+Oakland CA 94607
+
+------=_Part_865005_543408592.1500419473357
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!--
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+<head>
+<title>Dictionary.com Word Of The Day</title>
+<meta content=3D"text/html; charset=3Dutf-8" http-equiv=3D"Content-Type" />
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0">
+<style type=3D"text/css">
+@media only screen and (max-width: 700px){
+.editorial-tile {
+width: 400px !important;
+background-color: #F5F5F5;
+margin: 2px 0 !important;
+}
+.editorial-tile img {
+width: 400px !important;
+height: 280px !important;
+}
+.tile-container {
+padding: 0 100px;
+}}
+.editorial-tile:hover {
+box-shadow: 3px 3px 5px grey;
+}
+@media only screen and (max-width: 700px){
+.powerinbox-tile {
+width: 300px !important;
+margin: 2px 6px;
+padding: 3%;
+float: none;
+padding-left: 50px !important;
+} }
+</style>
+</head>
+<body style=3D"background-color: #EEEEEE;
+margin: auto;
+padding: 0;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 12px;
+color: #4A4A4A;
+max-width:950px;">
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D775 style=3D"marg=
+in:auto;">
+<tr>    <td width=3D19>&nbsp;</td><td>
+<!--HEADER-->
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;">
+<tr><td style=3D"width: 187px;" >&nbsp;</td>
+<td bgcolor=3D#3d7bbf style=3D"width: 376px; color: white; padding-top: 7px=
+; "><center>
+<a href=3D"http://link.dictionary.com/click/10074502.468707/aHR0cDovL2NsaWN=
+rLmRpY3Rpb25hcnkuY29tL2NsaWNrL2NhNzdyaD9jbGtkZXN0PWh0dHA6Ly93d3cuZGljdGlvbm=
+FyeS5jb20vd29yZG9mdGhlZGF5LzIwMTcvMDcvMTgvb3ZpbmU_cGFyYW09d290ZC1lbWFpbA/55=
+19e05a3b35d06d728b74f6B860deb7c"><img src=3D"http://static.sfdict.com/stati=
+c/email/LOGO_Header.png" alt=3D"Dictionary.com Word of the Day" style=3D"wi=
+dth:80%;"></a></center>
+</td>
+<td style=3D"width: 187px;" >&nbsp; </td>
+</tr>
+<tr>
+<td bgcolor=3D#FFFFFF  style=3D"width: 169px; min-height: 40px;">&nbsp;</td=
+>
+<td bgcolor=3D#3d7bbf style=3D"width: 376px; text-transform: uppercase; col=
+or: white; padding-top: 10px; padding-bottom: 10px;  min-height: 40px;"><fo=
+nt size=3D2>
+<center>July 18, 2017</center></font>
+</td>
+<td bgcolor=3D#FFFFFF  style=3D"width: 169px; min-height: 40px;">&nbsp;</td=
+>
+</tr>
+</table>
+<!--WOTD-->
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-top:=
+ 5px; text-decoration:none; font:50px/50px Verdana, Arial, Helvetica, sans-=
+serif; color:#4A4A4A; font-weight:300;"><a href=3D"http://link.dictionary.c=
+om/click/10074502.468707/aHR0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2NsaWNrL2NhNz=
+dyaD9jbGtkZXN0PWh0dHA6Ly93d3cuZGljdGlvbmFyeS5jb20vd29yZG9mdGhlZGF5LzIwMTcvM=
+DcvMTgvP3BhcmFtPXdvdGQtZW1haWw/5519e05a3b35d06d728b74f6C037ab0f7" style=3D"=
+text-decoration: none; color: #4A4A4A;">ovine</a>  <font size=3D1><a href=
+=3D"http://link.dictionary.com/click/10074502.468707/aHR0cDovL2NsaWNrLmRpY3=
+Rpb25hcnkuY29tL2NsaWNrL2NhNzdyaD9jbGtkZXN0PWh0dHA6Ly93d3cuZGljdGlvbmFyeS5jb=
+20vd29yZG9mdGhlZGF5LzIwMTcvMDcvMTgvb3ZpbmU_cGFyYW09d290ZC1lbWFpbA/5519e05a3=
+b35d06d728b74f6D860deb7c"><img src=3D"http://static.sfdict.com/static/email=
+/sound_icon.png" style=3D"width: 25px; height: 25px; margin-left: 5px;" alt=
+=3D"Audio" /></font></a></td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-top:=
+ 10px; padding-bottom: 10px; color: #AAAAAA; font:16px/24px Verdana, Arial,=
+ Helvetica, sans-serif; ">adjective  [<strong>oh</strong>-vahyn, <strong>oh=
+</strong>-vin]</td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"color: #666; padding-left: 20px;=
+ padding-bottom: 10px; color: #666; font:16px/26px Verdana, Arial, Helvetic=
+a, sans-serif;">
+<!-- DEFINITIONS -->
+1. pertaining to, of the nature of, or like sheep.<br>
+<!-- END: DEFINITIONS -->
+</td>
+</tr>
+</table>
+<!--EDITORIAL-->
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#F5F5F5 style=3D"color: #666; padding-left: 20px;=
+ border-width: 0 20px; border-style: solid; border-color: white; padding: 1=
+0px; text-align: center; color:#505251;"><font size=3D3>MORE FROM DICTIONAR=
+Y.COM</font></td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td bgcolor=3D#F5F5F5 width=3D712 style=3D"border-width: 0 20px; border-sty=
+le: solid; border-color: white; padding: 10px 0; text-align: center; color:=
+#505251;">
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 style=3D"margin:auto;" cl=
+ass=3D"tile-container"><tr>
+<td bgcolor=3D#FFFFFF valign=3Dtop align=3Dleft width=3D215 style=3D"float:=
+ left; margin: 0 4px;" class=3D"editorial-tile"><a style=3D"text-decoration=
+: none; color: #4A4A4A;" href=3D"http://link.dictionary.com/click/10074502.=
+468707/aHR0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2NsaWNrLzRmcmlyYj9jbGtkZXN0PWh0=
+dHA6Ly93d3cuZGljdGlvbmFyeS5jb20vc2xpZGVzaG93cy91bXdvcmRzP3BhcmFtPXdvdGQtZW1=
+haWw/5519e05a3b35d06d728b74f6B2a32cfad"><img src=3D"http://static.sfdict.co=
+m/static/email/contentlibrary/six_words_1000x700.jpg" alt=3D"Words to drop =
+from your vocabulary" border=3D"0" width=3D215 height=3D150></a><div style=
+=3D"padding:0 5px; height:120px;">
+<span style=3D"text-transform: uppercase; padding-top: 5px; text-decoration=
+:none;"><font size=3D2 color=3D#CCCCCC><a style=3D"text-decoration: none; c=
+olor: #CCCCCC;" href=3D"http://link.dictionary.com/click/10074502.468707/aH=
+R0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2NsaWNrLzRmcmlyYj9jbGtkZXN0PWh0dHA6Ly93d=
+3cuZGljdGlvbmFyeS5jb20vc2xpZGVzaG93cy91bXdvcmRzP3BhcmFtPXdvdGQtZW1haWw/5519=
+e05a3b35d06d728b74f6C2a32cfad">language</a></font></span><br>
+<a style=3D"text-decoration: none; color: #4A4A4A;" href=3D"http://link.dic=
+tionary.com/click/10074502.468707/aHR0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2Nsa=
+WNrLzRmcmlyYj9jbGtkZXN0PWh0dHA6Ly93d3cuZGljdGlvbmFyeS5jb20vc2xpZGVzaG93cy91=
+bXdvcmRzP3BhcmFtPXdvdGQtZW1haWw/5519e05a3b35d06d728b74f6D2a32cfad"><span st=
+yle=3D"color: #4A4A4A; font-weight: bold; text-decoration:none;"><font size=
+=3D3>Words to drop from your vocabulary </font></span></a><br>
+<a style=3D"text-decoration: none; color: #4A4A4A;" href=3D"http://link.dic=
+tionary.com/click/10074502.468707/aHR0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2Nsa=
+WNrLzRmcmlyYj9jbGtkZXN0PWh0dHA6Ly93d3cuZGljdGlvbmFyeS5jb20vc2xpZGVzaG93cy91=
+bXdvcmRzP3BhcmFtPXdvdGQtZW1haWw/5519e05a3b35d06d728b74f6E2a32cfad"><span st=
+yle=3D"color: #4A4A4A; padding-bottom: 7px;  text-decoration:none;"><font s=
+ize=3D2>Break the habit of slipping these words into your sentence</font></=
+span></a></div>
+</td>
+<td bgcolor=3D#FFFFFF valign=3Dtop align=3Dleft width=3D215 style=3D"float:=
+ left; margin: 0 0;" class=3D"editorial-tile"><a style=3D"text-decoration: =
+none; color: #4A4A4A;" href=3D"http://link.dictionary.com/click/10074502.46=
+8707/aHR0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2NsaWNrLzRmcmlyYj9jbGtkZXN0PWh0dH=
+A6Ly93d3cuZGljdGlvbmFyeS5jb20vc2xpZGVzaG93cy9vbGRlc3QtZW5nbGlzaC13b3Jkcz9wY=
+XJhbT13b3RkLWVtYWls/5519e05a3b35d06d728b74f6Fca0f8b35"><img src=3D"http://s=
+tatic.sfdict.com/static/email/contentlibrary/beginning_1000x700.jpg" alt=3D=
+"The oldest words in the English language" border=3D"0" width=3D215 height=
+=3D150><div style=3D"padding:0 5px; height:120px;">
+<span style=3D"text-transform: uppercase; padding-top: 5px; text-decoration=
+:none; "><font size=3D2 color=3D#CCCCCC>language</font></span><br>
+<span style=3D"color: #4A4A4A; font-weight: bold; text-decoration:none;"><f=
+ont size=3D3>The oldest words in the English language </font></span><br>
+<span style=3D"color: #4A4A4A; padding-bottom: 7px; height: 35px; text-deco=
+ration:none;"><font size=3D2>English had to start somewhere</font></span></=
+div></a>
+</td>
+<td bgcolor=3D#FFFFFF valign=3Dtop align=3Dleft width=3D215 style=3D"float:=
+ left; margin: 0 4px;" class=3D"editorial-tile"><a style=3D"text-decoration=
+: none; color: #4A4A4A;" href=3D"http://link.dictionary.com/click/10074502.=
+468707/aHR0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2NsaWNrLzRmcmlyYj9jbGtkZXN0PWh0=
+dHA6Ly93d3cuZGljdGlvbmFyeS5jb20vc2xpZGVzaG93cy9kYXJrLWlkaW9tcz9wYXJhbT13b3R=
+kLWVtYWls/5519e05a3b35d06d728b74f6G2a544bda"><img src=3D"http://static.sfdi=
+ct.com/static/email/contentlibrary/nicer_way_1000x700.jpg" alt=3D"Disturbin=
+g and Twisted Idioms" border=3D"0" width=3D215 height=3D150><div style=3D"p=
+adding:0 5px; height:120px;">
+<span style=3D"text-transform: uppercase; padding-top: 5px; text-decoration=
+:none;"><font size=3D2 color=3D#CCCCCC>language</font></span><br>
+<span style=3D"font-size:14px; color: #4A4A4A; font-weight: bold; text-deco=
+ration:none;"><font size=3D3>Disturbing and Twisted Idioms</font></span><br=
+>
+<span style=3D"color: #4A4A4A; padding-bottom: 7px; height: 35px; text-deco=
+ration:none;"><font size=3D2>9 sinister-sounding expressions and their orig=
+ins</font></span></div></a>
+</td></tr></table></td>
+</tr>
+</table>
+<!--WOTD CONTD -->
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-top:=
+ 10px; padding-bottom: 10px; font-size: 16px; color: #AAAAAA;">QUOTES</td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-bott=
+om: 10px; font-size: 14px; color: #666666;">
+<!-- QUOTES -->
+In the gaze of its <strong>ovine</strong> inhabitants, we glimpse their dim=
+ recognition that a new sort of shepherd has arisen.<br>
+<font color=3D"#AAAAAA" size=3D"2"> -- , "Dronestagram's View," <cite>New Y=
+ork Times</cite>, June 5, 2015</font>
+<!-- END: QUOTES -->
+</td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-top:=
+ 10px; padding-bottom: 10px; color: #AAAAAA;"><font size=3D3>ORIGIN</font><=
+/td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-bott=
+om: 10px; color: #666666; font-size: 14px;">
+<!-- ORIGIN -->
+<em>Ovine</em> comes straightforwardly from the Late Latin adjective <em>ov=
+=C4=ABnus</em> =E2=80=9Cpertaining to a sheep.=E2=80=9D The Latin noun <em>=
+ovis</em> =E2=80=9Csheep=E2=80=9D is identical with the Proto-Indo-European=
+ noun <em>owis</em> =E2=80=9Csheep,=E2=80=9D the source of Greek <em>=C3=B3=
+=C3=AFs</em> (dialectal <em>=C3=B3wis</em>), Lithuanian <em>av=C3=ACs</em>,=
+ Sanskrit <em>=C3=A1vi-</em>, Germanic <em>awiz</em>, which becomes <em>=C4=
+=93owu</em> in Old English and <em>ewe</em> in modern English. <em>Ovine</e=
+m> entered English in the 17th century.
+<!-- END: ORIGIN -->
+</td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"color: #666666; padding: 20px; "=
+>
+<center>
+<!-- SOCIAL 1 -->
+<a href=3D"http://link.dictionary.com/click/10074502.468707/aHR0cHM6Ly93d3c=
+uZmFjZWJvb2suY29tL3NoYXJlci5waHA_dT1odHRwJTNBJTJGJTJGd3d3LmRpY3Rpb25hcnkuY2=
+9tJTJGd29yZG9mdGhlZGF5JTJGMjAxNyUyRjclMkYxOCUyRm92aW5l/5519e05a3b35d06d728b=
+74f6B27f835bb"><img src=3D"http://static.sfdict.com/static/email/facebook.p=
+ng" alt=3D"Share on Facebook" style=3D"border: 5px solid #FFFFFF; height: 3=
+5px;" /></a>
+<!-- END: SOCIAL 1 -->
+<!-- SOCIAL 2 -->
+<a href=3D"http://link.dictionary.com/click/10074502.468707/aHR0cHM6Ly90d2l=
+0dGVyLmNvbS9pbnRlbnQvdHdlZXQ_dGV4dD1Xb3JkJTIwb2YlMjB0aGUlMjBEYXklMjBmcm9tJT=
+IwJTQwRGljdGlvbmFyeWNvbSUyMC0lMjBvdmluZSUyMC0lMjBwZXJ0YWluaW5nJTIwdG8lMkMlM=
+jBvZiUyMHRoZSUyMG5hdHVyZSUyMG9mJTJDJTIwb3IlMjBsaWtlJTIwc2hlZXAuJTIwaHR0cCUz=
+QSUyRiUyRnd3dy5kaWN0aW9uYXJ5LmNvbSUyRndvcmRvZnRoZWRheSUyRjIwMTclMkY3JTJGMTg=
+lMkZvdmluZQ/5519e05a3b35d06d728b74f6B067deff7"><img src=3D"http://static.sf=
+dict.com/static/email/twitter.png"  alt=3D"Share on Twitter" style=3D"borde=
+r: 5px solid #FFFFFF; height: 35px;" /></a>
+<!-- END: SOCIAL 2 -->
+<!-- SOCIAL 3 -->
+<a href=3D"http://link.dictionary.com/click/10074502.468707/aHR0cHM6Ly93d3c=
+uaW5zdGFncmFtLmNvbS9kaWN0aW9uYXJ5Y29tLw/5519e05a3b35d06d728b74f6Be8eaad30">=
+<img src=3D"http://static.sfdict.com/static/email/instagram.png" alt=3D"Fol=
+low us on Instagram"  style=3D"border: 5px solid #FFFFFF; height: 35px;"/><=
+/a>
+<!-- END: SOCIAL 3 -->
+<!-- SOCIAL 4 -->
+<a href=3D"http://link.dictionary.com/click/10074502.468707/aHR0cHM6Ly93d3c=
+ucGludGVyZXN0LmNvbS9kaWN0aW9uYXJ5Y29tLw/5519e05a3b35d06d728b74f6Bdc1eefa4">=
+<img src=3D"http://static.sfdict.com/static/email/pinterest.png"  alt=3D"Fo=
+llow us on Pinterest"  style=3D"border: 5px solid #FFFFFF; height: 35px;"/>=
+</a>
+<!-- END: SOCIAL 4 -->
+</center></td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712>&nbsp;</td >
+</tr>
+</table>
+<!--POWERINBOX-->
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#EEEEEE style=3D"padding-left: 20px; color:#50525=
+1; "><center><font size=3D3> MORE FROM THE WEB</font></center></td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#EEEEEE style=3D"padding-left: 20px; font-size: 2=
+1px; color:#505251;">
+<table cellpadding=3D0 cellspacing=3D0 border=3D0 class=3D"tile-container">=
+<tr>
+<td style=3D"width: 30%; float: left; margin: 0 1%;" class=3D"powerinbox-ti=
+le">  <a href=3D"http://link.dictionary.com/click/10074502.468707/aHR0cDovL=
+3JzLXN0cmlwZS5kaWN0aW9uYXJ5LmNvbS9zdHJpcGUvcmVkaXJlY3Q_Y3NfZW1haWw9c29tZXRp=
+bWU1ODU4QGdtYWlsLmNvbSZjc19zZW5kaWQ9MTAwNzQ1MDImY3NfZXNwPXNhaWx0aHJ1JmNzX29=
+mZnNldD0wJmNzX3N0cmlwZWlkPTQ5NTY/5519e05a3b35d06d728b74f6Bd81c2e7a" style=
+=3D"border-style: none;outline: none;text-decoration: none;" target=3D"_bla=
+nk" ref=3D"nofollow"><img alt=3D"" height=3D"auto" style=3D"display:block;b=
+order:0;height:auto;line-height:100%;outline:none;text-decoration:none;widt=
+h:100%;max-width:100%;" width=3D"214" src=3D"http://rs-stripe.dictionary.co=
+m/stripe/image?cs_email=3Dsometime5858@gmail.com&cs_sendid=3D10074502&cs_es=
+p=3Dsailthru&cs_offset=3D0&cs_stripeid=3D4956"></a>
+</td>
+<td style=3D"width: 30%; float: left; margin: 0 1.5%;" class=3D"powerinbox-=
+tile"> <a href=3D"http://link.dictionary.com/click/10074502.468707/aHR0cDov=
+L3JzLXN0cmlwZS5kaWN0aW9uYXJ5LmNvbS9zdHJpcGUvcmVkaXJlY3Q_Y3NfZW1haWw9c29tZXR=
+pbWU1ODU4QGdtYWlsLmNvbSZjc19zZW5kaWQ9MTAwNzQ1MDImY3NfZXNwPXNhaWx0aHJ1JmNzX2=
+9mZnNldD0xJmNzX3N0cmlwZWlkPTQ5NTY/5519e05a3b35d06d728b74f6C9238fd92" style=
+=3D"border-style: none;outline: none;text-decoration: none;" target=3D"_bla=
+nk" ref=3D"nofollow"><img alt=3D"" height=3D"auto" style=3D"display:block;b=
+order:0;height:auto;line-height:100%;outline:none;text-decoration:none;widt=
+h:100%;max-width:100%;" width=3D"214" src=3D"http://rs-stripe.dictionary.co=
+m/stripe/image?cs_email=3Dsometime5858@gmail.com&cs_sendid=3D10074502&cs_es=
+p=3Dsailthru&cs_offset=3D1&cs_stripeid=3D4956"></a>
+</td>
+<td style=3D"width: 30%; float: left; margin: 0 1.5%;" class=3D"powerinbox-=
+tile"> <a href=3D"http://link.dictionary.com/click/10074502.468707/aHR0cDov=
+L3JzLXN0cmlwZS5kaWN0aW9uYXJ5LmNvbS9zdHJpcGUvcmVkaXJlY3Q_Y3NfZW1haWw9c29tZXR=
+pbWU1ODU4QGdtYWlsLmNvbSZjc19zZW5kaWQ9MTAwNzQ1MDImY3NfZXNwPXNhaWx0aHJ1JmNzX2=
+9mZnNldD0yJmNzX3N0cmlwZWlkPTQ5NTY/5519e05a3b35d06d728b74f6D0ecb13f2" style=
+=3D"border-style: none;outline: none;text-decoration: none;" target=3D"_bla=
+nk" ref=3D"nofollow"><img alt=3D"" height=3D"auto" style=3D"display:block;b=
+order:0;height:auto;line-height:100%;outline:none;text-decoration:none;widt=
+h:100%;max-width:100%;" width=3D"214" src=3D"http://rs-stripe.dictionary.co=
+m/stripe/image?cs_email=3Dsometime5858@gmail.com&cs_sendid=3D10074502&cs_es=
+p=3Dsailthru&cs_offset=3D2&cs_stripeid=3D4956"></a>
+</td>
+</tr></table></td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#EEEEEE style=3D"color: #666666; padding-left: 20=
+px;"><a href=3D"http://link.dictionary.com/click/10074502.468707/aHR0cDovL3=
+JzLWJyYW5kaW5nLmRpY3Rpb25hcnkuY29tLz91dG1fc291cmNlPWNvbnRlbnRzdHJpcGUmdXRtX=
+21lZGl1bT1lbWFpbCZ1dG1fY2FtcGFpZ249ZGljdGlvbmFyeSZ1dG1fY29udGVudD1hbmltYXRl=
+ZGxvZ28/5519e05a3b35d06d728b74f6B1b0d9d56" style=3D"display: inline-block; =
+border: 0; outline:none; text-decoration:none;" target=3D"_blank">
+<img src=3D"http://rs-branding.dictionary.com/recommend/transparent.gif" st=
+yle=3D"width: 143px; height: 40px;" width=3D"143" height=3D"40" border=3D"0=
+" alt=3D"Learn more about RevenueStripe..." /></a>
+</td>
+</tr>
+<!--END POWERINBOX-->
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td bgcolor=3D#444444 width=3D356 style=3D"padding-left: 40px; border-top: =
+10px; color: #FFFFFF; padding: 15px;"><font size=3D2>&copy; 2017 DICTIONARY=
+.COM</font></td>
+<td bgcolor=3D#444444 width=3D356 style=3D"padding-left: 40px; border-top: =
+10px; color: #FFFFFF; padding: 15px; position: relative; right: 0px; text-a=
+lign: right;"><font size=3D2><a style=3D"text-decoration: none; color: #FFF=
+FFF;" href=3D"http://link.dictionary.com/click/10074502.468707/aHR0cDovL2Ns=
+aWNrLmRpY3Rpb25hcnkuY29tL2NsaWNrL2Nia2gzdw/5519e05a3b35d06d728b74f6B90a3993=
+b">ABOUT</a> <img src=3D"http://static.sfdict.com/assets/1823-1506493-0.gif=
+" height=3D"1" border=3D0 width=3D"25">  <a style=3D"text-decoration: none;=
+ color: #FFFFFF;" href=3D"http://link.dictionary.com/click/10074502.468707/=
+aHR0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2NsaWNrL3ZxNjg1NA/5519e05a3b35d06d728b=
+74f6B19f1cc39">CONTACT</a></font></td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#AAAAAA style=3D"color: #666666; padding-left: 40=
+px;">&nbsp;</td >
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td bgcolor=3D#FFFFFF valign=3Dtop style=3D"width: 356px; padding-left: 40p=
+x; border-top: 10px; padding: 15px; color: #4A4A4A; "> You are subscribed t=
+o the <br/>Word of the Day as: <br/><a href=3D"mailto:sometime5858@gmail.co=
+m">sometime5858@gmail.com</a><br/>Subscriber since: <br>March 30, 2015<br/>
+<a href=3D"http://link.dictionary.com/oc/5519e05a3b35d06d728b74f65zxja.a1nn=
+/c6225a4f">Unsubscribe</a></td>
+<td bgcolor=3D#FFFFFF valign=3Dtop style=3D"width: 356px; padding-left: 40p=
+x; border-top: 10px; padding: 15px; color: #4A4A4A; text-align: right;">
+Dictionary.com, LLC. <br/>555 12th Street <br/>Suite 500 <br/>Oakland CA 94=
+607 <br/><br/><a  href=3D"http://link.dictionary.com/manage/prefcenter-js?e=
+mail=3Dsometime5858@gmail.com&hash=3D9101f6746407d5fc6c0ca08c0a3296fd">Mana=
+ge your subscription</a>
+</td>
+</tr>
+</table>
+</td>
+<td width=3D19>&nbsp;</td></tr></table>
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"24" height=
+=3D"6">
+<tbody>
+<tr>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528600&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10543209"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528601&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10543209"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528602&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10543209"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528603&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10543209"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528604&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10543209"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528605&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10543209"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528606&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10543209"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528607&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10543209"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528608&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10543209"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528609&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10543209"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528610&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10543209"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528611&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10543209"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+</tr>
+</tbody>
+</table>
+<!-- END: RTB -->
+<a href=3D"www.dictionary.com"><img src=3D"http://link.dictionary.com/img/5=
+519e05a3b35d06d728b74f65zxja.a1nn/44eb1b19.gif" alt=3D"" border=3D"0" /></a=
+>
+</body>
+</html>
+
+------=_Part_865005_543408592.1500419473357--
+

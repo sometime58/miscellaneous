@@ -1,0 +1,750 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 10.31.50.88 with SMTP id y85csp5288925vky;
+        Mon, 11 Sep 2017 15:07:10 -0700 (PDT)
+X-Google-Smtp-Source: AOwi7QCWo+fMc4uqddVXqn9ppekviQWhwmt7YktQVhjo6gRGzx1KSJGjtLVDvqFmR9/ZKGKzKNzt
+X-Received: by 10.36.29.137 with SMTP id 131mr17005450itj.91.1505167630557;
+        Mon, 11 Sep 2017 15:07:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1505167630; cv=none;
+        d=google.com; s=arc-20160816;
+        b=XcfD18VTIrGiKWXqV7woD9wrGnUcKEabck55m9XUkVrYQX+vSpQVqVwlKwaeTVp4j/
+         +VzvjTQsAeYVbLOombnCr5xWXsC6MS3pAxxCBk22DR85K87eSjltxQJXOWu257J/hGMd
+         5rJTZa8WZRigrrkheO7VaA1jFUVQfvUkJ7ulk3fqc13UFP0hSowoRmITk+Ne8OGUYDvC
+         xx/IooLFYN7uE6rQy3r4Bj3TWbenvJ0pprwiXLBbmUhXzM9Iu2PUoinBsBZhPC34dj3G
+         hU9hLCh385yMgul3ZOyegA1l39y2g99nBNn4vMQguC1XxYd4G0s1G3Cetl91VWbel94S
+         zMww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=from:subject:mime-version:date:message-id:to:dkim-signature
+         :arc-authentication-results;
+        bh=+f1vZlgZ7F+JXVfaIetXgxS06J2DCh4fa5sAgeGnkNs=;
+        b=d7H5T1V775n9Cn84CwV85iz6aW+e/3aOJMbmclBvEjr3BUFRNJKk9VxSgcL+paqemT
+         QAy5fw8lqa4CH6ErOyehU6YG52RdZGQBZLxTqKkq0LC7R4UgQX6MdAFxxy8bdsAK2jHy
+         Sh4ZE0hBoXa2bW1e+Jkzcj6Vy9j7UMOVN4kz7aEunyL1l/LgOtvcHB0bZow2i68g1Y+c
+         QOkSN+OGIAx0oUNu+SwehD1fdRQkxmIhG2WwT0OW2OqoVt6xNmC+DnGRVOP46YhftX05
+         8MtzxmgHVOnl6M96ezzrzAgmNcwhKzSaddZ1ggjnxUmlcGxWqyMtlUp/eaEM2q6U6wez
+         k/8g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@t.mail.coursera.org header.s=scph0616 header.b=T0CGBTKQ;
+       spf=pass (google.com: domain of bounce@t.mail.coursera.org designates 52.11.176.0 as permitted sender) smtp.mailfrom=bounce@t.mail.coursera.org
+Return-Path: <bounce@t.mail.coursera.org>
+Received: from mta1a3.mail.coursera.org (mta1a3.mail.coursera.org. [52.11.176.0])
+        by mx.google.com with ESMTPS id a133si9467602ita.104.2017.09.11.15.07.10
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 11 Sep 2017 15:07:10 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce@t.mail.coursera.org designates 52.11.176.0 as permitted sender) client-ip=52.11.176.0;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@t.mail.coursera.org header.s=scph0616 header.b=T0CGBTKQ;
+       spf=pass (google.com: domain of bounce@t.mail.coursera.org designates 52.11.176.0 as permitted sender) smtp.mailfrom=bounce@t.mail.coursera.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=t.mail.coursera.org;
+	s=scph0616; t=1505167628; i=@t.mail.coursera.org;
+	bh=+f1vZlgZ7F+JXVfaIetXgxS06J2DCh4fa5sAgeGnkNs=;
+	h=To:Message-ID:Date:Content-Type:Subject:From;
+	b=T0CGBTKQjThA3BcHCSLnc9Pu2CtiliCehec+86RAgXp9jzo8MdlM3aftYiSKGIqAw
+	 tXkq6/caC25drSMbuso18mozWXr94tbySCqCCli3BS1Uvm2JjfF8yURVfoGZOmztf4
+	 KLKXQLqAQtiOb4NCVoYYoC2Aaa8e5YYGkRoi8epI=
+X-MSFBL: BEOJGmAIo9R/JY2kMq6pfk+7uOuoU2A71VUlMpe+H8o=|eyJyY3B0X21ldGEiOns
+	gImJpbmRpbmciOiAidHJhbnNhY3Rpb25hbCIsICJub3RpZmljYXRpb25fdGVtcGx
+	hdGUiOiAib3BlbmNvdXJzZS5hbm5vdW5jZW1lbnRzIiwgImNoYW5uZWwiOiAiRU1
+	BSUwiLCAicHJlZmVyZW5jZSI6ICJvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUF
+	DM2xMSUEuYW5ub3VuY2VtZW50cyIsICJjYW1wYWlnbl9ncm91cCI6ICJvcGVuY29
+	1cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuYW5ub3VuY2VtZW50cyIgfSwiYiI
+	6ImlwXzUyLjExLjE3Ni4wIiwidGVuYW50X2lkIjoiY291cnNlcmEiLCJ0ZW1wbGF
+	0ZV92ZXJzaW9uIjoiMCIsInRyYW5zbWlzc2lvbl9pZCI6IjMwNjQwNTg3NjE2NDI
+	zNjMzIiwidHJhbnNhY3Rpb25hbCI6IjEiLCJyIjoic29tZXRpbWU1ODU4QGdtYWl
+	sLmNvbSIsIm1lc3NhZ2VfaWQiOiIwMDAxMGMwOWI3NTk5NGI3NjI0MyIsImNhbXB
+	haWduX2lkIjoib3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLllwQU1
+	ZcGI1RWVlNy1CTGRNVGRLOEEiLCJnIjoidHJhbnNhY3Rpb25hbCIsInNjaGVkX3R
+	pbWVfZHEiOiIxNTA1MTY3NjI4IiwidGVtcGxhdGVfaWQiOiJ0ZW1wbGF0ZV8zMDY
+	0MDU4NzYxNjQyMzYzMyIsImZyaWVuZGx5X2Zyb20iOiJuby1yZXBseUB0Lm1haWw
+	uY291cnNlcmEub3JnIiwicmNwdF90YWdzIjpbIF0sImN1c3RvbWVyX2lkIjoiMSI
+	sInN1YmFjY291bnRfaWQiOiIwIn0=
+To: "Aohan Wang" <sometime5858@gmail.com>
+Message-ID: <26.34.46996.C0907B95@a.plat1.coursera.aws-usw2a.prd.sparkpost>
+Date: Mon, 11 Sep 2017 22:07:08 +0000
+Content-Type: multipart/alternative; boundary="_----uwNolCKtG2vYRGN8at0Vvw===_95/34-46996-C0907B95"
+MIME-Version: 1.0
+Subject: A few things to avoid in the ModPo site! [a note about dates and "deadlines"]
+From: =?utf-8?B?TW9kZXJuICYgQ29udGVtcG9yYXJ5IEFtZXJpY2FuIFBvZXRyeSAo4oCc?=
+	=?utf-8?B?TW9kUG/igJ0pIENvdXJzZSBUZWFt?= <no-reply@t.mail.coursera.org>
+X-TUID: 0L7KNzHSEI4k
+
+--_----uwNolCKtG2vYRGN8at0Vvw===_95/34-46996-C0907B95
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+
+Dear Aohan Wang & all:=0D=0A=0D=0A=0D=0AModPo is an open-ended, ongoing cou=
+rse. (More a community than a course, as =0D=0Awe often say.) Because we ar=
+e in an "open session," the automated =0D=0ACoursera-suggested deadlines wi=
+ll be misleading and/or incorrect. You might =0D=0Asee "August 1" as the de=
+adline for some quizzes; ignore that!=0D=0A=0D=0A=0D=0ASimilarly, if you re=
+turned to ModPo after having been with us in 2016, you =0D=0Awill see the "=
+progress tracking" information reproduces where you left off =0D=0Alast yea=
+r; it will not start afresh. It might be best to ignore this and go =0D=0Ar=
+ight to the week's poems and videos by clicking on "Week 1" or "Week 2" =0D=
+=0Aetc.=0D=0A=0D=0A=0D=0AYour best source of information about dates and sc=
+hedule and deadlines is =0D=0Aalways going to be in the headnotes to each w=
+eek of the main ModPo =0D=0Asyllabus. At the bottom of this message I've co=
+pied, for example, the =0D=0Aheadnote to week 2. You can see (in the bolded=
+ sentences) that we give the =0D=0Adates of the week, from start to end, an=
+d also the dates of assignments =E2=80=94 =0D=0Aplus the date and time of t=
+hat week's live webcast. All the info you need =0D=0Ais there!=0D=0A=0D=0A=
+=0D=0AIf you intend to take the quizzes, you can find them linked to each w=
+eek's =0D=0Asyllabus. (You can do the quizzes any time during the ten weeks=
+, by the =0D=0Away. If you're intending to take quizzes for the purpose of =
+receiving a =0D=0Acertificate of completion, your deadline is the final day=
+ of the ten weeks =0D=0Aof ModPo '17: November 20.) The purpose of the quiz=
+ is to help to assure =0D=0Ayou that you've heard some of the main concepts=
+ covered during that week's =0D=0Avideo discussions.=0D=0A=0D=0A=0D=0AIf yo=
+u intend to write any or all of the four essays, click "Resources" and =0D=
+=0Athen see and click "essay assignments=0D=0A<https://eventing.coursera.or=
+g/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodH=
+RwczovL3d3dy5jb3Vyc2VyYS5vcmcvbGVhcm4vbW9kcG8vcmVzb3VyY2VzL25SV0hJP3V0bV9tZ=
+WRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249b3BlbmNvdXJzZS55ZWxp=
+MWVoVUVlU0J0Q0lBQzNsTElBLmFubm91bmNlbWVudHMlN0VvcGVuY291cnNlLnllbGkxZWhVRWV=
+TQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZE1UZEs4QSIsInRyYWNraW5nIjp7InVzZXJJZC=
+I6MjAyNzM2MzksInVzZXJFbWFpbCI6InNvbWV0aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljY=
+XRpb25UeXBlIjoib3BlbmNvdXJzZS5hbm5vdW5jZW1lbnRzIiwiY2FtcGFpZ25JZCI6Im9wZW5j=
+b3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5ZcEFNWXBiNUVlZTctQkxkTVRkSzhBIiwiY2F=
+tcGFpZ25Hcm91cCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5vdW5jZW=
+1lbnRzIiwibGlua3MiOltdfX0sInVzZXJJZCI6MjAyNzM2Mzl9.McLYZcn-rTyngckEY8UWUkxQ=
+lUFmNi_wZrbJsZI5t6U> =0D=0A." All the information you need about the essays=
+=E2=80=94and about the peer reviews =0D=0Awe will write in response to othe=
+rs' essays=E2=80=94can be found there. We =0D=0Arecommend that you do not c=
+lick "Grades" on the left-side menu; the =0D=0Ainformation there about "Pee=
+r-graded assignments" is not relevant. (The =0D=0Ainfo there about quizzes =
+will be correct, except for the deadline.)=0D=0A=0D=0A=0D=0AWe will be writ=
+ing and submitting the first ModPo essay next week (week 2). =0D=0AThe foll=
+owing week (week 3) we will be reviewing and responding to the =0D=0Aessays=
+ submitted the previous week. Some folks have already submitted essay =0D=
+=0A#1=E2=80=94which is fine. But it's best if you submit them during week 2=
+ and review =0D=0Aothers' essays during week 3. Our "essay assignments=0D=
+=0A<https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm=
+9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvbGVhcm4vbW9kc=
+G8vcmVzb3VyY2VzL25SV0hJP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1f=
+Y2FtcGFpZ249b3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLmFubm91bmNlbWVudHM=
+lN0VvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZE1UZE=
+s4QSIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI6InNvbWV0aW1lN=
+Tg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlIjoib3BlbmNvdXJzZS5hbm5vdW5jZW1l=
+bnRzIiwiY2FtcGFpZ25JZCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5ZcEF=
+NWXBiNUVlZTctQkxkTVRkSzhBIiwiY2FtcGFpZ25Hcm91cCI6Im9wZW5jb3Vyc2UueWVsaTFlaF=
+VFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnRzIiwibGlua3MiOltdfX0sInVzZXJJZCI6MjAyN=
+zM2Mzl9.McLYZcn-rTyngckEY8UWUkxQlUFmNi_wZrbJsZI5t6U> =0D=0A" page makes all=
+ this clear. You can also go to our FAQ page=0D=0A<https://eventing.courser=
+a.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOi=
+JodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvbGVhcm4vbW9kcG8vcmVzb3VyY2VzL2xDNHRZP3V0b=
+V9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249b3BlbmNvdXJzZS55=
+ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLmFubm91bmNlbWVudHMlN0VvcGVuY291cnNlLnllbGkxZWh=
+VRWVTQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZE1UZEs4QSIsInRyYWNraW5nIjp7InVzZX=
+JJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI6InNvbWV0aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZ=
+mljYXRpb25UeXBlIjoib3BlbmNvdXJzZS5hbm5vdW5jZW1lbnRzIiwiY2FtcGFpZ25JZCI6Im9w=
+ZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5ZcEFNWXBiNUVlZTctQkxkTVRkSzhBIiw=
+iY2FtcGFpZ25Hcm91cCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5vdW=
+5jZW1lbnRzIiwibGlua3MiOltdfX0sInVzZXJJZCI6MjAyNzM2Mzl9.esrXxN4MpQEQqmrdmw_D=
+jmvAXO92RIOUno4URMqZn7Q> =0D=0Aand listen to our guidelines=0D=0A<https://e=
+venting.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx=
+1ZSI6eyJ1cmwiOiJodHRwczovL21lZGlhLnNhcy51cGVubi5lZHUvYWZpbHJlaXMvTW9kUG8vQX=
+VkaW8tR3VpZGUtMjAxNy9Nb2RQby1GQVFfU3VibWl0dGluZy1Fc3NheXMubXAzP3V0bV9tZWRpd=
+W09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249b3BlbmNvdXJzZS55ZWxpMWVo=
+VUVlU0J0Q0lBQzNsTElBLmFubm91bmNlbWVudHMlN0VvcGVuY291cnNlLnllbGkxZWhVRWVTQnR=
+DSUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZE1UZEs4QSIsInRyYWNraW5nIjp7InVzZXJJZCI6Mj=
+AyNzM2MzksInVzZXJFbWFpbCI6InNvbWV0aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb=
+25UeXBlIjoib3BlbmNvdXJzZS5hbm5vdW5jZW1lbnRzIiwiY2FtcGFpZ25JZCI6Im9wZW5jb3Vy=
+c2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5ZcEFNWXBiNUVlZTctQkxkTVRkSzhBIiwiY2FtcGF=
+pZ25Hcm91cCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbn=
+RzIiwibGlua3MiOltdfX0sInVzZXJJZCI6MjAyNzM2Mzl9.m9DXyr-OOWNlTx3ByzMorI4xS5Um=
+79KPFiZdilhh5_Y> =0D=0Afor submitting the essays.=0D=0A=0D=0A=0D=0AFor thos=
+e who are returning to ModPo from previous years, please note that =0D=0Ath=
+ree of the four essay assignments this year are new! We welcome veteran =0D=
+=0AModPo'ers writing these new essays.=0D=0A=0D=0A=0D=0AI will have more to=
+ say about the first essay assignment in a few days.=0D=0A=0D=0A=0D=0AI'm e=
+njoying the discussions of Whitman and Dickinson in the forums=0D=0A<https:=
+//eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2=
+YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvbGVhcm4vbW9kcG8vZGlzY3V=
+zc2lvbnMvd2Vla3MvMT91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b3RoZXImdXRtX2NhbX=
+BhaWduPW9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnRzJTdFb=
+3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLllwQU1ZcGI1RWVlNy1CTGRNVGRLOEEi=
+LCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwiOiJzb21ldGltZTU4NTh=
+AZ21haWwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6Im9wZW5jb3Vyc2UuYW5ub3VuY2VtZW50cy=
+IsImNhbXBhaWduSWQiOiJvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBTVlwY=
+jVFZWU3LUJMZE1UZEs4QSIsImNhbXBhaWduR3JvdXAiOiJvcGVuY291cnNlLnllbGkxZWhVRWVT=
+QnRDSUFDM2xMSUEuYW5ub3VuY2VtZW50cyIsImxpbmtzIjpbXX19LCJ1c2VySWQiOjIwMjczNjM=
+5fQ.AgvYjdookf2Uvk2RZkj6fvISZeXSAHn3lgKNsVxlX2s> =0D=0Aand your many introd=
+uctions=0D=0A<https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFp=
+bC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvbGV=
+hcm4vbW9kcG8vZGlzY3Vzc2lvbnMvZm9ydW1zL056TVJIVzRaRWVhMXlRcFh6QU96b3cvdGhyZW=
+Fkcy8wdUZDMjVVMkVlZWZNZzRpTFZvbnBnP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vd=
+GhlciZ1dG1fY2FtcGFpZ249b3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLmFubm91=
+bmNlbWVudHMlN0VvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU=
+3LUJMZE1UZEs4QSIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI6In=
+NvbWV0aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlIjoib3BlbmNvdXJzZS5hb=
+m5vdW5jZW1lbnRzIiwiY2FtcGFpZ25JZCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMz=
+bExJQS5ZcEFNWXBiNUVlZTctQkxkTVRkSzhBIiwiY2FtcGFpZ25Hcm91cCI6Im9wZW5jb3Vyc2U=
+ueWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnRzIiwibGlua3MiOltdfX0sInVzZX=
+JJZCI6MjAyNzM2Mzl9.cfmxPCAPFNMO6hOkZf1Pz7Klgnv_jwWWrH6bwn-auIs> =0D=0A. Wow=
+! What an interesting and diverse group of people we are. Yet poetry =0D=0A=
+nerds one and all!=0D=0A=0D=0A=0D=0ATomorrow I'll write about our first liv=
+e weekly webcast=0D=0A<https://eventing.coursera.org/redirectSigned/eyJrZXk=
+iOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS=
+5vcmcvbGVhcm4vbW9kcG8vcmVzb3VyY2VzL0Z1YjdNP3V0bV9tZWRpdW09ZW1haWwmdXRtX3Nvd=
+XJjZT1vdGhlciZ1dG1fY2FtcGFpZ249b3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElB=
+LmFubm91bmNlbWVudHMlN0VvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBTVl=
+wYjVFZWU3LUJMZE1UZEs4QSIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJFbW=
+FpbCI6InNvbWV0aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlIjoib3BlbmNvd=
+XJzZS5hbm5vdW5jZW1lbnRzIiwiY2FtcGFpZ25JZCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNC=
+dENJQUMzbExJQS5ZcEFNWXBiNUVlZTctQkxkTVRkSzhBIiwiY2FtcGFpZ25Hcm91cCI6Im9wZW5=
+jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnRzIiwibGlua3MiOltdfX=
+0sInVzZXJJZCI6MjAyNzM2Mzl9.UANgSEyjOTtMURx7izrY_I2n_CHIgEbKIriC5R4jV1s> =0D=
+=0A(which takes place on Wednesday at noon Philadelphia time).=0D=0A=0D=0A=
+=0D=0ABest wishes until then,=0D=0A=0D=0A=0D=0A=E2=80=94Al=0D=0A=0D=0A=0D=
+=0AEXAMPLE OF HEADNOTE IN THE WEEK-BY-WEEK SYLLABUS:=0D=0A=0D=0A=0D=0AWeek =
+2 of ModPo 2017 runs from Sunday, September 17 at 9 AM through Sunday, =0D=
+=0ASeptember 24 at 9 AM. For those doing ModPo on their own or in small =0D=
+=0Agroups, the week 2 materials are open and available all year.=0D=0A=0D=
+=0A=0D=0ADuring this week, the second half of chapter 1, we will read the w=
+ork of =0D=0Atwo poets writing in the Whitmanian mode and three poets writi=
+ng in the =0D=0ADickinsonian mode. We will encounter our Whitmanians, Willi=
+am Carlos =0D=0AWilliams and Allen Ginsberg, again later in the course=E2=
+=80=94Williams as a =0D=0Amodernist and Ginsberg as a Beat poet. The Whitma=
+n/Williams/Ginsberg =0D=0Aconnection is a strong one; Ginsberg wrote direct=
+ly in response to both =0D=0AWhitman and Williams and saw the lineage as cr=
+ucial to the development of =0D=0Ahis approach. Our Dickinsonians are more =
+disparate in their response to =0D=0ADickinson=E2=80=99s writing. Of the th=
+ree=E2=80=94Lorine Niedecker, Cid Corman, and Rae =0D=0AArmantrout=E2=80=94=
+only the last could be said to be a direct poetic descendant of =0D=0AEmily=
+ Dickinson's aesthetic.=0D=0A=0D=0A=0D=0AASSIGNMENTS: During this week, the=
+re are two quizzes due and a writing =0D=0Aassignment. Writing assignment #=
+1 is open for submission between 9 AM on =0D=0A9/18/17 and 9 AM on 9/24/17;=
+ after that, peer reviews will be submitted any =0D=0Atime between 9 AM on =
+9/25/17 and 9 AM on 10/1/17. There is also a live =0D=0Awebcast on Wednesda=
+y, September 20, at 10 AM (Philadelphia time).=0D=0A=0D=0A=0D=0AGo to cours=
+e=0D=0A<https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW=
+5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvbGVhcm4vb=
+W9kcG8vaG9tZS93ZWxjb21lP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1f=
+Y2FtcGFpZ249b3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLmFubm91bmNlbWVudHM=
+lN0VvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZE1UZE=
+s4QSIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI6InNvbWV0aW1lN=
+Tg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlIjoib3BlbmNvdXJzZS5hbm5vdW5jZW1l=
+bnRzIiwiY2FtcGFpZ25JZCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5ZcEF=
+NWXBiNUVlZTctQkxkTVRkSzhBIiwiY2FtcGFpZ25Hcm91cCI6Im9wZW5jb3Vyc2UueWVsaTFlaF=
+VFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnRzIiwibGlua3MiOltdfX0sInVzZXJJZCI6MjAyN=
+zM2Mzl9.FPW-8U6Yvhbxmb8ZH2kCTU_YmnaEuUDyMgzn1k7r4v0>=0D=0A<https://eventing=
+.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6e=
+yJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvP3V0bV9tZWRpdW09ZW1haWwmdXRtX3Nv=
+dXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249b3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTEl=
+BLmFubm91bmNlbWVudHMlN0VvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBTV=
+lwYjVFZWU3LUJMZE1UZEs4QSIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJFb=
+WFpbCI6InNvbWV0aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlIjoib3BlbmNv=
+dXJzZS5hbm5vdW5jZW1lbnRzIiwiY2FtcGFpZ25JZCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVN=
+CdENJQUMzbExJQS5ZcEFNWXBiNUVlZTctQkxkTVRkSzhBIiwiY2FtcGFpZ25Hcm91cCI6Im9wZW=
+5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnRzIiwibGlua3MiOltdf=
+X0sInVzZXJJZCI6MjAyNzM2Mzl9.d6sZxPAfhXIkPWoC40xazGaUoeeRTVyXSL17d0xqp7Q>=0D=
+=0A[facebook]=0D=0A<https://eventing.coursera.org/redirectSigned/eyJrZXkiOi=
+JlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vd3d3LmZhY2Vib29rLmNvb=
+S9Db3Vyc2VyYT91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b3RoZXImdXRtX2NhbXBhaWdu=
+PW9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnRzJTdFb3BlbmN=
+vdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLllwQU1ZcGI1RWVlNy1CTGRNVGRLOEEiLCJ0cm=
+Fja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwiOiJzb21ldGltZTU4NThAZ21ha=
+WwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6Im9wZW5jb3Vyc2UuYW5ub3VuY2VtZW50cyIsImNh=
+bXBhaWduSWQiOiJvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU=
+3LUJMZE1UZEs4QSIsImNhbXBhaWduR3JvdXAiOiJvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSU=
+FDM2xMSUEuYW5ub3VuY2VtZW50cyIsImxpbmtzIjpbXX19LCJ1c2VySWQiOjIwMjczNjM5fQ.OG=
+Mk0LknXS648S6GVIfodd09H0_e-jQN_TO0Kts-ThY> =0D=0A[twitter]=0D=0A<https://ev=
+enting.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1=
+ZSI6eyJ1cmwiOiJodHRwczovL3R3aXR0ZXIuY29tL2NvdXJzZXJhP3V0bV9tZWRpdW09ZW1haWw=
+mdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249b3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0=
+lBQzNsTElBLmFubm91bmNlbWVudHMlN0VvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMS=
+UEuWXBBTVlwYjVFZWU3LUJMZE1UZEs4QSIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2Mzks=
+InVzZXJFbWFpbCI6InNvbWV0aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlIjo=
+ib3BlbmNvdXJzZS5hbm5vdW5jZW1lbnRzIiwiY2FtcGFpZ25JZCI6Im9wZW5jb3Vyc2UueWVsaT=
+FlaFVFZVNCdENJQUMzbExJQS5ZcEFNWXBiNUVlZTctQkxkTVRkSzhBIiwiY2FtcGFpZ25Hcm91c=
+CI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnRzIiwibGlu=
+a3MiOltdfX0sInVzZXJJZCI6MjAyNzM2Mzl9.sl2OlxIV4keBN6qVUse2JMqZH7vM9V53jmOW9k=
+80lsM> =0D=0A[blog]=0D=0A<https://eventing.coursera.org/redirectSigned/eyJr=
+ZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vYmxvZy5jb3Vyc2V=
+yYS5vcmcvP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249b3=
+BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLmFubm91bmNlbWVudHMlN0VvcGVuY291c=
+nNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZE1UZEs4QSIsInRyYWNr=
+aW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI6InNvbWV0aW1lNTg1OEBnbWFpbC5=
+jb20iLCJub3RpZmljYXRpb25UeXBlIjoib3BlbmNvdXJzZS5hbm5vdW5jZW1lbnRzIiwiY2FtcG=
+FpZ25JZCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5ZcEFNWXBiNUVlZTctQ=
+kxkTVRkSzhBIiwiY2FtcGFpZ25Hcm91cCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMz=
+bExJQS5hbm5vdW5jZW1lbnRzIiwibGlua3MiOltdfX0sInVzZXJJZCI6MjAyNzM2Mzl9.NQS66j=
+T3TwnsqRHmsB_DgiG93kd1eiV2ZcHm3PASQTE> =0D=0A[blog]=0D=0A<https://eventing.=
+coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ=
+1cmwiOiJodHRwczovL3BsdXMuZ29vZ2xlLmNvbS8xMTE5NTA1OTQwMzkyNjkyODE0NjkvcG9zdH=
+M_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0bV9jYW1wYWlnbj1vcGVuY291c=
+nNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuYW5ub3VuY2VtZW50cyU3RW9wZW5jb3Vyc2UueWVs=
+aTFlaFVFZVNCdENJQUMzbExJQS5ZcEFNWXBiNUVlZTctQkxkTVRkSzhBIiwidHJhY2tpbmciOns=
+idXNlcklkIjoyMDI3MzYzOSwidXNlckVtYWlsIjoic29tZXRpbWU1ODU4QGdtYWlsLmNvbSIsIm=
+5vdGlmaWNhdGlvblR5cGUiOiJvcGVuY291cnNlLmFubm91bmNlbWVudHMiLCJjYW1wYWlnbklkI=
+joib3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLllwQU1ZcGI1RWVlNy1CTGRNVGRL=
+OEEiLCJjYW1wYWlnbkdyb3VwIjoib3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLmF=
+ubm91bmNlbWVudHMiLCJsaW5rcyI6W119fSwidXNlcklkIjoyMDI3MzYzOX0.ri-avYDm-CYxuU=
+ImxZuHdS9osuLbwdfERk0_eAbGqBE>=0D=0AYou are receiving this email because so=
+metime5858@gmail.com is registered =0D=0Ato the=0D=0AModern & Contemporary =
+American Poetry (=E2=80=9CModPo=E2=80=9D) course at Coursera.=0D=0APlease d=
+o not reply directly to this email. If you have any questions or =0D=0Afeed=
+back,=0D=0Aplease visit our support site=0D=0A<https://eventing.coursera.or=
+g/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodH=
+RwczovL2NvdXJzZXJhaGVscC56ZW5kZXNrLmNvbS9oYz91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb=
+3VyY2U9b3RoZXImdXRtX2NhbXBhaWduPW9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJ=
+QS5hbm5vdW5jZW1lbnRzJTdFb3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLllwQU1=
+ZcGI1RWVlNy1CTGRNVGRLOEEiLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW=
+1haWwiOiJzb21ldGltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6Im9wZW5jb=
+3Vyc2UuYW5ub3VuY2VtZW50cyIsImNhbXBhaWduSWQiOiJvcGVuY291cnNlLnllbGkxZWhVRWVT=
+QnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZE1UZEs4QSIsImNhbXBhaWduR3JvdXAiOiJvcGV=
+uY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuYW5ub3VuY2VtZW50cyIsImxpbmtzIjpbXX=
+19LCJ1c2VySWQiOjIwMjczNjM5fQ.JvSk5-T9IlquD7OeQ0gIJsao_UOtvLxC2US0VEcGDqA> =
+=0D=0A.=0D=0ACopyright (c) 2017 Coursera, Inc | 381 E. Evelyn Avenue, Mount=
+ain View, CA =0D=0A94041 USA=0D=0Aunsubscribe from this list=0D=0A<https://=
+eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YW=
+x1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvYWNjb3VudC91bnN1YnNjcmliZ=
+S9Qdm9iSmlVaTNEQk9LVGdlLUNvUnhmaUxZNHdCQkVFeW5PQzllV1NIejNPX21iaHBhaGNtRC15=
+a2NWc2hfem5jMnZLQnJPMDQ2ZFRMNk1ROFJ2WnYxZy5DQTVuZ3JsNTNsWDE5OS1GSHk2TnBBLjZ=
+lajhFNk9FYjctakE1RHBENU5MblAzeE44OV9SZU1FUjVyNWtFaEJvTE5XRk5LTlpYZ3VpeEEwQ2=
+1oc1JpUlhReWJIMmR2U3lONk04MDZQUno2WFAxZnJGc0FYQ3k2aU5XNm1rVXRlTC16VHlSY0hWc=
+TE4Sk9fRXdxc21xb1NMQjRleGdSN201T1FLSUJHc2txSWFSZz91dG1fbWVkaXVtPWVtYWlsJnV0=
+bV9zb3VyY2U9b3RoZXImdXRtX2NhbXBhaWduPW9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUM=
+zbExJQS5hbm5vdW5jZW1lbnRzJTdFb3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLl=
+lwQU1ZcGI1RWVlNy1CTGRNVGRLOEEiLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c=
+2VyRW1haWwiOiJzb21ldGltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6Im9w=
+ZW5jb3Vyc2UuYW5ub3VuY2VtZW50cyIsImNhbXBhaWduSWQiOiJvcGVuY291cnNlLnllbGkxZWh=
+VRWVTQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZE1UZEs4QSIsImNhbXBhaWduR3JvdXAiOi=
+JvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuYW5ub3VuY2VtZW50cyIsImxpbmtzI=
+jpbXX19LCJ1c2VySWQiOjIwMjczNjM5fQ._0d1ScGTmQLrIt57PExTNmYQqZ3I0VBsBnzuepRRM=
+j8>
+--_----uwNolCKtG2vYRGN8at0Vvw===_95/34-46996-C0907B95
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="UTF-8"
+
+<!--item discussions are nested under items themselves--><!--item discussio=
+ns are nested under items themselves--><!--Grammatically formats an array o=
+f partners into a nice looking string.--><!DOCTYPE html PUBLIC "-//W3C//DTD=
+ XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transi=
+tional.dtd"><html xmlns=3D"http://www.w3.org/1999/xhtml"><head><meta http-e=
+quiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/><style type=
+=3D"text/css">/* /\/\/\/\/\/\/\/\/ CLIENT-SPECIFIC STYLES /\/\/\/\/\/\/\/\/=
+ */=0A#outlook a{padding:0;} /* Force Outlook to provide a "view in browser=
+" message */=0A/* Force Hotmail to display emails at full width */=0A.ReadM=
+sgBody{width:100%;}=0A.ExternalClass{width:100%;}=0A/* Prevent Yahoo! from =
+styling links */=0A.yshortcuts, a .yshortcuts, a .yshortcuts:hover, a .ysho=
+rtcuts:active, a .yshortcuts:focus{=0A    background-color:transparent !imp=
+ortant;=0A    border:none !important;=0A    color:inherit !important;=0A}=
+=0A/* /\/\/\/\/\/\/\/\/ RESET STYLES /\/\/\/\/\/\/\/\/ */=0Abody{=0A    mar=
+gin:0;=0A    padding:0;=0A}=0Aimg{=0A    border:0;=0A    height:auto;=0A   =
+ line-height:100%;=0A    outline:none;=0A    text-decoration:none;=0A}=0Ata=
+ble, td{=0A    border-collapse:collapse !important;=0A    mso-table-lspace:=
+0pt;=0A    mso-table-rspace:0pt;=0A}=0A#bodyTable, #bodyCell{=0A    height:=
+100% !important;=0A    margin:0;=0A    padding:0;=0A    width:100% !importa=
+nt;=0A}=0A#bodyCell{padding:20px;}=0A#templateContainer{width:600px;}=0A/* =
+/\/\/\/\/\/\/\/\/ TEMPLATE STYLES /\/\/\/\/\/\/\/\/ */=0A/* =3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D Page Styles =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D */=0Abody, #body=
+Table{background-color:#ffffff;}=0A#bodyCell{border-top:0;}=0A#templateCont=
+ainer{border:0px solid #FFFFFF;}=0Ah1{=0A    color:#232327 !important;=0A  =
+  display:block;=0A    font-family:Helvetica;=0A    font-size:30px;=0A    f=
+ont-style:normal;=0A    font-weight:bold;=0A    line-height:100%;=0A    let=
+ter-spacing:normal;=0A    margin-top:0;=0A    margin-right:0;=0A    margin-=
+bottom:10px;=0A    margin-left:0;=0A    text-align:left;=0A}=0Ah2{=0A    co=
+lor:#232327!important;=0A    display:block;=0A    font-family:Helvetica;=0A=
+    font-size:28px;=0A    font-style:normal;=0A    font-weight:bold;=0A    =
+line-height:100%;=0A    letter-spacing:normal;=0A    margin-top:0;=0A    ma=
+rgin-right:0;=0A    margin-bottom:10px;=0A    margin-left:0;=0A    text-ali=
+gn:left;=0A}=0Ah3{=0A    color:#232327!important;=0A    display:block;=0A  =
+  font-family:Helvetica;=0A    font-size:18px;=0A    font-style:normal;=0A =
+   font-weight:bold;=0A    line-height:100%;=0A    letter-spacing:normal;=
+=0A    margin-top:0;=0A    margin-right:0;=0A    margin-bottom:10px;=0A    =
+margin-left:0;=0A    text-align:right;=0A}=0Ah4{=0A    color:#232327 !impor=
+tant;=0A    display:block;=0A    font-family:Helvetica;=0A    font-size:16p=
+x;=0A    font-style:normal;=0A    font-weight:bold;=0A    line-height:100%;=
+=0A    letter-spacing:normal;=0A    margin-top:0;=0A    margin-right:0;=0A =
+   margin-bottom:10px;=0A    margin-left:0;=0A    text-align:left;=0A}=0A/*=
+ =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D Header Styles =3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D */=0A#templatePreheader{=0A    background-color:#FFFFFF;=0A    border-b=
+ottom:0;=0A}=0A.preheaderContent{=0A    color:#808080;=0A    font-family:He=
+lvetica;=0A    font-size:16px;=0A    line-height:125%;=0A    text-align:lef=
+t;=0A}=0A.preheaderContent a:link, .preheaderContent a:visited, /* Yahoo! M=
+ail Override */ .preheaderContent a .yshortcuts /* Yahoo! Mail Override */{=
+=0A    color:#606060;=0A    font-weight:normal;=0A    text-decoration:under=
+line;=0A}=0A#templateHeader{=0A    background-color:#F4F4F4;=0A    border-t=
+op:5px solid #FFFFFF;=0A    border-bottom:5px solid #FFFFFF;=0A}=0A.headerC=
+ontent{=0A    color:#505050;=0A    font-family:Helvetica;=0A    font-size:2=
+0px;=0A    font-weight:bold;=0A    line-height:100%;=0A    padding-top:0;=
+=0A    padding-right:0;=0A    padding-bottom:0;=0A    padding-left:0;=0A   =
+ text-align:left;=0A    vertical-align:middle;=0A}=0A.headerContent a:link,=
+ .headerContent a:visited, /* Yahoo! Mail Override */ .headerContent a .ysh=
+ortcuts /* Yahoo! Mail Override */{=0A    color:#0367b0;=0A    font-weight:=
+normal;=0A    text-decoration:underline;=0A}=0A#headerImage{=0A    height:a=
+uto;=0A    max-width:600px;=0A}=0A/* =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D Body St=
+yles =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D */=0A#templateBody{=0A    background-co=
+lor:#232327;=0A    border-top:0;=0A    border-bottom:0;=0A}=0A#bodyContentB=
+lock{=0A    background-color:#FFFFFF;=0A}=0A.bodyContent{=0A    color:#5050=
+50;=0A    font-family:Helvetica;=0A    font-size:16px;=0A    line-height:15=
+0%;=0A    padding-top:15px;=0A    padding-right:0;=0A    padding-bottom:15p=
+x;=0A    padding-left:0;=0A    text-align:left;=0A}=0A.bodyContent a:link, =
+.bodyContent a:visited, /* Yahoo! Mail Override */ .bodyContent a .yshortc=
+uts /* Yahoo! Mail Override */{=0A    color:#0367b0;=0A    font-weight:norm=
+al;=0A    text-decoration:underline;=0A}=0A.bodyContent img{=0A    display:=
+inline;=0A    height:auto;=0A    /*max-width:560px;*/=0A}=0A/* =3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D Footer Styles =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D */=0A#templ=
+ateFooter{=0A    background-color:#ffffff;=0A    border-top:0;=0A}=0A.foote=
+rContent{=0A    color:#808080;=0A    font-family:Helvetica;=0A    font-size=
+:13px;=0A    line-height:150%;=0A    padding-top:20px;=0A    padding-bottom=
+:20px;=0A    padding-left:20px;=0A    padding-right:20px;=0A    text-align:=
+center;=0A}=0A.footerContent a:link, .footerContent a:visited, /* Yahoo! Ma=
+il Override */ .footerContent a .yshortcuts, .footerContent a span /* Yahoo=
+! Mail Override */{=0A    color:#606060;=0A    font-weight:normal;=0A    te=
+xt-decoration:underline;=0A}=0A.button {=0A    text-align: center;=0A    fo=
+nt-size: 16px;=0A}=0A/* /\/\/\/\/\/\/\/\/ MOBILE STYLES /\/\/\/\/\/\/\/\/ *=
+/=0A@media only screen and (max-width: 641px){=0A    #templateContainer{wid=
+th:auto !important;}=0A}=0A@media only screen and (max-width: 480px){=0A   =
+ /* /\/\/\/\/\/\/ CLIENT-SPECIFIC MOBILE STYLES /\/\/\/\/\/\/ */=0A    body=
+, table, td, p, a, li, blockquote{-webkit-text-size-adjust:none !important;=
+} /* Prevent Webkit platforms from changing default text sizes */=0A    bod=
+y{width:100% !important; min-width:100% !important;} /* Prevent iOS Mail fr=
+om adding padding to the body */=0A    /* /\/\/\/\/\/\/ MOBILE RESET STYLES=
+ /\/\/\/\/\/\/ */=0A    td[id=3D"bodyCell"]{padding:10px !important;}=0A   =
+ /* /\/\/\/\/\/\/ MOBILE TEMPLATE STYLES /\/\/\/\/\/\/ */=0A    /* =3D=3D=
+=3D=3D=3D=3D=3D=3D Page Styles =3D=3D=3D=3D=3D=3D=3D=3D */=0A    table[id=
+=3D"templateContainer"]{=0A      max-width:600px !important;=0A      width:=
+100% !important;=0A    }=0A    h1{=0A      font-size:24px !important;=0A   =
+   line-height:100% !important;=0A    }=0A    h2{=0A      font-size:20px !i=
+mportant;=0A      line-height:100% !important;=0A    }=0A    h3{=0A      fo=
+nt-size:18px !important;=0A      line-height:100% !important;=0A    }=0A   =
+ h4{=0A      font-size:16px !important;=0A      line-height:100% !important=
+;=0A    }=0A    /* =3D=3D=3D=3D=3D=3D=3D=3D Header Styles =3D=3D=3D=3D=3D=
+=3D=3D=3D */=0A    table[id=3D"templatePreheader"]{display:none !important;=
+} /* Hide the template preheader to save space */=0A    td[class=3D"prehead=
+erContent"] {=0A      font-size: 16px;=0A    }=0A    img[id=3D"headerImage"=
+]{=0A      height:auto !important;=0A      max-width:600px !important;=0A  =
+    width:100% !important;=0A    }=0A    td[class=3D"headerContent"]{=0A   =
+   font-size:20px !important;=0A      line-height:125% !important;=0A    }=
+=0A    /* =3D=3D=3D=3D=3D=3D=3D=3D Body Styles =3D=3D=3D=3D=3D=3D=3D=3D */=
+=0A    td[class=3D"bodyContent"]{=0A      font-size:18px !important;=0A    =
+  line-height:125% !important;=0A    }=0A    /* =3D=3D=3D=3D=3D=3D=3D=3D Fo=
+oter Styles =3D=3D=3D=3D=3D=3D=3D=3D */=0A    td[class=3D"footerContent"]{=
+=0A      font-size:14px !important;=0A      line-height:115% !important;=0A=
+    }=0A}=0A</style></head><body marginwidth=3D"0" offset=3D"0" leftmargin=
+=3D"0" topmargin=3D"0" marginheight=3D"0"><center><table id=3D"bodyTable" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" align=3D"cen=
+ter" height=3D"100%"><tr><td id=3D"bodyCell" valign=3D"top" align=3D"center=
+"><table id=3D"templateContainer" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"max-width: 600px; border: 0; background-color: #f6f6f6;"><=
+tr><td valign=3D"top" align=3D"center"><table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" width=3D"100%" style=3D"background-color: #F6F6F6;"><tr=
+><td class=3D"preheaderContent" valign=3D"top" style=3D"padding: 0 0 15px 0=
+"></td></tr></table></td></tr><tr><td valign=3D"top" align=3D"center"><tabl=
+e id=3D"templateBody" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"background-color: #F6F6F6;"><tr><td valign=3D"top" alig=
+n=3D"center"><table id=3D"bodyContentBlock" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" style=3D"background-color: #F6F6F6;"><tr><=
+td class=3D"bodyContent" valign=3D"top" style=3D"color:#505050; font-size: =
+16px; line-height: 150%;padding: 20px 18px 32px"><table style=3D"width: 100=
+%;background-color:#ffffff; font-family: 'Arial'; word-wrap:break-word;" al=
+ign=3D"left"><tr><td id=3D"CMLContent" style=3D"padding: 28px 38px 0px; wor=
+d-wrap:break-word;"><div>=0A <p style=3D"margin-bottom:14px;min-height:20px=
+;">Dear Aohan Wang &amp; all:</p>=0A <p style=3D"margin-bottom:14px;min-hei=
+ght:20px;">ModPo is an open-ended, ongoing course. (More a community than a=
+ course, as we often say.) Because we are in an "open session," the automat=
+ed Coursera-suggested deadlines will be misleading and/or incorrect. You mi=
+ght see "August 1" as the deadline for some quizzes; ignore that!</p>=0A <p=
+ style=3D"margin-bottom:14px;min-height:20px;">Similarly, if you returned t=
+o ModPo after having been with us in 2016, you will see the "progress track=
+ing" information reproduces where you left off last year; it will not start=
+ afresh. It might be best to ignore this and go right to the week's poems a=
+nd videos by clicking on "Week 1" or "Week 2" etc.</p>=0A <p style=3D"margi=
+n-bottom:14px;min-height:20px;"><strong>Your best source of information abo=
+ut dates and schedule and deadlines</strong> <strong>is always going to be =
+in the headnotes to each week</strong> of the main ModPo syllabus. At the b=
+ottom of this message I've copied, for example, the headnote to week 2. You=
+ can see (in the bolded sentences) that we give the dates of the week, from=
+ start to end, and also the dates of assignments =E2=80=94 plus the date an=
+d time of that week's live webcast. <em>All the info you need is there!</em=
+></p>=0A <p style=3D"margin-bottom:14px;min-height:20px;"><strong>If you in=
+tend to take the quizzes</strong>, you can find them linked to each week's =
+syllabus. (You can do the quizzes any time during the ten weeks, by the way=
+. If you're intending to take quizzes for the purpose of receiving a certi=
+ficate of completion, your deadline is the final day of the ten weeks of Mo=
+dPo '17: November 20.) The purpose of the quiz is to help to assure you tha=
+t you've heard some of the main concepts covered during that week's video d=
+iscussions.</p>=0A <p style=3D"margin-bottom:14px;min-height:20px;"><strong=
+>If you intend to write any or all of the four essays</strong>, click "Reso=
+urces" and then see and click "<a href=3D"https://eventing.coursera.org/red=
+irectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczo=
+vL3d3dy5jb3Vyc2VyYS5vcmcvbGVhcm4vbW9kcG8vcmVzb3VyY2VzL25SV0hJP3V0bV9tZWRpdW=
+09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249b3BlbmNvdXJzZS55ZWxpMWVoV=
+UVlU0J0Q0lBQzNsTElBLmFubm91bmNlbWVudHMlN0VvcGVuY291cnNlLnllbGkxZWhVRWVTQnRD=
+SUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZE1UZEs4QSIsInRyYWNraW5nIjp7InVzZXJJZCI6MjA=
+yNzM2MzksInVzZXJFbWFpbCI6InNvbWV0aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb2=
+5UeXBlIjoib3BlbmNvdXJzZS5hbm5vdW5jZW1lbnRzIiwiY2FtcGFpZ25JZCI6Im9wZW5jb3Vyc=
+2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5ZcEFNWXBiNUVlZTctQkxkTVRkSzhBIiwiY2FtcGFp=
+Z25Hcm91cCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnR=
+zIiwibGlua3MiOltdfX0sInVzZXJJZCI6MjAyNzM2Mzl9.McLYZcn-rTyngckEY8UWUkxQlUFmN=
+i_wZrbJsZI5t6U" ><strong>essay assignments</strong></a>." All the informati=
+on you need about the essays=E2=80=94and about the peer reviews we will wri=
+te in response to others' essays=E2=80=94can be found there. We recommend t=
+hat you do not click "Grades" on the left-side menu; the information there =
+about "Peer-graded assignments" is not relevant. (The info there about quiz=
+zes will be correct, except for the deadline.)</p>=0A <p style=3D"margin-bo=
+ttom:14px;min-height:20px;">We will be writing and submitting the first Mod=
+Po essay next week (week 2). The following week (week 3) we will be reviewi=
+ng and responding to the essays submitted the previous week. Some folks hav=
+e already submitted essay #1=E2=80=94which is fine. But it's best if you su=
+bmit them during week 2 and review others' essays during week 3. Our "<stro=
+ng><a href=3D"https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFp=
+bC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvbGV=
+hcm4vbW9kcG8vcmVzb3VyY2VzL25SV0hJP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdG=
+hlciZ1dG1fY2FtcGFpZ249b3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLmFubm91b=
+mNlbWVudHMlN0VvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU3=
+LUJMZE1UZEs4QSIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI6InN=
+vbWV0aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlIjoib3BlbmNvdXJzZS5hbm=
+5vdW5jZW1lbnRzIiwiY2FtcGFpZ25JZCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzb=
+ExJQS5ZcEFNWXBiNUVlZTctQkxkTVRkSzhBIiwiY2FtcGFpZ25Hcm91cCI6Im9wZW5jb3Vyc2Uu=
+eWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnRzIiwibGlua3MiOltdfX0sInVzZXJ=
+JZCI6MjAyNzM2Mzl9.McLYZcn-rTyngckEY8UWUkxQlUFmNi_wZrbJsZI5t6U" >essay assig=
+nments</a></strong>" page makes all this clear. You can also go to <a href=
+=3D"https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm=
+9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvbGVhcm4vbW9kc=
+G8vcmVzb3VyY2VzL2xDNHRZP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1f=
+Y2FtcGFpZ249b3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLmFubm91bmNlbWVudHM=
+lN0VvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZE1UZE=
+s4QSIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI6InNvbWV0aW1lN=
+Tg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlIjoib3BlbmNvdXJzZS5hbm5vdW5jZW1l=
+bnRzIiwiY2FtcGFpZ25JZCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5ZcEF=
+NWXBiNUVlZTctQkxkTVRkSzhBIiwiY2FtcGFpZ25Hcm91cCI6Im9wZW5jb3Vyc2UueWVsaTFlaF=
+VFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnRzIiwibGlua3MiOltdfX0sInVzZXJJZCI6MjAyN=
+zM2Mzl9.esrXxN4MpQEQqmrdmw_DjmvAXO92RIOUno4URMqZn7Q" ><strong>our FAQ page<=
+/strong></a> and <a href=3D"https://eventing.coursera.org/redirectSigned/ey=
+JrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL21lZGlhLnNhc=
+y51cGVubi5lZHUvYWZpbHJlaXMvTW9kUG8vQXVkaW8tR3VpZGUtMjAxNy9Nb2RQby1GQVFfU3Vi=
+bWl0dGluZy1Fc3NheXMubXAzP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1=
+fY2FtcGFpZ249b3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLmFubm91bmNlbWVudH=
+MlN0VvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZE1UZ=
+Es4QSIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI6InNvbWV0aW1l=
+NTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlIjoib3BlbmNvdXJzZS5hbm5vdW5jZW1=
+lbnRzIiwiY2FtcGFpZ25JZCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5ZcE=
+FNWXBiNUVlZTctQkxkTVRkSzhBIiwiY2FtcGFpZ25Hcm91cCI6Im9wZW5jb3Vyc2UueWVsaTFla=
+FVFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnRzIiwibGlua3MiOltdfX0sInVzZXJJZCI6MjAy=
+NzM2Mzl9.m9DXyr-OOWNlTx3ByzMorI4xS5Um79KPFiZdilhh5_Y" ><strong>listen to ou=
+r guidelines</strong></a> for submitting the essays.</p>=0A <p style=3D"mar=
+gin-bottom:14px;min-height:20px;">For those who are returning to ModPo from=
+ previous years, please note that three of the four essay assignments this =
+year are new! We welcome veteran ModPo'ers writing these new essays.</p>=0A=
+ <p style=3D"margin-bottom:14px;min-height:20px;">I will have more to say a=
+bout the first essay assignment in a few days. </p>=0A <p style=3D"margin-b=
+ottom:14px;min-height:20px;">I'm enjoying the <a href=3D"https://eventing.c=
+oursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1=
+cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvbGVhcm4vbW9kcG8vZGlzY3Vzc2lvbnMvd2V=
+la3MvMT91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b3RoZXImdXRtX2NhbXBhaWduPW9wZW=
+5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnRzJTdFb3BlbmNvdXJzZ=
+S55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLllwQU1ZcGI1RWVlNy1CTGRNVGRLOEEiLCJ0cmFja2lu=
+ZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwiOiJzb21ldGltZTU4NThAZ21haWwuY29=
+tIiwibm90aWZpY2F0aW9uVHlwZSI6Im9wZW5jb3Vyc2UuYW5ub3VuY2VtZW50cyIsImNhbXBhaW=
+duSWQiOiJvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZ=
+E1UZEs4QSIsImNhbXBhaWduR3JvdXAiOiJvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xM=
+SUEuYW5ub3VuY2VtZW50cyIsImxpbmtzIjpbXX19LCJ1c2VySWQiOjIwMjczNjM5fQ.AgvYjdoo=
+kf2Uvk2RZkj6fvISZeXSAHn3lgKNsVxlX2s" ><strong>discussions of Whitman and Di=
+ckinson in the forums</strong></a> and your many <a href=3D"https://eventin=
+g.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6e=
+yJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvbGVhcm4vbW9kcG8vZGlzY3Vzc2lvbnMv=
+Zm9ydW1zL056TVJIVzRaRWVhMXlRcFh6QU96b3cvdGhyZWFkcy8wdUZDMjVVMkVlZWZNZzRpTFZ=
+vbnBnP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249b3Blbm=
+NvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLmFubm91bmNlbWVudHMlN0VvcGVuY291cnNlL=
+nllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZE1UZEs4QSIsInRyYWNraW5n=
+Ijp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI6InNvbWV0aW1lNTg1OEBnbWFpbC5jb20=
+iLCJub3RpZmljYXRpb25UeXBlIjoib3BlbmNvdXJzZS5hbm5vdW5jZW1lbnRzIiwiY2FtcGFpZ2=
+5JZCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5ZcEFNWXBiNUVlZTctQkxkT=
+VRkSzhBIiwiY2FtcGFpZ25Hcm91cCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJ=
+QS5hbm5vdW5jZW1lbnRzIiwibGlua3MiOltdfX0sInVzZXJJZCI6MjAyNzM2Mzl9.cfmxPCAPFN=
+MO6hOkZf1Pz7Klgnv_jwWWrH6bwn-auIs" ><strong>introductions</strong></a>. Wow=
+! What an interesting and diverse group of people we are. Yet poetry nerds =
+one and all!</p>=0A <p style=3D"margin-bottom:14px;min-height:20px;">Tomorr=
+ow I'll write about our first live weekly <a href=3D"https://eventing.cours=
+era.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwi=
+OiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvbGVhcm4vbW9kcG8vcmVzb3VyY2VzL0Z1YjdNP3V=
+0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249b3BlbmNvdXJzZS=
+55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLmFubm91bmNlbWVudHMlN0VvcGVuY291cnNlLnllbGkxZ=
+WhVRWVTQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZE1UZEs4QSIsInRyYWNraW5nIjp7InVz=
+ZXJJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI6InNvbWV0aW1lNTg1OEBnbWFpbC5jb20iLCJub3R=
+pZmljYXRpb25UeXBlIjoib3BlbmNvdXJzZS5hbm5vdW5jZW1lbnRzIiwiY2FtcGFpZ25JZCI6Im=
+9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5ZcEFNWXBiNUVlZTctQkxkTVRkSzhBI=
+iwiY2FtcGFpZ25Hcm91cCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5v=
+dW5jZW1lbnRzIiwibGlua3MiOltdfX0sInVzZXJJZCI6MjAyNzM2Mzl9.UANgSEyjOTtMURx7iz=
+rY_I2n_CHIgEbKIriC5R4jV1s" ><strong>webcast</strong></a> (which takes place=
+ on Wednesday at noon Philadelphia time).</p>=0A <p style=3D"margin-bottom:=
+14px;min-height:20px;">Best wishes until then,</p>=0A <p style=3D"margin-bo=
+ttom:14px;min-height:20px;">=E2=80=94Al</p>=0A <p style=3D"margin-bottom:14=
+px;min-height:20px;"></p>=0A <p style=3D"margin-bottom:14px;min-height:20px=
+;"><u>EXAMPLE OF HEADNOTE IN THE WEEK-BY-WEEK SYLLABUS:</u></p>=0A <p style=
+=3D"margin-bottom:14px;min-height:20px;"><strong>Week 2 of ModPo 2017 runs =
+from Sunday, September 17 at 9 AM through Sunday, September 24 at 9 AM. </s=
+trong>For those doing ModPo on their own or in small groups, the week 2 mat=
+erials are open and available all year.</p>=0A <p style=3D"margin-bottom:14=
+px;min-height:20px;">During this week, the second half of chapter 1, we wil=
+l read the work of two poets writing in the Whitmanian mode and three poets=
+ writing in the Dickinsonian mode. We will encounter our Whitmanians, Willi=
+am Carlos Williams and Allen Ginsberg, again later in the course=E2=80=94Wi=
+lliams as a modernist and Ginsberg as a Beat poet. The Whitman/Williams/Gin=
+sberg connection is a strong one; Ginsberg wrote directly in response to bo=
+th Whitman and Williams and saw the lineage as crucial to the development o=
+f his approach. Our Dickinsonians are more disparate in their response to D=
+ickinson=E2=80=99s writing. Of the three=E2=80=94Lorine Niedecker, Cid Corm=
+an, and Rae Armantrout=E2=80=94only the last could be said to be a direct p=
+oetic descendant of Emily Dickinson's aesthetic. </p>=0A <p style=3D"margin=
+-bottom:14px;min-height:20px;"><strong>ASSIGNMENTS: During this week, there=
+ are two quizzes due and a writing assignment. Writing assignment #1 is ope=
+n for submission between 9 AM on 9/18/17 and 9 AM on 9/24/17; after that, p=
+eer reviews will be submitted any time between 9 AM on 9/25/17 and 9 AM on =
+10/1/17. There is also a live webcast on Wednesday, September 20, at 10 AM =
+(Philadelphia time).</strong></p>=0A</div></td></tr><tr><td style=3D"paddin=
+g: 0px 38px 28px"><a href=3D"https://eventing.coursera.org/redirectSigned/e=
+yJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vy=
+c2VyYS5vcmcvbGVhcm4vbW9kcG8vaG9tZS93ZWxjb21lP3V0bV9tZWRpdW09ZW1haWwmdXRtX3N=
+vdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249b3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTE=
+lBLmFubm91bmNlbWVudHMlN0VvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBT=
+VlwYjVFZWU3LUJMZE1UZEs4QSIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJF=
+bWFpbCI6InNvbWV0aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlIjoib3BlbmN=
+vdXJzZS5hbm5vdW5jZW1lbnRzIiwiY2FtcGFpZ25JZCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZV=
+NCdENJQUMzbExJQS5ZcEFNWXBiNUVlZTctQkxkTVRkSzhBIiwiY2FtcGFpZ25Hcm91cCI6Im9wZ=
+W5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnRzIiwibGlua3MiOltd=
+fX0sInVzZXJJZCI6MjAyNzM2Mzl9.FPW-8U6Yvhbxmb8ZH2kCTU_YmnaEuUDyMgzn1k7r4v0" s=
+tyle=3D"text-decoration: none;vertical-align:top;"><span style=3D"font-size=
+: 16px; min-width: 220px; background-color: #49df98; line-height: 42px; dis=
+play: inline-block; color: white; border-radius: 4px; text-align: center;ma=
+rgin-top:10px;">Go to course</span></a></td></tr></table></td></tr></table>=
+</td></tr></table></td></tr><tr><td valign=3D"top" align=3D"center"><table =
+id=3D"templateFooter" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"background-color: #F6F6F6;font-family: 'Arial';"><tr><t=
+d class=3D"footerContent" valign=3D"top" style=3D"padding-top:20px; padding=
+-right:0; padding-bottom:20px; padding-left:0; text-align:center;"><a href=
+=3D"https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm=
+9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvP3V0bV9tZWRpd=
+W09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249b3BlbmNvdXJzZS55ZWxpMWVo=
+VUVlU0J0Q0lBQzNsTElBLmFubm91bmNlbWVudHMlN0VvcGVuY291cnNlLnllbGkxZWhVRWVTQnR=
+DSUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZE1UZEs4QSIsInRyYWNraW5nIjp7InVzZXJJZCI6Mj=
+AyNzM2MzksInVzZXJFbWFpbCI6InNvbWV0aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb=
+25UeXBlIjoib3BlbmNvdXJzZS5hbm5vdW5jZW1lbnRzIiwiY2FtcGFpZ25JZCI6Im9wZW5jb3Vy=
+c2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5ZcEFNWXBiNUVlZTctQkxkTVRkSzhBIiwiY2FtcGF=
+pZ25Hcm91cCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbn=
+RzIiwibGlua3MiOltdfX0sInVzZXJJZCI6MjAyNzM2Mzl9.d6sZxPAfhXIkPWoC40xazGaUoeeR=
+TVyXSL17d0xqp7Q" ><img src=3D"https://dt5zaw6a98blc.cloudfront.net/site-sta=
+tic/pages/home/template/coursera_logo_small.png" style=3D"height: 18px;"/><=
+/a></td></tr><tr><td class=3D"footerContent" style=3D"vertical-align: top; =
+text-align: center;padding-bottom:20px;padding-top:0;padding-left:0;padding=
+-right:0;"><div><a href=3D"https://eventing.coursera.org/redirectSigned/eyJ=
+rZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vd3d3LmZhY2Vib2=
+9rLmNvbS9Db3Vyc2VyYT91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b3RoZXImdXRtX2Nhb=
+XBhaWduPW9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnRzJTdF=
+b3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLllwQU1ZcGI1RWVlNy1CTGRNVGRLOEE=
+iLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwiOiJzb21ldGltZTU4NT=
+hAZ21haWwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6Im9wZW5jb3Vyc2UuYW5ub3VuY2VtZW50c=
+yIsImNhbXBhaWduSWQiOiJvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBTVlw=
+YjVFZWU3LUJMZE1UZEs4QSIsImNhbXBhaWduR3JvdXAiOiJvcGVuY291cnNlLnllbGkxZWhVRWV=
+TQnRDSUFDM2xMSUEuYW5ub3VuY2VtZW50cyIsImxpbmtzIjpbXX19LCJ1c2VySWQiOjIwMjczNj=
+M5fQ.OGMk0LknXS648S6GVIfodd09H0_e-jQN_TO0Kts-ThY" rel=3D"nofollow" style=3D=
+"margin: 0 7px;" target=3D"_blank"><img src=3D"https://dt5zaw6a98blc.cloudf=
+ront.net/site-static/images/footer/facebook.png" alt=3D"facebook" width=3D"=
+24" style=3D"border: none; width: 24px; height: 24px; opacity: 0.6;" height=
+=3D"24"/></a><a href=3D"https://eventing.coursera.org/redirectSigned/eyJrZX=
+kiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3R3aXR0ZXIuY29tL=
+2NvdXJzZXJhP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249=
+b3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLmFubm91bmNlbWVudHMlN0VvcGVuY29=
+1cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZE1UZEs4QSIsInRyYW=
+NraW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI6InNvbWV0aW1lNTg1OEBnbWFpb=
+C5jb20iLCJub3RpZmljYXRpb25UeXBlIjoib3BlbmNvdXJzZS5hbm5vdW5jZW1lbnRzIiwiY2Ft=
+cGFpZ25JZCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5ZcEFNWXBiNUVlZTc=
+tQkxkTVRkSzhBIiwiY2FtcGFpZ25Hcm91cCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQU=
+MzbExJQS5hbm5vdW5jZW1lbnRzIiwibGlua3MiOltdfX0sInVzZXJJZCI6MjAyNzM2Mzl9.sl2O=
+lxIV4keBN6qVUse2JMqZH7vM9V53jmOW9k80lsM" rel=3D"nofollow" style=3D"margin: =
+0 7px;" target=3D"_blank"><img src=3D"https://dt5zaw6a98blc.cloudfront.net/=
+site-static/images/footer/twitter.png" alt=3D"twitter" width=3D"24" style=
+=3D"border: none; width: 24px; height: 24px; opacity: 0.6;" height=3D"24"/>=
+</a><a href=3D"https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWF=
+pbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vYmxvZy5jb3Vyc2VyYS5vcmcvP3=
+V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249b3BlbmNvdXJzZ=
+S55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLmFubm91bmNlbWVudHMlN0VvcGVuY291cnNlLnllbGkx=
+ZWhVRWVTQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZE1UZEs4QSIsInRyYWNraW5nIjp7InV=
+zZXJJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI6InNvbWV0aW1lNTg1OEBnbWFpbC5jb20iLCJub3=
+RpZmljYXRpb25UeXBlIjoib3BlbmNvdXJzZS5hbm5vdW5jZW1lbnRzIiwiY2FtcGFpZ25JZCI6I=
+m9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5ZcEFNWXBiNUVlZTctQkxkTVRkSzhB=
+IiwiY2FtcGFpZ25Hcm91cCI6Im9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5=
+vdW5jZW1lbnRzIiwibGlua3MiOltdfX0sInVzZXJJZCI6MjAyNzM2Mzl9.NQS66jT3TwnsqRHms=
+B_DgiG93kd1eiV2ZcHm3PASQTE" rel=3D"nofollow" style=3D"margin: 0 7px;" targe=
+t=3D"_blank"><img src=3D"https://dt5zaw6a98blc.cloudfront.net/site-static/i=
+mages/footer/blog.png" alt=3D"blog" width=3D"24" style=3D"border: none; wid=
+th: 24px; height: 24px; opacity: 0.6;" height=3D"24"/></a><a href=3D"https:=
+//eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2=
+YWx1ZSI6eyJ1cmwiOiJodHRwczovL3BsdXMuZ29vZ2xlLmNvbS8xMTE5NTA1OTQwMzkyNjkyODE=
+0NjkvcG9zdHM_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0bV9jYW1wYWlnbj=
+1vcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuYW5ub3VuY2VtZW50cyU3RW9wZW5jb=
+3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5ZcEFNWXBiNUVlZTctQkxkTVRkSzhBIiwidHJh=
+Y2tpbmciOnsidXNlcklkIjoyMDI3MzYzOSwidXNlckVtYWlsIjoic29tZXRpbWU1ODU4QGdtYWl=
+sLmNvbSIsIm5vdGlmaWNhdGlvblR5cGUiOiJvcGVuY291cnNlLmFubm91bmNlbWVudHMiLCJjYW=
+1wYWlnbklkIjoib3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLllwQU1ZcGI1RWVlN=
+y1CTGRNVGRLOEEiLCJjYW1wYWlnbkdyb3VwIjoib3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lB=
+QzNsTElBLmFubm91bmNlbWVudHMiLCJsaW5rcyI6W119fSwidXNlcklkIjoyMDI3MzYzOX0.ri-=
+avYDm-CYxuUImxZuHdS9osuLbwdfERk0_eAbGqBE" rel=3D"nofollow" style=3D"margin:=
+ 0 7px;" target=3D"_blank"><img src=3D"https://dt5zaw6a98blc.cloudfront.net=
+/site-static/images/footer/googleplus.png" alt=3D"blog" width=3D"24" style=
+=3D"border: none; width: 24px; height: 24px; opacity: 0.6;" height=3D"24"/>=
+</a></div></td></tr><tr><td class=3D"footerContent" style=3D"color:#808080;=
+ font-size:12px; line-height:150%; padding: 0 20px 0 20px; text-align:cente=
+r;"><div>You are receiving this email because sometime5858@gmail.com is reg=
+istered to the</div><div>Modern &amp; Contemporary American Poetry (&ldquo;=
+ModPo&rdquo;) course at Coursera.</div></td></tr><!--Helplink--><tr><td cla=
+ss=3D"footerContent" style=3D"color:#808080; font-size:12px; line-height:15=
+0%;padding: 0 20px 20px 20px; text-align:center;"><div>Please do not reply =
+directly to this email. If you have any questions or feedback,</div><div>pl=
+ease visit our <a href=3D"https://eventing.coursera.org/redirectSigned/eyJr=
+ZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL2NvdXJzZXJhaGV=
+scC56ZW5kZXNrLmNvbS9oYz91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b3RoZXImdXRtX2=
+NhbXBhaWduPW9wZW5jb3Vyc2UueWVsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnRzJ=
+TdFb3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0lBQzNsTElBLllwQU1ZcGI1RWVlNy1CTGRNVGRL=
+OEEiLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwiOiJzb21ldGltZTU=
+4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6Im9wZW5jb3Vyc2UuYW5ub3VuY2VtZW=
+50cyIsImNhbXBhaWduSWQiOiJvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBT=
+VlwYjVFZWU3LUJMZE1UZEs4QSIsImNhbXBhaWduR3JvdXAiOiJvcGVuY291cnNlLnllbGkxZWhV=
+RWVTQnRDSUFDM2xMSUEuYW5ub3VuY2VtZW50cyIsImxpbmtzIjpbXX19LCJ1c2VySWQiOjIwMjc=
+zNjM5fQ.JvSk5-T9IlquD7OeQ0gIJsao_UOtvLxC2US0VEcGDqA" style=3D"color: #60606=
+0" target=3D"_blank">support site</a>.</div></td></tr><!--Address--><tr><td=
+ class=3D"footerContent" style=3D"color:#808080; font-size:12px; line-heigh=
+t:150%; padding: 0 20px 20px 20px; text-align:center;" valign=3D"top">Copyr=
+ight (c) 2017 Coursera, Inc&nbsp;|&nbsp;381 E. Evelyn Avenue, Mountain View=
+, CA 94041 USA</td></tr><!--Unsubscribe--><tr><td class=3D"footerContent" v=
+align=3D"top" style=3D"padding:0 20px 20px 20px;text-align:center;"><a href=
+=3D"https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm=
+9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvYWNjb3VudC91b=
+nN1YnNjcmliZS9Qdm9iSmlVaTNEQk9LVGdlLUNvUnhmaUxZNHdCQkVFeW5PQzllV1NIejNPX21i=
+aHBhaGNtRC15a2NWc2hfem5jMnZLQnJPMDQ2ZFRMNk1ROFJ2WnYxZy5DQTVuZ3JsNTNsWDE5OS1=
+GSHk2TnBBLjZlajhFNk9FYjctakE1RHBENU5MblAzeE44OV9SZU1FUjVyNWtFaEJvTE5XRk5LTl=
+pYZ3VpeEEwQ21oc1JpUlhReWJIMmR2U3lONk04MDZQUno2WFAxZnJGc0FYQ3k2aU5XNm1rVXRlT=
+C16VHlSY0hWcTE4Sk9fRXdxc21xb1NMQjRleGdSN201T1FLSUJHc2txSWFSZz91dG1fbWVkaXVt=
+PWVtYWlsJnV0bV9zb3VyY2U9b3RoZXImdXRtX2NhbXBhaWduPW9wZW5jb3Vyc2UueWVsaTFlaFV=
+FZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnRzJTdFb3BlbmNvdXJzZS55ZWxpMWVoVUVlU0J0Q0=
+lBQzNsTElBLllwQU1ZcGI1RWVlNy1CTGRNVGRLOEEiLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwM=
+jczNjM5LCJ1c2VyRW1haWwiOiJzb21ldGltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9u=
+VHlwZSI6Im9wZW5jb3Vyc2UuYW5ub3VuY2VtZW50cyIsImNhbXBhaWduSWQiOiJvcGVuY291cnN=
+lLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU3LUJMZE1UZEs4QSIsImNhbXBhaW=
+duR3JvdXAiOiJvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuYW5ub3VuY2VtZW50c=
+yIsImxpbmtzIjpbXX19LCJ1c2VySWQiOjIwMjczNjM5fQ._0d1ScGTmQLrIt57PExTNmYQqZ3I0=
+VBsBnzuepRRMj8" style=3D"font-size:12px;line-height:150%;font-weight:bold;c=
+olor: #606060"> unsubscribe from this list</a></td></tr></table></td></tr><=
+/table></td></tr></table></center><img src=3D"https://eventing.coursera.org=
+/img/bIrAVFteIFnfkiZ0WWemNGEDtJpu_2rtHyo95k8Go4eXUvea5IGVkFiVHFHVfVucOWBf8j=
+E6GBNyeiGMCfT_DQ.LKOqEbdLwUxqJ68u0-sZ5g.Du0wJFdSDtdfCjpy5X_c66MAKQRViOJzlsd=
+wsFIzSJqMUDbQ9Bnb4DPgHSmjEJOem_h-1b1vckC5_Yx8nCCbXPp1bnWDrtHB4VjF00L7SgVvFE=
+U_JTLgS9y7xBa9xxdeAZbbE0Tx--QcPMUY04uLZh-KNA9T8k1fzRfv4r2ig7ldl0a-8gNqvtOh_=
+9z0hFD1xRAdhAZIVC_o-xt2JCTIMnuTZVpBEek6QHR3O9dRJA-busX0P5y4rp6ykCpWj8qDr_WF=
+O1_4a-E4_we1LSKnmq_FpaTKie0kiHUvVRDfNkWLiIZ9YSuAkSTyJwpJrVjVoBSs6WsIzOfRjZx=
+2SxIGcGSg_9mGfmt4ioucOUQ37arL8D0VXHDvH_MULRHY_DmUQ6HCFxPxxt1YhfeVZJggQYANXC=
+dxBUPlYkjUDgXEZhE" border=3D"0" width=3D"1" height=3D"1">=0D=0A<img border=
+=3D"0" width=3D"1" height=3D"1" alt=3D"" src=3D"http://click.mail.coursera.=
+org/q/-ab_dKKOjsWv-6uPX-dQ3A~~/AAAAAQA~/RgRbmY4MPkEIAGzbc7yWDtFXCGNvdXJzZXJ=
+hWAQAAAAASDhvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuWXBBTVlwYjVFZWU3LU=
+JMZE1UZEs4QUIKAAEMCbdZlLdiQ1IWc29tZXRpbWU1ODU4QGdtYWlsLmNvbQlRBAAAAABH4nsiY=
+2FtcGFpZ25fZ3JvdXAiOiJvcGVuY291cnNlLnllbGkxZWhVRWVTQnRDSUFDM2xMSUEuYW5ub3Vu=
+Y2VtZW50cyIsIm5vdGlmaWNhdGlvbl90ZW1wbGF0ZSI6Im9wZW5jb3Vyc2UuYW5ub3VuY2VtZW5=
+0cyIsImJpbmRpbmciOiJ0cmFuc2FjdGlvbmFsIiwicHJlZmVyZW5jZSI6Im9wZW5jb3Vyc2UueW=
+VsaTFlaFVFZVNCdENJQUMzbExJQS5hbm5vdW5jZW1lbnRzIiwiY2hhbm5lbCI6IkVNQUlMIn0T"=
+>=0D=0A</body></html>
+--_----uwNolCKtG2vYRGN8at0Vvw===_95/34-46996-C0907B95--
+

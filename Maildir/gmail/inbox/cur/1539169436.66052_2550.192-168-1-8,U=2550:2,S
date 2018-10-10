@@ -1,0 +1,693 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 2002:a1f:328a:0:0:0:0:0 with SMTP id y132-v6csp383649vky;
+        Tue, 24 Jul 2018 23:44:09 -0700 (PDT)
+X-Google-Smtp-Source: AAOMgpdBAHNbpwXtApSvW6+8wfRJZ3f2JL84I5OEbUavmLsA6uitXkv5sXJL9K6hdt34kVBt5MqK
+X-Received: by 2002:a0c:e9ce:: with SMTP id q14-v6mr18143671qvo.106.1532501049337;
+        Tue, 24 Jul 2018 23:44:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1532501049; cv=none;
+        d=google.com; s=arc-20160816;
+        b=KrrfO24+cZzPKKk+1egmHXMBHXkJsTkFJia7wUrdSOKaakv5y6dEr4Xrp0/EPsS6lH
+         8D/5Q4M3j1afw8zhY4CArwzh8Uh91INn/3UefFzoHXcpNgE1dlvJvC012PPCYI/zR3cX
+         EpoCyji/1nhWjZp1y+fIXvJdbUXqI2ms9mPgptFgS7JW+QU0Q5YqLRi7tloVcRHnKjgJ
+         UUXNHpcLS55aGA2bhqKM28joqHkYbGsKdTDtngMnXQcmsr+NGnwS57oK7w9K8KtHLhPl
+         kAvgr/WjFAOQ6jt0Bp4Cvvhg1CImKsSk/glfD+GxtdUR4vO/i758+Tqm63IySziGmv7j
+         dSFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:to:subject:reply-to:mime-version:from:date
+         :content-transfer-encoding:dkim-signature:dkim-signature
+         :arc-authentication-results;
+        bh=WLvwaDSXYjr0gAG6DSJNLhO6tsVZxyFDEgBCLjfTg9s=;
+        b=Mqjj3D7OeKQ3p6pQQnDwr0IFt01zTPfrsLu63irnmOCWQ4e5L5VDBdsAKcjnOgaeMN
+         fSKYHj3SMjRw9HjMLzpgV/PPT4okj5/EGaVULvllm/+qktjMqWu9iJledsLn2ZTgYCrR
+         9pxn2i87QwOPDoAMAmzT7HbSsY7KfNsPsVLEw+QlALjvB/HJfeSBdgAuBaJAtM9kdxYK
+         TjhymqtecNSbU7FYtN2K0fNTO0yjpCxIrDE405Mlh1Rm33W5o14+FAaBAFjjsf3ZjSKx
+         rkgTG46cTf5K1PkP1EEaZehN/sXKhNmznzJGXqnQV0Nlik08XSRzK6GhhA3rDfQ6Yp1/
+         hhEA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@liven.com.au header.s=s1 header.b=WtlkT7AP;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=BHpzwiHG;
+       spf=pass (google.com: domain of bounces+6480932-203f-sometime5858=gmail.com@em.liven.com.au designates 168.245.95.141 as permitted sender) smtp.mailfrom="bounces+6480932-203f-sometime5858=gmail.com@em.liven.com.au"
+Return-Path: <bounces+6480932-203f-sometime5858=gmail.com@em.liven.com.au>
+Received: from o135.em.liven.com.au (o135.em.liven.com.au. [168.245.95.141])
+        by mx.google.com with ESMTPS id m194-v6si9609582qke.384.2018.07.24.23.44.08
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 24 Jul 2018 23:44:09 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+6480932-203f-sometime5858=gmail.com@em.liven.com.au designates 168.245.95.141 as permitted sender) client-ip=168.245.95.141;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@liven.com.au header.s=s1 header.b=WtlkT7AP;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=BHpzwiHG;
+       spf=pass (google.com: domain of bounces+6480932-203f-sometime5858=gmail.com@em.liven.com.au designates 168.245.95.141 as permitted sender) smtp.mailfrom="bounces+6480932-203f-sometime5858=gmail.com@em.liven.com.au"
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; d=liven.com.au; 
+	h=content-transfer-encoding:content-type:from:mime-version:reply-to:subject:to; 
+	s=s1; bh=4wzz88M2szd1XhW78yKkC9hUfbQ=; b=WtlkT7APG2hNeNbYrlHvkBO
+	sR/ZDzxp8ug4Q+pcSVvSWrhhfcCJ5JqKKWja7EhT2vtf9S/lxgr22NO50cIAZM6R
+	sVei3Jn1yLM3HgjeDBQ4XGp6re6PqSVYzK9gGzojSVVy1hWHCT+59EyMrjGLmOII
+	GsFWF1TLdJ5UMtfanHCU=
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; d=sendgrid.info; 
+	h=content-transfer-encoding:content-type:from:mime-version:reply-to:subject:to:x-feedback-id; 
+	s=smtpapi; bh=4wzz88M2szd1XhW78yKkC9hUfbQ=; b=BHpzwiHGso9miHj0vM
+	dR1MJQqq8mP++d7fAkoQU2B3KPSpU6hMp6XO37izH09FjZP8Nn/eKZzqNwbGA077
+	E972Ue6i72QlEGTBXziWZfAdMdVI0Wvca8dMqdefCFH5LfPtALpdOZE0XuvaWK3F
+	vn3QLnHf812ZEgaFtTkNZmvU4=
+Received: by filter0027p3iad2.sendgrid.net with SMTP id filter0027p3iad2-13728-5B581C37-2F
+        2018-07-25 06:44:07.686934424 +0000 UTC m=+22089.897843112
+Received: from NjQ4MDkzMg (202.172.226.35.bc.googleusercontent.com [35.226.172.202])
+	by ismtpd0001p1iad1.sendgrid.net (SG) with HTTP id Fl9xXYJXQ1-a0dG6OdL7cg
+	for <sometime5858@gmail.com>; Wed, 25 Jul 2018 06:44:07.560 +0000 (UTC)
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+Date: Wed, 25 Jul 2018 06:44:07 +0000 (UTC)
+From: "Liven" <info@liven.com.au>
+Mime-Version: 1.0
+Reply-To: support@liven.com.au
+Subject: You've Got The Digital Currency for Food
+To: sometime5858@gmail.com
+Message-ID: <Fl9xXYJXQ1-a0dG6OdL7cg@ismtpd0001p1iad1.sendgrid.net>
+X-SG-EID: XUxMrcOvPAzpODxEW90qOHrrHbTMc3h1vP66Qf+hA5QNGJ/6l3I0yUuJtUgClpbLi212SBSgH1Z62m
+ Z5RnQvU+PXKJgl4E1dK3RuvVBIv9FH7wrBlgX6D6lh0d7ova1Hbn6faXu68i4yD8+evqI+vD3GGQ3R
+ Gp+O3Sx4JRU2C1glhgITq7gJomPL4dHg5KNMOoUgg6XJ+2Uf412EcDoSyg==
+X-SG-ID: 3zeB/BfIfr70u6ALo8Rmy/qJ5ccO1aH7THVAucxfExR+aqYxdOiLvyDeSGShoILfWKlSn4eT9PiwdV
+ QI8SlOuW4XsEoHS+0HoZGuxcLGFgVKkGmYQZYPYg+BdnyINalRWFZ8vcZ/v7bQUMwtv8UTSlrV2Q9O
+ Xc1sRGkSNmFXN0bqYMgornGDIrIrsso6KgrU
+X-Feedback-ID: 6480932:qgHJq67YM9VLgttkFombllvVeNDHbhOeT1bWjQ6cMA4=:qgHJq67YM9VLgttkFombllvVeNDHbhOeT1bWjQ6cMA4=:SG
+X-TUID: 898Zyja6hN8l
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org=
+/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html data-editor-version=3D"2" class=3D"sg-campaigns" xmlns=3D"http://www.=
+w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+" />
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1, minimum-scale=3D1, maximum-scale=3D1" /><!--[if !mso]><!-->
+    <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3DEdge" /><!--<![end=
+if]-->
+    <!--[if (gte mso 9)|(IE)]>
+    <xml>
+    <o:OfficeDocumentSettings>
+    <o:AllowPNG/>
+    <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+    <!--[if (gte mso 9)|(IE)]>
+    <style type=3D"text/css">
+      body {width: 600px;margin: 0 auto;}
+      table {border-collapse: collapse;}
+      table, td {mso-table-lspace: 0pt;mso-table-rspace: 0pt;}
+      img {-ms-interpolation-mode: bicubic;}
+    </style>
+    <![endif]-->
+
+    <style type=3D"text/css">
+      body, p, div {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 14px;
+      }
+      body {
+        color: #9b9ea0;
+      }
+      body a {
+        color: #ff0867;
+        text-decoration: none;
+      }
+      p { margin: 0; padding: 0; }
+      table.wrapper {
+        width:100% !important;
+        table-layout: fixed;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-size-adjust: 100%;
+        -moz-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+      img.max-width {
+        max-width: 100% !important;
+      }
+      .column.of-2 {
+        width: 50%;
+      }
+      .column.of-3 {
+        width: 33.333%;
+      }
+      .column.of-4 {
+        width: 25%;
+      }
+      @media screen and (max-width:480px) {
+        .preheader .rightColumnContent,
+        .footer .rightColumnContent {
+            text-align: left !important;
+        }
+        .preheader .rightColumnContent div,
+        .preheader .rightColumnContent span,
+        .footer .rightColumnContent div,
+        .footer .rightColumnContent span {
+          text-align: left !important;
+        }
+        .preheader .rightColumnContent,
+        .preheader .leftColumnContent {
+          font-size: 80% !important;
+          padding: 5px 0;
+        }
+        table.wrapper-mobile {
+          width: 100% !important;
+          table-layout: fixed;
+        }
+        img.max-width {
+          height: auto !important;
+          max-width: 480px !important;
+        }
+        a.bulletproof-button {
+          display: block !important;
+          width: auto !important;
+          font-size: 80%;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+        .columns {
+          width: 100% !important;
+        }
+        .column {
+          display: block !important;
+          width: 100% !important;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+      }
+    </style>
+    <!--user entered Head Start-->
+=20=20=20=20
+     <!--End Head user entered-->
+  </head>
+  <body>
+<center class=3D"wrapper" data-link-color=3D"#ff0867" data-body-style=3D"fo=
+nt-size: 14px; font-family: helvetica,arial,sans-serif; color: #9b9ea0; bac=
+kground-color: #eeeeee;">
+<div class=3D"webkit">
+<table class=3D"wrapper" border=3D"0" width=3D"100%" cellspacing=3D"0" cell=
+padding=3D"0" bgcolor=3D"#eeeeee">
+<tbody>
+<tr>
+<td valign=3D"top" bgcolor=3D"#eeeeee" width=3D"100%">
+<table class=3D"outer" role=3D"content-container" border=3D"0" width=3D"100=
+%" cellspacing=3D"0" cellpadding=3D"0" align=3D"center">
+<tbody>
+<tr>
+<td width=3D"100%">
+<table border=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0">
+<tbody>
+<tr>
+<td><!--[if mso]>
+                          <center>
+                          <table><tr><td width=3D"600">
+                          <![endif]-->
+<table style=3D"width: 100%; max-width: 600px;" border=3D"0" width=3D"100%"=
+ cellspacing=3D"0" cellpadding=3D"0" align=3D"center">
+<tbody>
+<tr>
+<td style=3D"padding: 0px 0px 0px 0px; color: #9b9ea0; text-align: left;" r=
+ole=3D"modules-container" align=3D"left" bgcolor=3D"#FFFFFF" width=3D"100%">
+<table class=3D"module preheader preheader-hide" style=3D"display: none !im=
+portant; mso-hide: all; visibility: hidden; opacity: 0; color: transparent;=
+ height: 0; width: 0;" role=3D"module" border=3D"0" width=3D"100%" cellspac=
+ing=3D"0" cellpadding=3D"0" data-type=3D"preheader">
+<tbody>
+<tr>
+<td role=3D"module-content">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"wrapper" style=3D"table-layout: fixed;" role=3D"module" bor=
+der=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"i=
+mage">
+<tbody>
+<tr>
+<td style=3D"font-size: 6px; line-height: 10px; padding: 20px 0px 20px 40px=
+;" align=3D"left" valign=3D"top"><a href=3D"http://link.liven.com.au/wf/cli=
+ck?upn=3DViWPbJjcalB49iFb6PPbnreQeqDTZdqxHjvR9PYlhoh1DdkSaW0kFtR5gr5xDr9L_1=
+LkHPUrEJXREVhxa13sHT4MoUKWecnnz8NmqZ1OyKpLM346j2hSbP325KrZ7t3OhWpJntkqV1o5d=
+9D1NHBzJAmhApqWG-2FKiDNCKppY-2FkU7RpzTKp8aeA0uvQ2VwEnp5XFm5dJKsuUnHGYuzkgqP=
+k7f6Cnr3N-2FNeOM3p-2FIJo7Lq9eWSR1r2RMFozQDQeP-2FcwDorBa4pILrNyPYMa3VQuFyUx5=
+sQdGzCsdOh-2FuxdEaZGq-2B1rsjiWd60IDrXEWnqir-2B5jY7olZ-2B6R-2FW0aatWCWfKfXQa=
+gCcqHb8w1AJW14QE74EebyT3trTFqrHscusX7FJ04wrg6ZEVirZomUXUUlCSVxl-2FAnI4uZnB1=
+ZYSiEndXvwlx-2BcUnZXL0JUif2CIGxyCLDXIKX-2FP8OCzi-2FuRI2sAg-3D-3D"><img clas=
+s=3D"max-width" style=3D"display: block; color: #000000; text-decoration: n=
+one; font-family: Helvetica, arial, sans-serif; font-size: 16px; max-width:=
+ 10% !important; width: 10%; height: auto !important;" src=3D"https://marke=
+ting-image-production.s3.amazonaws.com/uploads/f3f225ab539e2b8a0c30db1266e8=
+86784027d45df08daae6cb2a40834f3d8f446a4c4b876546f06c4c96b553238334c129888b7=
+363e1b66021de9ac0689f777b.png" alt=3D"Liven" width=3D"60" border=3D"0" /></=
+a></td>
+</tr>
+</tbody>
+</table>
+<table class=3D"wrapper" style=3D"table-layout: fixed;" role=3D"module" bor=
+der=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"i=
+mage">
+<tbody>
+<tr>
+<td style=3D"font-size: 6px; line-height: 10px; padding: 0px 0px 0px 0px;" =
+align=3D"center" valign=3D"top"><img class=3D"max-width" style=3D"display: =
+block; color: #000000; text-decoration: none; font-family: Helvetica, arial=
+, sans-serif; font-size: 16px; max-width: 100% !important; width: 100%; hei=
+ght: auto !important;" src=3D"https://marketing-image-production.s3.amazona=
+ws.com/uploads/9a703f3b0b3082f3fbe9feb3fdc1b489bf7cf51a2f4a1b8d9df25226d26e=
+6abde44eeff60c84f0ab1c9bffa08e656cdad412e5860a200addec86fb70299b49f9.png" a=
+lt=3D"You've Got Cash" width=3D"600" border=3D"0" /></td>
+</tr>
+</tbody>
+</table>
+<table class=3D"module" style=3D"table-layout: fixed;" role=3D"module" bord=
+er=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"te=
+xt">
+<tbody>
+<tr>
+<td style=3D"padding: 25px 40px 15px 040px; line-height: 22px; text-align: =
+inherit;" valign=3D"top" bgcolor=3D"" height=3D"100%">
+<div><span style=3D"color: #464c59;"><strong><span style=3D"font-size: 24px=
+;">You've Got Liven Cash. Nice.</span></strong></span></div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"module" style=3D"table-layout: fixed;" role=3D"module" bord=
+er=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"te=
+xt">
+<tbody>
+<tr>
+<td style=3D"padding: 15px 40px 15px 40px; background-color: #ffffff; text-=
+align: inherit; line-height: 16px;" valign=3D"top" bgcolor=3D"#ffffff" heig=
+ht=3D"100%">
+<p dir=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: =
+0pt;"><font face=3D"Arial"><span style=3D"font-size: 14.6667px; white-space=
+: pre-wrap;">So you made your first Liven payment, and earned your first bi=
+t of Liven Cash.</span></font></p>
+<p dir=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: =
+0pt;">&nbsp;</p>
+<p dir=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: =
+0pt;"><font face=3D"Arial"><span style=3D"font-size: 14.6667px; white-space=
+: pre-wrap;">Liven Cash is The Digital Currency for Food, and is accepted a=
+t every Liven partner merchant at face value. Plus, even when you spend it,=
+ you earn more.</span></font></p>
+<p dir=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: =
+0pt;">&nbsp;</p>
+<p dir=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: =
+0pt;"><font face=3D"Arial"><span style=3D"font-size: 14.6667px; white-space=
+: pre-wrap;">Every single transaction on the Liven payment platform earns y=
+ou Liven Cash, ranging from 10% all the way up to 50% of the transaction am=
+ount.</span></font></p>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"module" style=3D"table-layout: fixed;" role=3D"module" bord=
+er=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"sp=
+acer">
+<tbody>
+<tr>
+<td style=3D"padding: 0px 0px 30px 0px;" role=3D"module-content" bgcolor=3D=
+"">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"module" style=3D"table-layout: fixed;" role=3D"module" bord=
+er=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"te=
+xt">
+<tbody>
+<tr>
+<td style=3D"padding: 15px 40px 15px 040px; line-height: 22px; text-align: =
+inherit;" valign=3D"top" bgcolor=3D"" height=3D"100%">
+<div style=3D"text-align: center;"><span style=3D"color: #ff4868;"><strong>=
+<span style=3D"font-size: 24px;">You Earned $7.58!</span></strong></span></=
+div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"module" style=3D"table-layout: fixed;" role=3D"module" bord=
+er=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"sp=
+acer">
+<tbody>
+<tr>
+<td style=3D"padding: 0px 0px 30px 0px;" role=3D"module-content" bgcolor=3D=
+"">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"module" style=3D"table-layout: fixed;" role=3D"module" bord=
+er=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"te=
+xt">
+<tbody>
+<tr>
+<td style=3D"padding: 15px 40px 15px 40px; background-color: #ffffff; text-=
+align: inherit; line-height: 16px;" valign=3D"top" bgcolor=3D"#ffffff" heig=
+ht=3D"100%">
+<p dir=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: =
+0pt;">What you do with it is up to you. Liven Cash can be saved up, spent a=
+t any Liven Merchant, or donated to charity (in the screen just after payme=
+nt).<br /> <br /> The instructions are pretty straightforward, just bop the=
+ Liven Cash switch in the payment screen and payments will deduct first fro=
+m your Wallet balance.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"module" style=3D"table-layout: fixed;" role=3D"module" bord=
+er=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"sp=
+acer">
+<tbody>
+<tr>
+<td style=3D"padding: 0px 0px 30px 0px;" role=3D"module-content" bgcolor=3D=
+"">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"wrapper" style=3D"table-layout: fixed;" role=3D"module" bor=
+der=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"i=
+mage">
+<tbody>
+<tr>
+<td style=3D"font-size: 6px; line-height: 10px; padding: 0px 0px 0px 0px;" =
+align=3D"center" valign=3D"top"><img class=3D"max-width" style=3D"display: =
+block; color: #000000; text-decoration: none; font-family: Helvetica, arial=
+, sans-serif; font-size: 16px; max-width: 100% !important; width: 100%; hei=
+ght: auto !important;" src=3D"https://marketing-image-production.s3.amazona=
+ws.com/uploads/6ec0853cb66168c4c72ff01c571356bd4319c77929df3ea8110be0e9d35e=
+9e65983b6d213a95efb523da25caca8c0931f7e2dde62678206629ede074f9a26112.png" a=
+lt=3D"Liven Cash" width=3D"600" border=3D"0" /></td>
+</tr>
+</tbody>
+</table>
+<table class=3D"module" style=3D"table-layout: fixed;" role=3D"module" bord=
+er=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"sp=
+acer">
+<tbody>
+<tr>
+<td style=3D"padding: 0px 0px 30px 0px;" role=3D"module-content" bgcolor=3D=
+"">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"module" style=3D"table-layout: fixed;" role=3D"module" bord=
+er=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"te=
+xt">
+<tbody>
+<tr>
+<td style=3D"padding: 25px 40px 15px 040px; line-height: 22px; text-align: =
+inherit;" valign=3D"top" bgcolor=3D"" height=3D"100%">
+<div><span style=3D"color: #464c59;"><strong><span style=3D"font-size: 24px=
+;">A Digital Currency For Food?</span></strong></span></div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"module" style=3D"table-layout: fixed;" role=3D"module" bord=
+er=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"te=
+xt">
+<tbody>
+<tr>
+<td style=3D"padding: 15px 40px 15px 40px; background-color: #ffffff; text-=
+align: inherit; line-height: 16px;" valign=3D"top" bgcolor=3D"#ffffff" heig=
+ht=3D"100%">
+<p dir=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: =
+0pt;"><font face=3D"Arial"><span style=3D"font-size: 14.6667px; white-space=
+: pre-wrap;">We're building a payment platform powered by a native network =
+currency. The next leap forward is developing Liven Cash into a true digita=
+l currency, which is well underway.</span></font><br /> <br /> Get excited =
+for LVN, our own network utility currency which has all the luxuries of our=
+ existing system plus a few new luxuries such as sending LVN to your friend=
+s, or pulling it out to sell on the open market!<br /> <br /> Read more abo=
+ut the LVN project below.</p>
+<p dir=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: =
+0pt;">&nbsp;</p>
+<p dir=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: =
+0pt;">P.S. Hold onto your Liven Cash!</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"module" style=3D"table-layout: fixed;" role=3D"module" bord=
+er=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"sp=
+acer">
+<tbody>
+<tr>
+<td style=3D"padding: 0px 0px 30px 0px;" role=3D"module-content" bgcolor=3D=
+"">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"module" style=3D"table-layout: fixed;" role=3D"module" bord=
+er=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-role=3D"mo=
+dule-button" data-type=3D"button">
+<tbody>
+<tr>
+<td class=3D"outer-td" style=3D"padding: 0px 0px 0px 0px;" align=3D"center">
+<table class=3D"button-css__deep-table___2OZyb wrapper-mobile" style=3D"tex=
+t-align: center;" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">
+<tbody>
+<tr>
+<td class=3D"inner-td" style=3D"border-radius: 6px; font-size: 16px; text-a=
+lign: center; background-color: inherit;" align=3D"center" bgcolor=3D"#ffff=
+ff"><a style=3D"background-color: #ffffff; border: 1px solid #333333; borde=
+r-color: #ff4868; border-radius: 70px; border-width: 2px; color: #ff4868; d=
+isplay: inline-block; font-family: helvetica,arial,sans-serif; font-size: 1=
+8px; font-weight: bold; line-height: 20px; padding: 12px 30px 12px 30px; te=
+xt-align: center; text-decoration: none;" href=3D"http://link.liven.com.au/=
+wf/click?upn=3DViWPbJjcalB49iFb6PPbnowHmaGKRCqSUoJunzkS0IkJV-2BKMzNV0IPdp-2=
+BYqm4u1Gi6m952AMrPV8stugGewIbw-3D-3D_1LkHPUrEJXREVhxa13sHT4MoUKWecnnz8NmqZ1=
+OyKpLM346j2hSbP325KrZ7t3OhWpJntkqV1o5d9D1NHBzJAmhApqWG-2FKiDNCKppY-2FkU7Rpz=
+TKp8aeA0uvQ2VwEnp5XFm5dJKsuUnHGYuzkgqPk7f6Cnr3N-2FNeOM3p-2FIJo7Lq9eWSR1r2RM=
+FozQDQeP-2FcwDorBa4pILrNyPYMa3VQuFyUx5sQdGzCsdOh-2FuxdEaZGoB9DaGL9OkhrkzYzF=
+T0Rvw3-2FrxMbdUMYHaCJOnNMXri5Zu9u3yrl54CqbIUnNtr8rMsoF0-2BuUFkX6N2PzgGqYs2M=
+xo7eA-2FtPOUlUcvq18MoBU279CwYuLmUaK32T9hKQAjmkuBeMKe0Y1E1o4kV5Z-2BUqCd-2FX2=
+O3IqNIP1612j2-2Bg-3D-3D" target=3D"_blank" rel=3D"noopener noreferrer">READ=
+ MORE</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"module" style=3D"table-layout: fixed;" role=3D"module" bord=
+er=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"sp=
+acer">
+<tbody>
+<tr>
+<td style=3D"padding: 0px 0px 30px 0px;" role=3D"module-content" bgcolor=3D=
+"">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"module" style=3D"table-layout: fixed;" role=3D"module" bord=
+er=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"di=
+vider">
+<tbody>
+<tr>
+<td style=3D"padding: 0px 20px 0px 20px;" role=3D"module-content" valign=3D=
+"top" bgcolor=3D"" height=3D"100%">
+<table style=3D"line-height: 1px; font-size: 1px;" border=3D"0" width=3D"10=
+0%" cellspacing=3D"0" cellpadding=3D"0" align=3D"center">
+<tbody>
+<tr>
+<td style=3D"padding: 0px 0px 1px 0px;" bgcolor=3D"#dad9d6">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"wrapper" style=3D"table-layout: fixed;" role=3D"module" bor=
+der=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"i=
+mage">
+<tbody>
+<tr>
+<td style=3D"font-size: 6px; line-height: 10px; padding: 0px 0px 0px 0px;" =
+align=3D"center" valign=3D"top"><a href=3D"http://link.liven.com.au/wf/clic=
+k?upn=3DViWPbJjcalB49iFb6PPbnreQeqDTZdqxHjvR9PYlhoiTWJq0P-2By4VVsd4PWnrgw-2=
+FJ7ZG-2F65H0K-2F1Dk3OO-2BCAbA-3D-3D_1LkHPUrEJXREVhxa13sHT4MoUKWecnnz8NmqZ1O=
+yKpLM346j2hSbP325KrZ7t3OhWpJntkqV1o5d9D1NHBzJAmhApqWG-2FKiDNCKppY-2FkU7RpzT=
+Kp8aeA0uvQ2VwEnp5XFm5dJKsuUnHGYuzkgqPk7f6Cnr3N-2FNeOM3p-2FIJo7Lq9eWSR1r2RMF=
+ozQDQeP-2FcwDorBa4pILrNyPYMa3VQuFyUx5sQdGzCsdOh-2FuxdEaZGrtm5lf4virD3ocFh1H=
+PG2M0hCMbbFGCOGBurtakvUESkptVaJbDcfBan7Ill6Df57RK59qWVgVK4cZCaEhj-2BH8SjivO=
+n-2B-2F7XOnA-2Fzlv4wnyKd1PhNS92wkTZET0qwEKjCZY7Sl2pQ5-2FN0Ln97mJu9smmCNylqi=
+O6-2B9wOtY2g7o8w-3D-3D"><img class=3D"max-width" style=3D"display: block; c=
+olor: #000000; text-decoration: none; font-family: Helvetica, arial, sans-s=
+erif; font-size: 16px; max-width: 90% !important; width: 90%; height: auto =
+!important;" src=3D"https://marketing-image-production.s3.amazonaws.com/upl=
+oads/267f51ac2aec9c5c0b8b9c04b24103f2c7b8a256917be031c10aa2c89a56247079c8f6=
+80bdee3e598ca5e53b22fe8c8b8d98e716749a20d775e4f92418854aea.png" alt=3D"" wi=
+dth=3D"540" border=3D"0" /></a></td>
+</tr>
+</tbody>
+</table>
+<table class=3D"module" style=3D"table-layout: fixed;" role=3D"module" bord=
+er=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"di=
+vider">
+<tbody>
+<tr>
+<td style=3D"padding: 0px 20px 0px 20px;" role=3D"module-content" valign=3D=
+"top" bgcolor=3D"" height=3D"100%">
+<table style=3D"line-height: 1px; font-size: 1px;" border=3D"0" width=3D"10=
+0%" cellspacing=3D"0" cellpadding=3D"0" align=3D"center">
+<tbody>
+<tr>
+<td style=3D"padding: 0px 0px 1px 0px;" bgcolor=3D"#dad9d6">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class=3D"module" style=3D"table-layout: fixed;" role=3D"module" bord=
+er=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"sp=
+acer">
+<tbody>
+<tr>
+<td style=3D"padding: 0px 0px 30px 0px;" role=3D"module-content" bgcolor=3D=
+"">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table style=3D"padding: 0px 5px 20px 5px; background-color: #ffffff; box-s=
+izing: border-box;" role=3D"module" border=3D"0" width=3D"100%" cellspacing=
+=3D"0" cellpadding=3D"0" align=3D"center" bgcolor=3D"#ffffff" data-type=3D"=
+columns" data-version=3D"2">
+<tbody>
+<tr role=3D"module-content">
+<td valign=3D"top" height=3D"100%"><!--[if (gte mso 9)|(IE)]>
+              <center>
+                <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" wid=
+th=3D"100%" style=3D"border-spacing:0;border-collapse:collapse;table-layout=
+: fixed;" >
+                  <tr>
+            <![endif]--> <!--[if (gte mso 9)|(IE)]>
+      <td width=3D"590.000px" valign=3D"top" style=3D"padding: 0px 0px 0px =
+0px;border-collapse: collapse;" >
+    <![endif]-->
+<table class=3D"column column-0 of-1
+                  empty" style=3D"width: 590.000px; border-spacing: 0; bord=
+er-collapse: collapse; margin: 0px 0px 0px 0px;" border=3D"0" width=3D"590.=
+000" cellspacing=3D"0" cellpadding=3D"0" align=3D"left" bgcolor=3D"#ffffff">
+<tbody>
+<tr>
+<td style=3D"padding: 0px; margin: 0px; border-spacing: 0;">
+<table class=3D"wrapper" style=3D"table-layout: fixed;" role=3D"module" bor=
+der=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"i=
+mage">
+<tbody>
+<tr>
+<td style=3D"font-size: 6px; line-height: 10px; padding: 10px 0px 10px 0px;=
+" align=3D"center" valign=3D"top"><a href=3D"http://link.liven.com.au/wf/cl=
+ick?upn=3DViWPbJjcalB49iFb6PPbnreQeqDTZdqxHjvR9PYlhoh1DdkSaW0kFtR5gr5xDr9L_=
+1LkHPUrEJXREVhxa13sHT4MoUKWecnnz8NmqZ1OyKpLM346j2hSbP325KrZ7t3OhWpJntkqV1o5=
+d9D1NHBzJAmhApqWG-2FKiDNCKppY-2FkU7RpzTKp8aeA0uvQ2VwEnp5XFm5dJKsuUnHGYuzkgq=
+Pk7f6Cnr3N-2FNeOM3p-2FIJo7Lq9eWSR1r2RMFozQDQeP-2FcwDorBa4pILrNyPYMa3VQuFyUx=
+5sQdGzCsdOh-2FuxdEaZGrsSMdS-2FNxU7g00ef35sIwHtCmgRzO01URlZOOCJYtnaVHKe9U9hL=
+NL2-2BUmjqUY5IgVaRXm-2FQ2VrUk62O3xVYxoPFVo385KfrI802BPsLVC25evTjxZZj1Pfi0YX=
+tR23-2FC7W1rZgY3MbEpe9xjDBb904x7sJU-2FtyekKIPUN9DMuzw-3D-3D"><img class=3D"=
+max-width" style=3D"display: block; color: #000000; text-decoration: none; =
+font-family: Helvetica, arial, sans-serif; font-size: 16px; max-width: 10% =
+!important; width: 10%; height: auto !important;" src=3D"https://marketing-=
+image-production.s3.amazonaws.com/uploads/f3f225ab539e2b8a0c30db1266e886784=
+027d45df08daae6cb2a40834f3d8f446a4c4b876546f06c4c96b553238334c129888b7363e1=
+b66021de9ac0689f777b.png" alt=3D"Liven" width=3D"59" border=3D"0" /></a></t=
+d>
+</tr>
+</tbody>
+</table>
+<table class=3D"module" style=3D"table-layout: fixed;" role=3D"module" bord=
+er=3D"0" width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" data-type=3D"te=
+xt">
+<tbody>
+<tr>
+<td style=3D"padding: 0px 0px 0px 0px; background-color: #ffffff;" valign=
+=3D"top" bgcolor=3D"#ffffff" height=3D"100%">
+<div style=3D"font-size: 10px; line-height: 150%; margin: 0; text-align: ce=
+nter;"><a href=3D"http://link.liven.com.au/wf/click?upn=3DViWPbJjcalB49iFb6=
+PPbnqNasYRbm-2B0d39BgYxIbbEw-3D_1LkHPUrEJXREVhxa13sHT4MoUKWecnnz8NmqZ1OyKpL=
+M346j2hSbP325KrZ7t3OhWpJntkqV1o5d9D1NHBzJAmhApqWG-2FKiDNCKppY-2FkU7RpzTKp8a=
+eA0uvQ2VwEnp5XFm5dJKsuUnHGYuzkgqPk7f6Cnr3N-2FNeOM3p-2FIJo7Lq9eWSR1r2RMFozQD=
+QeP-2FcwDorBa4pILrNyPYMa3VQuFyUx5sQdGzCsdOh-2FuxdEaZGqLAOTQrrLUiv8JzP-2BrCR=
+7SlCry3Egr1IzsD1uON-2BNzADKGImIyLqDIwRizZS9Gzg90dFPz9oJPLyZ9e9Iq7QvuEtanOTq=
+hKB9TEORF7qPPK0-2FnccwODbnId2tL3cguxEIXabU-2FHTjeCBH9DL7CmXTQtv-2Be6VHnSVyC=
+gOyVE1LGMQ-3D-3D">liven.com.au</a></div>
+<div style=3D"font-size: 10px; line-height: 150%; margin: 0; text-align: ce=
+nter;">&nbsp;</div>
+<div style=3D"font-size: 10px; line-height: 150%; margin: 0; text-align: ce=
+nter;">Melbourne, Australia</div>
+<div style=3D"font-size: 10px; line-height: 150%; margin: 0; text-align: ce=
+nter;">&nbsp;</div>
+<div style=3D"font-size: 10px; line-height: 150%; margin: 0; text-align: ce=
+nter;"><a style=3D"color: #999999;" href=3D"http://link.liven.com.au/wf/cli=
+ck?upn=3DViWPbJjcalB49iFb6PPbnif4K3la5i1Zl48WUXMNUTKqknyPeNG0vqdJghMbhLDMeU=
+Y8caP9mCEIc6YdHZvufMwHS1Yk7yjiTJUPDkR8q1HJNorHekYBn-2F2iDZWJqnYLc0zwOAYBY6v=
+DXvm49x3U1r0xvQ516filCzFS0Y118OKN1j0wvhPbGf7az86SiUJilEI01TJXJndOUCwlIMV0i7=
+eBO7BXkrdgATd3Pum0IgblLgJ-2FSqGKc4QX3qLS6Q2PVBBzCFGQphCIsJcvTgwfsSm4xRsAqJG=
+S266K140zDK2BHrNYtNkjRZxIezhQvf1z3P4csaVYmwQ7DIfnJ8l6CuV-2Fm-2BTsKigWMFqnyn=
+idrvn4GkMZaoGZYxjmE0ewmylFgpqOES-2FRMYOPktU3sqlNv4XY4qZdb3Hx9Zp7lUQMv-2BI-3=
+D_1LkHPUrEJXREVhxa13sHT4MoUKWecnnz8NmqZ1OyKpLM346j2hSbP325KrZ7t3OhWpJntkqV1=
+o5d9D1NHBzJAmhApqWG-2FKiDNCKppY-2FkU7RpzTKp8aeA0uvQ2VwEnp5XFm5dJKsuUnHGYuzk=
+gqPk7f6Cnr3N-2FNeOM3p-2FIJo7Lq9eWSR1r2RMFozQDQeP-2FcwDorBa4pILrNyPYMa3VQuFy=
+Ux5sQdGzCsdOh-2FuxdEaZGrmRcwcmIdjg9-2B2p6a0acQxFPh-2BOVwlcwJXYZaJQo1vrClPqS=
+2XZPDPSkrGkOYp365c5iDfvMbMuHhFIjRRqSbN-2BP1egAEV30rGKeYMHJHgesPSqEnYGQRucq7=
+xdi8VIW2KKUPV-2Bv6D6Ex25sDbRVpdait1MslE4dm6ZgvR6BMxXA-3D-3D">unsubscribe</a=
+></div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<!--[if (gte mso 9)|(IE)]>
+      </td>
+    <![endif]--> <!--[if (gte mso 9)|(IE)]>
+                  <tr>
+                </table>
+              </center>
+            <![endif]--></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<!--[if mso]>
+                          </td></tr></table>
+                          </center>
+                          <![endif]--></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</center>
+
+<img src=3D"http://link.liven.com.au/wf/open?upn=3D1LkHPUrEJXREVhxa13sHT4Mo=
+UKWecnnz8NmqZ1OyKpLM346j2hSbP325KrZ7t3OhWpJntkqV1o5d9D1NHBzJAmhApqWG-2FKiDN=
+CKppY-2FkU7RpzTKp8aeA0uvQ2VwEnp5XFm5dJKsuUnHGYuzkgqPk7f6Cnr3N-2FNeOM3p-2FIJ=
+o7Lq9eWSR1r2RMFozQDQeP-2FcwDorBa4pILrNyPYMa3VQuFyUx5sQdGzCsdOh-2FuxdEaZGpyr=
+YENxS5-2BeW6wn3ZU3HVfzXmXzD-2BvfO8cYoX3yiOq92R3m9mU-2FzgaXASHbBAE3VX1YRm4Ss=
+4GOuzm60YBYtPe2niQ3q-2FrPA3DB-2Fvpom8qMeqbgis6uhJBmjWI3MG5quRzlEZ-2BqUCSwJU=
+KoXJvoV2Wzl7aXKIZz6vHjAFnlEftCQ-3D-3D" alt=3D"" width=3D"1" height=3D"1" bo=
+rder=3D"0" style=3D"height:1px !important;width:1px !important;border-width=
+:0 !important;margin-top:0 !important;margin-bottom:0 !important;margin-rig=
+ht:0 !important;margin-left:0 !important;padding-top:0 !important;padding-b=
+ottom:0 !important;padding-right:0 !important;padding-left:0 !important;"/>
+</body>
+</html>

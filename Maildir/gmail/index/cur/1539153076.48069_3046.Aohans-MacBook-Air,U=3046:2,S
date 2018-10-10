@@ -1,0 +1,596 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 2002:a9d:30aa:0:0:0:0:0 with SMTP id s42csp2094281otc;
+        Mon, 8 Oct 2018 16:47:10 -0700 (PDT)
+X-Google-Smtp-Source: ACcGV63/uhgt2zfmStc6MGKCiWUHF0Gp1Wc+sn62armj1J+6KcjBxVigNxfHtjfwLewTdEtfOShg
+X-Received: by 2002:a24:4ac5:: with SMTP id k188-v6mr112229itb.158.1539042430873;
+        Mon, 08 Oct 2018 16:47:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1539042430; cv=none;
+        d=google.com; s=arc-20160816;
+        b=uu6U8Yi/1ODDN0kxXpWx1/536yg+UcW77rsYw7mjvuEANJUfJw6lPGjC72he6GdmC0
+         XQsvxLNdMUaOsc6Rxf69FCRV1UJGINb1K7e+i7Kw8EfH1boIoGDcLwAeJE+iTiO6HVVe
+         FoAUDmJ1uedXDXcdvgwsgf39zpL982ptksv3nkAl9tLBkVsQTQFVqKdlIV/ONFmYRrZy
+         EaxSSG8LwPw7W3vYRgCW37wXZ5l7N9HC9ZT4rgr5xKo5cCg/x3bBBswYg1/VZAq/dpJ5
+         4OKv+22oSNN6Ot1/vWuiSQXSWQrABcPRy5slnBBlmicxfk6NCtobM5wjEVdnn7F1Kh8f
+         Kuag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:message-id:list-id:reply-to:mime-version:date:subject
+         :to:from:dkim-signature;
+        bh=zX9QAzw2M1o+yZdGGehGOrf2zdTz0ZdzeksHXWxenKc=;
+        b=Uht6mt1g3ub9vNxwdbmaVHeSejn3ugVYwdDn36fdMKxnf2vGMLSQMCn8j6VoZSFiUE
+         CuPgmigv0w37jKJywIgQ5U4qqW7rlSSrRpGzQ7SxyA2XoKfy/DMICkBKJh2Vwdu0V1NZ
+         LSoMjh/absklQ4ai3H2vy+8Mj78Osxj2GGwpypQVdvHO29357fNeTVCVARWmbsv+WHSZ
+         tg0bgrI3DI4SxeQjruR4jMMtwI7OW1Pw5zIoDWoUjEv2LdQFAdi8f+FQEpFybAUy5yS1
+         fVn9AaeV+4m/PG+v0kUbtYjMgD1egE0fA7zyjLsQ8+sCDuy1lmJx6EkBQKZ2E99IZvO+
+         jm9w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@e.maccas.com.au header.s=200608 header.b=Mzihl2iC;
+       spf=pass (google.com: domain of bounce-93_html-238886311-866673-6235576-25@bounce.e.maccas.com.au designates 136.147.184.164 as permitted sender) smtp.mailfrom=bounce-93_HTML-238886311-866673-6235576-25@bounce.e.maccas.com.au
+Return-Path: <bounce-93_HTML-238886311-866673-6235576-25@bounce.e.maccas.com.au>
+Received: from mta.e.maccas.com.au (mta.e.maccas.com.au. [136.147.184.164])
+        by mx.google.com with ESMTPS id m1-v6si8168623itm.2.2018.10.08.16.47.10
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 08 Oct 2018 16:47:10 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce-93_html-238886311-866673-6235576-25@bounce.e.maccas.com.au designates 136.147.184.164 as permitted sender) client-ip=136.147.184.164;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@e.maccas.com.au header.s=200608 header.b=Mzihl2iC;
+       spf=pass (google.com: domain of bounce-93_html-238886311-866673-6235576-25@bounce.e.maccas.com.au designates 136.147.184.164 as permitted sender) smtp.mailfrom=bounce-93_HTML-238886311-866673-6235576-25@bounce.e.maccas.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=200608; d=e.maccas.com.au;
+ h=From:To:Subject:Date:MIME-Version:Reply-To:List-ID:Message-ID:Content-Type;
+ i=do-not-reply@e.maccas.com.au;
+ bh=zX9QAzw2M1o+yZdGGehGOrf2zdTz0ZdzeksHXWxenKc=;
+ b=Mzihl2iCzXc0nT64T6Y2twa7sUgzuiAqox486GNW0UooUy1g0qZqlXhpldnQdZ59L6lN1ETI+iLJ
+   LcLf+ju7QuP9vkNx3l7YEyjA0If+NLmb3HiZ3FHx4vNedsWOVGRlcToAQWOYXjcP+Vm00FirSJCm
+   HDpN+e37RbQBwGxLGs4=
+Received: by mta.e.maccas.com.au id hnfm7s2fmd4m for <sometime5858@gmail.com>; Mon, 8 Oct 2018 23:47:10 +0000 (envelope-from <bounce-93_HTML-238886311-866673-6235576-25@bounce.e.maccas.com.au>)
+From: =?UTF-8?Q?Monopoly_at_Macca's=C2=AE?=
+ <do-not-reply@e.maccas.com.au>
+To: <sometime5858@gmail.com>
+Subject: Here's a Monopoly reward for making an order, Albert
+Date: Mon, 08 Oct 2018 17:47:08 -0600
+MIME-Version: 1.0
+Reply-To: "Macca's News" <reply-febb1c767362037e-93_HTML-238886311-6235576-25@e.maccas.com.au>
+List-ID: <6232116.xt.local>
+X-CSA-Complaints: whitelistcomplaints@eco.de
+x-job: 6235576_866673
+Message-ID: <a878d9ad-9011-4837-8a56-cc5c4b9447a2@ind1s06mta922.xt.local>
+Feedback-ID: 6235576:866673:136.147.184.164:sfmktgcld
+Content-Type: multipart/alternative;
+	boundary="xAha97vK4uLm=_?:"
+X-TUID: rVIjZ5LAJWXV
+
+This is a multi-part message in MIME format.
+
+--xAha97vK4uLm=_?:
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+ 
+Just 3 days. Then it's game on.
+
+===============
+
+If you are having difficulty viewing this email, view it online:
+http://click.e.maccas.com.au/?qs=ecedd22716d888dd60d1d4097379763cb00818e74131dd18f32daac83bb908b6f0d81f13087b3747ca24ce2f49625693ff9943bc56187c59
+
+===============
+
+Monopoly
+
+===============
+
+HiHi Albert,,
+ 
+We're excited to announce the start of Australia's favourite game at Macca's! Drum roll please.
+
+Monopoly is back! Starting from [XX], every time you peel a Monopoly Ticket from your Macca's faves, you could be a winner. 
+
+===============
+
+Your first chance code is on us
+
+To get you started, we'll send you a Chance Code. Just enter it into the new Monopoly app for an instant win or Monopoly Ticket! But be quick. This Chance Code won't last long. 
+
+Get the app >
+
+===============
+
+Try our $5 lunch deals
+
+There's always a $5 lunch deal at Macca's(R). And right now for a limited time, you can grab our Double Beef 'n' Bacon meal for just $5.
+
+Order now >
+http://click.e.maccas.com.au/?qs=ecedd22716d888dd34b54e38e546fa70f57164bb99c0d73f99c81ac3d8c50c63656190481a12868f0940351b22a3b35960bd4ddd0b0986e5e4a2f68e6bfdd2b1
+
+===============
+
+Insider bonus
+
+Every day you order through the mymacca's app, we'll send you a bonus Chance Code. Up your chances with this exclusive reward.
+
+Get yours now >
+
+===============
+
+Facebook >
+http://click.e.maccas.com.au/?qs=ecedd22716d888dd86c76c37a0619391933ae5df79ccf476412f04d1ec873e7720585119037b704f535676fae2f79b15ed752712263ec12b
+ 
+YouTube > 
+http://click.e.maccas.com.au/?qs=ecedd22716d888dd02d598da81cb2ee45a5fdaf7e4ae388f91e8877097f4bcfc09b0ef3c26f6486e8f50b0f8ea2edc2a22401db1bbfe11a0
+ 
+Instagram >
+http://click.e.maccas.com.au/?qs=ecedd22716d888ddc9e15cb1bac70d23700c83c131c719709d7cb825554d337ded54a43e58849c9b41a0a64423c50c5f164ee0dd534cad75
+ 
+Twitter >
+http://click.e.maccas.com.au/?qs=ecedd22716d888ddc7bd8eeefe0d9eaf7dc6b21afabefb5953273ecc00e96cde6db0f5d74255f44d5cf0d45f0b60c5a51dd700b17065b95a
+ 
+Google+ >
+http://click.e.maccas.com.au/?qs=ecedd22716d888ddab7db8253ae6a2022fdc5cdd02c83d4f5daf945cb83f97f5f1d91878629c3383ef0d124ed76e561fd028a69b8ecaf701
+
+===============
+
+Snack Away for $2 Deal:
+Offer entitles customer to a a Medium Fries, Cheeseburger or 3x Chicken McNuggets(R) for $2. Redeem the offer by applying it to your mobile order in the mymacca's(R) app. Offer expires 11:59pm AEST Thursday 10th May 2018. Not to be used in conjunction with any other offer. Offer must be used in a single transaction. Parent/carer must be present for child under 14 to redeem. Available at participating restaurants only. Not redeemable via McDelivery(R). Offer may be revoked for any reason in McDonald's ultimate discretion.
+
+$5 Double Beef 'n' Bacon Lunch Deal:
+Available 10.30am - 2pm for a limited time. Excludes McDelivery(R). Serving suggestion.
+
+Large Sundae on us Deal:
+Offer entitles customer to a free large Sundae with a $10 purchase. Redeem the offer by applying it to your mobile order in the mymacca's(R) app. Offer expires 11:59pm AEST Thursday 10th May 2018. Not to be used in conjunction with any other offer. Offer must be used in a single transaction. Parent/carer must be present for child under 14 to redeem. Available at participating restaurants only. Not redeemable via McDelivery(R). Offer may be revoked for any reason in McDonald's ultimate discretion.
+
+===============
+
+McDonald's Australia Limited (ABN 43 008 496 928) 21 Central Avenue, Thornleigh, NSW, 2120, Australia | PO Box 392, Pennant Hills NSW 2120 | (02) 9875 6666 | mcdonalds.com.au >
+http://click.e.maccas.com.au/?qs=ecedd22716d888ddd693d8ef678134aa74c3b61928ad9ec481053f5a76ffd3ba89aeaf5244aeebb24c316c743dc24c33ea4626012f7793c37fff47256ef1b8e5
+
+All rights reserved. The contents of this email cannot be used for public or commercial purposes.
+ 
+This message was sent by McDonald's Australia.
+ 
+Safely unsubscribe from McDonald's Australia e-mails here >
+http://click.e.maccas.com.au/?qs=ecedd22716d888dd53e28cccf2c9fdf04d2dfd52cf2fe5d9d36c82ca45da38e82eb60e4ccacbf5be018831cad2a6799ab97645e045d6f7a0
+ 
+View our privacy policy >
+http://click.e.maccas.com.au/?qs=ecedd22716d888dd62dcaa0127332489381512bf46250110fe048e3fc1e1b2effb1a64a5f286f3af2186bbadf0c642dbb3e3b2de95883dbe7c258d5a6237346b
+
+ 
+
+--xAha97vK4uLm=_?:
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+ <!--      -->
+
+
+<!-- SFMC Services APAC -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title> MONOPOLY </title>
+<style type="text/css">
+.ReadMsgBody { width: 100%; }
+.ExternalClass { width: 100%; }
+.ExternalClass * { line-height: 100%; }
+div, p, a, li, td { -webkit-text-size-adjust: none; -ms-text-size-adjust: none; }
+TD IMG { display: block; border: 0; }
+table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }
+table td { border-collapse: collapse; }
+a:link { color: #000001; text-decoration: none; }
+a:active { color: #000001; text-decoration: none; }
+a:visited { color: #000001; text-decoration: none; }
+a:hover { color: #000001; text-decoration: none; }
+textarea { resize: none; }
+textarea:focus, input:focus { outline: none; }
+body { background-color: #252525; margin: 0; }
+.appleLinks a { color: inherit !important; text-decoration: none; }
+ @-ms-viewport { width: device-width; }
+ table th { margin: 0 !important; padding: 0px !important; vertical-align: top;}
+</style>
+<style type="text/css">
+@media only screen and (max-width: 480px) {
+.container { width: 100% !important; }
+.img-responsive img { width: 100% !important; height: auto!important; }
+.mobile-hidden { display: none !important; }
+.photo { width: 100% !important; height: auto !important; }
+.mobile-padding { padding-left: 20px !important; padding-right: 20px !important; }
+.drop { width: 100% !important; float: left !important; }
+.center { margin: 0 auto !important; }
+.show { display: block !important; margin: 0 !important; padding: 0 !important; overflow: visible !important; width: auto !important; max-height: inherit !important; }
+.text-center { text-align: center !important; }
+.viewonlinetext {
+ font-size: 11px !important;
+ line-height: 15px !important;
+}
+.bodytext {
+ font-size: 20px !important;
+ line-height: 24px !important;
+}
+.tandc {
+ padding-left: 20px !important;
+ padding-right: 20px !important;
+}
+.mobpadbot30 {
+ padding-bottom: 30px !important;
+}
+.mobpadtop30 {
+ padding-top: 30px !important;
+}
+.mobpadright20 {
+ padding-right: 20px !important;
+}
+ .mobpadbot90 {
+ padding-bottom: 90px !important;
+}
+.bgmob_Hero {
+ background-size: 100% 100% !important;
+ background-repeat: no-repeat !important;
+ width: 100% !important;
+ height: 100% !important;
+}
+.bgmob_Hero1 {
+ background-size: 100% 100% !important;
+ background-repeat: no-repeat !important;
+ padding-bottom:70px;
+  height: 100% !important;
+}
+.height280 {
+ height: 280px !important;
+}
+.height20 {
+ height: 20px !important;
+}
+.height85 {
+ height: 85px !important;
+}
+.height58 {
+ height: 58px !important;
+}
+.paddleftright10{ padding-left:10px !important; padding-right:10px !important;}
+.height320{ height:320px !important;}
+.height24{ height:24px !important;}
+.height94{ height:94px !important;}
+.height89{ height:89px !important;}
+.paddleftright15{ padding-left:27px !important; padding-right:10px !important;}
+.height18{ height:18px !important;}
+.height23{ height:23px !important;}
+.ltrspc{ letter-spacing:17px !important;}
+.width231{ width:231px !important; height:auto !important;}
+.width15{ width:15px !important;}
+.bodytext1 {
+ font-size: 16px !important;
+ line-height: 20px !important;
+}
+.suprscrpt{ font-size:16px !important;}
+.suprscrpt_5{ font-size:14px !important; vertical-align:5px !important;}
+.width30{ width:30px !important; height:auto !important;}
+.paddleftright15{ padding-left:15px !important; padding-right:15px !important;}
+.height40{ height:40px !important;}
+.height250{ height:250px !important;}
+.height390{ height:390px !important;}
+.letterspace{ letter-spacing:3px !important;}
+}
+@media only screen and (min-width: 320px) and (max-width: 380px) {
+.bgmob_Hero {
+ background-size: 100% 100% !important;
+ background-repeat: no-repeat !important;
+ width: 100% !important;
+ height: 100% !important;
+}
+.photo1 { width: 95% !important; height: auto !important;padding-left: 10px !important;padding-right: 10px !important; }  
+  
+.bgmob_Hero1 {
+ background-size: 100% 100% !important;
+ background-repeat: no-repeat !important;
+ height: 100% !important;
+  padding-bottom:70px;
+}
+.height320{ height:320px !important;}
+.height24{ height:24px !important;} 
+.height94{ height:94px !important;}
+.height89{ height:89px !important;}
+.height390{ height:270px !important;}
+.height85_1 {
+ height: 62px !important;
+}
+.height85_3 {
+ height: 94px !important;
+}
+}
+@media only screen and (min-width: 381px) and (max-width: 420px) {
+.bgmob_Hero {
+ background-size: 100% 100% !important;
+ background-repeat: no-repeat !important;
+ width: 100% !important;
+ height: 100% !important;
+}
+ .bgmob_Hero1 {
+ background-size: 100% 100% !important;
+ background-repeat: no-repeat !important;
+ height: 100% !important;
+  padding-bottom:70px;
+} 
+.photo1 { width: 95% !important; height: auto !important;padding-left: 10px !important;padding-right: 10px !important; }  
+.height320{ height:390px !important;}
+.height24{ height:34px !important;} 
+.height94{ height:110px !important;}
+.height89{ height:100px !important;}
+.height390{ height:310px !important;}
+.height85_1 {
+ height: 72px !important;
+}
+.height85_3 {
+ height: 105px !important;
+}
+}
+@media only screen and (min-width: 421px) and (max-width: 480px) {
+.bgmob_Hero {
+ background-size: 100% 100% !important;
+ background-repeat: no-repeat !important;
+ width: 100% !important;
+ height: 100% !important;
+}
+  .bgmob_Hero1 {
+ background-size: 100% 100% !important;
+ background-repeat: no-repeat !important;
+ height: 100% !important;
+  padding-bottom:70px;
+}
+.photo1 { width: 95% !important; height: auto !important;padding-left: 10px !important;padding-right: 10px !important; }
+.height320{ height:410px !important;}
+.height24{ height:50px !important;} 
+.height94{ height:130px !important;}
+.height89{ height:120px !important;}
+.height390{ height:365px !important;}
+.height85_1 {
+ height: 85px !important;
+}
+.height85_3 {
+ height: 124px !important;
+}
+}
+</style>
+<!--[if gte mso 9]><xml>  <o:OfficeDocumentSettings>   <o:AllowPNG/>   <o:PixelsPerInch>96</o:PixelsPerInch>  </o:OfficeDocumentSettings> </xml><![endif]-->
+</head>
+<body bgcolor="#252525" style="margin: 0px; padding:0px; -webkit-text-size-adjust:none; -ms-text-size-adjust: none;"><style type="text/css">
+div.preheader 
+{ display: none !important; } 
+</style>
+<div class="preheader" style="font-size: 1px; display: none !important;">Get three Monopoly Chance Codes free!</div>
+<img src="http://click.e.maccas.com.au/open.aspx?ffcb10-febb1c767362037e-fe201c77746c04787d1076-fe8d12727661017a73-ff931d73-fe2716737d6c0c7b761571-ff981675" width="1" height="1">
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout:fixed;">
+  <tr>
+    <td align="center" valign="top"><div align="center">
+        <table width="640" border="0" cellspacing="0" cellpadding="0" align="center" class="container" style="width:640px;">
+          <!----><tr>
+                  <td class="viewonlinetext mobile-padding" align="center" valign="middle" bgcolor="#f3f3f3" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; line-height: 14px; mso-line-height-rule: exactly; text-align: center; padding-top: 10px; padding-bottom: 10px; padding-left: 5px; padding-right: 5px; color:#000001;">If you are having difficulty viewing this email, <a  href="http://click.e.maccas.com.au/?qs=ecedd22716d888dd5e37bd8d9e83a3b349a32042518431f5c976de94f53d915f0b8ee8590047eedc9e9886e93c06699a02a79c8ae8171238" title="view it online" target="_blank" style="color: #bd171b; text-decoration: underline;"><span style="color: #bd171b; text-decoration: underline;">view it online</span></a>.</td>
+                  </tr><!---->
+          <tr>
+            <td align="center" valign="top" bgcolor="#000001" style="padding-top:11px; padding-bottom:11px;"><img src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/4/m17_01_Monopoly_logo.png" width="190" height="38" alt="MONOPOLY" title="MONOPOLY" style="display: block;  font-family: Arial, Helvetica, sans-serif; color: #ffffff; text-align: center; font-size: 20px; line-height:24px; text-decoration:none; width:190px; height:38px;" border="0"/></td>
+          </tr>
+          
+
+          
+            <tr>
+            <td align="center" valign="top" bgcolor="#bd0017"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tbody>
+     <tr>
+       <td width="100%" align="center" valign="middle" bgcolor="#bd0017"><!----><table cellpadding="0" cellspacing="0" width="100%" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<table cellpadding="0" cellspacing="0" width="100%" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table align="center" border="0" cellpadding="0" cellspacing="0" class="container" style="width: 640px;" width="640">
+	
+		<tr>
+			<td align="center" bgcolor="#bd0017" valign="top">
+				<a   data-linkto="https://" href="http://click.e.maccas.com.au/?qs=ac46c27bb07cba867a8f0e328a3a84be0de54a96622266087337d0390a559f58d28f4250edeaffcaad3c9fb1101dee36bf68c60b0ab92bd6" style="text-decoration:none;" target="_blank" title="3 times the chance"><img alt="3 times the chance" border="0" class="mobile-hidden photo" height="737" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/5/d5afb191-a3a5-41fb-83c0-192b7c9ff338.jpg" style="display: block; font-family: Arial, Helvetica, sans-serif; color: #ffffff; text-align: center; font-size: 20px; line-height: 24px; text-decoration: none; width: 640px; height: 737px;" title="3 times the chance" width="640"> </a> <!--[if !mso]>       <!--><div class="show" style="font-size: 0%; max-height: 0px; overflow: hidden; display: none; width: 0%;">
+					<a   data-linkto="https://" href="http://click.e.maccas.com.au/?qs=ac46c27bb07cba867a8f0e328a3a84be0de54a96622266087337d0390a559f58d28f4250edeaffcaad3c9fb1101dee36bf68c60b0ab92bd6" style="text-decoration: none;" target="_blank" title="3 times the chance"><img alt="3 times the chance" border="0" class="photo" height="737" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/5/d5afb191-a3a5-41fb-83c0-192b7c9ff338.jpg" style="display: block; font-family: Arial, Helvetica, sans-serif; color: #ffffff; text-align: center; font-size: 20px; line-height: 24px; text-decoration: none; width: 640px; height: 737px;" title="3 times the chance" width="640"></a></div> <!--<![endif]--></td></tr></table></td></tr></table>
+
+</td></tr></table><!----><!----><table cellpadding="0" cellspacing="0" width="100%" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table cellpadding="0" cellspacing="0" class="stylingblock-content-wrapper" style="min-width: 100%; " width="100%">
+	
+		<tr>
+			<td class="stylingblock-content-wrapper camarker-inner">
+				<table border="0" cellpadding="0" cellspacing="0" width="100%">
+					
+						<tr>
+							<td align="center" bgcolor="#bd0017" valign="top">
+								<table border="0" cellpadding="0" cellspacing="0" class="container" style="width: 640;" width="640">
+									
+										<tr>
+											<td align="center" bgcolor="#bd0017" valign="top">
+												<table border="0" cellpadding="0" cellspacing="0" width="100%">
+													
+														<tr>
+															<td background="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/5/0cfddbc3-fecf-49fb-8aa6-e5899329b262.jpg" bgcolor="#bd0017" class="bgmob_Hero" height="218" style="background-image:url(http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/5/0cfddbc3-fecf-49fb-8aa6-e5899329b262.jpg); background-repeat: no-repeat; padding-left:20px; padding-right:20px;width: 640px; height: 218px;" valign="top" width="640">
+																<!--[if gte mso 9]>  <v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style=" border: 0;display: inline-block; width: 640px; height: 218px;" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/5/0cfddbc3-fecf-49fb-8aa6-e5899329b262.jpg" />                                                               <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style=" border: 0;display: inline-block;position: absolute; width: 640px; height: 218px;">                                                     <v:fill  opacity="0%" color="#bd0017"  />                                                     <v:textbox inset="0,0,0,0">                                                  <![endif]--><div>
+																	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+																		
+																			<tr>
+																				<td align="center" valign="top">
+																					<table border="0" cellpadding="0" cellspacing="0" class="container" style="width: 500px;" width="500">
+																						
+																							<tr>
+																								<td align="center" valign="top">
+																									<table border="0" cellpadding="0" cellspacing="0" class="container" style="width: 363px;" width="363">
+																										
+																											<tr>
+																												<td align="center" class="height85_1" height="120" style="height: 120px;" valign="top">
+																													<img border="0" class="height85_1" height="116" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/4/m17_02_Spacer.gif" style="display: block; width: 1px; height: 116px;" width="1"></td></tr><tr>
+																												<td align="center" style="position: relative; font-family: Arial, Helvetica, sans-serif; font-size: 36px; font-weight: bold; color: #262626; ">
+																													<div class="mobpadbot30 bodytext" style=" line-height: 42px; text-align: center; letter-spacing: 5px; margin: 0 auto">
+																														N62SZBD22NJY</div></td></tr></table></td></tr></table></td></tr></table></div><!--[if gte mso 9]>          </v:textbox>          </v:rect>          <![endif]--></td></tr></table></td></tr></table></td></tr></table></td></tr></table></td></tr></table><!---->
+                      
+                      </td>
+     </tr>
+     <tr>
+       <td width="100%" align="center" valign="middle" bgcolor="#bd0017"><!----><table cellpadding="0" cellspacing="0" width="100%" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><custom name="Slot 4" type="content"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+	
+		<tr>
+			<td align="center" bgcolor="#bd0017" valign="top">
+				<table border="0" cellpadding="0" cellspacing="0" class="container" style="width: 640;" width="640">
+					
+						<tr>
+							<td align="center" bgcolor="#bd0017" valign="top">
+								<table border="0" cellpadding="0" cellspacing="0" width="100%">
+									
+										<tr>
+											<td background="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/5/9d740796-8e3f-4672-b8e9-70400ae260bf.jpg" bgcolor="#bd0017" class="bgmob_Hero" height="270" style="background-image:url(http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/5/9d740796-8e3f-4672-b8e9-70400ae260bf.jpg); background-repeat: no-repeat; padding-left:0px; padding-right:0px; width: 640px; height: 270px;" valign="top" width="640">
+												<!--[if gte mso 9]>  <v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style=" border: 0;display: inline-block; width: 640px; height: 270px;" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/5/9d740796-8e3f-4672-b8e9-70400ae260bf.jpg" />                                                               <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style=" border: 0;display: inline-block;position: absolute; width: 640px; height: 270px;">                                                     <v:fill  opacity="0%" color="#bd0017"  />                                                     <v:textbox inset="0,0,0,0">                                                  <![endif]--><div>
+													<table border="0" cellpadding="0" cellspacing="0" width="100%">
+														
+															<tr>
+																<td align="center" valign="top">
+																	<table border="0" cellpadding="0" cellspacing="0" class="container" style="width: 500px;" width="500">
+																		
+																			<tr>
+																				<td align="center" valign="top">
+																					<table border="0" cellpadding="0" cellspacing="0" class="container" style="width: 363px;" width="363">
+																						
+																							<tr>
+																								<td align="center" class="height85_1" height="116" style="height: 116px;" valign="top">
+																									<br>
+																									<img border="0" class="height85_1" height="116" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/4/m17_02_Spacer.gif" style="display: block; width: 1px; height: 116px;" width="1"></td></tr><tr>
+																								<td align="center" class="bodytext letterspace mobpadbot30" style="font-family: Arial, Helvetica, sans-serif; font-size: 36px; font-weight: bold; color: #181715; line-height: 42px; text-align: center; letter-spacing: 5px;" valign="top">
+																									NKTDBBKSGVL5</td></tr></table></td></tr></table></td></tr></table></div><!--[if gte mso 9]>          </v:textbox>          </v:rect>          <![endif]--></td></tr></table></td></tr></table></td></tr></table> </custom></td></tr></table><!----><!----><table cellpadding="0" cellspacing="0" width="100%" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><custom name="Slot 4" type="content"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+	
+		<tr>
+			<td align="center" bgcolor="#bd0017" valign="top">
+				<table border="0" cellpadding="0" cellspacing="0" class="container" style="width: 640;" width="640">
+					
+						<tr>
+							<td align="center" bgcolor="#bd0017" valign="top">
+								<table border="0" cellpadding="0" cellspacing="0" width="100%">
+									
+										<tr>
+											<td background="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/5/9d740796-8e3f-4672-b8e9-70400ae260bf.jpg" bgcolor="#bd0017" class="bgmob_Hero" height="270" style="background-image:url(http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/5/9d740796-8e3f-4672-b8e9-70400ae260bf.jpg); background-repeat: no-repeat; padding-left:0px; padding-right:0px; width: 640px; height: 270px;" valign="top" width="640">
+												<!--[if gte mso 9]>  <v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style=" border: 0;display: inline-block; width: 640px; height: 270px;" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/5/9d740796-8e3f-4672-b8e9-70400ae260bf.jpg" />                                                               <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style=" border: 0;display: inline-block;position: absolute; width: 640px; height: 270px;">                                                     <v:fill  opacity="0%" color="#bd0017"  />                                                     <v:textbox inset="0,0,0,0">                                                  <![endif]--><div>
+													<table border="0" cellpadding="0" cellspacing="0" width="100%">
+														
+															<tr>
+																<td align="center" valign="top">
+																	<table border="0" cellpadding="0" cellspacing="0" class="container" style="width: 500px;" width="500">
+																		
+																			<tr>
+																				<td align="center" valign="top">
+																					<table border="0" cellpadding="0" cellspacing="0" class="container" style="width: 363px;" width="363">
+																						
+																							<tr>
+																								<td align="center" class="height85_1" height="116" style="height: 116px;" valign="top">
+																									<br>
+																									<img border="0" class="height85_1" height="116" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/4/m17_02_Spacer.gif" style="display: block; width: 1px; height: 116px;" width="1"></td></tr><tr>
+																								<td align="center" class="bodytext letterspace mobpadbot30" style="font-family: Arial, Helvetica, sans-serif; font-size: 36px; font-weight: bold; color: #181715; line-height: 42px; text-align: center; letter-spacing: 5px;" valign="top">
+																									NGB96NTHDG2Z</td></tr></table></td></tr></table></td></tr></table></div><!--[if gte mso 9]>          </v:textbox>          </v:rect>          <![endif]--></td></tr><tr>
+											<td align="center" bgcolor="#bd0017" valign="top">
+												<img alt="" border="0" class="photo" height="54" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/5/fdd83cf7-3873-4675-a5ad-df3d0c585560.jpg" style="display: block; font-family: Arial, Helvetica, sans-serif; color: #ffffff; text-align: center; font-size: 20px; line-height: 24px; text-decoration: none; width: 640px; height: 54px;" title="" width="640"></td></tr></table></td></tr></table></td></tr></table> </custom></td></tr></table><!----><!----><table cellpadding="0" cellspacing="0" width="100%" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner">
+<table cellpadding="0" cellspacing="0" width="100%" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table align="center" border="0" cellpadding="0" cellspacing="0" class="container" style="width: 640px;" width="640">
+ 
+  <tr>
+   <td align="center" bgcolor="#bd0017" valign="top">
+    <a   data-linkto="https://" href="http://click.e.maccas.com.au/?qs=ac46c27bb07cba86c284ec37c81fec4bb1d0b5e1ff5c4c386eac4efe5d23a14b118caa0d2afedee42ebfcae2dc09bb3a7437e517217b3c3c" style="text-decoration:none;" target="_blank" title="Enter your code"><img alt="Enter your code" border="0" class="mobile-hidden photo " height="99" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/5/5725a37a-f759-459a-8f0e-556343f4c45f.jpg" style="display: block; font-family: Arial, Helvetica, sans-serif; color: #ffffff; text-align: center; font-size: 20px; line-height: 24px; text-decoration: none; width: 640px; height: 99px; padding-top:0px;padding-bottom:0px;" title="Enter your code" width="640"> </a> <!--[if !mso]>                   <!--><div class="show" style="font-size: 0%; max-height: 0px; overflow: hidden; display: none; width: 0%;">
+     <a   data-linkto="https://" href="http://click.e.maccas.com.au/?qs=ac46c27bb07cba86c284ec37c81fec4bb1d0b5e1ff5c4c386eac4efe5d23a14b118caa0d2afedee42ebfcae2dc09bb3a7437e517217b3c3c" style="text-decoration: none;" target="_blank" title="Enter your code"><img alt="Enter your code" border="0" class="photo " height="99" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/5/5725a37a-f759-459a-8f0e-556343f4c45f.jpg" style="display: block; font-family: Arial, Helvetica, sans-serif; color: #ffffff; text-align: center; font-size: 20px; line-height: 24px; text-decoration: none; width: 640px; height: 99px; padding-top:0px;padding-bottom:0px;" title="Enter your code" width="640"></a></div> <!--<![endif]--></td></tr><tr>
+  </tr></table></td></tr></table>
+
+</td></tr></table><!----><!----><table cellpadding="0" cellspacing="0" width="100%" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><!--  --><custom name="Slot 4" type="content"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+ 
+  <tr>
+   <td align="center" bgcolor="#bd0017" valign="top">
+    <table border="0" cellpadding="0" cellspacing="0" class="container" style="width: 640;" width="640">
+     
+      <tr>
+       <td background="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/6/7c8ea3bd-e184-469d-9035-2b7b4ace13d5.jpg" bgcolor="#bd0017" class="bgmob_Hero" height="560" style="background-image:url(http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/6/7c8ea3bd-e184-469d-9035-2b7b4ace13d5.jpg); background-repeat: repeat-y; padding-left:0px; padding-right:0px;width: 640px; height: 560px;" valign="top" width="640">
+        <!--[if gte mso 9]>  <v:image xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style=" border: 0;display: inline-block; width: 640px; height: 560px;" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/6/7c8ea3bd-e184-469d-9035-2b7b4ace13d5.jpg" />                                                               <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style=" border: 0;display: inline-block;position: absolute; width: 640px; height: 560px;"> <v:fill  opacity="0%" color="#bd0017"  /><v:textbox inset="0,0,0,0"><![endif]--><div>
+         <table border="0" cellpadding="0" cellspacing="0" width="100%">
+          
+           <tr>
+            <td align="center" class="mobile-padding" valign="top">
+             <table border="0" cellpadding="0" cellspacing="0" class="container" style="width: 500px;" width="500">
+              
+               <tr>
+                <td align="center" class="mobile-padding" valign="top">
+                 <table border="0" cellpadding="0" cellspacing="0" class="container" style="width: 495px;" width="495">
+                  
+                   <tr>
+                    <td align="center" class="bodytext" style="font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: normal; color: #000001; line-height: 33px; text-align: center;padding-top:20px;" valign="top">
+                     Hi Albert,<br>
+                     <br>
+                     To thank you for your recent purchase in the mymacca&rsquo;s app, here are three Chance Codes to use in this year's Monopoly at Macca's game. Just enter them into the Monopoly app and see if you're a winner!<br>
+                     <br>
+                     From now on, you'll get three new Chance Codes every day you order through the mymacca's app. But be quick, the game finishes soon.<br>
+                     <br>
+                     Also, please allow up to one week for your Chance Codes to arrive via email. &nbsp;<br>
+                     &nbsp;</td></tr></table></td></tr></table></td></tr></table></div><!--[if gte mso 9]>          </v:textbox>          </v:rect>          <![endif]--></td></tr></table></td></tr><tr>
+   <td align="center" bgcolor="#bd0017" valign="top">
+    <img alt="" border="0" class="photo" height="75" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/5/d7f763b2-b58b-40d5-919f-b77a6cddf5c0.jpg" style="display: block; font-family: Arial, Helvetica, sans-serif; color: #ffffff; text-align: center; font-size: 20px; line-height: 24px; text-decoration: none; width: 640px; height: 75px;" title="" width="640"></td></tr></table> </custom></td></tr></table><!----></td>
+     </tr>
+     <tr>
+       <td width="100%" align="center" valign="middle" bgcolor="#bd0017"><!----><table cellpadding="0" cellspacing="0" width="100%" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table align="center" border="0" cellpadding="0" cellspacing="0" class="container" style="width: 640px;" width="640">
+	
+		<tr>
+			<td align="center" bgcolor="#bd0017" valign="top">
+				<img alt="" border="0" class="photo" height="196" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/5/79dbc59d-43ab-4090-aaaa-422c5d083993.jpg" style="display: block; font-family: Arial, Helvetica, sans-serif; color: #ffffff; text-align: center; font-size: 20px; line-height: 24px; text-decoration: none; width: 640px; height: 196px; " title="" width="640"></td></tr><tr>
+		</tr></table></td></tr></table><!----></td>
+     </tr>
+      </tbody>
+    </table>
+            </td>
+          </tr>
+            <tr>
+                    <td align="center" valign="top" bgcolor="#000000" class="center">
+                      <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#252525">
+                        <tr>
+                          <td align="center" valign="top" bgcolor="#000000" class="mobpadtoprightleft30" style="padding-top: 43px;"><table border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td class="mobpadright20" align="left" valign="top" bgcolor="#000000" style="padding-right: 30px;"><a  href="http://click.e.maccas.com.au/?qs=ecedd22716d888dd7c7c1328a92441f5b3865f849a3b20cfc4aec8806523a6445f63ace4f38c5bb5faf31d42a60d204a0d34d30e9f067290" title="Facebook" target="_blank" style="text-decoration:none; color:#fdc300;"><img title="Facebook" width="15" height="32" border="0" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: #fdc300; text-align: left; line-height: 16px; display: block; text-decoration:none;" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/4/mcdelivery_facebook.png" alt="f" /></a></td>
+                              <td class="mobpadright20" align="left" valign="top" bgcolor="#000000" style="padding-right: 30px;"><a  href="http://click.e.maccas.com.au/?qs=ecedd22716d888dd81ce87729aa7ed6847a2d862b8a0321e97515f6c24681fa9cdbb225152695c485e5e29bed6afd4f48613b5e04c84bd50" title="YouTube" target="_blank" style="text-decoration:none; color:#fdc300;"><img title="YouTube" width="26" height="32" border="0" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: #fdc300; text-align: left; line-height: 16px; display: block; text-decoration:none;" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/4/mcdelivery_youtube.png" alt="y" /></a></td>
+                              <td class="mobpadright20" align="left" valign="top" bgcolor="#000000" style="padding-right: 27px;"><a  href="http://click.e.maccas.com.au/?qs=ecedd22716d888dd27b7f3c52a829c5a8c460bb35517a0f6544be52bdd65c5b1387eba7057dbdf2f51ec5e28cdc6dbf0fa9b2b3d3570e6c9" title="Instagram" target="_blank" style="text-decoration:none; color:#fdc300;"><img title="Instagram" width="32" height="32" border="0" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: #fdc300; text-align: left; line-height: 16px; display: block; text-decoration:none;" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/4/mcdelivery_instagram.png" alt="i" /></a></td>
+                              <td class="mobpadright15" align="left" valign="top" bgcolor="#000000" style="padding-right: 22px;"><a  href="http://click.e.maccas.com.au/?qs=ecedd22716d888ddbd72beac7b8f2d23299de73dcc1b333528cecd9c0a5449648597dc1a7d02b00faee3e1badd8bc826963e802281f04723" title="Twitter" target="_blank" style="text-decoration:none; color:#fdc300;"><img title="Twitter" width="38" height="32" border="0" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: #fdc300; text-align: left; line-height: 16px; display: block; text-decoration:none;" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/4/mcdelivery_twitter.png" alt="t" /></a></td>
+                              <td align="left" valign="top" bgcolor="#000000"><a  href="http://click.e.maccas.com.au/?qs=ecedd22716d888dd504f1457b94e7d344fe94cd8439b0ab06d9ccc858ef2c01595d8c4c84542416bf9d2c59dd7e64d03dc79aad737c8d1ba" title="Google+" target="_blank" style="text-decoration:none; color:#fdc300;"><img title="Google+" width="38" height="32" border="0" style="font-family: Arial,Helvetica,sans-serif; font-size: 12px; color: #fdc300; text-align: left; line-height: 16px; display: block; text-decoration:none;" src="http://image.e.maccas.com.au/lib/fe8d12727661017a73/m/4/mcdelivery_googleplus.png" alt="g+" /></a></td>
+                            </tr>
+                          </table></td>
+                        </tr>
+                        
+                     <tr bgcolor="#000000" class="container">
+                          <td align="center" bgcolor="#000000" class="mobile-padding mobpadbot30" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 50px;" valign="top"><table align="center" bgcolor="#000000" border="0" cellpadding="0" cellspacing="0" class="container" width="540">
+                              <tr>
+                                <td align="center" bgcolor="#000000" valign="top"><!----><table cellpadding="0" cellspacing="0" width="100%" style="min-width: 100%; " class="stylingblock-content-wrapper"><tr><td class="stylingblock-content-wrapper camarker-inner"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+	
+		<tr>
+			<td align="center" bgcolor="#000000" class="tandc" style="font-family: Arial, Helvetica, sans-serif;font-size: 11px; line-height: 14px; color: #ffffff; text-align: center; padding-top:20px;padding-left:20px;padding-right:20px;" valign="top">
+				<span class="appleLinksInherit">Chance code available for a limited time and may be revoked at any time at McDonald's ultimate discretion.<br>
+				<br>
+				Starts 5/9/18 and ends 16/10/18. Open to AUS residents 14+. To play, purchase selected product/s and remove ticket/s to reveal if &ldquo;instant win&rdquo;, &ldquo;collect to win&rdquo; or &ldquo;chance card&rdquo;. Total of up to 136,634,083 and on average 1 in 5 yield instant win prizes. Total prize pool value up to AUD$252,182,855.58. Must be mymacca&rsquo;s club member to redeem non-food prizes. Full terms/ privacy info: maccasplay.com.au. NSW Permit No. LTPS/18/23573. ACT Permit TP 18/00716. SA Permit T18/645. MONOPOLY TM &amp; &copy; 1935, 2018 Hasbro. All Rights reserved. </span><br>
+				&nbsp;</td></tr></table></td></tr></table><!----></td>
+                              </tr>
+                              <tr>
+                                <td align="center" bgcolor="#000000" valign="top"><table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                      <tr>
+                                        <td align="center" bgcolor="#000000" class="tandc appleLinksInherit" style="font-family: Arial,Helvetica,sans-serif;font-size: 11px;line-height: 14px;color: #ffffff; text-align: center; text-decoration:none;" valign="top"><span class="appleLinksInherit"><a href="tel:" style="color: #ffffff; text-decoration:none;" class="appleLinksInherit dontLink"><span style="color: #ffffff; text-decoration:none;" class="appleLinksInherit dontLink"><br>
+                                          McDonald's Australia Limited (ABN 43 008 496 928) 21 Central Avenue, Thornleigh, NSW, 2120, Australia</span></a> | PO Box 392, Pennant Hills NSW 2120 | <a class="appleLinksInherit" href="tel:0298756666" style="color: #ffffff;text-decoration: none;"><span class="appleLinksInherit" style="color: #ffffff;text-decoration: none;">(02) 9875 6666</span></a> | <a  href="http://click.e.maccas.com.au/?qs=ecedd22716d888dda521ac6f8a0fdd9359ab1dfe328ccfec1fa3eb746f1f1a2a223910711d8fb8c417aad89d1cf957b0a005ff3342d635855256f5ee56cad6fb" style="color: #fdc300; text-decoration:underline;" target="_blank" title="mcdonalds.com.au"><span class="appleLinksInherit" style="color:#fdc300; text-decoration:underline;">mcdonalds.com.au</span></a>. All rights reserved. The contents of this email cannot be used for public or commercial purposes.
+<br>     <br>
+                                          This message was sent by McDonald's Australia.<br>
+                                          Safely unsubscribe from McDonald's Australia e-mails <a   href="http://click.e.maccas.com.au/?qs=ecedd22716d888dd73fed361807a76bb6d569f05fa803977abb8f881d53b60f2997e3682a3118d6aa1a89408bbef63d8d2b0ea9886b6996a"  litmus-data-ignore target="_blank" style="color: #fdc300;text-decoration:underline;" title="unsubscribe"><span class="appleLinksInherit" style="color:#fdc300; text-decoration:underline;">here</span></a><br>
+                                          View our <a  href="http://click.e.maccas.com.au/?qs=ecedd22716d888ddbce9c1945df936afaed08508444b88c1f6abdca7e23bf04fd6d0a50ff60fff98bea4d78afbf6de6ac505a889e8bc7d05551e5932f4d74626" style="color: #fdc300; text-decoration:underline;" target="_blank" title="privacy policy"><span class="appleLinksInherit" style="color:#fdc300; text-decoration:underline;">privacy policy</span></a> 
+                                     </span></td>
+                                      </tr>
+                                    </tbody>
+                                  </table></td>
+                              </tr>
+                            </table></td>
+                        </tr>
+                          
+</table>
+<!--Krux Tracking Beacons//-->
+<img src="https://beacon.krxd.net/1x1_usermatch.gif?partner=LWMb2PeZ_sfmc_sha256&partner_uid=" width="0" height="0" style="display:none; line-height:0;" />
+<img src="https://beacon.krxd.net/1x1_usermatch.gif?partner=LWMb2PeZ_sfmc_subid&partner_uid=" width="0" height="0" style="display:none; line-height:0;" />
+<!--//Krux Tracking Beacons-->
+<!--Inserted to Prevent Gmail Font Resizing//-->
+<div style="letter-spacing: 626px; line-height: 0; mso-hide: all" class="mobile-hidden">&#160;</div>
+<div style="display:none; white-space:nowrap; font:15px courier; line-height:0;">&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;</div>
+<!--//Inserted to Prevent Gmail Font Resizing-->
+</body>
+</html> 
+
+--xAha97vK4uLm=_?:--
+

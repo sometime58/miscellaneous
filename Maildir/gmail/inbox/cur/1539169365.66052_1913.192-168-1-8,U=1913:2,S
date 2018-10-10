@@ -1,0 +1,657 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 10.31.64.137 with SMTP id n131csp897755vka;
+        Fri, 28 Jul 2017 16:11:43 -0700 (PDT)
+X-Received: by 10.80.163.200 with SMTP id t8mr7623876edb.158.1501283503895;
+        Fri, 28 Jul 2017 16:11:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1501283503; cv=none;
+        d=google.com; s=arc-20160816;
+        b=FYevKXPnSX+T+YmiTma25ISe/sUOpG8jm8qwCZaqW3I5RS/dBpn8DkXyxg50+1CKGH
+         m6C/Iq5PTrP3KIAHqgYlz1xNUn02EjtSf9qsUBpbi1uBGhdabYbSa1L6F18F9oQkc0Kt
+         OMbMoOSjaFSsw+3odpM0QQv4DAdLq721Va9vClMGzHwVKzE+oMw6/inuImczBemk2AQ6
+         VRqR5494T6c+qeSKQ0+yyjPtdZLKeeqa8GyqouAAmz6v4lBD57gsy68BLIk0eRPW2DOF
+         wgpyVeyV2VPnjuvdpHzpQUWWynyFCzPlMQRtHnsaGzyh8MMAwtXqo6q1GqmU5+OQ4oTg
+         dL+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:precedence:mime-version:subject:message-id:to
+         :reply-to:from:date:dkim-signature:dkim-signature
+         :arc-authentication-results;
+        bh=nDMqgrfpLfJZZjm4C+XtmIFPhIvV8LchwStVh5E8Rq8=;
+        b=yPgZhKydfzmYIrFq1zYQJouepCGSZ7Q99dDEf6yrzuOr5648F7bDFg4GhcntzoMwh4
+         hix8SZc34TWhqgCO0qdUyTOtuh1ipOzvts9+9VFtmalDUWB1yRdjc2Sj2ALQ9NwU9ELq
+         m664moLtddIAu1G/QmRTIin5EDTorqNZc31vWICSY2Lj9dwpwhb3BsyEIOfye3b9NM0T
+         MV8HzPyhIJytbPpT0VeldTMaK0ICpalaU+pRXseAHS4TU4lUkvQekdXVmMgcF3s8l6FT
+         gb6Q2vBH+c8xKNwpzDbx3CH5gfjJe9mb33q4TjFCG9Vhly6oWr2h3nTykUWNIlDYUxR2
+         vmBg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@pmta.sailthru.com header.b=G7u8oEiP;
+       dkim=pass header.i=@dictionary.com header.b=QgcNK8CE;
+       spf=pass (google.com: domain of delivery@mx.sailthru.com designates 192.64.236.77 as permitted sender) smtp.mailfrom=delivery@mx.sailthru.com
+Return-Path: <delivery@mx.sailthru.com>
+Received: from pmta236-77.sailthru.com (pmta236-77.sailthru.com. [192.64.236.77])
+        by mx.google.com with ESMTPS id 36si14624517edn.223.2017.07.28.16.11.40
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 28 Jul 2017 16:11:43 -0700 (PDT)
+Received-SPF: pass (google.com: domain of delivery@mx.sailthru.com designates 192.64.236.77 as permitted sender) client-ip=192.64.236.77;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@pmta.sailthru.com header.b=G7u8oEiP;
+       dkim=pass header.i=@dictionary.com header.b=QgcNK8CE;
+       spf=pass (google.com: domain of delivery@mx.sailthru.com designates 192.64.236.77 as permitted sender) smtp.mailfrom=delivery@mx.sailthru.com
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; s=mt; d=pmta.sailthru.com;
+ h=Date:From:Reply-To:To:Message-ID:Subject:MIME-Version:Content-Type:List-Unsubscribe;
+ bh=F0mFAOh6CoFLm5txqabP9m3JeZ4=;
+ b=G7u8oEiPct+0S4zgexgrwssC3KQEVl+o1KmDUSY/xNxArRFvY8m5tO7hSXTPTnR4uC78y9z4Wnh3
+   8wD5LNWlqduLR930oHlb+5QffgyFjSwBF30vwCLIDqdbXMtDhV5kuTieYUnVLO9KTW3h1By2GQec
+   upwacIRo0kZTt9xO0gM=
+Received: from nj2mta-18.sailthru.com (204.153.121.18) by pmta236-77.sailthru.com id hff2as1qqbsj for <sometime5858@gmail.com>; Fri, 28 Jul 2017 19:05:45 -0400 (envelope-from <delivery@mx.sailthru.com>)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple; t=1501283144;
+	s=sailthru; d=dictionary.com;
+	h=Date:From:Reply-To:To:Message-ID:Subject:MIME-Version:Content-Type:List-Unsubscribe;
+	bh=Gfkpmo/l4m3c371N9f8cbCNm0txvUleEhsU42RPDWr4=;
+	b=QgcNK8CEtzUSJVrwUpohAQXE6miBS5S/1RXV7T1YlUyh/EzsafTYnQFoScO4F5LM
+	xGSES4JYDgDg5Xj3/ZDk+ZzKEtSaerPuvJkkLR/txNmWX2yJEatZXh2m/vjIVvpRIJX
+	47EDUDXm0GyISHnMgQypYqHkmbtVjHSCMDpwXpSw=
+Date: Fri, 28 Jul 2017 19:05:44 -0400 (EDT)
+From: "Dictionary.com" <doctor@dictionary.com>
+Reply-To: doctor@dictionary.com
+To: sometime5858@gmail.com
+Message-ID: <20170728190544.10074782.858915@sailthru.com>
+Subject: ballon | Word of the Day
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_17778161_1473669622.1501283144947"
+Precedence: bulk
+X-Feedback-ID: 6343:10074782:campaign:sailthru
+X-TM-ID: 20170728190544.10074782.858915
+X-Info: Message sent by sailthru.com customer Dictionary.com, LLC
+X-Info: We do not permit unsolicited commercial email
+X-Info: Please report abuse by forwarding complete headers to
+X-Info: abuse@sailthru.com
+X-Mailer: sailthru.com
+X-Unsubscribe-Web: http://link.dictionary.com/oc/5519e05a3b35d06d728b74f65zxr2.ieqr/8c41defb
+List-Unsubscribe: <http://link.dictionary.com/oc/5519e05a3b35d06d728b74f65zxr2.ieqr/8c41defb>, <mailto:unsubscribe_20170728190544.10074782.858915@mx.sailthru.com>
+X-rpcampaign: stjjz10074782
+X-TUID: lzhlLGmmTCFg
+
+------=_Part_17778161_1473669622.1501283144947
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+
+
+Dictionary.com Word of the Day for Friday July 28, 2017
+
+ \\
+
+
+Origin
+
+
+See full entry:
+http://link.reference.com/click/10074782.858915/aHR0cDovL2RpY3Rpb25hcnkucmVmZXJlbmNlLmNvbS93b3Jkb2Z0aGVkYXkvYXJjaGl2ZS8yMDE3LzA3LzI4Lmh0bWw/5519e05a3b35d06d728b74f6B13be4d37
+
+--------------------------------------------------------------------------
+
+You are subscribed to the Word of the Day as:
+sometime5858@gmail.com
+
+Subscriber since:
+March 30, 2015
+
+Unsubscribe:
+http://link.dictionary.com/oc/5519e05a3b35d06d728b74f65zxr2.ieqr/8c41defb
+
+(c)2017 by Dictionary, LLC.
+
+555 12th Street
+Suite 500
+Oakland CA 94607
+
+------=_Part_17778161_1473669622.1501283144947
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!--
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+<head>
+<title>Dictionary.com Word Of The Day</title>
+<meta content=3D"text/html; charset=3Dutf-8" http-equiv=3D"Content-Type" />
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0">
+<style type=3D"text/css">
+@media only screen and (max-width: 700px){
+.editorial-tile {
+width: 400px !important;
+background-color: #F5F5F5;
+margin: 2px 0 !important;
+}
+.editorial-tile img {
+width: 400px !important;
+height: 280px !important;
+}
+.tile-container {
+padding: 0 100px;
+}}
+.editorial-tile:hover {
+box-shadow: 3px 3px 5px grey;
+}
+@media only screen and (max-width: 700px){
+.powerinbox-tile {
+width: 300px !important;
+margin: 2px 6px;
+padding: 3%;
+float: none;
+padding-left: 50px !important;
+} }
+</style>
+</head>
+<body style=3D"background-color: #EEEEEE;
+margin: auto;
+padding: 0;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 12px;
+color: #4A4A4A;
+max-width:950px;">
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D775 style=3D"marg=
+in:auto;">
+<tr>    <td width=3D19>&nbsp;</td><td>
+<!--HEADER-->
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;">
+<tr><td style=3D"width: 187px;" >&nbsp;</td>
+<td bgcolor=3D#3d7bbf style=3D"width: 376px; color: white; padding-top: 7px=
+; "><center>
+<a href=3D"http://link.dictionary.com/click/10074782.858915/aHR0cDovL2NsaWN=
+rLmRpY3Rpb25hcnkuY29tL2NsaWNrL2NhNzdyaD9jbGtkZXN0PWh0dHA6Ly93d3cuZGljdGlvbm=
+FyeS5jb20vd29yZG9mdGhlZGF5LzIwMTcvMDcvMjgvYmFsbG9uP3BhcmFtPXdvdGQtZW1haWw/5=
+519e05a3b35d06d728b74f6B9ea23bf7"><img src=3D"http://static.sfdict.com/stat=
+ic/email/LOGO_Header.png" alt=3D"Dictionary.com Word of the Day" style=3D"w=
+idth:80%;"></a></center>
+</td>
+<td style=3D"width: 187px;" >&nbsp; </td>
+</tr>
+<tr>
+<td bgcolor=3D#FFFFFF  style=3D"width: 169px; min-height: 40px;">&nbsp;</td=
+>
+<td bgcolor=3D#3d7bbf style=3D"width: 376px; text-transform: uppercase; col=
+or: white; padding-top: 10px; padding-bottom: 10px;  min-height: 40px;"><fo=
+nt size=3D2>
+<center>July 28, 2017</center></font>
+</td>
+<td bgcolor=3D#FFFFFF  style=3D"width: 169px; min-height: 40px;">&nbsp;</td=
+>
+</tr>
+</table>
+<!--WOTD-->
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-top:=
+ 5px; text-decoration:none; font:50px/50px Verdana, Arial, Helvetica, sans-=
+serif; color:#4A4A4A; font-weight:300;"><a href=3D"http://link.dictionary.c=
+om/click/10074782.858915/aHR0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2NsaWNrL2NhNz=
+dyaD9jbGtkZXN0PWh0dHA6Ly93d3cuZGljdGlvbmFyeS5jb20vd29yZG9mdGhlZGF5LzIwMTcvM=
+DcvMjgvP3BhcmFtPXdvdGQtZW1haWw/5519e05a3b35d06d728b74f6Cac806234" style=3D"=
+text-decoration: none; color: #4A4A4A;">ballon</a>  <font size=3D1><a href=
+=3D"http://link.dictionary.com/click/10074782.858915/aHR0cDovL2NsaWNrLmRpY3=
+Rpb25hcnkuY29tL2NsaWNrL2NhNzdyaD9jbGtkZXN0PWh0dHA6Ly93d3cuZGljdGlvbmFyeS5jb=
+20vd29yZG9mdGhlZGF5LzIwMTcvMDcvMjgvYmFsbG9uP3BhcmFtPXdvdGQtZW1haWw/5519e05a=
+3b35d06d728b74f6D9ea23bf7"><img src=3D"http://static.sfdict.com/static/emai=
+l/sound_icon.png" style=3D"width: 25px; height: 25px; margin-left: 5px;" al=
+t=3D"Audio" /></font></a></td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-top:=
+ 10px; padding-bottom: 10px; color: #AAAAAA; font:16px/24px Verdana, Arial,=
+ Helvetica, sans-serif; ">noun  [<em>French</em> ba-<strong>lawn</strong>]<=
+/td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"color: #666; padding-left: 20px;=
+ padding-bottom: 10px; color: #666; font:16px/26px Verdana, Arial, Helvetic=
+a, sans-serif;">
+<!-- DEFINITIONS -->
+1. <em>Ballet</em>. the lightness and grace of movement that make a dancer =
+appear buoyant.<br>
+<!-- END: DEFINITIONS -->
+</td>
+</tr>
+</table>
+<!--EDITORIAL-->
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#F5F5F5 style=3D"color: #666; padding-left: 20px;=
+ border-width: 0 20px; border-style: solid; border-color: white; padding: 1=
+0px; text-align: center; color:#505251;"><font size=3D3>MORE FROM DICTIONAR=
+Y.COM</font></td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td bgcolor=3D#F5F5F5 width=3D712 style=3D"border-width: 0 20px; border-sty=
+le: solid; border-color: white; padding: 10px 0; text-align: center; color:=
+#505251;">
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 style=3D"margin:auto;" cl=
+ass=3D"tile-container"><tr>
+<td bgcolor=3D#FFFFFF valign=3Dtop align=3Dleft width=3D215 style=3D"float:=
+ left; margin: 0 4px;" class=3D"editorial-tile"><a style=3D"text-decoration=
+: none; color: #4A4A4A;" href=3D"http://link.dictionary.com/click/10074782.=
+858915/aHR0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2NsaWNrLzRmcmlyYj9jbGtkZXN0PWh0=
+dHA6Ly93d3cuZGljdGlvbmFyeS5jb20vc2xpZGVzaG93cy9taXN0YWtlcy1xdW90ZXM_cGFyYW0=
+9d290ZC1lbWFpbA/5519e05a3b35d06d728b74f6B8ddbac10"><img src=3D"http://stati=
+c.sfdict.com/static/email/contentlibrary/7_27_17_albert_einstein_1000x700.j=
+pg" alt=3D"11 Quotes About Learning From Your Mistakes" border=3D"0" width=
+=3D215 height=3D150></a><div style=3D"padding:0 5px; height:120px;">
+<span style=3D"text-transform: uppercase; padding-top: 5px; text-decoration=
+:none;"><font size=3D2 color=3D#CCCCCC><a style=3D"text-decoration: none; c=
+olor: #CCCCCC;" href=3D"http://link.dictionary.com/click/10074782.858915/aH=
+R0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2NsaWNrLzRmcmlyYj9jbGtkZXN0PWh0dHA6Ly93d=
+3cuZGljdGlvbmFyeS5jb20vc2xpZGVzaG93cy9taXN0YWtlcy1xdW90ZXM_cGFyYW09d290ZC1l=
+bWFpbA/5519e05a3b35d06d728b74f6C8ddbac10">quotes</a></font></span><br>
+<a style=3D"text-decoration: none; color: #4A4A4A;" href=3D"http://link.dic=
+tionary.com/click/10074782.858915/aHR0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2Nsa=
+WNrLzRmcmlyYj9jbGtkZXN0PWh0dHA6Ly93d3cuZGljdGlvbmFyeS5jb20vc2xpZGVzaG93cy9t=
+aXN0YWtlcy1xdW90ZXM_cGFyYW09d290ZC1lbWFpbA/5519e05a3b35d06d728b74f6D8ddbac1=
+0"><span style=3D"color: #4A4A4A; font-weight: bold; text-decoration:none;"=
+><font size=3D3>11 Quotes About Learning From Your Mistakes </font></span><=
+/a><br>
+<a style=3D"text-decoration: none; color: #4A4A4A;" href=3D"http://link.dic=
+tionary.com/click/10074782.858915/aHR0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2Nsa=
+WNrLzRmcmlyYj9jbGtkZXN0PWh0dHA6Ly93d3cuZGljdGlvbmFyeS5jb20vc2xpZGVzaG93cy9t=
+aXN0YWtlcy1xdW90ZXM_cGFyYW09d290ZC1lbWFpbA/5519e05a3b35d06d728b74f6E8ddbac1=
+0"><span style=3D"color: #4A4A4A; padding-bottom: 7px;  text-decoration:non=
+e;"><font size=3D2>It's not the end of the world. You learn and you grow.</=
+font></span></a></div>
+</td>
+<td bgcolor=3D#FFFFFF valign=3Dtop align=3Dleft width=3D215 style=3D"float:=
+ left; margin: 0 0;" class=3D"editorial-tile"><a style=3D"text-decoration: =
+none; color: #4A4A4A;" href=3D"http://link.dictionary.com/click/10074782.85=
+8915/aHR0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2NsaWNrLzRmcmlyYj9jbGtkZXN0PWh0dH=
+A6Ly93d3cuZGljdGlvbmFyeS5jb20vc2xpZGVzaG93cy93ZWRkaW5nLXdvcmRzP3BhcmFtPXdvd=
+GQtZW1haWw/5519e05a3b35d06d728b74f6F463d7ea4"><img src=3D"http://static.sfd=
+ict.com/static/email/contentlibrary/deuterogamy_1000x700.jpg" alt=3D"10 Unu=
+sual Wedding Words" border=3D"0" width=3D215 height=3D150><div style=3D"pad=
+ding:0 5px; height:120px;">
+<span style=3D"text-transform: uppercase; padding-top: 5px; text-decoration=
+:none; "><font size=3D2 color=3D#CCCCCC>language</font></span><br>
+<span style=3D"color: #4A4A4A; font-weight: bold; text-decoration:none;"><f=
+ont size=3D3>10 Unusual Wedding Words </font></span><br>
+<span style=3D"color: #4A4A4A; padding-bottom: 7px; height: 35px; text-deco=
+ration:none;"><font size=3D2>The language of weddings may be ready for a sh=
+ake-up</font></span></div></a>
+</td>
+<td bgcolor=3D#FFFFFF valign=3Dtop align=3Dleft width=3D215 style=3D"float:=
+ left; margin: 0 4px;" class=3D"editorial-tile"><a style=3D"text-decoration=
+: none; color: #4A4A4A;" href=3D"http://link.dictionary.com/click/10074782.=
+858915/aHR0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2NsaWNrLzRmcmlyYj9jbGtkZXN0PWh0=
+dHA6Ly93d3cuZGljdGlvbmFyeS5jb20vc2xpZGVzaG93cy9hZ2VkLXdvcmRzP3BhcmFtPXdvdGQ=
+tZW1haWw/5519e05a3b35d06d728b74f6Ge2bd6c40"><img src=3D"http://static.sfdic=
+t.com/static/email/contentlibrary/ancient_words_1000x700.jpg" alt=3D"10 Wor=
+ds That Will Show Your Age" border=3D"0" width=3D215 height=3D150><div styl=
+e=3D"padding:0 5px; height:120px;">
+<span style=3D"text-transform: uppercase; padding-top: 5px; text-decoration=
+:none;"><font size=3D2 color=3D#CCCCCC>language</font></span><br>
+<span style=3D"font-size:14px; color: #4A4A4A; font-weight: bold; text-deco=
+ration:none;"><font size=3D3>10 Words That Will Show Your Age</font></span>=
+<br>
+<span style=3D"color: #4A4A4A; padding-bottom: 7px; height: 35px; text-deco=
+ration:none;"><font size=3D2>Words we've grown up hearing and using reveals=
+ all</font></span></div></a>
+</td></tr></table></td>
+</tr>
+</table>
+<!--WOTD CONTD -->
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-top:=
+ 10px; padding-bottom: 10px; font-size: 16px; color: #AAAAAA;">QUOTES</td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-bott=
+om: 10px; font-size: 14px; color: #666666;">
+<!-- QUOTES -->
+For a ballerina she had pretty much zero <strong>ballon</strong> at this po=
+int. Her feet dragged across the floor like the last two dodoes.<br>
+<font color=3D"#AAAAAA" size=3D"2"> -- Charles D'Ambrosio, "Screenwriter," =
+<cite>The New Yorker</cite>, December 8, 2003</font>
+<!-- END: QUOTES -->
+</td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-top:=
+ 10px; padding-bottom: 10px; color: #AAAAAA;"><font size=3D3>ORIGIN</font><=
+/td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-bott=
+om: 10px; color: #666666; font-size: 14px;">
+<!-- ORIGIN -->
+<em>Ballon</em> is a French term used especially in ballet, describing a da=
+ncer who appears to be floating in the air while executing a jump or other =
+movement, like =E2=80=9CHis Airness,=E2=80=9D Michael Jordan. Earlier Engli=
+sh spellings of the word include <em>balonne</em>, <em>baloune</em>, and <e=
+m>balloone</em> as well as <em>balloon</em>. The original sense of the word=
+ in the early 17th century was =E2=80=9Cball,=E2=80=9D specifically a large=
+, sturdy, inflated leather ball hit with the arms protected with wooden boa=
+rds or kicked like a soccer ball. By the late 17th century <em>ballon</em> =
+and <em>balloon</em> had developed the meaning =E2=80=9Ca large globular gl=
+ass vessel=E2=80=9D used for chemical distillation; and by the late 18th ce=
+ntury, <em>balloon</em> (thus spelled) also meant =E2=80=9Ca round, flexibl=
+e, airtight bag that rises into the air when inflated with heated air or ga=
+s.=E2=80=9D <em>Balloon</em> becomes the standard English spelling in the l=
+ate 17th century. <em>Ballon</em>, as a ballet term, entered English in the=
+ 19th century.
+<!-- END: ORIGIN -->
+</td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"color: #666666; padding: 20px; "=
+>
+<center>
+<!-- SOCIAL 1 -->
+<a href=3D"http://link.dictionary.com/click/10074782.858915/aHR0cHM6Ly93d3c=
+uZmFjZWJvb2suY29tL3NoYXJlci5waHA_dT1odHRwJTNBJTJGJTJGd3d3LmRpY3Rpb25hcnkuY2=
+9tJTJGd29yZG9mdGhlZGF5JTJGMjAxNyUyRjclMkYyOCUyRmJhbGxvbg/5519e05a3b35d06d72=
+8b74f6B6c6909f6"><img src=3D"http://static.sfdict.com/static/email/facebook=
+.png" alt=3D"Share on Facebook" style=3D"border: 5px solid #FFFFFF; height:=
+ 35px;" /></a>
+<!-- END: SOCIAL 1 -->
+<!-- SOCIAL 2 -->
+<a href=3D"http://link.dictionary.com/click/10074782.858915/aHR0cHM6Ly90d2l=
+0dGVyLmNvbS9pbnRlbnQvdHdlZXQ_dGV4dD1Xb3JkJTIwb2YlMjB0aGUlMjBEYXklMjBmcm9tJT=
+IwJTQwRGljdGlvbmFyeWNvbSUyMC0lMjBiYWxsb24lMjAtJTIwdGhlJTIwbGlnaHRuZXNzJTIwY=
+W5kJTIwZ3JhY2UlMjBvZiUyMG1vdmVtZW50JTIwdGhhdCUyMG1ha2UlMjBhJTIwZGFuY2VyJTIw=
+YXBwZWFyJTIwYnVveWFudC4lMjBodHRwJTNBJTJGJTJGd3d3LmRpY3Rpb25hcnkuY29tJTJGd29=
+yZG9mdGhlZGF5JTJGMjAxNyUyRjclMkYyOCUyRmJhbGxvbg/5519e05a3b35d06d728b74f6B27=
+eeef31"><img src=3D"http://static.sfdict.com/static/email/twitter.png"  alt=
+=3D"Share on Twitter" style=3D"border: 5px solid #FFFFFF; height: 35px;" />=
+</a>
+<!-- END: SOCIAL 2 -->
+<!-- SOCIAL 3 -->
+<a href=3D"http://link.dictionary.com/click/10074782.858915/aHR0cHM6Ly93d3c=
+uaW5zdGFncmFtLmNvbS9kaWN0aW9uYXJ5Y29tLw/5519e05a3b35d06d728b74f6B68ba1a7f">=
+<img src=3D"http://static.sfdict.com/static/email/instagram.png" alt=3D"Fol=
+low us on Instagram"  style=3D"border: 5px solid #FFFFFF; height: 35px;"/><=
+/a>
+<!-- END: SOCIAL 3 -->
+<!-- SOCIAL 4 -->
+<a href=3D"http://link.dictionary.com/click/10074782.858915/aHR0cHM6Ly93d3c=
+ucGludGVyZXN0LmNvbS9kaWN0aW9uYXJ5Y29tLw/5519e05a3b35d06d728b74f6Bd9869918">=
+<img src=3D"http://static.sfdict.com/static/email/pinterest.png"  alt=3D"Fo=
+llow us on Pinterest"  style=3D"border: 5px solid #FFFFFF; height: 35px;"/>=
+</a>
+<!-- END: SOCIAL 4 -->
+</center></td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712>&nbsp;</td >
+</tr>
+</table>
+<!--POWERINBOX-->
+<tr>
+<td bgcolor=3D"#EEE" width=3D"30">&nbsp;</td>
+<td bgcolor=3D"#FFF">
+<table bgcolor=3D"#FFF" cellspacing=3D"0" border=3D0 style=3D"margin:0 auto=
+ !important;" cellpadding=3D"0" align=3D"center">
+<tr>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td bgcolor=3D"#f5f5f5" style=3D"padding:5px 5px 20px;" class=3D"block4">
+<table border=3D"0" width=3D"674" cellspacing=3D"0" style=3D"margin:0 auto =
+!important;" class=3D"flexible" cellpadding=3D"0" align=3D"center">
+<tbody>
+<tr>
+<td style=3D"padding:0 0 1px 1px;" class=3D"block2">
+<table class=3D"flexible" width=3D"674" cellpadding=3D"0" cellspacing=3D"5"=
+ border=3D"0" style=3D"border-collapse:collapse; mso-table-lspace:0pt; mso-=
+table-rspace:0pt;">
+<tbody>
+<tr>
+<td style=3D"font:21px/30px Verdana,Arial, Helvetica, sans-serif; color:#50=
+5251; padding:0 0 13px;text-decoration:none;" align=3D"center" colspan=3D"5=
+">MORE FROM THE WEB</td>
+</tr>
+<tr>
+<td align=3D"center" valign=3D"top">
+<div class=3D"powerinbox">
+<!-- domain: rs-stripe.dictionary.com -->
+<!-- branding: rs-branding.dictionary.com -->
+<table width=3D"674" class=3D"fallback" border=3D"0" cellspacing=3D"0" cell=
+padding=3D"0" style=3D"width:100%;max-width:674px;">
+<tbody>
+<tr>
+<td style=3D"border-collapse: collapse;">
+<table width=3D"214" align=3D"left" class=3D"col" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"width:32%;max-width:214px;">
+<tbody>
+<tr>
+<td style=3D"border-collapse: collapse;">
+<a href=3D"http://link.dictionary.com/click/10074782.858915/aHR0cDovL3JzLXN=
+0cmlwZS5kaWN0aW9uYXJ5LmNvbS9zdHJpcGUvcmVkaXJlY3Q_Y3NfZW1haWw9c29tZXRpbWU1OD=
+U4QGdtYWlsLmNvbSZjc19zZW5kaWQ9MTAwNzQ3ODImY3NfZXNwPXNhaWx0aHJ1JmNzX29mZnNld=
+D0wJmNzX3N0cmlwZWlkPTQ5NTY/5519e05a3b35d06d728b74f6B8fe6cd29" style=3D"bord=
+er-style: none;outline: none;text-decoration: none;" target=3D"_blank" ref=
+=3D"nofollow"><img alt=3D"" height=3D"auto" style=3D"display:block;border:0=
+;height:auto;line-height:100%;outline:none;text-decoration:none;width:100%;=
+max-width:100%;" width=3D"214" src=3D"http://rs-stripe.dictionary.com/strip=
+e/image?cs_email=3Dsometime5858@gmail.com&cs_sendid=3D10074782&cs_esp=3Dsai=
+lthru&cs_offset=3D0&cs_stripeid=3D4956"></a>
+</td>
+</tr>
+</tbody>
+</table>
+<!--[if mso]></td><td valign=3D"top"><![endif]-->
+<table width=3D"13" align=3D"left" class=3D"colspace" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" style=3D"width:2%;max-width:13px;">
+<tbody>
+<tr>
+<td align=3D"center" height=3D"15" valign=3D"top" style=3D"font-size:15px; =
+height:15px; line-height:15px; vertical-align:top">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<!--[if mso]></td><td valign=3D"top"><![endif]-->
+<table width=3D"214" align=3D"left" class=3D"col" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"width:32%;max-width:214px;">
+<tbody>
+<tr>
+<td style=3D"border-collapse: collapse;">
+<a href=3D"http://link.dictionary.com/click/10074782.858915/aHR0cDovL3JzLXN=
+0cmlwZS5kaWN0aW9uYXJ5LmNvbS9zdHJpcGUvcmVkaXJlY3Q_Y3NfZW1haWw9c29tZXRpbWU1OD=
+U4QGdtYWlsLmNvbSZjc19zZW5kaWQ9MTAwNzQ3ODImY3NfZXNwPXNhaWx0aHJ1JmNzX29mZnNld=
+D0xJmNzX3N0cmlwZWlkPTQ5NTY/5519e05a3b35d06d728b74f6C1af6e989" style=3D"bord=
+er-style: none;outline: none;text-decoration: none;" target=3D"_blank" ref=
+=3D"nofollow"><img alt=3D"" height=3D"auto" style=3D"display:block;border:0=
+;height:auto;line-height:100%;outline:none;text-decoration:none;width:100%;=
+max-width:100%;" width=3D"214" src=3D"http://rs-stripe.dictionary.com/strip=
+e/image?cs_email=3Dsometime5858@gmail.com&cs_sendid=3D10074782&cs_esp=3Dsai=
+lthru&cs_offset=3D1&cs_stripeid=3D4956"></a>
+</td>
+</tr>
+</tbody>
+</table>
+<!--[if mso]></td><td valign=3D"top"><![endif]-->
+<table width=3D"13" align=3D"left" class=3D"colspace" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" style=3D"width:2%;max-width:13px;">
+<tbody>
+<tr>
+<td align=3D"center" height=3D"15" valign=3D"top" style=3D"font-size:15px; =
+height:15px; line-height:15px; vertical-align:top">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<!--[if mso]></td><td valign=3D"top"><![endif]-->
+<table width=3D"214" align=3D"left" class=3D"col" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"width:32%;max-width:214px;">
+<tbody>
+<tr>
+<td style=3D"border-collapse: collapse;">
+<a href=3D"http://link.dictionary.com/click/10074782.858915/aHR0cDovL3JzLXN=
+0cmlwZS5kaWN0aW9uYXJ5LmNvbS9zdHJpcGUvcmVkaXJlY3Q_Y3NfZW1haWw9c29tZXRpbWU1OD=
+U4QGdtYWlsLmNvbSZjc19zZW5kaWQ9MTAwNzQ3ODImY3NfZXNwPXNhaWx0aHJ1JmNzX29mZnNld=
+D0yJmNzX3N0cmlwZWlkPTQ5NTY/5519e05a3b35d06d728b74f6D85ed45e5" style=3D"bord=
+er-style: none;outline: none;text-decoration: none;" target=3D"_blank" ref=
+=3D"nofollow"><img alt=3D"" height=3D"auto" style=3D"display:block;border:0=
+;height:auto;line-height:100%;outline:none;text-decoration:none;width:100%;=
+max-width:100%;" width=3D"214" src=3D"http://rs-stripe.dictionary.com/strip=
+e/image?cs_email=3Dsometime5858@gmail.com&cs_sendid=3D10074782&cs_esp=3Dsai=
+lthru&cs_offset=3D2&cs_stripeid=3D4956"></a>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table width=3D"674" class=3D"container" border=3D"0" cellspacing=3D"0" cel=
+lpadding=3D"0" style=3D"width:100%;max-width:674px;">
+<tbody>
+<tr>
+<td align=3D"right">
+<a href=3D"http://link.dictionary.com/click/10074782.858915/aHR0cDovL3JzLWJ=
+yYW5kaW5nLmRpY3Rpb25hcnkuY29tLz91dG1fc291cmNlPWNvbnRlbnRzdHJpcGUmdXRtX21lZG=
+l1bT1lbWFpbCZ1dG1fY2FtcGFpZ249cnNfNDk1NiZ1dG1fY29udGVudD1hbmltYXRlZGxvZ28/5=
+519e05a3b35d06d728b74f6B8302348f" style=3D"display: inline-block; border: 0=
+; outline: none; text-decoration: none;" target=3D"_blank" ref=3D"nofollow"=
+><img src=3D"http://rs-branding.dictionary.com/recommend/transparent.gif" w=
+idth=3D"143" height=3D"40" border=3D"0" alt=3D"Learn more about RevenueStri=
+pe..."></a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+</tr>
+</table>
+</td>
+<td bgcolor=3D"#EEE" width=3D"30">&nbsp;</td>
+</tr>
+<!--END POWERINBOX-->
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td bgcolor=3D#444444 width=3D356 style=3D"padding-left: 40px; border-top: =
+10px; color: #FFFFFF; padding: 15px;"><font size=3D2>&copy; 2017 DICTIONARY=
+.COM</font></td>
+<td bgcolor=3D#444444 width=3D356 style=3D"padding-left: 40px; border-top: =
+10px; color: #FFFFFF; padding: 15px; position: relative; right: 0px; text-a=
+lign: right;"><font size=3D2><a style=3D"text-decoration: none; color: #FFF=
+FFF;" href=3D"http://link.dictionary.com/click/10074782.858915/aHR0cDovL2Ns=
+aWNrLmRpY3Rpb25hcnkuY29tL2NsaWNrL2Nia2gzdw/5519e05a3b35d06d728b74f6B721b756=
+7">ABOUT</a> <img src=3D"http://static.sfdict.com/assets/1823-1506493-0.gif=
+" height=3D"1" border=3D0 width=3D"25">  <a style=3D"text-decoration: none;=
+ color: #FFFFFF;" href=3D"http://link.dictionary.com/click/10074782.858915/=
+aHR0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2NsaWNrL3ZxNjg1NA/5519e05a3b35d06d728b=
+74f6B658b7dc6">CONTACT</a></font></td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#AAAAAA style=3D"color: #666666; padding-left: 40=
+px;">&nbsp;</td >
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td bgcolor=3D#FFFFFF valign=3Dtop style=3D"width: 356px; padding-left: 40p=
+x; border-top: 10px; padding: 15px; color: #4A4A4A; "> You are subscribed t=
+o the <br/>Word of the Day as: <br/><a href=3D"mailto:sometime5858@gmail.co=
+m">sometime5858@gmail.com</a><br/>Subscriber since: <br>March 30, 2015<br/>
+<a href=3D"http://link.dictionary.com/oc/5519e05a3b35d06d728b74f65zxr2.ieqr=
+/8c41defb">Unsubscribe</a></td>
+<td bgcolor=3D#FFFFFF valign=3Dtop style=3D"width: 356px; padding-left: 40p=
+x; border-top: 10px; padding: 15px; color: #4A4A4A; text-align: right;">
+Dictionary.com, LLC. <br/>555 12th Street <br/>Suite 500 <br/>Oakland CA 94=
+607 <br/><br/><a  href=3D"http://link.dictionary.com/manage/prefcenter-js?e=
+mail=3Dsometime5858@gmail.com&hash=3D9101f6746407d5fc6c0ca08c0a3296fd">Mana=
+ge your subscription</a>
+</td>
+</tr>
+</table>
+</td>
+<td width=3D19>&nbsp;</td></tr></table>
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"24" height=
+=3D"6">
+<tbody>
+<tr>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528600&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10933697"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528601&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10933697"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528602&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10933697"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528603&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10933697"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528604&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10933697"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528605&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10933697"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528606&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10933697"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528607&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10933697"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528608&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10933697"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528609&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10933697"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528610&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10933697"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528611&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D10933697"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+</tr>
+</tbody>
+</table>
+<!-- END: RTB -->
+<a href=3D"www.dictionary.com"><img src=3D"http://link.dictionary.com/img/5=
+519e05a3b35d06d728b74f65zxr2.ieqr/46e46eef.gif" alt=3D"" border=3D"0" /></a=
+>
+</body>
+</html>
+
+------=_Part_17778161_1473669622.1501283144947--
+

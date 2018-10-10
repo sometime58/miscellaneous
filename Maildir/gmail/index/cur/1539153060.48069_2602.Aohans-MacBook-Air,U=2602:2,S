@@ -1,0 +1,902 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 2002:a1f:328a:0:0:0:0:0 with SMTP id y132-v6csp1097927vky;
+        Wed, 1 Aug 2018 12:06:11 -0700 (PDT)
+X-Google-Smtp-Source: AAOMgpdNb1VitT1Ot7pmWfTHVu+K6NGiR5w+5bZ+zUiV0Q3OMU3a0fSR+LugKNvWspcfUYL11bOE
+X-Received: by 2002:a17:902:bc8b:: with SMTP id bb11-v6mr25335966plb.112.1533150371242;
+        Wed, 01 Aug 2018 12:06:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1533150371; cv=none;
+        d=google.com; s=arc-20160816;
+        b=GZjipqcfo9yWcX0t93fgx/vWSFs/5hdV9rPT93zCExxuaA12yBDPLVJwrHSlEdlpv0
+         F7wMLdmIQ2xua2y0jt/in/faSNKqJSEEdDS4M6lV4UtWVnU9Jodn3Zb8vy/oVCiyHOjo
+         B0ub29efBzIffg9myeMuJlrOyghTFfqa4zMl7BYE0wedbnwkuN9G2Ee5dW9LfhjE+aqM
+         AjoYbnzRF5VmSZk2Nj9VoyAyVbGknHZ6zuXWpLCW9CEBvCisQtoVDbKlrPxIQd/lJsh2
+         I7hYMKFGaJCxHnn7P4arowz1D+bREPr2d6iFsQJkdHMI/uJLOmebgQ0meW1nnXOeZWZX
+         0gJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:subject:message-id:to:from
+         :date:dkim-signature:dkim-filter:arc-authentication-results;
+        bh=geWLbr3FYTah8RIyYPgkZv7elLiiWVbQoEXIEsCYiJ8=;
+        b=hoIAGM3eWYKjyYS7XmSumrxXY4it8KcfxMfSsD8PcL+LIKOgX/3Cv8wuI+wypLUTUU
+         3eRGxpKbDoYEXDWTEQJaqfutUC7I9XNZbtrwrxJ58HGE9u1jw6Y+w95frILx/bs3LtTr
+         ZeZIpWlUzBa5ekAsmoOsVMu2TIM6iCGU6D3/px7lhZ7NS8na1hcF57RxEHIcMMTuBbqN
+         8ydvkJYJjHs44l3OOl7mvIT2K8XWKyOSXB5P7ie8JCLylaPCJFJWz1WvILl1xflX6PQw
+         1oeHCc5Zip6hwY9ggb7wnetTHxiRnXy2fcp714GkarvEIcekreGRH+ANmtrtP9hW1IKg
+         nCaQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@ebay.com.au header.s=dkim1k header.b=jx7fsCaT;
+       spf=pass (google.com: domain of ebay@ebay.com.au designates 66.211.184.70 as permitted sender) smtp.mailfrom=ebay@ebay.com.au;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=ebay.com.au
+Return-Path: <ebay@ebay.com.au>
+Received: from mxphxpool1004.ebay.com (mxphxpool1004.ebay.com. [66.211.184.70])
+        by mx.google.com with ESMTPS id l1-v6si15878254pld.184.2018.08.01.12.06.10
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 01 Aug 2018 12:06:11 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ebay@ebay.com.au designates 66.211.184.70 as permitted sender) client-ip=66.211.184.70;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@ebay.com.au header.s=dkim1k header.b=jx7fsCaT;
+       spf=pass (google.com: domain of ebay@ebay.com.au designates 66.211.184.70 as permitted sender) smtp.mailfrom=ebay@ebay.com.au;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=ebay.com.au
+Received: from slckirk0-1896103.stratus.slc.ebay.com (slckirk0-1896103.stratus.slc.ebay.com [10.218.24.204])
+	by mxphxpool1004.ebay.com (8.14.7/8.14.7) with ESMTP id w71J697j027688
+	for <sometime5858@gmail.com>; Wed, 1 Aug 2018 12:06:10 -0700
+DKIM-Filter: OpenDKIM Filter v2.10.3 mxphxpool1004.ebay.com w71J697j027688
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; d=ebay.com.au; s=dkim1k;
+	t=1533150370; bh=Fnnhxw2D7Uu70WZQQAaEpSaV9GE=;
+	h=Date:From:To:Subject;
+	b=jx7fsCaTeKpWYopmBur0hX7Soqbgj2cgQHVH9cSZuRR91WMAPBRib2ID6GFZKV/Fj
+	 BAVhzoMNvnC5rGT4JgJSSXo0yXGyp5CuYmupGpBKZkklxpAZDoC44dBvrdt9/W2Kc0
+	 VwiyrGCCVX/CLb0xLbY1GW5uEMFXLaqZcX1kavUc=
+Date: Wed, 1 Aug 2018 12:06:10 -0700 (GMT-07:00)
+From: eBay <ebay@ebay.com.au>
+To: sometime5858@gmail.com
+Message-ID: <0AC3C68F-B5D9A91259E-016345B0796A-000000000F086FF4@starship>
+Subject:    Do you like your 'Shiseido The Hair Care Adenovital Advanced
+ Scalp Essence   180ml/6oz' ?
+MIME-Version: 1.0
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-eBay-MailTracker: 11241.000.15.0.dc964272954b4aaa8f950c269a8412b0
+X-TUID: hLFGYihkEuo2
+
+<!DOCTYPE html>
+<!--8b6750ee-458c-4c94-a127-44e629bb4920_v28-->
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+"></meta><style type=3D"text/css">
+
+@media only screen and (min-width: 601px) {
+
+body[yahoo] .device-width {
+
+=09width: 584px !important
+
+}
+.show-in-mobile {
+
+      display: none !important;
+      max-height: 0px !important;
+      max-width: 0px !important;
+      overflow: hidden !important;
+
+}
+
+.hide-in-mobile {
+
+      display: block !important;
+      max-height: none !important;
+      max-width: none !important;
+      overflow: visible !important;
+
+}
+}
+
+@media only screen and (max-width: 600px) {
+
+body[yahoo] .device-width {
+
+=09width: 584px !important
+
+}
+
+}
+
+
+@media only screen and (max-width: 479px) {
+
+
+body[yahoo] .device-width {
+
+=09width: 304px !important;
+
+}
+
+body[yahoo] .hide-in-mobile {
+
+      display: none !important;
+      max-height: 0px !important;
+      max-width: 0px !important;
+      overflow: hidden !important;
+
+}
+
+body[yahoo] .show-in-mobile {
+
+      display: block !important;
+      max-height: none !important;
+      max-width: none !important;
+      overflow: visible !important;
+
+}
+
+body[yahoo] .div-mobile-product-image {
+    align:center;
+}
+
+.mobile-template-min-width {
+    min-width: 320px !important;
+}
+
+.mobile-cta-resize {
+    width: 304px !important;
+}
+
+}
+
+
+body[yahoo] .cta-block {
+
+=09min-width: 103px;
+    max-width: 300px;
+}
+body[yahoo] .cta-block a {
+
+=09display: block;
+=09padding: 10px 0;
+}
+body[yahoo] .cta-block td{
+
+=09padding: 0px !important
+}
+
+@font-face {
+    font-family: "Market Sans";
+    src: url('https://ir.ebaystatic.com/cr/v/c1/market-sans/v1.0/MarketSans=
+-Regular-WebS.eot');
+    src: url('https://ir.ebaystatic.com/cr/v/c1/market-sans/v1.0/MarketSans=
+-Regular-WebS.eot?#iefix') format('embedded-opentype'), url('https://ir.eba=
+ystatic.com/cr/v/c1/market-sans/v1.0/MarketSans-Regular-WebS.woff2') format=
+('woff2'), url('https://ir.ebaystatic.com/cr/v/c1/market-sans/v1.0/MarketSa=
+ns-Regular-WebS.woff') format('woff'), url('https://ir.ebaystatic.com/cr/v/=
+c1/market-sans/v1.0/MarketSans-Regular-WebS.ttf') format('truetype'), url('=
+https://ir.ebaystatic.com/cr/v/c1/market-sans/v1.0/MarketSans-Regular-WebS.=
+svg#MarketSans-Regular-WebS') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Market Sans";
+    src: url('https://ir.ebaystatic.com/cr/v/c1/market-sans/v1.0/MarketSans=
+-SemiBold-WebS.eot');
+    src: url('https://ir.ebaystatic.com/cr/v/c1/market-sans/v1.0/MarketSans=
+-SemiBold-WebS.eot?#iefix') format('embedded-opentype'), url('https://ir.eb=
+aystatic.com/cr/v/c1/market-sans/v1.0/MarketSans-SemiBold-WebS.woff2') form=
+at('woff2'), url('https://ir.ebaystatic.com/cr/v/c1/market-sans/v1.0/Market=
+Sans-SemiBold-WebS.woff') format('woff'), url('https://ir.ebaystatic.com/cr=
+/v/c1/market-sans/v1.0/MarketSans-SemiBold-WebS.ttf') format('truetype'), u=
+rl('https://ir.ebaystatic.com/cr/v/c1/market-sans/v1.0/MarketSans-SemiBold-=
+WebS.svg#MarketSans-SemiBold-WebS') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+body { width: 100% !important; -webkit-text-size-adjust: 100% !important; -=
+ms-text-size-adjust: 100% !important; -webkit-font-smoothing: antialiased !=
+important; margin: 0 !important; padding: 0 8px 100px 8px; font-family: 'Ma=
+rket Sans', Helvetica, Arial, sans-serif !important; background-color:#ffff=
+ff}
+img { display: block; text-decoration: none !important; -ms-interpolation-m=
+ode: bicubic !important; }
+
+td{word-wrap: break-word;}
+
+.webkit {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+</style>
+
+
+<!--[if gte mso 9]>
+
+=09<style>table{mso-table-lspace:0pt; mso-table-rspace:0pt;}</style>
+
+=09<![endif]--> <style type=3D"text/css">
+    #ebaylogo {
+        background: #ffffff !important;
+    }
+    .cta-container {
+        width: 100% !important;
+    }
+    .title-main-container {
+        background: #ffffff !important;
+    }
+    .title-main-container table{
+        background: #ffffff !important;
+    }
+    @media only screen and (max-width: 479px) {
+        .remove-float {
+            float: none !important;
+        }
+        .mobile-remove-min-width {
+            min-width: 0 !important;
+        }
+        .mobile-item-details-width {
+            width: 304px !important;
+        }
+        .mobile-item-details-width span {
+            text-align: center !important;
+        }
+        .product-name {
+            text-align: center !important;
+        }
+        .stars-container .mobile-remove-min-width span{
+            text-align: center !important;
+        }
+        .mobile-template-min-width {
+            min-width: 320px !important;
+        }
+        .mobile-width-100 {
+            width: 100% !important;
+        }
+        .product-image-container a {
+            width: 140px !important;
+            height: 140px !important;
+            max-width: 140px !important;
+        }
+        .product-image-container span {
+            max-width: 140px !important;
+            max-height: 140px !important;
+        }
+        .product-text-container {
+            padding-top: 15px !important;
+        }
+        .cta-container-header {
+            text-align: center !important;
+        }
+        .stars-container {
+            width: 100% !important;
+            text-align: center !important;
+        }
+        .stars-container tr {
+            width: 100% !important;
+            text-align: center !important;
+        }
+        .rating-cell {
+            width: 60px !important;
+            padding: 0px !important;
+            text-align: center !important;
+        }
+        .rating-cell a {
+            text-align: center !important;
+            display: inline-block !important;
+        }
+        #item-detail-container {
+            background: #f9f9f9 !important;
+        }
+        #war-title {
+            padding-bottom: 20px !important;
+        }
+    }
+    @media yahoo{
+        #item-detail-container {
+            background: #ffffff !important;
+        }
+    }
+</style>
+  </head>
+  <body yahoo=3D"fix"><table id=3D"area2Container" width=3D"100%" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" style=3D"border-co=
+llapse: collapse !important; border-spacing: 0 !important; border: none; ba=
+ckground-color:#ffffff">
+<tr>
+<td width=3D"100%" valign=3D"top" style=3D"border-collapse: collapse !impor=
+tant; border-spacing: 0 !important; border: none;">
+<table class=3D"device-width" style=3D"border-collapse: collapse !important=
+; border-spacing: 0 !important; border: none;" align=3D"center" bgcolor=3D"=
+#ffffff" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"584">
+<tbody>
+<tr>
+<td height=3D"1" valign=3D"top" style=3D"border-collapse: collapse !importa=
+nt; border-spacing: 0 !important; padding: 0; border: none; font-size: 1px;=
+ line-height: 1px; color: #ffffff">
+Share your thoughts in a product review.
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</table>
+ <style>
+@media screen and (max-width:479px) {
+.mobile-remove-min-width {min-width: 0 !important;}
+.mobile-width-100 {width: 100% !important;}
+}
+</style>
+<table id=3D"ebaylogo" width=3D"100%" border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" align=3D"center" style=3D"border-collapse: collapse !important;=
+ border-spacing: 0 !important; border: none; background-color:#ffffff;">
+<tr>
+<td width=3D"100%" valign=3D"top" style=3D"border-collapse: collapse !impor=
+tant; border-spacing: 0 !important; border: none;">
+<table class=3D"mobile-width-100 mobile-template-min-width" width=3D"584" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" bgcolor=3D=
+"#ffffff" style=3D"min-width: 320px; max-width: 600px; border-collapse: col=
+lapse !important; border-spacing: 0 !important; border: none;">
+<tr>
+<td valign=3D"top" style=3D"border-collapse: collapse !important; border-sp=
+acing: 0 !important; padding: 0; border: none;">
+<table width=3D"584" class=3D"device-width header-logo mobile-remove-min-wi=
+dth" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" bgco=
+lor=3D"#ffffff" style=3D"min-width: 584px; border-collapse: collapse !impor=
+tant; border-spacing: 0 !important; border: none;">
+<tr>
+<td valign=3D"top" style=3D"border-collapse: collapse !important; border-sp=
+acing: 0 !important; padding: 15px 0 0; border: none;"><a href=3D"https://r=
+over.ebay.com/rover/0/e11241.m5214.l3127/7?euid=3Ddc964272954b4aaa8f950c269=
+a8412b0&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fwww.ebay.com.au%2Fulk%2Fstart%=
+2Fshop&sojTags=3Dbu=3Dbu" style=3D"text-decoration: none; color: #0654ba; d=
+isplay: block;"><img src=3D"https://p.ebaystatic.com/aw/email/eBayLogo_blue=
+_x3.png" width=3D"80" border=3D"0" alt=3D"eBay" style=3D"display: inline bl=
+ock; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic;=
+ border: none;" /></a><img src=3D"https://rover.ebay.com/roveropen/0/e11241=
+/7?euid=3Ddc964272954b4aaa8f950c269a8412b0&bu=3D44317500519&sojTags=3Dbu=3D=
+bu" alt=3D"" aria-hidden=3D"true" role=3D"presentation" style=3D"float: lef=
+t; border:0; height:1;"/></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table> <style>
+@media only screen and (max-width: 479px) {
+    .rnp-main-title {
+        font-size: 24px !important;
+        line-height: 120% !important;
+    }
+
+=09
+
+}=20
+</style>
+
+<table width=3D"100%" class=3D"title-main-container" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" align=3D"center" style=3D"border-collapse: colla=
+pse !important; border-spacing: 0 !important; border: 0; background-color: =
+#ffffff">
+
+  <tr>
+    <td width=3D"100%" valign=3D"top" class=3D"title-main-container" style=
+=3D"border-collapse: collapse !important; border-spacing: 0 !important; bor=
+der: 0; padding: 0;">
+      <table width=3D"100%" class=3D"main-container mobile-width-100 mobile=
+-template-min-width" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=
+=3D"center" bgcolor=3D"#ffffff" style=3D"border-collapse: collapse !importa=
+nt; border-spacing: 0 !important; border: none;">
+        <tr>
+          <td valign=3D"top" class=3D"" style=3D"border-collapse: collapse =
+!important; border-spacing: 0 !important; border: 0;">
+              <table width=3D"584" class=3D"device-width" border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0" align=3D"center" style=3D"border-collapse: =
+collapse !important; border-spacing: 0 !important; border: 0;">
+                <tr>
+                                        <td width=3D"584" valign=3D"top" st=
+yle=3D"border-collapse: collapse !important; border-spacing: 0 !important; =
+border: 0; padding: 15px 0 20px 0px;">
+                            <span style=3D"font-family: Market Sans, Helvet=
+ica Neue, Helvetica, Arial, sans-serif; font-weight: bold; line-height: 107=
+%; color: #006efc; text-align: left; font-size:28px; margin: 0; padding: 0;=
+ display: inline-block;" align=3D"left">
+                                Share your product review now and help mill=
+ions of people shop smarter on eBay.
+                            </span>
+                      </td>
+                </tr>
+                  <tr>
+                      <td id=3D"war-title" width=3D"584" valign=3D"top" sty=
+le=3D"border-collapse: collapse !important; border-spacing: 0 !important; b=
+order: 0; padding: 0 0 4px 0px;">
+                            <span style=3D"font-family: Market Sans, Helvet=
+ica Neue, Helvetica, Arial, sans-serif; font-weight: bold; line-height: 124=
+%; color: #111820; text-align: left; font-size:18px; margin: 0; padding: 0;=
+ display: inline-block;">We've made it quick and easy!</span>
+                      </td>
+                    </tr>
+                </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>=20
+
+<table id=3D"item-detail-container" width=3D"100%" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" align=3D"center" style=3D"border-collapse: collaps=
+e !important; border-spacing: 0 !important; border: 0;">
+  <tr>
+    <td width=3D"100%" valign=3D"top" style=3D"border-collapse: collapse !i=
+mportant; border-spacing: 0 !important; border: 0; padding-top: 24px;">
+        <table width=3D"584" class=3D"main-container device-width" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" style=3D"border=
+-collapse: collapse !important; border-spacing: 0 !important; border: 0; ma=
+x-width: 584px;">
+=09=09=09<tr>
+=09=09=09=09<td valign=3D"top" class=3D"single-product-block block-320" sty=
+le=3D"border-collapse: collapse !important; border-spacing: 0 !important; p=
+adding: 0 0px 25px; border: 0;">
+=09=09=09=09    <!--[if gte mso 9]>
+    =09=09=09=09   <table width=3D"auto" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" align=3D"left" style=3D"float:left; border-collapse: collaps=
+e !important; border-spacing: 0 !important; border: none;">
+                            <tr>
+            =09=09=09=09=09<td valign=3D"top" style=3D"border-collapse: col=
+lapse !important; border-spacing: 0 !important; padding: 0 0 0px; border: n=
+one;"><![endif]-->
+=09=09=09=09=09                <table class=3D"remove-float" width=3D"auto"=
+ border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" style=3D=
+"float:left; border-collapse: collapse !important; border-spacing: 0 !impor=
+tant; border: none;">
+                                        <tr>
+                        =09=09=09=09=09<td valign=3D"top" style=3D"border-c=
+ollapse: collapse !important; border-spacing: 0 !important; padding: 0; bor=
+der: none;">
+                        =09=09=09=09=09=09<table width=3D"auto" align=3D"le=
+ft" cellspacing=3D"0" cellpadding=3D"0" style=3D"float: left; border-collap=
+se: collapse !important; border-spacing: 0 !important; border: none; margin=
+-bottom: 0px !important;">
+                        =09=09=09=09=09=09=09<tr>
+                        =09=09=09=09=09=09=09=09<td  width=3D"198" height=
+=3D"198" valign=3D"center" align=3D"center" style=3D"border-collapse: colla=
+pse !important; border-spacing: 0 !important; background-color: #ffffff;  p=
+adding: 0; margin: 0;overflow: hidden; border: 2px solid #cccccc;">
+                            =09=09=09=09=09=09=09=09=09=09=09    <a href=3D=
+"https://rover.ebay.com/rover/0/e11241.m5381.l7457/7?euid=3Ddc964272954b4aa=
+a8f950c269a8412b0&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fwww.ebay.com.au%2Ful=
+k%2Furw%2Fwrite-review%2F2008829891%3F_itm%3D273167277891%26_trn%3D20192308=
+46017%26nltn%3DsMwrApTBpOt_RTI&sojTags=3Dbu=3Dbu" style=3D"text-decoration:=
+ none; color: #0654ba; display:inline-block; position: relative; width: 198=
+px; height: 198px; max-width: 198px;line-height: 198px; overflow: hidden;pa=
+dding: 0px; margin: 0px;">
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09<img src=
+=3D"https://i.ebayimg.com/00/s/NzAwWDcwMA=3D=3D/z/aGIAAOSwFq1a7~fK/$_2.JPG?=
+set_id=3D880000500F" alt=3D"Shiseido The Hair Care Adenovital Advanced Scal=
+p Essence   180ml/6oz" class=3D"product-image" style=3D"outline: none; text=
+-decoration: none; -ms-interpolation-mode: bicubic; border-radius: 0px; bor=
+der: 0; max-width: 198px; max-height: 198px; display: inline-block; vertica=
+l-align: middle; text-align: center; position: absolute; top: 0; left: 0; b=
+ottom: 0; right: 0; margin: auto;"/>
+                            =09=09=09=09=09=09=09=09=09=09=09=09</a>
+                        =09=09=09=09=09=09=09=09</td>
+                        =09=09=09=09=09=09=09=09<!--[if gte mso 9]>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<td class=3D"single-product-pa=
+d" style=3D"padding: 0 14px 0 0; border-collapse: collapse !important; bord=
+er-spacing: 0 !important; border: none;">&nbsp;</td>
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<![endif]-->
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09<!--[if !mso]><!-->
+                        =09=09=09=09=09=09=09=09<td class=3D"single-product=
+-pad" style=3D"padding: 0 16px 0 0; border-collapse: collapse !important; b=
+order-spacing: 0 !important; border: none; font-size: 0px; width: 0px;">&nb=
+sp;</td>
+                        =09=09=09=09=09=09=09=09<!--<![endif]-->
+            =09=09=09=09=09=09=09               </tr>
+            =09=09=09=09=09=09                </table>
+            =09=09=09=09=09=09        </td>
+            =09=09=09=09=09=09    </tr>
+            =09=09=09=09=09=09</table>
+
+                        <!--[if gte mso 9]></td>
+    =09=09=09=09=09    </tr>
+    =09=09=09=09=09</table><![endif]-->
+    =09=09=09=09=09<!--[if gte mso 9]>
+    =09=09=09=09=09<table class=3D"mobile-item-details-width mobile-remove-=
+min-width" height=3D"0" align=3D"left" border=3D"0" cellspacing=3D"0" cellp=
+adding=3D"0" style=3D"min-width: 338px; table-layout: fixed; border-collaps=
+e: collapse !important; border-spacing: 0 !important; border: none;">
+    =09=09=09=09=09<![endif]-->
+    =09=09=09=09=09<!--[if !mso]><!-->=20
+
+=09=09=09=09=09=09<table width=3D"342" border=3D"0" cellspacing=3D"0" cellp=
+adding=3D"0" class=3D"mobile-item-details-width mobile-remove-min-width ite=
+m-title-block" style=3D"min-width: 342px; max-width: 375px; table-layout: f=
+ixed; border-collapse: collapse !important; border-spacing: 0 !important; b=
+order: none;" align=3D"center">
+=09=09=09=09=09=09    <!--<![endif]-->
+=09=09=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09=09    <td>
+=09=09=09=09=09=09=09=09        <table height=3D"0" align=3D"left" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"table-layout: fixed; bo=
+rder-collapse: collapse !important; border-spacing: 0 !important; border: n=
+one;">
+=09=09=09=09=09=09=09=09            <tr>
+=09=09=09=09=09=09=09=09                <!--[if gte mso 9]>
+            =09=09=09=09=09=09=09    <td width=3D"338" class=3D"mobile-item=
+-details-width" style=3D"border-collapse: collapse !important; border-spaci=
+ng: 0 !important; border: none; padding: 0; margin: 0;">
+            =09=09=09=09=09=09=09    <![endif]-->
+            =09=09=09=09=09=09=09    <!--[if !mso]><!-->
+=09=09=09=09=09=09=09=09                <td class=3D"mobile-item-details-wi=
+dth mobile-remove-min-width" style=3D"min-width: 342px; border-collapse: co=
+llapse !important; border-spacing: 0 !important; border: none; padding: 0; =
+margin: 0;">
+=09=09=09=09=09=09=09=09                     <!--<![endif]-->
+=09=09=09=09=09=09=09=09                    <table height=3D"0" align=3D"le=
+ft" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"table-layout:=
+ fixed; border-collapse: collapse !important; border-spacing: 0 !important;=
+ border: none;">
+=09=09=09=09=09=09=09=09                      =20
+=09=09=09=09=09=09=09=09                        <tr>
+                        =09=09=09=09=09=09=09=09=09=09<td class=3D"product-=
+text-container" valign=3D"top" style=3D"border-collapse: collapse !importan=
+t; border-spacing: 0 !important; border: none; padding: 0; margin: 0;">
+                        =09=09=09=09=09=09=09=09=09=09=09<span class=3D"pro=
+duct-name" style=3D"font-family: Market Sans, Helvetica Neue, Helvetica, Ar=
+ial, sans-serif; font-weight: 500; color: #333333; text-align: left; font-s=
+ize: 18px; line-height: 123%; margin: 0; padding: 0; display: inline-block;=
+ width: 100%" align=3D"left">
+                        =09=09=09=09=09=09=09=09=09=09=09=09=09<a href=3D"h=
+ttps://rover.ebay.com/rover/0/e11241.m5381.l7054/7?euid=3Ddc964272954b4aaa8=
+f950c269a8412b0&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fwww.ebay.com.au%2Fulk%=
+2Furw%2Fwrite-review%2F2008829891%3F_itm%3D273167277891%26_trn%3D2019230846=
+017%26nltn%3DsMwrApTBpOt_RTI&sojTags=3Dbu=3Dbu" style=3D"text-decoration: n=
+one; color: #333333">Shiseido The Hair Care Adenovital Advanced Scalp Essen=
+ce   180ml/6oz</a>
+                        =09=09=09=09=09=09=09=09=09=09=09</span>
+                        =09=09=09=09=09=09=09=09=09=09</td>
+                =09=09=09=09=09=09=09=09=09    </tr>
+                =09=09=09=09=09=09=09=09=09 =20
+                            =09=09=09=09=09=09=09<tr>
+      =20
+                            =09=09=09=09=09=09=09=09=09<td valign=3D"top" c=
+lass=3D"mobile-item-details-width cta-container-header" style=3D"border-col=
+lapse: collapse !important; border-spacing: 0 !important; padding-top: 27px=
+; padding-bottom: 34px; border: 0;">
+
+                            =09=09=09=09=09=09=09=09=09=09<table align=3D"l=
+eft" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"stars-contai=
+ner" style=3D"table-layout: fixed; border-collapse: collapse !important; bo=
+rder-spacing: 0 !important;border: 0;display: block;">
+                            =09=09=09=09=09=09=09=09=09=09
+                            =09=09=09=09=09=09=09=09=09   =09=09<tr>
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09<td vali=
+gn=3D"top" class=3D"rating-cell" style=3D"border-collapse: collapse !import=
+ant; border-spacing: 0 !important; padding-left: 0px; border: 0;">
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09=09<a hr=
+ef=3D"https://rover.ebay.com/rover/0/e11241.m5381.l6725/7?euid=3Ddc96427295=
+4b4aaa8f950c269a8412b0&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fwww.ebay.com.au=
+%2Fulk%2Furw%2Fwrite-review%2F2008829891%3F_itm%3D273167277891%26_trn%3D201=
+9230846017%26nltn%3DsMwrApTBpOt_RTI%26rating%3D1&sojTags=3Dbu=3Dbu">
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<i=
+mg src=3D"http://ir.ebaystatic.com/f/kbfuittxam0a5oxdao1rneeaxeh.png" style=
+=3D"border: 0">
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09=09</a>
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09<td vali=
+gn=3D"top" class=3D"rating-cell" style=3D"border-collapse: collapse !import=
+ant; border-spacing: 0 !important; padding-left: 10px; border: 0;">
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09=09<a hr=
+ef=3D"https://rover.ebay.com/rover/0/e11241.m5381.l6725/7?euid=3Ddc96427295=
+4b4aaa8f950c269a8412b0&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fwww.ebay.com.au=
+%2Fulk%2Furw%2Fwrite-review%2F2008829891%3F_itm%3D273167277891%26_trn%3D201=
+9230846017%26nltn%3DsMwrApTBpOt_RTI%26rating%3D2&sojTags=3Dbu=3Dbu">
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<i=
+mg src=3D"http://ir.ebaystatic.com/f/kbfuittxam0a5oxdao1rneeaxeh.png" style=
+=3D"border: 0">
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09=09</a>
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09<td vali=
+gn=3D"top" class=3D"rating-cell" style=3D"border-collapse: collapse !import=
+ant; border-spacing: 0 !important; padding-left: 10px; border: 0;">
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09=09<a hr=
+ef=3D"https://rover.ebay.com/rover/0/e11241.m5381.l6725/7?euid=3Ddc96427295=
+4b4aaa8f950c269a8412b0&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fwww.ebay.com.au=
+%2Fulk%2Furw%2Fwrite-review%2F2008829891%3F_itm%3D273167277891%26_trn%3D201=
+9230846017%26nltn%3DsMwrApTBpOt_RTI%26rating%3D3&sojTags=3Dbu=3Dbu">
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<i=
+mg src=3D"http://ir.ebaystatic.com/f/kbfuittxam0a5oxdao1rneeaxeh.png" style=
+=3D"border: 0">
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09=09</a>
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09<td vali=
+gn=3D"top" class=3D"rating-cell" style=3D"border-collapse: collapse !import=
+ant; border-spacing: 0 !important; padding-left: 10px; border: 0;">
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09=09<a hr=
+ef=3D"https://rover.ebay.com/rover/0/e11241.m5381.l6725/7?euid=3Ddc96427295=
+4b4aaa8f950c269a8412b0&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fwww.ebay.com.au=
+%2Fulk%2Furw%2Fwrite-review%2F2008829891%3F_itm%3D273167277891%26_trn%3D201=
+9230846017%26nltn%3DsMwrApTBpOt_RTI%26rating%3D4&sojTags=3Dbu=3Dbu">
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<i=
+mg src=3D"http://ir.ebaystatic.com/f/kbfuittxam0a5oxdao1rneeaxeh.png" style=
+=3D"border: 0">
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09=09</a>
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09<td vali=
+gn=3D"top" class=3D"rating-cell" style=3D"border-collapse: collapse !import=
+ant; border-spacing: 0 !important; padding-left: 10px; border: 0;">
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09=09<a hr=
+ef=3D"https://rover.ebay.com/rover/0/e11241.m5381.l6725/7?euid=3Ddc96427295=
+4b4aaa8f950c269a8412b0&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fwww.ebay.com.au=
+%2Fulk%2Furw%2Fwrite-review%2F2008829891%3F_itm%3D273167277891%26_trn%3D201=
+9230846017%26nltn%3DsMwrApTBpOt_RTI%26rating%3D5&sojTags=3Dbu=3Dbu">
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09=09=09<i=
+mg src=3D"http://ir.ebaystatic.com/f/kbfuittxam0a5oxdao1rneeaxeh.png" style=
+=3D"border: 0">
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09=09</a>
+                            =09=09=09=09=09=09=09=09=09=09=09=09=09</td>
+                            =09=09=09=09=09=09=09=09=09=09=09</tr>
+                            =09=09=09=09=09=09=09=09=09=09</table>
+                            =09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09                            </tr>
+=09=09=09=09=09=09=09                            <tr>
+=09=09=09=09=09=09=09                                <!-- 5 star rating cod=
+e -->
+                    =09=09=09=09=09=09=09=09=09    <!--[if gte mso 9]>
+                                =09=09=09=09=09=09=09    <td height=3D"48" =
+width=3D"100%" class=3D"mobile-item-details-width" style=3D"margin-bottom: =
+10px;background: #006efc;height:48px;width:100px;padding:0px;" align=3D"cen=
+ter" bgcolor=3D"#006efc">
+                                =09=09=09=09=09=09=09    <![endif]-->
+                                =09=09=09=09=09=09=09    <!--[if !mso]><!--=
+>
+=09=09=09=09=09=09=09                                <td height=3D"48" widt=
+h=3D"100%" class=3D"mobile-item-details-width" style=3D"margin-bottom: 10px=
+;background: #006efc;height:48px; width:100%;" align=3D"center" bgcolor=3D"=
+#006efc">
+=09=09=09=09=09=09=09                                    <!--<![endif]-->
+                =09=09=09=09=09=09=09=09                <a href=3D"https://=
+rover.ebay.com/rover/0/e11241.m5381.l6726/7?euid=3Ddc964272954b4aaa8f950c26=
+9a8412b0&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fwww.ebay.com.au%2Fulk%2Furw%2=
+Fwrite-review%2F2008829891%3F_itm%3D273167277891%26_trn%3D2019230846017%26n=
+ltn%3DsMwrApTBpOt_RTI&sojTags=3Dbu=3Dbu" style=3D"text-decoration: none;">
+                    =09=09=09=09=09=09=09=09                <span style=3D"=
+font-family: Market Sans, Helvetica Neue, Helvetica, Arial, sans-serif; fon=
+t-weight: bold; line-height: 22px; color: #ffffff;  font-size:18px; margin:=
+ 0; padding: 0; display: inline-block; width: 100%; text-align: center;">
+                    =09=09=09=09=09=09=09=09                    Rate this p=
+roduct
+                    =09=09=09=09=09=09=09=09                </span>
+                =09=09=09=09=09=09=09=09                </a>
+                    =09=09=09=09=09=09=09=09            </td>
+=09=09=09=09=09=09=09                            </tr>
+                =09=09=09=09=09=09=09=09=09</table>
+            =09=09=09=09=09=09=09=09=09</td>
+            =09=09=09=09=09=09=09=09
+            =09=09=09=09=09=09=09=09</tr>
+    =09=09=09=09=09=09=09=09=09</table>
+=09=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09</table>
+
+=09=09=09=09</td>
+=09=09=09</tr>
+=09=09</table>
+    </td>
+  </tr>
+</table>  <style>
+@media screen and (max-width:479px) {
+.resize-108 { width: 108px !important;}
+}
+</style>
+<table id=3D"appdownload" width=3D"100%" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" align=3D"center" style=3D"border-collapse: collapse !importa=
+nt; border-spacing: 0 !important; border: none; background-color:#ffffff">
+<tr>
+<td width=3D"100%" valign=3D"top" style=3D"border-collapse: collapse !impor=
+tant; border-spacing: 0 !important; border: none;">
+<table width=3D"584" class=3D"device-width mobile-remove-min-width" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" style=3D"min-wi=
+dth: 584px; border-collapse: collapse !important; border-spacing: 0 !import=
+ant; border:none;">
+<tr>
+<td valign=3D"top" style=3D"border-collapse: collapse !important; border-sp=
+acing: 0 !important; padding: 18px 0 16px 0; border-width: 1px 0 0 0; borde=
+r-color: #dddddd #dddddd #dddddd #dddddd; border-style: solid none none non=
+e;">
+<h6 align=3D"left" style=3D"font-family: Helvetica, Arial, sans-serif; font=
+-weight: bold; line-height: 18px; color: #111820; text-align: left; font-si=
+ze: 16px; margin: 0; padding: 0;">
+<span style=3D"font-family: Market Sans, Helvetica, Arial, sans-serif !impo=
+rtant;">Shop anywhere with the eBay app</span>
+</h6>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"border-collapse: collapse !important; border-sp=
+acing: 0 !important; border-width: 0 0 1px 0; border-color: #dddddd #dddddd=
+ #dddddd #dddddd; border-style: none none solid none; padding: 0 0 16px 0">
+<table style=3D"border-collapse: collapse !important; border-spacing: 0 !im=
+portant; border: none;">
+<tr>
+<td>
+<a aria-label=3D"Download the eBay app from the App Store for iOS devices" =
+href=3D"https://rover.ebay.com/rover/0/e11241.m4699.l3872/7?euid=3Ddc964272=
+954b4aaa8f950c269a8412b0&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fanywhere.ebay=
+.com.au%2Fmobile%2Fiphone%2Febay%2F&sojTags=3Dbu=3Dbu" style=3D"text-decora=
+tion: none;">
+<img alt=3D"Download the eBay app from the App Store for iOS devices" class=
+=3D"resize-108" width=3D"136" src=3D"https://p.ebaystatic.com/aw/email/down=
+load_ebayapp_apple_3x.png"/>
+</a>
+</td>
+<td style=3D"padding: 0 0 0 16px;">
+<a aria-label=3D"Get the eBay app for Android" href=3D"https://rover.ebay.c=
+om/rover/0/e11241.m4699.l3871/7?euid=3Ddc964272954b4aaa8f950c269a8412b0&bu=
+=3D44317500519&loc=3Dhttps%3A%2F%2Fanywhere.ebay.com.au%2Fmobile%2Fandroid%=
+2Febay%2F&sojTags=3Dbu=3Dbu" style=3D"text-decoration: none;">
+<img alt=3D"Get the eBay app for Android" class=3D"resize-108" width=3D"136=
+" src=3D"https://p.ebaystatic.com/aw/email/download_ebayapp_google_3x.png"/=
+>
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table> <table id=3D"socialmedia" width=3D"100%" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" align=3D"center" style=3D"border-collapse: collaps=
+e !important; border-spacing: 0 !important; border: none; background-color:=
+#ffffff">
+<tr>
+<td width=3D"100%" valign=3D"top" style=3D"border-collapse: collapse !impor=
+tant; border-spacing: 0 !important; border: none;">
+<table width=3D"584" class=3D"device-width mobile-remove-min-width" cellspa=
+cing=3D"0" cellpadding=3D"0" border=3D"0" bgcolor=3D"#ffffff" align=3D"cent=
+er" style=3D"min-width: 584px; border-collapse: collapse !important; border=
+-spacing: 0 !important; border: none;">
+<tbody>
+<tr>
+<td valign=3D"top" style=3D"border-collapse: collapse !important; border-sp=
+acing: 0 !important; padding: 18px 0 4px 0;">
+<table style=3D"border-collapse: collapse !important; border-spacing: 0 !im=
+portant; border: none;">
+<tr>
+<td>
+<a aria-label=3D"Link to Facebook" href=3D"https://rover.ebay.com/rover/0/e=
+11241.m5219.l9641/7?euid=3Ddc964272954b4aaa8f950c269a8412b0&bu=3D4431750051=
+9&loc=3Dhttps%3A%2F%2Fwww.facebook.com%2FeBay.com.au%2F&sojTags=3Dbu=3Dbu">
+<img width=3D"24" alt=3D"Facebook icon" src=3D"https://p.ebaystatic.com/aw/=
+email/facebook-icon_3x.png" />
+</a>
+</td>
+<td style=3D"padding: 0 0 0 8px;">
+<a aria-label=3D"Link to Twitter" href=3D"https://rover.ebay.com/rover/0/e1=
+1241.m5219.l9642/7?euid=3Ddc964272954b4aaa8f950c269a8412b0&bu=3D44317500519=
+&loc=3Dhttps%3A%2F%2Ftwitter.com%2Febayau%3Flang%3Den&sojTags=3Dbu=3Dbu">
+<img width=3D"24" alt=3D"Twitter icon" src=3D"https://p.ebaystatic.com/aw/e=
+mail/twitter-icon_3x.png"/>
+</a>
+</td>
+<td style=3D"padding: 0 0 0 8px;">
+<a aria-label=3D"Link to Pinterest" href=3D"https://rover.ebay.com/rover/0/=
+e11241.m5219.l9643/7?euid=3Ddc964272954b4aaa8f950c269a8412b0&bu=3D443175005=
+19&loc=3Dhttps%3A%2F%2Fwww.pinterest.com%2FeBayAustralia%2F&sojTags=3Dbu=3D=
+bu">
+<img width=3D"24" alt=3D"Pinterest icon" src=3D"https://p.ebaystatic.com/aw=
+/email/pinterest-icon_3x.png"/>
+</a>
+</td>
+<td style=3D"padding: 0 0 0 8px;">
+<a aria-label=3D"Link to Instagram" href=3D"https://rover.ebay.com/rover/0/=
+e11241.m5219.l9644/7?euid=3Ddc964272954b4aaa8f950c269a8412b0&bu=3D443175005=
+19&loc=3Dhttps%3A%2F%2Fwww.instagram.com%2Febayau%2F&sojTags=3Dbu=3Dbu">
+<img width=3D"24" alt=3D"Instagram icon" src=3D"https://p.ebaystatic.com/aw=
+/email/instagram-icon_3x.png"/>
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</table> <table id=3D"area10Container" width=3D"100%" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" align=3D"center" style=3D"border-collapse: coll=
+apse !important; border-spacing: 0 !important; border: none; background-col=
+or: #ffffff">
+<tr>
+<td width=3D"100%" valign=3D"top" style=3D"border-collapse: collapse !impor=
+tant; border-spacing: 0 !important; border: none;">
+<table width=3D"584" class=3D"device-width" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" align=3D"center" style=3D"border-collapse: collapse !impo=
+rtant; border-spacing: 0 !important; border: none;">
+<tr>
+<td valign=3D"top" class=3D"email-preferences-block" style=3D"border-collap=
+se: collapse !important; border-spacing: 0 !important; border-bottom-width:=
+ 1px; border-bottom-color: #dddddd; padding: 20px 0 16px; border-style: non=
+e none solid;">
+<p style=3D"font-family: Helvetica, Arial, sans-serif; font-weight: normal;=
+ line-height: normal; color: #333333; text-align: left; font-size: 14px; ma=
+rgin: 0 0 14px;" align=3D"left">Update your email preferences
+</p>
+<p style=3D"font-family: Helvetica, Arial, sans-serif; font-weight: normal;=
+ line-height: normal; color: #767676; text-align: left; font-size: 14px; ma=
+rgin: 0 0 0; padding: 0 0 0 0;" align=3D"left">You're receiving this email =
+based on your eBay account preferences. To change which emails you receive =
+from eBay, go to <a href =3D 'https://rover.ebay.com/rover/0/e11241.m2901.l=
+1141/7?euid=3Ddc964272954b4aaa8f950c269a8412b0&bu=3D44317500519&loc=3Dhttps=
+%3A%2F%2Fmy.ebay.com.au%2Fws%2FeBayISAPI.dll%3FMyEbayBeta%26CurrentPage%3DM=
+yeBayNextNotificationPreferences&sojTags=3Dbu=3Dbu' style=3D'text-decoratio=
+n: underline; color: #006efc;'>Communication preferences</a> in My eBay.
+</p>
+</td>
+</tr></table>
+</td>
+</tr>
+</table> <table id=3D"area11Container" width=3D"100%" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" align=3D"center" style=3D"border-collapse: coll=
+apse !important; border-spacing: 0 !important; border: none; background-col=
+or: #ffffff">
+<tr>
+<td width=3D"100%" valign=3D"top" style=3D"border-collapse: collapse !impor=
+tant; border-spacing: 0 !important; border: none;">
+<table width=3D"584" class=3D"device-width" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" align=3D"center" style=3D"border-collapse: collapse !impo=
+rtant; border-spacing: 0 !important; border: none;">
+<tr>
+<td class=3D"ebay-footer-block" style=3D"border-collapse: collapse !importa=
+nt; border-spacing: 0 !important; padding: 16px 0 60px; border: none;">
+<div id=3D"ReferenceId">
+<p style=3D"font-family: Helvetica, Arial, sans-serif; font-weight: normal;=
+ line-height: normal; color: #333333; text-align: left; font-size: 14px; ma=
+rgin: 0 0 14px;" align=3D"left">
+Email reference ID: [#dc964272954b4aaa8f950c269a8412b0#]
+</p></div>
+<p style=3D"font-family: Helvetica, Arial, sans-serif; font-weight: normal;=
+ line-height: normal; color: #767676; text-align: left; font-size: 14px; ma=
+rgin: 0 0 10px;" align=3D"left">
+We don't check this mailbox, so please don't reply to this message. If you =
+have a question, go to <a style=3D"text-decoration: underline; color: #006e=
+fc;" href=3D"https://rover.ebay.com/rover/0/e11241.m1852.l6369/7?euid=3Ddc9=
+64272954b4aaa8f950c269a8412b0&bu=3D44317500519&loc=3Dhttps%3A%2F%2Focsnext.=
+ebay.com.au%2Focs%2Fhome&sojTags=3Dbu=3Dbu">Help & Contact</a>.
+</p>
+<p style=3D"font-family: Helvetica, Arial, sans-serif; font-weight: normal;=
+ line-height: normal; color: #767676; text-align: left; font-size: 14px; ma=
+rgin: 0 0 10px;" align=3D"left">
+eBay sent this message to Aohan Wang (aohawan0). Learn more about <a href =
+=3D 'https://rover.ebay.com/rover/0/e11241.m1852.l3167/7?euid=3Ddc964272954=
+b4aaa8f950c269a8412b0&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fpages.ebay.com.a=
+u%2Fhelp%2Faccount%2Fprotecting-account.html&sojTags=3Dbu=3Dbu' style=3D'te=
+xt-decoration: underline; color: #006efc;'>account protection</a>. eBay is =
+committed to your privacy. Learn more about our <a href =3D 'https://rover.=
+ebay.com/rover/0/e11241.m1852.l3168/7?euid=3Ddc964272954b4aaa8f950c269a8412=
+b0&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fpages.ebay.com.au%2Fhelp%2Fpolicies=
+%2Fprivacy-policy.html&sojTags=3Dbu=3Dbu' style=3D'text-decoration: underli=
+ne; color: #006efc;'>privacy notice</a> and <a href =3D 'https://rover.ebay=
+.com/rover/0/e11241.m1852.l3165/7?euid=3Ddc964272954b4aaa8f950c269a8412b0&b=
+u=3D44317500519&loc=3Dhttps%3A%2F%2Fpages.ebay.com.au%2Fhelp%2Fpolicies%2Fu=
+ser-agreement.html&sojTags=3Dbu=3Dbu' style=3D'text-decoration: underline; =
+color: #006efc;'>user agreement</a><span aria-hidden=3D'true'>.</span>
+</p>
+<p style=3D"font-family: Helvetica, Arial, sans-serif; font-weight: normal;=
+ line-height: normal; color: #767676; text-align: left; font-size: 14px; ma=
+rgin: 0 0 10px;" align=3D"left">
+&copy;2018 eBay Inc., eBay International AG Helvetiastrasse 15/17 - P.O. Bo=
+x 133, 3000 Bern 6, Switzerland
+</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table></body>
+</html>

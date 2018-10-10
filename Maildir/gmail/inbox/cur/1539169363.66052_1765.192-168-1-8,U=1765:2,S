@@ -1,0 +1,713 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 10.31.98.193 with SMTP id w184csp1137532vkb;
+        Sun, 21 May 2017 19:58:05 -0700 (PDT)
+X-Received: by 10.98.37.68 with SMTP id l65mr23252690pfl.175.1495421885379;
+        Sun, 21 May 2017 19:58:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1495421885; cv=none;
+        d=google.com; s=arc-20160816;
+        b=IrtdNgDwG4K+lcBYoMuHnqBBUE5gt7qlVCm84WZ2pU+XKsR5W/0q+VPT8/6+O+nqen
+         SBbO5WqJnFmlIAjlbXR0f4piJg7BjO6oUychrVXa04TJ+J6dmUgr/HtgrK3lWgF0NMFC
+         YQB0dh3iKDC3w1TZDgrmntYck4YcdznR1AOP54qHOcRSLtihZKQ1aact1LO8b3nCRTue
+         gTUuqO1nwgT3oIpqxCgXyp6snT1XJKLQvDLP0CvZMTFN+wUME97PJajGKAtxiAlDY7CZ
+         UUsQKYk88soHFZdUEgq81Qem5GZYlpHVZPeVGA3FFheAoSVV8j7Ycm4xQSy52zsDq3yW
+         QYfg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=from:mime-version:subject:message-id:to:date:dkim-signature
+         :arc-authentication-results;
+        bh=EcLijbETrD9Ul1IpPKs5BEnM169Ahue5mc8L06dcfFk=;
+        b=Mve3zHvAGLZxft00w2PeBT+GJw6JRUO/DBdrZ4RP5GkW4mnsQsE2K9CbgKXJXjUFs3
+         2TQX/sclBQBa59xlWJlFB8D8qJ7Oeu8Y4xPmQKzmWuvfHEMruq0m5rlaump1ulkwcnyw
+         VW7XThGYuUFIoee434yaN+RGN8h23WsJpj7BN756dGFJ0mb2guW4KZvt500h+WrLGu8X
+         DmsZG7aFJ3+fJd21boNCr1ygIFGMzc6TNUVq6hv97AmG7cbIPF5bMYXMMPZoEy2WN10T
+         mG7QX/cmNtfjLQZXstmkwSs0mhQIUP6WKD25Tjum4+DZmB2yf/H6l8wLlWiNuUzp3Tc/
+         IPOw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@auspost.com.au;
+       spf=pass (google.com: domain of tracknoreply@auspost.com.au designates 121.200.236.243 as permitted sender) smtp.mailfrom=Tracknoreply@auspost.com.au;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=auspost.com.au
+Return-Path: <Tracknoreply@auspost.com.au>
+Received: from mx11.firstwave.com.au (mx11.firstwave.com.au. [121.200.236.243])
+        by mx.google.com with ESMTPS id 60si15902143plf.301.2017.05.21.19.58.03
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 21 May 2017 19:58:05 -0700 (PDT)
+Received-SPF: pass (google.com: domain of tracknoreply@auspost.com.au designates 121.200.236.243 as permitted sender) client-ip=121.200.236.243;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@auspost.com.au;
+       spf=pass (google.com: domain of tracknoreply@auspost.com.au designates 121.200.236.243 as permitted sender) smtp.mailfrom=Tracknoreply@auspost.com.au;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=auspost.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=auspost.com.au; i=@auspost.com.au; q=dns/txt;
+  s=20160614; t=1495421884; x=1526957884;
+  h=date:to:message-id:subject:mime-version:from;
+  bh=ChUODmbeIVw8tsDSGlGAjvW3BC8K+eomjDvmLNO0ZI8=;
+  b=HCNn1Wy8TP8F2nR0PBXJkEGB3lHw5bSIpf/2cOnZ7PnY7aRhcS2UJkub
+   OOYnyxAvg2nfiYVZpnlVZfh8e6NuuZSyrlXZ/o4WF1j2T7JyCcUvEjtsQ
+   HhID4Qhwjg0g9e5BFaMzX+TPLtXaJYfQJBk0zfw6nUAE78kPmZdxCxVqP
+   A=;
+Received: from unknown (HELO HPWIEXSES03.corp.auspost.local) ([155.144.24.139])
+  by mailob.firstwave.com.au with ESMTP/TLS/AES128-SHA; 22 May 2017 12:58:03 +1000
+Received: from HPVIEXSHS01.corp.auspost.local (10.3.47.13) by
+ HPWIEXSES03.corp.auspost.local (155.144.24.139) with Microsoft SMTP Server
+ (TLS) id 14.3.352.0; Mon, 22 May 2017 12:57:56 +1000
+Received: from hx1043 (10.3.2.13) by smtpappsp11.corp.auspost.local
+ (10.3.47.13) with Microsoft SMTP Server id 14.3.352.0; Mon, 22 May 2017
+ 12:57:54 +1000
+Date: Mon, 22 May 2017 12:57:54 +1000
+To: <sometime5858@gmail.com>
+Message-ID: <1355404686.322644.1495421874784.JavaMail.Tracknoreply@auspost.com.au>
+Subject: Your delivery from SmilePro Worldwide is ready to be sent
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="----=_Part_322643_375489871.1495421874750"
+From: <Tracknoreply@auspost.com.au>
+Return-Path: Tracknoreply@auspost.com.au
+X-EXCLAIMER-MD-CONFIG: 7389ef33-22c0-434a-b8e6-1ca0843d08aa
+X-TUID: WSEIsZx7QFWn
+
+------=_Part_322643_375489871.1495421874750
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!doctype html>
+<html>
+<head>
+    <meta charset=3D"utf-8">
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1" />
+    <meta http-equiv=3D"X-UA-compatible" content=3D"IE=3Dedge" />
+    <title>ep1b</title>
+    <style type=3D"text/css">
+
+        /* base css */
+        body { width: 100%; margin: 0; padding: 0; -webkit-font-smoothing: =
+antialiased; font-family: Arial, Helvetica, sans-serif; }
+        table { border-collapse: collapse; }
+        .addClassToSection a { color: #000000!important; }
+        .ExternalClass { width: 100%; line-height: 100%; }
+        .appleLinks a { color:#5e514d; text-decoration: none; }
+        .appleLinksWhite a { color:#ffffff; text-decoration: none; }
+        /* media queries */
+        @media only screen and (max-device-width: 540px)  {
+            /* core styles */
+            .device-hide {
+                display:none!important;
+            }
+            .device-width {
+                width:320px!important;
+            }
+            .device-width-inner {
+                width:250px!important;
+            }
+            .gmail-hack {
+                letter-spacing:320px!important;
+            }
+            .container-sides-padding {
+                padding-left:35px!important;
+                padding-right:35px!important;
+            }
+            .footer-social-padding {
+                padding-top:15px!important;
+            }
+            .footer-disclaimer-padding {
+                padding-top:30px!important;
+            }
+            .footer-links-padding {
+                padding-top:5px!important;
+            }
+            .footer-logo-collapse-padding {
+                padding-top:30px!important;
+            }
+            .outer-gap-height {
+                height:30px!important;
+                line-height:30px!important;
+            }
+            .footer-gap-height {
+                height:35px!important;
+                line-height:35px!important;
+            }
+
+            /* font styles */
+            .title-copy-font {
+                font-size:24px!important;
+                line-height:28px!important;
+            }
+            .header-copy-font {
+                font-size:15px!important;
+            }
+
+            .colour-switch {
+                color:#382f2d!important;
+            }
+
+            /*
+                footer needs lots of space in between links
+                using four &nbsp; inside a span, adjust size for mobile
+
+                - margin/padding is inconsistent in outlook 7, 10, 13
+                - cant use td for padding as its too wide on mobile
+            */
+            .mobile-separator {
+                letter-spacing: 0px!important;
+            }
+            .mobile-primary-cta {
+                text-align: center;
+                width: 68% !important;
+                border-left: 40px solid #dc1928 !important;
+                border-right: 40px solid #dc1928 !important;
+            }
+            .mobile-secondary-cta {
+                text-align: center;
+                padding: 15px 25px 15px 25px !important;
+            }
+            .track-status {
+                padding: 0 5px 0 35px !important;
+            }
+
+            /*
+                Template specific changes
+
+                Could be unique per template, namespace like so:;
+                transactional-title, single-message-body, multi-message-gap
+
+            */
+            .generic-title-padding {
+                padding-top:25px!important;
+                padding-bottom:25px!important;
+            }
+            .generic-body-padding {
+                padding-top:35px!important;
+            }
+            .generic-gap-height {
+                height:30px!important;
+                line-height:30px!important;
+            }
+            .generic-collapse {
+                width:250px!important;
+                text-align:left!important;
+            }
+            .insert-title-padding {
+                padding-top: 40px!important;
+            }
+        }
+
+    </style>
+</head>
+<body width=3D"100%" bgcolor=3D"#f3f1ee" style=3D"margin: 0; padding: 0;">
+
+<!-- container -->
+<table class=3D"device-width" width=3D"100%" align=3D"center" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#f3f1ee" style=3D"border-col=
+lapse: collapse; table-layout: fixed; margin: 0 auto;">
+    <tr>
+        <td align=3D"center">
+
+            <!-- gmail hack to force desktop version -->
+            <div class=3D"gmail-hack" style=3D"letter-spacing: 500px; line-=
+height: 0; mso-hide: all">&nbsp;</div>
+
+
+            <!-- inner single -->
+            <table class=3D"device-width" width=3D"500" align=3D"center" va=
+lign=3D"middle" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"b=
+order-collapse: collapse;">
+                <tr>
+                    <td class=3D"container-sides-padding" style=3D"padding:=
+30px 60px 35px 60px;">
+
+                        <!-- left logo -->
+                        <table align=3D"left" valign=3D"middle" border=3D"0=
+" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse: collapse;">
+                            <tr>
+                                <td>
+                                    <a href=3D"http://auspost.com.au?ilink=
+=3Dtrack-ep1b-edm-aplogo" style=3D"border:none; text-decoration:none;"><img=
+ src=3D"http://auspost.com.au/images/emails/track/new-template-post-notext-=
+logo-grey.png" width=3D"45" height=3D"45" border=3D"0" margin=3D"0" alt=3D"=
+Australia Post Logo" style=3D"display:block; min-width:45px; min-height:45p=
+x;" /></a>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- right text -->
+                        <table align=3D"right" valign=3D"middle" border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse: collapse;"=
+>
+                            <tr>
+                                <td class=3D"header-copy-font" style=3D"tex=
+t-align:right; padding-top:10px; color:#5e514d; font-family: Arial, Helveti=
+ca, sans-serif; font-size:16px; line-height:20px;">
+                                    Tracking update
+                                </td>
+                            </tr>
+                        </table>
+
+                    </td>
+                </tr>
+            </table>
+            <!-- begin: section -->
+            <!-- inner corners top -->
+            <table class=3D"device-hide" width=3D"500" align=3D"center" val=
+ign=3D"top" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" bgcolor=3D"#ff=
+ffff" style=3D"border-collapse: collapse;">
+                <tr>
+                    <td width=3D"4" height=3D"4" style=3D"mso-line-height-r=
+ule:exactly; line-height:4px; font-size:4px;">
+
+                        <!-- top left corner -->
+                        <img src=3D"http://auspost.com.au/images/emails/tra=
+ck/new-template-corner-tl.png" width=3D"4" height=3D"4" border=3D"0" margin=
+=3D"0" alt=3D"" style=3D"display:block;" />
+                    </td>
+                    <td width=3D"496" height=3D"4" style=3D"mso-line-height=
+-rule:exactly; line-height:4px; font-size:4px;">
+                        <!-- middle gap -->
+                        &nbsp;
+                    </td>
+                    <td width=3D"4" height=3D"4" style=3D"mso-line-height-r=
+ule:exactly; line-height:4px; font-size:4px;">
+
+                        <!-- top right corner -->
+                        <img src=3D"http://auspost.com.au/images/emails/tra=
+ck/new-template-corner-tr.png" width=3D"4" height=3D"4" border=3D"0" margin=
+=3D"0" alt=3D"" style=3D"display:block;"/>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- inner single hero text -->
+            <table class=3D"device-width" width=3D"500" align=3D"center" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" bgcolor=3D"#ffffff" style=3D=
+"border-collapse: collapse;">
+                <tr>
+                    <td class=3D"container-sides-padding single-title-paddi=
+ng" style=3D"color:#382f2d; font-family: Arial, Helvetica, sans-serif; font=
+-size:28px; line-height:32px; padding:52px 60px 0 60px; text-align:left;">
+                        <span class=3D"title-copy-font" style=3D"color:#382=
+f2d; font-family: Arial, Helvetica, sans-serif; font-size:28px; line-height=
+:32px;">Your delivery will be </span>
+                        <br>
+                        <span class=3D"title-copy-font" style=3D"color:#dc1=
+928; font-family: Arial, Helvetica, sans-serif; font-size:28px; line-height=
+:32px;">on its way soon</span>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- inner single body text -->
+            <table class=3D"device-width" width=3D"500" align=3D"center" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" bgcolor=3D"#ffffff" style=3D=
+"border-collapse: collapse;">
+                <tr>
+                    <td class=3D"container-sides-padding single-body-paddin=
+g" style=3D"padding:30px 60px 0 60px; text-align:left; color:#382f2d; font-=
+family: Arial, Helvetica, sans-serif; font-size:20px; line-height:25px;">
+                        From <strong>SmilePro Worldwide</strong>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- inner single tracking status element -->
+            <table class=3D"device-width" width=3D"500" align=3D"center" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" bgcolor=3D"#ffffff" style=3D=
+"border-collapse: collapse;">
+                <tr>
+                    <td class=3D"container-sides-padding single-body-paddin=
+g track-status" style=3D"padding:5px 0px 0 60px; line-height:22px;" width=
+=3D"18" height=3D"18">
+                        <!--[if mso]>
+                        <v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:v=
+ml" xmlns:w=3D"urn:schemas-microsoft-com:office:word" style=3D"height:18px;=
+v-text-anchor:left;width:18px;" arcsize=3D"9%" stroke=3D"f" fillcolor=3D"#8=
+177E7">
+                            <w:anchorlock/>
+                            <center>
+
+                        <![endif]-->
+                        <div class=3D"status-dot" width=3D"18" height=3D"18=
+" style=3D"background-color:#8177E7; text-align:left; width:18px; height:18=
+px; display:inline-block; border-radius:3px;">
+                        </div>
+                        <!--[if mso]>
+                        </center>
+                        </v:roundrect>
+                        <![endif]-->
+                    </td>
+                    <td class=3D"" style=3D"padding:15px 60px 0 0px; line-h=
+eight:22px; color:#807370; font-family: Arial, Helvetica, sans-serif; font-=
+size:18px; text-align:left;">
+                        <table align=3D"left" border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" bgcolor=3D"#ffffff" style=3D"border-collapse: collapse;=
+">
+                            <tr>
+                                <td style=3D"padding:12px 0 0 10px; line-he=
+ight:22px; color:#8177E7; font-family: Arial, Helvetica, sans-serif; font-s=
+ize:18px; font-weight:bold; text-align:left;">Started
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=3D"padding:0 0 6px 10px; line-hei=
+ght:22px; color:#382f2d; font-family: Arial, Helvetica, sans-serif; font-si=
+ze:16px; text-align:left;">333M60002496
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+
+            <!-- inner single data element -->
+            <table class=3D"device-width" width=3D"500" align=3D"center" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" bgcolor=3D"#ffffff" style=3D=
+"border-collapse: collapse;">
+                <tr>
+                    <td class=3D"container-sides-padding single-body-paddin=
+g" style=3D"padding:20px 60px 0 88px; line-height:22px; color:#807370; font=
+-family: Arial, Helvetica, sans-serif; font-size:16px; text-align:left;">
+                        Delivering to
+                    </td>
+                </tr>
+                <tr>
+                    <td class=3D"container-sides-padding single-body-paddin=
+g" style=3D"padding:10px 60px 0 88px; line-height:22px; color:#382f2d; font=
+-family: Arial, Helvetica, sans-serif; font-size:16px; text-align:left;">
+                        Aohan Wang<br>
+                                                A12 100 Arden St<br>
+                                                                        Nor=
+th Melbourne&nbsp;VIC&nbsp;3051
+                    </td>
+                </tr>
+            </table>
+
+            <!-- inner single data element -->
+            <table class=3D"device-width" width=3D"500" align=3D"center" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" bgcolor=3D"#ffffff" style=3D=
+"border-collapse: collapse;">
+                            </table>
+
+            <!-- inner single body text -->
+            <table class=3D"device-width" width=3D"500" align=3D"center" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" bgcolor=3D"#ffffff" style=3D=
+"border-collapse: collapse;">
+                <tr>
+                    <td class=3D"container-sides-padding single-body-paddin=
+g" style=3D"padding:30px 60px 0 60px; line-height:22px; color:#807370; font=
+-family: Arial, Helvetica, sans-serif; font-size:16px; text-align:left;">
+                        To keep you up to date, we'll send another notifica=
+tion when the delivery is in transit.
+                    </td>
+                </tr>
+            </table>
+
+            <!-- inner 'Read More' text cta -->
+            <table class=3D"device-width" width=3D"500" align=3D"center" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" bgcolor=3D"#ffffff" style=3D=
+"border-collapse: collapse;">
+                <tr>
+                    <td class=3D"container-sides-padding" style=3D"padding:=
+30px 60px 0 60px; text-align:left;">
+                        <div><!--[if mso]>
+                            <v:roundrect xmlns:v=3D"urn:schemas-microsoft-c=
+om:vml" xmlns:w=3D"urn:schemas-microsoft-com:office:word" href=3D"http://au=
+spost.com.au/track/track.html?id=3D333M60002496&ilink=3Dtrack-ep1b-edm-trac=
+k-your-delivery" style=3D"height:48px;v-text-anchor:middle;width:280px;" ar=
+csize=3D"9%" stroke=3D"f" fillcolor=3D"#dc1928">
+                                <w:anchorlock/>
+                                <center>
+
+                            <![endif]-->
+                            <a href=3D"http://auspost.com.au/track/track.ht=
+ml?id=3D333M60002496&ilink=3Dtrack-ep1b-edm-track-your-delivery" target=3D"=
+_blank" class=3D"mobile-primary-cta" style=3D"font-size: 16px; color: #ffff=
+ff; text-decoration: none; -webkit-border-radius: 4px; -moz-border-radius: =
+4px;  border-radius: 4px; background-color: #dc1928; border-top: 15px solid=
+ #dc1928; border-bottom: 15px solid #dc1928; border-right: 64px solid #dc19=
+28; border-left: 64px solid #dc1928; display: inline-block; -webkit-text-si=
+ze-adjust:none; font-family:Arial,Helvetica,sans-serif;">Track your deliver=
+y</a>
+                            <!--[if mso]>
+                            </center>
+                            </v:roundrect>
+                            <![endif]--></div>
+                    </td>
+                </tr>
+            </table>
+
+
+            <!-- inner single section divider -->
+            <table class=3D"device-width" width=3D"500" align=3D"center" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" bgcolor=3D"#ffffff" style=3D=
+"border-collapse: collapse;">
+                <tr>
+                    <td class=3D"container-sides-padding single-body-paddin=
+g" style=3D"padding:40px 60px 0 60px;border-bottom:1px solid #f3f1ee;">
+
+                    </td>
+                </tr>
+            </table>
+
+            <!-- inner collapse insert -->
+            <table class=3D"device-width" width=3D"500" align=3D"center" bo=
+rder=3D"0" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#ffffff" style=3D=
+"border-collapse: collapse;">
+                <tr>
+                    <td class=3D"container-sides-padding body-text-font" st=
+yle=3D"padding:48px 60px 12px 60px; line-height:21px;">
+                        <!-- left image -->
+                        <table align=3D"left" valign=3D"top" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse: collapse;">
+                            <tr>
+                                <td class=3D"device-width-inner" align=3D"l=
+eft">
+                                    <img class=3D"insert-image-dimensions" =
+width=3D"90" height=3D"90" src=3D"http://auspost.com.au/images/emails/track=
+/track-edm-img-parcel-locker.png" border=3D"0" margin=3D"0" alt=3D"" style=
+=3D"display:block; width:90px; height:90px; min-width:90px; min-height:90px=
+;padding-bottom:30px;" />
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- copy / cta -->
+                        <table width=3D"250" align=3D"right" valign=3D"top"=
+ border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse:=
+ collapse;">
+                            <tr>
+                                <td class=3D"device-width-inner insert-copy=
+-padding body-text-font" align=3D"right" style=3D"text-align:left; color:#8=
+07370; font-family: Arial, Helvetica, sans-serif; font-size:16px;">
+                                    Did you know you can have your deliveri=
+es sent to 24/7 Parcel Lockers or Post Offices? <br><a href=3D"http://auspo=
+st.com.au/pol/app/locate/parcel-locker?location&?ilink=3Dtrack-ep1b-edm-pol=
+-parcel-locker-search" style=3D"color:#dc1928; text-decoration:underline">F=
+ind locations closest to you</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- inner collapse insert -->
+            <table class=3D"device-width" width=3D"500" align=3D"center" bo=
+rder=3D"0" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#ffffff" style=3D=
+"border-collapse: collapse;">
+                <tr>
+                    <td class=3D"container-sides-padding body-text-font" st=
+yle=3D"padding:48px 60px 12px 60px; line-height:21px;">
+                        <!-- left image -->
+                        <table align=3D"left" valign=3D"top" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse: collapse;">
+                            <tr>
+                                <td class=3D"device-width-inner" align=3D"l=
+eft">
+                                    <img class=3D"insert-image-dimensions" =
+width=3D"90" height=3D"82" src=3D"http://auspost.com.au/images/emails/track=
+/track-edm-img-mydeliveries.png" border=3D"0" margin=3D"0" alt=3D"" style=
+=3D"display:block; width:90px; height:82px; min-width:90px; min-height:84px=
+;padding-bottom:30px;" />
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- copy / cta -->
+                        <table width=3D"250" align=3D"right" valign=3D"top"=
+ border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse:=
+ collapse;">
+                            <tr>
+                                <td class=3D"device-width-inner insert-copy=
+-padding body-text-font" align=3D"right" style=3D"text-align:left; color:#8=
+07370; font-family: Arial, Helvetica, sans-serif; font-size:16px;">
+                                    If things change, you may be able to re=
+direct your delivery to a more convenient address.
+                                    <br>
+                                    <br>
+                                    Easily manage your deliveries online. U=
+se this email address to sign up or log in to <a href=3D"https://auspost.co=
+m.au/mypost/auth/#/login?ilink=3Dtrack-ep1b-edm-mypost-deliveries" style=3D=
+"color:#dc1928; text-decoration:underline">MyPost Deliveries</a>.
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- inner gap -->
+            <table class=3D"device-width" width=3D"500"  align=3D"center" v=
+align=3D"top" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" bgcolor=3D"#=
+ffffff" style=3D"border-collapse: collapse;">
+                <tr>
+                    <td class=3D"generic-gap-height" height=3D"31" style=3D=
+"line-height:31px;">
+                        &nbsp;
+                    </td>
+                </tr>
+            </table>
+
+            <!-- inner corners bottom -->
+            <table class=3D"device-hide" width=3D"500" align=3D"center" val=
+ign=3D"top" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" bgcolor=3D"#ff=
+ffff" style=3D"border-collapse: collapse;">
+                <tr>
+                    <td width=3D"4" height=3D"4" style=3D"mso-line-height-r=
+ule:exactly; line-height:4px; font-size:4px;">
+
+                        <!-- top left corner -->
+                        <img src=3D"http://auspost.com.au/images/emails/tra=
+ck/new-template-corner-bl.png" border=3D"0" margin=3D"0" alt=3D"" style=3D"=
+display:block;" />
+                    </td>
+                    <td width=3D"496" height=3D"4" style=3D"mso-line-height=
+-rule:exactly; line-height:4px; font-size:4px;">
+                        <!-- middle gap -->
+                        &nbsp;
+                    </td>
+                    <td width=3D"4" height=3D"4" style=3D"mso-line-height-r=
+ule:exactly; line-height:4px; font-size:4px;">
+
+                        <!-- top right corner -->
+                        <img src=3D"http://auspost.com.au/images/emails/tra=
+ck/new-template-corner-br.png" border=3D"0" margin=3D"0" alt=3D"" style=3D"=
+display:block;"/>
+                    </td>
+                </tr>
+            </table>
+            <!-- end: section -->
+
+            <!-- outer gap footer -->
+            <table class=3D"device-width" width=3D"500" align=3D"center" va=
+lign=3D"top" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"bord=
+er-collapse: collapse;">
+                <tr>
+                    <td class=3D"footer-gap-height" height=3D"40" style=3D"=
+line-height:40px;">
+                        &nbsp;
+                    </td>
+                </tr>
+            </table>
+
+            <!-- outer social links -->
+            <table class=3D"device-width" width=3D"500" align=3D"center" va=
+lign=3D"top" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"bord=
+er-collapse: collapse;">
+                <tr>
+                    <td class=3D"container-sides-padding footer-social-padd=
+ing" style=3D"padding-top: 20px;">
+
+                        <table align=3D"left" valign=3D"top" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse: collapse;">
+                            <tr>
+                                <td class=3D"generic-collapse footer-logo-c=
+ollapse-padding" align=3D"left" style=3D"padding:0;">
+
+                                    <!-- startrack logo -->
+                                    <a href=3D"http://www.startrack.com.au/=
+" style=3D"border:none; text-decoration:none;"><img src=3D"http://auspost.c=
+om.au/images/emails/track/new-template-startrack-logo-grey.png" width=3D"12=
+3" height=3D"26" border=3D"0" margin=3D"0" alt=3D"StarTrack Logo" style=3D"=
+min-width:123px; min-height:26px; display:block;" /></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class=3D"generic-collapse" align=3D"lef=
+t" style=3D"padding-top:10px; color:#0f3769; font-family: Arial, Helvetica,=
+ sans-serif; font-size:11px; line-height:14px; text-align:left;">
+                                    A business of Australia Post
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- outer single disclaimer text -->
+            <table class=3D"device-width" width=3D"500" align=3D"center" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse: co=
+llapse;">
+                <tr>
+                    <td class=3D"container-sides-padding footer-disclaimer-=
+padding" style=3D"padding: 20px 0px 0 0px; color:#5e514d; font-family: Aria=
+l, Helvetica, sans-serif; font-size:11px; line-height:14px; text-align:left=
+;">
+                        This email was sent by <a href=3D"http://www.auspos=
+t.com.au/" target=3D"_blank" style=3D"color:#5e514d; text-decoration:underl=
+ine">Australia Post</a>, <span class=3D"appleLinks">111 Bourke Street, MELB=
+OURNE VIC 3000</span>. Australia Post will never ask for your password or s=
+end you an email asking for credit card details or account information. If =
+you have any concerns, or don't think you should have received this email, =
+please call us on 13 13 18. Visit <a href=3D"http://www.auspost.com.au/" ta=
+rget=3D"_blank" style=3D"color:#5e514d; text-decoration:underline">auspost.=
+com.au</a> for further information on our online <a href=3D"http://auspost.=
+com.au/about-us/online-security-scams-and-frauds.html?ilink=3Dtrack-ep1b-ed=
+m-security" target=3D"_blank" style=3D"color:#5e514d; text-decoration:under=
+line">security</a>.
+                        <br>
+                        <br>
+=09=09=09=09=09=09Please note that this is an automatically generated email=
+, replies will not be answered. <a href=3D"http://auspost.com.au/track/unsu=
+bscribe.html?id=3D333M60002496&type=3Dconsignment&email=3Dsometime5858@gmai=
+l.com&hv=3Dfba" target=3D"_blank" style=3D"color:#5e514d; text-decoration:u=
+nderline">Unsubscribe</a> if you don=E2=80=99t wish to receive any further =
+emails about this delivery. We may still send you emails if this delivery i=
+s waiting to be collected at an Australia Post retail outlet or Parcel Lock=
+er and emails about future deliveries. Australia Post does not represent, w=
+arrant or guarantee that the integrity of this email communication has been=
+ maintained nor that the communication is free of errors, viruses or interf=
+erence.
+                    </td>
+                </tr>
+            </table>
+
+            <!-- outer single horizontal line -->
+            <table class=3D"device-width-inner" width=3D"500"  border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse: collapse; li=
+ne-height:20px; text-align:center;">
+                <tr>
+                    <td style=3D"border-bottom:1px solid #dfd8d3;">
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td style=3D"border-top:1px solid #dfd8d3;">
+                        &nbsp;
+                    </td>
+                </tr>
+            </table>
+
+            <!-- outer single footer links -->
+            <table class=3D"device-width" align=3D"center" width=3D"500" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse: co=
+llapse; ">
+                <tr>
+                    <td class=3D"container-sides-padding footer-links-paddi=
+ng" style=3D"padding: 0 0px 20px 0px; text-align:left; color:#5e514d; font-=
+family: Arial, Helvetica, sans-serif; font-size:11px;line-height:20px;">
+=09=09=09=09=09=09<a href=3D"https://auspost.com.au/help/?ilink=3Dtrack-ep1=
+b-edm-help" style=3D"color:#5e514d; text-decoration:none">Help &amp; suppor=
+t</a><span class=3D"mobile-separator">&nbsp;&nbsp;</span>|<span class=3D"mo=
+bile-separator">&nbsp;&nbsp;</span><a href=3D"http://auspost.com.au/parcels=
+-mail/tracking-service-terms-and-conditions.html?ilink=3Dtrack-ep1b-edm-tra=
+ck-terms-conditions" style=3D"color:#5e514d; text-decoration:none">Terms &a=
+mp; conditions</a><span class=3D"mobile-separator">&nbsp;&nbsp;</span>|<spa=
+n class=3D"mobile-separator">&nbsp;&nbsp;</span><a href=3D"http://auspost.c=
+om.au/privacy.html?ilink=3Dtrack-ep1b-edm-privacy-policy" style=3D"color:#5=
+e514d; text-decoration:none">Privacy policy</a><span class=3D"mobile-separa=
+tor">&nbsp;&nbsp;</span>|<span class=3D"mobile-separator">&nbsp;&nbsp;</spa=
+n><a href=3D"http://auspost.com.au/parcels-mail/our-tracking-service.html?i=
+link=3Dtrack-ep1b-edm-our-tracking-service" style=3D"color:#5e514d; text-de=
+coration:none">Our tracking service</a>
+                    </td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+</table>
+
+<custom name=3D"opencounter" type=3D"tracking">
+</body>
+</html>
+------=_Part_322643_375489871.1495421874750--

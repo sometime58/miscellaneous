@@ -1,0 +1,1821 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 2002:a9d:171a:0:0:0:0:0 with SMTP id i26-v6csp1446463ota;
+        Wed, 26 Sep 2018 19:44:45 -0700 (PDT)
+X-Google-Smtp-Source: ACcGV62PxV0vcy0l7MttQFSDKTzjRgETrk01KtSpYkHQiYVyv6jjmNnA6bGS6LtAz2FKY8I0rCXj
+X-Received: by 2002:adf:eb0d:: with SMTP id s13-v6mr6851760wrn.174.1538016284932;
+        Wed, 26 Sep 2018 19:44:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1538016284; cv=none;
+        d=google.com; s=arc-20160816;
+        b=o2huZEwS0VQBAO7phYT4DYpS3iGqHXY+PKmCmetOpfl87GDpKgytzeAgt8iqsw3WiC
+         kOdBr19jVH1P8q5Py99vvhDdE4k1oPYsjAsyjCa5lYnxJCqCyiUxG1u3NfXKLWpcQzqP
+         T5vjN8EtDyNqRhfMX1dqYmvT1nogWvaG/BARaLShgOh+2hYjV8SWkyFr+Tb5ahNUvN3q
+         SppGMQOAyBoUYpOBW89sZktqCPUZJ+h5GH/cgDNsVU4m2YuGu7M6hqTt+/XxCga9Anhk
+         C0GRS7ECRXvzbSn/+4h5faeznfFYEDthNgeoJ7g+bNG05Ub51HY+Ib9YVK/edzCUi+w0
+         vtCw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:spamdiagnosticmetadata:spamdiagnosticoutput
+         :content-language:accept-language:message-id:date:importance
+         :thread-index:thread-topic:subject:from:dkim-signature;
+        bh=BV68gzGgY36VWYye5PfKYUM0V11D0lLDXdGVFhqtXHA=;
+        b=YB6+P3eF+ZrMxCCMwr1dE+UIg/8PgLXc8AyBs0apGSc/9m5AJL5Tk6pAgoar5QoKoD
+         F4atPfytakJACsv38P1ARZ7ZV0Zb/bUL6TZu2hGDusuLQ66ZVIMhbga3zzyM+f7ckADv
+         ReBem5bD9Mew6q7E3n8SM9lxGHehV4Ge6P9h3jZbzIPmPOgLWllSSOPYz8JBeBsiPuEf
+         sjVWK9dQTAgY2nIyHyXS7ejuKwrBnc54xcw4x6Bkr5HzFV7Z8IxZKvowKnS7uu8DFg3P
+         fMVhjn3mVDq0RAWemRJAhWIFkr9sH1gA4ku91lQ0+PN0SgEWfh4Q2bl/FIVPtLPA1Wi8
+         mF/w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@NucleusNetwork.onmicrosoft.com header.s=selector1-nucleusnetwork-com-au header.b=pBxwjLds;
+       spf=pass (google.com: domain of reply@nucleusnetwork.com.au designates 104.47.117.102 as permitted sender) smtp.mailfrom=reply@nucleusnetwork.com.au
+Return-Path: <reply@nucleusnetwork.com.au>
+Received: from AUS01-SY3-obe.outbound.protection.outlook.com (mail-sy3aus01on0102.outbound.protection.outlook.com. [104.47.117.102])
+        by mx.google.com with ESMTPS id h9-v6si696454wrq.337.2018.09.26.19.44.41
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Wed, 26 Sep 2018 19:44:44 -0700 (PDT)
+Received-SPF: pass (google.com: domain of reply@nucleusnetwork.com.au designates 104.47.117.102 as permitted sender) client-ip=104.47.117.102;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@NucleusNetwork.onmicrosoft.com header.s=selector1-nucleusnetwork-com-au header.b=pBxwjLds;
+       spf=pass (google.com: domain of reply@nucleusnetwork.com.au designates 104.47.117.102 as permitted sender) smtp.mailfrom=reply@nucleusnetwork.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=NucleusNetwork.onmicrosoft.com; s=selector1-nucleusnetwork-com-au;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BV68gzGgY36VWYye5PfKYUM0V11D0lLDXdGVFhqtXHA=;
+ b=pBxwjLdsdi61bnpM5UESdRv/EBSEwv6B6nyWwGKr90Zo5fnbJ7FxkKRxhH19bWUpSs2cU183pGuNhVDiV6somUiJCbcWsfwe690cx6xvu/L4h9ZkhMw+RlREmVJGZNrggoS5MLq9e9Y4vZgVHgKNvOHecdnwrIMDUuRDO5OSLIg=
+Received: from SYXPR01MB0463.ausprd01.prod.outlook.com (10.162.73.19) by
+ SYXPR01MB1358.ausprd01.prod.outlook.com (10.171.37.18) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.1164.22; Thu, 27 Sep 2018 02:44:35 +0000
+Received: from SYXPR01MB0463.ausprd01.prod.outlook.com
+ ([fe80::70be:8c4e:bc64:2cfb]) by SYXPR01MB0463.ausprd01.prod.outlook.com
+ ([fe80::70be:8c4e:bc64:2cfb%10]) with mapi id 15.20.1164.024; Thu, 27 Sep
+ 2018 02:44:35 +0000
+From: Centre for Clinical Studies <reply@nucleusnetwork.com.au>
+Subject: Final Call- THE FLASH STUDY- Only 1 FollowUp Visit!
+Thread-Topic: Final Call- THE FLASH STUDY- Only 1 FollowUp Visit!
+Thread-Index: AdRWC+tf+e9kysasR867+RYOqD5LYA==
+Importance: high
+X-Priority: 1
+Date: Thu, 27 Sep 2018 02:44:34 +0000
+Message-ID:
+ <SYXPR01MB0463D4DCD53E7422B80D661AC5140@SYXPR01MB0463.ausprd01.prod.outlook.com>
+Accept-Language: en-AU, en-US
+Content-Language: en-US
+X-Hashtags: #Newsletters
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator:
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=reply@nucleusnetwork.com.au; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [49.255.134.62]
+x-ms-publictraffictype: Email
+x-microsoft-exchange-diagnostics:
+ 1;SYXPR01MB1358;6:8OwkiEvKHcpLECyTV/Id7Xrv2MaHsEKCLqQq+JjkmkjbiqyEpELNxHiJVWsomKqrWoEs8whMgFuwbda8ekC9FwgQ8nmH1l7MZNBXh0GBGJHffnvpgrQ5Q7lIcLkfXeq8bKo/6QwkytDOW3YNyU+H8sKj0+bkxMfcd7Q9wYhSdlKRzy/iLNCC7fqs3KO8h1Gv3wxKSZdrk3pxZPKRwVjR/PHSInrCz2ge8A8ntwPYMS7b369LRg1wRy/cvWUHaBO91qLkubINVihQ4xihLOddOvUO9K8wg2UhO2CVC/e9aYa/Lg/0k2Hak1HLY9xNoQxH4AAzxc2MbXFAAuUVvpegixlaB7ykMh2RAQ/fJ+y42n7NPyGA4192waGZDeavFCnlbfbLQQRmxn1WlRecEhuGWuuyCYmFdbWfIk/miDAxGNIpCWNrL7tIe94YmwPN1fBQc0CWq0qqUbGCCXp/WWKZ2Q==;5:tdOhIymUa1yTyR2MWvl6zsfYJ4Z49FIWNkDqD57Z3OJ7FYy9yJ2/eSOl9DyuPtq+RMWso87atyXro/gd5NssNsx2aJ54E4f2AjAR6W+1/rqdlD5IpSeNldvF8nm+bcXwhI/lnqMyMoJlEs7HvcPL8ThzQjBi8AA8Fq14m03PoeE=;7:QONehKoW9UWfSyhFRZhx2zmtGfOwO0MZN/LQeze8/xrdMDmWqMOkvFfSEJ56i6GlPZ7mB2HB+AFV4pQjHFlclz7mx58hyfywMIbG8KaqQ50y+MziHkxM88IQVSDvMSCe3g4YvXl/VDo7GE8aulNJp7MkPfmwiUuLFJifKrV5FmycdwN4iy7uLXSF8bJsSCTMCSu2OOhPef0lK4PQKWo1EY0Z9zDJEHdk14ro+05HfTF0bfWqtbB8vyBWhi8ZdlpU
+x-ms-office365-filtering-correlation-id: 1fc0ccc3-bb33-41bc-0566-08d62423293d
+x-microsoft-antispam:
+ BCL:0;PCL:0;RULEID:(7020095)(4652040)(8989299)(4534165)(4627221)(201703031133081)(201702281549075)(8990200)(5600074)(711020)(2017052603328)(7153060)(49563074)(7193020);SRVR:SYXPR01MB1358;
+x-ms-traffictypediagnostic: SYXPR01MB1358:
+x-ms-exchange-sharedmailbox-routingagent-processed: True
+x-microsoft-antispam-prvs:
+ <SYXPR01MB1358C59E41C9C78A5A44FE4CF4140@SYXPR01MB1358.ausprd01.prod.outlook.com>
+x-exchange-antispam-report-test:
+ UriScan:(105169848403564)(46150409022019)(81227570615382)(148322886591682)(21748063052155)(28532068793085)(190501279198761)(227612066756510)(86561027422486)(64217206974132);
+x-ms-exchange-senderadcheck: 1
+x-exchange-antispam-report-cfa-test:
+ BCL:0;PCL:0;RULEID:(8211001083)(102415395)(6040522)(2401047)(8121501046)(5005006)(3231355)(944501410)(52105095)(3002001)(10201501046)(93006095)(93001095)(149066)(150057)(6041310)(20161123558120)(20161123562045)(20161123560045)(201703131423095)(201702281528075)(20161123555045)(201703061421075)(201703061406153)(20161123564045)(201708071742011)(7699051);SRVR:SYXPR01MB1358;BCL:0;PCL:0;RULEID:;SRVR:SYXPR01MB1358;
+x-forefront-prvs: 0808323E97
+x-forefront-antispam-report:
+ SFV:NSPM;SFS:(10019020)(1496009)(396003)(366004)(136003)(346002)(376002)(39850400004)(189003)(199004)(7366002)(105586002)(74316002)(7416002)(7276002)(7066003)(7406005)(7336002)(14444005)(217873002)(106356001)(8676002)(81166006)(8936002)(81156014)(7736002)(256004)(861006)(81686011)(7696005)(74482002)(6506007)(3846002)(99286004)(790700001)(5660300001)(606006)(25786009)(39060400002)(109986005)(6116002)(19627405001)(2906002)(2900100001)(316002)(68736007)(102836004)(186003)(26005)(89122003)(476003)(14454004)(478600001)(88732003)(76576003)(486006)(5250100002)(65686004)(1671002)(55016002)(53946003)(236005)(6306002)(733005)(71190400001)(71200400001)(6436002)(575854001)(86362001)(54556002)(881003)(33656002)(34290500001)(9686003)(54896002)(99936001)(226693001)(97736004)(53936002)(66066001)(76454003)(15398625002)(119816004)(579004);DIR:OUT;SFP:1102;SCL:1;SRVR:SYXPR01MB1358;H:SYXPR01MB0463.ausprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nucleusnetwork.com.au does not
+ designate permitted sender hosts)
+x-microsoft-antispam-message-info:
+ BjiqZvfUwYiD3xMvwbtrDk5IRCz5iJSzboIpoYFLbb0T3iY1Bm4mkOGFVVKtOS/jAFoJusqE5DYCnsH3jULdFHhohlLA3J5ps8BaI3qkOK9uQw/nZ9OCYzyhjnHaQQ9ISNIm6Y2R2brW3hnQFmL8t6I7GFhFTdIX73aOgcDDzrKBlNuFcS128PrWz5SAqnaC3HsPG9ZT0V/biHTy4+20ffSPQIIrKwV9TWJOSS07TxFLBKTOHlwdp+KXkFJRh7oummDEw9QLQnxJIExSms2cFlS6BbKQXkefNWgffVEKqZ90dbu38bk5LTRkgjh6zmCTeG31UYBUuvpavpSJX20cHpSmjCSyaREsnKmFUNOeoR0=
+spamdiagnosticoutput: 1:99
+spamdiagnosticmetadata: NSPM
+Content-Type: multipart/related;
+	boundary="_008_SYXPR01MB0463D4DCD53E7422B80D661AC5140SYXPR01MB0463ausp_";
+	type="multipart/alternative"
+MIME-Version: 1.0
+X-OriginatorOrg: nucleusnetwork.com.au
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1fc0ccc3-bb33-41bc-0566-08d62423293d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Sep 2018 02:44:34.9921
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 789e47a3-a852-4653-860e-4105eaf939ce
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SYXPR01MB1358
+X-TUID: TclMsjvWAy44
+
+--_008_SYXPR01MB0463D4DCD53E7422B80D661AC5140SYXPR01MB0463ausp_
+Content-Type: multipart/alternative;
+	boundary="_000_SYXPR01MB0463D4DCD53E7422B80D661AC5140SYXPR01MB0463ausp_"
+
+--_000_SYXPR01MB0463D4DCD53E7422B80D661AC5140SYXPR01MB0463ausp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+
+
+
+FINAL CALL- Ending Tuesday 2nd October
+
+THE FLASH STUDY
+Are you looking for an effortless study that has an oral administration?
+
+This study is for you! It ONLY has only 1 follow up visit!
+
+GET IN BEFORE THIS STUDY FLASHES BY YOU!
+It' will be gone in a blink of an eye!
+
+
+
+[cid:image005.jpg@01D45652.C476BD10]
+
+This amazing study offers great structure and reimbursement.
+Also this drug is administered as an oral medication!
+You will be finished within 12 days!
+Plus study dates run through 2 weekends and it's less than 2 weeks!
+
+
+Call us on 1800 243 733
+to express your interest or respond to this email
+PLUS
+$100 TO REFER A FRIEND!*
+*Terms and conditions apply, see bottom of email.
+
+This is a new medication looking at a potential treatment for people with P=
+arkinson's disease and other brain disorders with similar symptoms of motor=
+ (movement) and neurological deficits, like loss of movement and balance, s=
+low movements or stiffness and involuntary shaking.
+
+
+
+Volunteer requirements:
+
+  *   Healthy males
+  *   Aged 18 - 55 years
+  *   Body Mass Index 18 - 30kg/m=B2
+  *   Not taking any prescription medications
+  *   Non-smoker for last 3 months
+
+Reimbursement: $2,550
+
+  *   Breakdown:
+  *   Screening & Outpatient Visits: $75 per visit
+  *   Inpatient stay: $12.50 per hour
+
+
+
+Study duration:
+
+  *   10 Nights inpatient
+During this short stays with us, we will provide all the necessities and ma=
+ke your stay comfortable and enjoyable, plus there is a lot of free time wh=
+ilst you are staying with us - feel free to bring any homework/ work in wit=
+h you!
+If eligible, you will be reimbursed for every hour during your inpatient st=
+ay. WOW Amazing!
+  *   1 Quick Follow up visits
+A quick follow-up visit at out clinic, you are reimbursed $75 for the visit=
+. It's only 1 hour
+It's only a 1 hour follow up visit and you are done! YASS!
+
+
+Cohort 1 MAD Screening Cut off date Tuesday 2nd October.
+Study Day
+
+Date
+
+Time
+
+Comments
+
+INPATIENT STAY
+You cannot leave the facility during this time.
+
+Day -1
+
+Thursday, 4 October 2018
+
+13:00
+
+Check-in
+
+Day 10
+
+Sunday, 14 October 2018
+
+From 9:00
+
+Check-out
+
+Follow Up Visit
+
+Day 12
+
+Tuesday, 16 October 2018
+
+1 hr
+
+Outpatient
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* There may be some flexibility with outpatient visits, please contact us t=
+o discuss.
+
+
+
+
+
+**Terms & Conditions for $100 referral fee payment
+
+  *   You must already be registered on our database but your friend/friend=
+s must be new.
+  *   You can refer as many people as you like but you cannot advertise the=
+ study.
+  *   Your friend must mention your name to us during phone screening for t=
+his study.
+  *   Your friend must be eligible for the study and fully participate, not=
+ just pass screening.
+  *   It is entirely your friend's choice whether or not to participate and=
+ they have the right to change their mind.
+  *   Referral fee will be paid 10 working days after your friend receives =
+their first dose. It will be paid into your bank account.
+
+
+
+How do I get involved?
+Call our Recruitment Team on 1800 243 733
+Monday- Friday: 8am - 7pm
+Saturday and Sunday: 9.30am - 5pm
+
+or respond to the email and we will be in touch.
+SOME THINGS YOU MIGHT WANT TO KNOW ABOUT US
+
+If you're wondering where we are,
+just view our handy map<http://clinicalstudies.com.au/wp-content/uploads/20=
+18/05/How-to-get-to-CFCS.pdf>
+
+Let us walk you through the
+Participant Journey<https://clinicalstudies.com.au/participants-journey/>
+
+Spare time?
+Check out our awesome blog<https://clinicalstudies.com.au/blog/>
+
+Hear what our amazing volunteers
+have to say in their testimonials<https://clinicalstudies.com.au/testimonia=
+l/>!
+
+
+Don't forget, we're also offering
+
+$100 TO REFER A FRIEND!
+Check out our Terms and Conditions<http://clinicalstudies.com.au/wp-content=
+/uploads/2017/12/Referral-Terms-and-Conditions.pdf>
+Kind regards,
+Recruitment Team
+
+Centre for Clinical Studies
+Office: | Level 5 Burnet Institute | AMREP Precinct | 89 Commercial Road | =
+Victoria 3004 | Australia
+T: 1800 243 733 | Reception: 03 9076 8957
+www.clinicalstudies.com.au<http://www.clinicalstudies.com.au/>
+Nucleus Network, Australia's Clinical Research Centre, operates in associat=
+ion with Centre for Clinical Studies, Clinical Trials Consulting and its ne=
+twork partners
+1800 243 733
+
+[cid:image002.png@01D244DB.B31610A0]<https://www.facebook.com/CfCStudies/> =
+ [cid:image004.png@01D244DB.B31610A0] <https://www.instagram.com/centreforc=
+linicalstudies/>   [cid:image005.png@01D244DB.B31610A0] <https://twitter.co=
+m/cfcstudies>   [cid:image010.png@01D244DB.B31610A0] <https://www.youtube.c=
+om/channel/UCxWbVDcH-sfT8zaZA4uvQQw>
+Find us on Facebook, Instagram, Twitter and YouTube
+
+If you do not wish to receive any further emails from us then please reply =
+to this email with the word 'UNSUBSCRIBE' in the subject box.
+
+
+
+
+
+
+To stop receiving messages from Recruitment Team Members<https://outlook.of=
+fice365.com/owa/recruitmentteammembers@nucleusnetwork.com.au/groupsubscript=
+ion.ashx?realm=3Dnucleusnetwork.com.au&source=3DEscalatedMessage&action=3Dc=
+onversations> group, stop following it<https://outlook.office365.com/owa/re=
+cruitmentteammembers@nucleusnetwork.com.au/groupsubscription.ashx?realm=3Dn=
+ucleusnetwork.com.au&source=3DEscalatedMessage&action=3Dunsubscribe>.
+
+
+
+
+
+--_000_SYXPR01MB0463D4DCD53E7422B80D661AC5140SYXPR01MB0463ausp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Segoe UI";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+@font-face
+	{font-family:"Segoe UI Semibold";
+	panose-1:2 11 7 2 4 2 4 2 2 3;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Monotype Corsiva";
+	panose-1:3 1 1 1 1 2 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+h1
+	{mso-style-priority:9;
+	mso-style-link:"Heading 1 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:24.0pt;
+	font-family:"Calibri",sans-serif;
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoNoSpacing, li.MsoNoSpacing, div.MsoNoSpacing
+	{mso-style-priority:1;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-priority:9;
+	mso-style-link:"Heading 1";
+	font-family:"Calibri",sans-serif;
+	font-weight:bold;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.xxxmsonormal, li.xxxmsonormal, div.xxxmsonormal
+	{mso-style-name:x_xxmsonormal;
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.m-3715704839465659688msolistparagraph, li.m-3715704839465659688msolistpar=
+agraph, div.m-3715704839465659688msolistparagraph
+	{mso-style-name:m_-3715704839465659688msolistparagraph;
+	mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle22
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle23
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle24
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle25
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle26
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle27
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle28
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle29
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle30
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle31
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle32
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle33
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle34
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.normaltextrun
+	{mso-style-name:normaltextrun;}
+span.EmailStyle36
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle37
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle38
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle39
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle40
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle41
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle42
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle43
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle44
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle45
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle46
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle47
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle48
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle49
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle50
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle51
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle52
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle53
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle54
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle55
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle56
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle57
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle58
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle59
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle60
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle61
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle64
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle65
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:636842742;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1310448246 1886302144 201916419 201916421 201916417=
+ 201916419 201916421 201916417 201916419 201916421;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;
+	color:windowtext;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:1633632150;
+	mso-list-template-ids:941359288;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:180.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:216.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:288.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:324.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2
+	{mso-list-id:1793867510;
+	mso-list-template-ids:1719026880;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:180.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:216.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:288.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:324.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l3
+	{mso-list-id:1889879738;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1157667418 201916417 201916419 201916421 201916417 2=
+01916419 201916421 201916417 201916419 201916421;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l3:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l3:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l3:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l3:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l3:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l3:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l3:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l3:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-AU" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p align=3D"center" style=3D"margin:0cm;margin-bottom:.0001pt;text-align:ce=
+nter"><b><i><span style=3D"font-size:16.0pt;color:#C00000">FINAL CALL- Endi=
+ng Tuesday 2<sup>nd</sup> October<o:p></o:p></span></i></b></p>
+<p align=3D"center" style=3D"margin:0cm;margin-bottom:.0001pt;text-align:ce=
+nter"><b><span style=3D"font-size:28.0pt;color:#002060">THE
+<i><span style=3D"background:yellow;mso-highlight:yellow">FLASH</span></i> =
+STUDY</span></b><b><span style=3D"font-size:28.0pt"><br>
+</span></b><b><span style=3D"font-size:14.0pt">Are you looking for an effor=
+tless study that has an oral administration?</span></b><b><span style=3D"fo=
+nt-size:48.0pt"><o:p></o:p></span></b></p>
+<p align=3D"center" style=3D"margin:0cm;margin-bottom:.0001pt;text-align:ce=
+nter"><b><span style=3D"font-size:14.0pt">This study is for you! It
+<i><u>ONLY</u></i> has only 1 follow up visit!<br>
+<br>
+</span></b><b><i><span style=3D"font-size:16.0pt;background:yellow;mso-high=
+light:yellow">GET IN BEFORE THIS STUDY FLASHES BY YOU!<br>
+It&#8217; will be gone in a blink of an eye!</span></i></b><b><span style=
+=3D"font-size:14.0pt"><o:p></o:p></span></b></p>
+<p align=3D"center" style=3D"margin:0cm;margin-bottom:.0001pt;text-align:ce=
+nter"><b><o:p>&nbsp;</o:p></b></p>
+<p align=3D"center" style=3D"margin:0cm;margin-bottom:.0001pt;text-align:ce=
+nter"><b><img width=3D"359" height=3D"234" style=3D"width:3.7395in;height:2=
+.4375in" id=3D"Picture_x0020_5" src=3D"cid:image005.jpg@01D45652.C476BD10">=
+<o:p></o:p></b></p>
+<h1 align=3D"center" style=3D"mso-margin-top-alt:0cm;margin-right:0cm;margi=
+n-bottom:12.0pt;margin-left:0cm;text-align:center;vertical-align:baseline">
+<span style=3D"font-size:14.0pt;color:#7030A0">This amazing study offers gr=
+eat structure and reimbursement.</span><span style=3D"font-size:14.0pt"><br=
+>
+Also this drug is administered as an oral medication!<br>
+</span><u><span style=3D"font-size:12.0pt;color:#7030A0;border:none windowt=
+ext 1.0pt;padding:0cm">You will be finished within 12 days!</span></u><u><s=
+pan style=3D"font-size:12.0pt;border:none windowtext 1.0pt;padding:0cm"><br=
+>
+<span style=3D"color:#7030A0">Plus study dates run through 2 weekends and i=
+t&#8217;s less than 2 weeks!</span></span></u><span style=3D"font-size:12.0=
+pt;border:none windowtext 1.0pt;padding:0cm"><o:p></o:p></span></h1>
+<h1 align=3D"center" style=3D"mso-margin-top-alt:0cm;margin-right:0cm;margi=
+n-bottom:12.0pt;margin-left:0cm;text-align:center;vertical-align:baseline">
+<span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></span></h1>
+<p style=3D"mso-margin-top-alt:0cm;margin-right:0cm;margin-bottom:12.0pt;ma=
+rgin-left:0cm">
+<span style=3D"font-size:18.0pt">Call us on </span><b><u><span style=3D"fon=
+t-size:20.0pt;color:#1F4E79">1800 243 733</span></u></b><b><span style=3D"f=
+ont-size:16.0pt;color:#1F4E79">&nbsp;</span></b><b><span style=3D"font-size=
+:16.0pt"><br>
+to express your interest or respond to this email</span></b><b><span style=
+=3D"font-size:14.0pt"><br>
+</span></b><b><span style=3D"font-size:14.0pt;font-family:&quot;Tahoma&quot=
+;,sans-serif">PLUS<br>
+<span style=3D"color:blue">$100 TO REFER A FRIEND!*</span></span></b><span =
+style=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,sans-serif"><br>
+</span><i><span style=3D"font-size:8.0pt;font-family:&quot;Tahoma&quot;,san=
+s-serif">*Terms and conditions apply, see bottom of email.</span></i><b><o:=
+p></o:p></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span class=3D"normaltextrun"=
+><i><span style=3D"color:black;border:none windowtext 1.0pt;padding:0cm">Th=
+is is a new medication looking at a potential treatment for people with Par=
+kinson's disease and other brain disorders
+ with similar symptoms of motor (movement) and neurological deficits, like =
+loss of movement and balance, slow movements or stiffness and involuntary s=
+haking</span><span style=3D"border:none windowtext 1.0pt;padding:0cm">.<spa=
+n style=3D"color:black"><o:p></o:p></span></span></i></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span style=3D"font-size:1=
+4.0pt;color:#2F5597"><o:p>&nbsp;</o:p></span></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span style=3D"font-size:1=
+4.0pt;color:#002060">Volunteer requirements:
+<o:p></o:p></span></b></p>
+<ul style=3D"margin-top:0cm" type=3D"disc">
+<li class=3D"MsoNormal" style=3D"mso-list:l3 level1 lfo1"><span style=3D"ms=
+o-fareast-language:EN-AU">Healthy
+<b>males</b><o:p></o:p></span></li><li class=3D"MsoNormal" style=3D"mso-lis=
+t:l3 level1 lfo1"><span style=3D"mso-fareast-language:EN-AU">Aged
+<b>18 &#8211; 55 years</b><o:p></o:p></span></li><li class=3D"MsoNormal" st=
+yle=3D"mso-list:l3 level1 lfo1"><span style=3D"mso-fareast-language:EN-AU">=
+Body Mass Index
+<b>18 &#8211; 30kg/m=B2</b><o:p></o:p></span></li><li class=3D"MsoNormal" s=
+tyle=3D"mso-list:l3 level1 lfo1"><b><span style=3D"mso-fareast-language:EN-=
+AU">Not taking any prescription medications<o:p></o:p></span></b></li><li c=
+lass=3D"MsoNormal" style=3D"margin-bottom:12.0pt;mso-list:l3 level1 lfo1"><=
+b><span style=3D"mso-fareast-language:EN-AU">Non-smoker for last 3 months<o=
+:p></o:p></span></b></li></ul>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span style=3D"font-size:1=
+4.0pt;color:#002060">Reimbursement:
+</span></b><b><span style=3D"font-size:16.0pt;background:yellow;mso-highlig=
+ht:yellow">$2,550</span><span style=3D"color:#1F4E79"><o:p></o:p></span></b=
+></p>
+<ul style=3D"margin-top:0cm" type=3D"disc">
+<li class=3D"MsoNormal" style=3D"color:black;mso-list:l0 level1 lfo2"><b><u=
+><span style=3D"mso-fareast-language:EN-AU">Breakdown</span></u></b><b><spa=
+n style=3D"mso-fareast-language:EN-AU">:
+<o:p></o:p></span></b></li><li class=3D"MsoNormal" style=3D"color:black;mso=
+-list:l0 level1 lfo2"><span style=3D"mso-fareast-language:EN-AU">Screening =
+&amp; Outpatient Visits: $75 per visit<b><o:p></o:p></b></span></li><li cla=
+ss=3D"MsoNormal" style=3D"color:black;mso-list:l0 level1 lfo2"><span style=
+=3D"mso-fareast-language:EN-AU">Inpatient stay: $12.50 per hour<b><o:p></o:=
+p></b></span></li></ul>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span style=3D"font-size:1=
+2.0pt;color:#002060"><o:p>&nbsp;</o:p></span></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span style=3D"font-size:1=
+4.0pt;color:#002060">Study duration:
+<o:p></o:p></span></b></p>
+<ul type=3D"disc">
+<li class=3D"m-3715704839465659688msolistparagraph" style=3D"margin-bottom:=
+13.0pt;mso-list:l2 level1 lfo3">
+<b><span style=3D"font-size:12.0pt;color:#7030A0">10 Nights inpatient </spa=
+n></b><b><span style=3D"font-size:12.0pt"><br>
+</span></b>During this short stays with us, we will provide all the necessi=
+ties and make your stay comfortable and enjoyable, plus there is a lot of f=
+ree time whilst you are staying with us - feel free to bring any homework/ =
+work in with you!<br>
+<b><span style=3D"color:#2E75B6">If eligible, you will be <u>reimbursed for=
+ every hour</u> during your inpatient stay. WOW Amazing!</span></b><o:p></o=
+:p></li><li class=3D"m-3715704839465659688msolistparagraph" style=3D"margin=
+-bottom:13.0pt;mso-list:l2 level1 lfo3">
+<b><span style=3D"font-size:12.0pt;color:#7030A0">1 Quick Follow up visits<=
+/span></b><b><span style=3D"font-size:12.0pt"><br>
+</span></b>A quick follow-up visit at out clinic, you are reimbursed <stron=
+g><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">$75</span></st=
+rong> for the visit. It&#8217;s only 1 hour<br>
+<b><span style=3D"color:#2E75B6">It&#8217;s only a 1 hour follow up visit a=
+nd you are done! YASS!</span></b><o:p></o:p></li></ul>
+<p class=3D"MsoNormal"><b><span style=3D"color:#3366CC;mso-fareast-language=
+:EN-AU"><o:p>&nbsp;</o:p></span></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span style=3D"font-size:1=
+4.0pt;color:#0070C0">Cohort 1 MAD</span></b><b><span style=3D"font-size:14.=
+0pt">
+</span></b><b><span style=3D"font-size:12.0pt;color:#C00000">Screening Cut =
+off date Tuesday 2<sup>nd</sup> October.</span></b><b><span style=3D"font-s=
+ize:14.0pt;color:#0070C0"><o:p></o:p></span></b></p>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" align=3D"left" width=3D"611" style=3D"width:458.2pt;border-collapse:=
+collapse;margin-left:6.75pt;margin-right:6.75pt">
+<tbody>
+<tr style=3D"height:18.65pt">
+<td width=3D"208" colspan=3D"2" style=3D"width:155.65pt;border-top:windowte=
+xt 1.0pt;border-left:white 1.0pt;border-bottom:white 3.0pt;border-right:whi=
+te 1.0pt;border-style:solid;background:#262626;padding:0cm 5.4pt 0cm 5.4pt;=
+height:18.65pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<b><span style=3D"font-size:12.0pt;color:white;mso-fareast-language:EN-AU">=
+Study Day<o:p></o:p></span></b></p>
+</td>
+<td width=3D"227" style=3D"width:170.15pt;border-top:solid windowtext 1.0pt=
+;border-left:none;border-bottom:solid white 3.0pt;border-right:solid white =
+1.0pt;background:#262626;padding:0cm 5.4pt 0cm 5.4pt;height:18.65pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<b><span style=3D"font-size:12.0pt;color:white;mso-fareast-language:EN-AU">=
+Date<o:p></o:p></span></b></p>
+</td>
+<td width=3D"66" style=3D"width:49.6pt;border-top:solid windowtext 1.0pt;bo=
+rder-left:none;border-bottom:solid white 3.0pt;border-right:solid white 1.0=
+pt;background:#262626;padding:0cm 5.4pt 0cm 5.4pt;height:18.65pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<b><span style=3D"font-size:12.0pt;color:white;mso-fareast-language:EN-AU">=
+Time<o:p></o:p></span></b></p>
+</td>
+<td width=3D"110" style=3D"width:82.8pt;border-top:solid windowtext 1.0pt;b=
+order-left:none;border-bottom:solid white 3.0pt;border-right:solid white 1.=
+0pt;background:#262626;padding:0cm 5.4pt 0cm 5.4pt;height:18.65pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<b><span style=3D"font-size:12.0pt;color:white;mso-fareast-language:EN-AU">=
+Comments<o:p></o:p></span></b></p>
+</td>
+</tr>
+<tr style=3D"height:32.35pt">
+<td width=3D"107" rowspan=3D"2" style=3D"width:80.55pt;border-top:none;bord=
+er-left:solid white 1.0pt;border-bottom:solid white 3.0pt;border-right:soli=
+d white 1.0pt;background:#FAEB2E;padding:0cm 5.4pt 0cm 5.4pt;height:32.35pt=
+">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<b><span style=3D"font-size:13.0pt">INPATIENT STAY</span></b><span style=3D=
+"font-size:13.0pt"><br>
+</span><span style=3D"font-size:9.0pt">You cannot leave the facility during=
+ this time.</span><span style=3D"font-size:12.0pt;color:black;mso-fareast-l=
+anguage:EN-AU"><o:p></o:p></span></p>
+</td>
+<td width=3D"100" style=3D"width:75.1pt;border-top:none;border-left:none;bo=
+rder-bottom:solid white 1.0pt;border-right:solid white 1.0pt;background:#FA=
+EB2E;padding:0cm 5.4pt 0cm 5.4pt;height:32.35pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<span style=3D"font-size:12.0pt;color:black;mso-fareast-language:EN-AU">Day=
+ -1<o:p></o:p></span></p>
+</td>
+<td width=3D"227" style=3D"width:170.15pt;border-top:none;border-left:none;=
+border-bottom:solid white 1.0pt;border-right:solid white 1.0pt;background:#=
+FAEB2E;padding:0cm 5.4pt 0cm 5.4pt;height:32.35pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<b><span style=3D"font-size:12.0pt;color:black;mso-fareast-language:EN-AU">=
+Thursday, 4 October 2018<o:p></o:p></span></b></p>
+</td>
+<td width=3D"66" style=3D"width:49.6pt;border-top:none;border-left:none;bor=
+der-bottom:solid white 1.0pt;border-right:solid white 1.0pt;background:#FAE=
+B2E;padding:0cm 5.4pt 0cm 5.4pt;height:32.35pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<span style=3D"font-size:12.0pt;color:black;mso-fareast-language:EN-AU">13:=
+00<o:p></o:p></span></p>
+</td>
+<td width=3D"110" style=3D"width:82.8pt;border-top:none;border-left:none;bo=
+rder-bottom:solid white 1.0pt;border-right:solid white 1.0pt;background:#FA=
+EB2E;padding:0cm 5.4pt 0cm 5.4pt;height:32.35pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<span style=3D"font-size:12.0pt;color:black;mso-fareast-language:EN-AU">Che=
+ck-in<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:35.4pt">
+<td width=3D"100" style=3D"width:75.1pt;border-top:none;border-left:none;bo=
+rder-bottom:solid white 3.0pt;border-right:solid white 1.0pt;background:#FA=
+EB2E;padding:0cm 5.4pt 0cm 5.4pt;height:35.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<span style=3D"font-size:12.0pt;color:black;mso-fareast-language:EN-AU">Day=
+ 10<o:p></o:p></span></p>
+</td>
+<td width=3D"227" style=3D"width:170.15pt;border-top:none;border-left:none;=
+border-bottom:solid white 3.0pt;border-right:solid white 1.0pt;background:#=
+FAEB2E;padding:0cm 5.4pt 0cm 5.4pt;height:35.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<b><span style=3D"font-size:12.0pt;color:black;mso-fareast-language:EN-AU">=
+Sunday, 14 October 2018<o:p></o:p></span></b></p>
+</td>
+<td width=3D"66" style=3D"width:49.6pt;border-top:none;border-left:none;bor=
+der-bottom:solid white 3.0pt;border-right:solid white 1.0pt;background:#FAE=
+B2E;padding:0cm 5.4pt 0cm 5.4pt;height:35.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<span style=3D"font-size:12.0pt;color:black;mso-fareast-language:EN-AU">Fro=
+m 9:00<o:p></o:p></span></p>
+</td>
+<td width=3D"110" style=3D"width:82.8pt;border-top:none;border-left:none;bo=
+rder-bottom:solid white 3.0pt;border-right:solid white 1.0pt;background:#FA=
+EB2E;padding:0cm 5.4pt 0cm 5.4pt;height:35.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<span style=3D"font-size:12.0pt;color:black;mso-fareast-language:EN-AU">Che=
+ck-out<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:33.95pt">
+<td width=3D"107" style=3D"width:80.55pt;border-top:none;border-left:solid =
+white 1.0pt;border-bottom:solid white 3.0pt;border-right:solid white 1.0pt;=
+background:#00B0F0;padding:0cm 5.4pt 0cm 5.4pt;height:33.95pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<b><span style=3D"font-size:13.0pt">Follow Up Visit</span></b><span style=
+=3D"font-size:12.0pt;color:black;mso-fareast-language:EN-AU"><o:p></o:p></s=
+pan></p>
+</td>
+<td width=3D"100" style=3D"width:75.1pt;border-top:none;border-left:none;bo=
+rder-bottom:solid white 3.0pt;border-right:solid white 1.0pt;background:#00=
+B0F0;padding:0cm 5.4pt 0cm 5.4pt;height:33.95pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<span style=3D"font-size:12.0pt;color:black;mso-fareast-language:EN-AU">Day=
+ 12<o:p></o:p></span></p>
+</td>
+<td width=3D"227" style=3D"width:170.15pt;border-top:none;border-left:none;=
+border-bottom:solid white 3.0pt;border-right:solid white 1.0pt;background:#=
+00B0F0;padding:0cm 5.4pt 0cm 5.4pt;height:33.95pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<b><span style=3D"font-size:12.0pt;color:black;mso-fareast-language:EN-AU">=
+Tuesday, 16 October 2018<o:p></o:p></span></b></p>
+</td>
+<td width=3D"66" style=3D"width:49.6pt;border-top:none;border-left:none;bor=
+der-bottom:solid white 3.0pt;border-right:solid white 1.0pt;background:#00B=
+0F0;padding:0cm 5.4pt 0cm 5.4pt;height:33.95pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<span style=3D"font-size:12.0pt;mso-fareast-language:EN-AU">1 hr<span style=
+=3D"color:black"><o:p></o:p></span></span></p>
+</td>
+<td width=3D"110" style=3D"width:82.8pt;border-top:none;border-left:none;bo=
+rder-bottom:solid white 3.0pt;border-right:solid white 1.0pt;background:#00=
+B0F0;padding:0cm 5.4pt 0cm 5.4pt;height:33.95pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;mso-elem=
+ent:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-elemen=
+t-anchor-vertical:paragraph;mso-element-anchor-horizontal:column;mso-height=
+-rule:exactly">
+<span style=3D"font-size:12.0pt;color:black;mso-fareast-language:EN-AU">Out=
+patient<o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><o:p>&nbsp;</o:p></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><o:p>&nbsp;</o:p></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><o:p>&nbsp;</o:p></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><o:p>&nbsp;</o:p></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><o:p>&nbsp;</o:p></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><o:p>&nbsp;</o:p></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><o:p>&nbsp;</o:p></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><o:p>&nbsp;</o:p></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><o:p>&nbsp;</o:p></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span style=3D"font-size:1=
+0.0pt">*</span></b><span style=3D"font-size:10.0pt"> There may be some flex=
+ibility with outpatient visits, please contact us to discuss.<b><o:p></o:p>=
+</b></span></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><o:p>&nbsp;</o:p></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><o:p>&nbsp;</o:p></b></p>
+<p><b><span style=3D"font-size:9.0pt">**<u>Terms &amp; Conditions for $100 =
+referral fee payment</u></span></b><o:p></o:p></p>
+<ul type=3D"disc">
+<li class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-=
+alt:auto;mso-list:l1 level1 lfo4">
+<span style=3D"font-size:7.5pt;font-family:&quot;Tahoma&quot;,sans-serif">Y=
+ou must already be registered on our database but your friend/friends must =
+be new.</span><o:p></o:p></li><li class=3D"MsoNormal" style=3D"mso-margin-t=
+op-alt:auto;mso-margin-bottom-alt:auto;mso-list:l1 level1 lfo4">
+<span style=3D"font-size:7.5pt;font-family:&quot;Tahoma&quot;,sans-serif">Y=
+ou can refer as many people as you like but you cannot advertise the study.=
+</span><o:p></o:p></li><li class=3D"MsoNormal" style=3D"mso-margin-top-alt:=
+auto;mso-margin-bottom-alt:auto;mso-list:l1 level1 lfo4">
+<span style=3D"font-size:7.5pt;font-family:&quot;Tahoma&quot;,sans-serif">Y=
+our friend must mention your name to us during phone screening for this stu=
+dy.</span><o:p></o:p></li><li class=3D"MsoNormal" style=3D"mso-margin-top-a=
+lt:auto;mso-margin-bottom-alt:auto;mso-list:l1 level1 lfo4">
+<span style=3D"font-size:7.5pt;font-family:&quot;Tahoma&quot;,sans-serif">Y=
+our friend must be eligible for the study and fully participate, not just p=
+ass screening.</span><o:p></o:p></li><li class=3D"MsoNormal" style=3D"mso-m=
+argin-top-alt:auto;mso-margin-bottom-alt:auto;mso-list:l1 level1 lfo4">
+<span style=3D"font-size:7.5pt;font-family:&quot;Tahoma&quot;,sans-serif">I=
+t is entirely your friend&#8217;s choice whether or not to participate and =
+they have the right to change their mind.</span><o:p></o:p></li><li class=
+=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;=
+mso-list:l1 level1 lfo4">
+<span style=3D"font-size:7.5pt;font-family:&quot;Tahoma&quot;,sans-serif">R=
+eferral fee will be paid 10 working days after your friend receives their f=
+irst dose. It will be paid into your bank account.</span><o:p></o:p></li></=
+ul>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><o:p>&nbsp;</o:p></b></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><b><span style=3D"color:#524A=
+FC">How do I get involved?<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal">Call our Recruitment Team on <b>1800 243 733</b><o:p=
+></o:p></p>
+<p class=3D"MsoNormal"><strong><span style=3D"font-family:&quot;Calibri&quo=
+t;,sans-serif;color:black">Monday- Friday: 8am &#8211; 7pm
+<o:p></o:p></span></strong></p>
+<p class=3D"MsoNormal"><strong><span style=3D"font-family:&quot;Calibri&quo=
+t;,sans-serif;color:black">Saturday and Sunday: 9.30am - 5pm
+</span></strong><o:p></o:p></p>
+<p style=3D"mso-margin-top-alt:0cm;margin-right:0cm;margin-bottom:12.0pt;ma=
+rgin-left:0cm">
+or respond to the email and we will be in touch.<o:p></o:p></p>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"margin-left:-.4pt;border-collapse:collapse">
+<tbody>
+<tr style=3D"height:27.65pt">
+<td width=3D"501" style=3D"width:375.65pt;border:solid white 1.0pt;backgrou=
+nd:#3B3838;padding:0cm 5.4pt 0cm 5.4pt;height:27.65pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:14.0pt;color:white">SOME THINGS YOU MIGHT WANT TO KNOW=
+ ABOUT US<o:p></o:p></span></b></p>
+</td>
+</tr>
+<tr>
+<td width=3D"501" style=3D"width:375.65pt;border:solid white 1.0pt;border-t=
+op:none;background:#949494;padding:0cm 5.4pt 0cm 5.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">If you&=
+#8217;re wondering where we are,
+<br>
+just view our handy <a href=3D"http://clinicalstudies.com.au/wp-content/upl=
+oads/2018/05/How-to-get-to-CFCS.pdf">
+map</a><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td width=3D"501" style=3D"width:375.65pt;border:solid white 1.0pt;border-t=
+op:none;background:#A6A6A6;padding:0cm 5.4pt 0cm 5.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">Let us =
+walk you through the
+<br>
+<a href=3D"https://clinicalstudies.com.au/participants-journey/">Participan=
+t Journey</a><o:p></o:p></p>
+</td>
+</tr>
+<tr>
+<td width=3D"501" style=3D"width:375.65pt;border:solid white 1.0pt;border-t=
+op:none;background:#BFBFBF;padding:0cm 5.4pt 0cm 5.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">Spare t=
+ime? <br>
+Check out our awesome <a href=3D"https://clinicalstudies.com.au/blog/">blog=
+</a><o:p></o:p></p>
+</td>
+</tr>
+<tr style=3D"height:4.35pt">
+<td width=3D"501" style=3D"width:375.65pt;border:solid white 1.0pt;border-t=
+op:none;background:#D9D9D9;padding:0cm 5.4pt 0cm 5.4pt;height:4.35pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">Hear wh=
+at our amazing volunteers
+<br>
+have to say in their <a href=3D"https://clinicalstudies.com.au/testimonial/=
+">testimonials</a>!<o:p></o:p></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b>Don&#8217;t forget, we&#8217;re also offering<o:p=
+></o:p></b></p>
+<p class=3D"MsoNoSpacing" style=3D"margin-bottom:12.0pt"><strong><span styl=
+e=3D"font-size:22.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#524=
+AFC">$100</span></strong><b><span style=3D"font-size:22.0pt;color:#524AFC">
+<strong><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">TO REFER=
+ A&nbsp;FRIEND!</span></strong></span></b><u><span style=3D"color:black"><b=
+r>
+</span></u><b>Check out our </b><a href=3D"http://clinicalstudies.com.au/wp=
+-content/uploads/2017/12/Referral-Terms-and-Conditions.pdf"><b>Terms and Co=
+nditions</b></a><o:p></o:p></p>
+<p class=3D"MsoNormal">Kind regards,<o:p></o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:22.0pt;font-family:&quot=
+;Monotype Corsiva&quot;;mso-fareast-language:EN-AU">Recruitment Team<o:p></=
+o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,sans-se=
+rif;color:#1F497D;mso-fareast-language:EN-AU"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"color:#00B0F0;mso-fareast-language=
+:EN-AU">Centre for Clinical Studies</span></b><span style=3D"color:#99CC00;=
+mso-fareast-language:EN-AU">
+</span><span style=3D"color:#1F497D;mso-fareast-language:EN-AU"><br>
+Office: | Level 5 Burnet Institute | AMREP Precinct | 89 Commercial Road |&=
+nbsp;Victoria 3004 | Australia<br>
+T: </span><span style=3D"color:#1F4E79;mso-fareast-language:EN-AU">1800 243=
+ 733 |&nbsp;</span><span style=3D"color:#1F497D;mso-fareast-language:EN-AU"=
+>Reception: 03 9076 8957
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><a href=3D"http://www.clinicalstudies.com.au/"><b><s=
+pan lang=3D"FR" style=3D"color:#00B0F0;mso-fareast-language:EN-AU">www.clin=
+icalstudies.com.au</span></b></a><b><span lang=3D"FR" style=3D"color:#00B0F=
+0;mso-fareast-language:EN-AU"><o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><b><i><span style=3D"color:#1F497D;mso-fareast-langu=
+age:EN-AU">Nucleus Network, Australia's Clinical Research Centre, operates =
+in association with Centre for Clinical Studies, Clinical Trials Consulting=
+ and its network partners<o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:24.0pt;color:black;mso-f=
+areast-language:EN-AU">1800 243 733</span></b><span style=3D"color:black;ms=
+o-fareast-language:EN-AU"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-AU"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal"><a href=3D"https://www.facebook.com/CfCStudies/"><sp=
+an style=3D"color:#1F497D;mso-fareast-language:EN-AU;text-decoration:none">=
+<img border=3D"0" width=3D"37" height=3D"37" style=3D"width:.3854in;height:=
+.3854in" id=3D"Picture_x0020_10" src=3D"cid:image001.png@01D3EC60.D35B54F0"=
+ alt=3D"cid:image002.png@01D244DB.B31610A0"></span></a><span style=3D"color=
+:#1F497D;mso-fareast-language:EN-AU">&nbsp;
+</span><a href=3D"https://www.instagram.com/centreforclinicalstudies/"><spa=
+n style=3D"color:#1F497D;mso-fareast-language:EN-AU;text-decoration:none"><=
+img border=3D"0" width=3D"37" height=3D"37" style=3D"width:.3854in;height:.=
+3854in" id=3D"Picture_x0020_15" src=3D"cid:image002.png@01D3EC60.D35B54F0" =
+alt=3D"cid:image004.png@01D244DB.B31610A0"></span></a><span style=3D"color:=
+#1F497D;mso-fareast-language:EN-AU">&nbsp;&nbsp;</span><a href=3D"https://t=
+witter.com/cfcstudies"><span style=3D"color:#1F497D;mso-fareast-language:EN=
+-AU;text-decoration:none"><img border=3D"0" width=3D"37" height=3D"37" styl=
+e=3D"width:.3854in;height:.3854in" id=3D"Picture_x0020_9" src=3D"cid:image0=
+03.png@01D3EC60.D35B54F0" alt=3D"cid:image005.png@01D244DB.B31610A0"></span=
+></a><span style=3D"color:#1F497D;mso-fareast-language:EN-AU">&nbsp;&nbsp;<=
+/span><a href=3D"https://www.youtube.com/channel/UCxWbVDcH-sfT8zaZA4uvQQw">=
+<span style=3D"color:#1F497D;mso-fareast-language:EN-AU;text-decoration:non=
+e"><img border=3D"0" width=3D"37" height=3D"37" style=3D"width:.3854in;heig=
+ht:.3854in" id=3D"Picture_x0020_13" src=3D"cid:image004.png@01D3EC60.D35B54=
+F0" alt=3D"cid:image010.png@01D244DB.B31610A0"></span></a><span style=3D"co=
+lor:#1F497D;mso-fareast-language:EN-AU">&nbsp;&nbsp;&nbsp;&nbsp;<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;mso-fareast-language:=
+EN-AU">Find us on Facebook, Instagram, Twitter and YouTube<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-AU"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal">If you do not wish to receive any further emails fro=
+m us then please reply to this email with the word &#8216;UNSUBSCRIBE&#8217=
+; in the subject box.<o:p></o:p></p>
+<div id=3D"a59ada49-a492-4f1d-ac57-74be3a4194fc">
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-AU"><o:p>&nbs=
+p;</o:p></span></p>
+</div>
+<div id=3D"a59ada49-a492-4f1d-ac57-74be3a4194fc">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"50" style=3D"width:37.5pt">
+<tbody>
+<tr style=3D"height:13.5pt">
+<td style=3D"border:none;border-bottom:solid #EAEAEA 1.0pt;padding:0cm 0cm =
+0cm 0cm;height:13.5pt">
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-AU">&nbsp;<o:=
+p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><span style=3D"display:none;mso-fareast-language:EN-=
+AU"><o:p>&nbsp;</o:p></span></p>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"90%" style=3D"width:90.0%">
+<tbody>
+<tr style=3D"height:12.75pt">
+<td style=3D"padding:0cm 0cm 0cm 0cm;height:12.75pt">
+<p class=3D"MsoNormal" style=3D"line-height:12.75pt"><span style=3D"mso-far=
+east-language:EN-AU">&nbsp;<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:0cm 0cm 0cm 0cm">
+<p class=3D"MsoNormal" style=3D"line-height:12.75pt"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Segoe UI&quot;,sans-serif;color:#666666;mso-fare=
+ast-language:EN-AU">To stop receiving messages from
+<a href=3D"https://outlook.office365.com/owa/recruitmentteammembers@nucleus=
+network.com.au/groupsubscription.ashx?realm=3Dnucleusnetwork.com.au&amp;sou=
+rce=3DEscalatedMessage&amp;action=3Dconversations">
+<span style=3D"font-family:&quot;Segoe UI Semibold&quot;,sans-serif;color:#=
+0072C6;text-decoration:none">Recruitment Team Members</span></a> group,
+<a href=3D"https://outlook.office365.com/owa/recruitmentteammembers@nucleus=
+network.com.au/groupsubscription.ashx?realm=3Dnucleusnetwork.com.au&amp;sou=
+rce=3DEscalatedMessage&amp;action=3Dunsubscribe">
+<span style=3D"font-family:&quot;Segoe UI Semibold&quot;,sans-serif;color:#=
+0072C6;text-decoration:none">stop following it</span></a>.<o:p></o:p></span=
+></p>
+</td>
+</tr>
+<tr style=3D"height:12.75pt">
+<td style=3D"padding:0cm 0cm 0cm 0cm;height:12.75pt">
+<p class=3D"MsoNormal" style=3D"line-height:12.75pt"><span style=3D"mso-far=
+east-language:EN-AU">&nbsp;<o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-AU"><o:p>&nbs=
+p;</o:p></span></p>
+</div>
+</div>
+</body>
+</html>
+
+--_000_SYXPR01MB0463D4DCD53E7422B80D661AC5140SYXPR01MB0463ausp_--
+
+--_008_SYXPR01MB0463D4DCD53E7422B80D661AC5140SYXPR01MB0463ausp_
+Content-Type: image/png; name="image001.png"
+Content-Description: image001.png
+Content-Disposition: inline; filename="image001.png"; size=802;
+	creation-date="Tue, 15 May 2018 05:24:35 GMT";
+	modification-date="Wed, 25 Jul 2018 04:49:09 GMT"
+Content-ID: <image001.png@01D3EC60.D35B54F0>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAACUAAAAlCAYAAADFniADAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
+xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAAKiSURBVFhH
+zZjBSxVRFMbzOaZZQagEQWRUWEjQIqiFK4s2LQwSg6JV6cp/QXi9RbtcuZD+gIxeCmq0itwFbdq1
+CIKIxJ1YJkaUz/x9D2cYh3fn3eu7b5oDH+/OnXPP+ebcc8+ceUGpVDoQl2KxeJPrW+AcaAcF0Lr7
+K9WW2LjW9R57sYsK439gG2yBTfAFvAav4KH5qgThADJXGT8Fl0xWmzB/HZtj4CP+xyD2PiLFxBUu
+3oLDTXBsY/IiSkvwuAGxdwGDNiZm/iOhkPQh8YBPn7ZP+XPW5nEy0DmFjyGRupeBMxcXd0Wqz2VF
+BroXRCo6gZ4dfsDegk4WWAd/gUqBjv5p8ByovCSlTYSU6L5lglP02GSUZF5JcRiIlAqjTymnEdp1
+dKQeKVVsX6KKPWlh7HuKTsF3pOTsU9Ih26UHHwYqPcqj4ymkWn0n+QbOftdweI25skUEqyq+IxWe
+rqT/E7aEQlIu+vV0O1FQN5CUjnoL4/d9bd8yRlWXljl5SvakqEVZBKpRun8e9JuI+iL1BjIPTU64
+pw5EqAqJ/0g/zSZ10GV70D2Tpu8rUlHXaEkuNfF9kepgS45BqMJWqSzsEe4pkmoglU+qWSeziNQQ
+TgbBZzBQw+Ft5qZipLqyIKUjL/w0OFOUeiy31nvb8sfguFbtMnL0lVO2QbDSEymnp7Cy2qBSbiPl
+WmMajEPd5dt53L5KbkmpB8qTbClSuST1FWLG3sYxhKby8svBzjdFahboPykfcpSXr/pxvXjDD02d
+7ssOxmdDUk9YlPqStDTai17UzFmuiav94OJFoFaDp3vAxfw+jPheMgqf9WpFZ7AAsTsMp0G3b08W
+9tbQGYfHnHSj1wwTLyG2xNx9MALCD0cLm/tSUd7pg0Lfg8/wvxpa2QGZnZLf4W62fAAAAABJRU5E
+rkJggg==
+
+--_008_SYXPR01MB0463D4DCD53E7422B80D661AC5140SYXPR01MB0463ausp_
+Content-Type: image/png; name="image002.png"
+Content-Description: image002.png
+Content-Disposition: inline; filename="image002.png"; size=1316;
+	creation-date="Tue, 15 May 2018 05:24:35 GMT";
+	modification-date="Wed, 25 Jul 2018 04:49:09 GMT"
+Content-ID: <image002.png@01D3EC60.D35B54F0>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAACUAAAAlCAYAAADFniADAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
+xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAASkSURBVFhH
+zZhriFVVFMfVJnvb0MMwekj0IbQoonylQaWFaUJQppSVCPagBI1EiLgz6gf9UBkERQmNmSSiyaiZ
+iUpJD6IcMrQCUYmkiEpKiV4++v2uew+7M/fO3cPMzVnwZ++z99pr/c9+rL3OaWhubu6TSqlUuoLn
+MbQvo76KegvYDT5N9I5RPx6eLX2OkvbZdhT0DZ3W1ff5H7AFrMTXJymHhvgAgYvDgBGUTWAZOB+c
+DtS7KB3YQ/Uh2JmF73cpZ0LugHbLpGhspNgKHgMHweHCm8VZ6SEuHcyMp+UDeLhC38eZepXGq8Ah
+cEa9PGN3E1gCfgcu5SngHOAeuhG4OuMaYCeZewMRleopy5mJ94oO4HB1IDWW+jBn6p5EyQ1Y76Wq
+9NLxINg3TVLDC6TqOVOp89RPOhGjJDWgwCJVsF488t0h7T6qJKnPAZLqn2gdoW78iHFH5djWHTJx
+bGMVI2m4OVVS7bGK+uvh+XI23IfUh4LBwNNSSb6hcTv4GhhGdHoluAlcU2HAs9jVpqc8BtHzqE9N
+dMuk0plKDWlYqfR2O2ifz0laV4Wsse9O+kpgWKJjgH6i2pjQXibV1TCwhDFPQ8hl1fmo4Ng3/gm0
+0fcR2Bgi9WL1axBJu/tK6g5gwIwnI5bp3Wb9NEfi7KtAxii8EFxfdAiZL0+oNr9NOZdng6J2/6xA
+LvVj91FJzQTXgn5hQCzjyYunbzNOXg6EZlM+H/TbKDeCn8EgcDMYCdZARmJNYDf1R2lzSdPLO/UR
+/ZSvmcnAqF5LXgyEDLYS0sjjOHylOBACD9C2FFAt7UPnDeo7QfmlasiPkqp2stKxWzD8Pg7OpvGl
+0PFwcNbBB+1vovsrHet9AeqtpieU7/A8oQapQ2k46Ex3dei8m9KYIknfvqrQvwESK1GYAhzXAtZk
+kPpPjOrMx57QOS6UnRJKDC0PpG4NpEwWa0ruTMXNeUGwuLem5RMK3wa9S0JZ6fR1MJVLKh7buP/M
+gXLEPaj8Ecp4sjsdm0uqMVjZRenpcxk75EUVPBkeFE+ekpVS55Iai8FW4IZvAjPYxM+xmX+o9sr0
+n0Xfk6E/HpTbcqZXUtXSiXT8ZJzMC0HQzTtNgrRNou2XoiPaz6TtLXApWIVOG23esfflksrRG4jS
+HLAAzALXAe+8HThbRGnuLblzgbMxF/il4pXkx4jiRXxZjrPc5dPWMxDYxFt/Rqlj0xwDYYzSvwVS
+0a+fTdPRP4i+15gvlCW5y6cxL+RWHIzHkRt3IvW7KL2m/BLxG3E/8C5cgc5aB4WPgg1UXdIs6cpM
+adALdzuOnsLpUuA1InTeENOZ6Jm26dRfAC5rtnRlpqJRc/rXcPgIpSmJH7Hfgb/CiTNQurwPgTTB
+yyVVTl3SVCJ3oHo3BBhYTVvM7bVn1M8KklWcHdNIOYPshpi8XdiN8cWhRySVdR/1oNNapv6WlKmr
+GWFvkV2SMueZ11sYwWOFx3gnp2YzD7f3AmJfwGFbjFMzePgYeFedLPG/2P1MUvn0+S10gNm6hapx
+J36E/p/knKEH4+dbe0SnwWxyNOTc9EZiL1z76/VryPj4OWgBa/Hf7udf8nFrxQANijMAAAAASUVO
+RK5CYII=
+
+--_008_SYXPR01MB0463D4DCD53E7422B80D661AC5140SYXPR01MB0463ausp_
+Content-Type: image/png; name="image003.png"
+Content-Description: image003.png
+Content-Disposition: inline; filename="image003.png"; size=992;
+	creation-date="Tue, 15 May 2018 05:24:36 GMT";
+	modification-date="Wed, 25 Jul 2018 04:49:09 GMT"
+Content-ID: <image003.png@01D3EC60.D35B54F0>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAACUAAAAlCAYAAADFniADAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
+xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAANgSURBVFhH
+zZhbiE1RGMeZc4wHjMktL665lAcl4kHhQcgDXsbLpCQvZDRlkJTjyCUhD5OjjDDIkwgNplzyNuV1
+pORSiBJCTBxnht9/Wztn9uyz1zrXOV/9W2vv9V3++9trfWvvFU8mk0MkiURiFc1GMB3UgjgYZtoa
+2qFAbcwz+H9tLgc0fdz5Y+72mr5/T9e/QQakwUtwAS63pa/AInSSpjmX9wrcn0+MBni0Qmx7nM6K
+QSaU/cxN8LmjTG2pQCbyCbFVpKbkY1EB3cki5c2rKpK4CGmlVZPUVm2m/LpTLdmKKVMqiKWWxzhs
+B0/ACLAYbAbjTaCftG/BjJDANSKlSh0lKQZXg6mOzI+ht5si6FdzmXVQf+TnqCFznvZMFKmo1/cL
+wz3gNLgPJliIXYPMrjAd7iszjRqD4AGaceAHUCazxctUFKnPjGdw2I0jvYKzYGkOYtrP9tuyiZ+x
+6FwFX8DhMH1bjRplnqQHYs/pL8NpE+1OMCng8DXX3TZS+PmEjzXoncilayM10mRGT+YJTltxepHu
+eoMFtPUgHphHoTGxncPAuSjyNlKyPYWjLjMnfGJf6bQJjGmezQJ19GPo6TVGiV5fpNhIvcP6EthA
+wOME1DdQP+HeB24IrlJnU7SRkoN9BE5DqlT1bFqxpDSndoAjENNXYylEq7io1yfjvWTpIaS6bM5s
+4/jRal5u07O9PtmruN3D4UHadsi9tzmNGNeKVdEsOlNy8A1o0teDgkhpZWKr+mYVl0zJyRjwiiw9
+tXrMrbCNodku9q6khuNMm2ojxG65OM7WMQXzkKudKyn50yS9SYAHakEbBHtsgUxxvY5ecOPNaSpS
+tgocNFb11g/kgEIaVISQatINIBtnEamo+qM/V01s/clqPnWAu2RI15ECoXUo6JNnok03MN5nI/Xd
+OL7istnKOWQW0rSAhjzJ+OpWUnPRvPwvVkJZegSegY9AH4B6qNFAr2kRWAmWFEimHymXOTUTi2YD
+GesrQfNKtUcLQAchpZJePal1foREU3bKJRmR0hNXk6QLzVQ5H8LLlL6t55UzSp6+34iUasnaPA3L
+qZ7Sx36nTtCIor+UwZaUjhi9vU9HehDrpLsJ6MxTS1ynMWq17P0zz2LOHbRz+PDPPLVVCS+Azjy9
+zf4vqeft0zTrttYAAAAASUVORK5CYII=
+
+--_008_SYXPR01MB0463D4DCD53E7422B80D661AC5140SYXPR01MB0463ausp_
+Content-Type: image/png; name="image004.png"
+Content-Description: image004.png
+Content-Disposition: inline; filename="image004.png"; size=1282;
+	creation-date="Tue, 15 May 2018 05:24:37 GMT";
+	modification-date="Wed, 25 Jul 2018 04:49:09 GMT"
+Content-ID: <image004.png@01D3EC60.D35B54F0>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAACUAAAAlCAYAAADFniADAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
+xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAASCSURBVFhH
+xZhbqFZFFMe9fPqSkV3JCqXIhCC6EpWUVKT2EAplHIpCrIcyPQURQRSHQ48WeSkrFbMHqZcgMSzp
+AlKQEBQF1kM3SVQMKws7memx328zyza77/v2nk/OccGfWTOzZuY/M2vWzN6twcHBMcrAwMBckoXg
+IjARtMCElI4jHQtMxxcN/sun7P+SYUqOpdKjSY8y8/+AI+Aw+AFsgMsW7R1YQi+QPNap91Eov5ox
+FsBjFcT6WyizTzKh8pyXwuddV+rhUViJnCEWS2paTotRsJ0qqcKvGsg+bLaDWWAy+ACcAq5v0DbH
+pCUhT1oTOYATzmfP12H8APpt6P0jQGpizkrNgMQlkPgQXJdmcW+T2WTaFCsVcadJ2z6MXgNrIHgW
+6bUpvzLppvuBh+d14Kr+DJY16TzZjJeUAbGp3Inhs+AVsATsYRsXQXAmqUSnU9aHvhn9L/RPgIEx
+h9Q4SRmpm8plGF7KoDsY9O40oG03pfzn6PegO1HhQTi1aefJriCVs31OwNO3A1wDPIHKIeCVktNX
+J67ZpOwoZi4B7y6lutpx5/VEsmmMKs/KyzQk/DEIFnVs7zG2UMJ/tiFcu5u9kHIg5W9wcdJvhsg3
+EHmRfBCdQ9nXlEX4qCUTBr2QmsdAZyYfmo7+BvrG5OgPoQ+jP046hfRsUp8oWdILqTmMIEKMXSLE
+rXwui0XFuAmpvbRZDnYD/UQnjsda2cHVqw5fjoG2Oxc8Ac7vRrqOlNH4JnzjuxOZebktW7qJ/KeJ
+YNtu60itkRAdXUHr+UAnd8auwHrqvFIKwcZtewRso/zLTpOgbie2L1HvzdATqT2p1eWkT4OIO76r
+3wHHSaW6FaRPgo6kUn+/diJked1KRRDciO1b4FvwBbgLTGDGfljoRz5/DBF/gEOUT2JFDsbA5P0Y
++YWy31NZ13HrSBV90JkOfpDOdfAh8kPoEnwGnAPuA74YXIFHwVPUP4/dMtK15B8E+9DvoOyzbqvU
+ZKWq7cunayqVk8Bp4LwUxc2/CXx39UHi7URoAalhQp9beKKk2r0gXC3F7fJacRW9kBW30yezdbcC
+g6cyA3hndg0FQdbtK99l1Um0IxV+pm3UR5mp/uWBKMct32HvgY+qA7TLSypm3q6++gB0oCCg7ikc
+KjWMMida/pr22/Kq0iS6cRvOJVV+f0nIt9WFILZPIj4EL0irdSCN7qW8HmwDW2tWq5aUA5fF4Bmv
+hK/QvfN2AT+/FK8iw8UU8CrwMfg+2AwMEcuTnT7XSQpS3XzqRup9j4fcgBLb5YnSd34DpyeDW0iN
+VYaJnelE3o5uO/NOQJnZhdRRScXrsZ2d7+3tdLbKStKI8OrlaF6sFGVe3sqP0RllTvrjyNPfYnTj
+Wic5IqnqFlWNV9LR/RQaGHM+Mqr9eEDOAL7tu8nhupWKxnUd1YyTVV2s1E/gyqxmI2u8S1Ivg3kj
+O05W76tbOOJWfEZHXprVdGSMV8NnS/FKQOmHmEFtEfCZ4R3mdWHqsY9/nj19xyX+3hyB+OfpR4X4
+HvjP03g25l9KnE9crz6fyQAAAABJRU5ErkJggg==
+
+--_008_SYXPR01MB0463D4DCD53E7422B80D661AC5140SYXPR01MB0463ausp_
+Content-Type: image/jpeg; name="image005.jpg"
+Content-Description: image005.jpg
+Content-Disposition: inline; filename="image005.jpg"; size=13663;
+	creation-date="Thu, 27 Sep 2018 01:59:58 GMT";
+	modification-date="Thu, 27 Sep 2018 01:59:58 GMT"
+Content-ID: <image005.jpg@01D45652.C476BD10>
+Content-Transfer-Encoding: base64
+
+/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIf
+IiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7
+Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCADqAWcDASIA
+AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
+AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
+ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
+p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
+AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
+BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
+U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
+uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDzGJMK
+BSlcnFOiGcVL5TB+Qc0AOtoyWHcVNLDhvSr81kLGOCJ1IuGG5+egPQVBOuMGhNNXQ5wcXZ7l3wdG
+H11lPA2Zrd8SxGO6iKsQ2OCOorC8KnZ4gX0ZDXRa+Q1zF9DVWRHUw/EMX2+zTV4/vufLuwB92bH3
+vo4GfqGqhpuPs+GPOK2LWaGGWSG4z9juk8qfA5UZyHHupwfz9axri3m0u8ms5sB4mKnHQ+hHsRgj
+61nFcr5fuNJe8uYnkton0v7TEuJYJtk2P4lYZQ/gQw/EVUtwSxJrT0gLJO9vI2I7xDCxPYn7p/Bg
+tC6fDHpU128224jnWLyPqCST+RFHNyuzK5eZXRmQoDfjPrXQEHy8D0rCt4i17n34roUXEYY+laxM
+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
+
+--_008_SYXPR01MB0463D4DCD53E7422B80D661AC5140SYXPR01MB0463ausp_--

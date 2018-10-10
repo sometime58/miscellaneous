@@ -1,0 +1,1299 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 2002:a9d:30aa:0:0:0:0:0 with SMTP id s42csp1916531otc;
+        Mon, 8 Oct 2018 13:04:04 -0700 (PDT)
+X-Google-Smtp-Source: ACcGV60FZWv0VqBE0hKE+3ixYE1SvAN0/rxwFEx4ZIZQKKdyTgrvUwOguRUH3jzzX2Um5nrioyyr
+X-Received: by 2002:a37:9203:: with SMTP id u3-v6mr12652094qkd.72.1539029044119;
+        Mon, 08 Oct 2018 13:04:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1539029044; cv=none;
+        d=google.com; s=arc-20160816;
+        b=RdQlTd/wVVLw+3aeYk+UqfcjMjyH3YU2w+m/tym8B98x1BheoR8EH2dtHoFio8ox5U
+         DfUwPdTv4ejiU5aJqi7gxb1VfxwdTTKdYm35PZao4bjhVg7SjZ/9oKgIPVxV6CPzdXWu
+         2XZS1Xl1Vdl+hmGql30JYkuUhlz6yUT7dYKSMU97RuQe761bnjJ2vdUm+vAtCcCBP782
+         M+eNuX7R6HdH0h5zCe9gU3jSnQwquiqkSN9NWDvLU/ecQ2uE38SX5O7QXIIgdkMR9/iM
+         9dBHQuXHSxdeC2pkdT2UjQ7Pxc0q64N2j8ui47kQKHSt+yGjeddnp/8ewBlZyq8SceEa
+         xJqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=require-recipient-valid-since:feedback-id:list-unsubscribe:date:to
+         :mime-version:subject:message-id:from:dkim-signature:dkim-signature;
+        bh=6dWWWymnxZlDNMIDecr8TGzH/65BPwECzI+AqBnd44I=;
+        b=ptTeLTTRS304RHUTlj3SJhWdBpNYDob5PVOPF7kfb72PwBslvNDxKLo0f4ZZHIxEud
+         VDmwZUOub15mliz1eNwu773WsOXzIe8zzhG5FKHmB/DXSsF47BtuvO28ITGqCQYrZx6B
+         fP0XjPs8NcYEgz4jXBPzgTQuoHl6FUejEnNCAkj+nK+W2/JPrlBqt7XLGOds6npyCuuj
+         zOUAt0EqoYduFGph2XdWS2SV8N9TWVQCZB6roVALg5sEpjRkARjYUnjRY4l0YLTh6QvK
+         Moru4BAgoGXPHrisV3AlQXVQneUOHbKnm74vFRTB3pmguK1LqZKzlHh382xZ/9s2l3Y9
+         AOwg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=F3cw7dB6;
+       dkim=pass header.i=@mailc.linkedin.com header.s=proddkim1024 header.b=fVxrdgwS;
+       spf=pass (google.com: domain of s-4vmlg6kyxgz4789o3m9wyx7tgq75ounqvbdyinl36tzbr6q6vi0fl6wg@bounce.linkedin.com designates 2620:119:50c0:207::163 as permitted sender) smtp.mailfrom=s-4vmlg6kyxgz4789o3m9wyx7tgq75ounqvbdyinl36tzbr6q6vi0fl6wg@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+Return-Path: <s-4vmlg6kyxgz4789o3m9wyx7tgq75ounqvbdyinl36tzbr6q6vi0fl6wg@bounce.linkedin.com>
+Received: from mailc-gc.linkedin.com (mailc-gc.linkedin.com. [2620:119:50c0:207::163])
+        by mx.google.com with ESMTPS id a20-v6si655790qtm.171.2018.10.08.13.04.03
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 08 Oct 2018 13:04:04 -0700 (PDT)
+Received-SPF: pass (google.com: domain of s-4vmlg6kyxgz4789o3m9wyx7tgq75ounqvbdyinl36tzbr6q6vi0fl6wg@bounce.linkedin.com designates 2620:119:50c0:207::163 as permitted sender) client-ip=2620:119:50c0:207::163;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@linkedin.com header.s=d2048-201806-01 header.b=F3cw7dB6;
+       dkim=pass header.i=@mailc.linkedin.com header.s=proddkim1024 header.b=fVxrdgwS;
+       spf=pass (google.com: domain of s-4vmlg6kyxgz4789o3m9wyx7tgq75ounqvbdyinl36tzbr6q6vi0fl6wg@bounce.linkedin.com designates 2620:119:50c0:207::163 as permitted sender) smtp.mailfrom=s-4vmlg6kyxgz4789o3m9wyx7tgq75ounqvbdyinl36tzbr6q6vi0fl6wg@bounce.linkedin.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=linkedin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linkedin.com;
+	s=d2048-201806-01; t=1539029040;
+	bh=6dWWWymnxZlDNMIDecr8TGzH/65BPwECzI+AqBnd44I=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=F3cw7dB6j3Cl8xDkrbON3UyyoK+1Vzoq7s2xMEXi5zqS8wLBHnbUA4Rln1cntvarz
+	 cleMe7q1hqd9LEfT4MocwtrlKRXPdrVVI7O8U5y7hqMdBSdBDqCT7r47KFdRYM33rP
+	 a8SDJ9XFfa6NU4BWTw1HAEbexMGmGbiqXgxH5q1kQVLvkpXUp48MYWL72T8AdlP9io
+	 j4uQspy0qp3mGElab+reItuIhLfKLGPnmKSBye3/U4MaFtAQieCTSyUkneKgjKzOwX
+	 FiyQ4tNk0woCw35QOGPOXPmop4pCaAGw0iOL263JSKo1MQHqJmFW7xw5EYhnBxRQCp
+	 K78sUUH8p5TQA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailc.linkedin.com;
+	s=proddkim1024; t=1539029040;
+	bh=6dWWWymnxZlDNMIDecr8TGzH/65BPwECzI+AqBnd44I=;
+	h=From:Subject:MIME-Version:Content-Type:To:Date:X-LinkedIn-Class:
+	 X-LinkedIn-Template:X-LinkedIn-fbl;
+	b=fVxrdgwShM0/r/F6sMyFN2qzyTQTJQT5LgyGFFRRJb+aZTXWT2RoU6ty4XWiST4ZU
+	 OgKtSvjjPZ8mWpIL+9Pse/kk95F+veDHNiBFwjCMLJKzLuRaufJOQG2U1TeVb1C4Dp
+	 OgudsF8yyVMUo82S2w0+gxoDi4AW2busTsIwCIXQ=
+From: LinkedIn <news@linkedin.com>
+Message-ID: <1546932140.12004400.1539029040125.JavaMail.app@ltx1-app9174.prod.linkedin.com>
+Subject: Ban laptops from meetings?
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_12004398_1904355819.1539029040116"
+To: Aohan Wang <sometime5858@gmail.com>
+Date: Mon, 8 Oct 2018 20:04:00 +0000 (UTC)
+X-LinkedIn-Class: CED
+X-LinkedIn-Template: email_feed_ecosystem_digest_01
+X-LinkedIn-fbl: m2-at00j5q88a6xazgc2o222bt2z63b7ake4nvsy46c0nbwvgd91tolinpm8wxuqp6ggav2ajfr9o2smbhde01slqei1vcsz2fav9ae6b
+X-LinkedIn-Id: 6ldzbj-jmzyo701-eo
+List-Unsubscribe: <https://www.linkedin.com/e/v2?e=6ldzbj-jmzyo701-eo&t=lun&midToken=AQE-1AnqKjMpxQ&ek=email_feed_ecosystem_digest_01&li=30&m=unsub&ts=unsub&loid=AQHdaH54COfmJgAAAWZVR3scpR5Flgh73rwctsBU56G_aSh4KkfqKkcY7ZmpMZnbSx8usbFIES26IiDhdNJqoY87N1y1NDhFGvwHyZYS&eid=6ldzbj-jmzyo701-eo>
+Feedback-ID: email_feed_ecosystem_digest_01:linkedin
+Require-Recipient-Valid-Since: sometime5858@gmail.com; Mon, 2 Feb 2015 08:57:59 +0000
+X-TUID: 1B/xXi9xnTLR
+
+------=_Part_12004398_1904355819.1539029040116
+Content-Type: text/plain;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: text-body
+
+Ban laptops from meetings?
+
+
+
+https://www.linkedin.com/comm/feed/news/2727492?midToken=3DAQE-1AnqKjMpxQ&t=
+rk=3Deml-email_feed_ecosystem_digest_01-hero-1-null&trkEmail=3Deml-email_fe=
+ed_ecosystem_digest_01-hero-1-null-null-6ldzbj%7Ejmzyo701%7Eeo-null-neptune=
+%2Ffeed%2Enews&lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_0=
+1%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D
+
+ =20
+-----------------------------------
+
+Recommended for you
+-------
+Nobel Peace Prize winner Nadia Murad speaks with National Geographic
+nationalgeographic.com
+The young Yazidi woman, the victim of horrific crimes, has spoken out world=
+wide in her campaign to end sexual assault as a weapon...
+
+
+
+https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&lipi=3Durn%3Ali%=
+3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D=
+%3D&t=3Dplh&midToken=3DAQE-1AnqKjMpxQ&ek=3Demail_feed_ecosystem_digest_01&l=
+i=3D15&m=3Drecommended_articles&ts=3DUnknown&urlhash=3DiFZ_&url=3Dhttps%3A%=
+2F%2Fwww%2Enationalgeographic%2Ecom%2Fculture-exploration%2F2018%2F10%2Fnob=
+el-peace-prize-nadia-murad-interview%2F
+ =20
+-----------------------------------
+
+Recommended for you
+-------
+Volvo&#39;s Polestar brand is assembling prototypes of its first plug-in hy=
+brid sports car
+social.techcrunch.com
+Polestar has started assembling verification prototypes of its upcoming plu=
+g-in hybrid sports car as Volvo=E2=80=99s standalone electric...
+
+549 people are talking about this
+
+https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&lipi=3Durn%3Ali%=
+3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D=
+%3D&t=3Dplh&midToken=3DAQE-1AnqKjMpxQ&ek=3Demail_feed_ecosystem_digest_01&l=
+i=3D16&m=3Drecommended_articles&ts=3DUnknown&urlhash=3DCocc&url=3Dhttp%3A%2=
+F%2Fsocial%2Etechcrunch%2Ecom%2F2018%2F10%2F04%2Fvolvos-polestar-brand-is-a=
+ssembling-prototypes-of-its-first-plug-in-hybrid-sports-car%2F
+ =20
+-----------------------------------
+
+Recommended for you
+-------
+LaCroix is facing a lawsuit over the mysterious ingredient that has made it=
+ a huge hit =E2=80=94 here&#39;s what we know about it
+businessinsider.com
+LaCroix is facing a class-action lawsuit that argues the sparkling beverage=
+ brand contains artificial ingredients, a claim...
+
+
+
+https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&lipi=3Durn%3Ali%=
+3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D=
+%3D&t=3Dplh&midToken=3DAQE-1AnqKjMpxQ&ek=3Demail_feed_ecosystem_digest_01&l=
+i=3D17&m=3Drecommended_articles&ts=3DUnknown&urlhash=3DW3bH&url=3Dhttps%3A%=
+2F%2Fwww%2Ebusinessinsider%2Ecom%2Flacroix-ingredients-natural-essences-201=
+8-10
+ =20
+-----------------------------------
+
+Recommended for you
+-------
+&#39;Shark Tank&#39; exclusive: These are the 20 best-selling products ever=
+ featured on the show
+usatoday.com
+Ahead of its 10th season and 200th episode, we rank the 20 top &#39;Shark T=
+ank&#39; products by sales (and Lori Greiner has six...
+
+
+
+https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&lipi=3Durn%3Ali%=
+3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D=
+%3D&t=3Dplh&midToken=3DAQE-1AnqKjMpxQ&ek=3Demail_feed_ecosystem_digest_01&l=
+i=3D18&m=3Drecommended_articles&ts=3DUnknown&urlhash=3Drpkd&url=3Dhttps%3A%=
+2F%2Fwww%2Eusatoday%2Ecom%2Fstory%2Flife%2Ftv%2F2018%2F10%2F05%2Fshark-tank=
+-top-20-products-abc-10th-season%2F1504708002%2F
+ =20
+-----------------------------------
+
+Recommended for you
+-------
+Renault&#39;s low-rolling concept car is made for the good life
+cnn.com
+With the Renault EZ-Ultimo, the French automaker&#39;s designers envisioned=
+ the most luxurious version of a self-driving electric...
+
+1079 people are talking about this
+
+https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&lipi=3Durn%3Ali%=
+3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D=
+%3D&t=3Dplh&midToken=3DAQE-1AnqKjMpxQ&ek=3Demail_feed_ecosystem_digest_01&l=
+i=3D19&m=3Drecommended_articles&ts=3DUnknown&urlhash=3D9hWu&url=3Dhttps%3A%=
+2F%2Fwww%2Ecnn%2Ecom%2F2018%2F10%2F05%2Fcars%2Frenault-ez-ultimo-concept-ca=
+r%2Findex%2Ehtml
+ =20
+-----------------------------------
+
+Recommended for you
+-------
+Sanders to McDonald&#39;s: Boost workers&#39; wages
+cnn.com
+McDonald&#39;s is Senator Bernie Sanders&#39; next minimum wage target. He =
+wants McDonald&#39;s to give its workers a pay raise...
+
+
+
+https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&lipi=3Durn%3Ali%=
+3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D=
+%3D&t=3Dplh&midToken=3DAQE-1AnqKjMpxQ&ek=3Demail_feed_ecosystem_digest_01&l=
+i=3D20&m=3Drecommended_articles&ts=3DUnknown&urlhash=3D-250&url=3Dhttps%3A%=
+2F%2Fwww%2Ecnn%2Ecom%2F2018%2F10%2F04%2Fbusiness%2Fbernie-sanders-mcdonalds=
+%2Findex%2Ehtml
+ =20
+-----------------------------------
+
+Recommended for you
+-------
+The unemployment rate has fallen to a 48-year low, and it&#39;s terrifying =
+news for Walmart, McDonald&#39;s, and JCPenney
+businessinsider.com
+The US unemployment rate fell=C2=A0to 3.7%,=C2=A0a 48-year low,=C2=A0in Sep=
+tember. While low unemployment is a sign of a healthy economy, it is...
+
+202 people are talking about this
+
+https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&lipi=3Durn%3Ali%=
+3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D=
+%3D&t=3Dplh&midToken=3DAQE-1AnqKjMpxQ&ek=3Demail_feed_ecosystem_digest_01&l=
+i=3D21&m=3Drecommended_articles&ts=3DUnknown&urlhash=3Dc7uj&url=3Dhttps%3A%=
+2F%2Fwww%2Ebusinessinsider%2Ecom%2Funemployment-rate-sparks-hiring-concerns=
+-2018-10
+ =20
+-----------------------------------
+
+Recommended for you
+-------
+How the 22-year-old founders of Brex built a billion-dollar business in les=
+s than 2 years
+social.techcrunch.com
+Henrique Dubugras and Pedro Franceschi, the co-founders of Brex, have raise=
+d $125 million at a $1.1 billion valuation just four...
+
+437 people are talking about this
+
+https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&lipi=3Durn%3Ali%=
+3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D=
+%3D&t=3Dplh&midToken=3DAQE-1AnqKjMpxQ&ek=3Demail_feed_ecosystem_digest_01&l=
+i=3D22&m=3Drecommended_articles&ts=3DUnknown&urlhash=3DA_Ah&url=3Dhttp%3A%2=
+F%2Fsocial%2Etechcrunch%2Ecom%2F2018%2F10%2F05%2Fhow-the-22-year-old-founde=
+rs-of-brex-built-a-billion-dollar-business-in-less-than-2-years%2F
+ =20
+-----------------------------------
+
+Recommended for you
+-------
+Wharton Business School Receives Its Largest Gift Ever
+forbes.com
+Wharton Business School just received its largest single gift ever.
+
+468 people are talking about this
+
+https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&lipi=3Durn%3Ali%=
+3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D=
+%3D&t=3Dplh&midToken=3DAQE-1AnqKjMpxQ&ek=3Demail_feed_ecosystem_digest_01&l=
+i=3D23&m=3Drecommended_articles&ts=3DUnknown&urlhash=3DJ9wt&url=3Dhttps%3A%=
+2F%2Fwww%2Eforbes%2Ecom%2Fsites%2Fzackfriedman%2F2018%2F10%2F05%2Fwharton-b=
+usiness-school-receives-largest-ever-gift%2F
+ =20
+-----------------------------------
+
+Recommended for you
+-------
+Analysis | Brett Kavanaugh just admitted he screwed up
+washingtonpost.com
+In a Wall Street Journal op-ed, Kavanaugh tacitly admits that his angry, pa=
+rtisan testimony last week wasn&#39;t helpful.
+
+
+
+https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&lipi=3Durn%3Ali%=
+3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D=
+%3D&t=3Dplh&midToken=3DAQE-1AnqKjMpxQ&ek=3Demail_feed_ecosystem_digest_01&l=
+i=3D24&m=3Drecommended_articles&ts=3DUnknown&urlhash=3DLC3y&url=3Dhttps%3A%=
+2F%2Fwww%2Ewashingtonpost%2Ecom%2Fpolitics%2F2018%2F10%2F05%2Fbrett-kavanau=
+gh-just-admitted-he-screwed-up%2F
+-----------------------------------
+
+Check out the rest of your feed
+Go to LinkedIn
+https://www.linkedin.com/comm/feed/?midToken=3DAQE-1AnqKjMpxQ&trk=3Deml-ema=
+il_feed_ecosystem_digest_01-footer_promo-4-null&trkEmail=3Deml-email_feed_e=
+cosystem_digest_01-footer_promo-4-null-null-6ldzbj%7Ejmzyo701%7Eeo-null-nep=
+tune%2Ffeed&lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3=
+By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D
+
+-----------------------------------
+
+.....................................
+
+Unsubscribe: https://www.linkedin.com/e/v2?e=3D6ldzbj-jmzyo701-eo&t=3Dlun&m=
+idToken=3DAQE-1AnqKjMpxQ&ek=3Demail_feed_ecosystem_digest_01&li=3D30&m=3Dun=
+sub&ts=3Dunsub&loid=3DAQHdaH54COfmJgAAAWZVR3scpR5Flgh73rwctsBU56G_aSh4KkfqK=
+kcY7ZmpMZnbSx8usbFIES26IiDhdNJqoY87N1y1NDhFGvwHyZYS&eid=3D6ldzbj-jmzyo701-e=
+o
+
+Help: https://www.linkedin.com/e/v2?e=3D6ldzbj-jmzyo701-eo&lipi=3Durn%3Ali%=
+3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D=
+%3D&a=3DcustomerServiceUrl&midToken=3DAQE-1AnqKjMpxQ&ek=3Demail_feed_ecosys=
+tem_digest_01&li=3D29&m=3Dfooter&ts=3Dhelp&articleId=3D67
+
+
+You are receiving highlight emails.
+
+This email was intended for Aohan Wang (University of Melbourne).
+Learn why we included this: https://www.linkedin.com/e/v2?e=3D6ldzbj-jmzyo7=
+01-eo&lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%=
+2FYkWRDOBi7oxlhsSzQ%3D%3D&a=3DcustomerServiceUrl&midToken=3DAQE-1AnqKjMpxQ&=
+ek=3Demail_feed_ecosystem_digest_01&articleId=3D4788
+
+=C2=A9 2018 LinkedIn Ireland Unlimited Company, Wilton Plaza, Wilton Place,=
+ Dublin 2. LinkedIn is a registered business name of LinkedIn Ireland Unlim=
+ited Company. LinkedIn and the LinkedIn logo are registered trademarks of L=
+inkedIn.
+------=_Part_12004398_1904355819.1539029040116
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-ID: html-body
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html xmlns=3D"http://www.w3=
+.org/1999/xhtml" lang=3D"en" xml:lang=3D"en"> <head> <meta http-equiv=3D"Co=
+ntent-Type" content=3D"text/html;charset=3Dutf-8"> <meta name=3D"HandheldFr=
+iendly" content=3D"true"> <meta name=3D"viewport" content=3D"width=3Ddevice=
+-width; initial-scale=3D0.666667; maximum-scale=3D0.666667; user-scalable=
+=3D0"> <meta name=3D"viewport" content=3D"width=3Ddevice-width"> <title></t=
+itle> <!--[if mso]><style type=3D"text/css">body {font-family: 'Helvetica N=
+eue', Helvetica, Arial, sans-serif;}.phoenix-email-container {width: 512px =
+!important;}</style><![endif]--> <!--[if IE]><style type=3D"text/css">.phoe=
+nix-email-container {width: 512px !important;}</style><![endif]--> <style t=
+ype=3D"text/css">@media only screen and (max-width:32em) { .phoenix-email-c=
+ontainer { width:100% !important; } } @media only screen and (max-width:20e=
+m) {} @media only screen and (max-device-width:30em) {} @media screen and (=
+device-width:30em) and (device-height:22.5em), screen and (device-width:22.=
+5em) and (device-height:30em), screen and (device-width:20em) and (device-h=
+eight:15em) {} @media screen and (-webkit-min-device-pixel-ratio:0) {} @med=
+ia screen and (max-device-width:25.88em) and (max-device-height:48.5em) {} =
+</style> </head> <body style=3D"padding:0;margin:0 auto;-webkit-text-size-a=
+djust:100%;width:100% !important;-ms-text-size-adjust:100%;font-family:'Hel=
+vetica Neue',Helvetica,Arial,sans-serif;"> <div style=3D"overflow:hidden;co=
+lor:transparent;visibility:hidden;mso-hide:all;width:0;font-size:0;opacity:=
+0;height:0;"></div> <table align=3D"center" border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" width=3D"100%" bgcolor=3D"#EDF0F3" style=3D"background-co=
+lor:#EDF0F3;table-layout:fixed;-webkit-text-size-adjust:100%;mso-table-rspa=
+ce:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separ=
+ate;"> <tbody> <tr> <td align=3D"center" style=3D"-webkit-text-size-adjust:=
+100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;">=
+ <center style=3D"width:100%;"> <table border=3D"0" class=3D"phoenix-email-=
+container" cellspacing=3D"0" cellpadding=3D"0" width=3D"512" bgcolor=3D"#FF=
+FFFF" style=3D"background-color:#FFFFFF;margin:0 auto;max-width:512px;-webk=
+it-text-size-adjust:100%;mso-table-rspace:0pt;width:inherit;mso-table-lspac=
+e:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> <tr> <t=
+d bgcolor=3D"#F6F8FA" style=3D"background-color:#F6F8FA;padding:5px 16px 13=
+px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;=
+-ms-text-size-adjust:100%;border-bottom:1px solid #ECECEC;"> <table border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-=
+text-size-adjust:100%;mso-table-rspace:0pt;width:100% !important;mso-table-=
+lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;min-width:100=
+% !important;"> <tbody> <tr> <td align=3D"left" valign=3D"middle" style=3D"=
+-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms=
+-text-size-adjust:100%;"><a href=3D"https://www.linkedin.com/comm/feed/?mid=
+Token=3DAQE-1AnqKjMpxQ&amp;trk=3Deml-email_feed_ecosystem_digest_01-header-=
+25-home&amp;trkEmail=3Deml-email_feed_ecosystem_digest_01-header-25-home-nu=
+ll-6ldzbj%7Ejmzyo701%7Eeo-null-neptune%2Ffeed&amp;lipi=3Durn%3Ali%3Apage%3A=
+email_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D" styl=
+e=3D"cursor:pointer;color:#008CC9;-webkit-text-size-adjust:100%;display:inl=
+ine-block;text-decoration:none;-ms-text-size-adjust:100%;"> <img alt=3D"Lin=
+kedIn" border=3D"0" src=3D"https://www.linkedin.com/comm/dms/logo?midToken=
+=3DAQE-1AnqKjMpxQ&amp;trk=3Deml-email_feed_ecosystem_digest_01-null-32-null=
+&amp;trkEmail=3Deml-email_feed_ecosystem_digest_01-null-32-null-null-6ldzbj=
+%7Ejmzyo701%7Eeo-null-comms%7Ebadging%7Edynamic&amp;lipi=3Durn%3Ali%3Apage%=
+3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp=
+;_sig=3D3NBN6anMcPpos1" height=3D"42" style=3D"outline:none;-ms-interpolati=
+on-mode:bicubic;color:#FFFFFF;text-decoration:none;"></a></td> <td valign=
+=3D"middle" width=3D"100%" align=3D"right" style=3D"padding:0 0 0 10px;padd=
+ing-top:7px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-ls=
+pace:0pt;-ms-text-size-adjust:100%;"><a href=3D"https://www.linkedin.com/co=
+mm/in/aohan-wang-5a7645b1?midToken=3DAQE-1AnqKjMpxQ&amp;trk=3Deml-email_fee=
+d_ecosystem_digest_01-header-33-profile&amp;trkEmail=3Deml-email_feed_ecosy=
+stem_digest_01-header-33-profile-null-6ldzbj%7Ejmzyo701%7Eeo-null-neptune%2=
+Fprofile%7Evanity%2Eview&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecos=
+ystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D" style=3D"cursor:pointer;m=
+argin:0;color:#008CC9;-webkit-text-size-adjust:100%;display:inline-block;te=
+xt-decoration:none;-ms-text-size-adjust:100%;"> <span style=3D"word-wrap:br=
+eak-word;color:#4C4C4C;word-break:break-word;font-weight:400;-ms-word-break=
+:break-all;font-size:14px;line-height:1.429;overflow-wrap:break-word;">Aoha=
+n Wang</span></a></td> <td width=3D"1" style=3D"-webkit-text-size-adjust:10=
+0%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;">&n=
+bsp;</td> </tr> </tbody> </table></td> </tr> <tr> <td style=3D"-webkit-text=
+-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-a=
+djust:100%;"> <table bgcolor=3D"#EDF0F3" border=3D"0" cellspacing=3D"0" cel=
+lpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-ta=
+ble-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collap=
+se:separate;"> <tbody> <tr> <td style=3D"-webkit-text-size-adjust:100%;mso-=
+table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table b=
+order=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-we=
+bkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-te=
+xt-size-adjust:100%;border-collapse:separate;"> <tbody></tbody> </table> <t=
+able border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" bgcolo=
+r=3D"#FFFFFF" style=3D"background-color:#FFFFFF;padding:12px 24px;-webkit-t=
+ext-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-siz=
+e-adjust:100%;border-collapse:separate;border-bottom:1px solid #E5E5E5;"> <=
+tbody> <tr> <td align=3D"left" bgcolor=3D"#FFFFFF" style=3D"background-colo=
+r:#FFFFFF;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspa=
+ce:0pt;-ms-text-size-adjust:100%;"><a href=3D"https://www.linkedin.com/comm=
+/feed/news/2727492?midToken=3DAQE-1AnqKjMpxQ&amp;trk=3Deml-email_feed_ecosy=
+stem_digest_01-hero-1-null&amp;trkEmail=3Deml-email_feed_ecosystem_digest_0=
+1-hero-1-null-null-6ldzbj%7Ejmzyo701%7Eeo-null-neptune%2Ffeed%2Enews&amp;li=
+pi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDO=
+Bi7oxlhsSzQ%3D%3D" style=3D"cursor:pointer;color:#008CC9;-webkit-text-size-=
+adjust:100%;display:inline-block;text-decoration:none;-ms-text-size-adjust:=
+100%;"> <h2 style=3D"margin:0;color:#0077B5;font-weight:400;font-size:18px;=
+line-height:1.3;mso-line-height-alt:115%;">Ban laptops from meetings?</h2> =
+<p style=3D"padding:0 0 4px 0;margin:0;color:#737373;font-weight:400;font-s=
+ize:12px;line-height:1.333;text-align:left;"></p></a></td> </tr> </tbody> <=
+/table></td> </tr> <tr> <td align=3D"middle" style=3D"-webkit-text-size-adj=
+ust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100=
+%;"><a href=3D"https://www.linkedin.com/comm/feed/news/2727492?midToken=3DA=
+QE-1AnqKjMpxQ&amp;trk=3Deml-email_feed_ecosystem_digest_01-hero-1-null&amp;=
+trkEmail=3Deml-email_feed_ecosystem_digest_01-hero-1-null-null-6ldzbj%7Ejmz=
+yo701%7Eeo-null-neptune%2Ffeed%2Enews&amp;lipi=3Durn%3Ali%3Apage%3Aemail_em=
+ail_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D" style=3D"cur=
+sor:pointer;color:#008CC9;-webkit-text-size-adjust:100%;display:block;text-=
+decoration:none;width:100%;-ms-text-size-adjust:100%;"><img width=3D"512" b=
+order=3D"0" src=3D"https://media.licdn.com/dms/image/C5619AQHoa8DNWw3Adw/fe=
+demailimage-shrink_512_341/0?e=3D2159024400&amp;v=3Dbeta&amp;t=3Dk3mi_IAoIv=
+pOnOgKmCca5SLYdRRmQMM7dc3RetbVnsU" style=3D"outline:none;-ms-interpolation-=
+mode:bicubic;color:#FFFFFF;text-decoration:none;display:block;width:100%;">=
+</a></td> </tr> </tbody> </table> <table border=3D"0" cellspacing=3D"0" cel=
+lpadding=3D"0" width=3D"100%" style=3D"padding:12px 24px;-webkit-text-size-=
+adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:=
+100%;border-collapse:separate;border-bottom:1px solid #E5E5E5;"> <tbody> <t=
+r> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tabl=
+e-lspace:0pt;-ms-text-size-adjust:100%;"></td> </tr> </tbody> </table></td>=
+ </tr> <tr> <td style=3D"padding:0 24px;-webkit-text-size-adjust:100%;mso-t=
+able-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-color=
+:#EDF0F3;border-width:6px;border-style:solid;"></td> </tr> <tr> <td bgcolor=
+=3D"#FFFFFF" style=3D"background-color:#FFFFFF;-webkit-text-size-adjust:100=
+%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <t=
+able border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=
+=3D"padding:12px 24px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;ms=
+o-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;borde=
+r-bottom:1px solid #E5E5E5;"> <tbody> <tr> <td align=3D"left" style=3D"-web=
+kit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-tex=
+t-size-adjust:100%;"> <p style=3D"margin:0;color:#737373;font-weight:400;fo=
+nt-size:12px;line-height:1.333;">Recommended for you</p></td> </tr> </tbody=
+> </table> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D=
+"100%" style=3D"padding:8px 24px;-webkit-text-size-adjust:100%;mso-table-rs=
+pace:0pt;mso-table-lspace:0pt;width:100%;-ms-text-size-adjust:100%;border-c=
+ollapse:separate;"> <tbody> <tr style=3D"mso-line-height-alt:0;"> <td style=
+=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt=
+;-ms-text-size-adjust:100%;mso-padding-bottom-alt:0;"> <table border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-si=
+ze-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adju=
+st:100%;border-collapse:separate;"> <tbody> <tr style=3D"mso-line-height-al=
+t:0;"> <td align=3D"left" style=3D"-webkit-text-size-adjust:100%;mso-table-=
+rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;padding-bottom:6p=
+x;text-align:left;"><a href=3D"https://www.linkedin.com/e/v2/pulse?e=3D6ldz=
+bj-jmzyo701-eo&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_dige=
+st_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1AnqK=
+jMpxQ&amp;ek=3Demail_feed_ecosystem_digest_01&amp;li=3D15&amp;m=3Drecommend=
+ed_articles&amp;ts=3DUnknown&amp;urlhash=3DiFZ_&amp;url=3Dhttps%3A%2F%2Fwww=
+%2Enationalgeographic%2Ecom%2Fculture-exploration%2F2018%2F10%2Fnobel-peace=
+-prize-nadia-murad-interview%2F" style=3D"cursor:pointer;color:#008CC9;-web=
+kit-text-size-adjust:100%;display:inline-block;text-decoration:none;-ms-tex=
+t-size-adjust:100%;"> <h2 style=3D"margin:0;color:#0077B5;font-weight:400;f=
+ont-size:18px;line-height:1.3;mso-line-height-alt:115%;">Nobel Peace Prize =
+winner Nadia Murad speaks with National Geographic</h2></a></td> </tr> <tr =
+style=3D"mso-line-height-alt:0;"> <td style=3D"-webkit-text-size-adjust:100=
+%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <t=
+able border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=
+=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt=
+;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> <tr style=3D=
+"mso-line-height-alt:0;"> <td width=3D"100%" valign=3D"top" align=3D"left" =
+style=3D"padding:0 16px 10px 0;-webkit-text-size-adjust:100%;mso-table-rspa=
+ce:0pt;mso-table-lspace:0pt;width:100%;vertical-align:top;-ms-text-size-adj=
+ust:100%;text-align:left;"><a href=3D"https://www.linkedin.com/e/v2/pulse?e=
+=3D6ldzbj-jmzyo701-eo&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosyst=
+em_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQ=
+E-1AnqKjMpxQ&amp;ek=3Demail_feed_ecosystem_digest_01&amp;li=3D15&amp;m=3Dre=
+commended_articles&amp;ts=3DUnknown&amp;urlhash=3DiFZ_&amp;url=3Dhttps%3A%2=
+F%2Fwww%2Enationalgeographic%2Ecom%2Fculture-exploration%2F2018%2F10%2Fnobe=
+l-peace-prize-nadia-murad-interview%2F" style=3D"cursor:pointer;color:#008C=
+C9;-webkit-text-size-adjust:100%;display:inline-block;text-decoration:none;=
+-ms-text-size-adjust:100%;"> <p style=3D"padding:0 0 4px 0;margin:0;color:#=
+737373;font-weight:400;font-size:12px;line-height:1.333;text-align:left;">n=
+ationalgeographic.com</p> <p style=3D"margin:0;color:#737373;font-weight:30=
+0;font-size:14px;line-height:1.4;mso-line-height-alt:120%;text-align:left;"=
+>The young Yazidi woman, the victim of horrific crimes, has spoken out worl=
+dwide in her campaign to end sexual assault as a weapon...</p></a></td> <td=
+ valign=3D"top" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt=
+;mso-table-lspace:0pt;vertical-align:top;-ms-text-size-adjust:100%;"> <div =
+style=3D"overflow:hidden;width:80px;height:80px;"> <a href=3D"https://www.l=
+inkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&amp;lipi=3Durn%3Ali%3Apage%3A=
+email_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;t=
+=3Dplh&amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_feed_ecosystem_digest_0=
+1&amp;li=3D15&amp;m=3Drecommended_articles&amp;ts=3DUnknown&amp;urlhash=3Di=
+FZ_&amp;url=3Dhttps%3A%2F%2Fwww%2Enationalgeographic%2Ecom%2Fculture-explor=
+ation%2F2018%2F10%2Fnobel-peace-prize-nadia-murad-interview%2F" style=3D"cu=
+rsor:pointer;color:#008CC9;-webkit-text-size-adjust:100%;display:inline-blo=
+ck;text-decoration:none;-ms-text-size-adjust:100%;"><img src=3D"https://www=
+.nationalgeographic.com/content/dam/ngdotcom/rights-exempt/otherhppromos/xl=
+gpost_1538765189922.ngsversion.1538768881773.adapt.1900.1.jpg" alt=3D"" wid=
+th=3D"148" style=3D"margin-left:-40%;max-height:80px;outline:none;-ms-inter=
+polation-mode:bicubic;color:#FFFFFF;max-width:175px;text-decoration:none;wi=
+dth:auto;height:80px;"></a> </div></td> </tr> </tbody> </table></td> </tr> =
+</tbody> </table></td> </tr> </tbody> </table></td> </tr> <tr> <td style=3D=
+"padding:0 24px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tabl=
+e-lspace:0pt;-ms-text-size-adjust:100%;border-color:#EDF0F3;border-width:6p=
+x;border-style:solid;"></td> </tr> <tr> <td bgcolor=3D"#FFFFFF" style=3D"ba=
+ckground-color:#FFFFFF;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;m=
+so-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table border=3D"0" cellsp=
+acing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"padding:12px 24px;-we=
+bkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-te=
+xt-size-adjust:100%;border-collapse:separate;border-bottom:1px solid #E5E5E=
+5;"> <tbody> <tr> <td align=3D"left" style=3D"-webkit-text-size-adjust:100%=
+;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <p =
+style=3D"margin:0;color:#737373;font-weight:400;font-size:12px;line-height:=
+1.333;">Recommended for you</p></td> </tr> </tbody> </table> <table border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"padding:=
+8px 24px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspac=
+e:0pt;width:100%;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbo=
+dy> <tr style=3D"mso-line-height-alt:0;"> <td style=3D"-webkit-text-size-ad=
+just:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:10=
+0%;mso-padding-bottom-alt:0;"> <table border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table=
+-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:=
+separate;"> <tbody> <tr style=3D"mso-line-height-alt:0;"> <td align=3D"left=
+" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lsp=
+ace:0pt;-ms-text-size-adjust:100%;padding-bottom:6px;text-align:left;"><a h=
+ref=3D"https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&amp;lipi=
+=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi=
+7oxlhsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_fe=
+ed_ecosystem_digest_01&amp;li=3D16&amp;m=3Drecommended_articles&amp;ts=3DUn=
+known&amp;urlhash=3DCocc&amp;url=3Dhttp%3A%2F%2Fsocial%2Etechcrunch%2Ecom%2=
+F2018%2F10%2F04%2Fvolvos-polestar-brand-is-assembling-prototypes-of-its-fir=
+st-plug-in-hybrid-sports-car%2F" style=3D"cursor:pointer;color:#008CC9;-web=
+kit-text-size-adjust:100%;display:inline-block;text-decoration:none;-ms-tex=
+t-size-adjust:100%;"> <h2 style=3D"margin:0;color:#0077B5;font-weight:400;f=
+ont-size:18px;line-height:1.3;mso-line-height-alt:115%;">Volvo's Polestar b=
+rand is assembling prototypes of its first plug-in hybrid sports car</h2></=
+a></td> </tr> <tr style=3D"mso-line-height-alt:0;"> <td style=3D"-webkit-te=
+xt-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size=
+-adjust:100%;"> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" wid=
+th=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso=
+-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tb=
+ody> <tr style=3D"mso-line-height-alt:0;"> <td width=3D"100%" valign=3D"top=
+" align=3D"left" style=3D"padding:0 16px 10px 0;-webkit-text-size-adjust:10=
+0%;mso-table-rspace:0pt;mso-table-lspace:0pt;width:100%;vertical-align:top;=
+-ms-text-size-adjust:100%;text-align:left;"><a href=3D"https://www.linkedin=
+.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&amp;lipi=3Durn%3Ali%3Apage%3Aemail_e=
+mail_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;t=3Dplh&=
+amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_feed_ecosystem_digest_01&amp;l=
+i=3D16&amp;m=3Drecommended_articles&amp;ts=3DUnknown&amp;urlhash=3DCocc&amp=
+;url=3Dhttp%3A%2F%2Fsocial%2Etechcrunch%2Ecom%2F2018%2F10%2F04%2Fvolvos-pol=
+estar-brand-is-assembling-prototypes-of-its-first-plug-in-hybrid-sports-car=
+%2F" style=3D"cursor:pointer;color:#008CC9;-webkit-text-size-adjust:100%;di=
+splay:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"> <p sty=
+le=3D"padding:0 0 4px 0;margin:0;color:#737373;font-weight:400;font-size:12=
+px;line-height:1.333;text-align:left;">social.techcrunch.com</p> <p style=
+=3D"margin:0;color:#737373;font-weight:300;font-size:14px;line-height:1.4;m=
+so-line-height-alt:120%;text-align:left;">Polestar has started assembling v=
+erification prototypes of its upcoming plug-in hybrid sports car as Volvo=
+=E2=80=99s standalone electric...</p></a></td> </tr> </tbody> </table></td>=
+ </tr> </tbody> </table></td> </tr> <tr style=3D"mso-line-height-alt:0;"> <=
+td style=3D"mso-padding-top-alt:0;-webkit-text-size-adjust:100%;mso-table-r=
+space:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;mso-padding-bottom=
+-alt:0;"> <hr style=3D"background-color:#E5E5E5;margin:0 0 8px 0;color:#D9D=
+9D9;width:20%;border-color:#D9D9D9;border-width:0;border-style:solid;height=
+:1px;text-align:left;"></td> </tr> <tr style=3D"mso-line-height-alt:0;"> <t=
+d style=3D"mso-padding-top-alt:0;-webkit-text-size-adjust:100%;mso-table-rs=
+pace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"><p style=3D"margi=
+n:0;color:#737373;font-weight:400;padding-left:6px;font-size:12px;line-heig=
+ht:1.333;text-align:left;">549 people are talking about this</p> <table bor=
+der=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webk=
+it-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text=
+-size-adjust:100%;border-collapse:separate;"> <tbody> </tbody> </table></td=
+> </tr> </tbody> </table></td> </tr> <tr> <td style=3D"padding:0 24px;-webk=
+it-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text=
+-size-adjust:100%;border-color:#EDF0F3;border-width:6px;border-style:solid;=
+"></td> </tr> <tr> <td bgcolor=3D"#FFFFFF" style=3D"background-color:#FFFFF=
+F;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-=
+ms-text-size-adjust:100%;"> <table border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%" style=3D"padding:12px 24px;-webkit-text-size-adjust=
+:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;b=
+order-collapse:separate;border-bottom:1px solid #E5E5E5;"> <tbody> <tr> <td=
+ align=3D"left" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt=
+;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <p style=3D"margin:0;col=
+or:#737373;font-weight:400;font-size:12px;line-height:1.333;">Recommended f=
+or you</p></td> </tr> </tbody> </table> <table border=3D"0" cellspacing=3D"=
+0" cellpadding=3D"0" width=3D"100%" style=3D"padding:8px 24px;-webkit-text-=
+size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;width:100%;-ms-t=
+ext-size-adjust:100%;border-collapse:separate;"> <tbody> <tr style=3D"mso-l=
+ine-height-alt:0;"> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rs=
+pace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;mso-padding-bottom-=
+alt:0;"> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"1=
+00%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-=
+lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> <t=
+r style=3D"mso-line-height-alt:0;"> <td align=3D"left" style=3D"-webkit-tex=
+t-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-=
+adjust:100%;padding-bottom:6px;text-align:left;"><a href=3D"https://www.lin=
+kedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&amp;lipi=3Durn%3Ali%3Apage%3Aem=
+ail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;t=
+=3Dplh&amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_feed_ecosystem_digest_0=
+1&amp;li=3D17&amp;m=3Drecommended_articles&amp;ts=3DUnknown&amp;urlhash=3DW=
+3bH&amp;url=3Dhttps%3A%2F%2Fwww%2Ebusinessinsider%2Ecom%2Flacroix-ingredien=
+ts-natural-essences-2018-10" style=3D"cursor:pointer;color:#008CC9;-webkit-=
+text-size-adjust:100%;display:inline-block;text-decoration:none;-ms-text-si=
+ze-adjust:100%;"> <h2 style=3D"margin:0;color:#0077B5;font-weight:400;font-=
+size:18px;line-height:1.3;mso-line-height-alt:115%;">LaCroix is facing a la=
+wsuit over the mysterious ingredient that has made it a huge hit =E2=80=94 =
+here's what we know about it</h2></a></td> </tr> <tr style=3D"mso-line-heig=
+ht-alt:0;"> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt=
+;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table border=3D"0" cell=
+spacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-a=
+djust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:1=
+00%;border-collapse:separate;"> <tbody> <tr style=3D"mso-line-height-alt:0;=
+"> <td width=3D"100%" valign=3D"top" align=3D"left" style=3D"padding:0 16px=
+ 10px 0;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace=
+:0pt;width:100%;vertical-align:top;-ms-text-size-adjust:100%;text-align:lef=
+t;"><a href=3D"https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&a=
+mp;lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FY=
+kWRDOBi7oxlhsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3De=
+mail_feed_ecosystem_digest_01&amp;li=3D17&amp;m=3Drecommended_articles&amp;=
+ts=3DUnknown&amp;urlhash=3DW3bH&amp;url=3Dhttps%3A%2F%2Fwww%2Ebusinessinsid=
+er%2Ecom%2Flacroix-ingredients-natural-essences-2018-10" style=3D"cursor:po=
+inter;color:#008CC9;-webkit-text-size-adjust:100%;display:inline-block;text=
+-decoration:none;-ms-text-size-adjust:100%;"> <p style=3D"padding:0 0 4px 0=
+;margin:0;color:#737373;font-weight:400;font-size:12px;line-height:1.333;te=
+xt-align:left;">businessinsider.com</p> <p style=3D"margin:0;color:#737373;=
+font-weight:300;font-size:14px;line-height:1.4;mso-line-height-alt:120%;tex=
+t-align:left;">LaCroix is facing a class-action lawsuit that argues the spa=
+rkling beverage brand contains artificial ingredients, a claim...</p></a></=
+td> <td valign=3D"top" style=3D"-webkit-text-size-adjust:100%;mso-table-rsp=
+ace:0pt;mso-table-lspace:0pt;vertical-align:top;-ms-text-size-adjust:100%;"=
+> <div style=3D"overflow:hidden;width:80px;height:80px;"> <a href=3D"https:=
+//www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&amp;lipi=3Durn%3Ali%3A=
+page%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3=
+D&amp;t=3Dplh&amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_feed_ecosystem_d=
+igest_01&amp;li=3D17&amp;m=3Drecommended_articles&amp;ts=3DUnknown&amp;urlh=
+ash=3DW3bH&amp;url=3Dhttps%3A%2F%2Fwww%2Ebusinessinsider%2Ecom%2Flacroix-in=
+gredients-natural-essences-2018-10" style=3D"cursor:pointer;color:#008CC9;-=
+webkit-text-size-adjust:100%;display:inline-block;text-decoration:none;-ms-=
+text-size-adjust:100%;"><img src=3D"https://amp.businessinsider.com/images/=
+57ebfcf2077dcc3d018b8b7e-960-480.jpg" alt=3D"" width=3D"148" style=3D"margi=
+n-left:-40%;max-height:80px;outline:none;-ms-interpolation-mode:bicubic;col=
+or:#FFFFFF;max-width:175px;text-decoration:none;width:auto;height:80px;"></=
+a> </div></td> </tr> </tbody> </table></td> </tr> </tbody> </table></td> </=
+tr> </tbody> </table></td> </tr> <tr> <td style=3D"padding:0 24px;-webkit-t=
+ext-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-siz=
+e-adjust:100%;border-color:#EDF0F3;border-width:6px;border-style:solid;"></=
+td> </tr> <tr> <td bgcolor=3D"#FFFFFF" style=3D"background-color:#FFFFFF;-w=
+ebkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-t=
+ext-size-adjust:100%;"> <table border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"100%" style=3D"padding:12px 24px;-webkit-text-size-adjust:1=
+00%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;bor=
+der-collapse:separate;border-bottom:1px solid #E5E5E5;"> <tbody> <tr> <td a=
+lign=3D"left" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;m=
+so-table-lspace:0pt;-ms-text-size-adjust:100%;"> <p style=3D"margin:0;color=
+:#737373;font-weight:400;font-size:12px;line-height:1.333;">Recommended for=
+ you</p></td> </tr> </tbody> </table> <table border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" width=3D"100%" style=3D"padding:8px 24px;-webkit-text-si=
+ze-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;width:100%;-ms-tex=
+t-size-adjust:100%;border-collapse:separate;"> <tbody> <tr style=3D"mso-lin=
+e-height-alt:0;"> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspa=
+ce:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;mso-padding-bottom-al=
+t:0;"> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100=
+%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-ls=
+pace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> <tr =
+style=3D"mso-line-height-alt:0;"> <td align=3D"left" style=3D"-webkit-text-=
+size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-ad=
+just:100%;padding-bottom:6px;text-align:left;"><a href=3D"https://www.linke=
+din.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&amp;lipi=3Durn%3Ali%3Apage%3Aemai=
+l_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;t=3Dp=
+lh&amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_feed_ecosystem_digest_01&am=
+p;li=3D18&amp;m=3Drecommended_articles&amp;ts=3DUnknown&amp;urlhash=3Drpkd&=
+amp;url=3Dhttps%3A%2F%2Fwww%2Eusatoday%2Ecom%2Fstory%2Flife%2Ftv%2F2018%2F1=
+0%2F05%2Fshark-tank-top-20-products-abc-10th-season%2F1504708002%2F" style=
+=3D"cursor:pointer;color:#008CC9;-webkit-text-size-adjust:100%;display:inli=
+ne-block;text-decoration:none;-ms-text-size-adjust:100%;"> <h2 style=3D"mar=
+gin:0;color:#0077B5;font-weight:400;font-size:18px;line-height:1.3;mso-line=
+-height-alt:115%;">'Shark Tank' exclusive: These are the 20 best-selling pr=
+oducts ever featured on the show</h2></a></td> </tr> <tr style=3D"mso-line-=
+height-alt:0;"> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace=
+:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-si=
+ze-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adju=
+st:100%;border-collapse:separate;"> <tbody> <tr style=3D"mso-line-height-al=
+t:0;"> <td width=3D"100%" valign=3D"top" align=3D"left" style=3D"padding:0 =
+16px 10px 0;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-ls=
+pace:0pt;width:100%;vertical-align:top;-ms-text-size-adjust:100%;text-align=
+:left;"><a href=3D"https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-=
+eo&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD=
+%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=
+=3Demail_feed_ecosystem_digest_01&amp;li=3D18&amp;m=3Drecommended_articles&=
+amp;ts=3DUnknown&amp;urlhash=3Drpkd&amp;url=3Dhttps%3A%2F%2Fwww%2Eusatoday%=
+2Ecom%2Fstory%2Flife%2Ftv%2F2018%2F10%2F05%2Fshark-tank-top-20-products-abc=
+-10th-season%2F1504708002%2F" style=3D"cursor:pointer;color:#008CC9;-webkit=
+-text-size-adjust:100%;display:inline-block;text-decoration:none;-ms-text-s=
+ize-adjust:100%;"> <p style=3D"padding:0 0 4px 0;margin:0;color:#737373;fon=
+t-weight:400;font-size:12px;line-height:1.333;text-align:left;">usatoday.co=
+m</p> <p style=3D"margin:0;color:#737373;font-weight:300;font-size:14px;lin=
+e-height:1.4;mso-line-height-alt:120%;text-align:left;">Ahead of its 10th s=
+eason and 200th episode, we rank the 20 top 'Shark Tank' products by sales =
+(and Lori Greiner has six...</p></a></td> <td valign=3D"top" style=3D"-webk=
+it-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;vertical=
+-align:top;-ms-text-size-adjust:100%;"> <div style=3D"overflow:hidden;width=
+:80px;height:80px;"> <a href=3D"https://www.linkedin.com/e/v2/pulse?e=3D6ld=
+zbj-jmzyo701-eo&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_dig=
+est_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1Anq=
+KjMpxQ&amp;ek=3Demail_feed_ecosystem_digest_01&amp;li=3D18&amp;m=3Drecommen=
+ded_articles&amp;ts=3DUnknown&amp;urlhash=3Drpkd&amp;url=3Dhttps%3A%2F%2Fww=
+w%2Eusatoday%2Ecom%2Fstory%2Flife%2Ftv%2F2018%2F10%2F05%2Fshark-tank-top-20=
+-products-abc-10th-season%2F1504708002%2F" style=3D"cursor:pointer;color:#0=
+08CC9;-webkit-text-size-adjust:100%;display:inline-block;text-decoration:no=
+ne;-ms-text-size-adjust:100%;"><img src=3D"https://www.gannett-cdn.com/-mm-=
+/514922ee78c25e2bb90a92cf29ab3e31e5542750/c=3D0-153-3000-1848/local/-/media=
+/2016/05/13/USATODAY/USATODAY/635987219852107380-140788-8392.jpg?width=3D32=
+00&amp;height=3D1680&amp;fit=3Dcrop" alt=3D"" width=3D"148" style=3D"margin=
+-left:-40%;max-height:80px;outline:none;-ms-interpolation-mode:bicubic;colo=
+r:#FFFFFF;max-width:175px;text-decoration:none;width:auto;height:80px;"></a=
+> </div></td> </tr> </tbody> </table></td> </tr> </tbody> </table></td> </t=
+r> </tbody> </table></td> </tr> <tr> <td style=3D"padding:0 24px;-webkit-te=
+xt-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size=
+-adjust:100%;border-color:#EDF0F3;border-width:6px;border-style:solid;"></t=
+d> </tr> <tr> <td bgcolor=3D"#FFFFFF" style=3D"background-color:#FFFFFF;-we=
+bkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-te=
+xt-size-adjust:100%;"> <table border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0" width=3D"100%" style=3D"padding:12px 24px;-webkit-text-size-adjust:100%=
+;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border=
+-collapse:separate;border-bottom:1px solid #E5E5E5;"> <tbody> <tr> <td alig=
+n=3D"left" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-=
+table-lspace:0pt;-ms-text-size-adjust:100%;"> <p style=3D"margin:0;color:#7=
+37373;font-weight:400;font-size:12px;line-height:1.333;">Recommended for yo=
+u</p></td> </tr> </tbody> </table> <table border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"0" width=3D"100%" style=3D"padding:8px 24px;-webkit-text-size-=
+adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;width:100%;-ms-text-s=
+ize-adjust:100%;border-collapse:separate;"> <tbody> <tr style=3D"mso-line-h=
+eight-alt:0;"> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:=
+0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;mso-padding-bottom-alt:0=
+;"> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" =
+style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspac=
+e:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> <tr sty=
+le=3D"mso-line-height-alt:0;"> <td align=3D"left" style=3D"-webkit-text-siz=
+e-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjus=
+t:100%;padding-bottom:6px;text-align:left;"><a href=3D"https://www.linkedin=
+.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&amp;lipi=3Durn%3Ali%3Apage%3Aemail_e=
+mail_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;t=3Dplh&=
+amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_feed_ecosystem_digest_01&amp;l=
+i=3D19&amp;m=3Drecommended_articles&amp;ts=3DUnknown&amp;urlhash=3D9hWu&amp=
+;url=3Dhttps%3A%2F%2Fwww%2Ecnn%2Ecom%2F2018%2F10%2F05%2Fcars%2Frenault-ez-u=
+ltimo-concept-car%2Findex%2Ehtml" style=3D"cursor:pointer;color:#008CC9;-we=
+bkit-text-size-adjust:100%;display:inline-block;text-decoration:none;-ms-te=
+xt-size-adjust:100%;"> <h2 style=3D"margin:0;color:#0077B5;font-weight:400;=
+font-size:18px;line-height:1.3;mso-line-height-alt:115%;">Renault's low-rol=
+ling concept car is made for the good life</h2></a></td> </tr> <tr style=3D=
+"mso-line-height-alt:0;"> <td style=3D"-webkit-text-size-adjust:100%;mso-ta=
+ble-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table bor=
+der=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webk=
+it-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text=
+-size-adjust:100%;border-collapse:separate;"> <tbody> <tr style=3D"mso-line=
+-height-alt:0;"> <td width=3D"100%" valign=3D"top" align=3D"left" style=3D"=
+padding:0 16px 10px 0;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;ms=
+o-table-lspace:0pt;width:100%;vertical-align:top;-ms-text-size-adjust:100%;=
+text-align:left;"><a href=3D"https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj=
+-jmzyo701-eo&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest=
+_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1AnqKjM=
+pxQ&amp;ek=3Demail_feed_ecosystem_digest_01&amp;li=3D19&amp;m=3Drecommended=
+_articles&amp;ts=3DUnknown&amp;urlhash=3D9hWu&amp;url=3Dhttps%3A%2F%2Fwww%2=
+Ecnn%2Ecom%2F2018%2F10%2F05%2Fcars%2Frenault-ez-ultimo-concept-car%2Findex%=
+2Ehtml" style=3D"cursor:pointer;color:#008CC9;-webkit-text-size-adjust:100%=
+;display:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"> <p =
+style=3D"padding:0 0 4px 0;margin:0;color:#737373;font-weight:400;font-size=
+:12px;line-height:1.333;text-align:left;">cnn.com</p> <p style=3D"margin:0;=
+color:#737373;font-weight:300;font-size:14px;line-height:1.4;mso-line-heigh=
+t-alt:120%;text-align:left;">With the Renault EZ-Ultimo, the French automak=
+er's designers envisioned the most luxurious version of a self-driving elec=
+tric...</p></a></td> <td valign=3D"top" style=3D"-webkit-text-size-adjust:1=
+00%;mso-table-rspace:0pt;mso-table-lspace:0pt;vertical-align:top;-ms-text-s=
+ize-adjust:100%;"> <div style=3D"overflow:hidden;width:80px;height:80px;"> =
+<a href=3D"https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&amp;l=
+ipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRD=
+OBi7oxlhsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Demail=
+_feed_ecosystem_digest_01&amp;li=3D19&amp;m=3Drecommended_articles&amp;ts=
+=3DUnknown&amp;urlhash=3D9hWu&amp;url=3Dhttps%3A%2F%2Fwww%2Ecnn%2Ecom%2F201=
+8%2F10%2F05%2Fcars%2Frenault-ez-ultimo-concept-car%2Findex%2Ehtml" style=3D=
+"cursor:pointer;color:#008CC9;-webkit-text-size-adjust:100%;display:inline-=
+block;text-decoration:none;-ms-text-size-adjust:100%;"><img src=3D"https://=
+cdn.cnn.com/cnnnext/dam/assets/181001124803-01-renault-ez-ultimo-concept-su=
+per-tease.jpg" alt=3D"" width=3D"148" style=3D"margin-left:-40%;max-height:=
+80px;outline:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;max-width:17=
+5px;text-decoration:none;width:auto;height:80px;"></a> </div></td> </tr> </=
+tbody> </table></td> </tr> </tbody> </table></td> </tr> <tr style=3D"mso-li=
+ne-height-alt:0;"> <td style=3D"mso-padding-top-alt:0;-webkit-text-size-adj=
+ust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100=
+%;mso-padding-bottom-alt:0;"> <hr style=3D"background-color:#E5E5E5;margin:=
+0 0 8px 0;color:#D9D9D9;width:20%;border-color:#D9D9D9;border-width:0;borde=
+r-style:solid;height:1px;text-align:left;"></td> </tr> <tr style=3D"mso-lin=
+e-height-alt:0;"> <td style=3D"mso-padding-top-alt:0;-webkit-text-size-adju=
+st:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%=
+;"><p style=3D"margin:0;color:#737373;font-weight:400;padding-left:6px;font=
+-size:12px;line-height:1.333;text-align:left;">1079 people are talking abou=
+t this</p> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D=
+"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tabl=
+e-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> =
+</tbody> </table></td> </tr> </tbody> </table></td> </tr> <tr> <td style=3D=
+"padding:0 24px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tabl=
+e-lspace:0pt;-ms-text-size-adjust:100%;border-color:#EDF0F3;border-width:6p=
+x;border-style:solid;"></td> </tr> <tr> <td bgcolor=3D"#FFFFFF" style=3D"ba=
+ckground-color:#FFFFFF;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;m=
+so-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table border=3D"0" cellsp=
+acing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"padding:12px 24px;-we=
+bkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-te=
+xt-size-adjust:100%;border-collapse:separate;border-bottom:1px solid #E5E5E=
+5;"> <tbody> <tr> <td align=3D"left" style=3D"-webkit-text-size-adjust:100%=
+;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <p =
+style=3D"margin:0;color:#737373;font-weight:400;font-size:12px;line-height:=
+1.333;">Recommended for you</p></td> </tr> </tbody> </table> <table border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"padding:=
+8px 24px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspac=
+e:0pt;width:100%;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbo=
+dy> <tr style=3D"mso-line-height-alt:0;"> <td style=3D"-webkit-text-size-ad=
+just:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:10=
+0%;mso-padding-bottom-alt:0;"> <table border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table=
+-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:=
+separate;"> <tbody> <tr style=3D"mso-line-height-alt:0;"> <td align=3D"left=
+" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lsp=
+ace:0pt;-ms-text-size-adjust:100%;padding-bottom:6px;text-align:left;"><a h=
+ref=3D"https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&amp;lipi=
+=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi=
+7oxlhsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_fe=
+ed_ecosystem_digest_01&amp;li=3D20&amp;m=3Drecommended_articles&amp;ts=3DUn=
+known&amp;urlhash=3D-250&amp;url=3Dhttps%3A%2F%2Fwww%2Ecnn%2Ecom%2F2018%2F1=
+0%2F04%2Fbusiness%2Fbernie-sanders-mcdonalds%2Findex%2Ehtml" style=3D"curso=
+r:pointer;color:#008CC9;-webkit-text-size-adjust:100%;display:inline-block;=
+text-decoration:none;-ms-text-size-adjust:100%;"> <h2 style=3D"margin:0;col=
+or:#0077B5;font-weight:400;font-size:18px;line-height:1.3;mso-line-height-a=
+lt:115%;">Sanders to McDonald's: Boost workers' wages</h2></a></td> </tr> <=
+tr style=3D"mso-line-height-alt:0;"> <td style=3D"-webkit-text-size-adjust:=
+100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;">=
+ <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" sty=
+le=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0=
+pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> <tr style=
+=3D"mso-line-height-alt:0;"> <td width=3D"100%" valign=3D"top" align=3D"lef=
+t" style=3D"padding:0 16px 10px 0;-webkit-text-size-adjust:100%;mso-table-r=
+space:0pt;mso-table-lspace:0pt;width:100%;vertical-align:top;-ms-text-size-=
+adjust:100%;text-align:left;"><a href=3D"https://www.linkedin.com/e/v2/puls=
+e?e=3D6ldzbj-jmzyo701-eo&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecos=
+ystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=
+=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_feed_ecosystem_digest_01&amp;li=3D20&amp;m=
+=3Drecommended_articles&amp;ts=3DUnknown&amp;urlhash=3D-250&amp;url=3Dhttps=
+%3A%2F%2Fwww%2Ecnn%2Ecom%2F2018%2F10%2F04%2Fbusiness%2Fbernie-sanders-mcdon=
+alds%2Findex%2Ehtml" style=3D"cursor:pointer;color:#008CC9;-webkit-text-siz=
+e-adjust:100%;display:inline-block;text-decoration:none;-ms-text-size-adjus=
+t:100%;"> <p style=3D"padding:0 0 4px 0;margin:0;color:#737373;font-weight:=
+400;font-size:12px;line-height:1.333;text-align:left;">cnn.com</p> <p style=
+=3D"margin:0;color:#737373;font-weight:300;font-size:14px;line-height:1.4;m=
+so-line-height-alt:120%;text-align:left;">McDonald's is Senator Bernie Sand=
+ers' next minimum wage target. He wants McDonald's to give its workers a pa=
+y raise...</p></a></td> <td valign=3D"top" style=3D"-webkit-text-size-adjus=
+t:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;vertical-align:top;-ms-tex=
+t-size-adjust:100%;"> <div style=3D"overflow:hidden;width:80px;height:80px;=
+"> <a href=3D"https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&am=
+p;lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYk=
+WRDOBi7oxlhsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Dem=
+ail_feed_ecosystem_digest_01&amp;li=3D20&amp;m=3Drecommended_articles&amp;t=
+s=3DUnknown&amp;urlhash=3D-250&amp;url=3Dhttps%3A%2F%2Fwww%2Ecnn%2Ecom%2F20=
+18%2F10%2F04%2Fbusiness%2Fbernie-sanders-mcdonalds%2Findex%2Ehtml" style=3D=
+"cursor:pointer;color:#008CC9;-webkit-text-size-adjust:100%;display:inline-=
+block;text-decoration:none;-ms-text-size-adjust:100%;"><img src=3D"https://=
+cdn.cnn.com/cnnnext/dam/assets/181004132927-01-bernie-sanders-mcdonalds-sup=
+er-tease.jpg" alt=3D"" width=3D"148" style=3D"margin-left:-40%;max-height:8=
+0px;outline:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;max-width:175=
+px;text-decoration:none;width:auto;height:80px;"></a> </div></td> </tr> </t=
+body> </table></td> </tr> </tbody> </table></td> </tr> </tbody> </table></t=
+d> </tr> <tr> <td style=3D"padding:0 24px;-webkit-text-size-adjust:100%;mso=
+-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-col=
+or:#EDF0F3;border-width:6px;border-style:solid;"></td> </tr> <tr> <td bgcol=
+or=3D"#FFFFFF" style=3D"background-color:#FFFFFF;-webkit-text-size-adjust:1=
+00%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> =
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" styl=
+e=3D"padding:12px 24px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;m=
+so-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;bord=
+er-bottom:1px solid #E5E5E5;"> <tbody> <tr> <td align=3D"left" style=3D"-we=
+bkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-te=
+xt-size-adjust:100%;"> <p style=3D"margin:0;color:#737373;font-weight:400;f=
+ont-size:12px;line-height:1.333;">Recommended for you</p></td> </tr> </tbod=
+y> </table> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" style=3D"padding:8px 24px;-webkit-text-size-adjust:100%;mso-table=
+-rspace:0pt;mso-table-lspace:0pt;width:100%;-ms-text-size-adjust:100%;borde=
+r-collapse:separate;"> <tbody> <tr style=3D"mso-line-height-alt:0;"> <td st=
+yle=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:=
+0pt;-ms-text-size-adjust:100%;mso-padding-bottom-alt:0;"> <table border=3D"=
+0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text=
+-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-a=
+djust:100%;border-collapse:separate;"> <tbody> <tr style=3D"mso-line-height=
+-alt:0;"> <td align=3D"left" style=3D"-webkit-text-size-adjust:100%;mso-tab=
+le-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;padding-bottom=
+:6px;text-align:left;"><a href=3D"https://www.linkedin.com/e/v2/pulse?e=3D6=
+ldzbj-jmzyo701-eo&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_d=
+igest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1A=
+nqKjMpxQ&amp;ek=3Demail_feed_ecosystem_digest_01&amp;li=3D21&amp;m=3Drecomm=
+ended_articles&amp;ts=3DUnknown&amp;urlhash=3Dc7uj&amp;url=3Dhttps%3A%2F%2F=
+www%2Ebusinessinsider%2Ecom%2Funemployment-rate-sparks-hiring-concerns-2018=
+-10" style=3D"cursor:pointer;color:#008CC9;-webkit-text-size-adjust:100%;di=
+splay:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"> <h2 st=
+yle=3D"margin:0;color:#0077B5;font-weight:400;font-size:18px;line-height:1.=
+3;mso-line-height-alt:115%;">The unemployment rate has fallen to a 48-year =
+low, and it's terrifying news for Walmart, McDonald's, and JCPenney</h2></a=
+></td> </tr> <tr style=3D"mso-line-height-alt:0;"> <td style=3D"-webkit-tex=
+t-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-=
+adjust:100%;"> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" widt=
+h=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-=
+table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbo=
+dy> <tr style=3D"mso-line-height-alt:0;"> <td width=3D"100%" valign=3D"top"=
+ align=3D"left" style=3D"padding:0 16px 10px 0;-webkit-text-size-adjust:100=
+%;mso-table-rspace:0pt;mso-table-lspace:0pt;width:100%;vertical-align:top;-=
+ms-text-size-adjust:100%;text-align:left;"><a href=3D"https://www.linkedin.=
+com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&amp;lipi=3Durn%3Ali%3Apage%3Aemail_em=
+ail_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;t=3Dplh&a=
+mp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_feed_ecosystem_digest_01&amp;li=
+=3D21&amp;m=3Drecommended_articles&amp;ts=3DUnknown&amp;urlhash=3Dc7uj&amp;=
+url=3Dhttps%3A%2F%2Fwww%2Ebusinessinsider%2Ecom%2Funemployment-rate-sparks-=
+hiring-concerns-2018-10" style=3D"cursor:pointer;color:#008CC9;-webkit-text=
+-size-adjust:100%;display:inline-block;text-decoration:none;-ms-text-size-a=
+djust:100%;"> <p style=3D"padding:0 0 4px 0;margin:0;color:#737373;font-wei=
+ght:400;font-size:12px;line-height:1.333;text-align:left;">businessinsider.=
+com</p> <p style=3D"margin:0;color:#737373;font-weight:300;font-size:14px;l=
+ine-height:1.4;mso-line-height-alt:120%;text-align:left;">The US unemployme=
+nt rate fell&nbsp;to 3.7%,&nbsp;a 48-year low,&nbsp;in September. While low=
+ unemployment is a sign of a healthy economy, it is...</p></a></td> <td val=
+ign=3D"top" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso=
+-table-lspace:0pt;vertical-align:top;-ms-text-size-adjust:100%;"> <div styl=
+e=3D"overflow:hidden;width:80px;height:80px;"> <a href=3D"https://www.linke=
+din.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&amp;lipi=3Durn%3Ali%3Apage%3Aemai=
+l_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;t=3Dp=
+lh&amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_feed_ecosystem_digest_01&am=
+p;li=3D21&amp;m=3Drecommended_articles&amp;ts=3DUnknown&amp;urlhash=3Dc7uj&=
+amp;url=3Dhttps%3A%2F%2Fwww%2Ebusinessinsider%2Ecom%2Funemployment-rate-spa=
+rks-hiring-concerns-2018-10" style=3D"cursor:pointer;color:#008CC9;-webkit-=
+text-size-adjust:100%;display:inline-block;text-decoration:none;-ms-text-si=
+ze-adjust:100%;"><img src=3D"https://amp.businessinsider.com/images/5bb7693=
+093032c5a570ecc62-1920-960.jpg" alt=3D"" width=3D"148" style=3D"margin-left=
+:-40%;max-height:80px;outline:none;-ms-interpolation-mode:bicubic;color:#FF=
+FFFF;max-width:175px;text-decoration:none;width:auto;height:80px;"></a> </d=
+iv></td> </tr> </tbody> </table></td> </tr> </tbody> </table></td> </tr> <t=
+r style=3D"mso-line-height-alt:0;"> <td style=3D"mso-padding-top-alt:0;-web=
+kit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-tex=
+t-size-adjust:100%;mso-padding-bottom-alt:0;"> <hr style=3D"background-colo=
+r:#E5E5E5;margin:0 0 8px 0;color:#D9D9D9;width:20%;border-color:#D9D9D9;bor=
+der-width:0;border-style:solid;height:1px;text-align:left;"></td> </tr> <tr=
+ style=3D"mso-line-height-alt:0;"> <td style=3D"mso-padding-top-alt:0;-webk=
+it-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text=
+-size-adjust:100%;"><p style=3D"margin:0;color:#737373;font-weight:400;padd=
+ing-left:6px;font-size:12px;line-height:1.333;text-align:left;">202 people =
+are talking about this</p> <table border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rsp=
+ace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:sepa=
+rate;"> <tbody> </tbody> </table></td> </tr> </tbody> </table></td> </tr> <=
+tr> <td style=3D"padding:0 24px;-webkit-text-size-adjust:100%;mso-table-rsp=
+ace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-color:#EDF0F3=
+;border-width:6px;border-style:solid;"></td> </tr> <tr> <td bgcolor=3D"#FFF=
+FFF" style=3D"background-color:#FFFFFF;-webkit-text-size-adjust:100%;mso-ta=
+ble-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table bor=
+der=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"paddi=
+ng:12px 24px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-l=
+space:0pt;-ms-text-size-adjust:100%;border-collapse:separate;border-bottom:=
+1px solid #E5E5E5;"> <tbody> <tr> <td align=3D"left" style=3D"-webkit-text-=
+size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-ad=
+just:100%;"> <p style=3D"margin:0;color:#737373;font-weight:400;font-size:1=
+2px;line-height:1.333;">Recommended for you</p></td> </tr> </tbody> </table=
+> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" st=
+yle=3D"padding:8px 24px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;=
+mso-table-lspace:0pt;width:100%;-ms-text-size-adjust:100%;border-collapse:s=
+eparate;"> <tbody> <tr style=3D"mso-line-height-alt:0;"> <td style=3D"-webk=
+it-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text=
+-size-adjust:100%;mso-padding-bottom-alt:0;"> <table border=3D"0" cellspaci=
+ng=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust=
+:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;b=
+order-collapse:separate;"> <tbody> <tr style=3D"mso-line-height-alt:0;"> <t=
+d align=3D"left" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0p=
+t;mso-table-lspace:0pt;-ms-text-size-adjust:100%;padding-bottom:6px;text-al=
+ign:left;"><a href=3D"https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo7=
+01-eo&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3By=
+7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1AnqKjMpxQ&amp=
+;ek=3Demail_feed_ecosystem_digest_01&amp;li=3D22&amp;m=3Drecommended_articl=
+es&amp;ts=3DUnknown&amp;urlhash=3DA_Ah&amp;url=3Dhttp%3A%2F%2Fsocial%2Etech=
+crunch%2Ecom%2F2018%2F10%2F05%2Fhow-the-22-year-old-founders-of-brex-built-=
+a-billion-dollar-business-in-less-than-2-years%2F" style=3D"cursor:pointer;=
+color:#008CC9;-webkit-text-size-adjust:100%;display:inline-block;text-decor=
+ation:none;-ms-text-size-adjust:100%;"> <h2 style=3D"margin:0;color:#0077B5=
+;font-weight:400;font-size:18px;line-height:1.3;mso-line-height-alt:115%;">=
+How the 22-year-old founders of Brex built a billion-dollar business in les=
+s than 2 years</h2></a></td> </tr> <tr style=3D"mso-line-height-alt:0;"> <t=
+d style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lsp=
+ace:0pt;-ms-text-size-adjust:100%;"> <table border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso=
+-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-col=
+lapse:separate;"> <tbody> <tr style=3D"mso-line-height-alt:0;"> <td width=
+=3D"100%" valign=3D"top" align=3D"left" style=3D"padding:0 16px 10px 0;-web=
+kit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;width:1=
+00%;vertical-align:top;-ms-text-size-adjust:100%;text-align:left;"><a href=
+=3D"https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&amp;lipi=3Du=
+rn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxl=
+hsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_feed_e=
+cosystem_digest_01&amp;li=3D22&amp;m=3Drecommended_articles&amp;ts=3DUnknow=
+n&amp;urlhash=3DA_Ah&amp;url=3Dhttp%3A%2F%2Fsocial%2Etechcrunch%2Ecom%2F201=
+8%2F10%2F05%2Fhow-the-22-year-old-founders-of-brex-built-a-billion-dollar-b=
+usiness-in-less-than-2-years%2F" style=3D"cursor:pointer;color:#008CC9;-web=
+kit-text-size-adjust:100%;display:inline-block;text-decoration:none;-ms-tex=
+t-size-adjust:100%;"> <p style=3D"padding:0 0 4px 0;margin:0;color:#737373;=
+font-weight:400;font-size:12px;line-height:1.333;text-align:left;">social.t=
+echcrunch.com</p> <p style=3D"margin:0;color:#737373;font-weight:300;font-s=
+ize:14px;line-height:1.4;mso-line-height-alt:120%;text-align:left;">Henriqu=
+e Dubugras and Pedro Franceschi, the co-founders of Brex, have raised $125 =
+million at a $1.1 billion valuation just four...</p></a></td> </tr> </tbody=
+> </table></td> </tr> </tbody> </table></td> </tr> <tr style=3D"mso-line-he=
+ight-alt:0;"> <td style=3D"mso-padding-top-alt:0;-webkit-text-size-adjust:1=
+00%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;mso=
+-padding-bottom-alt:0;"> <hr style=3D"background-color:#E5E5E5;margin:0 0 8=
+px 0;color:#D9D9D9;width:20%;border-color:#D9D9D9;border-width:0;border-sty=
+le:solid;height:1px;text-align:left;"></td> </tr> <tr style=3D"mso-line-hei=
+ght-alt:0;"> <td style=3D"mso-padding-top-alt:0;-webkit-text-size-adjust:10=
+0%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"><p=
+ style=3D"margin:0;color:#737373;font-weight:400;padding-left:6px;font-size=
+:12px;line-height:1.333;text-align:left;">437 people are talking about this=
+</p> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%"=
+ style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspa=
+ce:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> </tbod=
+y> </table></td> </tr> </tbody> </table></td> </tr> <tr> <td style=3D"paddi=
+ng:0 24px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspa=
+ce:0pt;-ms-text-size-adjust:100%;border-color:#EDF0F3;border-width:6px;bord=
+er-style:solid;"></td> </tr> <tr> <td bgcolor=3D"#FFFFFF" style=3D"backgrou=
+nd-color:#FFFFFF;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-tab=
+le-lspace:0pt;-ms-text-size-adjust:100%;"> <table border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"padding:12px 24px;-webkit-=
+text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-si=
+ze-adjust:100%;border-collapse:separate;border-bottom:1px solid #E5E5E5;"> =
+<tbody> <tr> <td align=3D"left" style=3D"-webkit-text-size-adjust:100%;mso-=
+table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <p style=
+=3D"margin:0;color:#737373;font-weight:400;font-size:12px;line-height:1.333=
+;">Recommended for you</p></td> </tr> </tbody> </table> <table border=3D"0"=
+ cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"padding:8px 24=
+px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;=
+width:100%;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> <t=
+r style=3D"mso-line-height-alt:0;"> <td style=3D"-webkit-text-size-adjust:1=
+00%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;mso=
+-padding-bottom-alt:0;"> <table border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspa=
+ce:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separ=
+ate;"> <tbody> <tr style=3D"mso-line-height-alt:0;"> <td align=3D"left" sty=
+le=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0=
+pt;-ms-text-size-adjust:100%;padding-bottom:6px;text-align:left;"><a href=
+=3D"https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&amp;lipi=3Du=
+rn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxl=
+hsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_feed_e=
+cosystem_digest_01&amp;li=3D23&amp;m=3Drecommended_articles&amp;ts=3DUnknow=
+n&amp;urlhash=3DJ9wt&amp;url=3Dhttps%3A%2F%2Fwww%2Eforbes%2Ecom%2Fsites%2Fz=
+ackfriedman%2F2018%2F10%2F05%2Fwharton-business-school-receives-largest-eve=
+r-gift%2F" style=3D"cursor:pointer;color:#008CC9;-webkit-text-size-adjust:1=
+00%;display:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"> =
+<h2 style=3D"margin:0;color:#0077B5;font-weight:400;font-size:18px;line-hei=
+ght:1.3;mso-line-height-alt:115%;">Wharton Business School Receives Its Lar=
+gest Gift Ever</h2></a></td> </tr> <tr style=3D"mso-line-height-alt:0;"> <t=
+d style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lsp=
+ace:0pt;-ms-text-size-adjust:100%;"> <table border=3D"0" cellspacing=3D"0" =
+cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso=
+-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-col=
+lapse:separate;"> <tbody> <tr style=3D"mso-line-height-alt:0;"> <td width=
+=3D"100%" valign=3D"top" align=3D"left" style=3D"padding:0 16px 10px 0;-web=
+kit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;width:1=
+00%;vertical-align:top;-ms-text-size-adjust:100%;text-align:left;"><a href=
+=3D"https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&amp;lipi=3Du=
+rn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxl=
+hsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_feed_e=
+cosystem_digest_01&amp;li=3D23&amp;m=3Drecommended_articles&amp;ts=3DUnknow=
+n&amp;urlhash=3DJ9wt&amp;url=3Dhttps%3A%2F%2Fwww%2Eforbes%2Ecom%2Fsites%2Fz=
+ackfriedman%2F2018%2F10%2F05%2Fwharton-business-school-receives-largest-eve=
+r-gift%2F" style=3D"cursor:pointer;color:#008CC9;-webkit-text-size-adjust:1=
+00%;display:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"> =
+<p style=3D"padding:0 0 4px 0;margin:0;color:#737373;font-weight:400;font-s=
+ize:12px;line-height:1.333;text-align:left;">forbes.com</p> <p style=3D"mar=
+gin:0;color:#737373;font-weight:300;font-size:14px;line-height:1.4;mso-line=
+-height-alt:120%;text-align:left;">Wharton Business School just received it=
+s largest single gift ever.</p></a></td> <td valign=3D"top" style=3D"-webki=
+t-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;vertical-=
+align:top;-ms-text-size-adjust:100%;"> <div style=3D"overflow:hidden;width:=
+80px;height:80px;"> <a href=3D"https://www.linkedin.com/e/v2/pulse?e=3D6ldz=
+bj-jmzyo701-eo&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_dige=
+st_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1AnqK=
+jMpxQ&amp;ek=3Demail_feed_ecosystem_digest_01&amp;li=3D23&amp;m=3Drecommend=
+ed_articles&amp;ts=3DUnknown&amp;urlhash=3DJ9wt&amp;url=3Dhttps%3A%2F%2Fwww=
+%2Eforbes%2Ecom%2Fsites%2Fzackfriedman%2F2018%2F10%2F05%2Fwharton-business-=
+school-receives-largest-ever-gift%2F" style=3D"cursor:pointer;color:#008CC9=
+;-webkit-text-size-adjust:100%;display:inline-block;text-decoration:none;-m=
+s-text-size-adjust:100%;"><img src=3D"https://thumbor.forbes.com/thumbor/60=
+0x315/https%3A%2F%2Fblogs-images.forbes.com%2Fthumbnails%2Fblog_4804%2Fpt_4=
+804_2991_o.jpg%3Ft%3D1538742723" alt=3D"" width=3D"148" style=3D"margin-lef=
+t:-40%;max-height:80px;outline:none;-ms-interpolation-mode:bicubic;color:#F=
+FFFFF;max-width:175px;text-decoration:none;width:auto;height:80px;"></a> </=
+div></td> </tr> </tbody> </table></td> </tr> </tbody> </table></td> </tr> <=
+tr style=3D"mso-line-height-alt:0;"> <td style=3D"mso-padding-top-alt:0;-we=
+bkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-te=
+xt-size-adjust:100%;mso-padding-bottom-alt:0;"> <hr style=3D"background-col=
+or:#E5E5E5;margin:0 0 8px 0;color:#D9D9D9;width:20%;border-color:#D9D9D9;bo=
+rder-width:0;border-style:solid;height:1px;text-align:left;"></td> </tr> <t=
+r style=3D"mso-line-height-alt:0;"> <td style=3D"mso-padding-top-alt:0;-web=
+kit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-tex=
+t-size-adjust:100%;"><p style=3D"margin:0;color:#737373;font-weight:400;pad=
+ding-left:6px;font-size:12px;line-height:1.333;text-align:left;">468 people=
+ are talking about this</p> <table border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rs=
+pace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:sep=
+arate;"> <tbody> </tbody> </table></td> </tr> </tbody> </table></td> </tr> =
+<tr> <td style=3D"padding:0 24px;-webkit-text-size-adjust:100%;mso-table-rs=
+pace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-color:#EDF0F=
+3;border-width:6px;border-style:solid;"></td> </tr> <tr> <td bgcolor=3D"#FF=
+FFFF" style=3D"background-color:#FFFFFF;-webkit-text-size-adjust:100%;mso-t=
+able-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"> <table bo=
+rder=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"padd=
+ing:12px 24px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-=
+lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;border-bottom=
+:1px solid #E5E5E5;"> <tbody> <tr> <td align=3D"left" style=3D"-webkit-text=
+-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-a=
+djust:100%;"> <p style=3D"margin:0;color:#737373;font-weight:400;font-size:=
+12px;line-height:1.333;">Recommended for you</p></td> </tr> </tbody> </tabl=
+e> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" s=
+tyle=3D"padding:8px 24px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt=
+;mso-table-lspace:0pt;width:100%;-ms-text-size-adjust:100%;border-collapse:=
+separate;"> <tbody> <tr style=3D"mso-line-height-alt:0;"> <td style=3D"-web=
+kit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-tex=
+t-size-adjust:100%;mso-padding-bottom-alt:0;"> <table border=3D"0" cellspac=
+ing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjus=
+t:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;=
+border-collapse:separate;"> <tbody> <tr style=3D"mso-line-height-alt:0;"> <=
+td align=3D"left" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0=
+pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;padding-bottom:6px;text-a=
+lign:left;"><a href=3D"https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo=
+701-eo&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3B=
+y7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1AnqKjMpxQ&am=
+p;ek=3Demail_feed_ecosystem_digest_01&amp;li=3D24&amp;m=3Drecommended_artic=
+les&amp;ts=3DUnknown&amp;urlhash=3DLC3y&amp;url=3Dhttps%3A%2F%2Fwww%2Ewashi=
+ngtonpost%2Ecom%2Fpolitics%2F2018%2F10%2F05%2Fbrett-kavanaugh-just-admitted=
+-he-screwed-up%2F" style=3D"cursor:pointer;color:#008CC9;-webkit-text-size-=
+adjust:100%;display:inline-block;text-decoration:none;-ms-text-size-adjust:=
+100%;"> <h2 style=3D"margin:0;color:#0077B5;font-weight:400;font-size:18px;=
+line-height:1.3;mso-line-height-alt:115%;">Analysis | Brett Kavanaugh just =
+admitted he screwed up</h2></a></td> </tr> <tr style=3D"mso-line-height-alt=
+:0;"> <td style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-t=
+able-lspace:0pt;-ms-text-size-adjust:100%;"> <table border=3D"0" cellspacin=
+g=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"-webkit-text-size-adjust:=
+100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;bo=
+rder-collapse:separate;"> <tbody> <tr style=3D"mso-line-height-alt:0;"> <td=
+ width=3D"100%" valign=3D"top" align=3D"left" style=3D"padding:0 16px 10px =
+0;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;w=
+idth:100%;vertical-align:top;-ms-text-size-adjust:100%;text-align:left;"><a=
+ href=3D"https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&amp;lip=
+i=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOB=
+i7oxlhsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_f=
+eed_ecosystem_digest_01&amp;li=3D24&amp;m=3Drecommended_articles&amp;ts=3DU=
+nknown&amp;urlhash=3DLC3y&amp;url=3Dhttps%3A%2F%2Fwww%2Ewashingtonpost%2Eco=
+m%2Fpolitics%2F2018%2F10%2F05%2Fbrett-kavanaugh-just-admitted-he-screwed-up=
+%2F" style=3D"cursor:pointer;color:#008CC9;-webkit-text-size-adjust:100%;di=
+splay:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"> <p sty=
+le=3D"padding:0 0 4px 0;margin:0;color:#737373;font-weight:400;font-size:12=
+px;line-height:1.333;text-align:left;">washingtonpost.com</p> <p style=3D"m=
+argin:0;color:#737373;font-weight:300;font-size:14px;line-height:1.4;mso-li=
+ne-height-alt:120%;text-align:left;">In a Wall Street Journal op-ed, Kavana=
+ugh tacitly admits that his angry, partisan testimony last week wasn't help=
+ful.</p></a></td> <td valign=3D"top" style=3D"-webkit-text-size-adjust:100%=
+;mso-table-rspace:0pt;mso-table-lspace:0pt;vertical-align:top;-ms-text-size=
+-adjust:100%;"> <div style=3D"overflow:hidden;width:80px;height:80px;"> <a =
+href=3D"https://www.linkedin.com/e/v2/pulse?e=3D6ldzbj-jmzyo701-eo&amp;lipi=
+=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi=
+7oxlhsSzQ%3D%3D&amp;t=3Dplh&amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_fe=
+ed_ecosystem_digest_01&amp;li=3D24&amp;m=3Drecommended_articles&amp;ts=3DUn=
+known&amp;urlhash=3DLC3y&amp;url=3Dhttps%3A%2F%2Fwww%2Ewashingtonpost%2Ecom=
+%2Fpolitics%2F2018%2F10%2F05%2Fbrett-kavanaugh-just-admitted-he-screwed-up%=
+2F" style=3D"cursor:pointer;color:#008CC9;-webkit-text-size-adjust:100%;dis=
+play:inline-block;text-decoration:none;-ms-text-size-adjust:100%;"><img src=
+=3D"https://www.washingtonpost.com/resizer/BtCT99WbkIlILriODFImOngUmW0=3D/1=
+484x0/arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/E6UI4TG=
+IGQI6RHAPF75PNVBCVI.jpg" alt=3D"" width=3D"148" style=3D"margin-left:-40%;m=
+ax-height:80px;outline:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;ma=
+x-width:175px;text-decoration:none;width:auto;height:80px;"></a> </div></td=
+> </tr> </tbody> </table></td> </tr> </tbody> </table></td> </tr> </tbody> =
+</table></td> </tr> <tr> <td style=3D"padding:0 24px;-webkit-text-size-adju=
+st:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%=
+;border-color:#EDF0F3;border-width:6px;border-style:solid;"></td> </tr> <tr=
+> <td align=3D"center" bgcolor=3D"#F6F8FA" style=3D"background-color:#F6F8F=
+A;padding:48px 12px;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-=
+table-lspace:0pt;-ms-text-size-adjust:100%;"> <h2 style=3D"margin:0;color:#=
+262626;font-weight:400;font-size:16px;padding-bottom:16px;line-height:1.2;m=
+so-line-height-alt:200%;">Check out the rest of your feed</h2> <table borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"-webkit-text-size-adju=
+st:100%;mso-table-rspace:0pt;display:inline-block;mso-table-lspace:0pt;-ms-=
+text-size-adjust:100%;border-collapse:separate;"> <tbody> <tr> <td align=3D=
+"center" valign=3D"middle" style=3D"-webkit-text-size-adjust:100%;mso-table=
+-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;"><a href=3D"htt=
+ps://www.linkedin.com/comm/feed/?midToken=3DAQE-1AnqKjMpxQ&amp;trk=3Deml-em=
+ail_feed_ecosystem_digest_01-footer_promo-4-null&amp;trkEmail=3Deml-email_f=
+eed_ecosystem_digest_01-footer_promo-4-null-null-6ldzbj%7Ejmzyo701%7Eeo-nul=
+l-neptune%2Ffeed&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_di=
+gest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D" target=3D"_blank" style=3D"cursor=
+:pointer;word-wrap:normal;color:#008CC9;word-break:normal;white-space:nowra=
+p;-webkit-text-size-adjust:100%;display:block;text-decoration:none;-ms-text=
+-size-adjust:100%;overflow-wrap:normal;"> <table border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0" width=3D"auto" style=3D"-webkit-text-size-adjust:1=
+00%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;bor=
+der-collapse:separate;"> <tbody> <tr> <td bgcolor=3D"#008CC9" style=3D"padd=
+ing:6px 16px;color:#FFFFFF;-webkit-text-size-adjust:100%;font-weight:500;fo=
+nt-size:16px;-ms-text-size-adjust:100%;border-color:#008CC9;background-colo=
+r:#008CC9;border-radius:2px;mso-table-rspace:0pt;mso-table-lspace:0pt;borde=
+r-width:1px;border-style:solid;"><a href=3D"https://www.linkedin.com/comm/f=
+eed/?midToken=3DAQE-1AnqKjMpxQ&amp;trk=3Deml-email_feed_ecosystem_digest_01=
+-footer_promo-4-null&amp;trkEmail=3Deml-email_feed_ecosystem_digest_01-foot=
+er_promo-4-null-null-6ldzbj%7Ejmzyo701%7Eeo-null-neptune%2Ffeed&amp;lipi=3D=
+urn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7ox=
+lhsSzQ%3D%3D" target=3D"_blank" style=3D"cursor:pointer;color:#FFFFFF;-webk=
+it-text-size-adjust:100%;display:inline-block;text-decoration:none;-ms-text=
+-size-adjust:100%;">Go to LinkedIn</a></td> </tr> </tbody> </table></a></td=
+> </tr> </tbody> </table></td> </tr> </tbody> </table> </center></td> </tr>=
+ </tbody> </table> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" =
+width=3D"100%" bgcolor=3D"#EDF0F3" align=3D"center" style=3D"background-col=
+or:#EDF0F3;padding:0 24px;color:#6A6C6D;-webkit-text-size-adjust:100%;mso-t=
+able-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;border-colla=
+pse:separate;text-align:center;"> <tbody> <tr> <td align=3D"center" style=
+=3D"padding:16px 0 0 0;-webkit-text-size-adjust:100%;mso-table-rspace:0pt;m=
+so-table-lspace:0pt;-ms-text-size-adjust:100%;text-align:center;"> <table a=
+lign=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"1=
+00%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-table-=
+lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbody> <t=
+r> <td valign=3D"middle" align=3D"center" style=3D"padding:0 0 16px 0;-webk=
+it-text-size-adjust:100%;mso-table-rspace:0pt;vertical-align:middle;mso-tab=
+le-lspace:0pt;-ms-text-size-adjust:100%;text-align:center;"><a href=3D"http=
+s://www.linkedin.com/e/v2?e=3D6ldzbj-jmzyo701-eo&amp;t=3Dlun&amp;midToken=
+=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_feed_ecosystem_digest_01&amp;li=3D30&amp;m=
+=3Dunsub&amp;ts=3Dunsub&amp;loid=3DAQHdaH54COfmJgAAAWZVR3scpR5Flgh73rwctsBU=
+56G_aSh4KkfqKkcY7ZmpMZnbSx8usbFIES26IiDhdNJqoY87N1y1NDhFGvwHyZYS&amp;eid=3D=
+6ldzbj-jmzyo701-eo" style=3D"cursor:pointer;color:#6A6C6D;-webkit-text-size=
+-adjust:100%;text-decoration:underline;display:inline-block;-ms-text-size-a=
+djust:100%;"> <span style=3D"color:#6A6C6D;font-weight:400;text-decoration:=
+underline;font-size:12px;line-height:1.333;">Unsubscribe</span></a>&nbsp;&n=
+bsp;|&nbsp;&nbsp;<a href=3D"https://www.linkedin.com/e/v2?e=3D6ldzbj-jmzyo7=
+01-eo&amp;lipi=3Durn%3Ali%3Apage%3Aemail_email_feed_ecosystem_digest_01%3By=
+7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;a=3DcustomerServiceUrl&amp;midToken=3DAQE=
+-1AnqKjMpxQ&amp;ek=3Demail_feed_ecosystem_digest_01&amp;li=3D29&amp;m=3Dfoo=
+ter&amp;ts=3Dhelp&amp;articleId=3D67" style=3D"cursor:pointer;color:#6A6C6D=
+;-webkit-text-size-adjust:100%;text-decoration:underline;display:inline-blo=
+ck;-ms-text-size-adjust:100%;"> <span style=3D"color:#6A6C6D;font-weight:40=
+0;text-decoration:underline;font-size:12px;line-height:1.333;">Help</span><=
+/a></td> </tr> </tbody> </table></td> </tr> <tr> <td style=3D"-webkit-text-=
+size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-ad=
+just:100%;"> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=
+=3D"100%" style=3D"-webkit-text-size-adjust:100%;mso-table-rspace:0pt;mso-t=
+able-lspace:0pt;-ms-text-size-adjust:100%;border-collapse:separate;"> <tbod=
+y> <tr> <td align=3D"center" style=3D"padding:0 0 12px 0;-webkit-text-size-=
+adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:=
+100%;text-align:center;"> <p style=3D"margin:0;color:#6A6C6D;font-weight:40=
+0;font-size:12px;line-height:1.333;">You are receiving highlight emails.</p=
+></td> </tr> <tr> <td align=3D"center" style=3D"padding:0 0 12px 0;-webkit-=
+text-size-adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-si=
+ze-adjust:100%;text-align:center;"> <p style=3D"margin:0;word-wrap:break-wo=
+rd;color:#6A6C6D;word-break:break-word;font-weight:400;-ms-word-break:break=
+-all;font-size:12px;line-height:1.333;overflow-wrap:break-word;">This email=
+ was intended for Aohan Wang (University of Melbourne). <a href=3D"https://=
+www.linkedin.com/e/v2?e=3D6ldzbj-jmzyo701-eo&amp;lipi=3Durn%3Ali%3Apage%3Ae=
+mail_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D&amp;a=
+=3DcustomerServiceUrl&amp;midToken=3DAQE-1AnqKjMpxQ&amp;ek=3Demail_feed_eco=
+system_digest_01&amp;articleId=3D4788" style=3D"cursor:pointer;color:#6A6C6=
+D;-webkit-text-size-adjust:100%;text-decoration:underline;display:inline-bl=
+ock;-ms-text-size-adjust:100%;">Learn why we included this.</a></p></td> </=
+tr> <tr> <td align=3D"center" style=3D"padding:0 0 8px 0;-webkit-text-size-=
+adjust:100%;mso-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:=
+100%;text-align:center;"><a href=3D"https://www.linkedin.com/comm/feed/?mid=
+Token=3DAQE-1AnqKjMpxQ&amp;trk=3Deml-email_feed_ecosystem_digest_01-footer-=
+27-home&amp;trkEmail=3Deml-email_feed_ecosystem_digest_01-footer-27-home-nu=
+ll-6ldzbj%7Ejmzyo701%7Eeo-null-neptune%2Ffeed&amp;lipi=3Durn%3Ali%3Apage%3A=
+email_email_feed_ecosystem_digest_01%3By7gD%2FYkWRDOBi7oxlhsSzQ%3D%3D" styl=
+e=3D"cursor:pointer;color:#6A6C6D;-webkit-text-size-adjust:100%;text-decora=
+tion:underline;display:inline-block;-ms-text-size-adjust:100%;"><img alt=3D=
+"LinkedIn" border=3D"0" height=3D"14" src=3D"https://static.licdn.com/scds/=
+common/u/images/email/phoenix/logos/logo_phoenix_footer_darkgray_197x48_v1.=
+png" width=3D"58" style=3D"outline:none;-ms-interpolation-mode:bicubic;colo=
+r:#FFFFFF;display:block;text-decoration:none;"></a></td> </tr> <tr> <td ali=
+gn=3D"center" style=3D"padding:0 0 12px 0;-webkit-text-size-adjust:100%;mso=
+-table-rspace:0pt;mso-table-lspace:0pt;-ms-text-size-adjust:100%;text-align=
+:center;"> <p style=3D"margin:0;color:#6A6C6D;font-weight:400;font-size:12p=
+x;line-height:1.333;">=C2=A9 2018 LinkedIn Ireland Unlimited Company, Wilto=
+n Plaza, Wilton Place, Dublin 2. LinkedIn is a registered business name of =
+LinkedIn Ireland Unlimited Company. LinkedIn and the LinkedIn logo are regi=
+stered trademarks of LinkedIn.</p></td> </tr> </tbody> </table></td> </tr> =
+</tbody> </table> <img src=3D"https://www.linkedin.com/emimp/ip_Tm14a2VtSnF=
+MV3B0ZW5sdk56QXhMV1Z2OlpXMWhhV3hmWm1WbFpGOWxZMjl6ZVhOMFpXMWZaR2xuWlhOMFh6QX=
+g6.gif" style=3D"outline:none;-ms-interpolation-mode:bicubic;color:#FFFFFF;=
+text-decoration:none;width:1px;height:1px;"> </body> </html>
+------=_Part_12004398_1904355819.1539029040116--
+

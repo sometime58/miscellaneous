@@ -1,0 +1,96 @@
+<p>Now that <a href="https://indium.readthedocs.io/en/latest/">Indium</a> 2.0 is around the
+corner, it’s about time to write this post!</p>
+
+<p>You can see this article as the third part of my series of articles describing
+how to make Emacs a JavaScript development environment.  If you haven’t read it
+yet, you should jump to the
+<a href="https://emacs.cafe/emacs/javascript/setup/2017/04/23/emacs-setup-javascript.html">first</a> and
+<a href="https://emacs.cafe/emacs/javascript/setup/2017/05/09/emacs-setup-javascript-2.html">second post</a>
+first to get started.</p>
+
+<h2 id="about-indium-20">About Indium 2.0</h2>
+
+<p>Indium 2.0 is not out yet, but if you’re installing Indium from
+<a href="https://melpa.org">MELPA</a>, you’re already using it.</p>
+
+<p>Indium is a JavaScript development environment for
+<a href="https://gnu.org/s/emacs">Emacs</a>.  It connects to a runtime (Browser or Node),
+and provides things like a REPL, inspector, live evaluation, and of course a
+stepping source debugger.</p>
+
+<p><img alt="Indium debugger in action" src="https://raw.githubusercontent.com/NicolasPetton/Indium/master/screenshots/debugger.gif" /></p>
+
+<h3 id="new-project-configuration">New project configuration</h3>
+
+<p>The upcoming release of Indium will feature much better project configuration
+with sourcemap support for most, if not all JavaScript projects, including
+React, VueJS, Meteor, Angular, and basically any project that uses Webpack or
+other bundlers that produce sourcemaps.</p>
+
+<h3 id="new-clientserver-architecture">New client/server architecture</h3>
+
+<p>The new Indium will also be based on a client/server architecture, and will
+require the installation of the indium server like the following:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>npm install -g indium
+</code></pre>
+</div>
+
+<p>There are several reasons for this change, the most important one being the
+ability to reuse existing JavaScript libraries for handling WebSockets,
+<a href="https://github.com/mozilla/source-map">source-maps</a> and the <a href="https://github.com/cyrus-and/chrome-remote-interface">Chrome Debug
+Protocol</a>.</p>
+
+<p>You can read the documentation of the new TCP protocol
+<a href="https://github.com/NicolasPetton/Indium/blob/master/server/README.md">here</a>.</p>
+
+<p>As a result, Indium will be much more responsive.</p>
+
+<h2 id="setting-up-indium">Setting up Indium</h2>
+
+<p>Let’s start with the creation of a React project built with the CLI tool
+<code class="highlighter-rouge">create-react-app</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo npm install -g create-react-app
+create-react-app my-app
+cd my-app
+npm install
+npm start
+</code></pre>
+</div>
+
+<p>We need to tell Indium how to connect to our new project <code class="highlighter-rouge">my-app</code>.  To do
+that, let’s create a <code class="highlighter-rouge">.indium.json</code> file at the root of the project:</p>
+
+<figure class="highlight"><pre><code class="language-json"><span class="p">{</span><span class="w">
+  </span><span class="nt">"configurations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+	  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Web Browser"</span><span class="p">,</span><span class="w">
+	  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chrome"</span><span class="p">,</span><span class="w">
+	  </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://localhost:3000"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span></code></pre></figure>
+
+<p>We only need one configuration, but Indium supports any number of configurations
+per project, including mixing NodeJS and Chrome.</p>
+
+<h2 id="firing-up-indium">Firing up Indium</h2>
+
+<p>To start Indium, you can either do <code class="highlighter-rouge">M-x indium-connect</code> to connect to a running
+JavaScript process (Chrome tab the example above), or do <code class="highlighter-rouge">M-x indium-launch</code> to
+start a new process and automatically connect to it.</p>
+
+<p>For more information about setting up and starting Indium, read the <a href="https://indium.readthedocs.io/en/latest/setup.html">Getting up
+and running</a> section of the
+documentation.</p>
+
+<h2 id="closing-words">Closing words</h2>
+
+<p>The new architecture of Indium is brand new, and I expect issues to be
+discovered.  You can open issues on the <a href="https://github.com/nicolaspetton/indium">GitHub issue
+tracker</a> (please do!).</p>
+
+<p>If you are unsure how to best report an issue for Indium, there’s <a href="https://indium.readthedocs.io/en/latest/troubleshooting.html#general-advices-before-reporting-issues">a
+section</a>
+in the manual for that!</p>

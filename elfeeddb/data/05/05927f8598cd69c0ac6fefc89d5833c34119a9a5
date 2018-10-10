@@ -1,0 +1,196 @@
+<div id="content"><h1 class="title">Effective Suggest And Complete In An Eyes-Free Environment</h1><div class="outline-2" id="outline-container-orgf9cdbd5"><h2 id="orgf9cdbd5"><span class="section-number-2">1</span> Executive Summary</h2><div class="outline-text-2" id="text-1"><p>Emacs has always provided a wealth of techniques for rapid keyboard<br />
+input (abbrev, dabbrev, hippie-expandand completion come to mind)<br />
+alongside a rich collection of tools for navigating among open<br />
+buffers. And these affordances have significantly increased over the<br />
+last few years with the arrival of packages like <code>ido</code>, <code>company</code>,<br />
+<code>helm</code> etc., each replete with different strategies for rapid task<br />
+completion such as flex and fuzzy matching. This article investigates<br />
+these tools in an eyes-free environment, specifically in the context<br />
+of Emacspeak and rapid task completion. I've not investigated every<br />
+possible package in this space — instead, I've picked a collection<br />
+of packages and techniques that have worked well in an eyes-free<br />
+context. Finally, the ultimate metric I use in each case is the time<br />
+to successful task completion — since at the end of the day, that's<br />
+the only metric that counts when it comes to user productivity.<br />
+</p></div></div><br />
+<div class="outline-2" id="outline-container-org03a5b2e"><h2 id="org03a5b2e"><span class="section-number-2">2</span> Terminology</h2><div class="outline-text-2" id="text-2"><p>For this article, I will use terms <i>suggestion</i> and <i>completion</i> to<br />
+mean  subtly different concepts. I'll also use terms <i>explore</i> and<br />
+<i>filter</i> in describing various phases in user interaction.<br />
+</p><br />
+<dl class="org-dl"><dt>Suggestion</dt>
+<dd>Offer the user some <i>suggestions</i> that help explore the space of choices. (metaphor: avoid the blank sheet of paper syndrome).</dd>
+<dt>Completion </dt>
+<dd>Filter the available choices based on user input with the goal of reaching the target as rapidly as possible.</dd>
+<dt>Explore </dt>
+<dd>User does not necessarily know what he is looking for, but expects to be able to <i>recognize</i> what he wants from the displayed choices.</dd>
+<dt>Target </dt>
+<dd>User knows exactly what he wants, e.g., filename, or function-name, but would still like to get there with the fewest possible number of keystrokes, along with the needed memory aids to guide the decision.</dd> </dl><br />
+<br />
+<p>Note that in practice, <i>suggestions</i> and <i>completions</i> work<br />
+hand-in-hand, with the visual display playing a central role in<br />
+guiding the user through the pace of available choices. In a typical<br />
+user interaction session, the space of suggestions gets filtered by<br />
+user input to produce the available completions (choices) for the next<br />
+round of user input — think of this as a<br />
+<b>Suggest/Input/Filter/Target</b> (SIFT)  interaction loop. Similarly, <i>explore</i> and<br />
+<i>target</i> type activities typically go hand-in-hand, with <i>explore</i><br />
+serving as a memory-aid for locating the <i>target</i>.<br />
+</p></div></div><br />
+<br />
+<div class="outline-2" id="outline-container-org5333515"><h2 id="org5333515"><span class="section-number-2">3</span> Tasks Where Suggestions And Completions Help Speed Up Task Completion</h2><div class="outline-text-2" id="text-3"><p>Here are exemplars of tasks that I perform often and where I require<br />
+all the help that Emacs can provide in completing the task as rapidly<br />
+as possible:<br />
+</p><br />
+<dl class="org-dl"><dt>File Navigation </dt>
+<dd>Navigating to and opening a file  — either code or prose.</dd>
+<dt>Content Navigation</dt>
+<dd>Jump  to a specific location (section, function, class/method, or pattern-match) in  that file.</dd>
+<dt>Buffer Navigation</dt>
+<dd>Jump to an already open buffer in  a long-running Emacs.</dd> </dl><p>If that buffer existed — but has since been killed (by<br />
+<code>midnight</code> for example), then re-open that buffer.<br />
+I do <b>everything</b> in Emacs, so open buffers include  a large<br />
+number of ORG and LaTeX documents,  Web Pages opened in  EWW <br />
+(news sites, documentation, blog articles), IM Chats (I use<br />
+<code>jabber</code>), Mail  Buffers — both open folders and previously<br />
+sent messages,  and much, much more.<br />
+</p><dl class="org-dl"><dt>Media</dt>
+<dd>Easily launch media streams including local and streaming media.</dd>
+<dt>EBooks</dt>
+<dd>Open (or jump to an already open) EBook to continue reading.</dd>
+<dt>Code Completion</dt>
+<dd>Complete function/method-name  as I type,  with an easy affordance to move among the available choices. The <b>Suggest/Input/Filter/Target</b> interaction loop applies here as well.</dd> </dl><br />
+<br />
+<p>Notice that as one performs all of these tasks, <b>every target</b> is an<br />
+Emacs buffer or Emacs buffer location. In the case of completion, the<br />
+target is a string that gets inserted at the current  location.<br />
+</p></div></div><br />
+<div class="outline-2" id="outline-container-org63d149a"><h2 id="org63d149a"><span class="section-number-2">4</span> Features Of Eyes-Free Interaction</h2><div class="outline-text-2" id="text-4"><p>Using spoken output — as opposed to a rich visual display —  has<br />
+the following special features and/or drawbacks:<br />
+</p><br />
+<ol class="org-ol"><li>A large visual display can offer the user many choices at a time,<br />
+and the eye's ability to rapidly scan these choices makes for an<br />
+extremely fast <b>Suggest/Input/Filter/Target</b> loop. As an example, an<br />
+interface like <code>helm</code> can display a large number of initial<br />
+choices, with the user  filtering these down with a few strategic key-presses.</li>
+<li>Spoken output takes time — and there is simply no way around<br />
+this — speeding up speech-rate helps to a point, but speaking<br />
+50 choices very fast does not help the user  in the <i>explore</i><br />
+phase. This means that  effective filtering and ranking of the available<br />
+choices takes on added importance.</li>
+<li>More importantly, picking a <b>Suggest/Input/Filter/Target</b> (SIFT)<br />
+interaction loop that depends on a large display is sub-optimal<br />
+for eyes-free interaction.</li>
+<li>Given (2,3), smart filtering, flex/fuzzy matching, and ranking<br />
+based on past user behavior take on added importance in an<br />
+eyes-free environment. As an aside, I have high hopes in this<br />
+area for package <code>prescient</code> — though in my few days of usage,<br />
+it has yet to  make a  difference in my productivity.</li>
+<li>For many of the tasks enumerated in the previous section, (2, 3<br />
+and 4) make <code>ido</code> with flex and fuzzy matching extremely<br />
+effective. In contrast, <code>helm</code> with similar flex and fuzzy<br />
+matching (via packages <code>helm-flx</code> and <code>helm-fuzzier</code>) adds little<br />
+extra benefit — and the fractional extra time to compute and<br />
+display the choices can even lead to a minor productivity hit.</li>
+<li>When it comes to writing code with completion, package <code>company</code><br />
+has proven extremely effective. Notice that when writing code,<br />
+one rarely if ever resorts to <b>fuzzy</b> matching — this may well<br />
+be  subjective. Speaking for myself, I cannot think of function<br />
+or method names in the context of fuzzy matching — said<br />
+differently, it's hard to think <code>xl</code> for function-name<br />
+<code>next-line</code> — even though in a given filtering context, <code>xl</code><br />
+might define the shortest path through the available choices to<br />
+the target <code>next-line</code>. Given this, emacspeak implements a<br />
+<code>company front-end</code> that allows the user to navigate through the<br />
+available choices with succinct spoken feedback, and I use those<br />
+choices only after I have  typed sufficiently many characters to<br />
+have a manageable number of choices — said differently, though<br />
+package <code>company</code> is set up to trigger after 3 characters have<br />
+been typed, I usually end up typing more — and  often resort to<br />
+<code>dabbrev</code> or <code>hippee-expand</code> to  input this longer prefix.</li>
+<li>Some of the shortcomings  with eyes-free interaction enumerated<br />
+above lead to my looking for effective work-arounds  that  might<br />
+well work well outside the eyes-free context, e.g. when the<br />
+available choices are too large to fit on a typical visual<br />
+display. Interestingly, most of these have also been solved by<br />
+mainstream Emacs developers in their never-ending/unerring quest for increased<br />
+productivity — package <code>ido</code> and <code>company</code> are excellent exemplars.</li>
+</ol><br />
+<br />
+<ul class="org-ul"><li>Mapping Solutions To Tasks</li>
+</ul><br />
+<p>This section maps the various solutions I use to speed up the tasks<br />
+enumerated earlier in this article.<br />
+</p></div><br />
+<div class="outline-3" id="outline-container-org35ff442"><h3 id="org35ff442"><span class="section-number-3">4.1</span> File And Buffer Navigation</h3><div class="outline-text-3" id="text-4-1"><p>I use package <code>ido</code> with add-ons <code>flx-ido</code> and  <code>ido-completing-read+</code><br />
+(formerly <code>ido-ubiquitous</code>) as my primary/only solution for this<br />
+task. I've dabbled with package <code>helm</code> — primarily via command<br />
+<code>helm-mini</code> but have found almost no use-cases where I did better with<br />
+<code>helm</code>. I also use command <code>org-switchb</code> to quickly jump to any of my<br />
+open <code>org</code> buffers – since that automatically filters the choices<br />
+down for me — I can then get to the <code>org-mode</code> buffer I want with<br />
+one or two keystrokes. Notice that in  all of these cases, I'm relying<br />
+on the fact that I mostly know what I want, i.e., the <i>explore</i> phase<br />
+does not start with an entirely blank sheet of paper.<br />
+</p></div></div><br />
+<div class="outline-3" id="outline-container-org99ad4ed"><h3 id="org99ad4ed"><span class="section-number-3">4.2</span> Content Navigation</h3><div class="outline-text-3" id="text-4-2"><p>Incremental search is your biggest and most effective friend in<br />
+effective eyes-free interaction — this simply cannot be stressed<br />
+enough. That <b>everything</b> in Emacs is <i>searchable</i> via<br />
+incremental-search is a big win for eyes-free interaction. When you<br />
+have a large visual display, the human eye is the search interface of<br />
+first resort – you typically use a <i>search-command</i> only if the<br />
+target is <i>below the fold</i> or far away from the cursor. Because spoken<br />
+output takes time, I use <i>isearch</i> even when the target is one or two<br />
+lines away.<br />
+</p><br />
+<p>Structured navigation comes next in my toolbox for navigating content<br />
+— <code>imenu</code> for code, and section navigation for documents (org,<br />
+LaTeX). I also use command <code>occur</code> to advantage since that provides a<br />
+quick way of finding all the desired targets in a document. Given that<br />
+program source-code uses indentation for displaying structure,<br />
+hbuilt-in command <code>selective-display</code> remains one of Emacs' hidden<br />
+treasures with respect to expanding/collapsing source-code.<br />
+</p><br />
+<p>Finally, I<br />
+use a combination of <code>isearch</code> and <code>structured navigation</code> in<br />
+<code>org-mode</code> buffres by collapsing the document, and then using<br />
+<code>isearch</code> to reveal the desired content fragment.<br />
+In the case of <code>LaTeX</code> documents, I use  package <code>reftex</code> to<br />
+generate a <i>navigation</i> buffer that functions as an interactive table<br />
+of contents. <br />
+</p></div></div><br />
+<div class="outline-3" id="outline-container-org0537c43"><h3 id="org0537c43"><span class="section-number-3">4.3</span> Locating And Playing Media</h3><div class="outline-text-3" id="text-4-3"><ol class="org-ol"><li>I keep all my music content organized under  <code>~/mp3</code>.</li>
+<li>I keep playlist files that contain stream-links to my favorite<br />
+Internet streams under <code>emacspeak/media</code>.</li>
+<li>The afore-mentioned  techniques using <code>ido</code>  enables me to launch<br />
+local and streaming media with a small number of keystrokes. Once<br />
+selected, the content is played via package <code>emacspeak-m-player</code><br />
+which provides Emacs bindings to all  <code>mplayer</code>  functionality<br />
+via that program's <code>slave-mode</code>. In addition, Emacspeak also<br />
+implements a  smart <code>emacspeak-m-player-locate-media</code> which uses<br />
+Emacs' integration with command <code>locate</code> to  turn the located<br />
+files matching a given pattern into an interactive play-list.</li>
+</ol></div></div><br />
+<div class="outline-3" id="outline-container-org7595f5c"><h3 id="org7595f5c"><span class="section-number-3">4.4</span> EBooks</h3><div class="outline-text-3" id="text-4-4"><p>Jumping to already open ebooks is no different than buffer<br />
+navigation.  I organize all my ebooks under a single directory<br />
+tree, and module <code>emacspeak-epub</code> implements a <i>bookshelf</i> that<br />
+allows me to organize and browse my collection along various<br />
+axies. Finally, Emacspeak implements a light-weight bookmark<br />
+facility that works with <code>eww</code> so that I can save my place in an<br />
+ebook across Emacs sessions.<br />
+</p></div></div><br />
+<div class="outline-3" id="outline-container-org17ce1a8"><h3 id="org17ce1a8"><span class="section-number-3">4.5</span> Code Completion</h3><div class="outline-text-3" id="text-4-5"><p>As covered earlier, I use <code>company</code> along with <code>dabbrev</code> and<br />
+<code>hippee-expand</code> while writing code. I also use <code>yasnippet</code> to<br />
+generate skeleton code. I use <code>auto-correct-mode</code> to<br />
+automatically correct repeated errors, and add abbrevs for<br />
+commonly occurring typos. <br />
+</p></div></div></div><br />
+<div class="outline-2" id="outline-container-org039aec8"><h2 id="org039aec8"><span class="section-number-2">5</span> Summary</h2><div class="outline-text-2" id="text-5"><ol class="org-ol"><li>Emacs' <b>Suggest/Input/Filter/Target</b> (SIFT)  interaction loop is just as<br />
+effective in eyes-free interaction — in fact more so .</li>
+<li>Fuzzy matching when filtering is a big win when working with spoken<br />
+output — it leads to faster task completion.</li>
+<li>Navigating ones  computing environment based on  the underlying<br />
+structure and semantics of electronic content is a major win —<br />
+both when working with a visual  or spoken display. The advantages<br />
+just become evident far sooner in the eyes-free context due to the<br />
+inherently temporal nature of spoken interaction.</li>
+</ol></div></div></div><div class="status" id="postamble"><p class="date">Date: 2018-06-22 Fri 00:00</p><p class="author">Author: T.V Raman</p><p class="date">Created: 2018-06-23 Sat 17:22</p><p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p></div>

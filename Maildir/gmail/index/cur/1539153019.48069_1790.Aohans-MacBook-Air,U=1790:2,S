@@ -1,0 +1,696 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 10.31.50.197 with SMTP id y188csp2405011vky;
+        Thu, 8 Jun 2017 11:38:18 -0700 (PDT)
+X-Received: by 10.99.99.65 with SMTP id x62mr10694517pgb.211.1496947098504;
+        Thu, 08 Jun 2017 11:38:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1496947098; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Cl2CTyoiLnLKVgm+b2cSpmLOB7PFxbhuHr7rhLISDF/YDjH3g2j+iUSbDN4bNQrSNd
+         uBiPm/Zjjobi0QUv1owp4tqhSqcRW1vI6JqpgqHbCiws0uYCdjlln/18NZG3eTjqvVYK
+         SZxhDo6mbt3/SZQG7MHVHyyF0X3ielAnPttU7SIZ0yCETxpkWvtW/c3quBsFS31JRZ8d
+         5sWe4Cm+HtSIPLvLwijgZabpVnOJqFtgZqvhFYUbyJfTcHGpb4UTFNCRVoi495IjWctQ
+         7sRTwp7lXsxQFrUWpAG4Jo4f39SKNZojgFwNg3StsekF3ggkarm0gqkD3bTYhVqIGdAP
+         nKVw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=from:subject:mime-version:date:message-id:to:dkim-signature
+         :arc-authentication-results;
+        bh=ozBhJ5qCRe6+YMzG4itp8ZAHtQy5rzpJc8YViH4x72s=;
+        b=CNGEaKfaKdjqMKx6305pG4hBgejJQ1eH+I9Pn/6za7RHROlTGPLsb0idKSY6f6aHNo
+         cb7B7WWuqnGxNIH5aZlQot3M3JaNwQFrvCqvVNzJZ4qOyY7k6JYptL/ZKrsMMCrEsFH3
+         I3ZyNtfq59qQaV9eSXmWWVCNuiD11Z73OdlNlZYZ3h855IwXMV3I542YMUcUosT6fFlp
+         5ObaWqgP4GBK3/ZjUShDUUyeTiczuh1nOrw+B0bFX3fs7mOB4092L6wfFGJQbjoE2rsN
+         YnGmK+pzrcBgLZEptzMhnP6l0ocLuojZ3fXFWhSDUPHrdCWUHhH+JPfWiFqH1NCSqjLs
+         W2Sw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@t.mail.coursera.org;
+       spf=pass (google.com: domain of bounce@t.mail.coursera.org designates 52.40.63.39 as permitted sender) smtp.mailfrom=bounce@t.mail.coursera.org
+Return-Path: <bounce@t.mail.coursera.org>
+Received: from mta1b3.mail.coursera.org (mta1b3.mail.coursera.org. [52.40.63.39])
+        by mx.google.com with ESMTPS id m2si4928896pln.134.2017.06.08.11.38.18
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 08 Jun 2017 11:38:18 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce@t.mail.coursera.org designates 52.40.63.39 as permitted sender) client-ip=52.40.63.39;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@t.mail.coursera.org;
+       spf=pass (google.com: domain of bounce@t.mail.coursera.org designates 52.40.63.39 as permitted sender) smtp.mailfrom=bounce@t.mail.coursera.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=t.mail.coursera.org;
+	s=scph0616; t=1496947098; i=@t.mail.coursera.org;
+	bh=ozBhJ5qCRe6+YMzG4itp8ZAHtQy5rzpJc8YViH4x72s=;
+	h=To:Message-ID:Date:Content-Type:Subject:From;
+	b=Ydy2MuC+9jCKEkejGX8w88WW67Rd4csPYW//PKesqLHcB8Ph9HHZq4m2zLGUnkSSN
+	 rlpxEfVJhSM7Vk6icbqavzYYDP0GqPldX2Khj4xjf9ANwLHix+0vmCPphl8BiRiXqb
+	 xMuLeMU1xIcp38D/rubPmpxNzLrn9HVn9NK0P1MQ=
+X-MSFBL: QVANfrYh7JYC7ZMf6EJLgauOpEgWplD3eRIthpykwMw=|eyJtZXNzYWdlX2lkIjo
+	iMDAwMTlhOTkzOTU5OGEwNWZhNzciLCJ0ZW1wbGF0ZV9pZCI6InRlbXBsYXRlXzM
+	wNTYwOTIwMzQ1NTcwMzU2IiwicmNwdF90YWdzIjpbIF0sInIiOiJzb21ldGltZTU
+	4NThAZ21haWwuY29tIiwiY3VzdG9tZXJfaWQiOiIxIiwidHJhbnNtaXNzaW9uX2l
+	kIjoiMzA1NjA5MjAzNDU1NzAzNTYiLCJ0cmFuc2FjdGlvbmFsIjoiMSIsImZyaWV
+	uZGx5X2Zyb20iOiJuby1yZXBseUB0Lm1haWwuY291cnNlcmEub3JnIiwiY2FtcGF
+	pZ25faWQiOiJwYXJ0bmVyLjMyLjZQcjVUa0l1RWVld0F3cXBsejRQY2ciLCJnIjo
+	idHJhbnNhY3Rpb25hbCIsInRlbmFudF9pZCI6ImNvdXJzZXJhIiwic3ViYWNjb3V
+	udF9pZCI6IjAiLCJ0ZW1wbGF0ZV92ZXJzaW9uIjoiMCIsInJjcHRfbWV0YSI6eyA
+	iY2FtcGFpZ25fZ3JvdXAiOiAicGFydG5lci4zMi5vcGVuY291cnNlLnRhcmdldGV
+	kbWVzc2FnZXMubWFya2V0aW5nIiwgImNoYW5uZWwiOiAiRU1BSUwiLCAiYmluZGl
+	uZyI6ICJ0cmFuc2FjdGlvbmFsIiwgInByZWZlcmVuY2UiOiAicGFydG5lci4zMi5
+	ub3RpZmljYXRpb25zIiwgIm5vdGlmaWNhdGlvbl90ZW1wbGF0ZSI6ICJvcGVuY29
+	1cnNlLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nIiB9LCJiIjoiaXBfNTIuNDA
+	uNjMuMzkifQ==
+To: "Aohan Wang" <sometime5858@gmail.com>
+Message-ID: <AF.77.01418.A9999395@a.plat1.coursera.aws-usw2a.prd.sparkpost>
+Date: Thu, 08 Jun 2017 18:38:18 +0000
+Content-Type: multipart/alternative; boundary="_----OYArZN2H3xjYeAGaBkEvjA===_8F/77-01418-A9999395"
+MIME-Version: 1.0
+Subject:  Announcing the New Master's in Corporate Innovation (Available Online in 2017)
+From: "University of Maryland, College Park" <no-reply@t.mail.coursera.org>
+X-TUID: 1pjad4UDA2DQ
+
+--_----OYArZN2H3xjYeAGaBkEvjA===_8F/77-01418-A9999395
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+
+Dear Aohan Wang,=0D=0A=0D=0A=0D=0AWe are excited to announce a new online g=
+raduate program today. The MPS in =0D=0ACorporate Innovation=0D=0A<https://=
+eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YW=
+x1ZSI6eyJ1cmwiOiJodHRwOi8vbXBjaS51bWQuZWR1L2xhbmRpbmc_dXRtX21lZGl1bT1lbWFpb=
+CZ1dG1fc291cmNlPW90aGVyJnV0bV9jYW1wYWlnbj1wYXJ0bmVyLjMyLm9wZW5jb3Vyc2UudGFy=
+Z2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmclN0VwYXJ0bmVyLjMyLjZQcjVUa0l1RWVld0F3cXBsejR=
+QY2ciLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwiOiJzb21ldGltZT=
+U4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6Im9wZW5jb3Vyc2UudGFyZ2V0ZWRtZ=
+XNzYWdlcy5tYXJrZXRpbmciLCJjYW1wYWlnbklkIjoicGFydG5lci4zMi42UHI1VGtJdUVlZXdB=
+d3FwbHo0UGNnIiwiY2FtcGFpZ25Hcm91cCI6InBhcnRuZXIuMzIub3BlbmNvdXJzZS50YXJnZXR=
+lZG1lc3NhZ2VzLm1hcmtldGluZyJ9fSwidXNlcklkIjoyMDI3MzYzOX0.qvR3_5TE77x1qsD_nd=
+f1llPcZNtfrc9RX20pBxml_QM> =0D=0Afocuses on how to create, launch, and lead=
+ innovations within established =0D=0Acompanies and large organizations. Yo=
+u're invited to join me next week for =0D=0Aa special live online informati=
+on session=0D=0A<https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlb=
+WFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3VtZC53ZWJleC5jb20vdW1k=
+L29uc3RhZ2UvZy5waHA_TVRJRD1lNTEzYjA1YzY0OGY3NDQ0ZTc5NWUzYmNiNGZjMjFhMDUmdXR=
+tX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0bV9jYW1wYWlnbj1wYXJ0bmVyLjMyLm=
+9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmclN0VwYXJ0bmVyLjMyLjZQcjVUa=
+0l1RWVld0F3cXBsejRQY2ciLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1h=
+aWwiOiJzb21ldGltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6Im9wZW5jb3V=
+yc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmciLCJjYW1wYWlnbklkIjoicGFydG5lci4zMi=
+42UHI1VGtJdUVlZXdBd3FwbHo0UGNnIiwiY2FtcGFpZ25Hcm91cCI6InBhcnRuZXIuMzIub3Blb=
+mNvdXJzZS50YXJnZXRlZG1lc3NhZ2VzLm1hcmtldGluZyJ9fSwidXNlcklkIjoyMDI3MzYzOX0.=
+tlO7P4tcHle8J6FwNLP7XvIIjeX_zj5VCuY30xm9HPI> =0D=0Aon this new online progr=
+am.=0D=0A=0D=0A=0D=0AHow do the two University of Maryland programs in entr=
+epreneurship and =0D=0Ainnovation differ=3F=0D=0A=0D=0A=0D=0A      * For as=
+piring entrepreneurs interested in envisioning, developing,=0D=0A        an=
+d launching their own startup company, the MPS in Technology=0D=0A        E=
+ntrepreneurship=0D=0A        <https://eventing.coursera.org/redirectSigned/=
+eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vbXRlLnVtZC5=
+lZHUvP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249cGFydG=
+5lci4zMi5vcGVuY291cnNlLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nJTdFcGFydG5lci4zM=
+i42UHI1VGtJdUVlZXdBd3FwbHo0UGNnIiwidHJhY2tpbmciOnsidXNlcklkIjoyMDI3MzYzOSwi=
+dXNlckVtYWlsIjoic29tZXRpbWU1ODU4QGdtYWlsLmNvbSIsIm5vdGlmaWNhdGlvblR5cGUiOiJ=
+vcGVuY291cnNlLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nIiwiY2FtcGFpZ25JZCI6InBhcn=
+RuZXIuMzIuNlByNVRrSXVFZWV3QXdxcGx6NFBjZyIsImNhbXBhaWduR3JvdXAiOiJwYXJ0bmVyL=
+jMyLm9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmcifX0sInVzZXJJZCI6MjAy=
+NzM2Mzl9.5Di0MGfbKiOYNYQ3Usk1cXayB-oC25x6V3oS6vFGHQA> =0D=0A        is stil=
+l available. This is the ideal program for students seeking=0D=0A        to=
+ create their own company with our faculty as startup coaches,=0D=0A       =
+ and earn a master's degree while doing it.=0D=0A=0D=0A=0D=0A      * The ne=
+w MPS in Corporate Innovation=0D=0A        <https://eventing.coursera.org/r=
+edirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwO=
+i8vbXBjaS51bWQuZWR1L2xhbmRpbmc_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVy=
+JnV0bV9jYW1wYWlnbj1wYXJ0bmVyLjMyLm9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJ=
+rZXRpbmclN0VwYXJ0bmVyLjMyLjZQcjVUa0l1RWVld0F3cXBsejRQY2ciLCJ0cmFja2luZyI6ey=
+J1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwiOiJzb21ldGltZTU4NThAZ21haWwuY29tIiwib=
+m90aWZpY2F0aW9uVHlwZSI6Im9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmci=
+LCJjYW1wYWlnbklkIjoicGFydG5lci4zMi42UHI1VGtJdUVlZXdBd3FwbHo0UGNnIiwiY2FtcGF=
+pZ25Hcm91cCI6InBhcnRuZXIuMzIub3BlbmNvdXJzZS50YXJnZXRlZG1lc3NhZ2VzLm1hcmtldG=
+luZyJ9fSwidXNlcklkIjoyMDI3MzYzOX0.qvR3_5TE77x1qsD_ndf1llPcZNtfrc9RX20pBxml_=
+QM> =0D=0A        is for those interested in acquiring the knowledge, compe=
+tencies,=0D=0A        and relationships to solve innovation challenges with=
+in established=0D=0A        companies and large organizations. Details on t=
+his exciting new=0D=0A        program are shared below.=0D=0A=0D=0A=0D=0ABo=
+th programs are 100% online, 15-month, 30-credit experiences with small =0D=
+=0Aclass environments to promote active engagement with students and facult=
+y.=0D=0A=0D=0A=0D=0AFor active and aspiring corporate innovators, the MPS i=
+n Corporate =0D=0AInnovation=0D=0A<https://eventing.coursera.org/redirectSi=
+gned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vbXBjaS=
+51bWQuZWR1L2xhbmRpbmc_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0bV9jY=
+W1wYWlnbj1wYXJ0bmVyLjMyLm9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmcl=
+N0VwYXJ0bmVyLjMyLjZQcjVUa0l1RWVld0F3cXBsejRQY2ciLCJ0cmFja2luZyI6eyJ1c2VySWQ=
+iOjIwMjczNjM5LCJ1c2VyRW1haWwiOiJzb21ldGltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2=
+F0aW9uVHlwZSI6Im9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmciLCJjYW1wY=
+WlnbklkIjoicGFydG5lci4zMi42UHI1VGtJdUVlZXdBd3FwbHo0UGNnIiwiY2FtcGFpZ25Hcm91=
+cCI6InBhcnRuZXIuMzIub3BlbmNvdXJzZS50YXJnZXRlZG1lc3NhZ2VzLm1hcmtldGluZyJ9fSw=
+idXNlcklkIjoyMDI3MzYzOX0.qvR3_5TE77x1qsD_ndf1llPcZNtfrc9RX20pBxml_QM> =0D=
+=0Awill enable you to:=0D=0A=0D=0A=0D=0A      * Demonstrate your ability to=
+ think beyond current paradigms in order=0D=0A        to discover innovatio=
+n needs and envision impact through strategic=0D=0A        idea and concept=
+ development (Term 1 Courses)=0D=0A=0D=0A=0D=0A      * Leverage your ideas =
+for new corporate ventures to create=0D=0A        sustainable business mode=
+ls aligned with customer needs and wants=0D=0A        in competitive market=
+places (Term 2 Courses)=0D=0A=0D=0A=0D=0A      * Apply data collection and =
+analysis techniques for decision making,=0D=0A        and demonstrate how t=
+o translate product and service ideas into=0D=0A        marketable solution=
+s (Term 3 Courses)=0D=0A=0D=0A=0D=0A      * Manage commercialization challe=
+nges efficiently and effectively=0D=0A        through negotiations and prob=
+lem solving (Term 4 Courses)=0D=0A=0D=0A=0D=0A      * Lead the creation and=
+ launch of corporate ventures through=0D=0A        appropriate business dev=
+elopment, risk management, financing, and=0D=0A        value extraction str=
+ategies (Term 5 Courses).=0D=0A=0D=0A=0D=0ATo learn more, visit here=0D=0A<=
+https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW=
+4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vbXBjaS51bWQuZWR1L2xhbmRpbmcvP3V0bV9tZWRpd=
+W09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249cGFydG5lci4zMi5vcGVuY291=
+cnNlLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nJTdFcGFydG5lci4zMi42UHI1VGtJdUVlZXd=
+Bd3FwbHo0UGNnIiwidHJhY2tpbmciOnsidXNlcklkIjoyMDI3MzYzOSwidXNlckVtYWlsIjoic2=
+9tZXRpbWU1ODU4QGdtYWlsLmNvbSIsIm5vdGlmaWNhdGlvblR5cGUiOiJvcGVuY291cnNlLnRhc=
+mdldGVkbWVzc2FnZXMubWFya2V0aW5nIiwiY2FtcGFpZ25JZCI6InBhcnRuZXIuMzIuNlByNVRr=
+SXVFZWV3QXdxcGx6NFBjZyIsImNhbXBhaWduR3JvdXAiOiJwYXJ0bmVyLjMyLm9wZW5jb3Vyc2U=
+udGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmcifX0sInVzZXJJZCI6MjAyNzM2Mzl9.IzcjOytRu=
+gaL8e4XFvRtzahhUbIHJRl31nuKsxvLsaU> =0D=0A, and join our upcoming online in=
+formation session.=0D=0A=0D=0A=0D=0AWhat will the online information sessio=
+n cover=3F=0D=0A=0D=0A=0D=0AIn the 30 minute online information session on =
+June 14, 2017 at 11 AM (EDT)=0D=0A, we will share highlights of the MPS in =
+Corporate Innovation=0D=0A<https://eventing.coursera.org/redirectSigned/eyJ=
+rZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vbXBjaS51bWQuZW=
+R1L2xhbmRpbmc_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0bV9jYW1wYWlnb=
+j1wYXJ0bmVyLjMyLm9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmclN0VwYXJ0=
+bmVyLjMyLjZQcjVUa0l1RWVld0F3cXBsejRQY2ciLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjc=
+zNjM5LCJ1c2VyRW1haWwiOiJzb21ldGltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9uVH=
+lwZSI6Im9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmciLCJjYW1wYWlnbklkI=
+joicGFydG5lci4zMi42UHI1VGtJdUVlZXdBd3FwbHo0UGNnIiwiY2FtcGFpZ25Hcm91cCI6InBh=
+cnRuZXIuMzIub3BlbmNvdXJzZS50YXJnZXRlZG1lc3NhZ2VzLm1hcmtldGluZyJ9fSwidXNlckl=
+kIjoyMDI3MzYzOX0.qvR3_5TE77x1qsD_ndf1llPcZNtfrc9RX20pBxml_QM> =0D=0Aprogram=
+, and answer your questions on the learning model, courses, faculty =0D=0Ae=
+tc. I hope that you will join us to learn how this master's degree can =0D=
+=0Abenefit your corporate innovation goals. Reserve your place today here=
+=0D=0A<https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5=
+rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3VtZC53ZWJleC5jb20vdW1kL29uc3RhZ2=
+UvZy5waHA_TVRJRD1lNTEzYjA1YzY0OGY3NDQ0ZTc5NWUzYmNiNGZjMjFhMDUmdXRtX21lZGl1b=
+T1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0bV9jYW1wYWlnbj1wYXJ0bmVyLjMyLm9wZW5jb3Vy=
+c2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmclN0VwYXJ0bmVyLjMyLjZQcjVUa0l1RWVld0F=
+3cXBsejRQY2ciLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwiOiJzb2=
+1ldGltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6Im9wZW5jb3Vyc2UudGFyZ=
+2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmciLCJjYW1wYWlnbklkIjoicGFydG5lci4zMi42UHI1VGtJ=
+dUVlZXdBd3FwbHo0UGNnIiwiY2FtcGFpZ25Hcm91cCI6InBhcnRuZXIuMzIub3BlbmNvdXJzZS5=
+0YXJnZXRlZG1lc3NhZ2VzLm1hcmtldGluZyJ9fSwidXNlcklkIjoyMDI3MzYzOX0.tlO7P4tcHl=
+e8J6FwNLP7XvIIjeX_zj5VCuY30xm9HPI> =0D=0A.=0D=0A=0D=0A=0D=0ASincerely,=0D=
+=0A=0D=0A=0D=0AJames=0D=0A=0D=0A=0D=0ADr. James V. Green - Director of Entr=
+epreneurship Education - Maryland =0D=0ATechnology Enterprise Institute (Mt=
+ech) - University of Maryland=0D=0A=0D=0A=0D=0AP.S. The deadline for applyi=
+ng for the August 2017 classes of the MPS in =0D=0ACorporate Innovation and=
+ MPS in Technology Entrepreneurship is fast =0D=0Aapproaching. Applications=
+ are due by July 15, 2017. All that's required to =0D=0Aapply is a statemen=
+t of interest, resume, and transcript. GMAT, GRE, and =0D=0Areference lette=
+rs are not required. A TOEFL or equivalent may be required =0D=0Afor non-U.=
+S. applicants.=0D=0A=0D=0A=0D=0A*The MPS in Corporate Innovation at the Uni=
+versity of Maryland is =0D=0Aaccredited by The Middle States Commission on =
+Higher Education and is =0D=0Arecognized among the best universities by U.S=
+. News & World Report, =0D=0AEntrepreneur Magazine, and Princeton Review.=
+=0D=0A=0D=0A=0D=0AUniversity of Maryland, College Park=0D=0AYou are receivi=
+ng this email because sometime5858@gmail.com is registered =0D=0Afor promot=
+ional emails from University of Maryland, College Park on =0D=0ACoursera.=
+=0D=0APlease do not reply directly to this email. If you have any questions=
+ or =0D=0Afeedback,=0D=0Aplease visit our support site=0D=0A<https://eventi=
+ng.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6=
+eyJ1cmwiOiJodHRwczovL2NvdXJzZXJhaGVscC56ZW5kZXNrLmNvbS9oYz91dG1fbWVkaXVtPWV=
+tYWlsJnV0bV9zb3VyY2U9b3RoZXImdXRtX2NhbXBhaWduPXBhcnRuZXIuMzIub3BlbmNvdXJzZS=
+50YXJnZXRlZG1lc3NhZ2VzLm1hcmtldGluZyU3RXBhcnRuZXIuMzIuNlByNVRrSXVFZWV3QXdxc=
+Gx6NFBjZyIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI6InNvbWV0=
+aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlIjoib3BlbmNvdXJzZS50YXJnZXR=
+lZG1lc3NhZ2VzLm1hcmtldGluZyIsImNhbXBhaWduSWQiOiJwYXJ0bmVyLjMyLjZQcjVUa0l1RW=
+Vld0F3cXBsejRQY2ciLCJjYW1wYWlnbkdyb3VwIjoicGFydG5lci4zMi5vcGVuY291cnNlLnRhc=
+mdldGVkbWVzc2FnZXMubWFya2V0aW5nIn19LCJ1c2VySWQiOjIwMjczNjM5fQ.WgprdwBFwfvcm=
+6HQ8PLHrXorxioktXanAVC79JPiSEk> =0D=0A.=0D=0A[facebook]=0D=0A<https://event=
+ing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI=
+6eyJ1cmwiOiJodHRwOi8vd3d3LmZhY2Vib29rLmNvbS9Db3Vyc2VyYT91dG1fbWVkaXVtPWVtYW=
+lsJnV0bV9zb3VyY2U9b3RoZXImdXRtX2NhbXBhaWduPXBhcnRuZXIuMzIub3BlbmNvdXJzZS50Y=
+XJnZXRlZG1lc3NhZ2VzLm1hcmtldGluZyU3RXBhcnRuZXIuMzIuNlByNVRrSXVFZWV3QXdxcGx6=
+NFBjZyIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI6InNvbWV0aW1=
+lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlIjoib3BlbmNvdXJzZS50YXJnZXRlZG=
+1lc3NhZ2VzLm1hcmtldGluZyIsImNhbXBhaWduSWQiOiJwYXJ0bmVyLjMyLjZQcjVUa0l1RWVld=
+0F3cXBsejRQY2ciLCJjYW1wYWlnbkdyb3VwIjoicGFydG5lci4zMi5vcGVuY291cnNlLnRhcmdl=
+dGVkbWVzc2FnZXMubWFya2V0aW5nIn19LCJ1c2VySWQiOjIwMjczNjM5fQ.7qEg3a_LSMoSKBO1=
+_EJb3rZSWPDJe7-hZMQoSV3HwC4> =0D=0A[twitter]=0D=0A<https://eventing.courser=
+a.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOi=
+JodHRwczovL3R3aXR0ZXIuY29tL2NvdXJzZXJhP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZ=
+T1vdGhlciZ1dG1fY2FtcGFpZ249cGFydG5lci4zMi5vcGVuY291cnNlLnRhcmdldGVkbWVzc2Fn=
+ZXMubWFya2V0aW5nJTdFcGFydG5lci4zMi42UHI1VGtJdUVlZXdBd3FwbHo0UGNnIiwidHJhY2t=
+pbmciOnsidXNlcklkIjoyMDI3MzYzOSwidXNlckVtYWlsIjoic29tZXRpbWU1ODU4QGdtYWlsLm=
+NvbSIsIm5vdGlmaWNhdGlvblR5cGUiOiJvcGVuY291cnNlLnRhcmdldGVkbWVzc2FnZXMubWFya=
+2V0aW5nIiwiY2FtcGFpZ25JZCI6InBhcnRuZXIuMzIuNlByNVRrSXVFZWV3QXdxcGx6NFBjZyIs=
+ImNhbXBhaWduR3JvdXAiOiJwYXJ0bmVyLjMyLm9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5=
+tYXJrZXRpbmcifX0sInVzZXJJZCI6MjAyNzM2Mzl9.W7L9VbLh259utG-lF5JnX-ZC_jo2-2_7X=
+GqRuwuI-Xo> =0D=0A[blog]=0D=0A<https://eventing.coursera.org/redirectSigned=
+/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vYmxvZy5jb3=
+Vyc2VyYS5vcmcvP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ=
+249cGFydG5lci4zMi5vcGVuY291cnNlLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nJTdFcGFy=
+dG5lci4zMi42UHI1VGtJdUVlZXdBd3FwbHo0UGNnIiwidHJhY2tpbmciOnsidXNlcklkIjoyMDI=
+3MzYzOSwidXNlckVtYWlsIjoic29tZXRpbWU1ODU4QGdtYWlsLmNvbSIsIm5vdGlmaWNhdGlvbl=
+R5cGUiOiJvcGVuY291cnNlLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nIiwiY2FtcGFpZ25JZ=
+CI6InBhcnRuZXIuMzIuNlByNVRrSXVFZWV3QXdxcGx6NFBjZyIsImNhbXBhaWduR3JvdXAiOiJw=
+YXJ0bmVyLjMyLm9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmcifX0sInVzZXJ=
+JZCI6MjAyNzM2Mzl9.XvVsiGZ-w-K8tmz12lhG18MMd_G6MLxbgYb_njtVxKg> =0D=0A[blog]=
+=0D=0A<https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5=
+rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3BsdXMuZ29vZ2xlLmNvbS8xMTE5NTA1OT=
+QwMzkyNjkyODE0NjkvcG9zdHM_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0b=
+V9jYW1wYWlnbj1wYXJ0bmVyLjMyLm9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRp=
+bmclN0VwYXJ0bmVyLjMyLjZQcjVUa0l1RWVld0F3cXBsejRQY2ciLCJ0cmFja2luZyI6eyJ1c2V=
+ySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwiOiJzb21ldGltZTU4NThAZ21haWwuY29tIiwibm90aW=
+ZpY2F0aW9uVHlwZSI6Im9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmciLCJjY=
+W1wYWlnbklkIjoicGFydG5lci4zMi42UHI1VGtJdUVlZXdBd3FwbHo0UGNnIiwiY2FtcGFpZ25H=
+cm91cCI6InBhcnRuZXIuMzIub3BlbmNvdXJzZS50YXJnZXRlZG1lc3NhZ2VzLm1hcmtldGluZyJ=
+9fSwidXNlcklkIjoyMDI3MzYzOX0.acRs35wCvQisg9zlekQsdMdTst22UT2i6BDOqbxGofU>=
+=0D=0A<https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5=
+rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvP3V0bV9tZW=
+RpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249cGFydG5lci4zMi5vcGVuY=
+291cnNlLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nJTdFcGFydG5lci4zMi42UHI1VGtJdUVl=
+ZXdBd3FwbHo0UGNnIiwidHJhY2tpbmciOnsidXNlcklkIjoyMDI3MzYzOSwidXNlckVtYWlsIjo=
+ic29tZXRpbWU1ODU4QGdtYWlsLmNvbSIsIm5vdGlmaWNhdGlvblR5cGUiOiJvcGVuY291cnNlLn=
+RhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nIiwiY2FtcGFpZ25JZCI6InBhcnRuZXIuMzIuNlByN=
+VRrSXVFZWV3QXdxcGx6NFBjZyIsImNhbXBhaWduR3JvdXAiOiJwYXJ0bmVyLjMyLm9wZW5jb3Vy=
+c2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmcifX0sInVzZXJJZCI6MjAyNzM2Mzl9.Uz33TK=
+y_BH1TwvLtFoe6DZdVikIYzp4GbrxoQQZ5dGI>=0D=0ACopyright (c) 2017 Coursera, In=
+c | 381 E. Evelyn Avenue, Mountain View, CA =0D=0A94041 USA=0D=0ATo opt-out=
+ of receiving emails from this Partner, unsubscribe here.=0D=0A<https://eve=
+nting.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1Z=
+SI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvYWNjb3VudC91bnN1YnNjcmliZS84=
+MlRveHJ2cWhzaFhIVjFNSlVhVHBKV3IzUUdSVHoxWjVZbW52a2ZPVXkzWG10dGFhXzE0U0ZmRjQ=
+yQzNBMm5vWlRRUG40c1VTOHFhQWVxZGlHXzBUdy5FLVgxTnBIa044Nm1abVkwd2k4WkNnLk9oc2=
+5EUVprM293aEVrVUZIbXhTMmt4Und4REN3bEY1dHdnUG9hRU5CWElmTkdIa1luZmRrc0lZV0V1T=
+nlpNDRzTUhqMDhoQ2dmcUlGVktVM0tBV2tEcTdIQ1NBV1lfU1dNVUo3UmtyaUFkMkdjOWxyVGo5=
+T2xpNk0zVUpORHNfP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGF=
+pZ249cGFydG5lci4zMi5vcGVuY291cnNlLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nJTdFcG=
+FydG5lci4zMi42UHI1VGtJdUVlZXdBd3FwbHo0UGNnIiwidHJhY2tpbmciOnsidXNlcklkIjoyM=
+DI3MzYzOSwidXNlckVtYWlsIjoic29tZXRpbWU1ODU4QGdtYWlsLmNvbSIsIm5vdGlmaWNhdGlv=
+blR5cGUiOiJvcGVuY291cnNlLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nIiwiY2FtcGFpZ25=
+JZCI6InBhcnRuZXIuMzIuNlByNVRrSXVFZWV3QXdxcGx6NFBjZyIsImNhbXBhaWduR3JvdXAiOi=
+JwYXJ0bmVyLjMyLm9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmcifX0sInVzZ=
+XJJZCI6MjAyNzM2Mzl9.GpJQsbAsiY4BgShIgds0lgCthf7o4z2YSu-CLThZFXg>
+--_----OYArZN2H3xjYeAGaBkEvjA===_8F/77-01418-A9999395
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="UTF-8"
+
+<!--item discussions are nested under items themselves--><!--item discussio=
+ns are nested under items themselves--><!--Grammatically formats an array o=
+f partners into a nice looking string.--><!DOCTYPE html PUBLIC "-//W3C//DTD=
+ XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transi=
+tional.dtd"><html xmlns=3D"http://www.w3.org/1999/xhtml"><head><meta http-e=
+quiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/><style type=
+=3D"text/css">/* /\/\/\/\/\/\/\/\/ CLIENT-SPECIFIC STYLES /\/\/\/\/\/\/\/\/=
+ */=0A#outlook a{padding:0;} /* Force Outlook to provide a "view in browser=
+" message */=0A/* Force Hotmail to display emails at full width */=0A.ReadM=
+sgBody{width:100%;}=0A.ExternalClass{width:100%;}=0A/* Prevent Yahoo! from =
+styling links */=0A.yshortcuts, a .yshortcuts, a .yshortcuts:hover, a .ysho=
+rtcuts:active, a .yshortcuts:focus{=0A    background-color:transparent !imp=
+ortant;=0A    border:none !important;=0A    color:inherit !important;=0A}=
+=0A/* /\/\/\/\/\/\/\/\/ RESET STYLES /\/\/\/\/\/\/\/\/ */=0Abody{=0A    mar=
+gin:0;=0A    padding:0;=0A}=0Aimg{=0A    border:0;=0A    height:auto;=0A   =
+ line-height:100%;=0A    outline:none;=0A    text-decoration:none;=0A}=0Ata=
+ble, td{=0A    border-collapse:collapse !important;=0A    mso-table-lspace:=
+0pt;=0A    mso-table-rspace:0pt;=0A}=0A#bodyTable, #bodyCell{=0A    height:=
+100% !important;=0A    margin:0;=0A    padding:0;=0A    width:100% !importa=
+nt;=0A}=0A#bodyCell{padding:20px;}=0A#templateContainer{width:600px;}=0A/* =
+/\/\/\/\/\/\/\/\/ TEMPLATE STYLES /\/\/\/\/\/\/\/\/ */=0A/* =3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D Page Styles =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D */=0Abody, #body=
+Table{background-color:#ffffff;}=0A#bodyCell{border-top:0;}=0A#templateCont=
+ainer{border:0px solid #FFFFFF;}=0Ah1{=0A    color:#232327 !important;=0A  =
+  display:block;=0A    font-family:Helvetica;=0A    font-size:30px;=0A    f=
+ont-style:normal;=0A    font-weight:bold;=0A    line-height:100%;=0A    let=
+ter-spacing:normal;=0A    margin-top:0;=0A    margin-right:0;=0A    margin-=
+bottom:10px;=0A    margin-left:0;=0A    text-align:left;=0A}=0Ah2{=0A    co=
+lor:#232327!important;=0A    display:block;=0A    font-family:Helvetica;=0A=
+    font-size:28px;=0A    font-style:normal;=0A    font-weight:bold;=0A    =
+line-height:100%;=0A    letter-spacing:normal;=0A    margin-top:0;=0A    ma=
+rgin-right:0;=0A    margin-bottom:10px;=0A    margin-left:0;=0A    text-ali=
+gn:left;=0A}=0Ah3{=0A    color:#232327!important;=0A    display:block;=0A  =
+  font-family:Helvetica;=0A    font-size:18px;=0A    font-style:normal;=0A =
+   font-weight:bold;=0A    line-height:100%;=0A    letter-spacing:normal;=
+=0A    margin-top:0;=0A    margin-right:0;=0A    margin-bottom:10px;=0A    =
+margin-left:0;=0A    text-align:right;=0A}=0Ah4{=0A    color:#232327 !impor=
+tant;=0A    display:block;=0A    font-family:Helvetica;=0A    font-size:16p=
+x;=0A    font-style:normal;=0A    font-weight:bold;=0A    line-height:100%;=
+=0A    letter-spacing:normal;=0A    margin-top:0;=0A    margin-right:0;=0A =
+   margin-bottom:10px;=0A    margin-left:0;=0A    text-align:left;=0A}=0A/*=
+ =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D Header Styles =3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D */=0A#templatePreheader{=0A    background-color:#FFFFFF;=0A    border-b=
+ottom:0;=0A}=0A.preheaderContent{=0A    color:#808080;=0A    font-family:He=
+lvetica;=0A    font-size:16px;=0A    line-height:125%;=0A    text-align:lef=
+t;=0A}=0A.preheaderContent a:link, .preheaderContent a:visited, /* Yahoo! M=
+ail Override */ .preheaderContent a .yshortcuts /* Yahoo! Mail Override */{=
+=0A    color:#606060;=0A    font-weight:normal;=0A    text-decoration:under=
+line;=0A}=0A#templateHeader{=0A    background-color:#F4F4F4;=0A    border-t=
+op:5px solid #FFFFFF;=0A    border-bottom:5px solid #FFFFFF;=0A}=0A.headerC=
+ontent{=0A    color:#505050;=0A    font-family:Helvetica;=0A    font-size:2=
+0px;=0A    font-weight:bold;=0A    line-height:100%;=0A    padding-top:0;=
+=0A    padding-right:0;=0A    padding-bottom:0;=0A    padding-left:0;=0A   =
+ text-align:left;=0A    vertical-align:middle;=0A}=0A.headerContent a:link,=
+ .headerContent a:visited, /* Yahoo! Mail Override */ .headerContent a .ysh=
+ortcuts /* Yahoo! Mail Override */{=0A    color:#0367b0;=0A    font-weight:=
+normal;=0A    text-decoration:underline;=0A}=0A#headerImage{=0A    height:a=
+uto;=0A    max-width:600px;=0A}=0A/* =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D Body St=
+yles =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D */=0A#templateBody{=0A    background-co=
+lor:#232327;=0A    border-top:0;=0A    border-bottom:0;=0A}=0A#bodyContentB=
+lock{=0A    background-color:#FFFFFF;=0A}=0A.bodyContent{=0A    color:#5050=
+50;=0A    font-family:Helvetica;=0A    font-size:16px;=0A    line-height:15=
+0%;=0A    padding-top:15px;=0A    padding-right:0;=0A    padding-bottom:15p=
+x;=0A    padding-left:0;=0A    text-align:left;=0A}=0A.bodyContent a:link, =
+.bodyContent a:visited, /* Yahoo! Mail Override */ .bodyContent a .yshortc=
+uts /* Yahoo! Mail Override */{=0A    color:#0367b0;=0A    font-weight:norm=
+al;=0A    text-decoration:underline;=0A}=0A.bodyContent img{=0A    display:=
+inline;=0A    height:auto;=0A    /*max-width:560px;*/=0A}=0A/* =3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D Footer Styles =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D */=0A#templ=
+ateFooter{=0A    background-color:#ffffff;=0A    border-top:0;=0A}=0A.foote=
+rContent{=0A    color:#808080;=0A    font-family:Helvetica;=0A    font-size=
+:13px;=0A    line-height:150%;=0A    padding-top:20px;=0A    padding-bottom=
+:20px;=0A    padding-left:20px;=0A    padding-right:20px;=0A    text-align:=
+center;=0A}=0A.footerContent a:link, .footerContent a:visited, /* Yahoo! Ma=
+il Override */ .footerContent a .yshortcuts, .footerContent a span /* Yahoo=
+! Mail Override */{=0A    color:#606060;=0A    font-weight:normal;=0A    te=
+xt-decoration:underline;=0A}=0A.button {=0A    text-align: center;=0A    fo=
+nt-size: 16px;=0A}=0A/* /\/\/\/\/\/\/\/\/ MOBILE STYLES /\/\/\/\/\/\/\/\/ *=
+/=0A@media only screen and (max-width: 641px){=0A    #templateContainer{wid=
+th:auto !important;}=0A}=0A@media only screen and (max-width: 480px){=0A   =
+ /* /\/\/\/\/\/\/ CLIENT-SPECIFIC MOBILE STYLES /\/\/\/\/\/\/ */=0A    body=
+, table, td, p, a, li, blockquote{-webkit-text-size-adjust:none !important;=
+} /* Prevent Webkit platforms from changing default text sizes */=0A    bod=
+y{width:100% !important; min-width:100% !important;} /* Prevent iOS Mail fr=
+om adding padding to the body */=0A    /* /\/\/\/\/\/\/ MOBILE RESET STYLES=
+ /\/\/\/\/\/\/ */=0A    td[id=3D"bodyCell"]{padding:10px !important;}=0A   =
+ /* /\/\/\/\/\/\/ MOBILE TEMPLATE STYLES /\/\/\/\/\/\/ */=0A    /* =3D=3D=
+=3D=3D=3D=3D=3D=3D Page Styles =3D=3D=3D=3D=3D=3D=3D=3D */=0A    table[id=
+=3D"templateContainer"]{=0A      max-width:600px !important;=0A      width:=
+100% !important;=0A    }=0A    h1{=0A      font-size:24px !important;=0A   =
+   line-height:100% !important;=0A    }=0A    h2{=0A      font-size:20px !i=
+mportant;=0A      line-height:100% !important;=0A    }=0A    h3{=0A      fo=
+nt-size:18px !important;=0A      line-height:100% !important;=0A    }=0A   =
+ h4{=0A      font-size:16px !important;=0A      line-height:100% !important=
+;=0A    }=0A    /* =3D=3D=3D=3D=3D=3D=3D=3D Header Styles =3D=3D=3D=3D=3D=
+=3D=3D=3D */=0A    table[id=3D"templatePreheader"]{display:none !important;=
+} /* Hide the template preheader to save space */=0A    td[class=3D"prehead=
+erContent"] {=0A      font-size: 16px;=0A    }=0A    img[id=3D"headerImage"=
+]{=0A      height:auto !important;=0A      max-width:600px !important;=0A  =
+    width:100% !important;=0A    }=0A    td[class=3D"headerContent"]{=0A   =
+   font-size:20px !important;=0A      line-height:125% !important;=0A    }=
+=0A    /* =3D=3D=3D=3D=3D=3D=3D=3D Body Styles =3D=3D=3D=3D=3D=3D=3D=3D */=
+=0A    td[class=3D"bodyContent"]{=0A      font-size:18px !important;=0A    =
+  line-height:125% !important;=0A    }=0A    /* =3D=3D=3D=3D=3D=3D=3D=3D Fo=
+oter Styles =3D=3D=3D=3D=3D=3D=3D=3D */=0A    td[class=3D"footerContent"]{=
+=0A      font-size:14px !important;=0A      line-height:115% !important;=0A=
+    }=0A}=0A</style></head><body marginwidth=3D"0" offset=3D"0" leftmargin=
+=3D"0" topmargin=3D"0" marginheight=3D"0"><center><table id=3D"bodyTable" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" align=3D"cen=
+ter" height=3D"100%"><tr><td id=3D"bodyCell" valign=3D"top" align=3D"center=
+"><table id=3D"templateContainer" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"max-width: 600px; border: 0; background-color: #f6f6f6;"><=
+tr><td valign=3D"top" align=3D"center"><table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" width=3D"100%" style=3D"background-color: #F6F6F6;"><tr=
+><td class=3D"preheaderContent" valign=3D"top" style=3D"padding: 0 0 15px 0=
+"></td></tr></table></td></tr><tr><td valign=3D"top" align=3D"center"><tabl=
+e id=3D"templateBody" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%" style=3D"background-color: #F6F6F6;"><tr><td valign=3D"top" alig=
+n=3D"center"><table id=3D"bodyContentBlock" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" style=3D"background-color: #F6F6F6;"><tr><=
+td class=3D"bodyContent" valign=3D"top" style=3D"color:#505050; font-size: =
+16px; line-height: 150%;padding: 20px 18px 32px"><table style=3D"width: 100=
+%;background-color:#ffffff; font-family: 'Arial'; word-wrap:break-word;" al=
+ign=3D"left"><tr><td id=3D"CMLContent" style=3D"width: 100%;background-colo=
+r:#ffffff; font-family: 'Arial'; padding: 28px 38px 0px; word-wrap:break-wo=
+rd;"><div>=0A <p style=3D"margin-bottom:14px;min-height:20px;"><strong>Dear=
+ Aohan Wang, </strong></p>=0A <p style=3D"margin-bottom:14px;min-height:20p=
+x;">We are excited to announce a new online graduate program today. The <st=
+rong><a href=3D"https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbW=
+FpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vbXBjaS51bWQuZWR1L2xhbmRpb=
+mc_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0bV9jYW1wYWlnbj1wYXJ0bmVy=
+LjMyLm9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmclN0VwYXJ0bmVyLjMyLjZ=
+QcjVUa0l1RWVld0F3cXBsejRQY2ciLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2=
+VyRW1haWwiOiJzb21ldGltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6Im9wZ=
+W5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmciLCJjYW1wYWlnbklkIjoicGFydG5l=
+ci4zMi42UHI1VGtJdUVlZXdBd3FwbHo0UGNnIiwiY2FtcGFpZ25Hcm91cCI6InBhcnRuZXIuMzI=
+ub3BlbmNvdXJzZS50YXJnZXRlZG1lc3NhZ2VzLm1hcmtldGluZyJ9fSwidXNlcklkIjoyMDI3Mz=
+YzOX0.qvR3_5TE77x1qsD_ndf1llPcZNtfrc9RX20pBxml_QM" >MPS in Corporate Innova=
+tion</a></strong> focuses on how to create, launch, and lead innovations wi=
+thin established companies and large organizations. You're invited to join =
+me next week for a special live <strong><a href=3D"https://eventing.courser=
+a.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOi=
+JodHRwczovL3VtZC53ZWJleC5jb20vdW1kL29uc3RhZ2UvZy5waHA_TVRJRD1lNTEzYjA1YzY0O=
+GY3NDQ0ZTc5NWUzYmNiNGZjMjFhMDUmdXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVy=
+JnV0bV9jYW1wYWlnbj1wYXJ0bmVyLjMyLm9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJ=
+rZXRpbmclN0VwYXJ0bmVyLjMyLjZQcjVUa0l1RWVld0F3cXBsejRQY2ciLCJ0cmFja2luZyI6ey=
+J1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwiOiJzb21ldGltZTU4NThAZ21haWwuY29tIiwib=
+m90aWZpY2F0aW9uVHlwZSI6Im9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmci=
+LCJjYW1wYWlnbklkIjoicGFydG5lci4zMi42UHI1VGtJdUVlZXdBd3FwbHo0UGNnIiwiY2FtcGF=
+pZ25Hcm91cCI6InBhcnRuZXIuMzIub3BlbmNvdXJzZS50YXJnZXRlZG1lc3NhZ2VzLm1hcmtldG=
+luZyJ9fSwidXNlcklkIjoyMDI3MzYzOX0.tlO7P4tcHle8J6FwNLP7XvIIjeX_zj5VCuY30xm9H=
+PI" >online information session</a></strong> on this new online program.</p=
+>=0A <p style=3D"margin-bottom:14px;min-height:20px;"><strong>How do the tw=
+o University of Maryland programs in entrepreneurship and innovation differ=
+=3F</strong></p>=0A <ul style=3D"list-style-type:disc;padding-left:10px;mar=
+gin-left:8px;">=0A  <li style=3D"margin-bottom: 14px;"><p style=3D"margin-b=
+ottom:14px;min-height:20px;">For aspiring entrepreneurs interested in envis=
+ioning, developing, and launching their own startup company, the <strong><a=
+ href=3D"https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5sa=
+W5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vbXRlLnVtZC5lZHUvP3V0bV9tZWRpdW09=
+ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249cGFydG5lci4zMi5vcGVuY291cnN=
+lLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nJTdFcGFydG5lci4zMi42UHI1VGtJdUVlZXdBd3=
+FwbHo0UGNnIiwidHJhY2tpbmciOnsidXNlcklkIjoyMDI3MzYzOSwidXNlckVtYWlsIjoic29tZ=
+XRpbWU1ODU4QGdtYWlsLmNvbSIsIm5vdGlmaWNhdGlvblR5cGUiOiJvcGVuY291cnNlLnRhcmdl=
+dGVkbWVzc2FnZXMubWFya2V0aW5nIiwiY2FtcGFpZ25JZCI6InBhcnRuZXIuMzIuNlByNVRrSXV=
+FZWV3QXdxcGx6NFBjZyIsImNhbXBhaWduR3JvdXAiOiJwYXJ0bmVyLjMyLm9wZW5jb3Vyc2UudG=
+FyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmcifX0sInVzZXJJZCI6MjAyNzM2Mzl9.5Di0MGfbKiOY=
+NYQ3Usk1cXayB-oC25x6V3oS6vFGHQA" >MPS in Technology Entrepreneurship</a></s=
+trong> is still available. This is the ideal program for students seeking t=
+o create their own company with our faculty as startup coaches, and earn a =
+master's degree while doing it.</p></li>=0A  <li style=3D"margin-bottom: 14=
+px;"><p style=3D"margin-bottom:14px;min-height:20px;">The new <strong><a hr=
+ef=3D"https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5r=
+Lm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vbXBjaS51bWQuZWR1L2xhbmRpbmc_dXRtX21=
+lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0bV9jYW1wYWlnbj1wYXJ0bmVyLjMyLm9wZW=
+5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmclN0VwYXJ0bmVyLjMyLjZQcjVUa0l1R=
+WVld0F3cXBsejRQY2ciLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwi=
+OiJzb21ldGltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6Im9wZW5jb3Vyc2U=
+udGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmciLCJjYW1wYWlnbklkIjoicGFydG5lci4zMi42UH=
+I1VGtJdUVlZXdBd3FwbHo0UGNnIiwiY2FtcGFpZ25Hcm91cCI6InBhcnRuZXIuMzIub3BlbmNvd=
+XJzZS50YXJnZXRlZG1lc3NhZ2VzLm1hcmtldGluZyJ9fSwidXNlcklkIjoyMDI3MzYzOX0.qvR3=
+_5TE77x1qsD_ndf1llPcZNtfrc9RX20pBxml_QM" >MPS in Corporate Innovation</a></=
+strong> is for those interested in acquiring the knowledge, competencies, a=
+nd relationships to solve innovation challenges within established companie=
+s and large organizations. Details on this exciting new program are shared =
+below.</p></li>=0A </ul>=0A <p style=3D"margin-bottom:14px;min-height:20px;=
+">Both programs are 100% online, 15-month, 30-credit experiences with small=
+ class environments to promote active engagement with students and faculty.=
+ </p>=0A <p style=3D"margin-bottom:14px;min-height:20px;"><strong>For activ=
+e and aspiring corporate innovators, the <a href=3D"https://eventing.course=
+ra.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiO=
+iJodHRwOi8vbXBjaS51bWQuZWR1L2xhbmRpbmc_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNl=
+PW90aGVyJnV0bV9jYW1wYWlnbj1wYXJ0bmVyLjMyLm9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWd=
+lcy5tYXJrZXRpbmclN0VwYXJ0bmVyLjMyLjZQcjVUa0l1RWVld0F3cXBsejRQY2ciLCJ0cmFja2=
+luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwiOiJzb21ldGltZTU4NThAZ21haWwuY=
+29tIiwibm90aWZpY2F0aW9uVHlwZSI6Im9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJr=
+ZXRpbmciLCJjYW1wYWlnbklkIjoicGFydG5lci4zMi42UHI1VGtJdUVlZXdBd3FwbHo0UGNnIiw=
+iY2FtcGFpZ25Hcm91cCI6InBhcnRuZXIuMzIub3BlbmNvdXJzZS50YXJnZXRlZG1lc3NhZ2VzLm=
+1hcmtldGluZyJ9fSwidXNlcklkIjoyMDI3MzYzOX0.qvR3_5TE77x1qsD_ndf1llPcZNtfrc9RX=
+20pBxml_QM" >MPS in Corporate Innovation</a> will enable you to:</strong></=
+p>=0A <ul style=3D"list-style-type:disc;padding-left:10px;margin-left:8px;"=
+>=0A  <li style=3D"margin-bottom: 14px;"><p style=3D"margin-bottom:14px;min=
+-height:20px;">Demonstrate your ability to think beyond current paradigms i=
+n order to discover innovation needs and envision impact through strategic =
+idea and concept development (Term 1 Courses)</p></li>=0A  <li style=3D"mar=
+gin-bottom: 14px;"><p style=3D"margin-bottom:14px;min-height:20px;">Leverag=
+e your ideas for new corporate ventures to create sustainable business mode=
+ls aligned with customer needs and wants in competitive marketplaces (Term =
+2 Courses)</p></li>=0A  <li style=3D"margin-bottom: 14px;"><p style=3D"marg=
+in-bottom:14px;min-height:20px;">Apply data collection and analysis techniq=
+ues for decision making, and demonstrate how to translate product and servi=
+ce ideas into marketable solutions (Term 3 Courses) </p></li>=0A  <li style=
+=3D"margin-bottom: 14px;"><p style=3D"margin-bottom:14px;min-height:20px;">=
+Manage commercialization challenges efficiently and effectively through neg=
+otiations and problem solving (Term 4 Courses)</p></li>=0A  <li style=3D"ma=
+rgin-bottom: 14px;"><p style=3D"margin-bottom:14px;min-height:20px;">Lead t=
+he creation and launch of corporate ventures through appropriate business d=
+evelopment, risk management, financing, and value extraction strategies (Te=
+rm 5 Courses). </p></li>=0A </ul>=0A <p style=3D"margin-bottom:14px;min-hei=
+ght:20px;">To learn more, visit <a href=3D"https://eventing.coursera.org/re=
+directSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi=
+8vbXBjaS51bWQuZWR1L2xhbmRpbmcvP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlc=
+iZ1dG1fY2FtcGFpZ249cGFydG5lci4zMi5vcGVuY291cnNlLnRhcmdldGVkbWVzc2FnZXMubWFy=
+a2V0aW5nJTdFcGFydG5lci4zMi42UHI1VGtJdUVlZXdBd3FwbHo0UGNnIiwidHJhY2tpbmciOns=
+idXNlcklkIjoyMDI3MzYzOSwidXNlckVtYWlsIjoic29tZXRpbWU1ODU4QGdtYWlsLmNvbSIsIm=
+5vdGlmaWNhdGlvblR5cGUiOiJvcGVuY291cnNlLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nI=
+iwiY2FtcGFpZ25JZCI6InBhcnRuZXIuMzIuNlByNVRrSXVFZWV3QXdxcGx6NFBjZyIsImNhbXBh=
+aWduR3JvdXAiOiJwYXJ0bmVyLjMyLm9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXR=
+pbmcifX0sInVzZXJJZCI6MjAyNzM2Mzl9.IzcjOytRugaL8e4XFvRtzahhUbIHJRl31nuKsxvLs=
+aU" >here</a>, and join our upcoming online information session.</p>=0A <p =
+style=3D"margin-bottom:14px;min-height:20px;"><strong>What will the online =
+information session cover=3F</strong></p>=0A <p style=3D"margin-bottom:14px=
+;min-height:20px;">In the 30 minute online information session on <strong>J=
+une 14, 2017 at 11 AM (EDT)</strong>, we will share highlights of the <stro=
+ng><a href=3D"https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFp=
+bC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vbXBjaS51bWQuZWR1L2xhbmRpbmc=
+_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0bV9jYW1wYWlnbj1wYXJ0bmVyLj=
+MyLm9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmclN0VwYXJ0bmVyLjMyLjZQc=
+jVUa0l1RWVld0F3cXBsejRQY2ciLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2Vy=
+RW1haWwiOiJzb21ldGltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6Im9wZW5=
+jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmciLCJjYW1wYWlnbklkIjoicGFydG5lci=
+4zMi42UHI1VGtJdUVlZXdBd3FwbHo0UGNnIiwiY2FtcGFpZ25Hcm91cCI6InBhcnRuZXIuMzIub=
+3BlbmNvdXJzZS50YXJnZXRlZG1lc3NhZ2VzLm1hcmtldGluZyJ9fSwidXNlcklkIjoyMDI3MzYz=
+OX0.qvR3_5TE77x1qsD_ndf1llPcZNtfrc9RX20pBxml_QM" >MPS in Corporate Innovati=
+on</a></strong> program, and answer your questions on the learning model, c=
+ourses, faculty etc. I hope that you will join us to learn how this master'=
+s degree can benefit your corporate innovation goals. Reserve your place to=
+day <strong><a href=3D"https://eventing.coursera.org/redirectSigned/eyJrZXk=
+iOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3VtZC53ZWJleC5jb2=
+0vdW1kL29uc3RhZ2UvZy5waHA_TVRJRD1lNTEzYjA1YzY0OGY3NDQ0ZTc5NWUzYmNiNGZjMjFhM=
+DUmdXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0bV9jYW1wYWlnbj1wYXJ0bmVy=
+LjMyLm9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmclN0VwYXJ0bmVyLjMyLjZ=
+QcjVUa0l1RWVld0F3cXBsejRQY2ciLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2=
+VyRW1haWwiOiJzb21ldGltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6Im9wZ=
+W5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmciLCJjYW1wYWlnbklkIjoicGFydG5l=
+ci4zMi42UHI1VGtJdUVlZXdBd3FwbHo0UGNnIiwiY2FtcGFpZ25Hcm91cCI6InBhcnRuZXIuMzI=
+ub3BlbmNvdXJzZS50YXJnZXRlZG1lc3NhZ2VzLm1hcmtldGluZyJ9fSwidXNlcklkIjoyMDI3Mz=
+YzOX0.tlO7P4tcHle8J6FwNLP7XvIIjeX_zj5VCuY30xm9HPI" >here</a></strong>.</p>=
+=0A <p style=3D"margin-bottom:14px;min-height:20px;">Sincerely,</p>=0A <p s=
+tyle=3D"margin-bottom:14px;min-height:20px;">James</p>=0A <p style=3D"margi=
+n-bottom:14px;min-height:20px;">Dr. James V. Green - Director of Entreprene=
+urship Education - Maryland Technology Enterprise Institute (Mtech) - Unive=
+rsity of Maryland</p>=0A <p style=3D"margin-bottom:14px;min-height:20px;">P=
+.S. The deadline for applying for the August 2017 classes of the MPS in Co=
+rporate Innovation and MPS in Technology Entrepreneurship is fast approachi=
+ng. Applications are due by<strong> July 15, 2017</strong>. All that's requ=
+ired to apply is a statement of interest, resume, and transcript. GMAT, GRE=
+, and reference letters are not required. A TOEFL or equivalent may be requ=
+ired for non-U.S. applicants.</p>=0A <p style=3D"margin-bottom:14px;min-hei=
+ght:20px;">*The MPS in Corporate Innovation at the University of Maryland i=
+s accredited by The Middle States Commission on Higher Education and is rec=
+ognized among the best universities by U.S. News &amp; World Report, Entrep=
+reneur Magazine, and Princeton Review. </p>=0A</div></td></tr></table></td>=
+</tr></table></td></tr></table></td></tr><tr><td valign=3D"top" align=3D"ce=
+nter"><table id=3D"templateFooter" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" width=3D"100%" style=3D"background-color: #F6F6F6;font-family: 'Ar=
+ial';"><tr><td class=3D"footerContent" valign=3D"top" style=3D"padding-top:=
+0; padding-right:0; padding-bottom:14px; padding-left:0; text-align:center;=
+"><img src=3D"https://coursera-university-assets.s3.amazonaws.com/bb/a5eeb3=
+ba2d291192b62945619da422/umd_square.png" style=3D"max-height: 100px; max-wi=
+dth: 100px;"/><div style=3D"margin-top:2px">University of Maryland, College=
+ Park</div></td></tr><tr><td class=3D"footerContent" style=3D"color:#808080=
+; font-size:12px; line-height:150%; padding: 0 20px 0 20px; text-align:cent=
+er;"><div>You are receiving this email because sometime5858@gmail.com is re=
+gistered for promotional emails from University of Maryland, College Park o=
+n Coursera.</div></td></tr><!--Helplink--><tr><td class=3D"footerContent" s=
+tyle=3D"color:#808080; font-size:12px; line-height:150%;padding: 0 20px 20p=
+x 20px; text-align:center;"><div>Please do not reply directly to this email=
+. If you have any questions or feedback,</div><div>please visit our <a hre=
+f=3D"https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rL=
+m9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL2NvdXJzZXJhaGVscC56ZW5kZXNrLmNvbS9o=
+Yz91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b3RoZXImdXRtX2NhbXBhaWduPXBhcnRuZXI=
+uMzIub3BlbmNvdXJzZS50YXJnZXRlZG1lc3NhZ2VzLm1hcmtldGluZyU3RXBhcnRuZXIuMzIuNl=
+ByNVRrSXVFZWV3QXdxcGx6NFBjZyIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZ=
+XJFbWFpbCI6InNvbWV0aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlIjoib3Bl=
+bmNvdXJzZS50YXJnZXRlZG1lc3NhZ2VzLm1hcmtldGluZyIsImNhbXBhaWduSWQiOiJwYXJ0bmV=
+yLjMyLjZQcjVUa0l1RWVld0F3cXBsejRQY2ciLCJjYW1wYWlnbkdyb3VwIjoicGFydG5lci4zMi=
+5vcGVuY291cnNlLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nIn19LCJ1c2VySWQiOjIwMjczN=
+jM5fQ.WgprdwBFwfvcm6HQ8PLHrXorxioktXanAVC79JPiSEk" style=3D"color: #606060"=
+ target=3D"_blank">support site</a>.</div></td></tr><tr><td class=3D"footer=
+Content" style=3D"vertical-align: top; text-align: center;padding-bottom:20=
+px;padding-top:0;padding-left:0;padding-right:0;"><div><a href=3D"https://e=
+venting.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx=
+1ZSI6eyJ1cmwiOiJodHRwOi8vd3d3LmZhY2Vib29rLmNvbS9Db3Vyc2VyYT91dG1fbWVkaXVtPW=
+VtYWlsJnV0bV9zb3VyY2U9b3RoZXImdXRtX2NhbXBhaWduPXBhcnRuZXIuMzIub3BlbmNvdXJzZ=
+S50YXJnZXRlZG1lc3NhZ2VzLm1hcmtldGluZyU3RXBhcnRuZXIuMzIuNlByNVRrSXVFZWV3QXdx=
+cGx6NFBjZyIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI6InNvbWV=
+0aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlIjoib3BlbmNvdXJzZS50YXJnZX=
+RlZG1lc3NhZ2VzLm1hcmtldGluZyIsImNhbXBhaWduSWQiOiJwYXJ0bmVyLjMyLjZQcjVUa0l1R=
+WVld0F3cXBsejRQY2ciLCJjYW1wYWlnbkdyb3VwIjoicGFydG5lci4zMi5vcGVuY291cnNlLnRh=
+cmdldGVkbWVzc2FnZXMubWFya2V0aW5nIn19LCJ1c2VySWQiOjIwMjczNjM5fQ.7qEg3a_LSMoS=
+KBO1_EJb3rZSWPDJe7-hZMQoSV3HwC4" rel=3D"nofollow" style=3D"margin: 0 7px;" =
+target=3D"_blank"><img src=3D"https://dt5zaw6a98blc.cloudfront.net/site-sta=
+tic/images/footer/facebook.png" alt=3D"facebook" width=3D"24" style=3D"bord=
+er: none; width: 24px; height: 24px; opacity: 0.6;" height=3D"24"/></a><a h=
+ref=3D"https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5=
+rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3R3aXR0ZXIuY29tL2NvdXJzZXJhP3V0bV=
+9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249cGFydG5lci4zMi5vc=
+GVuY291cnNlLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nJTdFcGFydG5lci4zMi42UHI1VGtJ=
+dUVlZXdBd3FwbHo0UGNnIiwidHJhY2tpbmciOnsidXNlcklkIjoyMDI3MzYzOSwidXNlckVtYWl=
+sIjoic29tZXRpbWU1ODU4QGdtYWlsLmNvbSIsIm5vdGlmaWNhdGlvblR5cGUiOiJvcGVuY291cn=
+NlLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nIiwiY2FtcGFpZ25JZCI6InBhcnRuZXIuMzIuN=
+lByNVRrSXVFZWV3QXdxcGx6NFBjZyIsImNhbXBhaWduR3JvdXAiOiJwYXJ0bmVyLjMyLm9wZW5j=
+b3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmcifX0sInVzZXJJZCI6MjAyNzM2Mzl9.W7=
+L9VbLh259utG-lF5JnX-ZC_jo2-2_7XGqRuwuI-Xo" rel=3D"nofollow" style=3D"margin=
+: 0 7px;" target=3D"_blank"><img src=3D"https://dt5zaw6a98blc.cloudfront.ne=
+t/site-static/images/footer/twitter.png" alt=3D"twitter" width=3D"24" style=
+=3D"border: none; width: 24px; height: 24px; opacity: 0.6;" height=3D"24"/>=
+</a><a href=3D"https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWF=
+pbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vYmxvZy5jb3Vyc2VyYS5vcmcvP3=
+V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249cGFydG5lci4zM=
+i5vcGVuY291cnNlLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nJTdFcGFydG5lci4zMi42UHI1=
+VGtJdUVlZXdBd3FwbHo0UGNnIiwidHJhY2tpbmciOnsidXNlcklkIjoyMDI3MzYzOSwidXNlckV=
+tYWlsIjoic29tZXRpbWU1ODU4QGdtYWlsLmNvbSIsIm5vdGlmaWNhdGlvblR5cGUiOiJvcGVuY2=
+91cnNlLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nIiwiY2FtcGFpZ25JZCI6InBhcnRuZXIuM=
+zIuNlByNVRrSXVFZWV3QXdxcGx6NFBjZyIsImNhbXBhaWduR3JvdXAiOiJwYXJ0bmVyLjMyLm9w=
+ZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmcifX0sInVzZXJJZCI6MjAyNzM2Mzl=
+9.XvVsiGZ-w-K8tmz12lhG18MMd_G6MLxbgYb_njtVxKg" rel=3D"nofollow" style=3D"ma=
+rgin: 0 7px;" target=3D"_blank"><img src=3D"https://dt5zaw6a98blc.cloudfron=
+t.net/site-static/images/footer/blog.png" alt=3D"blog" width=3D"24" style=
+=3D"border: none; width: 24px; height: 24px; opacity: 0.6;" height=3D"24"/>=
+</a><a href=3D"https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWF=
+pbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3BsdXMuZ29vZ2xlLmNvbS8xMT=
+E5NTA1OTQwMzkyNjkyODE0NjkvcG9zdHM_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90a=
+GVyJnV0bV9jYW1wYWlnbj1wYXJ0bmVyLjMyLm9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5t=
+YXJrZXRpbmclN0VwYXJ0bmVyLjMyLjZQcjVUa0l1RWVld0F3cXBsejRQY2ciLCJ0cmFja2luZyI=
+6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwiOiJzb21ldGltZTU4NThAZ21haWwuY29tIi=
+wibm90aWZpY2F0aW9uVHlwZSI6Im9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpb=
+mciLCJjYW1wYWlnbklkIjoicGFydG5lci4zMi42UHI1VGtJdUVlZXdBd3FwbHo0UGNnIiwiY2Ft=
+cGFpZ25Hcm91cCI6InBhcnRuZXIuMzIub3BlbmNvdXJzZS50YXJnZXRlZG1lc3NhZ2VzLm1hcmt=
+ldGluZyJ9fSwidXNlcklkIjoyMDI3MzYzOX0.acRs35wCvQisg9zlekQsdMdTst22UT2i6BDOqb=
+xGofU" rel=3D"nofollow" style=3D"margin: 0 7px;" target=3D"_blank"><img src=
+=3D"https://dt5zaw6a98blc.cloudfront.net/site-static/images/footer/googlepl=
+us.png" alt=3D"blog" width=3D"24" style=3D"border: none; width: 24px; heigh=
+t: 24px; opacity: 0.6;" height=3D"24"/></a></div></td></tr><tr><td class=3D=
+"footerContent" valign=3D"top" style=3D"padding-top:14px; padding-right:0; =
+padding-bottom:20px; padding-left:0; text-align:center;"><a href=3D"https:/=
+/eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2Y=
+Wx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvP3V0bV9tZWRpdW09ZW1haWwm=
+dXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249cGFydG5lci4zMi5vcGVuY291cnNlLnRhcmd=
+ldGVkbWVzc2FnZXMubWFya2V0aW5nJTdFcGFydG5lci4zMi42UHI1VGtJdUVlZXdBd3FwbHo0UG=
+NnIiwidHJhY2tpbmciOnsidXNlcklkIjoyMDI3MzYzOSwidXNlckVtYWlsIjoic29tZXRpbWU1O=
+DU4QGdtYWlsLmNvbSIsIm5vdGlmaWNhdGlvblR5cGUiOiJvcGVuY291cnNlLnRhcmdldGVkbWVz=
+c2FnZXMubWFya2V0aW5nIiwiY2FtcGFpZ25JZCI6InBhcnRuZXIuMzIuNlByNVRrSXVFZWV3QXd=
+xcGx6NFBjZyIsImNhbXBhaWduR3JvdXAiOiJwYXJ0bmVyLjMyLm9wZW5jb3Vyc2UudGFyZ2V0ZW=
+RtZXNzYWdlcy5tYXJrZXRpbmcifX0sInVzZXJJZCI6MjAyNzM2Mzl9.Uz33TKy_BH1TwvLtFoe6=
+DZdVikIYzp4GbrxoQQZ5dGI" ><img src=3D"https://dt5zaw6a98blc.cloudfront.net/=
+site-static/pages/home/template/coursera_logo_small.png" style=3D"height: 1=
+2px;"/></a></td></tr><!--Address--><tr><td class=3D"footerContent" style=3D=
+"color:#808080; font-size:12px; line-height:150%; padding: 0 20px 20px 20px=
+; text-align:center;" valign=3D"top">Copyright (c) 2017 Coursera, Inc&nbsp;=
+|&nbsp;381 E. Evelyn Avenue, Mountain View, CA 94041 USA</td></tr><tr><td c=
+lass=3D"footerContent" valign=3D"top" style=3D"padding-top:0;text-align:cen=
+ter;">To opt-out of receiving emails from this Partner,&nbsp;<a href=3D"htt=
+ps://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iL=
+CJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvYWNjb3VudC91bnN1YnNj=
+cmliZS84MlRveHJ2cWhzaFhIVjFNSlVhVHBKV3IzUUdSVHoxWjVZbW52a2ZPVXkzWG10dGFhXzE=
+0U0ZmRjQyQzNBMm5vWlRRUG40c1VTOHFhQWVxZGlHXzBUdy5FLVgxTnBIa044Nm1abVkwd2k4Wk=
+NnLk9oc25EUVprM293aEVrVUZIbXhTMmt4Und4REN3bEY1dHdnUG9hRU5CWElmTkdIa1luZmRrc=
+0lZV0V1TnlpNDRzTUhqMDhoQ2dmcUlGVktVM0tBV2tEcTdIQ1NBV1lfU1dNVUo3UmtyaUFkMkdj=
+OWxyVGo5T2xpNk0zVUpORHNfP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1=
+fY2FtcGFpZ249cGFydG5lci4zMi5vcGVuY291cnNlLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW=
+5nJTdFcGFydG5lci4zMi42UHI1VGtJdUVlZXdBd3FwbHo0UGNnIiwidHJhY2tpbmciOnsidXNlc=
+klkIjoyMDI3MzYzOSwidXNlckVtYWlsIjoic29tZXRpbWU1ODU4QGdtYWlsLmNvbSIsIm5vdGlm=
+aWNhdGlvblR5cGUiOiJvcGVuY291cnNlLnRhcmdldGVkbWVzc2FnZXMubWFya2V0aW5nIiwiY2F=
+tcGFpZ25JZCI6InBhcnRuZXIuMzIuNlByNVRrSXVFZWV3QXdxcGx6NFBjZyIsImNhbXBhaWduR3=
+JvdXAiOiJwYXJ0bmVyLjMyLm9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpbmcif=
+X0sInVzZXJJZCI6MjAyNzM2Mzl9.GpJQsbAsiY4BgShIgds0lgCthf7o4z2YSu-CLThZFXg" >u=
+nsubscribe here.</a></td></tr></table></td></tr></table></td></tr></table><=
+/center><img src=3D"https://eventing.coursera.org/img/bx9IvbygeWGc85jfNqI6F=
+Geu9gbNn2FOiGKzV6zaROiA4cbqkQbXuKCa6QxbSk55e7kn6oP-_uRBMxMo9yANvw.V-UTsQIJP=
+5vez6wmIq-Bxw.V4Dp3XfMq4IMBDHln35hnu5ECGqI39vgMqeI3-mzyMjAVfRkR2c3sqm_D1ikN=
+FdOm58RhkkW3PRZlAC9jAM0JZP2C8NBBwXn24cEtgbDsHkNn8p3ZyrZlWbYd4WxVqJYTHO4F5VI=
+gSlNIwIJSIgQeNar2H7ucpgxF3aAinJ-juJrLiG9vkZc4hODz08qO_0S2R5HSSfKMr7PhyxHWfP=
+Lm60YNW7HJpENt9NB-EBAZFSw86XTsSMLcJBri7lFcqOrSh8grLoK8ZngKLaxLGWtqLph93gEom=
+4YRZcB9UXSGxUXcTSP3goBB3VNAXpHO369WZgfSlRwVJGBG9A_YllErvFj_BFUySdqOKl-p1QJd=
+qOgIlTSXbO2GOAdI8OaOpENJYBxbK1IDUN2SC7UYwuQXQ" border=3D"0" width=3D"1" hei=
+ght=3D"1">=0D=0A<img border=3D"0" width=3D"1" height=3D"1" alt=3D"" src=3D"=
+http://click.mail.coursera.org/q/V2ZxEDiBWLaMSY595urkQg~~/AAAAAQA~/RgRbHB6a=
+PkEIAGyS_sE07DRXCGNvdXJzZXJhWAQAAAAASCFwYXJ0bmVyLjMyLjZQcjVUa0l1RWVld0F3cXB=
+sejRQY2dCCgABmpk5WYoF-ndSFnNvbWV0aW1lNTg1OEBnbWFpbC5jb20JUQQAAAAAR9l7Im5vdG=
+lmaWNhdGlvbl90ZW1wbGF0ZSI6Im9wZW5jb3Vyc2UudGFyZ2V0ZWRtZXNzYWdlcy5tYXJrZXRpb=
+mciLCJjYW1wYWlnbl9ncm91cCI6InBhcnRuZXIuMzIub3BlbmNvdXJzZS50YXJnZXRlZG1lc3Nh=
+Z2VzLm1hcmtldGluZyIsImNoYW5uZWwiOiJFTUFJTCIsInByZWZlcmVuY2UiOiJwYXJ0bmVyLjM=
+yLm5vdGlmaWNhdGlvbnMiLCJiaW5kaW5nIjoidHJhbnNhY3Rpb25hbCJ9Ew~~">=0D=0A</body=
+></html>
+--_----OYArZN2H3xjYeAGaBkEvjA===_8F/77-01418-A9999395--
+

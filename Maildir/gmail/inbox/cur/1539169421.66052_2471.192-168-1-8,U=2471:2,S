@@ -1,0 +1,587 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 2002:a1f:9604:0:0:0:0:0 with SMTP id y4-v6csp3216691vkd;
+        Sun, 1 Jul 2018 21:17:14 -0700 (PDT)
+X-Google-Smtp-Source: AAOMgpcEKPHgu6n1+DgX/MgIGEg6NDHhyXiQgqu9i51vd+9J9MuINNALcKini0iukIkzSocMGtGD
+X-Received: by 2002:a63:943:: with SMTP id 64-v6mr6219999pgj.368.1530505033825;
+        Sun, 01 Jul 2018 21:17:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1530505033; cv=none;
+        d=google.com; s=arc-20160816;
+        b=moMnd8D+8O/oz92Bd5SrNR7LAkGrzk41O/OM/b1fQVcJkOTzUTkp5UEGArw9D8knc9
+         tH7BryMRLu1DjFSAjZbt/mZ3KJxUAH/H518+JxLFZo9rkuA7cBjiITmw6p7iBg1vLbD9
+         8sd3RNDLcVkeVOs0rwT8pOjR6rqZcyIASNIreSP0gBXmJq4gKAEbOUkz4rrijstY1KB9
+         VyRNuyY7Sm/iOHD+1yUVsjz6BH4FqZ9+sDanCjqPW4s5Zrn4GraRRGpdHIYgSz25bUQ7
+         3WMU4ESDs5AV+JKjCCdL/KI3WaEbxjbeVUTjDogVKEmsPxv1vwDO/CfqwTTjm3dzLoUr
+         tAjQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature
+         :arc-authentication-results;
+        bh=7t/VY1HbWgDlgMeidP6YmaoimVrDhiYwVsEVYE3lGlM=;
+        b=tWpYmDe91sUZrMaEtxgiW4Z0iAB6A89pK4nMrpDFD10xbpjzgnPl1aXsBfA8cHWk7A
+         rIXmdzrGzjISQy/gmguNgV7fxwmJq+apOPkCUI9jbWUipzmFWAWmJwqc9RhLrv41OZPb
+         gLkb9n8CFMdEiZLiHu6uceE0KC5jGJ8YuCQUUYSd1Ji9tnDCvSKIyNz6iBCzWIj7XeuA
+         KXX5UQecGVBXcme0HEfEMp/XAINS60YbBK+wNNpVY1VyfiMs6n1X4U4B2hWxzsxV3uSD
+         m26FP95/d469Dyymx2V2DPuLKdTMOLgG87oXFR1ObfMTsXCKjlJAIMtZctfdci3Iz5uh
+         RZ2g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@rmit.edu.au header.s=mimecast20170627 header.b=I3m8+XbC;
+       spf=pass (google.com: domain of guss.ve@rmit.edu.au designates 124.47.189.107 as permitted sender) smtp.mailfrom=guss.ve@rmit.edu.au
+Return-Path: <guss.ve@rmit.edu.au>
+Received: from au-smtp-delivery-107.mimecast.com (au-smtp-delivery-107.mimecast.com. [124.47.189.107])
+        by mx.google.com with ESMTPS id w10-v6si15838379pfk.14.2018.07.01.21.17.12
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 01 Jul 2018 21:17:13 -0700 (PDT)
+Received-SPF: pass (google.com: domain of guss.ve@rmit.edu.au designates 124.47.189.107 as permitted sender) client-ip=124.47.189.107;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@rmit.edu.au header.s=mimecast20170627 header.b=I3m8+XbC;
+       spf=pass (google.com: domain of guss.ve@rmit.edu.au designates 124.47.189.107 as permitted sender) smtp.mailfrom=guss.ve@rmit.edu.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rmit.edu.au; s=mimecast20170627; t=1530505031; h=from:from:sender:reply-to:subject:subject:date:date: message-id:message-id:to:to:cc:mime-version:mime-version: content-type:content-type:content-transfer-encoding:in-reply-to: references; bh=7t/VY1HbWgDlgMeidP6YmaoimVrDhiYwVsEVYE3lGlM=; b=I3m8+XbCOoP7Ik26bRVGjwXx3mSfcR7wkvNFFLMo9SaZpY0BSuXIKRpAut8pmS4wfWODoKnepxb8UigjkLZu+IfnaC4/fo5O/DtM7BqCqQ77gm+nanDqZgAWQUMe3LZ1oHsRwuZ7kdRNQ57YcaEMJ2TOkP5aF1XOS/vbuL4nKOW49U6bRNICdeaEgzJGcQkVjKhttNV7Rp3GQUOq2fP5e+qk/7lQKSpPv3gW9V75DPFZLIwdaFkVGvo5sHCbYrvvOfXq0uCBLicER4hCHTaOTc8zMeZ4tJ9M8wR9CscmjAnBCzbh0tuRjK87AtVUo96o/RvkkJDFaC9mpSiu68Mvgw==
+Received: from mail-yb0-f197.google.com (mail-yb0-f197.google.com
+ [209.85.213.197]) (Using TLS) by au-smtp-1.mimecast.com with ESMTP id
+ au-mta-20-KzIdz6F4O6288w1FuGiLfA-1; Mon, 02 Jul 2018 14:17:08 +1000
+Received: by mail-yb0-f197.google.com with SMTP id s124-v6so11764265ybf.3
+        for <sometime5858@gmail.com>; Sun, 01 Jul 2018 21:17:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=Epn0YvUdbqBT7+llTj8paYoh6QPXstRYvRmxIesAdaY=;
+        b=r1VccvEABCEIHYFmpIpM0bAAXoXsOuYfhAG+f7D0JHV5bhb//pmGRQHW0DdOl/8tBL
+         z0S4sQvPYbnKhegRIrv0SajbGVfoLvfsxpvkammW68e30lYF4boeiHuIn3DPYihCL7fw
+         uHSGnxaFuQVfzrOWb1TUkJXLdc4E0pPVz4B0v2+BbgIItMBrojqFKH4BJEbs1kYjkPra
+         8kR5Z+OM3Lw0suy3sOc76+ukxKMsw0gRx95YOVUide1gOhs/sy10j9KFaOav9Nj9YWH2
+         yZGC/wwyhwT2lNBta6PqpL+wVG+oF5H9CrKTpL7jwkP2RAdewSpNvAURMS/SDEnftr7O
+         ydLw==
+X-Gm-Message-State: APt69E22ZmLbCYnhH9K7obiYi2BMO/EaPXhQGZV+0FkOhMGGygDBXqdN
+	qNN+Dk9xpOIoedHcktcnbtm/266UVTwmkTmOLxkunn9fjCKuabeL7+pb5jQvP3xDT0jZz7h4Uvl
+	qLjQDP+rvoZtbbbf8UWZpMz9Md6Th9H4X
+X-Received: by 2002:a25:f811:: with SMTP id u17-v6mr12222304ybd.129.1530505025437;
+        Sun, 01 Jul 2018 21:17:05 -0700 (PDT)
+X-Received: by 2002:a25:f811:: with SMTP id u17-v6mr12222283ybd.129.1530505024345;
+ Sun, 01 Jul 2018 21:17:04 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:a25:1ec2:0:0:0:0:0 with HTTP; Sun, 1 Jul 2018 21:16:23 -0700 (PDT)
+From: GUSS VE <guss.ve@rmit.edu.au>
+Date: Mon, 2 Jul 2018 14:16:23 +1000
+Message-ID: <CAABpEx+OkLvkVJ1jZ0qTC5-qY81m+pXWheJ8wBj8LHo28UyLVg@mail.gmail.com>
+Subject: Orientation Day 9th July for C5364 Diploma of Interpreting students
+To: Aohan Wang <sometime5858@gmail.com>, Aohan Wang <s3744100@student.rmit.edu.au>
+X-GSuitetoMC: Outbound
+X-MC-Unique: KzIdz6F4O6288w1FuGiLfA-1
+Content-Type: multipart/mixed; boundary="0000000000004eabd0056ffc7817"
+X-TUID: YbPyV7YKNaI5
+
+--0000000000004eabd0056ffc7817
+Content-Type: multipart/alternative; boundary="0000000000004eabc9056ffc7815"
+
+--0000000000004eabc9056ffc7815
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Dear Aohan,
+
+
+
+Welcome to the C5364 Diploma of Interpreting at RMIT!
+
+
+
+Please make sure you have checked out the New Student Guide
+<https://www.rmit.edu.au/students/new-student-guide> and have enrolled in
+your courses.
+
+
+
+Before your classes officially commence on Monday 16th July 2018, you are
+invited to a program orientation session day the week before on *Monday 9th
+July* as listed below. At orientation, you will meet your program staff and
+fellow students, attend a Study and Learning Centre, and Public Speaking
+workshop, and receive an overview of your program and student life at RMIT.
+We strongly encourage you to attend this event. Attached is the program for
+the day.
+
+
+*Mandatory to attend session!*
+
+
+
+
+*Monday 9th July 2018 10am =E2=80=93 5pm*Building 80, Level 9, Room 12 (80.=
+09.12)
+445 Swanston St
+<https://maps.google.com/?q=3D445+Swanston+St+Melbourne&entry=3Dgmail&sourc=
+e=3Dg>
+Melbourne
+<https://maps.google.com/?q=3D445+Swanston+St+Melbourne&entry=3Dgmail&sourc=
+e=3Dg>
+
+
+Click here for map
+<https://www.rmit.edu.au/maps/melbourne-city-campus/building-80>
+
+
+or
+
+
+
+Click here
+<https://www.rmit.edu.au/content/dam/rmit/documents/maps/pdf-maps/city-camp=
+us/2015-City-Campus_FINAL-WEB_2.pdf>
+for
+a copy of the campus map.
+
+
+
+We also invite you to attend City Welcome Day
+<https://www.rmit.edu.au/students/news-and-events/events/2018/july/city-wel=
+come-day--vocational-education>
+ on Thursday 5 July  from 12pm =E2=80=93 2pm.
+
+
+
+We hope your time at RMIT is rewarding, enriching and fun!
+
+
+
+The team at Global, Urban and Social Studies (GUSS)
+
+_____________________________________________________
+
+*Vocational Education Student Administration*
+School of Global, Urban and Social Studies | RMIT University
+Building 37, Level 3 | 411 Swanston Street, Melbourne VIC 3000
+E: guss.ve@rmit.edu.au <learningandteaching.guss@rmit.edu.au>
+CRICOS provider code: 00122A
+
+*This message contains privileged and confidential information intended for
+the use only of the addressee named above.  If you are not the intended
+recipient of this message you are hereby notified that you must not
+disseminate, copy or take any action in relation to it.  If you have
+received this message in error, please immediately notify the sender at the
+above address.*
+
+--0000000000004eabc9056ffc7815
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">
+
+<p class=3D"MsoNormal" style=3D"margin:0px 0px 0.0001pt;font-size:12.8px;te=
+xt-decoration-style:initial;text-decoration-color:initial;line-height:norma=
+l"><span style=3D"font-size:9.5pt;font-family:Arial,sans-serif">Dear Aohan,=
+</span><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></=
+span></span></p><p class=3D"MsoNormal" style=3D"margin:0px 0px 0.0001pt;fon=
+t-size:12.8px;text-decoration-style:initial;text-decoration-color:initial;l=
+ine-height:normal"><span style=3D"font-size:9.5pt;font-family:Arial,sans-se=
+rif">=C2=A0</span><span style=3D"font-size:12pt;font-family:Arial,sans-seri=
+f"><span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0px 0px 0=
+.0001pt;font-size:12.8px;text-decoration-style:initial;text-decoration-colo=
+r:initial;line-height:normal"><span style=3D"font-size:9.5pt;font-family:Ar=
+ial,sans-serif">Welcome to the C5364<span>=C2=A0</span><span class=3D"gmail=
+-m_2334885870605233290gmail-m_-7330507851947106466m_4557617020688248140gmai=
+l-il">Diploma</span><span>=C2=A0</span>of<span>=C2=A0</span><span class=3D"=
+gmail-m_2334885870605233290gmail-m_-7330507851947106466m_455761702068824814=
+0gmail-il">Interpreting</span><span>=C2=A0</span><wbr>at RMIT!<span></span>=
+</span></p><p class=3D"MsoNormal" style=3D"margin:0px 0px 0.0001pt;font-siz=
+e:12.8px;text-decoration-style:initial;text-decoration-color:initial;line-h=
+eight:normal"><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><=
+span>=C2=A0</span></span></p><p class=3D"MsoNormal" style=3D"margin:0px 0px=
+ 0.0001pt;font-size:12.8px;text-decoration-style:initial;text-decoration-co=
+lor:initial;line-height:normal"><span style=3D"font-size:9.5pt;font-family:=
+Arial,sans-serif">Please make sure you have checked out the=C2=A0</span><a =
+href=3D"https://www.rmit.edu.au/students/new-student-guide" target=3D"_blan=
+k" style=3D"color:rgb(17,85,204)"><span style=3D"font-size:9.5pt;font-famil=
+y:Arial,sans-serif">New Student Guide</span></a><span style=3D"font-size:9.=
+5pt;font-family:Arial,sans-serif">=C2=A0and have enrolled in your courses.<=
+span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0px 0px 0.000=
+1pt;font-size:12.8px;text-decoration-style:initial;text-decoration-color:in=
+itial;line-height:normal"><span style=3D"font-size:12pt;font-family:Arial,s=
+ans-serif"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" style=3D"ma=
+rgin:0px;font-size:12.8px;text-decoration-style:initial;text-decoration-col=
+or:initial;background-image:initial;background-position:initial;background-=
+size:initial;background-repeat:initial;background-origin:initial;background=
+-clip:initial"><span style=3D"font-size:9.5pt;line-height:13.5533px;font-fa=
+mily:Arial,sans-serif">Before your classes officially commence=C2=A0</span>=
+<span style=3D"font-size:9.5pt;line-height:13.5533px;font-family:Arial,sans=
+-serif;color:black">on Monday 16th July 2018,=C2=A0you are invited to a pro=
+gram<span>=C2=A0</span><span class=3D"gmail-m_2334885870605233290gmail-m_-7=
+330507851947106466m_4557617020688248140gmail-il">orientation</span><span>=
+=C2=A0session day</span>=C2=A0the week before on<span>=C2=A0</span><b>Monda=
+y 9th July</b><span>=C2=A0</span>as listed below. At<span>=C2=A0</span><spa=
+n class=3D"gmail-m_2334885870605233290gmail-m_-7330507851947106466m_4557617=
+020688248140gmail-il">orientation</span>, you will meet your program staff =
+and fellow students, attend a Study and Learning Centre, and Public Speakin=
+g workshop, a</span><span style=3D"font-size:9.5pt;line-height:13.5533px;fo=
+nt-family:Arial,sans-serif">nd receive an overview of your program and stud=
+ent life at RMIT. We strongly encourage you to attend this event. Attached =
+is the program for the day.<span></span></span></p><p class=3D"MsoNormal" s=
+tyle=3D"margin:0px;font-size:12.8px;text-decoration-style:initial;text-deco=
+ration-color:initial;background-image:initial;background-position:initial;b=
+ackground-size:initial;background-repeat:initial;background-origin:initial;=
+background-clip:initial"><span style=3D"font-size:9.5pt;line-height:13.5533=
+px;font-family:Arial,sans-serif"><br></span></p><p class=3D"MsoNormal" styl=
+e=3D"margin:0px;font-size:12.8px;text-decoration-style:initial;text-decorat=
+ion-color:initial"><b><span style=3D"font-size:9.5pt;line-height:13.5533px;=
+font-family:Arial,sans-serif;background-image:initial;background-position:i=
+nitial;background-size:initial;background-repeat:initial;background-origin:=
+initial;background-clip:initial">Mandatory to attend<span>=C2=A0</span><spa=
+n class=3D"gmail-m_2334885870605233290gmail-m_-7330507851947106466m_4557617=
+020688248140gmail-il">session</span>!</span></b><span style=3D"font-size:9.=
+5pt;line-height:13.5533px;font-family:Arial,sans-serif;background-image:ini=
+tial;background-position:initial;background-size:initial;background-repeat:=
+initial;background-origin:initial;background-clip:initial"><span></span></s=
+pan></p><p class=3D"MsoNormal" style=3D"margin:0px;font-size:12.8px;text-de=
+coration-style:initial;text-decoration-color:initial"><b><span style=3D"fon=
+t-size:9.5pt;line-height:13.5533px;font-family:Arial,sans-serif;background-=
+image:initial;background-position:initial;background-size:initial;backgroun=
+d-repeat:initial;background-origin:initial;background-clip:initial"><br></s=
+pan></b></p><p class=3D"MsoNormal" style=3D"margin:0px;font-size:12.8px;tex=
+t-decoration-style:initial;text-decoration-color:initial;background-image:i=
+nitial;background-position:initial;background-size:initial;background-repea=
+t:initial;background-origin:initial;background-clip:initial"><b><span style=
+=3D"font-size:9.5pt;line-height:13.5533px;font-family:Arial,sans-serif;colo=
+r:black">Monday 9th July 2018=C2=A0<br>10am =E2=80=93 5pm<br></span></b><sp=
+an style=3D"font-size:9.5pt;line-height:13.5533px;font-family:Arial,sans-se=
+rif;color:black">Building 80, Level 9, Room 12 (80.09.12)<br><a href=3D"htt=
+ps://maps.google.com/?q=3D445+Swanston+St+Melbourne&amp;entry=3Dgmail&amp;s=
+ource=3Dg" target=3D"_blank" style=3D"color:rgb(17,85,204)">445 Swanston St=
+</a><br><a href=3D"https://maps.google.com/?q=3D445+Swanston+St+Melbourne&a=
+mp;entry=3Dgmail&amp;source=3Dg" target=3D"_blank" style=3D"color:rgb(17,85=
+,204)">Melbourne</a><b><span></span></b></span></p><p class=3D"MsoNormal" s=
+tyle=3D"margin:0px;font-size:12.8px;text-decoration-style:initial;text-deco=
+ration-color:initial;background-image:initial;background-position:initial;b=
+ackground-size:initial;background-repeat:initial;background-origin:initial;=
+background-clip:initial"><span style=3D"font-size:9.5pt;line-height:13.5533=
+px;font-family:Arial,sans-serif;color:black"><br></span></p><p class=3D"Mso=
+Normal" style=3D"margin:0px;font-size:12.8px;text-decoration-style:initial;=
+text-decoration-color:initial;background-image:initial;background-position:=
+initial;background-size:initial;background-repeat:initial;background-origin=
+:initial;background-clip:initial"><font color=3D"#000000" face=3D"Arial, sa=
+ns-serif"><span style=3D"font-size:12.6667px"><a href=3D"https://www.rmit.e=
+du.au/maps/melbourne-city-campus/building-80" target=3D"_blank" style=3D"co=
+lor:rgb(17,85,204)">Click here for map</a></span></font><br></p><p class=3D=
+"MsoNormal" style=3D"margin:0px;font-size:12.8px;text-decoration-style:init=
+ial;text-decoration-color:initial;background-image:initial;background-posit=
+ion:initial;background-size:initial;background-repeat:initial;background-or=
+igin:initial;background-clip:initial"><br></p><p class=3D"MsoNormal" style=
+=3D"margin:0px;font-size:12.8px;text-decoration-style:initial;text-decorati=
+on-color:initial;background-image:initial;background-position:initial;backg=
+round-size:initial;background-repeat:initial;background-origin:initial;back=
+ground-clip:initial">or</p><p class=3D"MsoNormal" style=3D"margin:0px 0px 0=
+.0001pt;font-size:12.8px;text-decoration-style:initial;text-decoration-colo=
+r:initial;line-height:normal"><span style=3D"font-size:9.5pt;font-family:Ar=
+ial,sans-serif"><span>=C2=A0</span></span></p><p class=3D"MsoNormal" style=
+=3D"margin:0px 0px 0.0001pt;font-size:12.8px;text-decoration-style:initial;=
+text-decoration-color:initial;line-height:normal"><span style=3D"font-size:=
+9.5pt;font-family:Arial,sans-serif">Click=C2=A0</span><a href=3D"https://ww=
+w.rmit.edu.au/content/dam/rmit/documents/maps/pdf-maps/city-campus/2015-Cit=
+y-Campus_FINAL-WEB_2.pdf" target=3D"_blank" style=3D"color:rgb(17,85,204)">=
+<span style=3D"font-size:9.5pt;font-family:Arial,sans-serif">here</span></a=
+><span style=3D"font-size:9.5pt;font-family:Arial,sans-serif">=C2=A0for a c=
+opy of the campus map.</span><span style=3D"font-size:12pt;font-family:Aria=
+l,sans-serif"><span></span></span></p><p class=3D"MsoNormal" style=3D"margi=
+n:0px 0px 0.0001pt;font-size:12.8px;text-decoration-style:initial;text-deco=
+ration-color:initial;line-height:normal"><span style=3D"font-size:9.5pt;fon=
+t-family:Arial,sans-serif">=C2=A0</span><span style=3D"font-size:12pt;font-=
+family:Arial,sans-serif"><span></span></span></p><p class=3D"MsoNormal" sty=
+le=3D"margin:0px 0px 0.0001pt;font-size:12.8px;text-decoration-style:initia=
+l;text-decoration-color:initial;line-height:normal"><span style=3D"font-siz=
+e:9.5pt;font-family:Arial,sans-serif">We also invite you to attend=C2=A0</s=
+pan><font face=3D"Arial, sans-serif"><span style=3D"font-size:12.6667px"><a=
+ href=3D"https://www.rmit.edu.au/students/news-and-events/events/2018/july/=
+city-welcome-day--vocational-education" target=3D"_blank" style=3D"color:rg=
+b(17,85,204)">City Welcome Day</a></span></font><span style=3D"font-size:9.=
+5pt;font-family:Arial,sans-serif">=C2=A0</span><span style=3D"font-size:9.5=
+pt;font-family:Arial,sans-serif">on Thursday 5 July=C2=A0 from 12pm =E2=80=
+=93 2pm.</span></p><p class=3D"MsoNormal" style=3D"margin:0px 0px 0.0001pt;=
+font-size:12.8px;text-decoration-style:initial;text-decoration-color:initia=
+l;line-height:normal"><span style=3D"font-size:9.5pt;font-family:Arial,sans=
+-serif">=C2=A0</span><span style=3D"font-size:12pt;font-family:Arial,sans-s=
+erif"><span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0px 0p=
+x 0.0001pt;font-size:12.8px;text-decoration-style:initial;text-decoration-c=
+olor:initial;line-height:normal"><span style=3D"font-size:9.5pt;font-family=
+:Arial,sans-serif">We hope your time at RMIT is rewarding, enriching and fu=
+n!</span><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span>=
+</span></span></p><p class=3D"MsoNormal" style=3D"margin:0px 0px 0.0001pt;f=
+ont-size:12.8px;text-decoration-style:initial;text-decoration-color:initial=
+;line-height:normal"><span style=3D"font-size:9.5pt;font-family:Arial,sans-=
+serif">=C2=A0</span><span style=3D"font-size:12pt;font-family:Arial,sans-se=
+rif"><span></span></span></p><p class=3D"MsoNormal" style=3D"margin:0px 0px=
+ 0.0001pt;font-size:12.8px;text-decoration-style:initial;text-decoration-co=
+lor:initial;line-height:normal"><span style=3D"font-size:9.5pt;font-family:=
+Arial,sans-serif">The team at Global, Urban and Social Studies (GUSS)=C2=A0=
+</span></p>
+
+<br clear=3D"all"><div><div class=3D"gmail_signature" data-smartmail=3D"gma=
+il_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">=
+<div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div style=3D"font-size:12=
+.8px"><span style=3D"font-size:12.8px">____________________________________=
+_________________</span><br></div><div style=3D"font-size:12.8px"><span sty=
+le=3D"font-size:12.8px"><b>Vocational Education Student Administration<br><=
+/b></span></div><span style=3D"font-size:12.8px"><span style=3D"font-size:1=
+2.8px"><span style=3D"font-size:12.8px"><span style=3D"font-size:12.8px">Sc=
+hool of Global, Urban and Social Studies </span></span><span style=3D"font-=
+size:12.8px"><span style=3D"font-size:12.8px"><span><span style=3D"font-siz=
+e:12.8px">| </span></span><span style=3D"font-size:12.8px"> </span></span><=
+span style=3D"font-size:12.8px"></span><span style=3D"font-size:12.8px">RMI=
+T University</span></span></span><span style=3D"font-size:12.8px"><br></spa=
+n><span style=3D"font-size:12.8px"></span></span><span><span style=3D"font-=
+size:12.8px"></span></span><span style=3D"font-size:12.8px"> Building 37, L=
+evel 3=C2=A0</span><span style=3D"font-size:12.8px">| 411 Swanston Street, =
+Melbourne VIC 3000</span><br><span style=3D"font-size:12.8px"></span><div s=
+tyle=3D"font-size:12.8px">E:=C2=A0<a href=3D"mailto:learningandteaching.gus=
+s@rmit.edu.au" style=3D"color:rgb(17,85,204)" target=3D"_blank">guss.ve@rmi=
+t.edu.au</a>=C2=A0</div><div style=3D"font-size:12.8px">CRICOS provider cod=
+e: 00122A</div><div style=3D"font-size:12.8px"><br></div><div style=3D"font=
+-size:12.8px"><i><font size=3D"1">This message contains privileged and conf=
+idential information intended for the use only of the addressee named above=
+.=C2=A0 If you are not the intended recipient of this message you are hereb=
+y notified that you must not disseminate, copy or take any action in relati=
+on to it.=C2=A0 If you have received this message in error, please immediat=
+ely notify the sender at the above address.</font></i></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div>
+</div>
+
+--0000000000004eabc9056ffc7815--
+
+--0000000000004eabd0056ffc7817
+Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; 
+	name="Orientation - sem 2 2018 -ADVI.xlsx"
+Content-Disposition: attachment; 
+	filename="Orientation - sem 2 2018 -ADVI.xlsx"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_jj3r4ru10
+
+UEsDBBQABgAIAAAAIQCq91ikeQEAABQGAAATAAgCW0NvbnRlbnRfVHlwZXNdLnhtbCCiBAIooAAC
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADM
+VMluwjAQvVfqP0S+VsRApaqqCBy6HFsk6AeYeEIsEtvyDBT+vhOzqKpYhEBqL4lie94yE7/eYFlX
+yQICGmcz0UnbIgGbO23sNBOf47fWo0iQlNWqchYysQIUg/7tTW+88oAJV1vMREnkn6TEvIRaYeo8
+WN4pXKgV8WeYSq/ymZqC7LbbDzJ3lsBSixoM0e+9QKHmFSWvS15eK5kYK5Ln9bmGKhPK+8rkilio
+XFj9i6TlisLkoF0+rxk6RR9AaSwBqK5SHwwzhhEQsTEUci9ngArPI924SrkyCsPSeLxj6wcYmp3D
+rjZ1HzyOYDQkQxXoXdXsXS4r+eXCbOLcLD0Ocm5rYovSWhm71X2EPx5GGV+dKwtp/EXgM3V0/4mO
++z/SQXznQMbn5SOJMCcGgLSqAK/9G0bQU8ylCqBHxLd5enUBP7GP6eCIGQbnkVMswPld2EZGU93y
+DASBDOxCY9/l2zFyBF7cdmgyVoPewy1jpve/AQAA//8DAFBLAwQUAAYACAAAACEAtVUwI/QAAABM
+AgAACwAIAl9yZWxzLy5yZWxzIKIEAiigAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKySTU/DMAyG70j8h8j31d2QEEJLd0FIuyFUfoBJ3A+1
+jaMkG92/JxwQVBqDA0d/vX78ytvdPI3qyCH24jSsixIUOyO2d62Gl/pxdQcqJnKWRnGs4cQRdtX1
+1faZR0p5KHa9jyqruKihS8nfI0bT8USxEM8uVxoJE6UchhY9mYFaxk1Z3mL4rgHVQlPtrYawtzeg
+6pPPm3/XlqbpDT+IOUzs0pkVyHNiZ9mufMhsIfX5GlVTaDlpsGKecjoieV9kbMDzRJu/E/18LU6c
+yFIiNBL4Ms9HxyWg9X9atDTxy515xDcJw6vI8MmCix+o3gEAAP//AwBQSwMEFAAGAAgAAAAhAN4J
+/SgCAQAA1AMAABoACAF4bC9fcmVscy93b3JrYm9vay54bWwucmVscyCiBAEooAABAAAAAAAAAAAA
+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
+--0000000000004eabd0056ffc7817--
+

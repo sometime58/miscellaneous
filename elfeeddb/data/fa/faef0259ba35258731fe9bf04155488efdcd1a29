@@ -1,0 +1,66 @@
+<div><p>
+Now it's possible to spell check camel case code in Emacs using <a href="https://github.com/redguardtoo/wucuo">wucuo</a>.
+</p>
+
+<p>
+Setup is easy. Add <code>(wucuo-start)</code> into <code>~/.emacs</code>, then <b>use flyspell as usual</b>.
+</p>
+
+<p>
+Flyspell could use either aspell or hunspell. No extra setup for aspell or hunspell is required. 
+</p>
+
+<p>
+Wucuo starts an independent process to check camel case words. So your original flyspell setup is still valid.
+</p>
+
+<p>
+For example, you could still use Spanish and English dictionaries in your existing flyspell setup.
+</p>
+
+<p>
+Two flag <code>wucuo-aspell-language-to-use</code> and <code>wucuo-hunspell-dictionary-base-name</code> are used and only used to check camel case word through independent process.
+</p>
+
+<p>
+Wucuo is generic enough to handle any programming language if its major mode inherits from <a href="https://www.emacswiki.org/emacs/ProgMode">prog-mode</a>.
+</p>
+
+<p>
+Even if the major mode does not inherit from <code>prog-mode</code>, it's still simple to use wucuo.
+</p>
+
+<p>
+You only need find font face the camel case word is used by running <code>M-x wucuo-current-font-face</code>. Say the font face is <code>js2-function-call</code>.
+</p>
+
+<p>
+Then we need setup <code>wucuo-personal-font-faces-to-check</code>,
+</p>
+
+<div class="org-src-container">
+
+<pre><code class="lang-lisp">(setq wucuo-personal-font-faces-to-check '(js2-function-call))
+</code></pre>
+
+</div>
+
+<p>
+That's all.
+</p>
+
+<p>
+Some <b>optional</b> tools to help you manage personal dictionaries:
+</p>
+
+<ul class="org-ul">
+<li><code>M-x wucuo-create-aspell-personal-dictionary</code> creates plain word dictionary <code>~/.aspell.en.pws</code> for aspell</li>
+<li><code>M-x wucuo-create-hunspell-personal-dictionary</code> creates plain word dictionary <code>~/.hunspell_en_US</code> for hunspell</li>
+</ul>
+
+<p>
+BTW, please don't start <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Spelling.html">flyspell-prog-mode</a> when using wucuo.
+</p>
+
+<p>
+Any suggestion is welcomed. For example, currently wucuo only check English camel case word. Ping me if you want to use other languages.</p></div>

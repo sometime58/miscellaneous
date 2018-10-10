@@ -1,0 +1,646 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 2002:a1f:328a:0:0:0:0:0 with SMTP id y132-v6csp2545943vky;
+        Sun, 5 Aug 2018 18:36:10 -0700 (PDT)
+X-Google-Smtp-Source: AAOMgpc+m/f/WuIdzA4i0BMq9rp55nFa1uXumaOIr1qb1UQ2foD1iQLT1mP+0N0XQOA5tsVbiNjB
+X-Received: by 2002:a37:30d5:: with SMTP id w204-v6mr11963394qkw.317.1533519369986;
+        Sun, 05 Aug 2018 18:36:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1533519369; cv=none;
+        d=google.com; s=arc-20160816;
+        b=h1Q/lUtmyUXh8c5LXTp5fRomNUVoESoTxokN2AYGD0sHgL9Drx1O1AqgvILtqlFiqI
+         7/3kaO18MLr7f0nYC5oHOIdWscR4WciY7bfo/KP82HuL9vmtAyMy5RO7mmHBCaWdX6jA
+         RiPG36956ke1zmK7oisk3wn33G0sSrRDlQ46bBd3U+bTm6bUt03a+QGMNxVN/ASZ+bjD
+         59jv6eD/Z2iFiPrSJDkD3I6a9+4oXwStOnFMJnKF0oKWLcAW0kYP0Du8qX+x6ti+I3Y5
+         D+YrFliuolg7Sp3rCaMMy9y5QjgnXdpP+Y8Om/Zg8aynQMv+v3qiNQlIAPmt8+YRv9e/
+         KniA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:to:subject:mime-version:from:date:dkim-signature
+         :dkim-signature:arc-authentication-results;
+        bh=QpJVHyH0WiEYb2pmw7JhuaNpaimIWIsQX7CdvXUoM7U=;
+        b=H2b6mjdrSJQRrxRrV8do7TzUd136pTgoJDwKzYYFqQ7f8Up5OKAbWNxbZrb2Zfi4lf
+         QRtWezSeU5v+q5DHVLkhtUt+oJ6pwHgIa7zfy2lW3ZdjuZHULgpKvKl64qTIAut41GCF
+         IJJ6riPCXYKwv40oAhwCO8svMENo7BSnwiFqEoiMjdr6F9ok4cDZNlzcL9k9wt5xO112
+         mmf8GPsW4/eP7C7xxrOvNcP8THNQiDFEJP5WfvP7TQqtpEpHpXFL2mFW+Hxf4eZc2Z11
+         NP0Iqd7+rrlRtqY9pRIBNJeHgMHCrjymX8SpDi3fiymCmzxS4eHJCSOoylChqO7EB+bX
+         JuWQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@secure.agl.com.au header.s=m1 header.b=kUgqnqvi;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=WfVhWWtd;
+       spf=pass (google.com: domain of bounces+5274249-e721-sometime5858=gmail.com@email.secure.agl.com.au designates 167.89.81.38 as permitted sender) smtp.mailfrom="bounces+5274249-e721-sometime5858=gmail.com@email.secure.agl.com.au";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=agl.com.au
+Return-Path: <bounces+5274249-e721-sometime5858=gmail.com@email.secure.agl.com.au>
+Received: from o1678981x38.outbound-mail.sendgrid.net (o1678981x38.outbound-mail.sendgrid.net. [167.89.81.38])
+        by mx.google.com with ESMTPS id n53-v6si11624502qtn.184.2018.08.05.18.36.09
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 05 Aug 2018 18:36:09 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+5274249-e721-sometime5858=gmail.com@email.secure.agl.com.au designates 167.89.81.38 as permitted sender) client-ip=167.89.81.38;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@secure.agl.com.au header.s=m1 header.b=kUgqnqvi;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=WfVhWWtd;
+       spf=pass (google.com: domain of bounces+5274249-e721-sometime5858=gmail.com@email.secure.agl.com.au designates 167.89.81.38 as permitted sender) smtp.mailfrom="bounces+5274249-e721-sometime5858=gmail.com@email.secure.agl.com.au";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=agl.com.au
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; 
+	d=secure.agl.com.au; h=content-type:from:mime-version:subject:to; 
+	s=m1; bh=5EowwF0jyuT4+cqltwhNWPpjzxY=; b=kUgqnqviJ/IHXQ55Hf6HGNl
+	kPrIOtj+tYik+HJoMoqgVkf3eHlQeWBNeOu9VgHG7ICIzVUHru6a648bVslhtnoC
+	TNfIK8oYpvkkmGNo5c/EgBJl3iyqt6AskiMpar0adA2pHatDXp62GEd38R+Y/Avm
+	tMlsrmyJ8y9/AL7nkCJc=
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; d=sendgrid.info; 
+	h=content-type:from:mime-version:subject:to:x-feedback-id; 
+	s=smtpapi; bh=5EowwF0jyuT4+cqltwhNWPpjzxY=; b=WfVhWWtdB9DLucZbU1
+	C2AaW7HY3lnarEWwFYwaQz83b1JffgppSWxhX055ReGUb5zB9KZV96A9nmEKKKx7
+	RUw3UqGrcHkfAKzPa09YSyqMIbGzfC5EQ1Z+TbFxIXXEjlQVzgyZOyUz1gZVTA/W
+	9XvXot7yKDiPlB0lxiPs64DqY=
+Received: by filter0119p3las1.sendgrid.net with SMTP id filter0119p3las1-16923-5B67A608-38
+        2018-08-06 01:36:09.079286522 +0000 UTC m=+445170.994266107
+Received: from NTI3NDI0OQ (ec2-13-210-52-131.ap-southeast-2.compute.amazonaws.com [13.210.52.131])
+	by ismtpd0008p1maa1.sendgrid.net (SG) with HTTP id uE5ytegBQMmTnJo85sWO_w
+	for <sometime5858@gmail.com>; Mon, 06 Aug 2018 01:36:08.655 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=af6deed45e5168c9c82f519f9e79e028961efce265619978c6dcb491d365
+Date: Mon, 06 Aug 2018 01:36:09 +0000 (UTC)
+From: "AGL" <no-reply@secure.agl.com.au>
+Mime-Version: 1.0
+Subject: AGL Verification Code
+To: sometime5858@gmail.com
+Message-ID: <uE5ytegBQMmTnJo85sWO_w@ismtpd0008p1maa1.sendgrid.net>
+X-SG-EID: XUxMrcOvPAzpODxEW90qOHrrHbTMc3h1vP66Qf+hA5QauDcfLEF1/UBcL6CP9COEygTXnbl/GLtqNF
+ 8EMyCuzvX3sFFDLCaKqlwV3rlIT+qTl5Jxp+9JCsW4Em9XhYZwwkpECHKtgBqCFxdBAnRSh8Q3XOyW
+ BoAgFHQmn+H5Fp0x+R4nHmpDVeBrtIrpNWc9KjYsUJuWE6IlTsSJEQ9ebdbqrOKB2dvZdwtacNBUP8
+ w=
+X-Feedback-ID: 5274249:kARR5PskhbzNGectWoI1TjjemyrZVfPc3OKER7oHCNw=:kARR5PskhbzNGectWoI1TjjemyrZVfPc3OKER7oHCNw=:SG
+X-TUID: yk3Vr5NX5FjB
+
+--af6deed45e5168c9c82f519f9e79e028961efce265619978c6dcb491d365
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
+
+
+
+=20=20=20=20
+=20=20=20=20
+=20=20=20=20
+Your verification code.
+
+
+
+=20=20
+=20=20=20=20
+=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                  =C2=A0
+                   ( http://www.agl.com.au )=20
+                  =C2=A0
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                  =C2=A0=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                  =C2=A0
+                  Hi,
+                    897901 is your AGL authorisation code.
+                  =C2=A0=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+
+=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                  =C2=A0
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                      You'll need to enter this code within 5 minutes to co=
+mplete your login or verification.
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                        If your code expires, you can click "resend" in My =
+Account to get another.
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+
+=20=20=20=20
+=20=20
+    We=E2=80=99re here 24/7 to help.
+
+=20=20
+=20=20
+=20=20=20
+
+=20=20=20=20
+=20=20
+    The AGL authorisation code will give you access to AGL Online services
+=20=20
+=20=20
+=20=20
+=20=20=20=20
+
+=20=20
+=20=20
+=20=20
+    What do you need to do?
+      Enter the authorisation code to complete your login or registration. =
+If you have any questions, you can  contact us ( https://www.agl.com.au/res=
+idential/contact-us ) .
+
+
+=20=20
+
+=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                  =C2=A0
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                  =C2=A0
+                  Yours sincerely,
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                  AGL Customer Solutions
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                  =C2=A0=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                  =C2=A0
+                  Always here to help.agl.com.au ( http://www.agl.com.au )=
+=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                  =C2=A0=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+
+
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                This email is intended solely for the use of the addressee =
+and may contain information that is confidential or privileged.
+If you receive this email in error please notify the sender and delete the =
+email immediately. Please do not reply to this message as it is for informa=
+tion purposes only. This mailbox is not monitored and we will not be able t=
+o respond to your reply.=20
+
+Copyright 2017 AGL Energy Limited.=20
+AGL Energy Limited ABN  74 115 061 375.
+View ( https://www.agl.com.au/site-pages/privacy )  AGL's Privacy Policy.
+
+body {
+	background-color: #EEEAE4;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+  border: 0px !important;
+}
+.contents tbody tr td p a {
+	color: #63C;
+}
+a { outline: none !important; border: 0px !important; }
+body,td,th {
+	color: #544A46;
+}
+
+.RED {color:#F00;}
+.contents tbody tr td span a {
+	color: #0057BF;
+}
+.appleLink a{ text-decoration: none !important; color: #544A46 !important; }
+.appleLinkBlack a{ text-decoration: none !important; color: #000000 !import=
+ant; }
+
+
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20
+
+=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20
+=20=20=20=20
+=20=20
+=20=20
+
+
+
+--af6deed45e5168c9c82f519f9e79e028961efce265619978c6dcb491d365
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+Mime-Version: 1.0
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml" lang=3D"en" xml:lang=3D"en">
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+" />
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width" />
+    <meta name=3D"subject" content=3D"AGL Verify Code" />
+<title>Your verification code.</title>
+<body bgcolor=3D"#EEEAE4" leftmargin=3D"0px" topmargin=3D"0px">
+
+<table style=3D"display: inline-table; background-color: #EEEAE4;" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+  <tr>
+    <td colspan=3D"2" valign=3D"top"><table width=3D"618px" border=3D"0" al=
+ign=3D"center" cellpadding=3D"0" cellspacing=3D"0" class=3D"one-col" style=
+=3D"border-collapse: collapse;border-spacing: 0;Margin-left: auto;Margin-ri=
+ght: auto;width: 618px">
+      <tbody>
+        <tr>
+          <td class=3D"column" style=3D"padding-top: 0; padding-bottom: 0; =
+padding-left: 0px; padding-right: 0; vertical-align: top; text-align: left;=
+ background-color: #FFF; color: #544A46">
+=20=20=20=20=20=20=20=20=20=20
+ <!-- Gap -->
+          <table  bgcolor=3D"#EEEAE4" border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" class=3D"contents" style=3D"border-collapse: collapse;border-sp=
+acing: 0;width: 100%">
+            <tbody>
+                <tr>
+                 <td height=3D"40"></td>
+
+                  </tr>
+              </tbody>
+          </table>
+          <!-- End Gap -->
+<!-- Header -->
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+contents" style=3D"border-collapse: collapse;border-spacing: 0;width: 100%">
+            <tbody>
+                <tr>
+                  <td rowspan=3D"2" class=3D"padded" style=3D"border-collap=
+se: collapse; border-spacing: 0; width: 38px"><p style=3D"font-weight: 400;=
+ letter-spacing: 0em; font-family: Arial, Helvetica, sans-serif, Gotham; -w=
+ebkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; Marg=
+in-bottom: 27px; font-size: 1px; line-height: 1px; text-align: right; color=
+: #0057BF;">&nbsp;</p></td>
+                  <td rowspan=3D"2" style=3D"width: 366px; padding-top:15px=
+; padding-bottom: 0; padding-left: 0px; padding-right: 0px; vertical-align:=
+ top;"><a style=3D"text-decoration:none;color:#001cb0" target=3D"_blank" hr=
+ef=3D"http://www.agl.com.au"><img src=3D"https://www.agl.com.au/~/media/AGL=
+/eDM/agl/agl-logo.png" border=3D"0" width=3D"111" height=3D"78" alt=3D"AGL"=
+></a></td>
+                  <td style=3D"text-align: right; padding-top: 5; padding-b=
+ottom: 0; padding-left: 0px; padding-right: 0px; vertical-align: top">&nbsp=
+;</td>
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                  <td rowspan=3D"2" style=3D"width: 28px; padding-top: 0; p=
+adding-bottom: 0; padding-left: 0px; padding-right: 0px; vertical-align: to=
+p"><p style=3D"font-weight: 400; letter-spacing: 0em; font-family: Arial, H=
+elvetica, sans-serif, Gotham; -webkit-font-smoothing: antialiased; text-ren=
+dering: optimizeLegibility; Margin-bottom: 27px; font-size: 1px; line-heigh=
+t: 1px; text-align: right; color: #0057BF;">&nbsp; </p></td>               =
+ </tr>
+                <tr>
+                  <td style=3D"text-align: right; padding-top: 0; padding-b=
+ottom: 0; padding-left: 0px; padding-right: 0px; vertical-align: top">
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+          <!-- End Header -->
+          <!-- Gap -->
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+contents" style=3D"border-collapse: collapse;border-spacing: 0;width: 100%">
+            <tbody>
+                <tr>
+                    <td height=3D"40"></td>
+
+                  </tr>
+              </tbody>
+          </table>
+          <!-- End Gap -->
+          <!-- Content -->
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+contents" style=3D"border-collapse: collapse;border-spacing: 0;width: 100%">
+            <tbody>
+                <tr>
+                  <td width=3D"80" class=3D"padded" style=3D"border-collaps=
+e: collapse; border-spacing: 0; width: 80px"><p style=3D"font-weight: 400; =
+letter-spacing: 0em; font-family: Arial, Helvetica, sans-serif, Gotham; -we=
+bkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; Margi=
+n-bottom: 27px; font-size: 1px; line-height: 1px; text-align: right; color:=
+ #0057BF;">&nbsp;</p></td>
+                  <td width=3D"510" style=3D"width: 510px; padding-top: 0; =
+padding-bottom: 0; padding-left: 0px; padding-right: 0px; vertical-align: t=
+op;"><p style=3D"Margin-top: 0; font-weight: 400; letter-spacing: 0em; font=
+-family: Arial; -webkit-font-smoothing: antialiased; text-rendering: optimi=
+zeLegibility; Margin-bottom: 25px; font-size: 13px; line-height: 17px; colo=
+r: #000000">Hi,</p>
+                    <p style=3D"font-weight: 400; letter-spacing: 0em; font=
+-family: Arial; -webkit-font-smoothing: antialiased; text-rendering: optimi=
+zeLegibility; Margin-bottom: 20px; font-size: 20px; line-height: 22px; colo=
+r:#0057BF">897901 is your AGL authorisation code.</p></td>
+                  <td width=3D"28" style=3D"width: 28px; padding-top: 0; pa=
+dding-bottom: 0; padding-left: 0px; padding-right: 0px; vertical-align: top=
+"><p style=3D"font-weight: 400; letter-spacing: 0em; font-family: Arial, He=
+lvetica, sans-serif, Gotham; -webkit-font-smoothing: antialiased; text-rend=
+ering: optimizeLegibility; Margin-bottom: 27px; font-size: 1px; line-height=
+: 1px; text-align: right; color: #0057BF;">&nbsp; </p></td> </tr>
+              </tbody>
+          </table>
+          <!-- End content -->
+
+           <!-- Content -->
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+contents" style=3D"border-collapse: collapse;border-spacing: 0;width: 100%">
+            <tbody>
+                <tr>
+                  <td class=3D"padded" style=3D"border-collapse: collapse; =
+border-spacing: 0; width: 80px"><p style=3D"font-weight: 400; letter-spacin=
+g: 0em; font-family: Arial, Helvetica, sans-serif, Gotham;-webkit-font-smoo=
+thing: antialiased; text-rendering: optimizeLegibility; Margin-bottom: 27px=
+; font-size: 1px; line-height: 1px; text-align: right; color: #0057BF;">&nb=
+sp;</p></td>
+                  <td width=3D"510" style=3D"height: 10px; padding: 0; marg=
+in: 0px; width: 510px; vertical-align: top;"><table width=3D"510" border=3D=
+"0" cellspacing=3D"0" cellpadding=3D"0">
+                    <!-- pannel 1-->
+                    <tr>
+                      <td colspan=3D"3" bgcolor=3D"#AADAF6" class=3D"padded=
+" style=3D"border-collapse: collapse; padding: 0px 0px 0px 5px; border-spac=
+ing: 0; width: 100%"><p style=3D"font-weight: 400; letter-spacing: 0em; fon=
+t-family: Arial; -webkit-font-smoothing: antialiased; text-rendering: optim=
+izeLegibility; Margin: 5px; font-size: 13px; line-height: 17px; color: #000=
+">You'll need to <b>enter this code within 5 minutes</b> to complete your l=
+ogin or verification.</p></td>
+                    </tr>
+                    <!-- End pannel 1 -->
+                    <tr>
+                      <td height=3D"5"></td>
+
+                    </tr>
+                    <!-- pannel 2-->
+                    <tr>
+                      <td colspan=3D"3" bgcolor=3D"#AADAF6" class=3D"padded=
+" style=3D"border-collapse: collapse; padding: 0px 0px 0px 5px; border-spac=
+ing: 0; width: 100%">
+                        <p style=3D"font-weight: 400; letter-spacing: 0em; =
+font-family: Arial; -webkit-font-smoothing: antialiased; text-rendering: op=
+timizeLegibility; Margin: 5px; font-size: 13px; line-height: 17px; color: #=
+000">If your code expires, you can click "resend" in My Account to get anot=
+her.</p></td>
+                    </tr>
+                    <!-- End pannel 2 -->
+                   <td height=3D"5"></td>
+
+    <!-- pannel 3-->
+  <tr>
+    <td colspan=3D"3" bgcolor=3D"#AADAF6" class=3D"padded" style=3D"border-=
+collapse: collapse; padding: 0px 0px 0px 5px; border-spacing: 0; width: 100=
+%"><p style=3D"font-weight: 400; letter-spacing: 0em; font-family: Arial; -=
+webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; Mar=
+gin: 5px; font-size: 13px; line-height: 17px; color: #000000">We&#8217;re h=
+ere <span class=3D"appleLinkBlack ">24/7</span> to help.
+</p></td>
+  </tr>
+  <!-- End pannel 3 -->
+   <td height=3D"5"></td>
+
+    <!-- pannel 4-->
+  <tr>
+    <td colspan=3D"3" bgcolor=3D"#AADAF6" class=3D"padded" style=3D"border-=
+collapse: collapse; padding: 0px 0px 0px 5px; border-spacing: 0; width: 100=
+%"><p style=3D"font-weight: 400; letter-spacing: 0em; font-family: Arial; -=
+webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; Mar=
+gin: 5px; font-size: 13px; line-height: 17px; color: #000000">The AGL autho=
+risation code will give you access to AGL Online services</p></td>
+  </tr>
+  <!-- End pannel 4 -->
+  <tr>
+    <td height=3D"5"></td>
+
+  </tr>
+  <!-- pannel 5-->
+  <tr>
+    <td colspan=3D"3" bgcolor=3D"#ED8B00" class=3D"padded" style=3D"border-=
+collapse:collapse; padding: 5px; border-radius: 5px; border-spacing: 0; wid=
+th: 100%"><p style=3D"font-weight: 400; letter-spacing: 0em; font-family: A=
+rial; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibili=
+ty; Margin: 5px; font-size: 14px; line-height: 22px; color: #ffffff"><stron=
+g>What do you need to do?</strong></p>
+      <p style=3D"padding-bottom: 5px; font-weight: 400; letter-spacing: 0e=
+m; font-family: Arial; -webkit-font-smoothing: antialiased; text-rendering:=
+ optimizeLegibility; Margin: 5px; font-size: 14px; line-height: 16px; color=
+: #ffffff">Enter the authorisation code to complete your login or registrat=
+ion. If you have any questions, you can  <strong><a  href=3D"https://www.ag=
+l.com.au/residential/contact-us" style=3D"color: #ffffff; text-decoration: =
+underline;">contact us</a></strong>.</td>
+
+
+  </tr>
+
+  <!-- End pannel 5 -->
+                  </table></td>
+                  <td width=3D"28" style=3D"height: 10px; padding: 0; margi=
+n: 0px; width: 28px; vertical-align: top;">&nbsp;</td>
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                </tr>
+              </tbody>
+          </table>
+          <!-- End content -->
+<!-- Content -->
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+contents" style=3D"border-collapse: collapse;border-spacing: 0;width: 100%">
+            <tbody>
+                <tr>
+                  <td class=3D"padded" style=3D"border-collapse: collapse; =
+border-spacing: 0; width: 80px"><p style=3D"font-weight: 400; letter-spacin=
+g: 0em; font-family: Arial, Helvetica, sans-serif, Gotham; -webkit-font-smo=
+othing: antialiased; text-rendering: optimizeLegibility; Margin-bottom: 27p=
+x; font-size: 1px; line-height: 1px; text-align: right; color: #0057BF;">&n=
+bsp;</p></td>
+                  <td style=3D"width: 510px; padding-top: 0; padding-bottom=
+: 0; padding-left: 0px; padding-right: 0px; vertical-align: top;"><p style=
+=3D"Margin-top: 0; font-weight: 400; letter-spacing: 0em; font-family: Aria=
+l; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;=
+ Margin-bottom: 20px; font-size: 13px; line-height: 19px; color: #000000"><=
+br>Yours sincerely,<br />
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                  <span style=3D"Margin-top: 0; font-weight: 400; letter-sp=
+acing: 0em; font-family: Arial; -webkit-font-smoothing: antialiased; text-r=
+endering: optimizeLegibility; Margin-bottom: 20px; font-size: 13px; line-he=
+ight: 19px; color: #000000">AGL Customer Solutions</span>
+                  </p></td>
+                  <td style=3D"width: 28px; padding-top: 0; padding-bottom:=
+ 0; padding-left: 0px; padding-right: 0px; vertical-align: top"><p style=3D=
+"font-weight: 400; letter-spacing: 0em; font-family: Arial, Helvetica, sans=
+-serif, Gotham; -webkit-font-smoothing: antialiased; text-rendering: optimi=
+zeLegibility; Margin-bottom: 27px; font-size: 1px; line-height: 1px; text-a=
+lign: right; color: #000000;">&nbsp; </p></td></tr>
+              </tbody>
+          </table> <!-- End content --> <!-- Footer -->
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+contents" style=3D"border-collapse: collapse;border-spacing: 0;width: 100%">
+            <tbody>
+                <tr>
+                  <td class=3D"padded" style=3D"border-collapse: collapse; =
+border-spacing: 0; width: 80px"><p style=3D"font-weight: 400; letter-spacin=
+g: 0em; font-family: Arial, Helvetica, sans-serif, Gotham; -webkit-font-smo=
+othing: antialiased; text-rendering: optimizeLegibility; Margin-bottom: 27p=
+x; font-size: 1px; line-height: 1px; text-align: right; color: #0057BF;">&n=
+bsp;</p></td>
+                  <td style=3D"width: 510px; padding-top: 30; padding-botto=
+m: 0; padding-left: 0px; padding-right: 0px; vertical-align: top;"><p style=
+=3D"font-weight: 700; letter-spacing: 0em; font-family: Arial, Helvetica, s=
+ans-serif, Gotham; -webkit-font-smoothing: antialiased; text-rendering: opt=
+imizeLegibility; font-size: 13px; line-height: 17px; color:#001cb0"><span>A=
+lways here to help.</span><br/><a style=3D"text-decoration:none;color:#001c=
+b0; line-height: 33px;" target=3D"_blank" href=3D"http://www.agl.com.au">ag=
+l.com.au</a></td>
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                  <td style=3D"width: 28px; padding-top: 0; padding-bottom:=
+ 0; padding-left: 0px; padding-right: 0px; vertical-align: top"><p style=3D=
+"font-weight: 400; letter-spacing: 0em; font-family: Arial, Helvetica, sans=
+-serif, Gotham; -webkit-font-smoothing: antialiased; text-rendering: optimi=
+zeLegibility; Margin-bottom: 27px; font-size: 1px; line-height: 1px; text-a=
+lign: right; color: #0057BF;">&nbsp; </p></td>                </tr>
+              </tbody>
+          </table>
+          <!-- End footer -->
+                  <!-- Gap -->
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+contents" style=3D"border-collapse: collapse;border-spacing: 0;width: 100%">
+            <tbody>
+                <tr>
+                                                            <td height=3D"2=
+0">
+=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20=20
+                  </td>
+                  </tr>
+              </tbody>
+          </table>
+          <!-- End Gap -->
+
+
+                <!-- legal  -->
+          <table width=3D"618px" border=3D"0" align=3D"center" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"border-collapse: collapse; border-spacing=
+: 0; Margin-left: auto; Margin-right: auto; width: 618px; background-color:=
+ #EEEAE4;">
+            <tbody>
+              <tr>
+                <td  style=3D"padding: 0px 0px 0px 10px; vertical-align: to=
+p; text-align: left; color: #544A46; width: 580px"><p style=3D"font-weight:=
+ 400; letter-spacing: 0em; font-family: Arial, Helvetica, sans-serif, Gotha=
+m; Margin-bottom: 25px; font-size: 10px; line-height: 16px"><br />This emai=
+l is intended solely for the use of the addressee and may contain informati=
+on that is confidential or privileged.
+If you receive this email in error please notify the sender and delete the =
+email immediately. Please do not reply to this message as it is for informa=
+tion purposes only. This mailbox is not monitored and we will not be able t=
+o respond to your reply. <br>
+<br>
+Copyright 2017 AGL Energy Limited. <br>
+AGL Energy Limited ABN  <span class=3D"appleLink">74 115 061 375.</span><br>
+<a style=3D"color: #544A46;" target=3D"_blank" href=3D"https://www.agl.com.=
+au/site-pages/privacy"><strong>View</strong></a> AGL's Privacy Policy.</p>
+<style type=3D"text/css">
+body {
+	background-color: #EEEAE4;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+  border: 0px !important;
+}
+.contents tbody tr td p a {
+	color: #63C;
+}
+a { outline: none !important; border: 0px !important; }
+body,td,th {
+	color: #544A46;
+}
+
+.RED {color:#F00;}
+.contents tbody tr td span a {
+	color: #0057BF;
+}
+.appleLink a{ text-decoration: none !important; color: #544A46 !important; }
+.appleLinkBlack a{ text-decoration: none !important; color: #000000 !import=
+ant; }
+
+</style></td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- End legal -->
+</td>
+        </tr>
+      </tbody>
+    </table></td>
+  </tr>
+  </table>
+
+</body>
+</html>=
+
+--af6deed45e5168c9c82f519f9e79e028961efce265619978c6dcb491d365--

@@ -1,0 +1,2159 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 2002:a9d:6153:0:0:0:0:0 with SMTP id c19-v6csp4741059otk;
+        Tue, 11 Sep 2018 18:32:26 -0700 (PDT)
+X-Google-Smtp-Source: ANB0VdYcWustzo/NHrgg1Ya7GKn/ecMQhEsIMGu8NZye00gSOhRwX5r2+PutaOrgDndFtqbkLXNk
+X-Received: by 2002:ac8:3316:: with SMTP id t22-v6mr21444638qta.43.1536715946719;
+        Tue, 11 Sep 2018 18:32:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1536715946; cv=none;
+        d=google.com; s=arc-20160816;
+        b=EA3D+BYoNMSs7RsKIV4s1DwPmEVWg4OAM0OXC5m6yzHBBz388nXA+V5K+V3hrjzFDk
+         1ArwimI+RDqVNsTJFGdsGn84STUtrt9vYwMB23KGvtaSwPOuA3H+JJGKD3MsTw28NU/N
+         9QmwLriB9D2HKSNQEcFE5XWblCf/9wb1ZANlUaUxgewYdKFnDsjx+Atk/rhxnRpn9Oad
+         RziER5VTKZOSx9fw6ULujMSHyGvDrKOaNpdd/ueNm5V8FSpa0gqTJ+19ba5BZEGfaWXq
+         Boi3/Yj+65Yj07V/CtDJhmxfymtEJLqWKUWFa8Ee97VBo+xE88HfJdnJ6ICvLvMuwWN4
+         DX+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:message-id:mime-version:content-disposition
+         :content-transfer-encoding:date:subject:from:to:dkim-signature
+         :dkim-signature;
+        bh=2C7eWmEnxO8km9E17PTK2YeeLdN1/Ie9Yi5BcwpwJC4=;
+        b=fnWXCGx0ZK1EIyve1gsh/qUbheGJrmWnu23hpEvhbKEjS498wksLj3QtT3GfpanvyY
+         geu5HYSFzpWx1GtVjiOhqKc6ohIlJV5e8MU2FKlvPJ0xLSyuGykPTQZxMgsL4Hunmvse
+         TwEaGaPHJ+tEIvQQEW0KqQcjst324my2dRDtDg0H7W9NCkbWEl1YniJiQcwxlpj8Cc6I
+         Y3840zlPFQlcHA6QrkjF6nRsdGKfudGWX1zTZbO6FeqjhSFBiZ/sSQmzIzkOT3pz3u32
+         gZK2Bk+18TjaY+Qz4D65r/dqBG7gmbt3Qlv2LEgXZrP2fp/fh+DG3bTW2uczqRbcUouI
+         Mv4Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@fishpond.com.au header.s=nq2uaua5rddvlya3rzhkasfwodzpefaa header.b=Khi9JG1d;
+       dkim=pass header.i=@amazonses.com header.s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug header.b="FuzBtk6/";
+       spf=pass (google.com: domain of 01000165cb687850-5d9d1fb2-3cea-4b35-b141-ecc13671bada-000000@ses.fishpond.com.au designates 54.240.11.140 as permitted sender) smtp.mailfrom=01000165cb687850-5d9d1fb2-3cea-4b35-b141-ecc13671bada-000000@ses.fishpond.com.au
+Return-Path: <01000165cb687850-5d9d1fb2-3cea-4b35-b141-ecc13671bada-000000@ses.fishpond.com.au>
+Received: from a11-140.smtp-out.amazonses.com (a11-140.smtp-out.amazonses.com. [54.240.11.140])
+        by mx.google.com with ESMTPS id h26-v6si532288qkj.82.2018.09.11.18.32.26
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Tue, 11 Sep 2018 18:32:26 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 01000165cb687850-5d9d1fb2-3cea-4b35-b141-ecc13671bada-000000@ses.fishpond.com.au designates 54.240.11.140 as permitted sender) client-ip=54.240.11.140;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@fishpond.com.au header.s=nq2uaua5rddvlya3rzhkasfwodzpefaa header.b=Khi9JG1d;
+       dkim=pass header.i=@amazonses.com header.s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug header.b="FuzBtk6/";
+       spf=pass (google.com: domain of 01000165cb687850-5d9d1fb2-3cea-4b35-b141-ecc13671bada-000000@ses.fishpond.com.au designates 54.240.11.140 as permitted sender) smtp.mailfrom=01000165cb687850-5d9d1fb2-3cea-4b35-b141-ecc13671bada-000000@ses.fishpond.com.au
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=nq2uaua5rddvlya3rzhkasfwodzpefaa; d=fishpond.com.au;
+	t=1536715946;
+	h=To:From:Subject:Date:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID;
+	bh=2C7eWmEnxO8km9E17PTK2YeeLdN1/Ie9Yi5BcwpwJC4=;
+	b=Khi9JG1dVFJT7dBf4zo0Y+53u2PYz2HKeNhGxvndU9jjJw/0VFDFUQXVpuce58j4
+	4M0Wh599JdiMK8USQbxamDPoYbBfZJQFLPSCXDS9jARshftXMCc6R00xbX69U1r3khI
+	9v/I7sUmi9F0KL/77yQUdBql9Kpux7b1/DqDb68A=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ug7nbtf4gccmlpwj322ax3p6ow6yfsug; d=amazonses.com; t=1536715946;
+	h=To:From:Subject:Date:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Feedback-ID;
+	bh=2C7eWmEnxO8km9E17PTK2YeeLdN1/Ie9Yi5BcwpwJC4=;
+	b=FuzBtk6/TLfs5zW/30gr+4xBRwacMgT8OqZ/a1xGX2yATRYTvH77r/wDKqAVM25x
+	iRNYCir85bbsFCQcqOQiz7J0NWHZlb8KK6RF51ATJoqh4QZFd508SXIZt5Bnh3t86R7
+	HCz+C+8hKsQP3z7c4i/yd1INlp4G2JMPo1TjZ14U=
+To: sometime5858@gmail.com
+From: "Fishpond.com.au" <newsletters@fishpond.com.au>
+Subject: All the doggy necessities you could ever need!
+Date: Wed, 12 Sep 2018 01:32:26 +0000
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+MIME-Version: 1.0
+Message-ID: <01000165cb687850-5d9d1fb2-3cea-4b35-b141-ecc13671bada-000000@email.amazonses.com>
+X-SES-Outgoing: 2018.09.12-54.240.11.140
+Feedback-ID: 1.us-east-1.7cXIxL65IKl47b9viq9KStJFt5TDhKkZOCO9Ay+MYSc=:AmazonSES
+X-TUID: XbfTYySF5Vj8
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://w=
+ww.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html xmlns=3D"http://=
+www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=
+=3D"urn:schemas-microsoft-com:office:office">=0A<head> <meta name=3D"gen=
+erator" content=3D"HTML Tidy for Linux (vers 25 March 2009), see www.w3.=
+org" /><!--[if gte mso 9]> <xml> <o:OfficeDocumentSettings> <o:AllowPNG/=
+> <o:PixelsPerInch>96</o:PixelsPerInch> </o:OfficeDocumentSettings> </xm=
+l> <![endif]--> <meta http-equiv=3D"Content-type" content=3D"text/html;=
+ charset=3Dus-ascii" /> <meta name=3D"viewport" content=3D"width=3Ddevic=
+e-width, initial-scale=3D1, maximum-scale=3D1" /> <meta http-equiv=3D"X-=
+UA-Compatible" content=3D"IE=3Dedge" /> <meta name=3D"format-detection"=
+ content=3D"date=3Dno" /> <meta name=3D"format-detection" content=3D"add=
+ress=3Dno" /> <meta name=3D"format-detection" content=3D"telephone=3Dno"=
+ /> <link href=3D"https://fonts.googleapis.com/css?family=3DLato|Montser=
+rat" rel=3D"stylesheet" type=3D"text/css" /> <title>All the doggy necess=
+ities you could ever need!</title> <style type=3D"text/css" media=3D"scr=
+een"> /*<![CDATA[*/ /* Linked Styles */ body { padding:0!important; Marg=
+in:0!important; display:block!important; min-width:100%!important; width=
+:100%!important; background:#f2f2f2; -webkit-text-size-adjust:none; } a=
+ { color:#3361e3; text-decoration:underline } img { -ms-interpolation-mo=
+de: bicubic; /* Allow smoother rendering of resized image in Internet Ex=
+plorer */ } [style*=3D"Lato"] { font-family: 'Lato', Arial, sans-serif!i=
+mportant; } [style*=3D"Montserrat"] { font-family: 'Montserrat', Arial,=
+ sans-serif!important; } .footer a { color:#ffffff; text-decoration:unde=
+rline; } .logo { width: 90px; Margin: 0 20px; } p { padding:0!important;=
+ Margin:0!important } /* Mobile styles */ @media only screen and (max-de=
+vice-width: 480px), only screen and (max-width: 480px) { table.mobile-sh=
+ell { width: 100%!important; min-width: 100%!important; } table.center {=
+ Margin: 0 auto!important; } td.td { width: 100%!important; min-width: 1=
+00%!important; } div.mobile-br-5 { height: 5px!important; } div.mobile-b=
+r-10 { height: 10px!important; } div.mobile-br-15 { height: 15px!importa=
+nt; } th.m-td, td.m-td, div.hide-for-mobile, span.hide-for-mobile { disp=
+lay: none!important; width: 0!important; height: 0!important; font-size:=
+ 0!important; line-height: 0!important; min-height: 0!important; } span.=
+mobile-block { display: block!important; } div.img-m-center { text-align=
+: center!important; } div.fluid-img img, td.fluid-img img { width: 100%!=
+important; max-width: 100%!important; height: auto!important; } th.colum=
+n, th.column-top, th.column-bottom, th.column-dir { float: left!importan=
+t; width: 100%!important; display: block!important; } td.text-smaller-ri=
+ght { text-align: left!important; } td.content-spacing { width: 15px!imp=
+ortant; } .logo { width: 45px; Margin: 0 10px; } .text-header-besides-lo=
+go { text-align: center; } } @media only screen and (max-device-width: 3=
+20px), only screen and (max-width: 320px) { .logo { width: 40px; Margin:=
+ 0 6px; } } /*]]>*/ </style> </head> <body style=3D"background: rgb(242,=
+ 242, 242); text-size-adjust: none; padding: 0px!important; Margin: 0px!=
+important; display: block!important; min-width: 100%!important; width: 1=
+00%!important;"> <table width=3D"100%" border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"0"> <tbody> <tr> <td> <!-- Header --> <table width=3D"100%"=
+ border=3D"0" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#2047B7"> <=
+tbody> <tr> <td align=3D"center" valign=3D"top"> <table border=3D"0" cel=
+lspacing=3D"0" cellpadding=3D"0" class=3D"mobile-shell"> <tbody> <tr> <t=
+d class=3D"td" style=3D"width:730px; min-width:730px; padding:0; Margin:=
+0; font-weight:normal;"> <table width=3D"100%" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt; line-h=
+eight:0pt; text-align:center; width:100%; min-width:100%"> <tbody> <tr>=
+ <td class=3D"td" style=3D"padding:0; Margin:0; font-weight:normal;"> <d=
+iv style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> <=
+div class=3D"hide-for-mobile"> <div style=3D"height: 20px; width:100%; m=
+in-width:100%"> &nbsp;=0A</div> </div> <table width=3D"100%" border=3D"0=
+" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"content=
+-spacing" style=3D"font-size:0pt; line-height:0pt; text-align:left" widt=
+h=3D"1"></td> <td> <table width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0"> <tbody> <tr> <th class=3D"content-spacing" style=3D"=
+font-size:0pt; line-height:0pt; text-align:left" width=3D"40"></th> <th=
+ class=3D"column-top" style=3D"font-size:0pt; line-height:0pt; padding:0=
+; Margin:0; font-weight:normal; vertical-align:top; Margin:0" valign=3D"=
+top"> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0"> <tbody> <tr> <td class=3D"text-preheader" style=3D"color:#fff; f=
+ont-family:Arial,sans-serif,'Lato'; font-size:12px; line-height:16px; te=
+xt-align:left"> </td> </tr> </tbody> </table> </th> <th class=3D"column-=
+top" style=3D"font-size:0pt; line-height:0pt; padding:0; Margin:0; font-=
+weight:normal; vertical-align:top; Margin:0" valign=3D"top" width=3D"0">=
+ <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-align:ce=
+nter; width:100%; min-width:100%"> <tbody> <tr> <td height=3D"10" class=
+=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-align:center;=
+ width:100%; min-width:100%">&nbsp;</td> </tr> </tbody> </table> </th> <=
+th class=3D"column-top" style=3D"font-size:0pt; line-height:0pt; padding=
+:0; Margin:0; font-weight:normal; vertical-align:top; Margin:0" valign=
+=3D"top" width=3D"150"> <table width=3D"100%" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0"> <tbody> <tr> <td style=3D"color:#ffffff; font-=
+family:Arial,sans-serif,'Lato'; font-size:12px; line-height:16px; text-a=
+lign: right"> <a style=3D"color: #fff; text-decoration: underline" href=
+=3D"http://www.fishpond.com.au/email?id=3D37549&amp;cId=3D2.k3J5Mq8TnRlL=
+gI469-LHnQ&amp;campaign=3D27529&amp;isp=3Dgmail.com">View Online</a> </t=
+d> </tr> </tbody> </table> </th> <th class=3D"content-spacing" style=3D"=
+font-size:0pt; line-height:0pt; text-align:left" width=3D"40"></th> </tr=
+> </tbody> </table> <div style=3D"height: 20px; width:100%; min-width:10=
+0%"> &nbsp;=0A</div> </td> <td class=3D"content-spacing" style=3D"font-s=
+ize:0pt; line-height:0pt; text-align:left" width=3D"1"></td> </tr> </tbo=
+dy> </table> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0"> <tbody> <tr> <td class=3D"content-spacing" style=3D"font-si=
+ze:0pt; line-height:0pt; text-align:left" width=3D"1"></td> <td bgcolor=
+=3D"#3361E3"> <div style=3D"height: 20px; width:100%; min-width:100%"> &=
+nbsp;=0A</div> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cell=
+padding=3D"0"> <tbody> <tr> <td class=3D"content-spacing" style=3D"font-=
+size:0pt; line-height:0pt; text-align:left" width=3D"40"></td> <td> <tab=
+le width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbo=
+dy> <tr> <th class=3D"column-top" style=3D"font-size:0pt; line-height:0p=
+t; padding:0; Margin:0; font-weight:normal; vertical-align:top; Margin:0=
+" valign=3D"top" width=3D"178"> <table width=3D"100%" border=3D"0" cells=
+pacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td> <div class=3D"img-cent=
+er" style=3D"font-size:0pt; line-height:0pt; text-align:center"> <a href=
+=3D"http://www.fishpond.com.au/?utm_source=3Demail&amp;utm_medium=3Dpets=
+&amp;utm_content=3Dpets_dog_apparel_accesories&amp;utm_campaign=3DPets_D=
+ogs_Accessories_E15VM_Sep2_AU" target=3D"_blank"> <img src=3D"http://cdn=
+1.fishpond.com.au/fp_uploads/site_images/logo/fishpond.com.au.png" borde=
+r=3D"0" alt=3D"Fishpond.com.au" /> </a> </div> </td> </tr> </tbody> </ta=
+ble> </th> <th class=3D"column-top" style=3D"font-size:0pt; line-height:=
+0pt; padding:0; Margin:0; font-weight:normal; vertical-align:top; Margin=
+:0" valign=3D"top"> <table width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0"> <tbody> <tr> <td align=3D"right"> <div style=3D"heig=
+ht: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> <!-- Button --> <=
+table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"center">=
+ <tbody> <tr> <td bgcolor=3D"#FF6600" style=3D"border-radius: 3px;"> <di=
+v style=3D"height: 7px; width:100%; min-width:100%"> &nbsp;=0A</div> <ta=
+ble width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tb=
+ody> <tr> <td class=3D"img" style=3D"font-size:0pt; line-height:0pt; tex=
+t-align:left" width=3D"15"></td> <td class=3D"text-button" style=3D"colo=
+r:#ffffff; font-family:Arial,sans-serif,'Montserrat'; font-size:12px; li=
+ne-height:16px; text-align:center"> <a href=3D"http://www.fishpond.com.a=
+u/helpdesk.php?question_id=3D11&amp;utm_source=3Demail&amp;utm_medium=3D=
+pets&amp;utm_content=3Dpets_dog_apparel_accesories&amp;utm_campaign=3DPe=
+ts_Dogs_Accessories_E15VM_Sep2_AU" target=3D"_blank" class=3D"link-white=
+" style=3D"color:#ffffff; text-decoration:none"> <strong class=3D"link-w=
+hite" style=3D"color:#ffffff; text-decoration:none"> Free Shipping Natio=
+nwide!</strong></a></td> <td class=3D"img" style=3D"font-size:0pt; line-=
+height:0pt; text-align:left" width=3D"15"></td> </tr> </tbody> </table>=
+ <div style=3D"height: 7px; width:100%; min-width:100%"> &nbsp;=0A</div>=
+ </td> </tr> </tbody> </table><!-- END Button --> <div style=3D"height:=
+ 5px; width:100%; min-width:100%"> &nbsp;=0A</div> <div class=3D"text-he=
+ader-besides-logo" style=3D"color:#ffffff; font-family:Arial,sans-serif,=
+'Montserrat'; font-size:12px; line-height:16px;"> Australasia's Biggest=
+ Online Store </div> </td> </tr> </tbody> </table> </th> </tr> </tbody>=
+ </table> <div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp=
+;=0A</div> <div class=3D"fluid-img" style=3D"font-size:0pt; line-height:=
+0pt; text-align:left"> <a href=3D"https://www.fishpond.com.au/Pets?utm_s=
+ource=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_a=
+ccesories&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU"> <img=
+ width=3D"648" style=3D"width: 100%; max-width: 648px" src=3D"https://cd=
+n1.fishpond.co.nz/fp_uploads/email_images/pets.jpg" border=3D"0" alt=3D"=
+" /> </a> </div> <div style=3D"height: 30px; width:100%; min-width:100%"=
+> &nbsp;=0A</div> <div class=3D"hide-for-mobile"> <div style=3D"height:=
+ 20px; width:100%; min-width:100%"> &nbsp;=0A</div> </div> </td> <td cla=
+ss=3D"content-spacing" style=3D"font-size:0pt; line-height:0pt; text-ali=
+gn:left" width=3D"40"></td> </tr> </tbody> </table> </td> <td class=3D"c=
+ontent-spacing" style=3D"font-size:0pt; line-height:0pt; text-align:left=
+" width=3D"1"></td> </tr> </tbody> </table> </td> </tr> </tbody> </table=
+> </td> </tr> </tbody> </table> </td> </tr> </tbody>=0A</table> <table w=
+idth=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" bgcolor=
+=3D"#F2F2F2"> <tbody> <tr> <td align=3D"center" valign=3D"top"> <table b=
+order=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"mobile-shell">=
+ <tbody> <tr> <td class=3D"td" style=3D"width:730px; min-width:730px; pa=
+dding:0; Margin:0; font-weight:normal;"> <table width=3D"100%" border=3D=
+"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"conte=
+nt-spacing" style=3D"font-size:0pt; line-height:0pt; text-align:left" wi=
+dth=3D"1"></td> <td> <!-- Greetings: name, intro text, button. --> <!--=
+ Logos --> <!-- Links --> <!-- Products --> <table width=3D"100%" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td bgcolor=3D"=
+#ffffff" style=3D"border-radius: 5px; "> <table width=3D"100%" border=3D=
+"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"conte=
+nt-spacing" style=3D"font-size:0pt; line-height:0pt; text-align:left" wi=
+dth=3D"40"></td> <td align=3D"center"> <table width=3D"100%" border=3D"0=
+" cellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-siz=
+e:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%"><=
+tbody><tr><td height=3D"20" class=3D"spacer" style=3D"font-size:0pt; lin=
+e-height:0pt; text-align:center; width:100%; min-width:100%">&nbsp;</td>=
+</tr></tbody></table> <div class=3D"hide-for-mobile"><div style=3D"heigh=
+t: 20px; width:100%; min-width:100%"> &nbsp;=0A</div>=0A</div> <div clas=
+s=3D"h4" style=3D"color:#3361e3; font-family:Arial,sans-serif,'Lato'; fo=
+nt-size:20px; line-height:24px; text-align:left; font-weight:bold">Doggy=
+ Bandanas</div> <div style=3D"height: 30px; width:100%; min-width:100%">=
+ &nbsp;=0A</div> <table width=3D"100%" border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"0" bgcolor=3D"#f6f6f6" class=3D"border" style=3D"font-size:=
+0pt; line-height:0pt; text-align:center; width:100%; min-width:100%"><tb=
+ody><tr><td bgcolor=3D"#f6f6f6" height=3D"2" class=3D"border" style=3D"f=
+ont-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:=
+100%">&nbsp;</td></tr></tbody></table> <div style=3D"height: 30px; width=
+:100%; min-width:100%"> &nbsp;=0A</div> <table width=3D"100%" border=3D"=
+0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td> <table width=
+=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr>=
+ <th class=3D"column-top" style=3D"font-size:0pt; line-height:0pt; paddi=
+ng:0; Margin:0; font-weight:normal; vertical-align:top; Margin:0" valign=
+=3D"top" width=3D"195"> <table width=3D"100%" border=3D"0" cellspacing=
+=3D "0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"img-center" style=
+=3D"font-size:0pt; line-height:0pt; text-align:center"> <a href=3D"https=
+://www.fishpond.com.au/Pets/Petzone-Sprinkle-Bandana/9400994813661?utm_s=
+ource=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_a=
+ccesories&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU"> <img=
+ src=3D"http://rcdn-4.fishpond.com.au/0176/049/206/609313263/5.jpeg" bor=
+der=3D"0" alt=3D"" /> </a> </td> </tr> </tbody> </table> </th> <th class=
+=3D"column-top" style=3D"font-size:0pt; line-height:0pt; padding:0; Marg=
+in:0; font-weight:normal; vertical-align:top; Margin:0" valign=3D"top" w=
+idth=3D"1"> <div style=3D"height: 20px; width:100%; min-width:100%"> &nb=
+sp;=0A</div> </th> <th class=3D"column-top" style=3D"font-size:0pt; line=
+-height:0pt; padding:0; Margin:0; font-weight:normal; vertical-align:top=
+; Margin:0" valign=3D"top" width=3D"30"> <table width=3D"100%" border=3D=
+"0" cellspacing=3D "0" cellpadding=3D"0"> <tbody> <tr> <td> <div class=
+=3D "hide-for-mobile"> <div style=3D"height: 20px; width:100%; min-width=
+:100%"> &nbsp;=0A</div> <div class=3D"img-right" style=3D"font-size:0pt;=
+ line-height:0pt; text-align:right"> <img src=3D"https://cdn1.fishpond.c=
+om.au/fp_uploads/email_images/triangle.jpg" border=3D"0" width=3D"16" he=
+ight=3D"31" alt=3D "" /> </div> </div> </td> </tr> </tbody> </table> </t=
+h> <th class=3D"column-top" style=3D"font-size:0pt; line-height:0pt; pad=
+ding:0; Margin:0; font-weight:normal; vertical-align:top; Margin:0" vali=
+gn=3D"top"> <table width=3D"100%" border=3D"0" cellspacing=3D "0" cellpa=
+dding=3D"0"> <tbody> <tr> <td bgcolor=3D "#F6F6F6" style=3D"border-radiu=
+s: 5px;"> <table width=3D "100%" border=3D"0" cellspacing=3D"0" cellpadd=
+ing=3D "0"> <tbody> <tr> <td class=3D"content-spacing" style=3D"font-siz=
+e:0pt; line-height:0pt; text-align:left" width=3D "30"> </td> <td> <div=
+ style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> <!-=
+- Price and Button --> <table width=3D"100%" border=3D "0" cellspacing=
+=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"text-price" style=3D=
+"color:#24b837; font-family:Arial,sans-serif,'Lato'; font-size:28px; lin=
+e-height:32px; text-align:left; font-weight:bold"> $10.35 </td> <td alig=
+n=3D"right"> <!-- Button --> <table border=3D"0" cellspacing=3D"0" cellp=
+adding=3D"0"> <tbody> <tr> <td bgcolor=3D"#5DC623"> <table width=3D"100%=
+" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" styl=
+e=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%; min-=
+width:100%"> <tbody> <tr> <td height=3D"10" class=3D"spacer" style=3D"fo=
+nt-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:1=
+00%"> &nbsp;</td> </tr> </tbody> </table> <table width=3D"100%" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"im=
+g" style=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D"20=
+"> </td> <td class=3D"text-button2" style=3D"color:#ffffff; font-family:=
+Arial,sans-serif,'Lato'; font-size:18px; line-height:22px; text-align:ce=
+nter"> <a href=3D"https://www.fishpond.com.au/Pets/Petzone-Sprinkle-Band=
+ana/9400994813661?utm_source=3Demail&amp;utm_medium=3Dpets&amp;utm_conte=
+nt=3Dpets_dog_apparel_accesories&amp;utm_campaign=3DPets_Dogs_Accessorie=
+s_E15VM_Sep2_AU" target=3D"_blank" class=3D"link-white" style=3D"color:#=
+ffffff; text-decoration:none"> <strong class=3D"link-white" style=3D"col=
+or:#ffffff; text-decoration:none"> Buy Now </strong> </a> </td> <td clas=
+s=3D"img" style=3D"font-size:0pt; line-height:0pt; text-align:left" widt=
+h=3D"20"> </td> </tr> </tbody> </table> <table width=3D"100%" border=3D"=
+0" cellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-si=
+ze:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%">=
+ <tbody> <tr> <td height=3D"10" class=3D"spacer" style=3D"font-size:0pt;=
+ line-height:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;=
+</td> </tr> </tbody> </table> </td> </tr> </tbody> </table><!-- END Butt=
+on --> </td> </tr> </tbody> </table> <!-- END Price and Button --> <div=
+ style=3D"height: 14px; width:100%; min-width:100%"> &nbsp;=0A</div> <ta=
+ble width=3D"100%" border=3D "0" cellspacing=3D"0" cellpadding=3D"0" bgc=
+olor=3D"#EBE7D8" class=3D "border" style=3D"font-size:0pt; line-height:0=
+pt; text-align:center; width:100%; min-width:100%"> <tbody> <tr> <td bgc=
+olor=3D"#EBE7D8" height=3D"1" class=3D"border" style=3D"font-size:0pt; l=
+ine-height:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;</=
+td> </tr> </tbody> </table> <div style=3D"height: 14px; width:100%; min-=
+width:100%"> &nbsp;=0A</div> <table width=3D"100%" border=3D "0" cellspa=
+cing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"text-small-black=
+" style=3D"color:#000000; font-family:Arial,sans-serif,'Lato'; font-size=
+:12px; line-height:16px; text-align:left; font-weight:bold"> </td> <td a=
+lign=3D"right"> <div class=3D"text-orange-right" style=3D"color:#ff6600;=
+ font-family:Arial,sans-serif,'Lato'; font-size:16px; line-height:20px;=
+ text-align:right; font-weight:bold"> Limited Stock! </div> </td> </tr>=
+ </tbody> </table> <div style=3D"height: 14px; width:100%; min-width:100=
+%"> &nbsp;=0A</div> <table width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" bgcolor=3D"#EBE7D8" class=3D"border" style=3D"font-si=
+ze:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%">=
+ <tbody> <tr> <td bgcolor=3D"#EBE7D8" height=3D"1" class=3D"border" styl=
+e=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%; min-=
+width:100%"> &nbsp;</td> </tr> </tbody> </table><!-- Title --> <div styl=
+e=3D"height: 7px; width:100%; min-width:100%"> &nbsp;=0A</div> <div clas=
+s=3D"h2" style=3D"color:#000000; font-family:Arial,sans-serif,'Lato'; fo=
+nt-size:20px; line-height:24px; text-align:left; font-weight:bold"> Petz=
+one Sprinkle Bandana </div> <table width=3D"100%" border=3D "0" cellspac=
+ing=3D"0" cellpadding=3D"0" class=3D "spacer" style=3D"font-size:0pt; li=
+ne-height:0pt; text-align:center; width:100%; min-width:100%"> <tbody> <=
+tr> <td height=3D"8" class=3D"spacer" style=3D"font-size:0pt; line-heigh=
+t:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;</td> </tr>=
+ </tbody> </table><!-- Title --> <table width=3D"100%" border=3D "0" cel=
+lspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <th class=3D"column-top"=
+ style=3D"font-size:0pt; line-height:0pt; padding:0; Margin:0; font-weig=
+ht:normal; vertical-align:top; Margin:0" valign=3D"top"> <table width=3D=
+"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <t=
+d class=3D"text-smaller" style=3D"color:#000000; font-family:Arial,sans-=
+serif,'Lato'; font-size:12px; line-height:16px; text-align:left"> </td>=
+ </tr> </tbody> </table> </th> </tr> </tbody> </table> <table width=3D"1=
+00%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" s=
+tyle=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%; m=
+in-width:100%"> <tbody> <tr> <td height=3D"10" class=3D"spacer" style=3D=
+"font-size:0pt; line-height:0pt; text-align:center; width:100%; min-widt=
+h:100%"> &nbsp;</td> </tr> </tbody> </table> <div class=3D"text-small" s=
+tyle=3D"color:#4c4c4c; font-family:Arial,sans-serif,'Lato'; font-size:14=
+px; line-height:18px; text-align:left"> Our classic tie-on spinkle banda=
+na is the perfect accessory for your dapper dog. Check out our other ban=
+danas and accessories for your dog! 60 x 43 x 43cm Made in China Suitabl=
+e for all dogs </div> <div style=3D"height: 20px; width:100%; min-width:=
+100%"> &nbsp;=0A</div> <!-- Button --> <table border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0"> <tbody> <tr> <td bgcolor=3D"#FF6600"> <div sty=
+le=3D"height: 8px; width:100%; min-width:100%"> &nbsp;=0A</div> <table w=
+idth=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody>=
+ <tr> <td class=3D"img" style=3D"font-size:0pt; line-height:0pt; text-al=
+ign:left" width=3D"20"> </td> <td class=3D"text-button" style=3D"color:#=
+ffffff; font-family:Arial,sans-serif,'Montserrat'; font-size:12px; line-=
+height:16px; text-align:center"> <a href=3D"https://www.fishpond.com.au/=
+Pets/Petzone-Sprinkle-Bandana/9400994813661?utm_source=3Demail&amp;utm_m=
+edium=3Dpets&amp;utm_content=3Dpets_dog_apparel_accesories&amp;utm_campa=
+ign=3DPets_Dogs_Accessories_E15VM_Sep2_AU" target=3D"_blank" class=3D"li=
+nk-white" style=3D"color:#ffffff; text-decoration:none"> <strong class=
+=3D"link-white" style=3D"color:#ffffff; text-decoration:none"> Read More=
+</strong></a></td> <td class=3D"img" style=3D"font-size:0pt; line-height=
+:0pt; text-align:left" width=3D"20"> </td> </tr> </tbody> </table> <div=
+ style=3D"height: 10px; width:100%; min-width:100%"> &nbsp;=0A</div> </t=
+d> </tr> </tbody> </table><!-- END Button --> <div style=3D"height: 20px=
+; width:100%; min-width:100%"> &nbsp;=0A</div> </td> <td class=3D"conten=
+t-spacing" style=3D"font-size:0pt; line-height:0pt; text-align:left" wid=
+th=3D "30"> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table>=
+ </th> </tr> </tbody> </table> <div style=3D"height: 20px; width:100%; m=
+in-width:100%"> &nbsp;=0A</div> <div class=3D"hide-for-mobile"> <div sty=
+le=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> </div>=
+ </td> </tr> </tbody>=0A</table>=0A<div style=3D"height: 20px; width:100=
+%; min-width:100%"> &nbsp;=0A</div>=0A<table width=3D"100%" border=3D"0"=
+ cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td> <table width=3D"=
+100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <th=
+ class=3D"column-top" style=3D"font-size:0pt; line-height:0pt; padding:0=
+; Margin:0; font-weight:normal; vertical-align:top; Margin:0" valign=3D"=
+top" width=3D"195"> <table width=3D"100%" border=3D"0" cellspacing=3D "0=
+" cellpadding=3D"0"> <tbody> <tr> <td class=3D"img-center" style=3D"font=
+-size:0pt; line-height:0pt; text-align:center"> <a href=3D"https://www.f=
+ishpond.com.au/Pets/Pet-Birthday-Bandana/0711765327157?utm_source=3Demai=
+l&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_accesories&am=
+p;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU"> <img src=3D"http:=
+//rcdn-1.fishpond.com.au/0168/389/210/502218721/5.jpeg" border=3D"0" alt=
+=3D"" /> </a> </td> </tr> </tbody> </table> </th> <th class=3D"column-to=
+p" style=3D"font-size:0pt; line-height:0pt; padding:0; Margin:0; font-we=
+ight:normal; vertical-align:top; Margin:0" valign=3D"top" width=3D"1"> <=
+div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div>=
+ </th> <th class=3D"column-top" style=3D"font-size:0pt; line-height:0pt;=
+ padding:0; Margin:0; font-weight:normal; vertical-align:top; Margin:0"=
+ valign=3D"top" width=3D"30"> <table width=3D"100%" border=3D"0" cellspa=
+cing=3D "0" cellpadding=3D"0"> <tbody> <tr> <td> <div class=3D "hide-for=
+-mobile"> <div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp=
+;=0A</div> <div class=3D"img-right" style=3D"font-size:0pt; line-height:=
+0pt; text-align:right"> <img src=3D"https://cdn1.fishpond.com.au/fp_uplo=
+ads/email_images/triangle.jpg" border=3D"0" width=3D"16" height=3D"31" a=
+lt=3D "" /> </div> </div> </td> </tr> </tbody> </table> </th> <th class=
+=3D"column-top" style=3D"font-size:0pt; line-height:0pt; padding:0; Marg=
+in:0; font-weight:normal; vertical-align:top; Margin:0" valign=3D"top">=
+ <table width=3D"100%" border=3D"0" cellspacing=3D "0" cellpadding=3D"0"=
+> <tbody> <tr> <td bgcolor=3D "#F6F6F6" style=3D"border-radius: 5px;"> <=
+table width=3D "100%" border=3D"0" cellspacing=3D"0" cellpadding=3D "0">=
+ <tbody> <tr> <td class=3D"content-spacing" style=3D"font-size:0pt; line=
+-height:0pt; text-align:left" width=3D "30"> </td> <td> <div style=3D"he=
+ight: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> <!-- Price and=
+ Button --> <table width=3D"100%" border=3D "0" cellspacing=3D"0" cellpa=
+dding=3D"0"> <tbody> <tr> <td class=3D"text-price" style=3D"color:#24b83=
+7; font-family:Arial,sans-serif,'Lato'; font-size:28px; line-height:32px=
+; text-align:left; font-weight:bold"> $28.73 </td> <td align=3D"right">=
+ <!-- Button --> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+> <tbody> <tr> <td bgcolor=3D"#5DC623"> <table width=3D"100%" border=3D"=
+0" cellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-si=
+ze:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%">=
+ <tbody> <tr> <td height=3D"10" class=3D"spacer" style=3D"font-size:0pt;=
+ line-height:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;=
+</td> </tr> </tbody> </table> <table width=3D"100%" border=3D"0" cellspa=
+cing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"img" style=3D"fo=
+nt-size:0pt; line-height:0pt; text-align:left" width=3D"20"> </td> <td c=
+lass=3D"text-button2" style=3D"color:#ffffff; font-family:Arial,sans-ser=
+if,'Lato'; font-size:18px; line-height:22px; text-align:center"> <a href=
+=3D"https://www.fishpond.com.au/Pets/Pet-Birthday-Bandana/0711765327157?=
+utm_source=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_appa=
+rel_accesories&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU" t=
+arget=3D"_blank" class=3D"link-white" style=3D"color:#ffffff; text-decor=
+ation:none"> <strong class=3D"link-white" style=3D"color:#ffffff; text-d=
+ecoration:none"> Buy Now </strong> </a> </td> <td class=3D"img" style=3D=
+"font-size:0pt; line-height:0pt; text-align:left" width=3D"20"> </td> </=
+tr> </tbody> </table> <table width=3D"100%" border=3D"0" cellspacing=3D"=
+0" cellpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt; line-heigh=
+t:0pt; text-align:center; width:100%; min-width:100%"> <tbody> <tr> <td=
+ height=3D"10" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt;=
+ text-align:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbo=
+dy> </table> </td> </tr> </tbody> </table><!-- END Button --> </td> </tr=
+> </tbody> </table> <!-- END Price and Button --> <div style=3D"height:=
+ 14px; width:100%; min-width:100%"> &nbsp;=0A</div> <table width=3D"100%=
+" border=3D "0" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#EBE7D8"=
+ class=3D "border" style=3D"font-size:0pt; line-height:0pt; text-align:c=
+enter; width:100%; min-width:100%"> <tbody> <tr> <td bgcolor=3D"#EBE7D8"=
+ height=3D"1" class=3D"border" style=3D"font-size:0pt; line-height:0pt;=
+ text-align:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbo=
+dy> </table> <div style=3D"height: 14px; width:100%; min-width:100%"> &n=
+bsp;=0A</div> <table width=3D"100%" border=3D "0" cellspacing=3D"0" cell=
+padding=3D"0"> <tbody> <tr> <td class=3D"text-small-black" style=3D"colo=
+r:#000000; font-family:Arial,sans-serif,'Lato'; font-size:12px; line-hei=
+ght:16px; text-align:left; font-weight:bold"> </td> <td align=3D"right">=
+ <div class=3D"text-orange-right" style=3D"color:#ff6600; font-family:Ar=
+ial,sans-serif,'Lato'; font-size:16px; line-height:20px; text-align:righ=
+t; font-weight:bold"> Limited Stock! </div> </td> </tr> </tbody> </table=
+> <div style=3D"height: 14px; width:100%; min-width:100%"> &nbsp;=0A</di=
+v> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0=
+" bgcolor=3D"#EBE7D8" class=3D"border" style=3D"font-size:0pt; line-heig=
+ht:0pt; text-align:center; width:100%; min-width:100%"> <tbody> <tr> <td=
+ bgcolor=3D"#EBE7D8" height=3D"1" class=3D"border" style=3D"font-size:0p=
+t; line-height:0pt; text-align:center; width:100%; min-width:100%"> &nbs=
+p;</td> </tr> </tbody> </table><!-- Title --> <div style=3D"height: 7px;=
+ width:100%; min-width:100%"> &nbsp;=0A</div> <div class=3D"h2" style=3D=
+"color:#000000; font-family:Arial,sans-serif,'Lato'; font-size:20px; lin=
+e-height:24px; text-align:left; font-weight:bold"> Pet Birthday Bandana=
+ </div> <table width=3D"100%" border=3D "0" cellspacing=3D"0" cellpaddin=
+g=3D"0" class=3D "spacer" style=3D"font-size:0pt; line-height:0pt; text-=
+align:center; width:100%; min-width:100%"> <tbody> <tr> <td height=3D"8"=
+ class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-align:ce=
+nter; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </table><!=
+-- Title --> <table width=3D"100%" border=3D "0" cellspacing=3D"0" cellp=
+adding=3D"0"> <tbody> <tr> <th class=3D"column-top" style=3D"font-size:0=
+pt; line-height:0pt; padding:0; Margin:0; font-weight:normal; vertical-a=
+lign:top; Margin:0" valign=3D"top"> <table width=3D"100%" border=3D"0" c=
+ellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"text-small=
+er" style=3D"color:#000000; font-family:Arial,sans-serif,'Lato'; font-si=
+ze:12px; line-height:16px; text-align:left"> </td> </tr> </tbody> </tabl=
+e> </th> </tr> </tbody> </table> <table width=3D"100%" border=3D"0" cell=
+spacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt;=
+ line-height:0pt; text-align:center; width:100%; min-width:100%"> <tbody=
+> <tr> <td height=3D"10" class=3D"spacer" style=3D"font-size:0pt; line-h=
+eight:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;</td> <=
+/tr> </tbody> </table> <div class=3D"text-small" style=3D"color:#4c4c4c;=
+ font-family:Arial,sans-serif,'Lato'; font-size:14px; line-height:18px;=
+ text-align:left"> Scenereal pet Birthday celebration scarf. 2 triangle=
+ bandanas perfect to treat your furry family member on their birthday! T=
+riangle Size: 70cm x 40cm x 40cm. Suitable for small to large dogs, of c=
+ourse, we suggest you measure your dog's neck girth f... </div> <div sty=
+le=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> <!-- Bu=
+tton --> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody=
+> <tr> <td bgcolor=3D"#FF6600"> <div style=3D"height: 8px; width:100%; m=
+in-width:100%"> &nbsp;=0A</div> <table width=3D"100%" border=3D"0" cells=
+pacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"img" style=3D"=
+font-size:0pt; line-height:0pt; text-align:left" width=3D"20"> </td> <td=
+ class=3D"text-button" style=3D"color:#ffffff; font-family:Arial,sans-se=
+rif,'Montserrat'; font-size:12px; line-height:16px; text-align:center">=
+ <a href=3D"https://www.fishpond.com.au/Pets/Pet-Birthday-Bandana/071176=
+5327157?utm_source=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_=
+dog_apparel_accesories&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Se=
+p2_AU" target=3D"_blank" class=3D"link-white" style=3D"color:#ffffff; te=
+xt-decoration:none"> <strong class=3D"link-white" style=3D"color:#ffffff=
+; text-decoration:none"> Read More</strong></a></td> <td class=3D"img" s=
+tyle=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D"20"> <=
+/td> </tr> </tbody> </table> <div style=3D"height: 10px; width:100%; min=
+-width:100%"> &nbsp;=0A</div> </td> </tr> </tbody> </table><!-- END Butt=
+on --> <div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=
+=0A</div> </td> <td class=3D"content-spacing" style=3D"font-size:0pt; li=
+ne-height:0pt; text-align:left" width=3D "30"> </td> </tr> </tbody> </ta=
+ble> </td> </tr> </tbody> </table> </th> </tr> </tbody> </table> <div st=
+yle=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> <div c=
+lass=3D"hide-for-mobile"> <div style=3D"height: 20px; width:100%; min-wi=
+dth:100%"> &nbsp;=0A</div> </div> </td> </tr> </tbody>=0A</table>=0A<div=
+ style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div>=0A<=
+table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <=
+tbody> <tr> <td> <table width=3D"100%" border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"0"> <tbody> <tr> <th class=3D"column-top" style=3D"font-siz=
+e:0pt; line-height:0pt; padding:0; Margin:0; font-weight:normal; vertica=
+l-align:top; Margin:0" valign=3D"top" width=3D"195"> <table width=3D"100=
+%" border=3D"0" cellspacing=3D "0" cellpadding=3D"0"> <tbody> <tr> <td c=
+lass=3D"img-center" style=3D"font-size:0pt; line-height:0pt; text-align:=
+center"> <a href=3D"https://www.fishpond.com.au/Pets/All-for-Paws-Chill-=
+Out-Ice-Bandana/0781163170433?utm_source=3Demail&amp;utm_medium=3Dpets&a=
+mp;utm_content=3Dpets_dog_apparel_accesories&amp;utm_campaign=3DPets_Dog=
+s_Accessories_E15VM_Sep2_AU"> <img src=3D"http://rcdn-4.fishpond.com.au/=
+0168/389/214/502206071/5.jpeg" border=3D"0" alt=3D"" /> </a> </td> </tr>=
+ </tbody> </table> </th> <th class=3D"column-top" style=3D"font-size:0pt=
+; line-height:0pt; padding:0; Margin:0; font-weight:normal; vertical-ali=
+gn:top; Margin:0" valign=3D"top" width=3D"1"> <div style=3D"height: 20px=
+; width:100%; min-width:100%"> &nbsp;=0A</div> </th> <th class=3D"column=
+-top" style=3D"font-size:0pt; line-height:0pt; padding:0; Margin:0; font=
+-weight:normal; vertical-align:top; Margin:0" valign=3D"top" width=3D"30=
+"> <table width=3D"100%" border=3D"0" cellspacing=3D "0" cellpadding=3D"=
+0"> <tbody> <tr> <td> <div class=3D "hide-for-mobile"> <div style=3D"hei=
+ght: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> <div class=3D"im=
+g-right" style=3D"font-size:0pt; line-height:0pt; text-align:right"> <im=
+g src=3D"https://cdn1.fishpond.com.au/fp_uploads/email_images/triangle.j=
+pg" border=3D"0" width=3D"16" height=3D"31" alt=3D "" /> </div> </div> <=
+/td> </tr> </tbody> </table> </th> <th class=3D"column-top" style=3D"fon=
+t-size:0pt; line-height:0pt; padding:0; Margin:0; font-weight:normal; ve=
+rtical-align:top; Margin:0" valign=3D"top"> <table width=3D"100%" border=
+=3D"0" cellspacing=3D "0" cellpadding=3D"0"> <tbody> <tr> <td bgcolor=3D=
+ "#F6F6F6" style=3D"border-radius: 5px;"> <table width=3D "100%" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D "0"> <tbody> <tr> <td class=3D"c=
+ontent-spacing" style=3D"font-size:0pt; line-height:0pt; text-align:left=
+" width=3D "30"> </td> <td> <div style=3D"height: 20px; width:100%; min-=
+width:100%"> &nbsp;=0A</div> <!-- Price and Button --> <table width=3D"1=
+00%" border=3D "0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td=
+ class=3D"text-price" style=3D"color:#24b837; font-family:Arial,sans-ser=
+if,'Lato'; font-size:28px; line-height:32px; text-align:left; font-weigh=
+t:bold"> $29.95 </td> <td align=3D"right"> <!-- Button --> <table border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td bgcolor=3D"=
+#5DC623"> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-=
+align:center; width:100%; min-width:100%"> <tbody> <tr> <td height=3D"10=
+" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-align:c=
+enter; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </table>=
+ <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">=
+ <tbody> <tr> <td class=3D"img" style=3D"font-size:0pt; line-height:0pt;=
+ text-align:left" width=3D"20"> </td> <td class=3D"text-button2" style=
+=3D"color:#ffffff; font-family:Arial,sans-serif,'Lato'; font-size:18px;=
+ line-height:22px; text-align:center"> <a href=3D"https://www.fishpond.c=
+om.au/Pets/All-for-Paws-Chill-Out-Ice-Bandana/0781163170433?utm_source=
+=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_acceso=
+ries&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU" target=3D"_=
+blank" class=3D"link-white" style=3D"color:#ffffff; text-decoration:none=
+"> <strong class=3D"link-white" style=3D"color:#ffffff; text-decoration:=
+none"> Buy Now </strong> </a> </td> <td class=3D"img" style=3D"font-size=
+:0pt; line-height:0pt; text-align:left" width=3D"20"> </td> </tr> </tbod=
+y> </table> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D"0" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; tex=
+t-align:center; width:100%; min-width:100%"> <tbody> <tr> <td height=3D"=
+10" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-align=
+:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </table=
+> </td> </tr> </tbody> </table><!-- END Button --> </td> </tr> </tbody>=
+ </table> <!-- END Price and Button --> <div style=3D"height: 14px; widt=
+h:100%; min-width:100%"> &nbsp;=0A</div> <table width=3D"100%" border=3D=
+ "0" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#EBE7D8" class=3D "b=
+order" style=3D"font-size:0pt; line-height:0pt; text-align:center; width=
+:100%; min-width:100%"> <tbody> <tr> <td bgcolor=3D"#EBE7D8" height=3D"1=
+" class=3D"border" style=3D"font-size:0pt; line-height:0pt; text-align:c=
+enter; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </table>=
+ <div style=3D"height: 14px; width:100%; min-width:100%"> &nbsp;=0A</div=
+> <table width=3D"100%" border=3D "0" cellspacing=3D"0" cellpadding=3D"0=
+"> <tbody> <tr> <td class=3D"text-small-black" style=3D"color:#000000; f=
+ont-family:Arial,sans-serif,'Lato'; font-size:12px; line-height:16px; te=
+xt-align:left; font-weight:bold"> </td> <td align=3D"right"> <div class=
+=3D"text-orange-right" style=3D"color:#ff6600; font-family:Arial,sans-se=
+rif,'Lato'; font-size:16px; line-height:20px; text-align:right; font-wei=
+ght:bold"> Limited Stock! </div> </td> </tr> </tbody> </table> <div styl=
+e=3D"height: 14px; width:100%; min-width:100%"> &nbsp;=0A</div> <table w=
+idth=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" bgcolor=
+=3D"#EBE7D8" class=3D"border" style=3D"font-size:0pt; line-height:0pt; t=
+ext-align:center; width:100%; min-width:100%"> <tbody> <tr> <td bgcolor=
+=3D"#EBE7D8" height=3D"1" class=3D"border" style=3D"font-size:0pt; line-=
+height:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;</td>=
+ </tr> </tbody> </table><!-- Title --> <div style=3D"height: 7px; width:=
+100%; min-width:100%"> &nbsp;=0A</div> <div class=3D"h2" style=3D"color:=
+#000000; font-family:Arial,sans-serif,'Lato'; font-size:20px; line-heigh=
+t:24px; text-align:left; font-weight:bold"> All for Paws Chill Out Ice B=
+andana </div> <table width=3D"100%" border=3D "0" cellspacing=3D"0" cell=
+padding=3D"0" class=3D "spacer" style=3D"font-size:0pt; line-height:0pt;=
+ text-align:center; width:100%; min-width:100%"> <tbody> <tr> <td height=
+=3D"8" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-al=
+ign:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </ta=
+ble><!-- Title --> <table width=3D"100%" border=3D "0" cellspacing=3D"0"=
+ cellpadding=3D"0"> <tbody> <tr> <th class=3D"column-top" style=3D"font-=
+size:0pt; line-height:0pt; padding:0; Margin:0; font-weight:normal; vert=
+ical-align:top; Margin:0" valign=3D"top"> <table width=3D"100%" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"te=
+xt-smaller" style=3D"color:#000000; font-family:Arial,sans-serif,'Lato';=
+ font-size:12px; line-height:16px; text-align:left"> </td> </tr> </tbody=
+> </table> </th> </tr> </tbody> </table> <table width=3D"100%" border=3D=
+"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-s=
+ize:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%"=
+> <tbody> <tr> <td height=3D"10" class=3D"spacer" style=3D"font-size:0pt=
+; line-height:0pt; text-align:center; width:100%; min-width:100%"> &nbsp=
+;</td> </tr> </tbody> </table> <div class=3D"text-small" style=3D"color:=
+#4c4c4c; font-family:Arial,sans-serif,'Lato'; font-size:14px; line-heigh=
+t:18px; text-align:left"> <p>The All for Paws Chill Out Ice Bandana is a=
+ good way to protect your dog from heat stroke. Just soak the bandana in=
+ water and the special material inside will do its work. Don=E2=80=99t h=
+esitate indulge yo...</p> </div> <div style=3D"height: 20px; width:100%;=
+ min-width:100%"> &nbsp;=0A</div> <!-- Button --> <table border=3D"0" ce=
+llspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td bgcolor=3D"#FF6600">=
+ <div style=3D"height: 8px; width:100%; min-width:100%"> &nbsp;=0A</div>=
+ <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">=
+ <tbody> <tr> <td class=3D"img" style=3D"font-size:0pt; line-height:0pt;=
+ text-align:left" width=3D"20"> </td> <td class=3D"text-button" style=3D=
+"color:#ffffff; font-family:Arial,sans-serif,'Montserrat'; font-size:12p=
+x; line-height:16px; text-align:center"> <a href=3D"https://www.fishpond=
+.com.au/Pets/All-for-Paws-Chill-Out-Ice-Bandana/0781163170433?utm_source=
+=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_acceso=
+ries&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU" target=3D"_=
+blank" class=3D"link-white" style=3D"color:#ffffff; text-decoration:none=
+"> <strong class=3D"link-white" style=3D"color:#ffffff; text-decoration:=
+none"> Read More</strong></a></td> <td class=3D"img" style=3D"font-size:=
+0pt; line-height:0pt; text-align:left" width=3D"20"> </td> </tr> </tbody=
+> </table> <div style=3D"height: 10px; width:100%; min-width:100%"> &nbs=
+p;=0A</div> </td> </tr> </tbody> </table><!-- END Button --> <div style=
+=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> </td> <td=
+ class=3D"content-spacing" style=3D"font-size:0pt; line-height:0pt; text=
+-align:left" width=3D "30"> </td> </tr> </tbody> </table> </td> </tr> </=
+tbody> </table> </th> </tr> </tbody> </table> <div style=3D"height: 20px=
+; width:100%; min-width:100%"> &nbsp;=0A</div> <div class=3D"hide-for-mo=
+bile"> <div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=
+=0A</div> </div> </td> </tr> </tbody>=0A</table>=0A<div style=3D"height:=
+ 20px; width:100%; min-width:100%"> &nbsp;=0A</div>=0A<table width=3D"10=
+0%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td>=
+ <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">=
+ <tbody> <tr> <th class=3D"column-top" style=3D"font-size:0pt; line-heig=
+ht:0pt; padding:0; Margin:0; font-weight:normal; vertical-align:top; Mar=
+gin:0" valign=3D"top" width=3D"195"> <table width=3D"100%" border=3D"0"=
+ cellspacing=3D "0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"img-cen=
+ter" style=3D"font-size:0pt; line-height:0pt; text-align:center"> <a hre=
+f=3D"https://www.fishpond.com.au/Pets/4-Coloured-Pet-Bandanas/0645195046=
+954?utm_source=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_=
+apparel_accesories&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_A=
+U"> <img src=3D"http://rcdn-4.fishpond.com.au/0168/389/145/502246766/5.j=
+peg" border=3D"0" alt=3D"" /> </a> </td> </tr> </tbody> </table> </th> <=
+th class=3D"column-top" style=3D"font-size:0pt; line-height:0pt; padding=
+:0; Margin:0; font-weight:normal; vertical-align:top; Margin:0" valign=
+=3D"top" width=3D"1"> <div style=3D"height: 20px; width:100%; min-width:=
+100%"> &nbsp;=0A</div> </th> <th class=3D"column-top" style=3D"font-size=
+:0pt; line-height:0pt; padding:0; Margin:0; font-weight:normal; vertical=
+-align:top; Margin:0" valign=3D"top" width=3D"30"> <table width=3D"100%"=
+ border=3D"0" cellspacing=3D "0" cellpadding=3D"0"> <tbody> <tr> <td> <d=
+iv class=3D "hide-for-mobile"> <div style=3D"height: 20px; width:100%; m=
+in-width:100%"> &nbsp;=0A</div> <div class=3D"img-right" style=3D"font-s=
+ize:0pt; line-height:0pt; text-align:right"> <img src=3D"https://cdn1.fi=
+shpond.com.au/fp_uploads/email_images/triangle.jpg" border=3D"0" width=
+=3D"16" height=3D"31" alt=3D "" /> </div> </div> </td> </tr> </tbody> </=
+table> </th> <th class=3D"column-top" style=3D"font-size:0pt; line-heigh=
+t:0pt; padding:0; Margin:0; font-weight:normal; vertical-align:top; Marg=
+in:0" valign=3D"top"> <table width=3D"100%" border=3D"0" cellspacing=3D=
+ "0" cellpadding=3D"0"> <tbody> <tr> <td bgcolor=3D "#F6F6F6" style=3D"b=
+order-radius: 5px;"> <table width=3D "100%" border=3D"0" cellspacing=3D"=
+0" cellpadding=3D "0"> <tbody> <tr> <td class=3D"content-spacing" style=
+=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D "30"> </td=
+> <td> <div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=
+=0A</div> <!-- Price and Button --> <table width=3D"100%" border=3D "0"=
+ cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"text-pri=
+ce" style=3D"color:#24b837; font-family:Arial,sans-serif,'Lato'; font-si=
+ze:28px; line-height:32px; text-align:left; font-weight:bold"> $44.81 </=
+td> <td align=3D"right"> <!-- Button --> <table border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0"> <tbody> <tr> <td bgcolor=3D"#5DC623"> <table w=
+idth=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"=
+spacer" style=3D"font-size:0pt; line-height:0pt; text-align:center; widt=
+h:100%; min-width:100%"> <tbody> <tr> <td height=3D"10" class=3D"spacer"=
+ style=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%;=
+ min-width:100%"> &nbsp;</td> </tr> </tbody> </table> <table width=3D"10=
+0%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td c=
+lass=3D"img" style=3D"font-size:0pt; line-height:0pt; text-align:left" w=
+idth=3D"20"> </td> <td class=3D"text-button2" style=3D"color:#ffffff; fo=
+nt-family:Arial,sans-serif,'Lato'; font-size:18px; line-height:22px; tex=
+t-align:center"> <a href=3D"https://www.fishpond.com.au/Pets/4-Coloured-=
+Pet-Bandanas/0645195046954?utm_source=3Demail&amp;utm_medium=3Dpets&amp;=
+utm_content=3Dpets_dog_apparel_accesories&amp;utm_campaign=3DPets_Dogs_A=
+ccessories_E15VM_Sep2_AU" target=3D"_blank" class=3D"link-white" style=
+=3D"color:#ffffff; text-decoration:none"> <strong class=3D"link-white" s=
+tyle=3D"color:#ffffff; text-decoration:none"> Buy Now </strong> </a> </t=
+d> <td class=3D"img" style=3D"font-size:0pt; line-height:0pt; text-align=
+:left" width=3D"20"> </td> </tr> </tbody> </table> <table width=3D"100%"=
+ border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=
+=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%; min-w=
+idth:100%"> <tbody> <tr> <td height=3D"10" class=3D"spacer" style=3D"fon=
+t-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:10=
+0%"> &nbsp;</td> </tr> </tbody> </table> </td> </tr> </tbody> </table><!=
+-- END Button --> </td> </tr> </tbody> </table> <!-- END Price and Butto=
+n --> <div style=3D"height: 14px; width:100%; min-width:100%"> &nbsp;=0A=
+</div> <table width=3D"100%" border=3D "0" cellspacing=3D"0" cellpadding=
+=3D"0" bgcolor=3D"#EBE7D8" class=3D "border" style=3D"font-size:0pt; lin=
+e-height:0pt; text-align:center; width:100%; min-width:100%"> <tbody> <t=
+r> <td bgcolor=3D"#EBE7D8" height=3D"1" class=3D"border" style=3D"font-s=
+ize:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%"=
+> &nbsp;</td> </tr> </tbody> </table> <div style=3D"height: 14px; width:=
+100%; min-width:100%"> &nbsp;=0A</div> <table width=3D"100%" border=3D "=
+0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"text-s=
+mall-black" style=3D"color:#000000; font-family:Arial,sans-serif,'Lato';=
+ font-size:12px; line-height:16px; text-align:left; font-weight:bold"> <=
+/td> <td align=3D"right"> <div class=3D"text-orange-right" style=3D"colo=
+r:#ff6600; font-family:Arial,sans-serif,'Lato'; font-size:16px; line-hei=
+ght:20px; text-align:right; font-weight:bold"> Limited Stock! </div> </t=
+d> </tr> </tbody> </table> <div style=3D"height: 14px; width:100%; min-w=
+idth:100%"> &nbsp;=0A</div> <table width=3D"100%" border=3D"0" cellspaci=
+ng=3D"0" cellpadding=3D"0" bgcolor=3D"#EBE7D8" class=3D"border" style=3D=
+"font-size:0pt; line-height:0pt; text-align:center; width:100%; min-widt=
+h:100%"> <tbody> <tr> <td bgcolor=3D"#EBE7D8" height=3D"1" class=3D"bord=
+er" style=3D"font-size:0pt; line-height:0pt; text-align:center; width:10=
+0%; min-width:100%"> &nbsp;</td> </tr> </tbody> </table><!-- Title --> <=
+div style=3D"height: 7px; width:100%; min-width:100%"> &nbsp;=0A</div> <=
+div class=3D"h2" style=3D"color:#000000; font-family:Arial,sans-serif,'L=
+ato'; font-size:20px; line-height:24px; text-align:left; font-weight:bol=
+d"> 4 Coloured Pet Bandanas </div> <table width=3D"100%" border=3D "0" c=
+ellspacing=3D"0" cellpadding=3D"0" class=3D "spacer" style=3D"font-size:=
+0pt; line-height:0pt; text-align:center; width:100%; min-width:100%"> <t=
+body> <tr> <td height=3D"8" class=3D"spacer" style=3D"font-size:0pt; lin=
+e-height:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;</td=
+> </tr> </tbody> </table><!-- Title --> <table width=3D"100%" border=3D=
+ "0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <th class=3D"colu=
+mn-top" style=3D"font-size:0pt; line-height:0pt; padding:0; Margin:0; fo=
+nt-weight:normal; vertical-align:top; Margin:0" valign=3D"top"> <table w=
+idth=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody>=
+ <tr> <td class=3D"text-smaller" style=3D"color:#000000; font-family:Ari=
+al,sans-serif,'Lato'; font-size:12px; line-height:16px; text-align:left"=
+> </td> </tr> </tbody> </table> </th> </tr> </tbody> </table> <table wid=
+th=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"sp=
+acer" style=3D"font-size:0pt; line-height:0pt; text-align:center; width:=
+100%; min-width:100%"> <tbody> <tr> <td height=3D"10" class=3D"spacer" s=
+tyle=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%; m=
+in-width:100%"> &nbsp;</td> </tr> </tbody> </table> <div class=3D"text-s=
+mall" style=3D"color:#4c4c4c; font-family:Arial,sans-serif,'Lato'; font-=
+size:14px; line-height:18px; text-align:left"> 4 Bandanas with double pr=
+inted patterns for 8 styles to suit any occasion!. Colours: Blue, Red, O=
+range and Green. Material: High quality cotton. Size: Triangle Size: 60c=
+m x 41cm x 16.2.5cm. Thanks for coming to DogFun and enjoy your shopping=
+. </div> <div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=
+=0A</div> <!-- Button --> <table border=3D"0" cellspacing=3D"0" cellpadd=
+ing=3D"0"> <tbody> <tr> <td bgcolor=3D"#FF6600"> <div style=3D"height: 8=
+px; width:100%; min-width:100%"> &nbsp;=0A</div> <table width=3D"100%" b=
+order=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=
+=3D"img" style=3D"font-size:0pt; line-height:0pt; text-align:left" width=
+=3D"20"> </td> <td class=3D"text-button" style=3D"color:#ffffff; font-fa=
+mily:Arial,sans-serif,'Montserrat'; font-size:12px; line-height:16px; te=
+xt-align:center"> <a href=3D"https://www.fishpond.com.au/Pets/4-Coloured=
+-Pet-Bandanas/0645195046954?utm_source=3Demail&amp;utm_medium=3Dpets&amp=
+;utm_content=3Dpets_dog_apparel_accesories&amp;utm_campaign=3DPets_Dogs_=
+Accessories_E15VM_Sep2_AU" target=3D"_blank" class=3D"link-white" style=
+=3D"color:#ffffff; text-decoration:none"> <strong class=3D"link-white" s=
+tyle=3D"color:#ffffff; text-decoration:none"> Read More</strong></a></td=
+> <td class=3D"img" style=3D"font-size:0pt; line-height:0pt; text-align:=
+left" width=3D"20"> </td> </tr> </tbody> </table> <div style=3D"height:=
+ 10px; width:100%; min-width:100%"> &nbsp;=0A</div> </td> </tr> </tbody>=
+ </table><!-- END Button --> <div style=3D"height: 20px; width:100%; min=
+-width:100%"> &nbsp;=0A</div> </td> <td class=3D"content-spacing" style=
+=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D "30"> </td=
+> </tr> </tbody> </table> </td> </tr> </tbody> </table> </th> </tr> </tb=
+ody> </table> <div style=3D"height: 20px; width:100%; min-width:100%"> &=
+nbsp;=0A</div> <div class=3D"hide-for-mobile"> <div style=3D"height: 20p=
+x; width:100%; min-width:100%"> &nbsp;=0A</div> </div> </td> </tr> </tbo=
+dy>=0A</table> </td> <td class=3D"content-spacing" style=3D"font-size:0p=
+t; line-height:0pt; text-align:left" width=3D"40"></td> </tr> </tbody> <=
+/table> </td> </tr> </tbody> </table> <div style=3D"height: 10px; width:=
+100%; min-width:100%"> &nbsp;=0A</div> <table width=3D"100%" border=3D"0=
+" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td bgcolor=3D"#ffff=
+ff" style=3D"border-radius: 5px; "> <table width=3D"100%" border=3D"0" c=
+ellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"content-sp=
+acing" style=3D"font-size:0pt; line-height:0pt; text-align:left" width=
+=3D"40"></td> <td align=3D"center"> <table width=3D"100%" border=3D"0" c=
+ellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-size:0=
+pt; line-height:0pt; text-align:center; width:100%; min-width:100%"><tbo=
+dy><tr><td height=3D"20" class=3D"spacer" style=3D"font-size:0pt; line-h=
+eight:0pt; text-align:center; width:100%; min-width:100%">&nbsp;</td></t=
+r></tbody></table> <div class=3D"hide-for-mobile"><div style=3D"height:=
+ 20px; width:100%; min-width:100%"> &nbsp;=0A</div>=0A</div> <div class=
+=3D"h4" style=3D"color:#3361e3; font-family:Arial,sans-serif,'Lato'; fon=
+t-size:20px; line-height:24px; text-align:left; font-weight:bold">Protec=
+t their Paws</div> <div style=3D"height: 30px; width:100%; min-width:100=
+%"> &nbsp;=0A</div> <table width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" bgcolor=3D"#f6f6f6" class=3D"border" style=3D"font-si=
+ze:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%">=
+<tbody><tr><td bgcolor=3D"#f6f6f6" height=3D"2" class=3D"border" style=
+=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%; min-w=
+idth:100%">&nbsp;</td></tr></tbody></table> <div style=3D"height: 30px;=
+ width:100%; min-width:100%"> &nbsp;=0A</div> <table width=3D"100%" bord=
+er=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td> <table w=
+idth=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody>=
+ <tr> <th class=3D"column-top" style=3D"font-size:0pt; line-height:0pt;=
+ padding:0; Margin:0; font-weight:normal; vertical-align:top; Margin:0"=
+ valign=3D"top" width=3D"195"> <table width=3D"100%" border=3D"0" cellsp=
+acing=3D "0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"img-center" st=
+yle=3D"font-size:0pt; line-height:0pt; text-align:center"> <a href=3D"ht=
+tps://www.fishpond.com.au/Pets/Small-Dog-Shoes/9999679643304?utm_source=
+=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_acceso=
+ries&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU"> <img src=
+=3D"http://rcdn-4.fishpond.com.au/0154/249/358/379110647/5.jpeg" border=
+=3D"0" alt=3D"" /> </a> </td> </tr> </tbody> </table> </th> <th class=3D=
+"column-top" style=3D"font-size:0pt; line-height:0pt; padding:0; Margin:=
+0; font-weight:normal; vertical-align:top; Margin:0" valign=3D"top" widt=
+h=3D"1"> <div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=
+=0A</div> </th> <th class=3D"column-top" style=3D"font-size:0pt; line-he=
+ight:0pt; padding:0; Margin:0; font-weight:normal; vertical-align:top; M=
+argin:0" valign=3D"top" width=3D"30"> <table width=3D"100%" border=3D"0"=
+ cellspacing=3D "0" cellpadding=3D"0"> <tbody> <tr> <td> <div class=3D "=
+hide-for-mobile"> <div style=3D"height: 20px; width:100%; min-width:100%=
+"> &nbsp;=0A</div> <div class=3D"img-right" style=3D"font-size:0pt; line=
+-height:0pt; text-align:right"> <img src=3D"https://cdn1.fishpond.com.au=
+/fp_uploads/email_images/triangle.jpg" border=3D"0" width=3D"16" height=
+=3D"31" alt=3D "" /> </div> </div> </td> </tr> </tbody> </table> </th> <=
+th class=3D"column-top" style=3D"font-size:0pt; line-height:0pt; padding=
+:0; Margin:0; font-weight:normal; vertical-align:top; Margin:0" valign=
+=3D"top"> <table width=3D"100%" border=3D"0" cellspacing=3D "0" cellpadd=
+ing=3D"0"> <tbody> <tr> <td bgcolor=3D "#F6F6F6" style=3D"border-radius:=
+ 5px;"> <table width=3D "100%" border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D "0"> <tbody> <tr> <td class=3D"content-spacing" style=3D"font-size:=
+0pt; line-height:0pt; text-align:left" width=3D "30"> </td> <td> <div st=
+yle=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> <!-- P=
+rice and Button --> <table width=3D"100%" border=3D "0" cellspacing=3D"0=
+" cellpadding=3D"0"> <tbody> <tr> <td class=3D"text-price" style=3D"colo=
+r:#24b837; font-family:Arial,sans-serif,'Lato'; font-size:28px; line-hei=
+ght:32px; text-align:left; font-weight:bold"> $16.63 </td> <td align=3D"=
+right"> <!-- Button --> <table border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0"> <tbody> <tr> <td bgcolor=3D"#5DC623"> <table width=3D"100%" bor=
+der=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"=
+font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width=
+:100%"> <tbody> <tr> <td height=3D"10" class=3D"spacer" style=3D"font-si=
+ze:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%">=
+ &nbsp;</td> </tr> </tbody> </table> <table width=3D"100%" border=3D"0"=
+ cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"img" sty=
+le=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D"20"> </t=
+d> <td class=3D"text-button2" style=3D"color:#ffffff; font-family:Arial,=
+sans-serif,'Lato'; font-size:18px; line-height:22px; text-align:center">=
+ <a href=3D"https://www.fishpond.com.au/Pets/Small-Dog-Shoes/99996796433=
+04?utm_source=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_a=
+pparel_accesories&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU=
+" target=3D"_blank" class=3D"link-white" style=3D"color:#ffffff; text-de=
+coration:none"> <strong class=3D"link-white" style=3D"color:#ffffff; tex=
+t-decoration:none"> Buy Now </strong> </a> </td> <td class=3D"img" style=
+=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D"20"> </td>=
+ </tr> </tbody> </table> <table width=3D"100%" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt; line-h=
+eight:0pt; text-align:center; width:100%; min-width:100%"> <tbody> <tr>=
+ <td height=3D"10" class=3D"spacer" style=3D"font-size:0pt; line-height:=
+0pt; text-align:center; width:100%; min-width:100%"> &nbsp;</td> </tr> <=
+/tbody> </table> </td> </tr> </tbody> </table><!-- END Button --> </td>=
+ </tr> </tbody> </table> <!-- END Price and Button --> <div style=3D"hei=
+ght: 14px; width:100%; min-width:100%"> &nbsp;=0A</div> <table width=3D"=
+100%" border=3D "0" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#EBE7=
+D8" class=3D "border" style=3D"font-size:0pt; line-height:0pt; text-alig=
+n:center; width:100%; min-width:100%"> <tbody> <tr> <td bgcolor=3D"#EBE7=
+D8" height=3D"1" class=3D"border" style=3D"font-size:0pt; line-height:0p=
+t; text-align:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </t=
+body> </table> <div style=3D"height: 14px; width:100%; min-width:100%">=
+ &nbsp;=0A</div> <table width=3D"100%" border=3D "0" cellspacing=3D"0" c=
+ellpadding=3D"0"> <tbody> <tr> <td class=3D"text-small-black" style=3D"c=
+olor:#000000; font-family:Arial,sans-serif,'Lato'; font-size:12px; line-=
+height:16px; text-align:left; font-weight:bold"> </td> <td align=3D"righ=
+t"> <div class=3D"text-orange-right" style=3D"color:#ff6600; font-family=
+:Arial,sans-serif,'Lato'; font-size:16px; line-height:20px; text-align:r=
+ight; font-weight:bold"> Limited Stock! </div> </td> </tr> </tbody> </ta=
+ble> <div style=3D"height: 14px; width:100%; min-width:100%"> &nbsp;=0A<=
+/div> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" bgcolor=3D"#EBE7D8" class=3D"border" style=3D"font-size:0pt; line=
+-height:0pt; text-align:center; width:100%; min-width:100%"> <tbody> <tr=
+> <td bgcolor=3D"#EBE7D8" height=3D"1" class=3D"border" style=3D"font-si=
+ze:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%">=
+ &nbsp;</td> </tr> </tbody> </table><!-- Title --> <div style=3D"height:=
+ 7px; width:100%; min-width:100%"> &nbsp;=0A</div> <div class=3D"h2" sty=
+le=3D"color:#000000; font-family:Arial,sans-serif,'Lato'; font-size:20px=
+; line-height:24px; text-align:left; font-weight:bold"> Small Dog Shoes=
+ </div> <table width=3D"100%" border=3D "0" cellspacing=3D"0" cellpaddin=
+g=3D"0" class=3D "spacer" style=3D"font-size:0pt; line-height:0pt; text-=
+align:center; width:100%; min-width:100%"> <tbody> <tr> <td height=3D"8"=
+ class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-align:ce=
+nter; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </table><!=
+-- Title --> <table width=3D"100%" border=3D "0" cellspacing=3D"0" cellp=
+adding=3D"0"> <tbody> <tr> <th class=3D"column-top" style=3D"font-size:0=
+pt; line-height:0pt; padding:0; Margin:0; font-weight:normal; vertical-a=
+lign:top; Margin:0" valign=3D"top"> <table width=3D"100%" border=3D"0" c=
+ellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"text-small=
+er" style=3D"color:#000000; font-family:Arial,sans-serif,'Lato'; font-si=
+ze:12px; line-height:16px; text-align:left"> </td> </tr> </tbody> </tabl=
+e> </th> </tr> </tbody> </table> <table width=3D"100%" border=3D"0" cell=
+spacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt;=
+ line-height:0pt; text-align:center; width:100%; min-width:100%"> <tbody=
+> <tr> <td height=3D"10" class=3D"spacer" style=3D"font-size:0pt; line-h=
+eight:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;</td> <=
+/tr> </tbody> </table> <div class=3D"text-small" style=3D"color:#4c4c4c;=
+ font-family:Arial,sans-serif,'Lato'; font-size:14px; line-height:18px;=
+ text-align:left"> <p>Note: Compare your measurements to our sizing char=
+t. Because different shoes have different size, please careful cheque be=
+fore buy. Size: 1 (L x W) - 4.0cm X 3.5cm /(1.6inch X 1.4inch) 2 (L x W)=
+ - 4.5cm X 3.5cm /(1.8inch X 1...</p> </div> <div style=3D"height: 20px;=
+ width:100%; min-width:100%"> &nbsp;=0A</div> <!-- Button --> <table bor=
+der=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td bgcolor=
+=3D"#FF6600"> <div style=3D"height: 8px; width:100%; min-width:100%"> &n=
+bsp;=0A</div> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellp=
+adding=3D"0"> <tbody> <tr> <td class=3D"img" style=3D"font-size:0pt; lin=
+e-height:0pt; text-align:left" width=3D"20"> </td> <td class=3D"text-but=
+ton" style=3D"color:#ffffff; font-family:Arial,sans-serif,'Montserrat';=
+ font-size:12px; line-height:16px; text-align:center"> <a href=3D"https:=
+//www.fishpond.com.au/Pets/Small-Dog-Shoes/9999679643304?utm_source=3Dem=
+ail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_accesories&=
+amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU" target=3D"_blank=
+" class=3D"link-white" style=3D"color:#ffffff; text-decoration:none"> <s=
+trong class=3D"link-white" style=3D"color:#ffffff; text-decoration:none"=
+> Read More</strong></a></td> <td class=3D"img" style=3D"font-size:0pt;=
+ line-height:0pt; text-align:left" width=3D"20"> </td> </tr> </tbody> </=
+table> <div style=3D"height: 10px; width:100%; min-width:100%"> &nbsp;=
+=0A</div> </td> </tr> </tbody> </table><!-- END Button --> <div style=3D=
+"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> </td> <td cl=
+ass=3D"content-spacing" style=3D"font-size:0pt; line-height:0pt; text-al=
+ign:left" width=3D "30"> </td> </tr> </tbody> </table> </td> </tr> </tbo=
+dy> </table> </th> </tr> </tbody> </table> <div style=3D"height: 20px; w=
+idth:100%; min-width:100%"> &nbsp;=0A</div> <div class=3D"hide-for-mobil=
+e"> <div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</=
+div> </div> </td> </tr> </tbody>=0A</table>=0A<div style=3D"height: 20px=
+; width:100%; min-width:100%"> &nbsp;=0A</div>=0A<table width=3D"100%" b=
+order=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td> <tabl=
+e width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbod=
+y> <tr> <th class=3D"column-top" style=3D"font-size:0pt; line-height:0pt=
+; padding:0; Margin:0; font-weight:normal; vertical-align:top; Margin:0"=
+ valign=3D"top" width=3D"195"> <table width=3D"100%" border=3D"0" cellsp=
+acing=3D "0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"img-center" st=
+yle=3D"font-size:0pt; line-height:0pt; text-align:center"> <a href=3D"ht=
+tps://www.fishpond.com.au/Pets/Hot-Dog-Socks-Anti-slip-Knit-Socks/999910=
+9451735?utm_source=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_=
+dog_apparel_accesories&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Se=
+p2_AU"> <img src=3D"http://rcdn-2.fishpond.com.au/0170/801/666/521655377=
+/5.jpeg" border=3D"0" alt=3D"" /> </a> </td> </tr> </tbody> </table> </t=
+h> <th class=3D"column-top" style=3D"font-size:0pt; line-height:0pt; pad=
+ding:0; Margin:0; font-weight:normal; vertical-align:top; Margin:0" vali=
+gn=3D"top" width=3D"1"> <div style=3D"height: 20px; width:100%; min-widt=
+h:100%"> &nbsp;=0A</div> </th> <th class=3D"column-top" style=3D"font-si=
+ze:0pt; line-height:0pt; padding:0; Margin:0; font-weight:normal; vertic=
+al-align:top; Margin:0" valign=3D"top" width=3D"30"> <table width=3D"100=
+%" border=3D"0" cellspacing=3D "0" cellpadding=3D"0"> <tbody> <tr> <td>=
+ <div class=3D "hide-for-mobile"> <div style=3D"height: 20px; width:100%=
+; min-width:100%"> &nbsp;=0A</div> <div class=3D"img-right" style=3D"fon=
+t-size:0pt; line-height:0pt; text-align:right"> <img src=3D"https://cdn1=
+.fishpond.com.au/fp_uploads/email_images/triangle.jpg" border=3D"0" widt=
+h=3D"16" height=3D"31" alt=3D "" /> </div> </div> </td> </tr> </tbody> <=
+/table> </th> <th class=3D"column-top" style=3D"font-size:0pt; line-heig=
+ht:0pt; padding:0; Margin:0; font-weight:normal; vertical-align:top; Mar=
+gin:0" valign=3D"top"> <table width=3D"100%" border=3D"0" cellspacing=3D=
+ "0" cellpadding=3D"0"> <tbody> <tr> <td bgcolor=3D "#F6F6F6" style=3D"b=
+order-radius: 5px;"> <table width=3D "100%" border=3D"0" cellspacing=3D"=
+0" cellpadding=3D "0"> <tbody> <tr> <td class=3D"content-spacing" style=
+=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D "30"> </td=
+> <td> <div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=
+=0A</div> <!-- Price and Button --> <table width=3D"100%" border=3D "0"=
+ cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"text-pri=
+ce" style=3D"color:#24b837; font-family:Arial,sans-serif,'Lato'; font-si=
+ze:28px; line-height:32px; text-align:left; font-weight:bold"> $17.97 </=
+td> <td align=3D"right"> <!-- Button --> <table border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0"> <tbody> <tr> <td bgcolor=3D"#5DC623"> <table w=
+idth=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"=
+spacer" style=3D"font-size:0pt; line-height:0pt; text-align:center; widt=
+h:100%; min-width:100%"> <tbody> <tr> <td height=3D"10" class=3D"spacer"=
+ style=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%;=
+ min-width:100%"> &nbsp;</td> </tr> </tbody> </table> <table width=3D"10=
+0%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td c=
+lass=3D"img" style=3D"font-size:0pt; line-height:0pt; text-align:left" w=
+idth=3D"20"> </td> <td class=3D"text-button2" style=3D"color:#ffffff; fo=
+nt-family:Arial,sans-serif,'Lato'; font-size:18px; line-height:22px; tex=
+t-align:center"> <a href=3D"https://www.fishpond.com.au/Pets/Hot-Dog-Soc=
+ks-Anti-slip-Knit-Socks/9999109451735?utm_source=3Demail&amp;utm_medium=
+=3Dpets&amp;utm_content=3Dpets_dog_apparel_accesories&amp;utm_campaign=
+=3DPets_Dogs_Accessories_E15VM_Sep2_AU" target=3D"_blank" class=3D"link-=
+white" style=3D"color:#ffffff; text-decoration:none"> <strong class=3D"l=
+ink-white" style=3D"color:#ffffff; text-decoration:none"> Buy Now </stro=
+ng> </a> </td> <td class=3D"img" style=3D"font-size:0pt; line-height:0pt=
+; text-align:left" width=3D"20"> </td> </tr> </tbody> </table> <table wi=
+dth=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"s=
+pacer" style=3D"font-size:0pt; line-height:0pt; text-align:center; width=
+:100%; min-width:100%"> <tbody> <tr> <td height=3D"10" class=3D"spacer"=
+ style=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%;=
+ min-width:100%"> &nbsp;</td> </tr> </tbody> </table> </td> </tr> </tbod=
+y> </table><!-- END Button --> </td> </tr> </tbody> </table> <!-- END Pr=
+ice and Button --> <div style=3D"height: 14px; width:100%; min-width:100=
+%"> &nbsp;=0A</div> <table width=3D"100%" border=3D "0" cellspacing=3D"0=
+" cellpadding=3D"0" bgcolor=3D"#EBE7D8" class=3D "border" style=3D"font-=
+size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%=
+"> <tbody> <tr> <td bgcolor=3D"#EBE7D8" height=3D"1" class=3D"border" st=
+yle=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%; mi=
+n-width:100%"> &nbsp;</td> </tr> </tbody> </table> <div style=3D"height:=
+ 14px; width:100%; min-width:100%"> &nbsp;=0A</div> <table width=3D"100%=
+" border=3D "0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td cl=
+ass=3D"text-small-black" style=3D"color:#000000; font-family:Arial,sans-=
+serif,'Lato'; font-size:12px; line-height:16px; text-align:left; font-we=
+ight:bold"> </td> <td align=3D"right"> <div class=3D"text-orange-right"=
+ style=3D"color:#ff6600; font-family:Arial,sans-serif,'Lato'; font-size:=
+16px; line-height:20px; text-align:right; font-weight:bold"> Limited Sto=
+ck! </div> </td> </tr> </tbody> </table> <div style=3D"height: 14px; wid=
+th:100%; min-width:100%"> &nbsp;=0A</div> <table width=3D"100%" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#EBE7D8" class=3D"=
+border" style=3D"font-size:0pt; line-height:0pt; text-align:center; widt=
+h:100%; min-width:100%"> <tbody> <tr> <td bgcolor=3D"#EBE7D8" height=3D"=
+1" class=3D"border" style=3D"font-size:0pt; line-height:0pt; text-align:=
+center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </table>=
+<!-- Title --> <div style=3D"height: 7px; width:100%; min-width:100%"> &=
+nbsp;=0A</div> <div class=3D"h2" style=3D"color:#000000; font-family:Ari=
+al,sans-serif,'Lato'; font-size:20px; line-height:24px; text-align:left;=
+ font-weight:bold"> Hot Dog Socks! Anti-slip Knit Socks </div> <table wi=
+dth=3D"100%" border=3D "0" cellspacing=3D"0" cellpadding=3D"0" class=3D=
+ "spacer" style=3D"font-size:0pt; line-height:0pt; text-align:center; wi=
+dth:100%; min-width:100%"> <tbody> <tr> <td height=3D"8" class=3D"spacer=
+" style=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%=
+; min-width:100%"> &nbsp;</td> </tr> </tbody> </table><!-- Title --> <ta=
+ble width=3D"100%" border=3D "0" cellspacing=3D"0" cellpadding=3D"0"> <t=
+body> <tr> <th class=3D"column-top" style=3D"font-size:0pt; line-height:=
+0pt; padding:0; Margin:0; font-weight:normal; vertical-align:top; Margin=
+:0" valign=3D"top"> <table width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0"> <tbody> <tr> <td class=3D"text-smaller" style=3D"col=
+or:#000000; font-family:Arial,sans-serif,'Lato'; font-size:12px; line-he=
+ight:16px; text-align:left"> </td> </tr> </tbody> </table> </th> </tr> <=
+/tbody> </table> <table width=3D"100%" border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt=
+; text-align:center; width:100%; min-width:100%"> <tbody> <tr> <td heigh=
+t=3D"10" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-=
+align:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </=
+table> <div class=3D"text-small" style=3D"color:#4c4c4c; font-family:Ari=
+al,sans-serif,'Lato'; font-size:14px; line-height:18px; text-align:left"=
+> 4 pairs of socks for your pets, a variety of styles and sizes to suit=
+ all furry friends!. Cotton material. colour is sent at random. Size S 6=
+ cm x 2.5 cm. Size M 7.5 cm x 3 cm. Size L 9 cm x 3.5 cm. Size XL 10 cm=
+ x 4.8 cm. </div> <div style=3D"height: 20px; width:100%; min-width:100%=
+"> &nbsp;=0A</div> <!-- Button --> <table border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0"> <tbody> <tr> <td bgcolor=3D"#FF6600"> <div style=3D"=
+height: 8px; width:100%; min-width:100%"> &nbsp;=0A</div> <table width=
+=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr>=
+ <td class=3D"img" style=3D"font-size:0pt; line-height:0pt; text-align:l=
+eft" width=3D"20"> </td> <td class=3D"text-button" style=3D"color:#fffff=
+f; font-family:Arial,sans-serif,'Montserrat'; font-size:12px; line-heigh=
+t:16px; text-align:center"> <a href=3D"https://www.fishpond.com.au/Pets/=
+Hot-Dog-Socks-Anti-slip-Knit-Socks/9999109451735?utm_source=3Demail&amp;=
+utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_accesories&amp;utm_=
+campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU" target=3D"_blank" class=
+=3D"link-white" style=3D"color:#ffffff; text-decoration:none"> <strong c=
+lass=3D"link-white" style=3D"color:#ffffff; text-decoration:none"> Read=
+ More</strong></a></td> <td class=3D"img" style=3D"font-size:0pt; line-h=
+eight:0pt; text-align:left" width=3D"20"> </td> </tr> </tbody> </table>=
+ <div style=3D"height: 10px; width:100%; min-width:100%"> &nbsp;=0A</div=
+> </td> </tr> </tbody> </table><!-- END Button --> <div style=3D"height:=
+ 20px; width:100%; min-width:100%"> &nbsp;=0A</div> </td> <td class=3D"c=
+ontent-spacing" style=3D"font-size:0pt; line-height:0pt; text-align:left=
+" width=3D "30"> </td> </tr> </tbody> </table> </td> </tr> </tbody> </ta=
+ble> </th> </tr> </tbody> </table> <div style=3D"height: 20px; width:100=
+%; min-width:100%"> &nbsp;=0A</div> <div class=3D"hide-for-mobile"> <div=
+ style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> </d=
+iv> </td> </tr> </tbody>=0A</table>=0A<div style=3D"height: 20px; width:=
+100%; min-width:100%"> &nbsp;=0A</div>=0A<table width=3D"100%" border=3D=
+"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td> <table width=
+=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr>=
+ <th class=3D"column-top" style=3D"font-size:0pt; line-height:0pt; paddi=
+ng:0; Margin:0; font-weight:normal; vertical-align:top; Margin:0" valign=
+=3D"top" width=3D"195"> <table width=3D"100%" border=3D"0" cellspacing=
+=3D "0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"img-center" style=
+=3D"font-size:0pt; line-height:0pt; text-align:center"> <a href=3D"https=
+://www.fishpond.com.au/Pets/Christmas-Pet-Socks/9999327840916?utm_source=
+=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_acceso=
+ries&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU"> <img src=
+=3D"http://rcdn-3.fishpond.com.au/0154/245/738/382747820/5.jpeg" border=
+=3D"0" alt=3D"" /> </a> </td> </tr> </tbody> </table> </th> <th class=3D=
+"column-top" style=3D"font-size:0pt; line-height:0pt; padding:0; Margin:=
+0; font-weight:normal; vertical-align:top; Margin:0" valign=3D"top" widt=
+h=3D"1"> <div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=
+=0A</div> </th> <th class=3D"column-top" style=3D"font-size:0pt; line-he=
+ight:0pt; padding:0; Margin:0; font-weight:normal; vertical-align:top; M=
+argin:0" valign=3D"top" width=3D"30"> <table width=3D"100%" border=3D"0"=
+ cellspacing=3D "0" cellpadding=3D"0"> <tbody> <tr> <td> <div class=3D "=
+hide-for-mobile"> <div style=3D"height: 20px; width:100%; min-width:100%=
+"> &nbsp;=0A</div> <div class=3D"img-right" style=3D"font-size:0pt; line=
+-height:0pt; text-align:right"> <img src=3D"https://cdn1.fishpond.com.au=
+/fp_uploads/email_images/triangle.jpg" border=3D"0" width=3D"16" height=
+=3D"31" alt=3D "" /> </div> </div> </td> </tr> </tbody> </table> </th> <=
+th class=3D"column-top" style=3D"font-size:0pt; line-height:0pt; padding=
+:0; Margin:0; font-weight:normal; vertical-align:top; Margin:0" valign=
+=3D"top"> <table width=3D"100%" border=3D"0" cellspacing=3D "0" cellpadd=
+ing=3D"0"> <tbody> <tr> <td bgcolor=3D "#F6F6F6" style=3D"border-radius:=
+ 5px;"> <table width=3D "100%" border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D "0"> <tbody> <tr> <td class=3D"content-spacing" style=3D"font-size:=
+0pt; line-height:0pt; text-align:left" width=3D "30"> </td> <td> <div st=
+yle=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> <!-- P=
+rice and Button --> <table width=3D"100%" border=3D "0" cellspacing=3D"0=
+" cellpadding=3D"0"> <tbody> <tr> <td class=3D"text-price" style=3D"colo=
+r:#24b837; font-family:Arial,sans-serif,'Lato'; font-size:28px; line-hei=
+ght:32px; text-align:left; font-weight:bold"> $19.95 </td> <td align=3D"=
+right"> <!-- Button --> <table border=3D"0" cellspacing=3D"0" cellpaddin=
+g=3D"0"> <tbody> <tr> <td bgcolor=3D"#5DC623"> <table width=3D"100%" bor=
+der=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"=
+font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width=
+:100%"> <tbody> <tr> <td height=3D"10" class=3D"spacer" style=3D"font-si=
+ze:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%">=
+ &nbsp;</td> </tr> </tbody> </table> <table width=3D"100%" border=3D"0"=
+ cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"img" sty=
+le=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D"20"> </t=
+d> <td class=3D"text-button2" style=3D"color:#ffffff; font-family:Arial,=
+sans-serif,'Lato'; font-size:18px; line-height:22px; text-align:center">=
+ <a href=3D"https://www.fishpond.com.au/Pets/Christmas-Pet-Socks/9999327=
+840916?utm_source=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_d=
+og_apparel_accesories&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep=
+2_AU" target=3D"_blank" class=3D"link-white" style=3D"color:#ffffff; tex=
+t-decoration:none"> <strong class=3D"link-white" style=3D"color:#ffffff;=
+ text-decoration:none"> Buy Now </strong> </a> </td> <td class=3D"img" s=
+tyle=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D"20"> <=
+/td> </tr> </tbody> </table> <table width=3D"100%" border=3D"0" cellspac=
+ing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt; lin=
+e-height:0pt; text-align:center; width:100%; min-width:100%"> <tbody> <t=
+r> <td height=3D"10" class=3D"spacer" style=3D"font-size:0pt; line-heigh=
+t:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;</td> </tr>=
+ </tbody> </table> </td> </tr> </tbody> </table><!-- END Button --> </td=
+> </tr> </tbody> </table> <!-- END Price and Button --> <div style=3D"he=
+ight: 14px; width:100%; min-width:100%"> &nbsp;=0A</div> <table width=3D=
+"100%" border=3D "0" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#EBE=
+7D8" class=3D "border" style=3D"font-size:0pt; line-height:0pt; text-ali=
+gn:center; width:100%; min-width:100%"> <tbody> <tr> <td bgcolor=3D"#EBE=
+7D8" height=3D"1" class=3D"border" style=3D"font-size:0pt; line-height:0=
+pt; text-align:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </=
+tbody> </table> <div style=3D"height: 14px; width:100%; min-width:100%">=
+ &nbsp;=0A</div> <table width=3D"100%" border=3D "0" cellspacing=3D"0" c=
+ellpadding=3D"0"> <tbody> <tr> <td class=3D"text-small-black" style=3D"c=
+olor:#000000; font-family:Arial,sans-serif,'Lato'; font-size:12px; line-=
+height:16px; text-align:left; font-weight:bold"> </td> <td align=3D"righ=
+t"> <div class=3D"text-orange-right" style=3D"color:#ff6600; font-family=
+:Arial,sans-serif,'Lato'; font-size:16px; line-height:20px; text-align:r=
+ight; font-weight:bold"> Limited Stock! </div> </td> </tr> </tbody> </ta=
+ble> <div style=3D"height: 14px; width:100%; min-width:100%"> &nbsp;=0A<=
+/div> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" bgcolor=3D"#EBE7D8" class=3D"border" style=3D"font-size:0pt; line=
+-height:0pt; text-align:center; width:100%; min-width:100%"> <tbody> <tr=
+> <td bgcolor=3D"#EBE7D8" height=3D"1" class=3D"border" style=3D"font-si=
+ze:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%">=
+ &nbsp;</td> </tr> </tbody> </table><!-- Title --> <div style=3D"height:=
+ 7px; width:100%; min-width:100%"> &nbsp;=0A</div> <div class=3D"h2" sty=
+le=3D"color:#000000; font-family:Arial,sans-serif,'Lato'; font-size:20px=
+; line-height:24px; text-align:left; font-weight:bold"> Christmas Pet So=
+cks </div> <table width=3D"100%" border=3D "0" cellspacing=3D"0" cellpad=
+ding=3D"0" class=3D "spacer" style=3D"font-size:0pt; line-height:0pt; te=
+xt-align:center; width:100%; min-width:100%"> <tbody> <tr> <td height=3D=
+"8" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-align=
+:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </table=
+><!-- Title --> <table width=3D"100%" border=3D "0" cellspacing=3D"0" ce=
+llpadding=3D"0"> <tbody> <tr> <th class=3D"column-top" style=3D"font-siz=
+e:0pt; line-height:0pt; padding:0; Margin:0; font-weight:normal; vertica=
+l-align:top; Margin:0" valign=3D"top"> <table width=3D"100%" border=3D"0=
+" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"text-sm=
+aller" style=3D"color:#000000; font-family:Arial,sans-serif,'Lato'; font=
+-size:12px; line-height:16px; text-align:left"> </td> </tr> </tbody> </t=
+able> </th> </tr> </tbody> </table> <table width=3D"100%" border=3D"0" c=
+ellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-size:0=
+pt; line-height:0pt; text-align:center; width:100%; min-width:100%"> <tb=
+ody> <tr> <td height=3D"10" class=3D"spacer" style=3D"font-size:0pt; lin=
+e-height:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;</td=
+> </tr> </tbody> </table> <div class=3D"text-small" style=3D"color:#4c4c=
+4c; font-family:Arial,sans-serif,'Lato'; font-size:14px; line-height:18p=
+x; text-align:left"> The perfect Christmas themed socks for your pet! 2=
+ pairs of Dovewill Christmas socks to make your pet part of the festivit=
+ies. Keeps their feet warm and protected. Ideal for indoor use. </div> <=
+div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div>=
+ <!-- Button --> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+> <tbody> <tr> <td bgcolor=3D"#FF6600"> <div style=3D"height: 8px; width=
+:100%; min-width:100%"> &nbsp;=0A</div> <table width=3D"100%" border=3D"=
+0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"img" s=
+tyle=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D"20"> <=
+/td> <td class=3D"text-button" style=3D"color:#ffffff; font-family:Arial=
+,sans-serif,'Montserrat'; font-size:12px; line-height:16px; text-align:c=
+enter"> <a href=3D"https://www.fishpond.com.au/Pets/Christmas-Pet-Socks/=
+9999327840916?utm_source=3Demail&amp;utm_medium=3Dpets&amp;utm_content=
+=3Dpets_dog_apparel_accesories&amp;utm_campaign=3DPets_Dogs_Accessories_=
+E15VM_Sep2_AU" target=3D"_blank" class=3D"link-white" style=3D"color:#ff=
+ffff; text-decoration:none"> <strong class=3D"link-white" style=3D"color=
+:#ffffff; text-decoration:none"> Read More</strong></a></td> <td class=
+=3D"img" style=3D"font-size:0pt; line-height:0pt; text-align:left" width=
+=3D"20"> </td> </tr> </tbody> </table> <div style=3D"height: 10px; width=
+:100%; min-width:100%"> &nbsp;=0A</div> </td> </tr> </tbody> </table><!-=
+- END Button --> <div style=3D"height: 20px; width:100%; min-width:100%"=
+> &nbsp;=0A</div> </td> <td class=3D"content-spacing" style=3D"font-size=
+:0pt; line-height:0pt; text-align:left" width=3D "30"> </td> </tr> </tbo=
+dy> </table> </td> </tr> </tbody> </table> </th> </tr> </tbody> </table>=
+ <div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div=
+> <div class=3D"hide-for-mobile"> <div style=3D"height: 20px; width:100%=
+; min-width:100%"> &nbsp;=0A</div> </div> </td> </tr> </tbody>=0A</table=
+>=0A<div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</=
+div>=0A<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0"> <tbody> <tr> <td> <table width=3D"100%" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0"> <tbody> <tr> <th class=3D"column-top" style=3D=
+"font-size:0pt; line-height:0pt; padding:0; Margin:0; font-weight:normal=
+; vertical-align:top; Margin:0" valign=3D"top" width=3D"195"> <table wid=
+th=3D"100%" border=3D"0" cellspacing=3D "0" cellpadding=3D"0"> <tbody> <=
+tr> <td class=3D"img-center" style=3D"font-size:0pt; line-height:0pt; te=
+xt-align:center"> <a href=3D"https://www.fishpond.com.au/Pets/Max-and-Ne=
+o-Paw-and-Nose-Balm-with-Calendula/0761856096011?utm_source=3Demail&amp;=
+utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_accesories&amp;utm_=
+campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU"> <img src=3D"http://rcdn=
+-3.fishpond.com.au/0168/389/502/502179534/5.jpeg" border=3D"0" alt=3D""=
+ /> </a> </td> </tr> </tbody> </table> </th> <th class=3D"column-top" st=
+yle=3D"font-size:0pt; line-height:0pt; padding:0; Margin:0; font-weight:=
+normal; vertical-align:top; Margin:0" valign=3D"top" width=3D"1"> <div s=
+tyle=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> </th>=
+ <th class=3D"column-top" style=3D"font-size:0pt; line-height:0pt; paddi=
+ng:0; Margin:0; font-weight:normal; vertical-align:top; Margin:0" valign=
+=3D"top" width=3D"30"> <table width=3D"100%" border=3D"0" cellspacing=3D=
+ "0" cellpadding=3D"0"> <tbody> <tr> <td> <div class=3D "hide-for-mobile=
+"> <div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</d=
+iv> <div class=3D"img-right" style=3D"font-size:0pt; line-height:0pt; te=
+xt-align:right"> <img src=3D"https://cdn1.fishpond.com.au/fp_uploads/ema=
+il_images/triangle.jpg" border=3D"0" width=3D"16" height=3D"31" alt=3D "=
+" /> </div> </div> </td> </tr> </tbody> </table> </th> <th class=3D"colu=
+mn-top" style=3D"font-size:0pt; line-height:0pt; padding:0; Margin:0; fo=
+nt-weight:normal; vertical-align:top; Margin:0" valign=3D"top"> <table w=
+idth=3D"100%" border=3D"0" cellspacing=3D "0" cellpadding=3D"0"> <tbody>=
+ <tr> <td bgcolor=3D "#F6F6F6" style=3D"border-radius: 5px;"> <table wid=
+th=3D "100%" border=3D"0" cellspacing=3D"0" cellpadding=3D "0"> <tbody>=
+ <tr> <td class=3D"content-spacing" style=3D"font-size:0pt; line-height:=
+0pt; text-align:left" width=3D "30"> </td> <td> <div style=3D"height: 20=
+px; width:100%; min-width:100%"> &nbsp;=0A</div> <!-- Price and Button -=
+-> <table width=3D"100%" border=3D "0" cellspacing=3D"0" cellpadding=3D"=
+0"> <tbody> <tr> <td class=3D"text-price" style=3D"color:#24b837; font-f=
+amily:Arial,sans-serif,'Lato'; font-size:28px; line-height:32px; text-al=
+ign:left; font-weight:bold"> $32.98 </td> <td align=3D"right"> <!-- Butt=
+on --> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody>=
+ <tr> <td bgcolor=3D"#5DC623"> <table width=3D"100%" border=3D"0" cellsp=
+acing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt; l=
+ine-height:0pt; text-align:center; width:100%; min-width:100%"> <tbody>=
+ <tr> <td height=3D"10" class=3D"spacer" style=3D"font-size:0pt; line-he=
+ight:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;</td> </=
+tr> </tbody> </table> <table width=3D"100%" border=3D"0" cellspacing=3D"=
+0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"img" style=3D"font-size:=
+0pt; line-height:0pt; text-align:left" width=3D"20"> </td> <td class=3D"=
+text-button2" style=3D"color:#ffffff; font-family:Arial,sans-serif,'Lato=
+'; font-size:18px; line-height:22px; text-align:center"> <a href=3D"http=
+s://www.fishpond.com.au/Pets/Max-and-Neo-Paw-and-Nose-Balm-with-Calendul=
+a/0761856096011?utm_source=3Demail&amp;utm_medium=3Dpets&amp;utm_content=
+=3Dpets_dog_apparel_accesories&amp;utm_campaign=3DPets_Dogs_Accessories_=
+E15VM_Sep2_AU" target=3D"_blank" class=3D"link-white" style=3D"color:#ff=
+ffff; text-decoration:none"> <strong class=3D"link-white" style=3D"color=
+:#ffffff; text-decoration:none"> Buy Now </strong> </a> </td> <td class=
+=3D"img" style=3D"font-size:0pt; line-height:0pt; text-align:left" width=
+=3D"20"> </td> </tr> </tbody> </table> <table width=3D"100%" border=3D"0=
+" cellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-siz=
+e:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%">=
+ <tbody> <tr> <td height=3D"10" class=3D"spacer" style=3D"font-size:0pt;=
+ line-height:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;=
+</td> </tr> </tbody> </table> </td> </tr> </tbody> </table><!-- END Butt=
+on --> </td> </tr> </tbody> </table> <!-- END Price and Button --> <div=
+ style=3D"height: 14px; width:100%; min-width:100%"> &nbsp;=0A</div> <ta=
+ble width=3D"100%" border=3D "0" cellspacing=3D"0" cellpadding=3D"0" bgc=
+olor=3D"#EBE7D8" class=3D "border" style=3D"font-size:0pt; line-height:0=
+pt; text-align:center; width:100%; min-width:100%"> <tbody> <tr> <td bgc=
+olor=3D"#EBE7D8" height=3D"1" class=3D"border" style=3D"font-size:0pt; l=
+ine-height:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;</=
+td> </tr> </tbody> </table> <div style=3D"height: 14px; width:100%; min-=
+width:100%"> &nbsp;=0A</div> <table width=3D"100%" border=3D "0" cellspa=
+cing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"text-small-black=
+" style=3D"color:#000000; font-family:Arial,sans-serif,'Lato'; font-size=
+:12px; line-height:16px; text-align:left; font-weight:bold"> </td> <td a=
+lign=3D"right"> <div class=3D"text-orange-right" style=3D"color:#ff6600;=
+ font-family:Arial,sans-serif,'Lato'; font-size:16px; line-height:20px;=
+ text-align:right; font-weight:bold"> Limited Stock! </div> </td> </tr>=
+ </tbody> </table> <div style=3D"height: 14px; width:100%; min-width:100=
+%"> &nbsp;=0A</div> <table width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" bgcolor=3D"#EBE7D8" class=3D"border" style=3D"font-si=
+ze:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%">=
+ <tbody> <tr> <td bgcolor=3D"#EBE7D8" height=3D"1" class=3D"border" styl=
+e=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%; min-=
+width:100%"> &nbsp;</td> </tr> </tbody> </table><!-- Title --> <div styl=
+e=3D"height: 7px; width:100%; min-width:100%"> &nbsp;=0A</div> <div clas=
+s=3D"h2" style=3D"color:#000000; font-family:Arial,sans-serif,'Lato'; fo=
+nt-size:20px; line-height:24px; text-align:left; font-weight:bold"> Max=
+ and Neo Paw and Nose Balm with Calendula </div> <table width=3D"100%" b=
+order=3D "0" cellspacing=3D"0" cellpadding=3D"0" class=3D "spacer" style=
+=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%; min-w=
+idth:100%"> <tbody> <tr> <td height=3D"8" class=3D"spacer" style=3D"font=
+-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:100=
+%"> &nbsp;</td> </tr> </tbody> </table><!-- Title --> <table width=3D"10=
+0%" border=3D "0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <th=
+ class=3D"column-top" style=3D"font-size:0pt; line-height:0pt; padding:0=
+; Margin:0; font-weight:normal; vertical-align:top; Margin:0" valign=3D"=
+top"> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0"> <tbody> <tr> <td class=3D"text-smaller" style=3D"color:#000000;=
+ font-family:Arial,sans-serif,'Lato'; font-size:12px; line-height:16px;=
+ text-align:left"> </td> </tr> </tbody> </table> </th> </tr> </tbody> </=
+table> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-al=
+ign:center; width:100%; min-width:100%"> <tbody> <tr> <td height=3D"10"=
+ class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-align:ce=
+nter; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </table> <=
+div class=3D"text-small" style=3D"color:#4c4c4c; font-family:Arial,sans-=
+serif,'Lato'; font-size:14px; line-height:18px; text-align:left"> Your p=
+urchase helps a rescue dog: For every tin sold, we donate a tin to a dog=
+ rescue. Dog rescues are in constant need of dog supplies. By purchasing=
+ any one of our dog products, you receive a premium high quality pro...=
+ </div> <div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=
+=0A</div> <!-- Button --> <table border=3D"0" cellspacing=3D"0" cellpadd=
+ing=3D"0"> <tbody> <tr> <td bgcolor=3D"#FF6600"> <div style=3D"height: 8=
+px; width:100%; min-width:100%"> &nbsp;=0A</div> <table width=3D"100%" b=
+order=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=
+=3D"img" style=3D"font-size:0pt; line-height:0pt; text-align:left" width=
+=3D"20"> </td> <td class=3D"text-button" style=3D"color:#ffffff; font-fa=
+mily:Arial,sans-serif,'Montserrat'; font-size:12px; line-height:16px; te=
+xt-align:center"> <a href=3D"https://www.fishpond.com.au/Pets/Max-and-Ne=
+o-Paw-and-Nose-Balm-with-Calendula/0761856096011?utm_source=3Demail&amp;=
+utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_accesories&amp;utm_=
+campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU" target=3D"_blank" class=
+=3D"link-white" style=3D"color:#ffffff; text-decoration:none"> <strong c=
+lass=3D"link-white" style=3D"color:#ffffff; text-decoration:none"> Read=
+ More</strong></a></td> <td class=3D"img" style=3D"font-size:0pt; line-h=
+eight:0pt; text-align:left" width=3D"20"> </td> </tr> </tbody> </table>=
+ <div style=3D"height: 10px; width:100%; min-width:100%"> &nbsp;=0A</div=
+> </td> </tr> </tbody> </table><!-- END Button --> <div style=3D"height:=
+ 20px; width:100%; min-width:100%"> &nbsp;=0A</div> </td> <td class=3D"c=
+ontent-spacing" style=3D"font-size:0pt; line-height:0pt; text-align:left=
+" width=3D "30"> </td> </tr> </tbody> </table> </td> </tr> </tbody> </ta=
+ble> </th> </tr> </tbody> </table> <div style=3D"height: 20px; width:100=
+%; min-width:100%"> &nbsp;=0A</div> <div class=3D"hide-for-mobile"> <div=
+ style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> </d=
+iv> </td> </tr> </tbody>=0A</table> </td> <td class=3D"content-spacing"=
+ style=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D"40">=
+</td> </tr> </tbody> </table> </td> </tr> </tbody> </table> <div style=
+=3D"height: 10px; width:100%; min-width:100%"> &nbsp;=0A</div> <table wi=
+dth=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <=
+tr> <td bgcolor=3D"#ffffff" style=3D"border-radius: 5px; "> <table width=
+=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr>=
+ <td class=3D"content-spacing" style=3D"font-size:0pt; line-height:0pt;=
+ text-align:left" width=3D"40"></td> <td align=3D"center"> <table width=
+=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"spac=
+er" style=3D"font-size:0pt; line-height:0pt; text-align:center; width:10=
+0%; min-width:100%"><tbody><tr><td height=3D"20" class=3D"spacer" style=
+=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%; min-w=
+idth:100%">&nbsp;</td></tr></tbody></table> <div class=3D"hide-for-mobil=
+e"><div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</d=
+iv>=0A</div> <div class=3D"h4" style=3D"color:#3361e3; font-family:Arial=
+,sans-serif,'Lato'; font-size:20px; line-height:24px; text-align:left; f=
+ont-weight:bold">Best Selling Accessories </div> <div style=3D"height: 3=
+0px; width:100%; min-width:100%"> &nbsp;=0A</div> <table width=3D"100%"=
+ border=3D"0" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#f6f6f6" cl=
+ass=3D"border" style=3D"font-size:0pt; line-height:0pt; text-align:cente=
+r; width:100%; min-width:100%"><tbody><tr><td bgcolor=3D"#f6f6f6" height=
+=3D"2" class=3D"border" style=3D"font-size:0pt; line-height:0pt; text-al=
+ign:center; width:100%; min-width:100%">&nbsp;</td></tr></tbody></table>=
+ <div style=3D"height: 30px; width:100%; min-width:100%"> &nbsp;=0A</div=
+> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+> <tbody> <tr> <td> <table width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0"> <tbody> <tr> <th class=3D"column-top" style=3D"font-=
+size:0pt; line-height:0pt; padding:0; Margin:0; font-weight:normal; vert=
+ical-align:top; Margin:0" valign=3D"top" width=3D"195"> <table width=3D"=
+100%" border=3D"0" cellspacing=3D "0" cellpadding=3D"0"> <tbody> <tr> <t=
+d class=3D"img-center" style=3D"font-size:0pt; line-height:0pt; text-ali=
+gn:center"> <a href=3D"https://www.fishpond.com.au/Pets/Anti-Slip-Waterp=
+roof-Paw-Protectors/9999910005174?utm_source=3Demail&amp;utm_medium=3Dpe=
+ts&amp;utm_content=3Dpets_dog_apparel_accesories&amp;utm_campaign=3DPets=
+_Dogs_Accessories_E15VM_Sep2_AU"> <img src=3D"http://rcdn-4.fishpond.com=
+.au/0154/246/205/379111448/5.jpeg" border=3D"0" alt=3D"" /> </a> </td> <=
+/tr> </tbody> </table> </th> <th class=3D"column-top" style=3D"font-size=
+:0pt; line-height:0pt; padding:0; Margin:0; font-weight:normal; vertical=
+-align:top; Margin:0" valign=3D"top" width=3D"1"> <div style=3D"height:=
+ 20px; width:100%; min-width:100%"> &nbsp;=0A</div> </th> <th class=3D"c=
+olumn-top" style=3D"font-size:0pt; line-height:0pt; padding:0; Margin:0;=
+ font-weight:normal; vertical-align:top; Margin:0" valign=3D"top" width=
+=3D"30"> <table width=3D"100%" border=3D"0" cellspacing=3D "0" cellpaddi=
+ng=3D"0"> <tbody> <tr> <td> <div class=3D "hide-for-mobile"> <div style=
+=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> <div clas=
+s=3D"img-right" style=3D"font-size:0pt; line-height:0pt; text-align:righ=
+t"> <img src=3D"https://cdn1.fishpond.com.au/fp_uploads/email_images/tri=
+angle.jpg" border=3D"0" width=3D"16" height=3D"31" alt=3D "" /> </div> <=
+/div> </td> </tr> </tbody> </table> </th> <th class=3D"column-top" style=
+=3D"font-size:0pt; line-height:0pt; padding:0; Margin:0; font-weight:nor=
+mal; vertical-align:top; Margin:0" valign=3D"top"> <table width=3D"100%"=
+ border=3D"0" cellspacing=3D "0" cellpadding=3D"0"> <tbody> <tr> <td bgc=
+olor=3D "#F6F6F6" style=3D"border-radius: 5px;"> <table width=3D "100%"=
+ border=3D"0" cellspacing=3D"0" cellpadding=3D "0"> <tbody> <tr> <td cla=
+ss=3D"content-spacing" style=3D"font-size:0pt; line-height:0pt; text-ali=
+gn:left" width=3D "30"> </td> <td> <div style=3D"height: 20px; width:100=
+%; min-width:100%"> &nbsp;=0A</div> <!-- Price and Button --> <table wid=
+th=3D"100%" border=3D "0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <=
+tr> <td class=3D"text-price" style=3D"color:#24b837; font-family:Arial,s=
+ans-serif,'Lato'; font-size:28px; line-height:32px; text-align:left; fon=
+t-weight:bold"> $39.95 </td> <td align=3D"right"> <!-- Button --> <table=
+ border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td bgco=
+lor=3D"#5DC623"> <table width=3D"100%" border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt=
+; text-align:center; width:100%; min-width:100%"> <tbody> <tr> <td heigh=
+t=3D"10" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-=
+align:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </=
+table> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0"> <tbody> <tr> <td class=3D"img" style=3D"font-size:0pt; line-heig=
+ht:0pt; text-align:left" width=3D"20"> </td> <td class=3D"text-button2"=
+ style=3D"color:#ffffff; font-family:Arial,sans-serif,'Lato'; font-size:=
+18px; line-height:22px; text-align:center"> <a href=3D"https://www.fishp=
+ond.com.au/Pets/Anti-Slip-Waterproof-Paw-Protectors/9999910005174?utm_so=
+urce=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_ac=
+cesories&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU" target=
+=3D"_blank" class=3D"link-white" style=3D"color:#ffffff; text-decoration=
+:none"> <strong class=3D"link-white" style=3D"color:#ffffff; text-decora=
+tion:none"> Buy Now </strong> </a> </td> <td class=3D"img" style=3D"font=
+-size:0pt; line-height:0pt; text-align:left" width=3D"20"> </td> </tr> <=
+/tbody> </table> <table width=3D"100%" border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt=
+; text-align:center; width:100%; min-width:100%"> <tbody> <tr> <td heigh=
+t=3D"10" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-=
+align:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </=
+table> </td> </tr> </tbody> </table><!-- END Button --> </td> </tr> </tb=
+ody> </table> <!-- END Price and Button --> <div style=3D"height: 14px;=
+ width:100%; min-width:100%"> &nbsp;=0A</div> <table width=3D"100%" bord=
+er=3D "0" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#EBE7D8" class=
+=3D "border" style=3D"font-size:0pt; line-height:0pt; text-align:center;=
+ width:100%; min-width:100%"> <tbody> <tr> <td bgcolor=3D"#EBE7D8" heigh=
+t=3D"1" class=3D"border" style=3D"font-size:0pt; line-height:0pt; text-a=
+lign:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </t=
+able> <div style=3D"height: 14px; width:100%; min-width:100%"> &nbsp;=0A=
+</div> <table width=3D"100%" border=3D "0" cellspacing=3D"0" cellpadding=
+=3D"0"> <tbody> <tr> <td class=3D"text-small-black" style=3D"color:#0000=
+00; font-family:Arial,sans-serif,'Lato'; font-size:12px; line-height:16p=
+x; text-align:left; font-weight:bold"> </td> <td align=3D"right"> <div c=
+lass=3D"text-orange-right" style=3D"color:#ff6600; font-family:Arial,san=
+s-serif,'Lato'; font-size:16px; line-height:20px; text-align:right; font=
+-weight:bold"> Limited Stock! </div> </td> </tr> </tbody> </table> <div=
+ style=3D"height: 14px; width:100%; min-width:100%"> &nbsp;=0A</div> <ta=
+ble width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" bgco=
+lor=3D"#EBE7D8" class=3D"border" style=3D"font-size:0pt; line-height:0pt=
+; text-align:center; width:100%; min-width:100%"> <tbody> <tr> <td bgcol=
+or=3D"#EBE7D8" height=3D"1" class=3D"border" style=3D"font-size:0pt; lin=
+e-height:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;</td=
+> </tr> </tbody> </table><!-- Title --> <div style=3D"height: 7px; width=
+:100%; min-width:100%"> &nbsp;=0A</div> <div class=3D"h2" style=3D"color=
+:#000000; font-family:Arial,sans-serif,'Lato'; font-size:20px; line-heig=
+ht:24px; text-align:left; font-weight:bold"> Anti Slip Waterproof Paw Pr=
+otectors </div> <table width=3D"100%" border=3D "0" cellspacing=3D"0" ce=
+llpadding=3D"0" class=3D "spacer" style=3D"font-size:0pt; line-height:0p=
+t; text-align:center; width:100%; min-width:100%"> <tbody> <tr> <td heig=
+ht=3D"8" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-=
+align:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </=
+table><!-- Title --> <table width=3D"100%" border=3D "0" cellspacing=3D"=
+0" cellpadding=3D"0"> <tbody> <tr> <th class=3D"column-top" style=3D"fon=
+t-size:0pt; line-height:0pt; padding:0; Margin:0; font-weight:normal; ve=
+rtical-align:top; Margin:0" valign=3D"top"> <table width=3D"100%" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"te=
+xt-smaller" style=3D"color:#000000; font-family:Arial,sans-serif,'Lato';=
+ font-size:12px; line-height:16px; text-align:left"> </td> </tr> </tbody=
+> </table> </th> </tr> </tbody> </table> <table width=3D"100%" border=3D=
+"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-s=
+ize:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%"=
+> <tbody> <tr> <td height=3D"10" class=3D"spacer" style=3D"font-size:0pt=
+; line-height:0pt; text-align:center; width:100%; min-width:100%"> &nbsp=
+;</td> </tr> </tbody> </table> <div class=3D"text-small" style=3D"color:=
+#4c4c4c; font-family:Arial,sans-serif,'Lato'; font-size:14px; line-heigh=
+t:18px; text-align:left"> Do you put blankets all over house to prevent=
+ your dog=E2=80=99s slipping? Or do you want to protect your puppers fee=
+t on an adventure?. Is your dog older, has trouble standing up and walki=
+ng on hard surfaces? These anti-slip and waterp... </div> <div style=3D"=
+height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> <!-- Button -=
+-> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr>=
+ <td bgcolor=3D"#FF6600"> <div style=3D"height: 8px; width:100%; min-wid=
+th:100%"> &nbsp;=0A</div> <table width=3D"100%" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"img" style=3D"font-s=
+ize:0pt; line-height:0pt; text-align:left" width=3D"20"> </td> <td class=
+=3D"text-button" style=3D"color:#ffffff; font-family:Arial,sans-serif,'M=
+ontserrat'; font-size:12px; line-height:16px; text-align:center"> <a hre=
+f=3D"https://www.fishpond.com.au/Pets/Anti-Slip-Waterproof-Paw-Protector=
+s/9999910005174?utm_source=3Demail&amp;utm_medium=3Dpets&amp;utm_content=
+=3Dpets_dog_apparel_accesories&amp;utm_campaign=3DPets_Dogs_Accessories_=
+E15VM_Sep2_AU" target=3D"_blank" class=3D"link-white" style=3D"color:#ff=
+ffff; text-decoration:none"> <strong class=3D"link-white" style=3D"color=
+:#ffffff; text-decoration:none"> Read More</strong></a></td> <td class=
+=3D"img" style=3D"font-size:0pt; line-height:0pt; text-align:left" width=
+=3D"20"> </td> </tr> </tbody> </table> <div style=3D"height: 10px; width=
+:100%; min-width:100%"> &nbsp;=0A</div> </td> </tr> </tbody> </table><!-=
+- END Button --> <div style=3D"height: 20px; width:100%; min-width:100%"=
+> &nbsp;=0A</div> </td> <td class=3D"content-spacing" style=3D"font-size=
+:0pt; line-height:0pt; text-align:left" width=3D "30"> </td> </tr> </tbo=
+dy> </table> </td> </tr> </tbody> </table> </th> </tr> </tbody> </table>=
+ <div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div=
+> <div class=3D"hide-for-mobile"> <div style=3D"height: 20px; width:100%=
+; min-width:100%"> &nbsp;=0A</div> </div> </td> </tr> </tbody>=0A</table=
+>=0A<div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</=
+div>=0A<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0"> <tbody> <tr> <td> <table width=3D"100%" border=3D"0" cellspacing=
+=3D"0" cellpadding=3D"0"> <tbody> <tr> <th class=3D"column-top" style=3D=
+"font-size:0pt; line-height:0pt; padding:0; Margin:0; font-weight:normal=
+; vertical-align:top; Margin:0" valign=3D"top" width=3D"195"> <table wid=
+th=3D"100%" border=3D"0" cellspacing=3D "0" cellpadding=3D"0"> <tbody> <=
+tr> <td class=3D"img-center" style=3D"font-size:0pt; line-height:0pt; te=
+xt-align:center"> <a href=3D"https://www.fishpond.com.au/Pets/Pet-Umbrel=
+la-With-Leash/0614377361741?utm_source=3Demail&amp;utm_medium=3Dpets&amp=
+;utm_content=3Dpets_dog_apparel_accesories&amp;utm_campaign=3DPets_Dogs_=
+Accessories_E15VM_Sep2_AU"> <img src=3D"http://rcdn-4.fishpond.com.au/01=
+68/394/279/502197529/5.jpeg" border=3D"0" alt=3D"" /> </a> </td> </tr> <=
+/tbody> </table> </th> <th class=3D"column-top" style=3D"font-size:0pt;=
+ line-height:0pt; padding:0; Margin:0; font-weight:normal; vertical-alig=
+n:top; Margin:0" valign=3D"top" width=3D"1"> <div style=3D"height: 20px;=
+ width:100%; min-width:100%"> &nbsp;=0A</div> </th> <th class=3D"column-=
+top" style=3D"font-size:0pt; line-height:0pt; padding:0; Margin:0; font-=
+weight:normal; vertical-align:top; Margin:0" valign=3D"top" width=3D"30"=
+> <table width=3D"100%" border=3D"0" cellspacing=3D "0" cellpadding=3D"0=
+"> <tbody> <tr> <td> <div class=3D "hide-for-mobile"> <div style=3D"heig=
+ht: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> <div class=3D"img=
+-right" style=3D"font-size:0pt; line-height:0pt; text-align:right"> <img=
+ src=3D"https://cdn1.fishpond.com.au/fp_uploads/email_images/triangle.jp=
+g" border=3D"0" width=3D"16" height=3D"31" alt=3D "" /> </div> </div> </=
+td> </tr> </tbody> </table> </th> <th class=3D"column-top" style=3D"font=
+-size:0pt; line-height:0pt; padding:0; Margin:0; font-weight:normal; ver=
+tical-align:top; Margin:0" valign=3D"top"> <table width=3D"100%" border=
+=3D"0" cellspacing=3D "0" cellpadding=3D"0"> <tbody> <tr> <td bgcolor=3D=
+ "#F6F6F6" style=3D"border-radius: 5px;"> <table width=3D "100%" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D "0"> <tbody> <tr> <td class=3D"c=
+ontent-spacing" style=3D"font-size:0pt; line-height:0pt; text-align:left=
+" width=3D "30"> </td> <td> <div style=3D"height: 20px; width:100%; min-=
+width:100%"> &nbsp;=0A</div> <!-- Price and Button --> <table width=3D"1=
+00%" border=3D "0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td=
+ class=3D"text-price" style=3D"color:#24b837; font-family:Arial,sans-ser=
+if,'Lato'; font-size:28px; line-height:32px; text-align:left; font-weigh=
+t:bold"> $46.03 </td> <td align=3D"right"> <!-- Button --> <table border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td bgcolor=3D"=
+#5DC623"> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-=
+align:center; width:100%; min-width:100%"> <tbody> <tr> <td height=3D"10=
+" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-align:c=
+enter; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </table>=
+ <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">=
+ <tbody> <tr> <td class=3D"img" style=3D"font-size:0pt; line-height:0pt;=
+ text-align:left" width=3D"20"> </td> <td class=3D"text-button2" style=
+=3D"color:#ffffff; font-family:Arial,sans-serif,'Lato'; font-size:18px;=
+ line-height:22px; text-align:center"> <a href=3D"https://www.fishpond.c=
+om.au/Pets/Pet-Umbrella-With-Leash/0614377361741?utm_source=3Demail&amp;=
+utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_accesories&amp;utm_=
+campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU" target=3D"_blank" class=
+=3D"link-white" style=3D"color:#ffffff; text-decoration:none"> <strong c=
+lass=3D"link-white" style=3D"color:#ffffff; text-decoration:none"> Buy N=
+ow </strong> </a> </td> <td class=3D"img" style=3D"font-size:0pt; line-h=
+eight:0pt; text-align:left" width=3D"20"> </td> </tr> </tbody> </table>=
+ <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-align:ce=
+nter; width:100%; min-width:100%"> <tbody> <tr> <td height=3D"10" class=
+=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-align:center;=
+ width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </table> </td>=
+ </tr> </tbody> </table><!-- END Button --> </td> </tr> </tbody> </table=
+> <!-- END Price and Button --> <div style=3D"height: 14px; width:100%;=
+ min-width:100%"> &nbsp;=0A</div> <table width=3D"100%" border=3D "0" ce=
+llspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#EBE7D8" class=3D "border"=
+ style=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%;=
+ min-width:100%"> <tbody> <tr> <td bgcolor=3D"#EBE7D8" height=3D"1" clas=
+s=3D"border" style=3D"font-size:0pt; line-height:0pt; text-align:center;=
+ width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </table> <div s=
+tyle=3D"height: 14px; width:100%; min-width:100%"> &nbsp;=0A</div> <tabl=
+e width=3D"100%" border=3D "0" cellspacing=3D"0" cellpadding=3D"0"> <tbo=
+dy> <tr> <td class=3D"text-small-black" style=3D"color:#000000; font-fam=
+ily:Arial,sans-serif,'Lato'; font-size:12px; line-height:16px; text-alig=
+n:left; font-weight:bold"> </td> <td align=3D"right"> <div class=3D"text=
+-orange-right" style=3D"color:#ff6600; font-family:Arial,sans-serif,'Lat=
+o'; font-size:16px; line-height:20px; text-align:right; font-weight:bold=
+"> Limited Stock! </div> </td> </tr> </tbody> </table> <div style=3D"hei=
+ght: 14px; width:100%; min-width:100%"> &nbsp;=0A</div> <table width=3D"=
+100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#EBE7D=
+8" class=3D"border" style=3D"font-size:0pt; line-height:0pt; text-align:=
+center; width:100%; min-width:100%"> <tbody> <tr> <td bgcolor=3D"#EBE7D8=
+" height=3D"1" class=3D"border" style=3D"font-size:0pt; line-height:0pt;=
+ text-align:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbo=
+dy> </table><!-- Title --> <div style=3D"height: 7px; width:100%; min-wi=
+dth:100%"> &nbsp;=0A</div> <div class=3D"h2" style=3D"color:#000000; fon=
+t-family:Arial,sans-serif,'Lato'; font-size:20px; line-height:24px; text=
+-align:left; font-weight:bold"> Pet Umbrella With Leash </div> <table wi=
+dth=3D"100%" border=3D "0" cellspacing=3D"0" cellpadding=3D"0" class=3D=
+ "spacer" style=3D"font-size:0pt; line-height:0pt; text-align:center; wi=
+dth:100%; min-width:100%"> <tbody> <tr> <td height=3D"8" class=3D"spacer=
+" style=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%=
+; min-width:100%"> &nbsp;</td> </tr> </tbody> </table><!-- Title --> <ta=
+ble width=3D"100%" border=3D "0" cellspacing=3D"0" cellpadding=3D"0"> <t=
+body> <tr> <th class=3D"column-top" style=3D"font-size:0pt; line-height:=
+0pt; padding:0; Margin:0; font-weight:normal; vertical-align:top; Margin=
+:0" valign=3D"top"> <table width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0"> <tbody> <tr> <td class=3D"text-smaller" style=3D"col=
+or:#000000; font-family:Arial,sans-serif,'Lato'; font-size:12px; line-he=
+ight:16px; text-align:left"> </td> </tr> </tbody> </table> </th> </tr> <=
+/tbody> </table> <table width=3D"100%" border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt=
+; text-align:center; width:100%; min-width:100%"> <tbody> <tr> <td heigh=
+t=3D"10" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-=
+align:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </=
+table> <div class=3D"text-small" style=3D"color:#4c4c4c; font-family:Ari=
+al,sans-serif,'Lato'; font-size:14px; line-height:18px; text-align:left"=
+> Transparent umbrella to keep your pet happy, warm and dry for a walk i=
+n the rain, wind or snow. Umbrella with a built-in leash hook which is 1=
+2.2", 28.3" diameter while open and 20.8" for the handle length. It fits=
+ on a dog less than 5.4kg and 1... </div> <div style=3D"height: 20px; wi=
+dth:100%; min-width:100%"> &nbsp;=0A</div> <!-- Button --> <table border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td bgcolor=3D"=
+#FF6600"> <div style=3D"height: 8px; width:100%; min-width:100%"> &nbsp;=
+=0A</div> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0"> <tbody> <tr> <td class=3D"img" style=3D"font-size:0pt; line-he=
+ight:0pt; text-align:left" width=3D"20"> </td> <td class=3D"text-button"=
+ style=3D"color:#ffffff; font-family:Arial,sans-serif,'Montserrat'; font=
+-size:12px; line-height:16px; text-align:center"> <a href=3D"https://www=
+.fishpond.com.au/Pets/Pet-Umbrella-With-Leash/0614377361741?utm_source=
+=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_acceso=
+ries&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU" target=3D"_=
+blank" class=3D"link-white" style=3D"color:#ffffff; text-decoration:none=
+"> <strong class=3D"link-white" style=3D"color:#ffffff; text-decoration:=
+none"> Read More</strong></a></td> <td class=3D"img" style=3D"font-size:=
+0pt; line-height:0pt; text-align:left" width=3D"20"> </td> </tr> </tbody=
+> </table> <div style=3D"height: 10px; width:100%; min-width:100%"> &nbs=
+p;=0A</div> </td> </tr> </tbody> </table><!-- END Button --> <div style=
+=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> </td> <td=
+ class=3D"content-spacing" style=3D"font-size:0pt; line-height:0pt; text=
+-align:left" width=3D "30"> </td> </tr> </tbody> </table> </td> </tr> </=
+tbody> </table> </th> </tr> </tbody> </table> <div style=3D"height: 20px=
+; width:100%; min-width:100%"> &nbsp;=0A</div> <div class=3D"hide-for-mo=
+bile"> <div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=
+=0A</div> </div> </td> </tr> </tbody>=0A</table>=0A<div style=3D"height:=
+ 20px; width:100%; min-width:100%"> &nbsp;=0A</div>=0A<table width=3D"10=
+0%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td>=
+ <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">=
+ <tbody> <tr> <th class=3D"column-top" style=3D"font-size:0pt; line-heig=
+ht:0pt; padding:0; Margin:0; font-weight:normal; vertical-align:top; Mar=
+gin:0" valign=3D"top" width=3D"195"> <table width=3D"100%" border=3D"0"=
+ cellspacing=3D "0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"img-cen=
+ter" style=3D"font-size:0pt; line-height:0pt; text-align:center"> <a hre=
+f=3D"https://www.fishpond.com.au/Pets/Dog-Harness-Vest/0607885871376?utm=
+_source=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel=
+_accesories&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU"> <im=
+g src=3D"http://rcdn-3.fishpond.com.au/0154/236/500/379080916/5.jpeg" bo=
+rder=3D"0" alt=3D"" /> </a> </td> </tr> </tbody> </table> </th> <th clas=
+s=3D"column-top" style=3D"font-size:0pt; line-height:0pt; padding:0; Mar=
+gin:0; font-weight:normal; vertical-align:top; Margin:0" valign=3D"top"=
+ width=3D"1"> <div style=3D"height: 20px; width:100%; min-width:100%"> &=
+nbsp;=0A</div> </th> <th class=3D"column-top" style=3D"font-size:0pt; li=
+ne-height:0pt; padding:0; Margin:0; font-weight:normal; vertical-align:t=
+op; Margin:0" valign=3D"top" width=3D"30"> <table width=3D"100%" border=
+=3D"0" cellspacing=3D "0" cellpadding=3D"0"> <tbody> <tr> <td> <div clas=
+s=3D "hide-for-mobile"> <div style=3D"height: 20px; width:100%; min-widt=
+h:100%"> &nbsp;=0A</div> <div class=3D"img-right" style=3D"font-size:0pt=
+; line-height:0pt; text-align:right"> <img src=3D"https://cdn1.fishpond.=
+com.au/fp_uploads/email_images/triangle.jpg" border=3D"0" width=3D"16" h=
+eight=3D"31" alt=3D "" /> </div> </div> </td> </tr> </tbody> </table> </=
+th> <th class=3D"column-top" style=3D"font-size:0pt; line-height:0pt; pa=
+dding:0; Margin:0; font-weight:normal; vertical-align:top; Margin:0" val=
+ign=3D"top"> <table width=3D"100%" border=3D"0" cellspacing=3D "0" cellp=
+adding=3D"0"> <tbody> <tr> <td bgcolor=3D "#F6F6F6" style=3D"border-radi=
+us: 5px;"> <table width=3D "100%" border=3D"0" cellspacing=3D"0" cellpad=
+ding=3D "0"> <tbody> <tr> <td class=3D"content-spacing" style=3D"font-si=
+ze:0pt; line-height:0pt; text-align:left" width=3D "30"> </td> <td> <div=
+ style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> <!-=
+- Price and Button --> <table width=3D"100%" border=3D "0" cellspacing=
+=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"text-price" style=3D=
+"color:#24b837; font-family:Arial,sans-serif,'Lato'; font-size:28px; lin=
+e-height:32px; text-align:left; font-weight:bold"> $46.15 </td> <td alig=
+n=3D"right"> <!-- Button --> <table border=3D"0" cellspacing=3D"0" cellp=
+adding=3D"0"> <tbody> <tr> <td bgcolor=3D"#5DC623"> <table width=3D"100%=
+" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" styl=
+e=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%; min-=
+width:100%"> <tbody> <tr> <td height=3D"10" class=3D"spacer" style=3D"fo=
+nt-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:1=
+00%"> &nbsp;</td> </tr> </tbody> </table> <table width=3D"100%" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"im=
+g" style=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D"20=
+"> </td> <td class=3D"text-button2" style=3D"color:#ffffff; font-family:=
+Arial,sans-serif,'Lato'; font-size:18px; line-height:22px; text-align:ce=
+nter"> <a href=3D"https://www.fishpond.com.au/Pets/Dog-Harness-Vest/0607=
+885871376?utm_source=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpet=
+s_dog_apparel_accesories&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_=
+Sep2_AU" target=3D"_blank" class=3D"link-white" style=3D"color:#ffffff;=
+ text-decoration:none"> <strong class=3D"link-white" style=3D"color:#fff=
+fff; text-decoration:none"> Buy Now </strong> </a> </td> <td class=3D"im=
+g" style=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D"20=
+"> </td> </tr> </tbody> </table> <table width=3D"100%" border=3D"0" cell=
+spacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt;=
+ line-height:0pt; text-align:center; width:100%; min-width:100%"> <tbody=
+> <tr> <td height=3D"10" class=3D"spacer" style=3D"font-size:0pt; line-h=
+eight:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;</td> <=
+/tr> </tbody> </table> </td> </tr> </tbody> </table><!-- END Button -->=
+ </td> </tr> </tbody> </table> <!-- END Price and Button --> <div style=
+=3D"height: 14px; width:100%; min-width:100%"> &nbsp;=0A</div> <table wi=
+dth=3D"100%" border=3D "0" cellspacing=3D"0" cellpadding=3D"0" bgcolor=
+=3D"#EBE7D8" class=3D "border" style=3D"font-size:0pt; line-height:0pt;=
+ text-align:center; width:100%; min-width:100%"> <tbody> <tr> <td bgcolo=
+r=3D"#EBE7D8" height=3D"1" class=3D"border" style=3D"font-size:0pt; line=
+-height:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;</td>=
+ </tr> </tbody> </table> <div style=3D"height: 14px; width:100%; min-wid=
+th:100%"> &nbsp;=0A</div> <table width=3D"100%" border=3D "0" cellspacin=
+g=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"text-small-black" s=
+tyle=3D"color:#000000; font-family:Arial,sans-serif,'Lato'; font-size:12=
+px; line-height:16px; text-align:left; font-weight:bold"> </td> <td alig=
+n=3D"right"> <div class=3D"text-orange-right" style=3D"color:#ff6600; fo=
+nt-family:Arial,sans-serif,'Lato'; font-size:16px; line-height:20px; tex=
+t-align:right; font-weight:bold"> Limited Stock! </div> </td> </tr> </tb=
+ody> </table> <div style=3D"height: 14px; width:100%; min-width:100%"> &=
+nbsp;=0A</div> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cell=
+padding=3D"0" bgcolor=3D"#EBE7D8" class=3D"border" style=3D"font-size:0p=
+t; line-height:0pt; text-align:center; width:100%; min-width:100%"> <tbo=
+dy> <tr> <td bgcolor=3D"#EBE7D8" height=3D"1" class=3D"border" style=3D"=
+font-size:0pt; line-height:0pt; text-align:center; width:100%; min-width=
+:100%"> &nbsp;</td> </tr> </tbody> </table><!-- Title --> <div style=3D"=
+height: 7px; width:100%; min-width:100%"> &nbsp;=0A</div> <div class=3D"=
+h2" style=3D"color:#000000; font-family:Arial,sans-serif,'Lato'; font-si=
+ze:20px; line-height:24px; text-align:left; font-weight:bold"> Dog Harne=
+ss Vest </div> <table width=3D"100%" border=3D "0" cellspacing=3D"0" cel=
+lpadding=3D"0" class=3D "spacer" style=3D"font-size:0pt; line-height:0pt=
+; text-align:center; width:100%; min-width:100%"> <tbody> <tr> <td heigh=
+t=3D"8" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-a=
+lign:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </t=
+able><!-- Title --> <table width=3D"100%" border=3D "0" cellspacing=3D"0=
+" cellpadding=3D"0"> <tbody> <tr> <th class=3D"column-top" style=3D"font=
+-size:0pt; line-height:0pt; padding:0; Margin:0; font-weight:normal; ver=
+tical-align:top; Margin:0" valign=3D"top"> <table width=3D"100%" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"te=
+xt-smaller" style=3D"color:#000000; font-family:Arial,sans-serif,'Lato';=
+ font-size:12px; line-height:16px; text-align:left"> </td> </tr> </tbody=
+> </table> </th> </tr> </tbody> </table> <table width=3D"100%" border=3D=
+"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-s=
+ize:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%"=
+> <tbody> <tr> <td height=3D"10" class=3D"spacer" style=3D"font-size:0pt=
+; line-height:0pt; text-align:center; width:100%; min-width:100%"> &nbsp=
+;</td> </tr> </tbody> </table> <div class=3D"text-small" style=3D"color:=
+#4c4c4c; font-family:Arial,sans-serif,'Lato'; font-size:14px; line-heigh=
+t:18px; text-align:left"> Premium easy control harness for a large dog,=
+ easily adjustable straps hat can be paired with a car seat or leash. Ma=
+de out of sturdy fast drying and breathable fabric with strong hemming a=
+nd reflective material. </div> <div style=3D"height: 20px; width:100%; m=
+in-width:100%"> &nbsp;=0A</div> <!-- Button --> <table border=3D"0" cell=
+spacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td bgcolor=3D"#FF6600"> <=
+div style=3D"height: 8px; width:100%; min-width:100%"> &nbsp;=0A</div> <=
+table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <=
+tbody> <tr> <td class=3D"img" style=3D"font-size:0pt; line-height:0pt; t=
+ext-align:left" width=3D"20"> </td> <td class=3D"text-button" style=3D"c=
+olor:#ffffff; font-family:Arial,sans-serif,'Montserrat'; font-size:12px;=
+ line-height:16px; text-align:center"> <a href=3D"https://www.fishpond.c=
+om.au/Pets/Dog-Harness-Vest/0607885871376?utm_source=3Demail&amp;utm_med=
+ium=3Dpets&amp;utm_content=3Dpets_dog_apparel_accesories&amp;utm_campaig=
+n=3DPets_Dogs_Accessories_E15VM_Sep2_AU" target=3D"_blank" class=3D"link=
+-white" style=3D"color:#ffffff; text-decoration:none"> <strong class=3D"=
+link-white" style=3D"color:#ffffff; text-decoration:none"> Read More</st=
+rong></a></td> <td class=3D"img" style=3D"font-size:0pt; line-height:0pt=
+; text-align:left" width=3D"20"> </td> </tr> </tbody> </table> <div styl=
+e=3D"height: 10px; width:100%; min-width:100%"> &nbsp;=0A</div> </td> </=
+tr> </tbody> </table><!-- END Button --> <div style=3D"height: 20px; wid=
+th:100%; min-width:100%"> &nbsp;=0A</div> </td> <td class=3D"content-spa=
+cing" style=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D=
+ "30"> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </th>=
+ </tr> </tbody> </table> <div style=3D"height: 20px; width:100%; min-wid=
+th:100%"> &nbsp;=0A</div> <div class=3D"hide-for-mobile"> <div style=3D"=
+height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> </div> </td>=
+ </tr> </tbody>=0A</table>=0A<div style=3D"height: 20px; width:100%; min=
+-width:100%"> &nbsp;=0A</div>=0A<table width=3D"100%" border=3D"0" cells=
+pacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td> <table width=3D"100%"=
+ border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <th clas=
+s=3D"column-top" style=3D"font-size:0pt; line-height:0pt; padding:0; Mar=
+gin:0; font-weight:normal; vertical-align:top; Margin:0" valign=3D"top"=
+ width=3D"195"> <table width=3D"100%" border=3D"0" cellspacing=3D "0" ce=
+llpadding=3D"0"> <tbody> <tr> <td class=3D"img-center" style=3D"font-siz=
+e:0pt; line-height:0pt; text-align:center"> <a href=3D"https://www.fishp=
+ond.com.au/Pets/Vivaglory-Dog-Life-Jacket/9999024511067?utm_source=3Dema=
+il&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_accesories&a=
+mp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU"> <img src=3D"http=
+://rcdn-2.fishpond.com.au/0154/282/237/379518933/5.jpeg" border=3D"0" al=
+t=3D"" /> </a> </td> </tr> </tbody> </table> </th> <th class=3D"column-t=
+op" style=3D"font-size:0pt; line-height:0pt; padding:0; Margin:0; font-w=
+eight:normal; vertical-align:top; Margin:0" valign=3D"top" width=3D"1">=
+ <div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div=
+> </th> <th class=3D"column-top" style=3D"font-size:0pt; line-height:0pt=
+; padding:0; Margin:0; font-weight:normal; vertical-align:top; Margin:0"=
+ valign=3D"top" width=3D"30"> <table width=3D"100%" border=3D"0" cellspa=
+cing=3D "0" cellpadding=3D"0"> <tbody> <tr> <td> <div class=3D "hide-for=
+-mobile"> <div style=3D"height: 20px; width:100%; min-width:100%"> &nbsp=
+;=0A</div> <div class=3D"img-right" style=3D"font-size:0pt; line-height:=
+0pt; text-align:right"> <img src=3D"https://cdn1.fishpond.com.au/fp_uplo=
+ads/email_images/triangle.jpg" border=3D"0" width=3D"16" height=3D"31" a=
+lt=3D "" /> </div> </div> </td> </tr> </tbody> </table> </th> <th class=
+=3D"column-top" style=3D"font-size:0pt; line-height:0pt; padding:0; Marg=
+in:0; font-weight:normal; vertical-align:top; Margin:0" valign=3D"top">=
+ <table width=3D"100%" border=3D"0" cellspacing=3D "0" cellpadding=3D"0"=
+> <tbody> <tr> <td bgcolor=3D "#F6F6F6" style=3D"border-radius: 5px;"> <=
+table width=3D "100%" border=3D"0" cellspacing=3D"0" cellpadding=3D "0">=
+ <tbody> <tr> <td class=3D"content-spacing" style=3D"font-size:0pt; line=
+-height:0pt; text-align:left" width=3D "30"> </td> <td> <div style=3D"he=
+ight: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> <!-- Price and=
+ Button --> <table width=3D"100%" border=3D "0" cellspacing=3D"0" cellpa=
+dding=3D"0"> <tbody> <tr> <td class=3D"text-price" style=3D"color:#24b83=
+7; font-family:Arial,sans-serif,'Lato'; font-size:28px; line-height:32px=
+; text-align:left; font-weight:bold"> $57.95 </td> <td align=3D"right">=
+ <!-- Button --> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+> <tbody> <tr> <td bgcolor=3D"#5DC623"> <table width=3D"100%" border=3D"=
+0" cellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-si=
+ze:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%">=
+ <tbody> <tr> <td height=3D"10" class=3D"spacer" style=3D"font-size:0pt;=
+ line-height:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;=
+</td> </tr> </tbody> </table> <table width=3D"100%" border=3D"0" cellspa=
+cing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"img" style=3D"fo=
+nt-size:0pt; line-height:0pt; text-align:left" width=3D"20"> </td> <td c=
+lass=3D"text-button2" style=3D"color:#ffffff; font-family:Arial,sans-ser=
+if,'Lato'; font-size:18px; line-height:22px; text-align:center"> <a href=
+=3D"https://www.fishpond.com.au/Pets/Vivaglory-Dog-Life-Jacket/999902451=
+1067?utm_source=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog=
+_apparel_accesories&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_=
+AU" target=3D"_blank" class=3D"link-white" style=3D"color:#ffffff; text-=
+decoration:none"> <strong class=3D"link-white" style=3D"color:#ffffff; t=
+ext-decoration:none"> Buy Now </strong> </a> </td> <td class=3D"img" sty=
+le=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D"20"> </t=
+d> </tr> </tbody> </table> <table width=3D"100%" border=3D"0" cellspacin=
+g=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt; line-=
+height:0pt; text-align:center; width:100%; min-width:100%"> <tbody> <tr>=
+ <td height=3D"10" class=3D"spacer" style=3D"font-size:0pt; line-height:=
+0pt; text-align:center; width:100%; min-width:100%"> &nbsp;</td> </tr> <=
+/tbody> </table> </td> </tr> </tbody> </table><!-- END Button --> </td>=
+ </tr> </tbody> </table> <!-- END Price and Button --> <div style=3D"hei=
+ght: 14px; width:100%; min-width:100%"> &nbsp;=0A</div> <table width=3D"=
+100%" border=3D "0" cellspacing=3D"0" cellpadding=3D"0" bgcolor=3D"#EBE7=
+D8" class=3D "border" style=3D"font-size:0pt; line-height:0pt; text-alig=
+n:center; width:100%; min-width:100%"> <tbody> <tr> <td bgcolor=3D"#EBE7=
+D8" height=3D"1" class=3D"border" style=3D"font-size:0pt; line-height:0p=
+t; text-align:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </t=
+body> </table> <div style=3D"height: 14px; width:100%; min-width:100%">=
+ &nbsp;=0A</div> <table width=3D"100%" border=3D "0" cellspacing=3D"0" c=
+ellpadding=3D"0"> <tbody> <tr> <td class=3D"text-small-black" style=3D"c=
+olor:#000000; font-family:Arial,sans-serif,'Lato'; font-size:12px; line-=
+height:16px; text-align:left; font-weight:bold"> </td> <td align=3D"righ=
+t"> <div class=3D"text-orange-right" style=3D"color:#ff6600; font-family=
+:Arial,sans-serif,'Lato'; font-size:16px; line-height:20px; text-align:r=
+ight; font-weight:bold"> Limited Stock! </div> </td> </tr> </tbody> </ta=
+ble> <div style=3D"height: 14px; width:100%; min-width:100%"> &nbsp;=0A<=
+/div> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" bgcolor=3D"#EBE7D8" class=3D"border" style=3D"font-size:0pt; line=
+-height:0pt; text-align:center; width:100%; min-width:100%"> <tbody> <tr=
+> <td bgcolor=3D"#EBE7D8" height=3D"1" class=3D"border" style=3D"font-si=
+ze:0pt; line-height:0pt; text-align:center; width:100%; min-width:100%">=
+ &nbsp;</td> </tr> </tbody> </table><!-- Title --> <div style=3D"height:=
+ 7px; width:100%; min-width:100%"> &nbsp;=0A</div> <div class=3D"h2" sty=
+le=3D"color:#000000; font-family:Arial,sans-serif,'Lato'; font-size:20px=
+; line-height:24px; text-align:left; font-weight:bold"> Vivaglory Dog Li=
+fe Jacket </div> <table width=3D"100%" border=3D "0" cellspacing=3D"0" c=
+ellpadding=3D"0" class=3D "spacer" style=3D"font-size:0pt; line-height:0=
+pt; text-align:center; width:100%; min-width:100%"> <tbody> <tr> <td hei=
+ght=3D"8" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text=
+-align:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> <=
+/table><!-- Title --> <table width=3D"100%" border=3D "0" cellspacing=3D=
+"0" cellpadding=3D"0"> <tbody> <tr> <th class=3D"column-top" style=3D"fo=
+nt-size:0pt; line-height:0pt; padding:0; Margin:0; font-weight:normal; v=
+ertical-align:top; Margin:0" valign=3D"top"> <table width=3D"100%" borde=
+r=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"t=
+ext-smaller" style=3D"color:#000000; font-family:Arial,sans-serif,'Lato'=
+; font-size:12px; line-height:16px; text-align:left"> </td> </tr> </tbod=
+y> </table> </th> </tr> </tbody> </table> <table width=3D"100%" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"fon=
+t-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:10=
+0%"> <tbody> <tr> <td height=3D"10" class=3D"spacer" style=3D"font-size:=
+0pt; line-height:0pt; text-align:center; width:100%; min-width:100%"> &n=
+bsp;</td> </tr> </tbody> </table> <div class=3D"text-small" style=3D"col=
+or:#4c4c4c; font-family:Arial,sans-serif,'Lato'; font-size:14px; line-he=
+ight:18px; text-align:left"> The new Vivaglory sports style dog life jac=
+ket has superior buoyancy and a rescue handle with reflective details to=
+ increase visibility on water or in low light conditions. Come sin 5 siz=
+es and 8 colours. </div> <div style=3D"height: 20px; width:100%; min-wid=
+th:100%"> &nbsp;=0A</div> <!-- Button --> <table border=3D"0" cellspacin=
+g=3D"0" cellpadding=3D"0"> <tbody> <tr> <td bgcolor=3D"#FF6600"> <div st=
+yle=3D"height: 8px; width:100%; min-width:100%"> &nbsp;=0A</div> <table=
+ width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody=
+> <tr> <td class=3D"img" style=3D"font-size:0pt; line-height:0pt; text-a=
+lign:left" width=3D"20"> </td> <td class=3D"text-button" style=3D"color:=
+#ffffff; font-family:Arial,sans-serif,'Montserrat'; font-size:12px; line=
+-height:16px; text-align:center"> <a href=3D"https://www.fishpond.com.au=
+/Pets/Vivaglory-Dog-Life-Jacket/9999024511067?utm_source=3Demail&amp;utm=
+_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_accesories&amp;utm_cam=
+paign=3DPets_Dogs_Accessories_E15VM_Sep2_AU" target=3D"_blank" class=3D"=
+link-white" style=3D"color:#ffffff; text-decoration:none"> <strong class=
+=3D"link-white" style=3D"color:#ffffff; text-decoration:none"> Read More=
+</strong></a></td> <td class=3D"img" style=3D"font-size:0pt; line-height=
+:0pt; text-align:left" width=3D"20"> </td> </tr> </tbody> </table> <div=
+ style=3D"height: 10px; width:100%; min-width:100%"> &nbsp;=0A</div> </t=
+d> </tr> </tbody> </table><!-- END Button --> <div style=3D"height: 20px=
+; width:100%; min-width:100%"> &nbsp;=0A</div> </td> <td class=3D"conten=
+t-spacing" style=3D"font-size:0pt; line-height:0pt; text-align:left" wid=
+th=3D "30"> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table>=
+ </th> </tr> </tbody> </table> <div style=3D"height: 20px; width:100%; m=
+in-width:100%"> &nbsp;=0A</div> <div class=3D"hide-for-mobile"> <div sty=
+le=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> </div>=
+ </td> </tr> </tbody>=0A</table> </td> <td class=3D"content-spacing" sty=
+le=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D"40"></td=
+> </tr> </tbody> </table> </td> </tr> </tbody> </table> <div style=3D"he=
+ight: 10px; width:100%; min-width:100%"> &nbsp;=0A</div> <!-- Free Shipp=
+ing -->=0A<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0"> <tbody> <tr> <td bgcolor=3D"#FFFFFF" style=3D"border-radius: 5=
+px;"> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0"> <tbody> <tr> <td class=3D"content-spacing" style=3D"font-size:0p=
+t; line-height:0pt; text-align:left" width=3D"40"></td> <td> <div style=
+=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> <div clas=
+s=3D"hide-for-mobile"> <div style=3D"height: 20px; width:100%; min-width=
+:100%"> &nbsp;=0A</div> </div> <table width=3D"100%" border=3D"0" cellsp=
+acing=3D"0" cellpadding=3D"0"> <tbody> <tr> <th class=3D"column-top" sty=
+le=3D"font-size:0pt; line-height:0pt; padding:0; Margin:0; font-weight:n=
+ormal; vertical-align:top; Margin:0" valign=3D"top"> <table width=3D"100=
+%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td> <=
+div class=3D"h1" style=3D"color:#3361e3; font-family:Arial,sans-serif,'M=
+ontserrat'; font-size:22px; line-height:26px; text-align:left; font-weig=
+ht:bold"> Free Shipping Nationwide! </div> <div style=3D"height: 20px; w=
+idth:100%; min-width:100%"> &nbsp;=0A</div> <div class=3D"text-blue" sty=
+le=3D"color:#3361e3; font-family:Arial,sans-serif,'Montserrat'; font-siz=
+e:14px; line-height:18px; text-align:left"> Hurry! Stock of some items i=
+s limited at these prices! </div> <div style=3D"font-size:0pt; line-heig=
+ht:0pt;" class=3D"mobile-br-15"> </div> </td> </tr> </tbody> </table> </=
+th> <th class=3D"column-top" style=3D"font-size:0pt; line-height:0pt; pa=
+dding:0; Margin:0; font-weight:normal; vertical-align:top; Margin:0" val=
+ign=3D"top" width=3D"140"> <table width=3D"100%" border=3D"0" cellspacin=
+g=3D"0" cellpadding=3D"0"> <tbody> <tr> <td> <!-- Button --> <table bord=
+er=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td bgcolor=
+=3D"#FF6600"> <div style=3D"height: 20px; width:100%; min-width:100%"> &=
+nbsp;=0A</div> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cell=
+padding=3D"0"> <tbody> <tr> <td class=3D"img" style=3D"font-size:0pt; li=
+ne-height:0pt; text-align:left" width=3D"20"> </td> <td class=3D"text-bu=
+tton" style=3D"color:#ffffff; font-family:Arial,sans-serif,'Montserrat';=
+ font-size:12px; line-height:16px; text-align:center"> <a href=3D"http:/=
+/www.fishpond.com.au/?utm_source=3Demail&amp;utm_medium=3Dpets&amp;utm_c=
+ontent=3Dpets_dog_apparel_accesories&amp;utm_campaign=3DPets_Dogs_Access=
+ories_E15VM_Sep2_AU" target=3D"_blank" class=3D"link-white" style=3D"col=
+or:#ffffff; text-decoration:none"> <strong class=3D"link-white" style=3D=
+"color:#ffffff; text-decoration:none"> Shop Now&nbsp;&nbsp;&rarr; </stro=
+ng></a></td> <td class=3D"img" style=3D"font-size:0pt; line-height:0pt;=
+ text-align:left" width=3D"20"> </td> </tr> </tbody> </table> <div style=
+=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> </td> </t=
+r> </tbody> </table> <!-- END Button --> </td> </tr> </tbody> </table> <=
+/th> </tr> </tbody> </table> <div style=3D"height: 20px; width:100%; min=
+-width:100%"> &nbsp;=0A</div> <div class=3D"hide-for-mobile"> <div style=
+=3D"height: 20px; width:100%; min-width:100%"> &nbsp;=0A</div> </div> </=
+td> <td class=3D"content-spacing" style=3D"font-size:0pt; line-height:0p=
+t; text-align:left" width=3D"40"></td> </tr> </tbody> </table> </td> </t=
+r> </tbody>=0A</table> </td> <td class=3D"content-spacing" style=3D"font=
+-size:0pt; line-height:0pt; text-align:left" width=3D"1"></td> </tr> </t=
+body> </table> </td> </tr> </tbody> </table> </td> </tr> </tbody> </tabl=
+e> <table class=3D"footer" width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" bgcolor=3D"#2047B7"> <tbody> <tr> <td align=3D"center=
+" valign=3D"top"> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0=
+" class=3D"mobile-shell"> <tbody> <tr> <td class=3D"td" style=3D"width:7=
+30px; min-width:730px; padding:0; Margin:0; font-weight:normal;"> <table=
+ width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody=
+> <tr> <td class=3D"content-spacing" style=3D"font-size:0pt; line-height=
+:0pt; text-align:left" width=3D"1"></td> <td bgcolor=3D"#2B54CA"> <table=
+ width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=
+=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-align:center;=
+ width:100%; min-width:100%"> <tbody> <tr> <td height=3D"20" class=3D"sp=
+acer" style=3D"font-size:0pt; line-height:0pt; text-align:center; width:=
+100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </table> <div class=3D=
+"hide-for-mobile"> <table width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt; line-height:=
+0pt; text-align:center; width:100%; min-width:100%"> <tbody> <tr> <td he=
+ight=3D"10" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; te=
+xt-align:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody>=
+ </table> </div> <table width=3D"100%" border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"0"> <tbody> <tr> <td class=3D"content-spacing" style=3D"fon=
+t-size:0pt; line-height:0pt; text-align:left" width=3D"40"></td> <td ali=
+gn=3D"center"> <table border=3D"0" cellspacing=3D"0" cellpadding=3D"0">=
+ <tbody> <tr> <th class=3D"column" style=3D"padding:0; Margin:0; font-we=
+ight:normal;" width=3D"131"> <table width=3D"100%" border=3D"0" cellspac=
+ing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td align=3D"center"> <table b=
+order=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=
+=3D"text-nav" style=3D"color:#ffffff; font-family:Arial,sans-serif,'Lato=
+'; font-size:14px; line-height:18px; text-align:left; font-weight:bold">=
+ <span class=3D"mobile-block"><a href=3D"http://www.fishpond.com.au/Book=
+s?utm_source=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_ap=
+parel_accesories&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU"=
+ target=3D"_blank" class=3D"link-white" style=3D"color:#ffffff; text-dec=
+oration:none"> <span class=3D"link-white" style=3D"color:#ffffff; text-d=
+ecoration:none"> Books</span></a></span></td> <td class=3D"content-spaci=
+ng" style=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D"3=
+0"></td> <td class=3D"text-nav" style=3D"color:#ffffff; font-family:Aria=
+l,sans-serif,'Lato'; font-size:14px; line-height:18px; text-align:left;=
+ font-weight:bold"> <span class=3D"mobile-block"><a href=3D"http://www.f=
+ishpond.com.au/Toys?utm_source=3Demail&amp;utm_medium=3Dpets&amp;utm_con=
+tent=3Dpets_dog_apparel_accesories&amp;utm_campaign=3DPets_Dogs_Accessor=
+ies_E15VM_Sep2_AU" target=3D"_blank" class=3D"link-white" style=3D"color=
+:#ffffff; text-decoration:none"> <span class=3D"link-white" style=3D"col=
+or:#ffffff; text-decoration:none"> Toys</span></a></span></td> </tr> </t=
+body> </table> </td> </tr> </tbody> </table> </th> <th class=3D"column-t=
+op" style=3D"font-size:0pt; line-height:0pt; padding:0; Margin:0; font-w=
+eight:normal; vertical-align:top; Margin:0" valign=3D"top" width=3D"1">=
+ <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"=
+ class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-align:ce=
+nter; width:100%; min-width:100%"> <tbody> <tr> <td height=3D"10" class=
+=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-align:center;=
+ width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </table> </th>=
+ <th class=3D"column" style=3D"padding:0; Margin:0; font-weight:normal;"=
+ width=3D"192"> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cel=
+lpadding=3D"0"> <tbody> <tr> <td align=3D"center"> <table border=3D"0" c=
+ellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"text-nav"=
+ style=3D"color:#ffffff; font-family:Arial,sans-serif,'Lato'; font-size:=
+14px; line-height:18px; text-align:left; font-weight:bold"> <span class=
+=3D"mobile-block"><a href=3D"http://www.fishpond.com.au/Homeware?utm_sou=
+rce=3Demail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_acc=
+esories&amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU" target=
+=3D"_blank" class=3D"link-white" style=3D"color:#ffffff; text-decoration=
+:none"> <span class=3D"link-white" style=3D"color:#ffffff; text-decorati=
+on:none">Homeware</span></a></span></td> <td class=3D"content-spacing" s=
+tyle=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D"30"></=
+td> <td class=3D"text-nav" style=3D"color:#ffffff; font-family:Arial,san=
+s-serif,'Lato'; font-size:14px; line-height:18px; text-align:left; font-=
+weight:bold"> <span class=3D"mobile-block"><a href=3D"http://www.fishpon=
+d.com.au/Kitchen?utm_source=3Demail&amp;utm_medium=3Dpets&amp;utm_conten=
+t=3Dpets_dog_apparel_accesories&amp;utm_campaign=3DPets_Dogs_Accessories=
+_E15VM_Sep2_AU" target=3D"_blank" class=3D"link-white" style=3D"color:#f=
+fffff; text-decoration:none"> <span class=3D"link-white" style=3D"color:=
+#ffffff; text-decoration:none">Kitchen</span></a></span></td> </tr> </tb=
+ody> </table> </td> </tr> </tbody> </table> </th> <th class=3D"column-to=
+p" style=3D"font-size:0pt; line-height:0pt; padding:0; Margin:0; font-we=
+ight:normal; vertical-align:top; Margin:0" valign=3D"top" width=3D"1"> <=
+table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" cl=
+ass=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-align:cente=
+r; width:100%; min-width:100%"> <tbody> <tr> <td height=3D"10" class=3D"=
+spacer" style=3D"font-size:0pt; line-height:0pt; text-align:center; widt=
+h:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </table> </th> <th c=
+lass=3D"column" style=3D"padding:0; Margin:0; font-weight:normal;" width=
+=3D"200"> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpaddi=
+ng=3D"0"> <tbody> <tr> <td align=3D"center"> <table border=3D"0" cellspa=
+cing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"text-nav" style=
+=3D"color:#ffffff; font-family:Arial,sans-serif,'Lato'; font-size:14px;=
+ line-height:18px; text-align:left; font-weight:bold"> <span class=3D"mo=
+bile-block"><a href=3D"http://www.fishpond.com.au/Beauty?utm_source=3Dem=
+ail&amp;utm_medium=3Dpets&amp;utm_content=3Dpets_dog_apparel_accesories&=
+amp;utm_campaign=3DPets_Dogs_Accessories_E15VM_Sep2_AU" target=3D"_blank=
+" class=3D"link-white" style=3D"color:#ffffff; text-decoration:none"> <s=
+pan class=3D"link-white" style=3D"color:#ffffff; text-decoration:none">=
+ Beauty</span></a></span></td> <td class=3D"content-spacing" style=3D"fo=
+nt-size:0pt; line-height:0pt; text-align:left" width=3D"30"></td> <td cl=
+ass=3D"text-nav" style=3D"color:#ffffff; font-family:Arial,sans-serif,'L=
+ato'; font-size:14px; line-height:18px; text-align:left; font-weight:bol=
+d"> <span class=3D"mobile-block"><a href=3D"http://www.fishpond.com.au/S=
+ports_Outdoors?utm_source=3Demail&amp;utm_medium=3Dpets&amp;utm_content=
+=3Dpets_dog_apparel_accesories&amp;utm_campaign=3DPets_Dogs_Accessories_=
+E15VM_Sep2_AU" target=3D"_blank" class=3D"link-white" style=3D"color:#ff=
+ffff; text-decoration:none"> <span class=3D"link-white" style=3D"color:#=
+ffffff; text-decoration:none"> Sports</span></a></span></td> <td class=
+=3D"content-spacing" style=3D"font-size:0pt; line-height:0pt; text-align=
+:left" width=3D"30"></td> <td class=3D"text-nav" style=3D"color:#ffffff;=
+ font-family:Arial,sans-serif,'Lato'; font-size:14px; line-height:18px;=
+ text-align:left; font-weight:bold"> <span class=3D"mobile-block"><a hre=
+f=3D"http://www.fishpond.com.au/Health?utm_source=3Demail&amp;utm_medium=
+=3Dpets&amp;utm_content=3Dpets_dog_apparel_accesories&amp;utm_campaign=
+=3DPets_Dogs_Accessories_E15VM_Sep2_AU" target=3D"_blank" class=3D"link-=
+white" style=3D"color:#ffffff; text-decoration:none"> <span class=3D"lin=
+k-white" style=3D"color:#ffffff; text-decoration:none"> Health</span></a=
+></span></td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </th=
+> </tr> </tbody> </table> </td> <td class=3D"content-spacing" style=3D"f=
+ont-size:0pt; line-height:0pt; text-align:left" width=3D"40"></td> </tr>=
+ </tbody> </table> <table width=3D"100%" border=3D"0" cellspacing=3D"0"=
+ cellpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt; line-height:=
+0pt; text-align:center; width:100%; min-width:100%"> <tbody> <tr> <td he=
+ight=3D"20" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; te=
+xt-align:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody>=
+ </table> <div class=3D"hide-for-mobile"> <table width=3D"100%" border=
+=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"fon=
+t-size:0pt; line-height:0pt; text-align:center; width:100%; min-width:10=
+0%"> <tbody> <tr> <td height=3D"10" class=3D"spacer" style=3D"font-size:=
+0pt; line-height:0pt; text-align:center; width:100%; min-width:100%"> &n=
+bsp;</td> </tr> </tbody> </table> </div> </td> <td class=3D"content-spac=
+ing" style=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D"=
+1"></td> </tr> </tbody> </table> <table width=3D"100%" border=3D"0" cell=
+spacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td class=3D"content-spaci=
+ng" style=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D"1=
+"></td> <td bgcolor=3D"#3361E3"> <table width=3D"100%" border=3D"0" cell=
+spacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt;=
+ line-height:0pt; text-align:center; width:100%; min-width:100%"> <tbody=
+> <tr> <td height=3D"20" class=3D"spacer" style=3D"font-size:0pt; line-h=
+eight:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;</td> <=
+/tr> </tbody> </table> <div class=3D"hide-for-mobile"> <table width=3D"1=
+00%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"spacer" s=
+tyle=3D"font-size:0pt; line-height:0pt; text-align:center; width:100%; m=
+in-width:100%"> <tbody> <tr> <td height=3D"20" class=3D"spacer" style=3D=
+"font-size:0pt; line-height:0pt; text-align:center; width:100%; min-widt=
+h:100%"> &nbsp;</td> </tr> </tbody> </table> </div> <table width=3D"100%=
+" border=3D"0" cellspacing=3D"0" cellpadding=3D"0"> <tbody> <tr> <td cla=
+ss=3D"content-spacing" style=3D"font-size:0pt; line-height:0pt; text-ali=
+gn:left" width=3D"40"></td> <td> <div class=3D"text-footer" style=3D"col=
+or:#ffffff; font-family:Arial,sans-serif,'Lato'; font-size:12px; line-he=
+ight:16px; text-align:left"> <p> Please add <a style=3D"color: #fff; tex=
+t-decoration: underline" href=3D"http://www.fishpond.com.au/contact_us.p=
+hp?cId=3D2.k3J5Mq8TnRlLgI469-LHnQ">newsletters@fishpond.com.au</a> to yo=
+ur address book or safe list. </p> <br>=0A<p><span class=3D"c1">This ema=
+il has been sent by Fishpond Ltd. Please add us to your address book or=
+ safe list so our emails don't get deleted as SPAM - we'd like to keep y=
+ou informed of other special offers.<br>=0A<br></span></p>=0A<p><span cl=
+ass=3D"c1">You have received this email because you have registered at <=
+a style=3D"color:#fff;text-decoration:underline" href=3D"http://www.fish=
+pond.com.au/bestsellers.php?utm_source=3Dfooter&amp;utm_medium=3Demail&a=
+mp;utm_campaign=3Demail_footer" target=3D"_blank">Fishpond.com.au</a>. =
+ Use the <a style=3D"color: #fff; text-decoration: underline" href=3D"ht=
+tp://www.fishpond.com.au/account_newsletters.php?cId=3D2.k3J5Mq8TnRlLgI4=
+69-LHnQ" target=3D"_blank">Email Preference Centre</a> to modify the fre=
+quency of emails, choose product categories you're interested in, or to=
+ unsubscribe.<br>=0A<br>=0A=C2=A9 2004-2013 Fishpond Ltd. PO Box Z5287 S=
+t George Terrace, Perth W.A. 6831</span></p>=0A<span class=3D"c1"><br></=
+span> </div> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; te=
+xt-align:center; width:100%; min-width:100%"> <tbody> <tr> <td height=3D=
+"10" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-alig=
+n:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </tabl=
+e> <div class=3D"img" style=3D"font-size:0pt; line-height:0pt; text-alig=
+n:left"> <a href=3D"https://www.facebook.com/Fishpond.com.au/" target=3D=
+"_blank"><img src=3D"https://cdn1.fishpond.com.au/fp_uploads/email_image=
+s/ico_facebook.jpg" border=3D"0" width=3D"28" height=3D"28" alt=3D"" /><=
+/a> </div> <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadd=
+ing=3D"0" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text=
+-align:center; width:100%; min-width:100%"> <tbody> <tr> <td height=3D"2=
+0" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-align:=
+center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </table>=
+ <div class=3D"hide-for-mobile"> <table width=3D"100%" border=3D"0" cell=
+spacing=3D"0" cellpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt;=
+ line-height:0pt; text-align:center; width:100%; min-width:100%"> <tbody=
+> <tr> <td height=3D"30" class=3D"spacer" style=3D"font-size:0pt; line-h=
+eight:0pt; text-align:center; width:100%; min-width:100%"> &nbsp;</td> <=
+/tr> </tbody> </table> </div> </td> <td class=3D"content-spacing" style=
+=3D"font-size:0pt; line-height:0pt; text-align:left" width=3D"40"></td>=
+ </tr> </tbody> </table> </td> <td class=3D"content-spacing" style=3D"fo=
+nt-size:0pt; line-height:0pt; text-align:left" width=3D"1"></td> </tr> <=
+/tbody> </table> <table width=3D"100%" border=3D"0" cellspacing=3D"0" ce=
+llpadding=3D"0" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt=
+; text-align:center; width:100%; min-width:100%"> <tbody> <tr> <td heigh=
+t=3D"30" class=3D"spacer" style=3D"font-size:0pt; line-height:0pt; text-=
+align:center; width:100%; min-width:100%"> &nbsp;</td> </tr> </tbody> </=
+table> </td> </tr> </tbody> </table> </td> </tr> </tbody>=0A</table> </t=
+d> </tr> </tbody>=0A</table> <div id=3D"window-resizer-tooltip" style=3D=
+"display: none;"> <a href=3D"" title=3D"Edit settings"></a><span class=
+=3D"tooltipTitle">Window size:</span> <span class=3D"tooltipWidth" id=3D=
+"winWidth">1920</span> x <span class=3D"tooltipHeight" id=3D"winHeight">=
+1056</span><br /> <span class=3D"tooltipTitle">Viewport size:</span> <sp=
+an class=3D"tooltipWidth" id=3D"vpWidth">2560</span> x <span class=3D"to=
+oltipHeight" id=3D"vpHeight">546</span>=0A</div>=0A<!-- prevent Gmail on=
+ iOS font size manipulation --><div style=3D"display:none;white-space:no=
+wrap;font:15px courier;line-height:0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp;</div>=0A<style>@media print{#_trk { back=
+ground-image: url('http://fishpondpublic.s3.amazonaws.com/clear.gif?c=3D=
+27529&u=3D760209498&i=3Dgmail.com&s=3Dau');}} div.OutlookMessageHeader {=
+background-image:url('http://fishpondpublic.s3.amazonaws.com/clear.gif?c=
+=3D27529&u=3D760209498&i=3Dgmail.com&s=3Dau')} table.moz-email-headers-t=
+able {background-image:url('http://fishpondpublic.s3.amazonaws.com/clear=
+.gif?c=3D27529&u=3D760209498&i=3Dgmail.com&s=3Dau')} blockquote #_trk {b=
+ackground-image:url('http://fishpondpublic.s3.amazonaws.com/clear.gif?c=
+=3D27529&u=3D760209498&i=3Dgmail.com&s=3Dau')} #MailContainerBody #_trk=
+ {background-image:url('http://fishpondpublic.s3.amazonaws.com/clear.gif=
+?c=3D27529&u=3D760209498&i=3Dgmail.com&s=3Dau')}</style><div id=3D"_trk"=
+></div><img src=3D"http://fishpondpublic.s3.amazonaws.com/clear.gif?c=3D=
+27529&u=3D760209498&i=3Dgmail.com&s=3Dau" width=3D"1" height=3D"1" borde=
+r=3D"0" /></body>=0A</html>=0A

@@ -1,0 +1,714 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 10.31.148.196 with SMTP id w187csp2312294vkd;
+        Mon, 2 Apr 2018 15:47:01 -0700 (PDT)
+X-Google-Smtp-Source: AIpwx4/mrzRqtphgsc2FbmqR1QowMEY6vn6rj/tvre27NLwBOFeWMsD68fm/fzhnMoJXzn9K/VRf
+X-Received: by 2002:a24:64d8:: with SMTP id t207-v6mr2864254itc.112.1522709221253;
+        Mon, 02 Apr 2018 15:47:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1522709221; cv=none;
+        d=google.com; s=arc-20160816;
+        b=NvPZMyCoyMxaicq307QUEzebz0bLagxXFN6PJTFNMn2si0bjwwYxduIvupmf6aMnDz
+         p39VwI5MdmdvkqtKvm0o/H8dYCGs/w3UidkFDPW3FPYUf7o7VO31QRxIBeN00o6NJFxS
+         kFqn/nHgOt10Ok45blH3HacNnXVD6zloz9YWiPWJLv2TjQZkqedaRtaZzbO18B1gtCRp
+         uP5VzPG3WVGD/f+MP42yoluwrpoVfihCYC5et7x6KYZ4Sxpd/GqORwf4VXScV9dRUZRj
+         74HOcNHR6wjYt9wwCaSfJPI4BK4Tf5TpST4VfDBJAaaFkvc/1HlqGs9sT//9hqOCUsmV
+         Tqog==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=from:reply-to:to:date:subject:message-id:mime-version
+         :content-transfer-encoding:dkim-signature:domainkey-signature
+         :arc-authentication-results;
+        bh=ovcGjMMWxUV6mPTl/fAN37OoIu6rbw0G9Nq5HkonwP0=;
+        b=LZq1Eqb0e5zG811rLE+3acfOTIuj71VYVKEmNGWki3uU1dJQ1xRlv8rHLIRa7Cs5ZR
+         ZOHk/fqlcyp9I72AP8csnAhrgO6uNKhNms/Y4qzT6tpj2U7xD3CFG4Z2pahPZVo90j8G
+         iM3qCrZngE8Brgp8Zc/keH8om/cA2yabR6A1IiFCsL/B16BQdYWIiLjDz/ZlGKf9noc4
+         du6DEouGEspE3ECHqu2gJsxmdzqiJi+yu8nh53z2FuQ5fZ4/cJIJHXPcmyRtYmeuwPYn
+         F7QGQc2c4RfFdPtxv1LfyGG6jDWSd1ejHmPAZONwCCChVVTqdQFlbV+9+m9wiEtucDa9
+         OruQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@energy.agl.com.au header.s=sm header.b=LZ14NA5e;
+       spf=pass (google.com: domain of rts-agl2624@email.energy.agl.com.au designates 180.92.218.51 as permitted sender) smtp.mailfrom=rts-agl2624@email.energy.agl.com.au;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=energy.agl.com.au
+Return-Path: <rts-agl2624@email.energy.agl.com.au>
+Received: from mta1-51.influencemail.com.au (mta1-51.influencemail.com.au. [180.92.218.51])
+        by mx.google.com with ESMTPS id j75si949784ioe.60.2018.04.02.15.46.59
+        for <sometime5858@gmail.com>
+        (version=TLS1 cipher=AES128-SHA bits=128/128);
+        Mon, 02 Apr 2018 15:47:01 -0700 (PDT)
+Received-SPF: pass (google.com: domain of rts-agl2624@email.energy.agl.com.au designates 180.92.218.51 as permitted sender) client-ip=180.92.218.51;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@energy.agl.com.au header.s=sm header.b=LZ14NA5e;
+       spf=pass (google.com: domain of rts-agl2624@email.energy.agl.com.au designates 180.92.218.51 as permitted sender) smtp.mailfrom=rts-agl2624@email.energy.agl.com.au;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=energy.agl.com.au
+Received: from mta1.influencemail.com.au ([10.103.212.4])
+	by mta1-51.influencemail.com.au (-); Tue, 03 Apr 2018 08:46:56 +1000
+X-VirtualServer: BPOAGL, mta1-51.influencemail.com.au, 180.92.218.51
+X-VirtualServerGroup: BPOAGL
+X-MailingID: 16823827::72501::44502::1105::7031930659_bnlr_1;7031930659_bnlr_1;6145::2624_57814220_0__2624
+X-SMHeaderMap: mid="X-MailingID"
+X-Destination-ID: sometime5858@gmail.com
+X-SMFBL: c29tZXRpbWU1ODU4QGdtYWlsLmNvbQ==
+DomainKey-Signature: a=rsa-sha1;
+ c=nofws;
+ s=sm;
+ d=energy.agl.com.au;
+ q=dns;
+ b=S5CfJhdbPIfP920rth6qV2ZobP6W+TKKXiUApP5QhQouG2t8QhsbmPaBmvPOw8DZ3Ff6iEb8QJba5Zkh6AES2t8vjkRr2q3IOigOXunlBSeFLd7F7zwZqWvhH1utMdNsPJ53YcwBo6GNNwr/yhfhFg8CeE4sGDiVNsMCXcE+2K8=
+DKIM-Signature: v=1; a=rsa-sha1; c=simple; d=energy.agl.com.au;
+	s=sm; i=@energy.agl.com.au; h=Content-Transfer-Encoding:
+	Content-Type:MIME-Version:Message-ID:X-ReportingKey:Subject:Date:
+	To:Reply-To:From; bh=W1KSKl3XcxwttaE8k6spUuyXepo=; b=LZ14NA5ecT6
+	OD90WfOVZt8HwmT8Hon54p2k9/UHleW5qxqZVtqpuPWyFR13rTNTpPggdi1Ux1xY
+	+dhyFANnoFVKLVdbp1nT8edqksIfkO06TWe3z5iTa9etm6ib2t29+a+blgd76JCN
+	kZKXSJE/BbckfPYN3VRXV/uWFpJXOO5s=
+Content-Transfer-Encoding: 7bit
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_125_4331_744D06F6.7999E35D"
+MIME-Version: 1.0
+Message-ID: <16823827.2624@energy.agl.com.au>
+X-ReportingKey: MJAAFZ31M695NKK6F2NJJ75LJ146BI3W75L::sometime5858@gmail.com::7031930659_bnlr_1;7031930659_bnlr_1;6145
+Subject: AGL gas bill.
+Date: Tue, 03 Apr 2018 08:46:55 +1000
+To: sometime5858@gmail.com
+Reply-To: agl@energy.agl.com.au
+From: "AGL Energy" <agl@energy.agl.com.au>
+X-TUID: M/kykoXwQs+W
+
+
+------=_NextPart_125_4331_744D06F6.7999E35D
+Content-Type: text/plain;
+	charset="UTF-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+AGL gas account=0A=0A____________________________________________________=
+_________________=0A=0ADear AOHAN =0A=0AHere is a summary of your latest =
+gas bill for the bill period of 26 Jan 2018 to 28 Mar 2018 (62 days).=0A=0A=
+=0A-Your bill overview.-=0A=0ATotal due: $73.32 =0A=0A=0A=0ADue date: 20 =
+Apr 2018=0A=0A=0A=0A=0A=0A=0A=0A-Download bill (PDF).-=0A=0AView your Bil=
+l here:=0Ahttp://www.agl.com.au/ebillredirect.aspx?token=3Dviewbill&paylo=
+ad=3DMIICmAYJKoZIhvcNAQcDoIICiTCCAoUCAQAxggFMMIIBSAIBADAwMBwxGjAYBgNVBAMT=
+EUJpbGwgUmVkZXNpZ24gUE9DAhApH6+KI7ZklUGms+1eBrPNMA0GCSqGSIb3DQEBAQUABIIBA=
+LgN9jczic54u7ak/YOZHIV02nd15v5NCThr2hU4dJNgH+POyTX7buNrUVuIEmlMN8502HFy3O=
+pa+xg40GBVvA9plNBeZ3W/9cpcrzs2A4/5E3vgyAAYJFk0A2y+FO70kW4WUHXJLS9ainbIJJu=
+J+DXF2PTjmjlA1t6soBJxids9JK6HjaDmQyF1KaenCZ4By8hXxowj+ipihNO/I6B3HuRwWj8t=
+IqNCtXwdabIkaxg4xaDPrfj+4RKRmlPvrhQswX6JlV7Sf0AAEcdh67NrAY9XZKaWbDCKeFeFT=
+45yPSf0Bnm+GcHIvtjlO4I1DGD22gCRccG9Bj5XnqbjttJjB5IwggEuBgkqhkiG9w0BBwEwHQ=
+YJYIZIAWUDBAECBBDT1/zLYbVRANLtcHkb1t/agIIBAEobvb8uJww8aVnaaLEMkDEjncGrzKM=
+zeQKjHMr41F+3neZ+jCJ8MQ5kBRnvGNvRAMoOSihJdPXx+MmnYxCeM3PQBsFd0I5nBBLfoRjw=
+MKHreU1ejMU9A7lANxHrJAZlAqo1Ig20AuckqNPoliy3e8+JzkLglwQ7zfngP0mCBKWKRz6Fy=
+YIL15H9YUrYOnVuzS8cYGLl6/VirLkaxJi2JuoIcfOSQK2Z6jSkDnu2UCxOMjrHg6aY6NxVAH=
+KNsXBPRVf5HQCshI+7PDkq+piRp9WHzSpaopJvcti2oFDI+RAVjrMyoG1BWRst422rB1kNmb0=
+NOUWyWkwlWbl9IF1f0hsAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=0A=0A=0A-Make a payment=
+.-
+
+You can make a payment here:
+http://www.agl.com.au/ebillredirect.aspx?token=3Dpaybill&cd_community=3DA=
+GLTER&cd_currency=3DAUD&no_reference=3D70319306599402210160&am_payment=3D=
+$73.32&CP_billpayCode=3D208868=0A=0A=0A-Manage my account.-=0A=0AGo to AG=
+L Energy Online, to manage your account:=0Ahttp://agluat.digital.agl.com.=
+au/ebillredirect.aspx?token=3Daeo=0A=0A=0A-Contact us.-=0A=0AIf you have =
+any questions regarding your account, contact us:=0Ahttp://agluat.digital=
+.agl.com.au/ebillredirect.aspx?token=3Dcontactres=0A=0A=0A-My account det=
+ails. -=0A=0AName: AOHAN WANG=0AAccount number: 7031 930 659=0ASupply add=
+ress: 12/100 ARDEN STREET, NORTH MELBOURNE VIC 3051=0AMIRN: 53230011567=0A=
+=0A_____________________________________________________________________=0A=
+=0ACopyright 2014 AGL Energy Limited=0A=0AThis email is intended solely f=
+or the use of the addressee and may contain information that is confident=
+ial or privileged. If you receive this email in error please notify the s=
+ender and delete the email immediately. AGL takes the security of your in=
+formation very seriously. Please be advised, AGL does not send emails ask=
+ing for personal banking information.=0A=0A
+------=_NextPart_125_4331_744D06F6.7999E35D
+Content-Type: text/html;
+	charset="UTF-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://ww=
+w.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">=0A<html xmlns=3D"http://=
+www.w3.org/1999/xhtml">=0A<head>=0A<meta http-equiv=3D"Content-Type" cont=
+ent=3D"text/html; charset=3Dutf-8" />=0A<meta name=3D"viewport" content=3D=
+"width=3Ddevice-width, initial-scale=3D1.0"/>=0A<meta http-equiv=3D"X-UA-=
+Compatible" content=3D"IE=3Dedge" />=0A<title>AGL</title>=0A<style type=3D=
+"text/css">=0Abody{-webkit-text-size-adjust:none; margin:0;padding:0;-ms-=
+text-size-adjust:100%;background-color:#eeeae4;}=0A.ExternalClass{width: =
+100% !important;-webkit-text-size-adjust:none; margin:0;padding:0;-ms-tex=
+t-size-adjust:100%; line-height:normal;}=0A.appleLinks a{color:#544a46; t=
+ext-decoration:none;}=0A.appleLinks3 a{color:#544a46 !important; text-dec=
+oration:none !important;}=0A.appleLinks2 a{color:#040404; text-decoration=
+:none;}=0A.aolLinks a{color:#544a46; text-decoration:underline;}=0A=0A=0A=
+table {border-collapse: collapse;table-layout: fixed;margin:0 auto;}=09=09=
+=09=09=09=09=09=09=09=09=09=09=0Atable table table {table-layout: auto;}=0A=
+div[style*=3D"margin: 16px 0"] { margin:0 !important; }=0Atable th { marg=
+in:0 !important; padding:0 !important; vertical-align:top; font-weight:no=
+rmal; }=0A=0A/* Smartphones (portrait and landscape) ----------- */=0A@me=
+dia only screen and (max-width : 480px) {=0A*[class].wrapper{width:320px =
+!important;}=0A*[class].hundred{width:100% !important;}=0A*[class].deskto=
+p{display: none !important;}=0A*[class].block {display:inline-block !impo=
+rtant}=0A*[class].bluecolour{background-color:#ffce45 !important;}=0A*[cl=
+ass].zero{padding:0px !important;}=0A*[class].zero2{padding-left:0px !imp=
+ortant; padding-bottom: 10px !important;}=0Atd[class].padding17{padding:1=
+7px 17px 17px 17px !important;}=0Atd[class].padfooter{padding-left:17px !=
+important; padding-right:17px !important; padding-bottom:8px !important; =
+padding-top:8px !important;}=0Atd[class].pad17{padding-left:17px !importa=
+nt; padding-right:17px !important;}=0Atable[class].padright9{padding-righ=
+t:9px !important; background-color:#ffce45 !important;}=0Atable[class].wh=
+iterounded{padding-left:6px !important;; padding-right:6px !important; pa=
+dding-top:15px !important; padding-bottom:15px !important; border-radius:=
+3px !important; background-color:#ffffff !important;}=0Atable[class].whit=
+erounded2{padding-left:6px !important;; padding-right:6px !important; pad=
+ding-top:6px !important; padding-bottom:6px !important; border-radius:3px=
+ !important; background-color:#ffffff !important;}=0Atd[class].height11{p=
+adding-top:11px !important; background-color:#ffffff !important;}=0Atd[cl=
+ass].greytop img{width:100% !important; height:12px !important;}=0Atd[cla=
+ss].marketingbanner2 img{width:100% !important; height:auto !important;}=0A=
+td[class].greybottom img{width:100% !important; height:12px !important;}=0A=
+td[class].footerwidth1 {width:30% !important;}=0Atd[class].footerwidth2 {=
+width:23% !important;}=0Atd[class].footerwidth3 {width:12% !important;}=0A=
+td[class].footerwidth4 {width:35% !important;}=0Atd[class].padbottom0{pad=
+ding-bottom:0px !important;}=0A=0Atd[class].myusefulinfo span{background-=
+image:url(http://agl-media-cdn.web.sd-svc.net/IAG/0011/bus_usefulinformat=
+ion_mobile_yellow.jpg); width:287px !important; height:28px !important; d=
+isplay:inline-block; background-size:287px auto;}=0A=0Atd[class].myuseful=
+info_bottom span{background-image:url(http://agl-media-cdn.web.sd-svc.net=
+/IAG/0011/bottom2_mobile_yellow.jpg); width:287px !important; height:6px =
+!important; display:inline-block; background-size:287px auto;}=0A=0Atd[cl=
+ass].marketingbanner span{width:286px !important; height:175px !important=
+; display:inline-block; background-size:286px auto; background-repeat:no-=
+repeat;}=0Atd[class].marketingbanner img{display:none !important;}=0Atd[c=
+lass].logobanner span{background-image:url(http://agl-media-cdn.web.sd-sv=
+c.net/AGL/0011/logogas_mobile_v3.jpg); width:286px !important; height:73p=
+x !important; display:inline-block; background-size:286px auto;}=0Atd[cla=
+ss].button1 span{background-image:url(http://agl-media-cdn.web.sd-svc.net=
+/IAG/0011/makeapayment_mobile.jpg); width:269px !important; height:20px !=
+important; display:inline-block; background-size:269px auto;}=0A=0Atd[cla=
+ss].button2 span{background-image:url(http://agl-media-cdn.web.sd-svc.net=
+/AGL/0011/viewyourbill_mobile.jpg); width:269px !important; height:20px !=
+important; display:inline-block; background-size:269px auto;}=0Atd[class]=
+.button2b span{background-image:url(http://agl-media-cdn.web.sd-svc.net/A=
+GL/0011/viewbill_mobile.jpg); width:269px !important; height:20px !import=
+ant; display:inline-block; background-size:269px auto;}=0A=0Atd[class].bu=
+tton3 span{background-image:url(http://agl-media-cdn.web.sd-svc.net/IAG/0=
+011/managemyaccount_mobile.jpg); width:269px !important; height:20px !imp=
+ortant; display:inline-block; background-size:269px auto;}=0Atd[class].bu=
+tton4 span{background-image:url(http://agl-media-cdn.web.sd-svc.net/IAG/0=
+011/faultsandemergencies_mobile.jpg); width:269px !important; height:20px=
+ !important; display:inline-block; background-size:269px auto;}=0Atd[clas=
+s].button5 span{background-image:url(http://agl-media-cdn.web.sd-svc.net/=
+IAG/0011/contactus_mobile.jpg); width:269px !important; height:20px !impo=
+rtant; display:inline-block; background-size:269px auto;}=0A*[class].mobi=
+le{display:block !important; width:100% !important; max-height:inherit !i=
+mportant; overflow:visible !important;}=0A*[class].UsefulInfo{padding-top=
+:10px !important;}=0A*[class].block2 { display:block !important; }=0Atabl=
+e[class].BodyContent th{display:block !important;width: 100% !important;}=
+=0Atd[class].pad10{ padding-right:10px !important;}=0A}=0A=0A=0A=0A=0A</s=
+tyle>=0A=0A</head>=0A=0A<body bgcolor=3D"#eeeae4">=0A<table width=3D"100%=
+" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" bgcolor=3D"#eeeae4">=0A=
+<tr>=0A<td valign=3D"top" align=3D"center">=0A=09<table width=3D"556" cel=
+lpadding=3D"0" cellspacing=3D"0" border=3D"0" class=3D"wrapper" bgcolor=3D=
+"#ffffff" align=3D"center">=0A   =0A   =0A    <tr>=0A    <td valign=3D"to=
+p" style=3D"padding-left:29px; padding-right:29px; padding-bottom:25px; p=
+adding-top:25px;" class=3D"padding17">=0A    =09=0A    <table width=3D"10=
+0%" cellpadding=3D"0" cellspacing=3D"0" border=3D"0">=0A    =0A    <!-- L=
+ogo Banner -->=0A    <tr>=0A    <td valign=3D"top" class=3D"logobanner"><=
+a href=3D"http://www.agl.com.au/ebillredirect.aspx?token=3Dhomeres" targe=
+t=3D"_blank"><img src=3D"http://agl-media-cdn.web.sd-svc.net/AGL/0011/log=
+o_gas_v2.jpg" width=3D"498" height=3D"77" style=3D"display:block; font-fa=
+mily:Arial, Helvetica, sans-serif; font-size:20px; color:#001cb0; text-al=
+ign:center; font-weight:bold;" hspace=3D"0" vspace=3D"0" alt=3D"RESIGAS" =
+border=3D"0" class=3D"desktop" /><span></span></a>=0A    </td>=0A    </tr=
+>=0A    <!-- End of Logo Banner -->=0A    =0A    <!-- Intro Copy -->=0A  =
+  <tr>=0A    <td class=3D"appleLinks" valign=3D"top" style=3D"padding-top=
+:20px; padding-bottom:20px; font-family:Arial, Helvetica, sans-serif; fon=
+t-size:12px; color:#544a46; text-align:left;">Dear AOHAN<br /><br />=0AHe=
+re is a summary of your latest gas bill. You can view more details and ma=
+nage your account using the links below.<br/>
+<br/>
+From <a style=3D"color:#544a46; text-decoration:none">1 December 2017</a>=
+, changes to your terms and conditions apply. Please click <a style=3D"te=
+xt-decoration:underline; color:#544a46;" href=3D"https://www.agl.com.au/p=
+owerofchoice"><strong>here</strong></a> for further information.=0A=09=0A=
+    </td>=0A    </tr>=0A    <!-- End of Intro Copy -->=0A    =0A    <!-- =
+Body -->=0A    <tr>=0A    <td valign=3D"top">=0A    =09<table width=3D"10=
+0%" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" class=3D"BodyContent=
+">=0A        <tr>=0A        <th valign=3D"top" class=3D"block block2" bgc=
+olor=3D"#ffce45">=0A        =0A         <!-- My Bills Overview -->=0A    =
+=09<table width=3D"277" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+class=3D"hundred">=0A        <tr>=0A        <td valign=3D"top" bgcolor=3D=
+"#ffce45"><img src=3D"http://agl-media-cdn.web.sd-svc.net/IAG/0011/mybill=
+overview_mobile_yellow.jpg" width=3D"277" height=3D"31" style=3D"display:=
+block; font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#0=
+40404; font-weight:bold;" hspace=3D"0" vspace=3D"0" alt=3D"Your Bill over=
+view" border=3D"0" />=0A        </td>=0A        </tr>=0A        <tr>=0A  =
+      <td valign=3D"top" style=3D"padding-left:9px;" bgcolor=3D"#ffce45">=
+=0A        =09<table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" b=
+order=3D"0">=0A            <tr>=0A            <td style=3D"font-family:Ar=
+ial, Helvetica, sans-serif; font-size:11px; color:#040404; text-align:lef=
+t; line-height:normal;">Bill period: 26 Jan 2018 to 28 Mar 2018 (62 days)=
+=0A            </td>=0A            </tr>=0A            <tr>=0A           =
+ <td height=3D"8" style=3D"line-height:8px; height:8px;"><img src=3D"http=
+://agl-media-cdn.web.sd-svc.net/IAG/0011/spacer.gif" alt=3D" " width=3D"1=
+" height=3D"1" style=3D"display:block;" hspace=3D"0" vspace=3D"0" border=3D=
+"0" />=0A            </td>=0A            </tr>=0A            <tr>=0A     =
+       <td valign=3D"top" style=3D"line-height:3px;" class=3D"desktop"><i=
+mg src=3D"http://agl-media-cdn.web.sd-svc.net/IAG/0011/whitetop1.png" wid=
+th=3D"268" height=3D"3" style=3D"display:block;" hspace=3D"0" vspace=3D"0=
+" alt=3D" " border=3D"0" />=0A            </td>=0A            </tr>=0A   =
+         <tr>=0A            <td valign=3D"top" bgcolor=3D"#ffffff" class=3D=
+"bluecolour pad10">=0A            <table width=3D"100%" cellpadding=3D"0"=
+ cellspacing=3D"0" border=3D"0" class=3D"whiterounded">
+<tr>
+<td valign=3D"middle" style=3D"font-family:Arial, Helvetica, sans-serif; =
+font-size:16px; color:#040404; text-align:left; line-height:normal;paddin=
+g-left:6px; padding-right:6px; padding-top:15px; padding-bottom:15px;"><s=
+trong>Total due</strong>
+</td>
+<td valign=3D"bottom" style=3D"font-family:Arial, Helvetica, sans-serif; =
+font-size:23px; color:#040404; text-align:right; line-height:normal;paddi=
+ng-left:6px; padding-right:6px; padding-top:15px; padding-bottom:15px;"><=
+strong>$73.32 <span style=3D"font-size:17px;"></span></strong>
+</td>
+</tr>
+</table>=0A                =0A            </td>=0A            </tr>=0A   =
+         <tr>=0A=0A            <td valign=3D"top" style=3D"line-height:3p=
+x;" class=3D"desktop"><img src=3D"http://agl-media-cdn.web.sd-svc.net/IAG=
+/0011/whitebottom1.png" width=3D"268" height=3D"3" style=3D"display:block=
+;" hspace=3D"0" vspace=3D"0" alt=3D" " border=3D"0" />=0A            </td=
+>=0A            </tr>=0A            </table>=0A        =0A        </td>=0A=
+        </tr>=0A        <tr>=0A        <td height=3D"9" style=3D"line-hei=
+ght:9px; height:9px;" bgcolor=3D"#ffce45"><img src=3D"http://agl-media-cd=
+n.web.sd-svc.net/IAG/0011/spacer.gif" alt=3D" " width=3D"1" height=3D"1" =
+style=3D"display:block;" hspace=3D"0" vspace=3D"0" border=3D"0" />=0A    =
+    </td>=0A        </tr>=0A        <tr>=0A        <td valign=3D"top" sty=
+le=3D"padding-left:9px;" bgcolor=3D"#ffce45" class=3D"pad10 appleLinks2">=
+=0A        <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" bord=
+er=3D"0">
+<tr>
+<td valign=3D"top" style=3D"line-height:3px;"><img src=3D"http://agl-medi=
+a-cdn.web.sd-svc.net/IAG/0011/whitetop1.png" width=3D"268" height=3D"3" s=
+tyle=3D"display:block;" hspace=3D"0" vspace=3D"0" alt=3D" " border=3D"0" =
+/>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding-left:6px; padding-right:6px; padding-=
+top:5px; padding-bottom:5px;"  bgcolor=3D"#ffffff">
+            <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" bor=
+der=3D"0">
+            <tr>
+            <td valign=3D"bottom" style=3D"font-family:Arial, Helvetica, =
+sans-serif; font-size:13px; color:#040404; text-align:left; line-height:n=
+ormal;">Due date</td>
+<td valign=3D"bottom" style=3D"font-family:Arial, Helvetica, sans-serif; =
+font-size:16px; text-align:right; line-height:normal;"><strong>20 Apr 201=
+8</strong>
+            </td>
+            </tr>
+            </table>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"line-height:3px;"><img src=3D"http://agl-medi=
+a-cdn.web.sd-svc.net/IAG/0011/whitebottom1.png" width=3D"268" height=3D"3=
+" style=3D"display:block;" hspace=3D"0" vspace=3D"0" alt=3D" " border=3D"=
+0" />
+</td>
+</tr>
+<tr>
+<td height=3D"8" style=3D"line-height:8px; height:8px;"><img src=3D"http:=
+//agl-media-cdn.web.sd-svc.net/IAG/0011/spacer.gif" alt=3D" " width=3D"1"=
+ height=3D"1" style=3D"display:block;" hspace=3D"0" vspace=3D"0" border=3D=
+"0" />
+</td>
+</tr>
+</table>=09=0A        </td>=0A        </tr>=0A        <tr>=0A        <td =
+style=3D"font-family:Arial, Helvetica, sans-serif; font-size:11px; color:=
+#040404; text-align:left; padding-left:9px; line-height:normal;">=0A     =
+   </td>=0A        </tr>=0A        <tr>=0A        <td valign=3D"top" styl=
+e=3D"line-height:17px; height:17px;" bgcolor=3D"#ffce45"><img src=3D"http=
+://agl-media-cdn.web.sd-svc.net/IAG/0011/thankyou_mobile_yellow.jpg" widt=
+h=3D"277" height=3D"17" style=3D"display:block; font-family:Arial, Helvet=
+ica, sans-serif; font-size:10px; color:#040404; font-weight:bold; text-al=
+ign:right;" hspace=3D"0" vspace=3D"0" alt=3D"Thank you" border=3D"0" />=0A=
+        </td>=0A        </tr>=0A        </table>=0A        <!-- End of My=
+ Bills Overview -->=0A        =0A        </th>=0A        <th valign=3D"to=
+p" width=3D"9" class=3D"desktop" bgcolor=3D"#ffce45">&nbsp;=0A        </t=
+h>=0A        =0A        <th valign=3D"top" class=3D"block height11 block2=
+">=0A        =0A        <!-- Buttons -->=0A        <table width=3D"212" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"border-collapse:=
+collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">=0A    =09  <tr>=0A=
+    =09    <td valign=3D"top" class=3D"block height11"><!-- Buttons -->=0A=
+    =09      <table width=3D"212" cellpadding=3D"0" cellspacing=3D"0" bor=
+der=3D"0" bgcolor=3D"#edeae3" class=3D"hundred">
+<tr>
+<td valign=3D"top" class=3D"greytop" style=3D"line-height:12px; height:12=
+px;"><img src=3D"http://agl-media-cdn.web.sd-svc.net/IAG/0011/greytop1.jp=
+g" width=3D"212" height=3D"12" style=3D"display:block;" hspace=3D"0" vspa=
+ce=3D"0" alt=3D" " border=3D"0" />
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding-left:9px; padding-right:8px; padding-=
+bottom:10px;" class=3D"button1"><a href=3D"http://www.agl.com.au/ebillred=
+irect.aspx?token=3Dpaybill&cd_community=3DAGLTER&cd_currency=3DAUD&no_ref=
+erence=3D70319306599402210160&am_payment=3D$73.32&CP_billpayCode=3D208868=
+" target=3D"_blank"><img src=3D"http://agl-media-cdn.web.sd-svc.net/AGL/0=
+011/makeapayment_button_v2.jpg" width=3D"195" height=3D"20" style=3D"disp=
+lay:block; font-family:Arial, Helvetica, sans-serif; font-size:14px; colo=
+r:#001cb0; font-weight:bold;" hspace=3D"0" vspace=3D"0" alt=3D"Make a pay=
+ment" border=3D"0" class=3D"desktop" /><span></span></a>
+</td>
+</tr>
+<tr>
+<td height=3D"2" style=3D"line-height:2px; height:2px;" bgcolor=3D"#fffff=
+f"><img src=3D"http://agl-media-cdn.web.sd-svc.net/IAG/0011/spacer.gif" a=
+lt=3D" " width=3D"1" height=3D"1" style=3D"display:block;" hspace=3D"0" v=
+space=3D"0" border=3D"0" />
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding-left:9px; padding-right:8px; padding-=
+bottom:12px; padding-top:12px;" class=3D"button2"><a href=3D"http://www.a=
+gl.com.au/ebillredirect.aspx?token=3Dviewbill&payload=3DMIICmAYJKoZIhvcNA=
+QcDoIICiTCCAoUCAQAxggFMMIIBSAIBADAwMBwxGjAYBgNVBAMTEUJpbGwgUmVkZXNpZ24gUE=
+9DAhApH6+KI7ZklUGms+1eBrPNMA0GCSqGSIb3DQEBAQUABIIBALgN9jczic54u7ak/YOZHIV=
+02nd15v5NCThr2hU4dJNgH+POyTX7buNrUVuIEmlMN8502HFy3Opa+xg40GBVvA9plNBeZ3W/=
+9cpcrzs2A4/5E3vgyAAYJFk0A2y+FO70kW4WUHXJLS9ainbIJJuJ+DXF2PTjmjlA1t6soBJxi=
+ds9JK6HjaDmQyF1KaenCZ4By8hXxowj+ipihNO/I6B3HuRwWj8tIqNCtXwdabIkaxg4xaDPrf=
+j+4RKRmlPvrhQswX6JlV7Sf0AAEcdh67NrAY9XZKaWbDCKeFeFT45yPSf0Bnm+GcHIvtjlO4I=
+1DGD22gCRccG9Bj5XnqbjttJjB5IwggEuBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAECBBDT1/zL=
+YbVRANLtcHkb1t/agIIBAEobvb8uJww8aVnaaLEMkDEjncGrzKMzeQKjHMr41F+3neZ+jCJ8M=
+Q5kBRnvGNvRAMoOSihJdPXx+MmnYxCeM3PQBsFd0I5nBBLfoRjwMKHreU1ejMU9A7lANxHrJA=
+ZlAqo1Ig20AuckqNPoliy3e8+JzkLglwQ7zfngP0mCBKWKRz6FyYIL15H9YUrYOnVuzS8cYGL=
+l6/VirLkaxJi2JuoIcfOSQK2Z6jSkDnu2UCxOMjrHg6aY6NxVAHKNsXBPRVf5HQCshI+7PDkq=
++piRp9WHzSpaopJvcti2oFDI+RAVjrMyoG1BWRst422rB1kNmb0NOUWyWkwlWbl9IF1f0hsAA=
+AAAAAAAAAAAAAAAAAAAAAAAAAAA" target=3D"_blank"><img src=3D"http://agl-med=
+ia-cdn.web.sd-svc.net/AGL/0011/DownloadYourBill_v3.jpg" width=3D"195" hei=
+ght=3D"20" style=3D"display:block; font-family:Arial, Helvetica, sans-ser=
+if; font-size:14px; color:#001cb0; font-weight:bold;" hspace=3D"0" vspace=
+=3D"0" alt=3D"Download your bill (PDF)" border=3D"0" class=3D"desktop" />=
+<span></span></a>
+</td>
+</tr>
+<tr>
+<td height=3D"2" style=3D"line-height:2px; height:2px;" bgcolor=3D"#fffff=
+f"><img src=3D"http://agl-media-cdn.web.sd-svc.net/IAG/0011/spacer.gif" a=
+lt=3D" " width=3D"1" height=3D"1" style=3D"display:block;" hspace=3D"0" v=
+space=3D"0" border=3D"0" />
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding-left:9px; padding-right:8px; padding-=
+bottom:12px; padding-top:12px;" class=3D"button3"><a href=3D"http://www.a=
+gl.com.au/ebillredirect.aspx?token=3Daeo" target=3D"_blank"><img src=3D"h=
+ttp://agl-media-cdn.web.sd-svc.net/AGL/0011/managemyaccount_button_v2.jpg=
+" width=3D"195" height=3D"20" style=3D"display:block; font-family:Arial, =
+Helvetica, sans-serif; font-size:14px; color:#001cb0; font-weight:bold;" =
+hspace=3D"0" vspace=3D"0" alt=3D"Manage my account" border=3D"0" class=3D=
+"desktop" /><span></span></a>
+</td>
+</tr>
+<tr>
+<td height=3D"2" style=3D"line-height:2px; height:2px;" bgcolor=3D"#fffff=
+f"><img src=3D"http://agl-media-cdn.web.sd-svc.net/IAG/0011/spacer.gif" a=
+lt=3D" " width=3D"1" height=3D"1" style=3D"display:block;" hspace=3D"0" v=
+space=3D"0" border=3D"0" />
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding-left:9px; padding-right:8px; padding-=
+bottom:12px; padding-top:12px;" class=3D"button4"><a href=3D"http://www.a=
+gl.com.au/ebillredirect.aspx?token=3Dfaultresgas&postcode=3D3051&suburb=3D=
+NORTH%20MELBOURNE" target=3D"_blank"><img src=3D"http://agl-media-cdn.web=
+.sd-svc.net/AGL/0011/faultsandemergencies_button_v2.jpg" width=3D"195" he=
+ight=3D"20" style=3D"display:block; font-family:Arial, Helvetica, sans-se=
+rif; font-size:14px; color:#001cb0; font-weight:bold;" hspace=3D"0" vspac=
+e=3D"0" alt=3D"Faults and emergencies" border=3D"0" class=3D"desktop" /><=
+span></span></a>
+</td>
+</tr>
+<tr>
+<td height=3D"2" style=3D"line-height:2px; height:2px;" bgcolor=3D"#fffff=
+f"><img src=3D"http://agl-media-cdn.web.sd-svc.net/IAG/0011/spacer.gif" a=
+lt=3D" " width=3D"1" height=3D"1" style=3D"display:block;" hspace=3D"0" v=
+space=3D"0" border=3D"0" />
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"padding-left:9px; padding-right:8px; padding-=
+top:8px;" class=3D"button5"><a href=3D"http://www.agl.com.au/ebillredirec=
+t.aspx?token=3Daeo" target=3D"_blank"><img src=3D"http://agl-media-cdn.we=
+b.sd-svc.net/AGL/0011/contactus_button_v2.jpg" width=3D"195" height=3D"20=
+" style=3D"display:block; font-family:Arial, Helvetica, sans-serif; font-=
+size:14px; color:#001cb0; font-weight:bold;" hspace=3D"0" vspace=3D"0" al=
+t=3D"Contact us" border=3D"0" class=3D"desktop" /><span></span></a>
+</td>
+</tr>
+<tr>
+<td class=3D"greybottom" style=3D"line-height:12px; height:12px;"><img sr=
+c=3D"http://agl-media-cdn.web.sd-svc.net/IAG/0011/greybottom1_v2.jpg" wid=
+th=3D"212" height=3D"12" style=3D"display:block;" hspace=3D"0" vspace=3D"=
+0" alt=3D" " border=3D"0" />
+</td>
+</tr>
+</table>=0A    =09      <!-- End of Buttons --></td>=0A  =09    </tr>=0A =
+ =09    </table>=0A        <!-- End of Buttons -->=0A        =0A        <=
+/th>=0A        </tr>=0A        </table>=0A    =09=0A    =09=0A=0A        =
+=0A    </td>=0A    </tr>=0A    <!-- End of Body -->=0A    =0A    <!-- Cus=
+tomer details -->=0A    <tr>=0A    <td valign=3D"top" style=3D"padding-to=
+p:11px;"><table width=3D"277" border=3D"0" cellspacing=3D"0" cellpadding=3D=
+"0">=0A      <tr>=0A    =09    <td><table width=3D"277" border=3D"0" cell=
+spacing=3D"0" cellpadding=3D"0">=0A    =09      <tr>=0A    =09        <td=
+ width=3D"286" valign=3D"top" bgcolor=3D"#ffce45" class=3D"hundred"><img =
+src=3D"http://agl-media-cdn.web.sd-svc.net/IAG/0011/myaccountdetails_mobi=
+le_yellow_two.jpg" width=3D"286" height=3D"29" style=3D"display:block; fo=
+nt-family:Arial, Helvetica, sans-serif; font-size:14px; color:#040404; fo=
+nt-weight:bold;" hspace=3D"0" vspace=3D"0" alt=3D"Your account details" b=
+order=3D"0" /> </td>=0A    =09        <td valign=3D"top" class=3D"desktop=
+">&nbsp;</td>=0A    =09        <td width=3D"205" valign=3D"top" bgcolor=3D=
+"#ffce45" class=3D"myusefulinfo desktop"><img src=3D"http://agl-media-cdn=
+.web.sd-svc.net/IAG/0011/bus_usefulinformation_yellow.jpg" width=3D"205" =
+height=3D"29" style=3D"display:block; font-family:Arial, Helvetica, sans-=
+serif; font-size:14px; color:#040404; font-weight:bold;" hspace=3D"0" vsp=
+ace=3D"0" alt=3D"My useful information" border=3D"0" class=3D"desktop" />=
+<span></span></td>=0A  =09        </tr>=0A  =09      </table>=0A         =
+     <table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"=
+0">=0A                <tr>=0A                  <td bgcolor=3D"#ffce45"><i=
+mg src=3D"http://agl-media-cdn.web.sd-svc.net/IAG/0011/spacer.gif" alt=3D=
+" " width=3D"1" height=3D"1" style=3D"display:block;" hspace=3D"0" vspace=
+=3D"0" border=3D"0" /></td>=0A                  <td bgcolor=3D"#ffd767"><=
+img src=3D"http://agl-media-cdn.web.sd-svc.net/IAG/0011/spacer.gif" alt=3D=
+" " width=3D"1" height=3D"1" style=3D"display:block;" hspace=3D"0" vspace=
+=3D"0" border=3D"0" /></td>=0A                  <td valign=3D"top" style=3D=
+"padding-bottom:11px;" width=3D"283"><table width=3D"268" border=3D"0" al=
+ign=3D"center" cellpadding=3D"0" cellspacing=3D"0">=0A                   =
+ <tr>=0A                      <td width=3D"40%" valign=3D"top" style=3D"f=
+ont-family:Arial, Helvetica, sans-serif; font-size:11px; color:#544a46; t=
+ext-align:left; padding-bottom:7px; padding-top:7px;"><strong>Name:</stro=
+ng></td>=0A                      <td valign=3D"top" style=3D"font-family:=
+Arial, Helvetica, sans-serif; font-size:11px; color:#544a46; text-align:r=
+ight; padding-top:7px;padding-bottom:7px;">AOHAN WANG</td>=0A            =
+          </tr>=0A                    <tr>=0A                      <td wi=
+dth=3D"40%" valign=3D"top" style=3D"font-family:Arial, Helvetica, sans-se=
+rif; font-size:11px; color:#544a46; text-align:left; padding-bottom:7px;"=
+><strong>Account Number:</strong></td>=0A                      <td valign=
+=3D"top" style=3D"font-family:Arial, Helvetica, sans-serif; font-size:11p=
+x; color:#544a46; text-align:right; padding-bottom:7px;" class=3D"appleLi=
+nks">7031 930 659</td>=0A                      </tr>=0A                  =
+  <tr>=0A                      <td width=3D"40%" valign=3D"top" style=3D"=
+font-family:Arial, Helvetica, sans-serif; font-size:11px; color:#544a46; =
+text-align:left; padding-bottom:7px;"><strong>Supply address:</strong></t=
+d>=0A                      <td valign=3D"top" style=3D"font-family:Arial,=
+ Helvetica, sans-serif; font-size:11px; color:#544a46; text-align:right; =
+padding-bottom:7px;" class=3D"appleLinks">12/100 ARDEN STREET<br />=0A   =
+                     NORTH MELBOURNE VIC 3051</td>=0A                    =
+  </tr>=0A                    <tr>=0A                      <td valign=3D"=
+top" colspan=3D"2"> <table width=3D"100%" cellpadding=3D"0" cellspacing=3D=
+"0" border=3D"0">
+<tr>
+<td width=3D"40%" valign=3D"top" style=3D"font-family:Arial, Helvetica, s=
+ans-serif; font-size:11px; color:#544a46; text-align:left;"><strong>MIRN:=
+</strong>
+</td>
+<td valign=3D"top" style=3D"font-family:Arial, Helvetica, sans-serif; fon=
+t-size:11px; color:#544a46; text-align:right;" class=3D"appleLinks">53230=
+011567
+</td>
+</tr>
+</table> =0A=0A                      =0A                      =0A        =
+              </td>=0A                      </tr>=0A                    <=
+/table></td>=0A                  <td bgcolor=3D"#ffd767"><img src=3D"http=
+://agl-media-cdn.web.sd-svc.net/IAG/0011/spacer.gif" alt=3D" " width=3D"1=
+" height=3D"1" style=3D"display:block;" hspace=3D"0" vspace=3D"0" border=3D=
+"0" /></td>=0A                  <td bgcolor=3D"#ffce45"><img src=3D"http:=
+//agl-media-cdn.web.sd-svc.net/IAG/0011/spacer.gif" alt=3D" " width=3D"1"=
+ height=3D"1" style=3D"display:block;" hspace=3D"0" vspace=3D"0" border=3D=
+"0" /></td>=0A                  <td valign=3D"top" width=3D"4" class=3D"d=
+esktop">&nbsp;</td>=0A                  <td bgcolor=3D"#ffce45" class=3D"=
+desktop"><img src=3D"http://agl-media-cdn.web.sd-svc.net/IAG/0011/spacer.=
+gif" alt=3D" " width=3D"1" height=3D"1" style=3D"display:block;" hspace=3D=
+"0" vspace=3D"0" border=3D"0" /></td>=0A                  <td bgcolor=3D"=
+#ffd767" class=3D"desktop"><img src=3D"http://agl-media-cdn.web.sd-svc.ne=
+t/IAG/0011/spacer.gif" alt=3D" " width=3D"1" height=3D"1" style=3D"displa=
+y:block;" hspace=3D"0" vspace=3D"0" border=3D"0" /></td>=0A              =
+    <td width=3D"201" valign=3D"top" class=3D"desktop"><table width=3D"18=
+7" border=3D"0" align=3D"center" cellpadding=3D"0" cellspacing=3D"0">=0A =
+                   <tr>=0A                      <td valign=3D"top" style=3D=
+"font-family:Arial, Helvetica, sans-serif; font-size:11px; color:#544a46;=
+ text-align:left; padding-top:7px;padding-bottom:7px;" class=3D"appleLink=
+s3"><strong class=3D"appleLinks3">AGL Anytime&trade;, <a style=3D"color:#=
+544a46; text-decoration:none">24/7</a>.</strong><br /><br />
+Have a question, feedback or service request? We're always here to help.<=
+br /><br />
+Call us on <a href=3D"tel:131245" target=3D"_blank" style=3D"text-decorat=
+ion:none; color:#544a46;"><strong>131 245</strong></a> for anything, anyt=
+ime.</td>=0A                      </tr>=0A                    </table></t=
+d>=0A                  <td bgcolor=3D"#ffd767" class=3D"desktop"><img src=
+=3D"http://agl-media-cdn.web.sd-svc.net/IAG/0011/spacer.gif" alt=3D" " wi=
+dth=3D"1" height=3D"1" style=3D"display:block;" hspace=3D"0" vspace=3D"0"=
+ border=3D"0" /></td>=0A                  <td bgcolor=3D"#ffce45" class=3D=
+"desktop"><img src=3D"http://agl-media-cdn.web.sd-svc.net/IAG/0011/spacer=
+.gif" alt=3D" " width=3D"1" height=3D"1" style=3D"display:block;" hspace=3D=
+"0" vspace=3D"0" border=3D"0" /></td>=0A                </tr>=0A         =
+       </table>=0A              <table width=3D"277" border=3D"0" cellspa=
+cing=3D"0" cellpadding=3D"0">=0A                <tr>=0A                  =
+<td valign=3D"top" class=3D"hundred" style=3D"line-height:6px;"><img src=3D=
+"http://agl-media-cdn.web.sd-svc.net/IAG/0011/bottom1_mobile_yellow.jpg" =
+width=3D"286" height=3D"6" style=3D"display:block;" hspace=3D"0" vspace=3D=
+"0" alt=3D" " border=3D"0" /> </td>=0A                  <td valign=3D"top=
+" class=3D"desktop">&nbsp;</td>=0A                  <td valign=3D"top" st=
+yle=3D"line-height:6px;" class=3D"myusefulinfo_bottom desktop"><img src=3D=
+"http://agl-media-cdn.web.sd-svc.net/IAG/0011/bottom2_yellow.jpg" width=3D=
+"205" height=3D"6" style=3D"display:block;" hspace=3D"0" vspace=3D"0" alt=
+=3D" " border=3D"0" class=3D"desktop" /><span></span></td>=0A            =
+    </tr>=0A              </table></td>=0A  =09    </tr>=0A=09  </table>=0A=
+    =09<div class=3D"mobile" style=3D" display:none; width:0px; max-heigh=
+t:0px; overflow:hidden;">=0A    =09  <table width=3D"205" cellpadding=3D"=
+0" cellspacing=3D"0" border=3D"0" class=3D"hundred mobile UsefulInfo" sty=
+le=3D"display:none;">=0A  =09      <tr>=0A  =09        <td valign=3D"top"=
+ bgcolor=3D"#ffce45" class=3D"myusefulinfo"><img src=3D"http://agl-media-=
+cdn.web.sd-svc.net/IAG/0011/bus_usefulinformation_yellow.jpg" width=3D"20=
+5" height=3D"29" style=3D"display:block; font-family:Arial, Helvetica, sa=
+ns-serif; font-size:14px; color:#040404; font-weight:bold;" hspace=3D"0" =
+vspace=3D"0" alt=3D"My useful information" border=3D"0" class=3D"desktop"=
+ /><span></span></td>=0A=09        </tr>=0A  =09      <tr>=0A  =09       =
+ <td valign=3D"top"><table width=3D"100%" cellpadding=3D"0" cellspacing=3D=
+"0" border=3D"0" class=3D"mobile" style=3D"display:none;">=0A  =09       =
+   <tr>=0A  =09            <td width=3D"1" bgcolor=3D"#ffce45"><img src=3D=
+"http://agl-media-cdn.web.sd-svc.net/IAG/0011/spacer.gif" alt=3D" " width=
+=3D"1" height=3D"1" style=3D"display:block;" hspace=3D"0" vspace=3D"0" bo=
+rder=3D"0" /></td>=0A  =09            <td width=3D"1" bgcolor=3D"#ffd767"=
+><img src=3D"http://agl-media-cdn.web.sd-svc.net/IAG/0011/spacer.gif" alt=
+=3D" " width=3D"1" height=3D"1" style=3D"display:block;" hspace=3D"0" vsp=
+ace=3D"0" border=3D"0" /></td>=0A  =09            <td valign=3D"top" styl=
+e=3D"padding-left:7px; padding-right:7px; padding-bottom:25px;" class=3D"=
+padbottom0"><table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" bor=
+der=3D"0" class=3D"mobile" style=3D"display:none;">=0A  =09              =
+<tr>=0A  =09                <td valign=3D"top" style=3D"font-family:Arial=
+, Helvetica, sans-serif; font-size:11px; color:#544a46; text-align:left; =
+padding-top:7px;padding-bottom:7px;"><strong class=3D"appleLinks3">AGL An=
+ytime&trade;, <a style=3D"color:#544a46; text-decoration:none">24/7</a>.<=
+/strong><br /><br />
+Have a question, feedback or service request? We're always here to help.<=
+br /><br />
+Call us on <a href=3D"tel:131245" target=3D"_blank" style=3D"text-decorat=
+ion:none; color:#544a46;"><strong>131 245</strong></a> for anything, anyt=
+ime.</td>=0A=09                </tr>=0A=09              </table></td>=0A =
+ =09            <td width=3D"1" bgcolor=3D"#ffd767"><img src=3D"http://ag=
+l-media-cdn.web.sd-svc.net/IAG/0011/spacer.gif" alt=3D" " width=3D"1" hei=
+ght=3D"1" style=3D"display:block;" hspace=3D"0" vspace=3D"0" border=3D"0"=
+ /></td>=0A  =09            <td width=3D"1" bgcolor=3D"#ffce45"><img src=3D=
+"http://agl-media-cdn.web.sd-svc.net/IAG/0011/spacer.gif" alt=3D" " width=
+=3D"1" height=3D"1" style=3D"display:block;" hspace=3D"0" vspace=3D"0" bo=
+rder=3D"0" /></td>=0A=09            </tr>=0A=09          </table></td>=0A=
+=09        </tr>=0A  =09      <tr>=0A  =09        <td valign=3D"top" bgco=
+lor=3D"#ffce45" style=3D"line-height:6px;" class=3D"myusefulinfo_bottom">=
+<img src=3D"http://agl-media-cdn.web.sd-svc.net/IAG/0011/bottom2_yellow.j=
+pg" width=3D"205" height=3D"6" style=3D"display:block;" hspace=3D"0" vspa=
+ce=3D"0" alt=3D" " border=3D"0" class=3D"desktop" /><span></span></td>=0A=
+=09        </tr>=0A=09      </table>=0A                    =0A           =
+   </div>=0A=0A    </td>=0A    </tr>=0A    <!-- End of Customer details -=
+->=0A    =0A    <!-- Marketing Banner -->=0A    <tr>
+<td valign=3D"top" style=3D"padding-bottom:11px; padding-top:11px;" class=
+=3D"marketingbanner"><a href=3D"http://www.agl.com.au/ebillredirect.aspx?=
+token=3Deasymove" target=3D"_blank"><img src=3D"http://agl-media-cdn.web.=
+sd-svc.net/AGL/0011/AGL_10872757_Q3-eBill-Insert-Movers_498x153px_HR_UPDA=
+TED.PNG" width=3D"498" height=3D"153" style=3D"display:block; font-family=
+:Arial, Helvetica, sans-serif; font-size:18px; color:#b5bc00; text-align:=
+center; font-weight:bold;" hspace=3D"0" vspace=3D"0" alt=3D"Move with con=
+fidence" border=3D"0" class=3D"desktop" /><span style=3D"background-image=
+:url('http://agl-media-cdn.web.sd-svc.net/AGL/0011/AGL_10872757_Q3_eBill_=
+Insert-Movers_Mobile_572x350px_HR_UPDATED.PNG'); background-repeat:no-rep=
+eat;"></span></a>
+</td>
+</tr>=0A    <!-- End of Marketing Banner -->=0A    =0A    <!-- Carbon Tax=
+ -->=0A    =0A     <!--End of Carbon Tax -->=0A    =0A=0A <tr><td align=3D=
+"left">  =0A   <table width=3D"245" border=3D"0" align=3D"left" cellpaddi=
+ng=3D"0" cellspacing=3D"0" class=3D"hundred" style=3D"border-collapse:col=
+lapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+<tr>
+<td valign=3D"top" class=3D"zero2" style=3D"padding-top:15px;"><a href=3D=
+"http://www.agl.com.au/ebillredirect.aspx?token=3Dsmithfamily" target=3D"=
+_blank"><img src=3D"http://agl-media-cdn.web.sd-svc.net/AGL/0011/AGL0262_=
+Support-The-Smith-Family-donate-today.jpg" height=3D"15" style=3D"display=
+:block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#=
+001cb0; font-weight:bold;" hspace=3D"0" vspace=3D"0" alt=3D"Support The S=
+mith Family, donate today" border=3D"0" /></a>
+</td>
+</tr>
+</table>=0A   <table width=3D"245" border=3D"0" align=3D"left" cellpaddin=
+g=3D"0" cellspacing=3D"0" class=3D"hundred" style=3D"border-collapse:coll=
+apse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+<tr>
+<td valign=3D"top" class=3D"zero2" style=3D"padding-top:15px;"><a href=3D=
+"http://www.agl.com.au/ebillredirect.aspx?token=3Dcommunity" target=3D"_b=
+lank"><img src=3D"http://agl-media-cdn.web.sd-svc.net/AGL/0011/AGL0262_Go=
+t-questions-Visit-Community-get-answers.jpg" height=3D"15" style=3D"displ=
+ay:block; font-family:Arial, Helvetica, sans-serif; font-size:12px; color=
+:#001cb0; font-weight:bold;" hspace=3D"0" vspace=3D"0" alt=3D"Got questio=
+ns? Visit Community, get answers" border=3D"0" /></a>
+</td>
+</tr>
+</table>=0A   =0A   =0A   <table width=3D"245" border=3D"0" align=3D"left=
+" cellpadding=3D"0" cellspacing=3D"0" class=3D"hundred" style=3D"border-c=
+ollapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
+<tr>
+<td valign=3D"top" class=3D"zero2" style=3D"padding-top:15px;"><a href=3D=
+"http://www.agl.com.au/ebillredirect.aspx?token=3Drewards" target=3D"_bla=
+nk"><img src=3D"http://agl-media-cdn.web.sd-svc.net/AGL/0011/AGL5091_Be-r=
+ewarded-eBill-Link-Tile.jpg" height=3D"15" style=3D"display:block; font-f=
+amily:Arial, Helvetica, sans-serif; font-size:12px; color:#001cb0; font-w=
+eight:bold;" hspace=3D"0" vspace=3D"0" alt=3D"Be rewarded with AGL Reward=
+s" border=3D"0" /></a>
+</td>
+</tr>
+</table>=0A   =0A   =0A   =0A   </td></tr>=0A   =0A   =0A    =0A    <tr>=0A=
+    <td valign=3D"top" style=3D"padding-top:15px;"><img src=3D"http://agl=
+-media-cdn.web.sd-svc.net/IAG/0011/print_mobile.jpg" width=3D"164" height=
+=3D"10" style=3D"display:block; font-family:Arial, Helvetica, sans-serif;=
+ font-size:8px; color:#b5bc00; font-weight:bold;" hspace=3D"0" vspace=3D"=
+0" alt=3D"Consider the environment before you print" border=3D"0" />=0A  =
+  </td>=0A    </tr>=0A    <!-- End of Hygiene Links -->=0A    =0A    </ta=
+ble>=0A        =0A    </td>=0A    </tr>=0A    =0A    <!-- Footer Links --=
+>=0A    <tr>=0A    <td valign=3D"top" bgcolor=3D"#eeeae4" style=3D"paddin=
+g-top:8px; padding-bottom:8px;" class=3D"padding17">=0A    =09<table widt=
+h=3D"100%" cellpadding=3D"0" cellspacing=3D"0" border=3D"0">=0A        <t=
+r>=0A        <td width=3D"31%" style=3D"font-family:Arial, Helvetica, san=
+s-serif; font-size:9px; color:#544a46; text-align:left;" class=3D"footerw=
+idth1 aolLinks"><a href=3D"http://www.agl.com.au."/ebillredirect.aspx?tok=
+en=3Dlegalnotices"" target=3D"_blank" style=3D"color:#544a46; text-decora=
+tion:underline;">Legal notices</a>=0A        </td>=0A        <td width=3D=
+"25%" style=3D"font-family:Arial, Helvetica, sans-serif; font-size:9px; c=
+olor:#544a46; text-align:left;" class=3D"footerwidth2 aolLinks"><a href=3D=
+"http://www.agl.com.au."/ebillredirect.aspx?token=3Dprivacy"" target=3D"_=
+blank" style=3D"color:#544a46; text-decoration:underline;">Privacy</a>=0A=
+        </td>=0A        <td width=3D"19%" style=3D"font-family:Arial, Hel=
+vetica, sans-serif; font-size:9px; color:#544a46; text-align:left;" class=
+=3D"footerwidth3 aolLinks"><a href=3D"http://www.agl.com.au/ebillredirect=
+.aspx?token=3Dfaqres" target=3D"_blank" style=3D"color:#544a46; text-deco=
+ration:underline;">FAQs</a>=0A        </td>=0A        <td width=3D"25%" s=
+tyle=3D"font-family:Arial, Helvetica, sans-serif; font-size:9px; color:#5=
+44a46; text-align:right;" class=3D"footerwidth4 aolLinks"><a href=3D"http=
+://www.agl.com.au/ebillredirect.aspx?token=3Dunderstandbillres" target=3D=
+"_blank" style=3D"color:#544a46; text-decoration:underline;">Understandin=
+g your Bill</a>=0A        </td>=0A        </tr>=0A        </table>=0A    =
+</td>=0A    </tr>=0A    <!-- End of Footer Links -->=0A    =0A=0A    <!--=
+ Terms and Conditions -->=0A    <tr>=0A    <td valign=3D"top" bgcolor=3D"=
+#eeeae4" class=3D"pad17">=0A    =09<table width=3D"100%" cellpadding=3D"0=
+" cellspacing=3D"0" border=3D"0">=0A        <tr>=0A        <td style=3D"f=
+ont-family:Arial, Helvetica, sans-serif; font-size:9px; color:#544a46; te=
+xt-align:left; padding-bottom:5px;">Copyright 2014 AGL Energy Limited=0A =
+       </td>=0A        </tr>=0A        <tr>=0A        <td style=3D"font-f=
+amily:Arial, Helvetica, sans-serif; font-size:9px; color:#544a46; text-al=
+ign:left; padding-bottom:20px;">This email is intended solely for the use=
+ of the addressee and may contain information that is confidential or pri=
+vileged. If you receive this email in error please notify the sender and =
+delete the email immediately. AGL takes the security of your information =
+very seriously. Please be advised, AGL does not send emails asking for pe=
+rsonal banking information.=0A        </td>=0A        </tr>=0A        <tr=
+>=0A<td align=3D"right" valign=3D"top" style=3D"font-family:Arial, Helvet=
+ica, sans-serif; font-size:5px; font-weight:normal; color:#544a46;">AGL00=
+11_20180330025143_AllInv003_20180330082309 9.4 SV9</td>=0A</tr>=0A       =
+ </table>=0A    </td>=0A    </tr>=0A    <!-- End of Terms and Conditions =
+-->=0A    =0A    </table></td>=0A</tr>=0A</table>=0A</body>=0A</html>=0A
+------=_NextPart_125_4331_744D06F6.7999E35D--
+

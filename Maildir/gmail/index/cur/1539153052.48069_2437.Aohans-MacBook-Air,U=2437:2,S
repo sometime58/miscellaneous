@@ -1,0 +1,414 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 2002:a1f:b209:0:0:0:0:0 with SMTP id b9-v6csp118175vkf;
+        Thu, 31 May 2018 14:12:36 -0700 (PDT)
+X-Google-Smtp-Source: ADUXVKIzSuiRlwQmgzmrN+z0gJyPz7soRBxaulMnCH+LKOoloQENyD42kHLiGG+jp2ZqwQ2NEeSP
+X-Received: by 2002:aa7:8051:: with SMTP id y17-v6mr8206447pfm.148.1527801156281;
+        Thu, 31 May 2018 14:12:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1527801156; cv=none;
+        d=google.com; s=arc-20160816;
+        b=acaAeh9lbAXwNuIkKVz3W5Nt+Yw964qbWXJX0d/imiIuxTadj+iD7WAUEsdVgqnAnn
+         UKWJGS9DqusFI0ntAnpUS3J1wusuWzDf0gvbFgyntK09zz0cPK2+kBsRw+zuHCU0wWtu
+         2bfGqCAsUh/RsmSd8as4c9dsiNP8qDOvFvMwS97g8n6et7UIMUhHPDuunSwCcI9gnm4Q
+         cP3uFxEu3dWJvT4OJJytjzfY4DmWkOUmEKk7tH9q5C5P+tR7hz/+AB4r9hvhfbFW+1Vp
+         DHYj+rvxR6djcClDyzARPRvc60u1JFtXWbbrwi2vyH6CjIurQAU1ryaI97H9eHYDtaLu
+         /P8A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:references:in-reply-to:mime-version
+         :dkim-signature:arc-authentication-results;
+        bh=sMuNDX6Rn4WiDNTAhvrjz6y0nqMKLEh2GRfw8CMPc2I=;
+        b=ud/xwvDmk+CEXV2SVBJIwvrWkJ5VxsmkKzRAAJwt9aa9Q47SAZisr+bDxX5eQfWCk1
+         DTDKV3DjcHCA3yNP8cSZqESBycSdJibKPPouDIuZlmtNQlJLELOOj8GeNlVTZgNoVVIw
+         od3TyWpv2HIBAo6tpUVEkMnv69ERP+bIrwtVDnAma9dO0sfGTEmQfX/0ZkYUnDx8ssbf
+         n39SNbIgatNOgqEspvn/Isjk9/8vvMejJ1IeII5UE6uPp6PgU+wkrHiSa7EMi4RanJ9Y
+         cr4ZltO2j+lQid9Mv2g/hsj/uWdAg8epQIGBUYQM9nveE6vJfEdEibSn5CmlbCHVLzQa
+         JFFA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@rmit.edu.au header.s=mimecast20170627 header.b=RgIcNk7L;
+       spf=pass (google.com: domain of dscint@rmit.edu.au designates 180.189.28.107 as permitted sender) smtp.mailfrom=dscint@rmit.edu.au
+Return-Path: <dscint@rmit.edu.au>
+Received: from au-smtp-delivery-107.mimecast.com (au-smtp-delivery-107.mimecast.com. [180.189.28.107])
+        by mx.google.com with ESMTPS id b70-v6si38399972pfe.265.2018.05.31.14.12.34
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 31 May 2018 14:12:36 -0700 (PDT)
+Received-SPF: pass (google.com: domain of dscint@rmit.edu.au designates 180.189.28.107 as permitted sender) client-ip=180.189.28.107;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@rmit.edu.au header.s=mimecast20170627 header.b=RgIcNk7L;
+       spf=pass (google.com: domain of dscint@rmit.edu.au designates 180.189.28.107 as permitted sender) smtp.mailfrom=dscint@rmit.edu.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rmit.edu.au; s=mimecast20170627; t=1527801153; h=from:subject:date:message-id:to:mime-version:content-type:in-reply-to:references; bh=sMuNDX6Rn4WiDNTAhvrjz6y0nqMKLEh2GRfw8CMPc2I=; b=RgIcNk7L+fIYJCxKy23YIXGit4sBZqE9pXCEIR6FKluJcdUC3jnuD3gmpviyJBHetuEFxJtUlhFcb/KgQmaPJNSLBLelv+AIdpI+vig7COCRb5rj6qHEtkpUZn47VkVWykSTfZcH2Iez3MZmXZm9KgYpnLfhxJvuO0gpBGFQR8N+/HtXJFss1FZqGu7uYDqlDAh3h9jZqoiS3dxtDj8AC9Y6C0OGCi/nCuMGSou/5nUeq8Rc6F7efEXepFp+vRVT4NAgwjJI/P+5t7ek1rmBsiYvF1E8MCW84AdCyu244huyPwio3cirhL855Imd66n8YY8uiDzVBWzaQOv5g7X7vw==
+Received: from mail-qk0-f197.google.com (mail-qk0-f197.google.com
+ [209.85.220.197]) (Using TLS) by au-smtp-1.mimecast.com with ESMTP id
+ au-mta-5-FPYUEbYCPxWNHa_pKCq5NA-1; Fri, 01 Jun 2018 07:12:31 +1000
+Received: by mail-qk0-f197.google.com with SMTP id c20-v6so21402109qkm.13
+        for <sometime5858@gmail.com>; Thu, 31 May 2018 14:12:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+         :message-id:subject:to;
+        bh=8wpY5BlogkWwglJyHyjmPv0UJ/Gnsk4oq3CT/5A6Yjw=;
+        b=iTnwpiOtSEVUK4ZphIPwyZtQn4zhhivKLnmzHIvBJlUc6lfEfek3bLHm0CjN67ISQ4
+         KD9TpCd1cMof/q13z+k7nOl6LxteaChxnTh62OM2A0ksGyw+B/pfigOb1xahBKTLuUbI
+         f/U6LtQb4OS1ogXtBEb2EOF9P1AWn8oZkuEtjGvp+8HyNraU5eGuJmax6RxHzVoBQOp1
+         qKFY5yaaAd6IPtfTqnRVAYu3Fx4WTFoanWAjfgCxS4zzBHWQu1vQU/+H2qPJhXVpOjwu
+         dgycSNWv7s3Kfi/OTsH0Ya0GqbhNf5DJZveLpIkTrjyBYlUMzZixQeRRKL+pCd3xPirj
+         4T8g==
+X-Gm-Message-State: APt69E0ByWlsIw3RseCYT4CSo9f7osNh1CEMkYZzCppxIc+QiUjXpdks
+	3c+Yqk9U0TNndKqobyMTiU4lhkEHhfmHiNmWQ53XQyKA14MlCoUWO8xJOjD5gBMjEay9g6yHOFx
+	CBn9KjfV0DQG+Cad3KzAkcqbhq6lVz5HH
+X-Received: by 2002:a0c:ab43:: with SMTP id i3-v6mr8214898qvb.238.1527801148258;
+        Thu, 31 May 2018 14:12:28 -0700 (PDT)
+X-Received: by 2002:a0c:ab43:: with SMTP id i3-v6mr8214857qvb.238.1527801147478;
+ Thu, 31 May 2018 14:12:27 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:ac8:140c:0:0:0:0:0 with HTTP; Thu, 31 May 2018 14:12:06
+ -0700 (PDT)
+In-Reply-To: <CACzqzay0hN5Kw7McgEkiEwjhDBzuEXgy5V16snbHb1ccCD_ZwQ@mail.gmail.com>
+References: <179048307.483024.1527657180140.JavaMail.default@jwm2-app.au1.qprod.net>
+ <CACzqzay0hN5Kw7McgEkiEwjhDBzuEXgy5V16snbHb1ccCD_ZwQ@mail.gmail.com>
+From: DSC Int <dscint@rmit.edu.au>
+Date: Fri, 1 Jun 2018 07:12:06 +1000
+Message-ID: <CADRPD5MTLC-DeJT_WHP9GdLKGmEsCwaSHmu708usjNVkrxBmeA@mail.gmail.com>
+Subject: Re: Other - enquiry
+To: sometime5858@gmail.com
+X-GSuitetoMC: Outbound
+X-MC-Unique: FPYUEbYCPxWNHa_pKCq5NA-1
+Content-Type: multipart/alternative; boundary="000000000000af6bbd056d86ecc7"
+X-TUID: LIIF8npY87H7
+
+--000000000000af6bbd056d86ecc7
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Dear Aohan
+
+Thank You for your email.
+
+We can use the scanned version to process the application and provide a
+conditional offer if the application is successful.
+
+In order to give a full offer and provide ECOE's (once deposits are paid)
+we would need to see original certified copies which need to be mailed,
+couriered or handed in in person.
+
+Kind Regards
+
+
+Rory Stewart
+
+International Admissions *(Design and Social Context) *
+Operations and Pathways, Global Student Recruitment
+Engagement and Vocational Education Portfolio
+
+RMIT University
+Building 22, Level 3
+
+330 Swanston Street
+
+Melbourne VIC 3000 Australia
+Tel:    (+613 ) 9925 5156
+Fax:    (+613) 9663 6925
+www.rmit.edu.au/international
+CRICOS provider code: 00122A
+
+RMIT is a global university of technology and design and Australia's
+largest tertiary institution.
+
+   - One of the top 15 universities in Australia (2014 QS World University
+   Rankings)
+   - 40th in the world for our international student profile (2014 QS World
+   University Rankings)
+   - 32nd in the world for the international profile of academic staff
+   (2014 QS World University Rankings)
+   - 32nd in the world among universities less than 50 years old (2014 QS
+   Top 50 Under 50 index)
+   - 79th in the world for employer reputation (2014 QS World University
+   Rankings)
+
+This email contains confidential information which may also be legally
+privileged. Only the intended recipient may access, use, distribute or copy
+it. If you have received this email in error, please let us know by return
+email and delete the original. CRICOS provider code: 00122A.
+
+On 30 May 2018 at 15:33, RMIT International Recruitment Support <
+international.recruitment.support@rmit.edu.au> wrote:
+
+>
+> ---------- Forwarded message ----------
+> From: Admissions web enquiry form <noreply@qemailserver.com>
+> Date: 30 May 2018 at 15:12
+> Subject: Other - enquiry
+> To: international.recruitment.support@rmit.edu.au
+>
+>
+> Please see below for RMIT International Admissions enquiry.
+>
+> ------------------------------
+>
+> *Recipient Data: *
+> *Time Finished:* 2018-05-30 15:12:56 AEST
+> *IP:* 104.237.86.147
+> <http://104.237.86.147>
+> *ResponseID:* R_1eOUVuHfFdfhvwN
+> *Link to View Results:* Click Here
+> <https://rmit.au1.qualtrics.com/CP/Report.php?SID=3DSV_0fbt3k9dEkNATZ3&R=
+=3DR_1eOUVuHfFdfhvwN>
+> *URL to View Results:* https://rmit.au1.qualtrics.com
+> /CP/Report.php?SID=3DSV_0fbt3k9dEkNATZ3&R=3DR_1eOUVuHfFdfhvwN
+> <https://rmit.au1.qualtrics.com/CP/Report.php?SID=3DSV_0fbt3k9dEkNATZ3&R=
+=3DR_1eOUVuHfFdfhvwN>
+> ------------------------------
+>
+> *Response Summary:*
+>
+> What is your question about?
+>    Other
+>
+> Student name:
+>    Aohan Wang
+>
+> Student date of birth: (dd/mm/yyyy)
+>    12/12/1992
+>
+> Student ID number or Application ID number:
+>    130000240839
+>
+> Are you:
+>    Other
+>
+> What will you be studying?
+>    Art
+>
+> AgentThis section is only for agent use only.
+>
+> Which country did you submit your application from?
+>    China
+>
+> Your email address:
+>    sometime5858@gmail.com
+>
+> Please write your question below:
+>    Dear officer,
+>    I have been informed to submit certified documents (SOP and Resume) to
+> you both digitally and physically as part of my application process for t=
+he
+> diploma program. Since I am overseas, this may be difficult and time
+> consuming. So I would just want to ask if only the digital/scan version o=
+f
+> the certified copy can suffice the application requirement. Thank you.
+>
+>
+>
+>
+>
+> --
+> International Recruitment Support
+> Level 4, 330 Swanston Street, Melbourne
+> <https://maps.google.com/?q=3D330+Swanston+Street,%C2%A0Melbourne&entry=
+=3Dgmail&source=3Dg>
+> VIC 3000, Australia
+> GPO Box 2476, Melbourne VIC 3001, Australia
+> Tel: (+61 3) 9925 5566 | Fax: (+61 3) 9663 6596
+> Email: international.recruitment.support@rmit.edu.au
+> <intl_reception@rmit.edu.au>
+> CRICOS Provider Code: 00122A
+>
+>
+>
+>
+>
+>
+
+--000000000000af6bbd056d86ecc7
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Dear Aohan<div><br></div><div>Thank You for your email.=C2=
+=A0</div><div><br></div><div>We can use the scanned version to process the =
+application and provide a conditional offer if the application is successfu=
+l.</div><div><br></div><div>In order to give a full offer and provide ECOE'=
+s (once deposits are paid) we would need to see original certified copies w=
+hich need to be mailed, couriered or handed in in person.</div><div><br></d=
+iv><div>Kind Regards</div><div><br></div><div><br></div><div>Rory Stewart</=
+div></div><div class=3D"gmail_extra"><br clear=3D"all"><div><div class=3D"g=
+mail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><d=
+iv dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><p =
+style=3D"margin:0in 0in 0pt"><span style=3D"font-family:Tahoma,sans-serif;f=
+ont-size:10pt">International Admissions<font face=3D"Arial, sans-serif"> <b=
+>(Design and Social Context) </b></font></span><span style=3D"font-size:10p=
+t"></span><span style=3D"font-size:12.8px"></span></p><div dir=3D"ltr"><div=
+ dir=3D"ltr" style=3D"font-size:small"><div style=3D"font-size:13px"><span =
+style=3D"font-size:12.8px">Operations and Pathways, Global Student Recruitm=
+ent=C2=A0</span></div><div style=3D"font-size:13px"><span style=3D"font-siz=
+e:12.8px">Engagement and Vocational Education Portfolio=C2=A0</span></div><=
+div style=3D"font-size:13px"><span style=3D"font-size:12.8px"><br></span></=
+div></div></div></div><div dir=3D"ltr"><div dir=3D"ltr" style=3D"font-size:=
+small"><font face=3D"tahoma, sans-serif">RMIT University</font></div><div d=
+ir=3D"ltr" style=3D"font-size:small"><span style=3D"font-family:Tahoma;font=
+-size:10pt">Building 22, Level 3</span><br></div></div><div dir=3D"ltr"><p =
+style=3D"font-family:arial;font-size:small;margin:0pt"><span style=3D"font-=
+size:10pt;font-family:Tahoma">330 Swanston Street</span></p><p style=3D"fon=
+t-family:arial;font-size:small;margin:0pt"><span style=3D"font-size:10pt;fo=
+nt-family:Tahoma">Melbourne VIC 3000=C2=A0</span><span style=3D"font-family=
+:Tahoma;font-size:10pt">Australia</span></p>Tel: =C2=A0 =C2=A0(+613 ) 9925 =
+5156=C2=A0</div><div dir=3D"ltr">Fax: =C2=A0 =C2=A0(+613) 9663 6925<br><a h=
+ref=3D"http://www.rmit.edu.au/international" target=3D"_blank">www.rmit.edu=
+.au/international</a><br>CRICOS provider code: 00122A<br><table width=3D"10=
+0%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0"><tbody><tr><td colspan=
+=3D"2" width=3D"100%" valign=3D"top" height=3D"34" align=3D"left"><p>RMIT i=
+s a global university of technology and design and Australia's  largest ter=
+tiary institution.</p></td>
+
+  =20
+  =20
+  =20
+  =20
+  =20
+    </tr><tr>
+   =20
+        =20
+
+  =20
+      <td width=3D"328" valign=3D"top" height=3D"90"><img src=3D"https://ww=
+w.international.rmit.edu.au/EDM/Images/QS_RMIT.gif"></td>
+      <td width=3D"82%" valign=3D"top" align=3D"left"><ul>
+        <li><span dir=3D"LTR"> </span>One of the top 15 universities in Aus=
+tralia (2014 QS World University  Rankings)</li>
+        <li><span dir=3D"LTR"> </span>40th in the world for our internation=
+al student profile (2014 QS World  University Rankings)</li>
+        <li><span dir=3D"LTR"> </span>32nd in the world for the internation=
+al profile of academic staff (2014  QS World University Rankings)</li>
+        <li><span dir=3D"LTR"> </span>32nd in the world among universities =
+less than 50 years old (2014 QS Top  50 Under 50 index)</li>
+        <li>79th in the world for employer  reputation (2014 QS World Unive=
+rsity Rankings) </li>
+      </ul></td>
+    </tr>
+   =20
+   <tr>
+    =20
+      <td colspan=3D"2" width=3D"100%" valign=3D"top" align=3D"left">
+      =20
+          <p>This email contains confidential =20
+information which may also be legally privileged. Only the intended=20
+recipient  may access, use, distribute or copy it. If you have received=20
+this email in  error, please let us know by return email and delete the=20
+original. CRICOS provider code: 00122A.</p></td></tr></tbody></table></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div>
+<br><div class=3D"gmail_quote">On 30 May 2018 at 15:33, RMIT International =
+Recruitment Support <span dir=3D"ltr">&lt;<a href=3D"mailto:international.r=
+ecruitment.support@rmit.edu.au" target=3D"_blank">international.recruitment=
+.support@rmit.edu.au</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex=
+"><div dir=3D"ltr"><br><div class=3D"gmail_quote">---------- Forwarded mess=
+age ----------<br>From: <b class=3D"gmail_sendername">Admissions web enquir=
+y form</b> <span dir=3D"ltr">&lt;<a href=3D"mailto:noreply@qemailserver.com=
+" target=3D"_blank">noreply@qemailserver.com</a>&gt;</span><br>Date: 30 May=
+ 2018 at 15:12<br>Subject: Other - enquiry<br>To: <a href=3D"mailto:interna=
+tional.recruitment.support@rmit.edu.au" target=3D"_blank">international.rec=
+ruitment.<wbr>support@rmit.edu.au</a><br><br><br>
+ =20
+ <div>
+   Please see below for RMIT International Admissions enquiry.=20
+  <br>=20
+  <br>=20
+  <hr>=20
+  <br>=20
+  <b>Recipient Data: </b>=20
+  <br>=20
+  <b>Time Finished:</b> 2018-05-30 15:12:56 AEST=20
+  <br>=20
+  <b>IP:</b> <a href=3D"http://104.237.86.147" target=3D"_blank">104.237.86=
+.147</a>=20
+  <br>=20
+  <b>ResponseID:</b> R_1eOUVuHfFdfhvwN=20
+  <br>=20
+  <b>Link to View Results:</b>=20
+  <a href=3D"https://rmit.au1.qualtrics.com/CP/Report.php?SID=3DSV_0fbt3k9d=
+EkNATZ3&amp;R=3DR_1eOUVuHfFdfhvwN" target=3D"_blank">Click Here</a>=20
+  <br>=20
+  <b>URL to View Results:</b> <a href=3D"https://rmit.au1.qualtrics.com/CP/=
+Report.php?SID=3DSV_0fbt3k9dEkNATZ3&amp;R=3DR_1eOUVuHfFdfhvwN" target=3D"_b=
+lank">https://rmit.au1.qualtrics.com<wbr>/CP/Report.php?SID=3DSV_0fbt3k9d<w=
+br>EkNATZ3&amp;R=3DR_1eOUVuHfFdfhvwN</a>=20
+  <br>=20
+  <hr>=20
+  <br>=20
+  <b>Response Summary:</b>=20
+  <br>=20
+  <br> What is your question about?=20
+  <br>=C2=A0=C2=A0=C2=A0Other=20
+  <br>=20
+  <br>Student name:=20
+  <br>=C2=A0=C2=A0=C2=A0Aohan Wang=20
+  <br>=20
+  <br>Student date of birth: (dd/mm/yyyy)=20
+  <br>=C2=A0=C2=A0=C2=A012/12/1992=20
+  <br>=20
+  <br>Student ID number or Application ID number:=20
+  <br>=C2=A0=C2=A0=C2=A0130000240839=20
+  <br>=20
+  <br>Are you:=20
+  <br>=C2=A0=C2=A0=C2=A0Other=20
+  <br>=20
+  <br>What will you be studying?=20
+  <br>=C2=A0=C2=A0=C2=A0Art=20
+  <br>=20
+  <br>AgentThis section is only for agent use only.=20
+  <br>=20
+  <br>Which country did you submit your application from?=20
+  <br>=C2=A0=C2=A0=C2=A0China=20
+  <br>=20
+  <br>Your email address:=20
+  <br>=C2=A0=C2=A0=C2=A0<a href=3D"mailto:sometime5858@gmail.com" target=3D=
+"_blank">sometime5858@gmail.com</a>=20
+  <br>=20
+  <br>Please write your question below:=20
+  <br>=C2=A0=C2=A0=C2=A0Dear officer,=20
+  <br>=C2=A0=C2=A0=C2=A0I have been informed to submit certified documents =
+(SOP and Resume) to you both digitally and physically as part of my applica=
+tion process for the diploma program. Since I am overseas, this may be diff=
+icult and time consuming. So I would just want to ask if only the digital/s=
+can version of the certified copy can suffice the application requirement. =
+Thank you.=20
+  <br><span class=3D"HOEnZb"><font color=3D"#888888">=20
+  <br>=20
+  <br> =20
+ </font></span></div><span class=3D"HOEnZb"><font color=3D"#888888">
+
+</font></span></div><span class=3D"HOEnZb"><font color=3D"#888888"><br><br =
+clear=3D"all"><div><br></div>-- <br><div class=3D"m_3750425141670671027gmai=
+l_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div>=
+<div><span style=3D"color:rgb(153,153,153);font-family:arial,helvetica,sans=
+-serif;font-size:x-small">International=C2=A0</span><span style=3D"color:rg=
+b(153,153,153);font-family:arial,helvetica,sans-serif;font-size:x-small">Re=
+cruitment Support=C2=A0</span></div><div><font color=3D"#999999" face=3D"ar=
+ial, helvetica, sans-serif" size=3D"1">Level 4, <a href=3D"https://maps.goo=
+gle.com/?q=3D330+Swanston+Street,%C2%A0Melbourne&amp;entry=3Dgmail&amp;sour=
+ce=3Dg">330 Swanston Street,=C2=A0Melbourne</a> VIC 3000, Australia=C2=A0<b=
+r></font></div><div><font face=3D"arial, helvetica, sans-serif" size=3D"1">=
+<font color=3D"#999999">GPO Box 2476,=C2=A0</font><span style=3D"color:rgb(=
+153,153,153)">Melbourne VIC 3001, Australia=C2=A0</span></font></div><div><=
+font size=3D"1" color=3D"#999999" face=3D"arial, helvetica, sans-serif">Tel=
+: (+61 3) 9925=C2=A05566 |=C2=A0Fax: (+61 3) 9663 6596</font></div><div><fo=
+nt color=3D"#999999" face=3D"arial, helvetica, sans-serif" size=3D"1">Email=
+:=C2=A0<a href=3D"mailto:intl_reception@rmit.edu.au" target=3D"_blank">inte=
+rnational.<wbr>recruitment.support@rmit.edu.<wbr>au</a>=C2=A0</font></div><=
+div><font face=3D"arial, helvetica, sans-serif"><font color=3D"#999999" siz=
+e=3D"1">CRICOS Provider Code: 00122A</font></font></div></div><div><br></di=
+v></div><div><div style=3D"font-family:Tahoma;font-size:10pt"><br><table wi=
+dth=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" style=3D"colo=
+r:rgb(0,0,0);font-family:&#39;Times New Roman&#39;"><tbody><tr><td width=3D=
+"328" height=3D"81" valign=3D"top"><table width=3D"100%" border=3D"0" cells=
+pacing=3D"0" cellpadding=3D"0" style=3D"font-family:&#39;Times New Roman&#3=
+9;"><tbody><tr><td width=3D"328" height=3D"81" valign=3D"top"><img src=3D"h=
+ttps://www.international.rmit.edu.au/EDM/Images/QS_RMIT.gif"></td><td width=
+=3D"82%" align=3D"left" valign=3D"top"><ul></ul></td></tr></tbody></table><=
+br></td></tr></tbody></table></div></div></div></div>
+</font></span></div>
+</blockquote></div><br></div>
+
+--000000000000af6bbd056d86ecc7--
+

@@ -1,0 +1,411 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 10.31.98.193 with SMTP id w184csp1577494vkb;
+        Tue, 16 May 2017 00:07:35 -0700 (PDT)
+X-Received: by 10.84.151.3 with SMTP id i3mr13031391pli.81.1494918455227;
+        Tue, 16 May 2017 00:07:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1494918455; cv=none;
+        d=google.com; s=arc-20160816;
+        b=O6uf8vm4USs+QDpFxKvURJDM1Wmwj9OmiQHhPnHE7e1mLkwLr6QXoUiTwV6kGx7JiW
+         8ERZTLxKQxVpeL4+f0g515ucvT3bd7ZdwX+yIhOZrVZTDO8BE2yf61EXP6QJkcUwIntc
+         uowl0s+W/jj1pCY7jXVktdj5ME61yN3eIZpxNsX4ch91vE9NC2WTOyvVVe0px8ONYeV2
+         BUvJvHAuuZzs6dh79wIPDfcoF0cuvIHjxcCciTsWPLNS5GZvglve0MB6PPA6fERW7SJT
+         01ob51q1Eo9usGkiE7HESDmWJM3kCbN2qGUYPakJYSM8qyAzL7MYJ46HRz4HJ5+skx3I
+         61tg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:importance:mime-version:message-id:to
+         :subject:from:date:dkim-signature:arc-authentication-results;
+        bh=nIpSACaYJgw+M6YS9dbeOE8koSAovHdNafNGpjtmlVg=;
+        b=di0+JojNhRpwusXtZBBu4DIyNP2uC/NmBLD4ajSqk8u+mk/cYS31QeZQcEKUEdOPHl
+         VKmgQ+AHR6GAObVSwMufzAzdgEpxi7P7mVf1GJeDU9uVwGbpY9V76iEBiWBeRjxc1z5h
+         BRFIH5W7U73Bb4kathuuaqnYMT9Kynz7PFKNNjKxsAkINWYuiH9aIzoGjl16ov3QAC2A
+         9bxs6sNcskZYsS/sp4yxHdU3GAqbX8nCmo/mDACuHSMgCq/LEVNZS9Dm1jq31Lo2sQEy
+         8No30Vt+l2HNaAio3tPeHBNyDBWoGqF72ay/y5j8NdaKplpHDkBzRCYDcQRp44MBH3bz
+         cj8g==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@auspost.com.au;
+       spf=pass (google.com: domain of tracknoreply@auspost.com.au designates 121.200.236.243 as permitted sender) smtp.mailfrom=Tracknoreply@auspost.com.au;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=auspost.com.au
+Return-Path: <Tracknoreply@auspost.com.au>
+Received: from mx11.firstwave.com.au (mx11.firstwave.com.au. [121.200.236.243])
+        by mx.google.com with ESMTPS id j198si12599927pgc.370.2017.05.16.00.07.33
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 16 May 2017 00:07:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of tracknoreply@auspost.com.au designates 121.200.236.243 as permitted sender) client-ip=121.200.236.243;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@auspost.com.au;
+       spf=pass (google.com: domain of tracknoreply@auspost.com.au designates 121.200.236.243 as permitted sender) smtp.mailfrom=Tracknoreply@auspost.com.au;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=auspost.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=auspost.com.au; i=@auspost.com.au; q=dns/txt;
+  s=20160614; t=1494918455; x=1526454455;
+  h=date:from:subject:to:message-id:mime-version:
+   content-transfer-encoding;
+  bh=KtRTM6R/WygSMJKAchNx8WpX1RR86VVbGz/trYfcgb4=;
+  b=rpSuO4D5NBWRSzzlGHTUBXq39uK0H71ZXps+8r8AIVPxlpXmUoY6bZKt
+   TRe5BqF4d8421UHqrSjw2A1jMoZTK+7kNVcP9PsnlXqwbHlbOLW7Ymfta
+   2zrNJzH7TUoKMH0ky6lV777eCnpJCPjitYIQNF3x9wGqlIPnXF6KNg3J2
+   s=;
+Received: from unknown (HELO HPWIEXSES03.corp.auspost.local) ([155.144.24.139])
+  by mailob.firstwave.com.au with ESMTP/TLS/AES128-SHA; 16 May 2017 17:07:24 +1000
+Received: from HCVIEXSHS01.corp.auspost.local (10.3.47.24) by
+ HPWIEXSES03.corp.auspost.local (155.144.24.139) with Microsoft SMTP Server
+ (TLS) id 14.3.248.2; Tue, 16 May 2017 17:07:20 +1000
+Received: from auspost.com.au (10.3.29.162) by smtpappsc11.corp.auspost.local
+ (10.3.47.24) with Microsoft SMTP Server id 14.3.248.2; Tue, 16 May 2017
+ 17:07:05 +1000
+Date: Tue, 16 May 2017 17:00:39 +1000
+From: <Tracknoreply@auspost.com.au>
+Subject: Your item has been delivered
+To: <sometime5858@gmail.com>
+Message-ID: <ADR420000467524870314A73E4CA910C1ED78EC0C893BD33810D@auspost.com.au>
+MIME-Version: 1.0
+Importance: Normal
+X-Priority: 3 (Normal)
+X-Mailer: SAP NetWeaver 740
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+Return-Path: Tracknoreply@auspost.com.au
+X-EXCLAIMER-MD-CONFIG: 7389ef33-22c0-434a-b8e6-1ca0843d08aa
+X-TUID: BzA7Hcgbn1ig
+
+<html><head><meta charset=3D=22utf-8=22/><meta name=3D=22viewport=22 conten=
+t=3D=22width=3Ddevice-width, initial-scale=3D1=22/><meta http-equiv=3D=22X-=
+UA-compatible=22 content=3D=22IE=3Dedge=22/><style type=3D=22text/css=22>
+
+			/* base css */
+			body =7B width: 100%; margin: 0; padding: 0; -webkit-font-smoothing: ant=
+ialiased; font-family: Arial, Helvetica, sans-serif; =7D
+			table =7B border-collapse: collapse; =7D
+			.addClassToSection a =7B color: =23000000=21important; =7D
+			.ExternalClass =7B width: 100%; line-height: 100%; =7D
+			.appleLinks a =7B color:=235e514d; text-decoration: none; =7D
+			.appleLinksWhite a =7B color:=23ffffff; text-decoration: none; =7D
+			/* media queries */
+			=40media only screen and (max-device-width: 540px)  =7B
+			/* core styles */
+				.device-hide =7B
+					display:none=21important;
+				=7D
+				.device-width =7B
+					width:320px=21important;
+				=7D
+				.device-width-inner =7B
+					width:250px=21important;
+				=7D
+				.gmail-hack =7B
+					letter-spacing:320px=21important;
+				=7D
+				.container-sides-padding =7B
+					padding-left:35px=21important;
+					padding-right:35px=21important;
+				=7D
+				.footer-social-padding =7B
+					padding-top:15px=21important;
+				=7D
+				.footer-disclaimer-padding =7B
+					padding-top:30px=21important;
+				=7D
+				.footer-links-padding =7B
+					padding-top:5px=21important;
+				=7D
+				.footer-logo-collapse-padding =7B
+					padding-top:30px=21important;
+				=7D
+				.outer-gap-height =7B
+					height:30px=21important;
+					line-height:30px=21important;
+				=7D
+				.footer-gap-height =7B
+					height:35px=21important;
+					line-height:35px=21important;
+				=7D
+
+				/* font styles */
+				.title-copy-font =7B
+					font-size:24px=21important;
+					line-height:28px=21important;
+				=7D
+				.header-copy-font =7B
+					font-size:15px=21important;
+				=7D
+
+				.colour-switch =7B
+					color:=23382f2d=21important;
+				=7D
+
+				/*
+					footer needs lots of space in between links
+					using four =C2=A0 inside a span, adjust size for mobile
+
+					- margin/padding is inconsistent in outlook 7, 10, 13
+					- cant use td for padding as its too wide on mobile
+				*/
+				.mobile-separator =7B
+					letter-spacing: 0px=21important;
+				=7D
+				.mobile-primary-cta =7B
+					text-align: center;
+					width: 68% =21important;
+					border-left: 40px solid =23dc1928 =21important;
+					border-right: 40px solid =23dc1928 =21important;
+				=7D
+				.mobile-secondary-cta =7B
+					text-align: center;
+					padding: 15px 25px 15px 25px =21important;
+				=7D
+				.track-status =7B
+					padding: 0 5px 0 35px =21important;
+				=7D
+
+				/*
+					Template specific changes
+
+					Could be unique per template, namespace like so:;
+					transactional-title, single-message-body, multi-message-gap
+
+				*/
+				.generic-title-padding =7B
+					padding-top:25px=21important;
+					padding-bottom:25px=21important;
+				=7D
+				.generic-body-padding =7B
+					padding-top:35px=21important;
+				=7D
+				.generic-gap-height =7B
+					height:30px=21important;
+					line-height:30px=21important;
+				=7D
+				.generic-collapse =7B
+					width:250px=21important;
+					text-align:left=21important;
+				=7D
+				.insert-title-padding =7B
+					padding-top: 40px=21important;
+				=7D
+			=7D
+
+		</style></head><body width=3D=22100%=22 bgcolor=3D=22=23f3f1ee=22 style=
+=3D=22margin: 0; padding: 0;=22><table class=3D=22device-width=22 width=3D=
+=22100%=22 align=3D=22center=22 border=3D=220=22 cellspacing=3D=220=22 cell=
+padding=3D=220=22 bgcolor=3D=22=23f3f1ee=22 style=3D=22border-collapse: col=
+lapse; table-layout: fixed; margin: 0 auto;=22><tr><td align=3D=22center=22=
+><div class=3D=22gmail-hack=22 style=3D=22letter-spacing: 500px; line-heigh=
+t: 0; mso-hide: all=22>=C2=A0</div><table class=3D=22device-width=22 width=
+=3D=22500=22 align=3D=22center=22 valign=3D=22middle=22 border=3D=220=22 ce=
+llpadding=3D=220=22 cellspacing=3D=220=22 style=3D=22border-collapse: colla=
+pse;=22><tr><td class=3D=22container-sides-padding=22 style=3D=22padding:30=
+px 60px 35px 60px;=22><table align=3D=22left=22 valign=3D=22middle=22 borde=
+r=3D=220=22 cellpadding=3D=220=22 cellspacing=3D=220=22 style=3D=22border-c=
+ollapse: collapse;=22><tr><td><a href=3D=22http://auspost.com.au?ilink=3Dtr=
+ack-em2-edm-aplogo=22 style=3D=22border:none; text-decoration:none;=22><img=
+ src=3D=22http://auspost.com.au/images/emails/track/new-template-post-notex=
+t-logo-grey.png=22 width=3D=2245=22 height=3D=2245=22 border=3D=220=22 marg=
+in=3D=220=22 alt=3D=22Australia Post Logo=22 style=3D=22display:block; min-=
+width:45px; min-height:45px;=22/></a></td></tr></table><table align=3D=22ri=
+ght=22 valign=3D=22middle=22 border=3D=220=22 cellpadding=3D=220=22 cellspa=
+cing=3D=220=22 style=3D=22border-collapse: collapse;=22><tr><td class=3D=22=
+header-copy-font=22 style=3D=22text-align:right; padding-top:10px; color:=
+=235e514d; font-family: Arial, Helvetica, sans-serif; font-size:16px; line-=
+height:20px;=22>
+											Tracking update
+										</td></tr></table></td></tr></table><table class=3D=22device-hide=
+=22 width=3D=22500=22 align=3D=22center=22 valign=3D=22top=22 border=3D=220=
+=22 cellpadding=3D=220=22 cellspacing=3D=220=22 bgcolor=3D=22=23ffffff=22 s=
+tyle=3D=22border-collapse: collapse;=22><tr><td width=3D=224=22 height=3D=
+=224=22 style=3D=22mso-line-height-rule:exactly; line-height:4px; font-size=
+:4px;=22><img src=3D=22http://auspost.com.au/images/emails/track/new-templa=
+te-corner-tl.png=22 width=3D=224=22 height=3D=224=22 border=3D=220=22 margi=
+n=3D=220=22 alt=3D=22=22 style=3D=22display:block;=22/></td><td width=3D=22=
+496=22 height=3D=224=22 style=3D=22mso-line-height-rule:exactly; line-heigh=
+t:4px; font-size:4px;=22>
+								=C2=A0
+							</td><td width=3D=224=22 height=3D=224=22 style=3D=22mso-line-height=
+-rule:exactly; line-height:4px; font-size:4px;=22><img src=3D=22http://ausp=
+ost.com.au/images/emails/track/new-template-corner-tr.png=22 width=3D=224=
+=22 height=3D=224=22 border=3D=220=22 margin=3D=220=22 alt=3D=22=22 style=
+=3D=22display:block;=22/></td></tr></table><table class=3D=22device-width=
+=22 width=3D=22500=22 align=3D=22center=22 border=3D=220=22 cellpadding=3D=
+=220=22 cellspacing=3D=220=22 bgcolor=3D=22=23ffffff=22 style=3D=22border-c=
+ollapse: collapse;=22><tr><td class=3D=22container-sides-padding single-tit=
+le-padding=22 style=3D=22color:=23382f2d; font-family: Arial, Helvetica, sa=
+ns-serif; font-size:28px; line-height:32px; padding:52px 60px 0 60px; text-=
+align:left;=22><span class=3D=22title-copy-font=22 style=3D=22color:=23382f=
+2d; font-family: Arial, Helvetica, sans-serif; font-size:28px; line-height:=
+32px;=22>Good news, your shipment</span><br/><span class=3D=22title-copy-fo=
+nt=22 style=3D=22color:=23dc1928; font-family: Arial, Helvetica, sans-serif=
+; font-size:28px; line-height:32px;=22>has been delivered</span></td></tr><=
+/table><table class=3D=22device-width=22 width=3D=22500=22 align=3D=22cente=
+r=22 border=3D=220=22 cellpadding=3D=220=22 cellspacing=3D=220=22 bgcolor=
+=3D=22=23ffffff=22 style=3D=22border-collapse: collapse;=22><tr><td class=
+=3D=22container-sides-padding single-body-padding track-status=22 height=3D=
+=2218=22 style=3D=22padding:5px 0px 0 60px; line-height:22px;=22 width=3D=
+=2218=22><=21--=5Bif mso=5D><v:roundrect xmlns:v=3D=22urn:schemas-microsoft=
+-com:vml=22 xmlns:w=3D=22urn:schemas-microsoft-com:office:word=22 style=3D=
+=22height:18px;v-text-anchor:left;width:18px;=22 arcsize=3D=229%=22 stroke=
+=3D=22f=22 fillcolor=3D=22=2300AC3E=22><w:anchorlock/><center><=21=5Bendif=
+=5D--><div class=3D=22status-dot=22 width=3D=2218=22 height=3D=2218=22 styl=
+e=3D=22background-color:=2300AC3E; text-align:left; width:18px; height:18px=
+; display:inline-block; border-radius:3px;=22/><=21--=5Bif mso=5D></center>=
+</v:roundrect><=21=5Bendif=5D--></td><td class=3D=22=22 style=3D=22padding:=
+15px 60px 0 0px; line-height:22px; color:=23807370; font-family: Arial, Hel=
+vetica, sans-serif; font-size:18px; text-align:left;=22><table align=3D=22l=
+eft=22 border=3D=220=22 cellpadding=3D=220=22 cellspacing=3D=220=22 bgcolor=
+=3D=22=23ffffff=22 style=3D=22border-collapse: collapse;=22><tr><td style=
+=3D=22padding:12px 0 0 10px; line-height:22px; color:=2300AC3E; font-family=
+: Arial, Helvetica, sans-serif; font-size:18px; font-weight:bold; text-alig=
+n:left;=22>Delivered
+										</td></tr><tr><td style=3D=22padding:0 0 6px 10px; line-height:22=
+px; color:=23382f2d; font-family: Arial, Helvetica, sans-serif; font-size:1=
+6px; text-align:left;=22>NRL1455283</td></tr></table></td></tr></table><tab=
+le class=3D=22device-width=22 width=3D=22500=22 align=3D=22center=22 border=
+=3D=220=22 cellpadding=3D=220=22 cellspacing=3D=220=22 bgcolor=3D=22=23ffff=
+ff=22 style=3D=22border-collapse: collapse;=22><tr><td class=3D=22container=
+-sides-padding single-body-padding=22 style=3D=22padding:30px 60px 0 60px;b=
+order-bottom:1px solid =23f3f1ee;=22/></tr></table><table class=3D=22device=
+-width=22 width=3D=22500=22 align=3D=22center=22 border=3D=220=22 cellspaci=
+ng=3D=220=22 cellpadding=3D=220=22 bgcolor=3D=22=23ffffff=22 style=3D=22bor=
+der-collapse: collapse;=22><tr><td class=3D=22container-sides-padding body-=
+text-font=22 style=3D=22padding:48px 60px 12px 60px; line-height:21px;=22><=
+table align=3D=22left=22 valign=3D=22top=22 border=3D=220=22 cellpadding=3D=
+=220=22 cellspacing=3D=220=22 style=3D=22border-collapse: collapse;=22><tr>=
+<td class=3D=22device-width-inner=22 align=3D=22left=22><img class=3D=22ins=
+ert-image-dimensions=22 width=3D=2290=22 height=3D=2282=22 src=3D=22http://=
+auspost.com.au/images/emails/track//track-edm-img-mydeliveries.png=22 borde=
+r=3D=220=22 margin=3D=220=22 alt=3D=22=22 style=3D=22display:block; width:9=
+0px; height:82px; min-width:90px; min-height:84px;padding-bottom:30px;=22/>=
+</td></tr></table><table width=3D=22250=22 align=3D=22right=22 valign=3D=22=
+top=22 border=3D=220=22 cellpadding=3D=220=22 cellspacing=3D=220=22 style=
+=3D=22border-collapse: collapse;=22><tr><td class=3D=22device-width-inner i=
+nsert-copy-padding body-text-font=22 align=3D=22right=22 style=3D=22text-al=
+ign:left; color:=23807370; font-family: Arial, Helvetica, sans-serif; font-=
+size:16px;=22>
+											For more ways to manage your future deliveries, use this email a=
+ddress to sign up or log in to <a href=3D=22https://auspost.com.au/mypost/a=
+uth/=23/login?ilink=3Dtrack-em2-edm-mypost-deliveries=22 style=3D=22color:=
+=23dc1928; text-decoration:underline=22>MyPost Deliveries</a>.
+										</td></tr></table></td></tr></table><table class=3D=22device-widt=
+h=22 width=3D=22500=22 align=3D=22center=22 border=3D=220=22 cellspacing=3D=
+=220=22 cellpadding=3D=220=22 bgcolor=3D=22=23ffffff=22 style=3D=22border-c=
+ollapse: collapse;=22><tr><td class=3D=22container-sides-padding body-text-=
+font=22 style=3D=22padding:48px 60px 12px 60px; line-height:21px;=22><table=
+ align=3D=22left=22 valign=3D=22top=22 border=3D=220=22 cellpadding=3D=220=
+=22 cellspacing=3D=220=22 style=3D=22border-collapse: collapse;=22><tr><td =
+class=3D=22device-width-inner=22 align=3D=22left=22><img class=3D=22insert-=
+image-dimensions=22 width=3D=2290=22 height=3D=2290=22 src=3D=22http://ausp=
+ost.com.au/images/emails/track/track-edm-img-parcel-locker.png=22 border=3D=
+=220=22 margin=3D=220=22 alt=3D=22=22 style=3D=22display:block; width:90px;=
+ height:90px; min-width:90px; min-height:90px;padding-bottom:30px;=22/></td=
+></tr></table><table width=3D=22250=22 align=3D=22right=22 valign=3D=22top=
+=22 border=3D=220=22 cellpadding=3D=220=22 cellspacing=3D=220=22 style=3D=
+=22border-collapse: collapse;=22><tr><td class=3D=22device-width-inner inse=
+rt-copy-padding body-text-font=22 align=3D=22right=22 style=3D=22text-align=
+:left; color:=23807370; font-family: Arial, Helvetica, sans-serif; font-siz=
+e:16px;=22>
+											Did you know you can have your deliveries sent to 24/7 Parcel Lo=
+ckers or Post Offices? <br/><a href=3D=22http://auspost.com.au/pol/app/loca=
+te/parcel-locker?location&amp;?ilink=3Dtrack-em2-edm-pol-parcel-locker-sear=
+ch=22 style=3D=22color:=23dc1928; text-decoration:underline=22>Find locatio=
+ns closest to you</a></td></tr></table></td></tr></table><table class=3D=22=
+device-width=22 width=3D=22500=22 align=3D=22center=22 valign=3D=22top=22 b=
+order=3D=220=22 cellpadding=3D=220=22 cellspacing=3D=220=22 bgcolor=3D=22=
+=23ffffff=22 style=3D=22border-collapse: collapse;=22><tr><td class=3D=22ge=
+neric-gap-height=22 height=3D=2231=22 style=3D=22line-height:31px;=22>
+								=C2=A0
+							</td></tr></table><table class=3D=22device-hide=22 width=3D=22500=22=
+ align=3D=22center=22 valign=3D=22top=22 border=3D=220=22 cellpadding=3D=22=
+0=22 cellspacing=3D=220=22 bgcolor=3D=22=23ffffff=22 style=3D=22border-coll=
+apse: collapse;=22><tr><td width=3D=224=22 height=3D=224=22 style=3D=22mso-=
+line-height-rule:exactly; line-height:4px; font-size:4px;=22><img src=3D=22=
+http://auspost.com.au/images/emails/track/new-template-corner-bl.png=22 bor=
+der=3D=220=22 margin=3D=220=22 alt=3D=22=22 style=3D=22display:block;=22/><=
+/td><td width=3D=22496=22 height=3D=224=22 style=3D=22mso-line-height-rule:=
+exactly; line-height:4px; font-size:4px;=22>
+								=C2=A0
+							</td><td width=3D=224=22 height=3D=224=22 style=3D=22mso-line-height=
+-rule:exactly; line-height:4px; font-size:4px;=22><img src=3D=22http://ausp=
+ost.com.au/images/emails/track/new-template-corner-br.png=22 border=3D=220=
+=22 margin=3D=220=22 alt=3D=22=22 style=3D=22display:block;=22/></td></tr><=
+/table><table class=3D=22device-width=22 width=3D=22500=22 align=3D=22cente=
+r=22 valign=3D=22top=22 border=3D=220=22 cellpadding=3D=220=22 cellspacing=
+=3D=220=22 style=3D=22border-collapse: collapse;=22><tr><td class=3D=22foot=
+er-gap-height=22 height=3D=2240=22 style=3D=22line-height:40px;=22>
+								=C2=A0
+							</td></tr></table><table class=3D=22device-width=22 width=3D=22500=
+=22 align=3D=22center=22 valign=3D=22top=22 border=3D=220=22 cellpadding=3D=
+=220=22 cellspacing=3D=220=22 style=3D=22border-collapse: collapse;=22><tr>=
+<td class=3D=22container-sides-padding footer-social-padding=22 style=3D=22=
+padding-top: 20px;=22><table align=3D=22left=22 valign=3D=22top=22 border=
+=3D=220=22 cellpadding=3D=220=22 cellspacing=3D=220=22 style=3D=22border-co=
+llapse: collapse;=22><tr><td class=3D=22generic-collapse footer-logo-collap=
+se-padding=22 align=3D=22left=22 style=3D=22padding:0;=22><a href=3D=22http=
+://www.startrack.com.au/=22 style=3D=22border:none; text-decoration:none;=
+=22><img src=3D=22http://auspost.com.au/images/emails/track/new-template-st=
+artrack-logo-grey.png=22 width=3D=22123=22 height=3D=2226=22 border=3D=220=
+=22 margin=3D=220=22 alt=3D=22StarTrack Logo=22 style=3D=22min-width:123px;=
+ min-height:26px; display:block;=22/></a></td></tr><tr><td class=3D=22gener=
+ic-collapse=22 align=3D=22left=22 style=3D=22padding-top:10px; color:=230f3=
+769; font-family: Arial, Helvetica, sans-serif; font-size:11px; line-height=
+:14px; text-align:left;=22>
+											A business of Australia Post
+										</td></tr></table></td></tr></table><table class=3D=22device-widt=
+h=22 width=3D=22500=22 align=3D=22center=22 border=3D=220=22 cellpadding=3D=
+=220=22 cellspacing=3D=220=22 style=3D=22border-collapse: collapse;=22><tr>=
+<td class=3D=22container-sides-padding footer-disclaimer-padding=22 style=
+=3D=22padding: 20px 0px 0 0px; color:=235e514d; font-family: Arial, Helveti=
+ca, sans-serif; font-size:11px; line-height:14px; text-align:left;=22>
+								This email was sent by <a href=3D=22http://www.auspost.com.au/=22 s=
+tyle=3D=22color:=235e514d; text-decoration:underline=22 target=3D=22_blank=
+=22>
+Australia Post</a>, <span class=3D=22appleLinks=22>111 Bourke Street, MELBO=
+URNE VIC 3000</span>. Australia Post will never ask for your password or se=
+nd you an email asking for credit card details or account information. If y=
+ou have any concerns, or
+don't think you should have received this email, please call us on 13 13 18=
+. Visit <a href=3D=22http://www.auspost.com.au/=22 style=3D=22color:=235e51=
+4d; text-decoration:underline=22>auspost.com.au</a>
+for further information on our online <a href=3D=22http://auspost.com.au/ab=
+out-us/online-security-scams-and-frauds.html?ilink=3Dtrack-em2-edm-security=
+=22 style=3D=22color:=235e514d; text-decoration:underline=22 target=3D=22_b=
+lank=22>security</a>.
+								<br/><br/>
+								Please note that this is an automatically generated email, replies =
+will not be answered. <a href=3D=22http://auspost.com.au/track/unsubscribe.=
+html?id=3DNRL1455283&amp;type=3Dconsignment&amp;email=3Dsometime5858=40gmai=
+l.com&amp;hv=3DF5A=22 style=3D=22color:=235e514d; text-decoration:underline=
+=22 target=3D=22_blank=22>Unsubscribe</a> if you don=E2=80=99t wish to rece=
+ive any further emails about this delivery. We may still send you emails if=
+ this delivery is waiting to be collected at an Australia Post retail outle=
+t or Parcel Locker and emails about future
+deliveries. Australia Post does not represent, warrant or guarantee that th=
+e integrity of this email communication has been maintained nor that the co=
+mmunication is free of errors, viruses or interference.
+							</td></tr></table><table class=3D=22device-width-inner=22 width=3D=
+=22500=22 border=3D=220=22 cellpadding=3D=220=22 cellspacing=3D=220=22 styl=
+e=3D=22border-collapse: collapse; line-height:20px; text-align:center;=22><=
+tr><td style=3D=22border-bottom:1px solid =23dfd8d3;=22>
+								=C2=A0
+							</td></tr><tr><td style=3D=22border-top:1px solid =23dfd8d3;=22>
+								=C2=A0
+							</td></tr></table><table class=3D=22device-width=22 align=3D=22cente=
+r=22 width=3D=22500=22 border=3D=220=22 cellpadding=3D=220=22 cellspacing=
+=3D=220=22 style=3D=22border-collapse: collapse; =22><tr><td class=3D=22con=
+tainer-sides-padding footer-links-padding=22 style=3D=22padding: 0 0px 20px=
+ 0px; text-align:left; color:=235e514d; font-family: Arial, Helvetica, sans=
+-serif; font-size:11px;line-height:20px;=22><a href=3D=22https://auspost.co=
+m.au/help/?ilink=3Dtrack-em2-edm-help=22 style=3D=22color:=235e514d; text-d=
+ecoration:none=22>Help &amp; support</a><span class=3D=22mobile-separator=
+=22>=C2=A0=C2=A0</span>=7C<span class=3D=22mobile-separator=22>
+=C2=A0</span><a href=3D=22http://auspost.com.au/parcels-mail/tracking-servi=
+ce-terms-and-conditions.html?ilink=3Dtrack-em2-edm-track-terms-conditions=
+=22 style=3D=22color:=235e514d; text-decoration:none=22>Terms &amp; conditi=
+ons</a><span class=3D=22mobile-separator=22>=C2=A0=C2=A0</span>=7C<span cla=
+ss=3D=22mobile-separator=22>=C2=A0=C2=A0</span><a href=3D=22http://auspost.=
+com.au/privacy.html?ilink=3Dtrack-em2-edm-privacy-policy=22 style=3D=22colo=
+r:=235e514d; text-decoration:none=22>Privacy policy</a><span class=3D=22mob=
+ile-separator=22>
+=C2=A0</span>=7C<span class=3D=22mobile-separator=22>=C2=A0=C2=A0</span><a =
+href=3D=22http://auspost.com.au/parcels-mail/our-tracking-service.html?ilin=
+k=3Dtrack-em2-edm-our-tracking-service=22 style=3D=22color:=235e514d; text-=
+decoration:none=22>Our tracking service</a></td></tr></table></td></tr></ta=
+ble><custom name=3D=22opencounter=22 type=3D=22tracking=22/></body></html>

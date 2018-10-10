@@ -1,0 +1,731 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 2002:a9d:6153:0:0:0:0:0 with SMTP id c19-v6csp3164763otk;
+        Sun, 16 Sep 2018 10:28:50 -0700 (PDT)
+X-Google-Smtp-Source: ANB0VdZaKaKVk36wfAukLd78/9HD1VR6n4qzegWw7MkYWq0G2dy6dZ+sA+6ugB0qIxyqAnZ0NsTV
+X-Received: by 2002:a62:9402:: with SMTP id m2-v6mr22172039pfe.3.1537118930114;
+        Sun, 16 Sep 2018 10:28:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1537118930; cv=none;
+        d=google.com; s=arc-20160816;
+        b=sZaKxwxu+nWt4VYrgiUJm56mHDbrWixzTimqJqbJr/83LjbVa6RSEzHMc2IkGvE7aP
+         e47QyNHDCgXatKRfZXya0MjTYJZN455IGoRJwDE94n0SQ2BY1KYcfTnNIW1F1sLbPkaF
+         pawvpZ8FvVM0WGyr4GxFRQQ1k9is5UHMN3pxg1DbaMi/3mXd6UEsttDlD4bYT1qhjB36
+         Ck1wGDcUg5wtR3regCKZfmtvzckhHJFYZ33yJNoo5YiBH3bSFVlsgPnovq1Ks4370ReJ
+         loMRIuRJVLDBiUsStLZuq2V8YGTzewPdYUJ159H2vHlKtANi861ih0fnv546ckqiBRmy
+         hsLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=from-address:from-name:content-transfer-encoding:mime-version
+         :subject:message-id:to:from:date:dkim-signature:dkim-filter;
+        bh=nPDBP5bHsY2iyyrZCfmN1wx3tJ6txOR76/AvV4ul7WM=;
+        b=GXH67VeuHySIgrckqLRrkyHHbjqYkjw6DOcoAlcoK/QRIwGVFBMESNqvoN9YazBxw1
+         iXgsoAAHffXm7ytI/QT5FCRFaB6GNudI6a5W/A1ff6xlv25Ci2u4Cwu8Sfg8krABxXQj
+         BwDlRG7uBT9JcLGs50hcJoZJ83DfiWOGYe7CUZyWGnP98DVjXRxIe80A8ru9KyWpYDtZ
+         QvXi8dm0gdOlHHXzOlOxy64W318BngBXIw3gWQV+yErmoDfKvFmGExMr0KBaW4TTZT0d
+         BvWjiwWdydSdYTt8ibRNSI0mTqP4b3hO/5qChsV6uHdDItGVa9b+IpU2XAzfJoA1rzsD
+         cLpQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@ebay.com header.s=dkim1k header.b=HJH37WpR;
+       spf=pass (google.com: domain of ebay@ebay.com designates 66.135.215.94 as permitted sender) smtp.mailfrom=ebay@ebay.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=ebay.com
+Return-Path: <ebay@ebay.com>
+Received: from mxslcpool28.ebay.com (mxslcpool28.ebay.com. [66.135.215.94])
+        by mx.google.com with ESMTPS id d7-v6si12608158pll.162.2018.09.16.10.28.49
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 16 Sep 2018 10:28:50 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ebay@ebay.com designates 66.135.215.94 as permitted sender) client-ip=66.135.215.94;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@ebay.com header.s=dkim1k header.b=HJH37WpR;
+       spf=pass (google.com: domain of ebay@ebay.com designates 66.135.215.94 as permitted sender) smtp.mailfrom=ebay@ebay.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=ebay.com
+Received: from lvskirk0-2704001.stratus.lvs.ebay.com (lvskirk0-2704001.stratus.lvs.ebay.com [10.212.239.150])
+	by mxslcpool28.ebay.com (8.14.7/8.14.7) with ESMTP id w8GHSm8j014255
+	for <sometime5858@gmail.com>; Sun, 16 Sep 2018 10:28:48 -0700
+DKIM-Filter: OpenDKIM Filter v2.10.3 mxslcpool28.ebay.com w8GHSm8j014255
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; d=ebay.com; s=dkim1k;
+	t=1537118928; bh=z725XTIg6TZEyJ+rCocpWiWsq4E=;
+	h=Date:From:To:Subject;
+	b=HJH37WpR3wXsJ4YRzR2tVmZYDfQlJdCh6+PVn/KaX+oDCZgbVHRi5yWro91a2Dkj4
+	 z9fnzvN1Qphe8OkK8Vid8vgq6lDb2mxt9MmS1tes91ivfUe7nrWEvb9fErVGKhmcEO
+	 E5GjfR3RAzUgeI0yOOC35IF//z7ZfPqMJtSHkKsk=
+Date: Sun, 16 Sep 2018 10:28:48 -0700 (GMT-07:00)
+From: eBay <ebay@ebay.com>
+To: sometime5858@gmail.com
+Message-ID: <0AC702E9-6CCFB859454-0165B8E89D4B-0000000001B5B681@starship>
+Subject: Help us protect your account
+MIME-Version: 1.0
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+from-name: eBay
+X-eBay-MailTracker: 13217.000.15.0.a2ece190bcb748db86e271d2410a9bd1
+from-address: ebay@ebay.com
+X-TUID: TPualF2n6zod
+
+<!DOCTYPE html>
+<!--469953ba-e958-6ad8-3902-2841219d6a89_v61-->
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+"></meta><style type=3D"text/css">
+
+
+
+@media only screen and (max-width: 620px) {
+
+body[yahoo] .device-width {
+
+=09width: 450px !important
+
+}
+
+body[yahoo] .threeColumns {
+
+=09width: 140px !important
+
+}
+
+body[yahoo] .threeColumnsTd {
+
+=09padding: 10px 4px !important
+
+}
+
+body[yahoo] .fourColumns {
+
+=09width: 225px !important
+
+}
+
+body[yahoo] .fourColumnsLast {
+
+=09width: 225px !important
+
+}
+
+body[yahoo] .fourColumnsTd {
+
+=09padding: 10px 0px !important
+
+}
+
+body[yahoo] .fourColumnsPad {
+
+=09padding: 0 0 0 0 !important
+
+}
+
+body[yahoo] .secondary-product-image {
+
+=09width: 200px !important;
+
+=09height: 200px !important
+
+}
+
+body[yahoo] .center {
+
+=09text-align: center !important
+
+}
+
+body[yahoo] .twoColumnForty {
+
+=09width: 200px !important
+=09height: 200px !important
+
+}
+
+body[yahoo] .twoColumnForty img {
+
+=09width: 200px !important;
+
+=09height: 200px !important
+
+}
+
+body[yahoo] .twoColumnSixty {
+
+=09width: 228px !important
+
+}
+
+body[yahoo] .secondary-subhead-right {
+
+=09display: none !important
+
+}
+
+body[yahoo] .secondary-subhead-left {
+
+=09width: 450px !important
+
+}
+
+}
+
+@media only screen and (max-width: 479px) {
+
+body[yahoo] .navigation {
+
+=09display: none !important
+
+}
+
+body[yahoo] .device-width {
+
+=09width: 300px !important;
+
+=09padding: 0
+
+}
+
+body[yahoo] .narrow-list {
+    width: 260px !important;
+    padding: 0;
+}
+
+body[yahoo] .threeColumns {
+
+=09width: 150px !important
+
+}
+
+body[yahoo] .fourColumns {
+
+=09width: 150px !important
+
+}
+body[yahoo] .fourColumnsLast {
+
+=09width: 150px !important
+
+}
+body[yahoo] .fourColumnsTd {
+
+=09padding: 10px 0px !important
+
+}
+
+body[yahoo] .fourColumnsPad {
+
+=09padding: 0 0 0 0 !important
+
+}
+
+body[yahoo] .secondary-product-image {
+
+=09width: 240px !important;
+
+=09height: 240px !important
+
+}
+
+body[yahoo] .single-product-table {
+
+=09float: none !important;
+=09margin-bottom: 10px !important;
+=09margin-right: auto !important;
+=09margin-left: auto !important;
+
+}
+
+body[yahoo] .single-product-pad {
+
+=09padding: 0 0 0 0 !important;
+
+}
+
+body[yahoo] .single-product-image {
+=09align:center;
+=09width: 200px !important;
+=09height: 200px !important
+
+}
+
+body[yahoo] .mobile-full-width {
+
+=09width: 300px !important
+
+}
+
+body[yahoo] .twoColumnForty {
+=09align:center; !important
+=09width: 200px !important
+
+}
+
+body[yahoo] .twoColumnForty img {
+
+}
+
+body[yahoo] .twoColumnSixty {
+=09padding-left: 0px !important;
+=09width: 300px !important
+
+}
+
+body[yahoo] .adviceColumn {
+=09width: 210px !important
+
+}
+
+body[yahoo] .secondary-subhead-left {
+
+=09width: 300px !important
+
+}
+
+body[yahoo] .ThreeColumnItemTable{
+
+        padding: 0px 0px 0px 74px !important
+
+}
+body[yahoo] .FourColumnFloater
+{
+=09float: right !important;
+}
+
+*[class=3DcolSplit300] {
+    width: 300px !important;
+    display: block !important;
+    width: 320px !important;
+    height: auto !important;
+    padding: 0 !important;
+    float: left !important;
+    text-align: center;
+}
+
+*[class=3DnoMobile] {
+ display: none !important;
+}
+*[class=3DturnOnMobile300] {
+ display: block !important;
+ width: 300px !important;
+ height: auto !important;
+ padding: 0;
+ max-height: inherit !important;
+ overflow: visible !important;
+}
+*[class=3DResize320] {
+ width: 320px !important;
+ height: auto !important;
+ padding: 0 !important;
+}
+*[class=3DResize300] {
+ width: 300px !important;
+}
+*[class=3DResize298] {
+ width: 298px !important;
+}
+*[class=3DResize50] {
+ width: 50px !important;
+}
+*[class=3DResize40] {
+ width: 40px !important;
+}
+*[class=3Dfont-size-to-24] {
+ font-size: 24px !important;
+ line-height: 28px !important;
+}
+*[class=3Dfont-size-to-13] {
+ font-size: 13px !important;
+ line-height:19px !important;
+}
+
+body[yahoo] .desktop-img {
+
+      display: none !important;
+      max-height: 0px !important;
+      overflow: hidden !important;
+
+}
+
+body[yahoo] .mobile-img {
+
+      display: block !important;
+      max-height: none !important;
+      overflow: visible !important;
+
+}
+
+body[yahoo] .hide-in-mobile {
+
+      display: none !important;
+      max-height: 0px !important;
+      max-width: 0px !important;
+      overflow: hidden !important;
+
+}
+
+body[yahoo] .show-in-mobile {
+
+      display: block !important;
+      max-height: none !important;
+      max-width: none !important;
+      overflow: visible !important;
+
+}
+
+
+body[yahoo] .no-border {
+   =20
+      border: none !important;
+   =20
+}
+
+}
+
+
+body[yahoo] .mobile-full-width {
+
+=09min-width: 103px;
+    max-width: 300px;
+=09height: 38px;
+}
+body[yahoo] .mobile-full-width a {
+
+=09display: block;
+=09padding: 10px 0;
+}
+body[yahoo] .mobile-full-width td{
+
+=09padding: 0px !important
+}
+body[yahoo] .cta-link {
+=09padding: 10px 17px !important;
+=09display: block !important;
+}
+body[yahoo] .cta-cell {
+=09padding: 0px !important;
+
+}
+
+td.wrapText{
+  white-space: pre-wrap; /* css-3 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+, 6, 7, 8 compability-mod=
+e */
+  -ms-word-break: break-all; /* Internet Explorer 8 */
+}
+
+body { width: 100% !important; -webkit-text-size-adjust: 100% !important; -=
+ms-text-size-adjust: 100% !important; -webkit-font-smoothing: antialiased !=
+important; margin: 0 !important; padding: 0 0 100px !important; font-family=
+: Helvetica, Arial, sans-serif !important; background-color:#f9f9f9}
+
+.ReadMsgBody { width: 100% !important; background-color: #ffffff !important=
+; }
+
+.ExternalClass { width: 100% !important; }
+
+.ExternalClass { line-height: 100% !important; }
+
+img { display: block !important; outline: none !important; text-decoration:=
+ none !important; -ms-interpolation-mode: bicubic !important; }
+
+td{word-wrap: break-word;}
+
+.blueLinks a {
+    color: #0654ba !important;
+    text-decoration: none !important;
+}
+
+.whiteLinks a {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+}
+
+.spacedList li{
+    margin-left: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.wrapper {
+    width: 100%;
+    table-layout: fixed;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+.webkit {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.unselect-text {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+   -khtml-user-select: none;
+     -moz-user-select: moz-none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+}
+
+.select-text {
+  -webkit-touch-callout: default;
+  -webkit-user-select: text;
+   -khtml-user-select: text;
+     -moz-user-select: text;
+      -ms-user-select: text;
+       -o-user-select: text;
+          user-select: text;
+}
+
+</style>
+
+
+<!--[if gte mso 9]>
+
+=09<style>td.product-details-block{word-break:break-all}.threeColumns{width=
+:140px !important}.threeColumnsTd{padding:10px 20px !important}.fourColumns=
+{width:158px !important}.fourColumnsPad{padding: 0 18px 0 0 !important}.fou=
+rColumnsTd{padding:10px 0px !important}.twoColumnSixty{width:360px !importa=
+nt}table{mso-table-lspace:0pt; mso-table-rspace:0pt;}</style>
+
+=09<![endif]-->=20
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" alig=
+n=3D"center" style=3D"border-collapse: collapse !important; border-spacing:=
+ 0 !important; border: none; background-color:#f9f9f9">
+    <tr>
+        <td width=3D"100%" valign=3D"top" style=3D"border-collapse: collaps=
+e !important; border-spacing: 0 !important; border: none;">
+            <table width=3D"600" class=3D"device-width header-logo" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" bgcolor=3D"#f9f=
+9f9" style=3D"border-collapse: collapse !important; border-spacing: 0 !impo=
+rtant; border: none;">
+                <tr>
+                    <td valign=3D"top" style=3D"border-collapse: collapse !=
+important; border-spacing: 0 !important; padding: 0; border: none;">
+                        <p style=3D"font-family: Helvetica, Arial, sans-ser=
+if; font-weight: normal; line-height: normal; color: #888888; text-align: l=
+eft; font-size: 11px; margin: 5px 0 10px 0; color: #333;" align=3D"left">
+
+                  Is your personal info up to date, Aohan Wang?            =
+  =20
+
+                      </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+  </head>
+  <body yahoo=3D"fix"><table id=3D"area4Container" width=3D"100%" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" style=3D"border-co=
+llapse: collapse !important; border-spacing: 0 !important; border: none; ba=
+ckground-color:#f9f9f9">
+=09<tr>
+=09=09<td width=3D"100%" valign=3D"top" style=3D"border-collapse: collapse =
+!important; border-spacing: 0 !important; border: none;">
+=09=09=09<table width=3D"600" class=3D"device-width header-logo" border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" style=3D"border-col=
+lapse: collapse !important; border-spacing: 0 !important; border: none;">
+=09=09=09=09<tr>
+=09=09=09=09=09<td valign=3D"top" style=3D"border-collapse: collapse !impor=
+tant; border-spacing: 0 !important; padding: 15px 0 20px; border: none;"><a=
+ href=3D"https://rover.ebay.com/rover/0/e13217.m1831.l3127/7?euid=3Da2ece19=
+0bcb748db86e271d2410a9bd1&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fwww.ebay.com=
+.au%2Fulk%2Fstart%2Fshop&sojTags=3Dbu=3Dbu" style=3D"text-decoration: none;=
+ color: #0654ba; display: block;"><img src=3D"https://p.ebaystatic.com/aw/e=
+mail/eBayLogo.png" width=3D"133" border=3D"0" alt=3D"eBay" style=3D"display=
+: inline block; outline: none; text-decoration: none; -ms-interpolation-mod=
+e: bicubic; border: none;" /></a><img src=3D"https://rover.ebay.com/roverop=
+en/0/e13217/7?euid=3Da2ece190bcb748db86e271d2410a9bd1&bu=3D44317500519&sojT=
+ags=3Dbu=3Dbu" alt=3D"" aria-hidden=3D"true" role=3D"presentation" style=3D=
+"border:0; height:1;"/></td>
+=09=09=09=09</tr>
+=09=09=09</table>
+=09=09</td>
+=09</tr>
+</table>=20
+
+<table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" alig=
+n=3D"center" style=3D"border-collapse: collapse !important; border-spacing:=
+ 0 !important; border: none; background-color:#f9f9f9"><tr><td width=3D"100=
+%" valign=3D"top" style=3D"border-collapse: collapse !important; border-spa=
+cing: 0 !important; border: none;">
+<table width=3D"600" class=3D"device-width" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" align=3D"center" bgcolor=3D"#f9f9f9" style=3D"border-coll=
+apse: collapse !important; border-spacing: 0 !important; border: none;">
+  <tr>
+    <td>
+        <table width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0" style=3D"margin:20px 0px">
+            <tr>
+                <td width=3D"50">
+                     <img src=3D"http://p.ebaystatic.com/aw/register/fyp911=
+_notifications_lock_144_v3.png" width=3D"40" height=3D"55" alt=3D"Protect y=
+our account" border=3D"0" style=3D"display: inline block; outline: none; te=
+xt-decoration: none; -ms-interpolation-mode: bicubic; border: none;padding-=
+right: 15px;"/>=20
+                </td>
+               <td valign=3D"middle" style=3D"border-collapse: collapse !im=
+portant; border-spacing: 0 !important; border: none;">
+<h2 style=3D"font-family: Helvetica, Arial, sans-serif; font-weight: normal=
+; line-height:  24px; color: #333333; text-align: left;margin: 20px 0;" ali=
+gn=3D"left">=20
+  =20
+  Get a higher level of protection
+
+</h2>
+    </td>
+            </tr>
+        </table>
+    </td>
+  </tr>
+  <tr>
+       <td valign=3D"top" style=3D"font-family: Helvetica, Arial, sans-seri=
+f; font-weight: normal; color: #333333; text-align: left; font-size: 18px; =
+line-height: 24px; border-collapse: collapse !important; border-spacing: 0 =
+!important; border: none; padding: 0 0 25px;">
+     Hi Aohan,
+     </td>
+  </tr>
+  <tr>
+       <td valign=3D"top" style=3D"font-family: Helvetica, Arial, sans-seri=
+f; font-weight: normal;  color: #333333; text-align: left; font-size: 18px;=
+ line-height: 24px; border-collapse: collapse !important; border-spacing: 0=
+ !important; border: none; padding: 0 0 20px;">
+     It's been more than a year since you last updated your personal info.
+     </td>
+  </tr>
+  <tr>
+       <td valign=3D"top" style=3D"font-family: Helvetica, Arial, sans-seri=
+f; font-weight: normal;  color: #333333; text-align: left; font-size: 18px;=
+ line-height: 24px; border-collapse: collapse !important; border-spacing: 0=
+ !important; border: none; padding: 0 0 20px;">
+     Keeping your personal info up to date can help better protect your acc=
+ount.
+     </td>
+  </tr>
+  <tr>
+       <td valign=3D"top" style=3D"font-family: Helvetica, Arial, sans-seri=
+f; font-weight: normal; color: #333333; text-align: left; font-size: 18px; =
+line-height: 24px; border-collapse: collapse !important; border-spacing: 0 =
+!important; border: none; padding: 0 0 5px;">
+     Sound like a good idea? All you have to do is go to eBay and take a lo=
+ok at your personal info to confirm that it's still correct. If you updated=
+ your personal info recently, please ignore this reminder.
+     </td>
+  </tr>
+    <tr>
+
+      <td valign=3D"top" class=3D"cta-block" style=3D"border-collapse: coll=
+apse !important; border-spacing: 0 !important; padding: 20px 0; border: non=
+e;">
+
+           =20
+       <table align=3D"left" cellpadding=3D"0" cellspacing=3D"0" border=3D"=
+0" class=3D"mobile-full-width" style=3D"border-collapse: collapse !importan=
+t; border-spacing: 0 !important; border: none;">
+
+          <tr>
+
+            <td valign=3D"top" class=3D"center cta-button primary-cta-butto=
+n" align=3D"center" style=3D"border-collapse: collapse !important; border-s=
+pacing: 0 !important; font-size: 14px; line-height: normal; font-weight: bo=
+ld; box-shadow: 2px 3px 0 #e5e5e5; border-radius: 3px; -moz-border-radius: =
+3px; -webkit-border-radius: 3px; filter: progid:DXImageTransform.Microsoft.=
+gradient( startColorstr=3D'#0079bc', endColorstr=3D'#00519e',GradientType=
+=3D0 ); background-image: linear-gradient(to bottom,  #0079bc 0%,#00519e 10=
+0%); background-color: #0079bc; padding: 10px 17px;" bgcolor=3D"#0079bc">
+              <a style=3D"text-decoration: none; color: #ffffff; font-size:=
+ 18px; line-height: normal; font-weight: bold; font-family: Helvetica, Aria=
+l, sans-serif; text-shadow: 1px 1px 0 #00519e;" href=3D"https://rover.ebay.=
+com/rover/0/e13217.m.l7678/7?euid=3Da2ece190bcb748db86e271d2410a9bd1&bu=3D4=
+4317500519&loc=3Dhttps%3A%2F%2Freg.ebay.com.au%2Freg%2FUpdateContactInfo%3F=
+flow%3DEMAIL&sojTags=3Dbu=3Dbu">
+                <span style=3D"padding: 10px 17px;">
+                       =20
+                        Protect your account
+                       =20
+                </span>
+              </a>
+            </td>
+
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+    <tr>
+       <td valign=3D"top" style=3D"font-family: Helvetica, Arial, sans-seri=
+f; font-weight: normal;  color: #333333; text-align: left; font-size: 18px;=
+border-collapse: collapse !important; border-spacing: 0 !important; border:=
+ none; padding: 0 0 15px;">
+     Sincerely, <br/>
+     The eBay Accounts Team
+     </td>
+  </tr>
+</table>
+</td>
+</tr>
+</table> <table id=3D"area8Container" width=3D"100%" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" align=3D"center" style=3D"border-collapse: colla=
+pse !important; border-spacing: 0 !important; border: none; border-top: sol=
+id 1px #dddddd; background-color: #ffffff"><tr><td style=3D"font-size:0px; =
+line-height:0px" height=3D"1" aria-hidden =3D "true">&nbsp;</td></tr></tabl=
+e> <table id=3D"area11Container" class=3D"whiteSection" width=3D"100%" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" style=3D"bord=
+er-collapse: collapse !important; border-spacing: 0 !important; border: non=
+e; background-color: #ffffff">
+<tr>
+<td width=3D"100%" valign=3D"top" style=3D"border-collapse: collapse !impor=
+tant; border-spacing: 0 !important; border: none;">
+<table width=3D"600" class=3D"device-width header-logo" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0" align=3D"center" style=3D"border-collapse: co=
+llapse !important; border-spacing: 0 !important; border: none;">
+<tr>
+<td class=3D"ebay-footer-block" style=3D"border-collapse: collapse !importa=
+nt; border-spacing: 0 !important; padding: 20px 0 60px; border: none;">
+<div id=3D"ReferenceId">
+<p style=3D"font-family: Helvetica, Arial, sans-serif; font-weight: normal;=
+ line-height: normal; color: #707070; text-align: left; font-size: 11px; ma=
+rgin: 0 0 10px;" align=3D"left"><strong>
+Email reference ID: [#a2ece190bcb748db86e271d2410a9bd1#]
+</strong></p></div>
+<p style=3D"font-family: Helvetica, Arial, sans-serif; font-weight: normal;=
+ line-height: normal; color: #707070; text-align: left; font-size: 11px; ma=
+rgin: 0 0 10px;" align=3D"left">
+We don't check this mailbox, so please don't reply to this message. If you =
+have a question, go to <a style=3D"text-decoration: underline; color: #5555=
+55;" href=3D"https://rover.ebay.com/rover/0/e13217.m1852.l6369/7?euid=3Da2e=
+ce190bcb748db86e271d2410a9bd1&bu=3D44317500519&loc=3Dhttps%3A%2F%2Focsnext.=
+ebay.com.au%2Focs%2Fhome&sojTags=3Dbu=3Dbu" target=3D"_blank">Help & Contac=
+t</a>.
+</p>
+<p style=3D"font-family: Helvetica, Arial, sans-serif; font-weight: normal;=
+ line-height: normal; color: #707070; text-align: left; font-size: 11px; ma=
+rgin: 0 0 10px;" align=3D"left">
+eBay sent this message to Aohan Wang (aohawan0). Learn more about <a href =
+=3D 'https://rover.ebay.com/rover/0/e13217.m1852.l3167/7?euid=3Da2ece190bcb=
+748db86e271d2410a9bd1&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fpages.ebay.com.a=
+u%2Fhelp%2Faccount%2Fprotecting-account.html&sojTags=3Dbu=3Dbu' style=3D'te=
+xt-decoration: underline; color: #555555;'>account protection</a>. eBay is =
+committed to your privacy. Learn more about our <a href =3D 'https://rover.=
+ebay.com/rover/0/e13217.m1852.l3168/7?euid=3Da2ece190bcb748db86e271d2410a9b=
+d1&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fpages.ebay.com.au%2Fhelp%2Fpolicies=
+%2Fprivacy-policy.html&sojTags=3Dbu=3Dbu' style=3D'text-decoration: underli=
+ne; color: #555555;'>privacy notice</a> and <a href =3D 'https://rover.ebay=
+.com/rover/0/e13217.m1852.l3165/7?euid=3Da2ece190bcb748db86e271d2410a9bd1&b=
+u=3D44317500519&loc=3Dhttps%3A%2F%2Fpages.ebay.com.au%2Fhelp%2Fpolicies%2Fu=
+ser-agreement.html&sojTags=3Dbu=3Dbu' style=3D'text-decoration: underline; =
+color: #555555;'>user agreement</a><span aria-hidden=3D'true'>.</span>
+</p>
+<p style=3D"font-family: Helvetica, Arial, sans-serif; font-weight: normal;=
+ line-height: normal; color: #707070; text-align: left; font-size: 11px; ma=
+rgin: 0 0 10px;" align=3D"left">
+&copy;2018 eBay Inc., eBay International AG, Helvetiastrasse 15/17 - P.O. B=
+ox 133, 3000 Bern 6, Switzerland
+</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table></body>
+</html>

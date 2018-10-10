@@ -1,0 +1,60 @@
+<div id="content"><h1 class="title">Using Emacs Threads To Execute Commands Asynchronously</h1><div class="outline-2" id="outline-container-org817c562"><h2 id="org817c562"><span class="section-number-2">1</span> Executive Summary</h2><div class="outline-text-2" id="text-1"><p>Emacs 26 has threads for executing functions asynchronously. Emacs<br />
+commands that call an external process and wait for that process to<br />
+finish make a good candidate for asynchronous execution — e.g.,<br />
+<code>smtpmail-send-it</code> for sending mail. The arrival of threads provides<br />
+an interesting option for running such commands asynchronously.<br />
+</p></div></div><br />
+<br />
+<div class="outline-2" id="outline-container-org3175966"><h2 id="org3175966"><span class="section-number-2">2</span> First Attempt — Custom Async <code>gnus</code> Command</h2><div class="outline-text-2" id="text-2"><p>I initially wrote a custom command for launching <code>gnus</code> asynchronously<br />
+— it was a one-line  function that   ran the following:<br />
+</p><div class="org-src-container"><pre class="src src-emacs-lisp">(make-thread #'gnus)
+</pre></div><br />
+<p>The above worked well — except when command <code>gnus</code> needed user input<br />
+— so I just had to be thoughtful about when I called it. But a few<br />
+weeks later, I wanted the equivalent for function <code>smtpmail-send-it</code><br />
+for  sending mail. I almost wrote myself one more command before<br />
+stepping back to create a more generic solution.<br />
+</p></div></div><br />
+<div class="outline-2" id="outline-container-org2bc6dcb"><h2 id="org2bc6dcb"><span class="section-number-2">3</span> One Command To Thread Them All</h2><div class="outline-text-2" id="text-3"><p>I have now defined command <code>emacspeak-wizards-execute-asynchronously</code><br />
+bound to <code>C-' a</code>.<br />
+Note that this command, though part of module <code>emacspeak-wizards</code>, has<br />
+no emacspeak dependencies.<br />
+</p><br />
+<div class="org-src-container"><pre class="src src-emacs-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">emacspeak-wizards-execute-asynchronously</span> (key)
+  <span style="color: #8b2252;">"Read key-sequence, then execute its command on a new thread."</span>
+  (<span style="color: #a020f0;">interactive</span> (list (read-key-sequence <span style="color: #8b2252;">"Key Sequence: "</span>)))
+      (<span style="color: #a020f0;">let</span> ((l  (local-key-binding key))
+             (g (global-key-binding key)))
+    (<span style="color: #a020f0;">cond</span>
+     ( (commandp l)
+       (make-thread l)
+      (message <span style="color: #8b2252;">"Running %s on a new thread."</span> l))
+     ((commandp g)
+      (make-thread g)
+      (message <span style="color: #8b2252;">"Running %s on a new thread."</span> g))
+     (t (<span style="color: #ff0000; font-weight: bold;">error</span> <span style="color: #8b2252;">"%s is not bound to a command."</span> key)))))
+
+(global-set-key (kbd <span style="color: #8b2252;">"C-' a"</span>) 'emacspeak-wizards-execute-asynchronously)
+</pre></div><br />
+<p>With this command bound to <code>C-' a</code>, I can now get rid of my custom<br />
+<code>gnus-async</code> command and its associated key-binding. I already have<br />
+command <code>gnus</code> bound to <code>C-; g</code>, so I can just press <code>C-' a C-; g</code> to<br />
+fetch news/mail asynchronously. <br />
+</p><br />
+<p>Similarly, when sending mail using <code>smtpmail</code> I can press <code>C-' a C-c<br />
+C-c</code> in the <code>*mail*</code> buffer to send mail without Emacs blocking.<br />
+</p></div></div><br />
+<div class="outline-2" id="outline-container-orge8a6d79"><h2 id="orge8a6d79"><span class="section-number-2">4</span> Final Caveats</h2><div class="outline-text-2" id="text-4"><p>Like other asynchronous solutions (see package <code>async</code> for instance)<br />
+one needs to make sure that the command being executed asynchronously<br />
+will not require user input. In the case of package <code>async</code>, the<br />
+asynchronous Emacs will block waiting for input; in the case of<br />
+<code>make-thread</code>, Emacs enters a blocking loop with the minibuffer<br />
+continuously displaying<br />
+</p><pre class="example">No catch for ...
+
+</pre><p>The only way to come out is to kill Emacs — so make sure to use<br />
+command <code>emacspeak-wizards-execute-asynchronously</code> only when you're<br />
+sure that the command being run asynchronously will not require user <br />
+input.<br />
+</p></div></div></div><div class="status" id="postamble"><p class="date">Date: 2018-07-03 Tue 00:00</p><p class="author">Author: T.V Raman</p><p class="date">Created: 2018-07-03 Tue 14:37</p><p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p></div><br />
+<br />

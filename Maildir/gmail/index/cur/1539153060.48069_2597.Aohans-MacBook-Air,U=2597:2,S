@@ -1,0 +1,858 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 2002:a1f:328a:0:0:0:0:0 with SMTP id y132-v6csp492594vky;
+        Wed, 1 Aug 2018 01:48:23 -0700 (PDT)
+X-Google-Smtp-Source: AAOMgpfMsMkGw6qNRWuSvZeYX4H0xlvai3lWnF7mjjrMwUFdt89BrT+y7+AJ6AWyC92Jibm7Te/f
+X-Received: by 2002:a63:5815:: with SMTP id m21-v6mr23221593pgb.78.1533113303315;
+        Wed, 01 Aug 2018 01:48:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1533113303; cv=none;
+        d=google.com; s=arc-20160816;
+        b=0FQeuo5rXqUjBRTw1Je3N5II9aQRAdUdZiwHQpRZU78TBxQKxHP5djTuPG40Et8AOw
+         71P24lJsnbGkL2JfKnI6qk2DoMGAs4nCID5gRsiH5JnS0OJTd7gF/L7cQ5X5SV254jCu
+         RiWWQXt2DKjWfFxYJsc4cuUXUQsUMLEAHS497sHqvAwmdHSyPnqsLFcVEVOWzTfzSayb
+         jQKdjug7GkEHqKHreKnqrARYlcyAFC1OA5npkBpiiUKkdnftBDr9PiPWrIpNn3uXa20i
+         bCj9y7oACIo8wIgrNGepbvIAIJqo24ReCTuqViyPrXsJdeP6uSD9bp5B1LMSVd2AyJ37
+         2Cjg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:subject:message-id:to:from
+         :date:dkim-signature:dkim-filter:arc-authentication-results;
+        bh=qyio8qpmL+bcWMWkWkmKq2T61qKgP/h/b/7k1mTpdfI=;
+        b=WIzHwFxhoJQa4yw5DB/X9kA6fSQqX0TkNDbMJ6mpRu49vAvBufFIN/3okBDyK/2Ak1
+         PgIpG+sLsWraVj9lhZ+J1uOUMyZmAzQT9LRVTaa/lNpoCNqt9pZJ+y1/YtG8Ohj1RKqQ
+         I2xiVvVVY1exzlLahlNI1REQorSg0HeNwjfeG6lS00JyA7DQGxV6tXVaZ6G2yWs8ztNE
+         BquYF+qj8fntNaRHjt/UQT01RB9FTi0yGGfsXRbGrEC/YL8lKSKC9e2bN14Px83lTlnB
+         MART8ymlw5zB9SkjLahzS9VkqaF/CKDMfNDZMzzSXI/wnFEUO9+THr7gDueo3xacQ5+E
+         4eSw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@members.ebay.com header.s=memdkim header.b=qnJAcIFL;
+       spf=pass (google.com: domain of ostf75_hynb2399sj@members.ebay.com designates 66.135.202.23 as permitted sender) smtp.mailfrom=ostf75_hynb2399sj@members.ebay.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=members.ebay.com
+Return-Path: <ostf75_hynb2399sj@members.ebay.com>
+Received: from mxlvspool23.ebay.com (mxlvspool23.ebay.com. [66.135.202.23])
+        by mx.google.com with ESMTPS id f17-v6si15159150pgl.59.2018.08.01.01.48.23
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 01 Aug 2018 01:48:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ostf75_hynb2399sj@members.ebay.com designates 66.135.202.23 as permitted sender) client-ip=66.135.202.23;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@members.ebay.com header.s=memdkim header.b=qnJAcIFL;
+       spf=pass (google.com: domain of ostf75_hynb2399sj@members.ebay.com designates 66.135.202.23 as permitted sender) smtp.mailfrom=ostf75_hynb2399sj@members.ebay.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=members.ebay.com
+Received: from lvskirk0-2475692.stratus.lvs.ebay.com (lvskirk0-2475692.stratus.lvs.ebay.com [10.134.0.34])
+	by mxlvspool23.ebay.com (8.14.7/8.14.7) with ESMTP id w718mK03027870
+	for <sometime5858@gmail.com>; Wed, 1 Aug 2018 01:48:22 -0700
+DKIM-Filter: OpenDKIM Filter v2.10.3 mxlvspool23.ebay.com w718mK03027870
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; d=members.ebay.com;
+	s=memdkim; t=1533113302; bh=lvFES3P9PlJmtbLl80fDuT0xm/A=;
+	h=Date:From:To:Subject;
+	b=qnJAcIFLRBGYTsHex+WhgeV89PBZt/pKwL+9M4q+ApuG1tk0LwszZiCMrS0NnvGFC
+	 MfVWb4Yf5ryzpEFputyfLIExwSOsSG6CNoLDrgV8LB6nP+z6cCpT+z66WBsc2DLj6A
+	 7Q47Oq5krENT7lM4IyAVQLYrrpNRvKGu0IWT7swk=
+Date: Wed, 1 Aug 2018 01:48:22 -0700 (GMT-07:00)
+From: eBay - ostf754 <ostf75_hynb2399sj@members.ebay.com>
+To: sometime5858@gmail.com
+Message-ID: <9b00211c-66a4-4ce0-8ce9-785342d8359a@starship>
+Subject: ostf754 sent a message about YANAGIYA Hair Tonic Citrus 240ml Hair
+ Loss /  Hair Growth Made in Japan NEW #292544081910
+MIME-Version: 1.0
+Content-Type: text/html;charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-eBay-MailTracker: 11050.000.15.0.e1d47240f2904dd0b423df09a7282ccd
+X-TUID: e7L7Rm+2uxf0
+
+<!DOCTYPE html>
+<!--c191f619-83d2-27df-7f8b-c2ceca5af4f6_v110-->
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+"></meta><style id=3D"DS3Style" type=3D"text/css">
+
+
+
+@media only screen and (max-width: 620px) {
+
+body[yahoo] .device-width {
+
+=09width: 450px !important
+
+}
+
+body[yahoo] .threeColumns {
+
+=09width: 140px !important
+
+}
+
+body[yahoo] .threeColumnsTd {
+
+=09padding: 10px 4px !important
+
+}
+
+body[yahoo] .fourColumns {
+
+=09width: 225px !important
+
+}
+
+body[yahoo] .fourColumnsLast {
+
+=09width: 225px !important
+
+}
+
+body[yahoo] .fourColumnsTd {
+
+=09padding: 10px 0px !important
+
+}
+
+body[yahoo] .fourColumnsPad {
+
+=09padding: 0 0 0 0 !important
+
+}
+
+body[yahoo] .secondary-product-image {
+
+=09width: 200px !important;
+
+=09height: 200px !important
+
+}
+
+body[yahoo] .center {
+
+=09text-align: center !important
+
+}
+
+body[yahoo] .twoColumnForty {
+
+=09width: 200px !important
+=09height: 200px !important
+
+}
+
+body[yahoo] .twoColumnForty img {
+
+=09width: 200px !important;
+
+=09height: 200px !important
+
+}
+
+body[yahoo] .twoColumnSixty {
+
+=09width: 228px !important
+
+}
+
+body[yahoo] .secondary-subhead-right {
+
+=09display: none !important
+
+}
+
+body[yahoo] .secondary-subhead-left {
+
+=09width: 450px !important
+
+}
+
+}
+
+@media only screen and (max-width: 479px) {
+
+body[yahoo] .navigation {
+
+=09display: none !important
+
+}
+
+body[yahoo] .device-width {
+
+=09width: 300px !important;
+
+=09padding: 0
+
+}
+
+body[yahoo] .threeColumns {
+
+=09width: 150px !important
+
+}
+
+body[yahoo] .fourColumns {
+
+=09width: 150px !important
+
+}
+body[yahoo] .fourColumnsLast {
+
+=09width: 150px !important
+
+}
+body[yahoo] .fourColumnsTd {
+
+=09padding: 10px 0px !important
+
+}
+
+body[yahoo] .fourColumnsPad {
+
+=09padding: 0 0 0 0 !important
+
+}
+
+body[yahoo] .secondary-product-image {
+
+=09width: 240px !important;
+
+=09height: 240px !important
+
+}
+
+body[yahoo] .single-product-table {
+
+=09float: none !important;
+=09margin-bottom: 10px !important;
+=09margin-right: auto !important;
+=09margin-left: auto !important;
+
+}
+
+body[yahoo] .single-product-pad {
+
+=09padding: 0 0 0 0 !important;
+
+}
+
+body[yahoo] .single-product-image {
+=09align:center;
+=09width: 200px !important;
+=09height: 200px !important
+
+}
+
+body[yahoo] .mobile-full-width {
+
+=09width: 300px !important
+
+}
+
+body[yahoo] .twoColumnForty {
+=09align:center; !important
+=09width: 200px !important
+
+}
+
+body[yahoo] .twoColumnForty img {
+
+}
+
+body[yahoo] .twoColumnSixty {
+=09padding-left: 0px !important;
+=09width: 300px !important
+
+}
+
+body[yahoo] .secondary-subhead-left {
+
+=09width: 300px !important
+
+}
+
+body[yahoo] .ThreeColumnItemTable{
+
+        padding: 0px 0px 0px 74px !important
+
+}
+body[yahoo] .FourColumnFloater
+{
+=09float: right !important;
+}
+span.message-history{
+  text-align: left !important;
+  float: right !important;
+}
+}
+body[yahoo] .mobile-full-width {
+
+=09min-width: 103px;
+        max-width: 300px;
+=09height: 38px;
+}
+body[yahoo] .mobile-full-width a {
+
+=09display: block;
+=09padding: 10px 0;
+}
+body[yahoo] .mobile-full-width td{
+
+=09padding: 0px !important
+}
+td.wrapText{
+  white-space: -moz-pre-wrap;=20
+  white-space: -pre-wrap;=20
+  white-space: -o-pre-wrap;=20
+  word-wrap: break-word;=20
+}
+@-moz-document url-prefix() {
+    td.wrapTextFF_Fix {
+        display: inline-block
+    }
+}
+
+body { width: 100% !important; -webkit-text-size-adjust: 100% !important; -=
+ms-text-size-adjust: 100% !important; -webkit-font-smoothing: antialiased !=
+important; margin: 0 !important; padding: 0 0 100px !important; font-family=
+: Helvetica, Arial, sans-serif !important; background-color:#f9f9f9}
+
+.ReadMsgBody { width: 100% !important; background-color: #ffffff !important=
+; }
+
+.ExternalClass { width: 100% !important; }
+
+.ExternalClass { line-height: 100% !important; }
+
+img { display: block; outline: none !important; text-decoration: none !impo=
+rtant; -ms-interpolation-mode: bicubic !important; }
+
+td{word-wrap: break-word;}
+</style>
+
+
+<!--[if gte mso 9]>
+
+=09<style>td.product-details-block{word-break:break-all}.threeColumns{width=
+:140px !important}.threeColumnsTd{padding:10px 20px !important}.fourColumns=
+{width:158px !important}.fourColumnsPad{padding: 0 18px 0 0 !important}.fou=
+rColumnsTd{padding:10px 0px !important}.twoColumnSixty{width:360px !importa=
+nt}table{mso-table-lspace:0pt; mso-table-rspace:0pt;}</style>
+
+=09<![endif]-->
+  </head>
+  <body yahoo=3D"fix"><table id=3D"area2Container" width=3D"100%" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" style=3D"border-co=
+llapse: collapse !important; border-spacing: 0 !important; border: none; ba=
+ckground-color:#f9f9f9"><tr><td width=3D"100%" valign=3D"top" style=3D"bord=
+er-collapse: collapse !important; border-spacing: 0 !important; border: non=
+e;"><table width=3D"600" class=3D"device-width header-logo" border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" align=3D"center" bgcolor=3D"#f9f9f9" styl=
+e=3D"border-collapse: collapse !important; border-spacing: 0 !important; bo=
+rder: none;">
+=09  <tr>
+=09=09  <td valign=3D"top" style=3D"border-collapse: collapse !important; b=
+order-spacing: 0 !important; padding: 0; border: none;"><p style=3D"font-fa=
+mily: Helvetica, Arial, sans-serif; font-weight: normal; line-height: norma=
+l; color: #888888; text-align: left; font-size: 11px; margin: 5px 0 10px 0;=
+ color: #333;" align=3D"left">New message: Dear Aohan,
+
+I apologize that I hav...</p></td>
+=09  </tr>
+</table></td></tr></table> <table id=3D"area3Container" width=3D"100%" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" style=3D"bord=
+er-collapse:collapse !important;border-spacing:0 !important;border:none;bac=
+kground-color:#f9f9f9;">
+=09<tr>
+=09=09<td width=3D"100%" valign=3D"top" style=3D"border-collapse:collapse !=
+important;border-spacing:0 !important;border:none;">
+=09=09=09<table width=3D"100%" height=3D"7" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" align=3D"center" style=3D"border-collapse: collapse !impo=
+rtant; border-spacing: 0 !important; border: none; background-image: url('h=
+ttps://p.ebaystatic.com/aw/navbar/preHeaderBottomShadow.png'); background-r=
+epeat: repeat-y no-repeat; margin: 0; padding: 0">
+=09=09=09=09<!--[if gte mso 9]>
+=09=09=09=09<v:rect xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"true"=
+ stroke=3D"false" style=3D"mso-width-percent:1000;height:1px;">
+=09=09=09=09=09<v:fill type=3D"tile" color=3D"#dddddd" />
+=09=09=09=09</v:rect>
+=09=09=09=09<v:rect xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"true"=
+ stroke=3D"false" style=3D"mso-width-percent:1000;height:6px;">
+=09=09=09=09=09<v:fill type=3D"tile" src=3D"http://p.ebaystatic.com/aw/navb=
+ar/preHeaderBottomShadow.png" color=3D"#f9f9f9" />
+=09=09=09=09=09<div style=3D"width:0px; height:0px; overflow:hidden; displa=
+y:none; visibility:hidden; mso-hide:all;">
+=09=09=09=09=09=09<![endif]-->
+=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09<td width=3D"100%" height=3D"1" valign=3D"top" align=
+=3D"center" style=3D"border-collapse: collapse !important; border-spacing: =
+0 !important; border: none; background-color: #dddddd; font-size: 1px; line=
+-height: 1px;">
+=09=09=09=09=09=09=09=09<!--[if gte mso 15]>&nbsp;<![endif]-->
+=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09<tr>
+=09=09=09=09=09=09=09<td width=3D"100%" height=3D"6" valign=3D"top" align=
+=3D"center" style=3D"border-collapse: collapse !important; border-spacing: =
+0 !important; border: none; background-color: none; font-size: 1px; line-he=
+ight: 1px;">&nbsp;</td>
+=09=09=09=09=09=09</tr>
+=09=09=09=09=09=09<!--[if gte mso 9]>
+=09=09=09=09=09</div>
+=09=09=09=09</v:rect>
+=09=09=09=09<![endif]-->
+=09=09=09</table>
+=09=09</td>
+=09</tr>
+</table> <table id=3D"area4Container" width=3D"100%" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" align=3D"center" style=3D"border-collapse: colla=
+pse !important; border-spacing: 0 !important; border: none; background-colo=
+r:#f9f9f9">
+=09<tr>
+=09=09<td width=3D"100%" valign=3D"top" style=3D"border-collapse: collapse =
+!important; border-spacing: 0 !important; border: none;">
+=09=09=09<table width=3D"600" class=3D"device-width header-logo" border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" style=3D"border-col=
+lapse: collapse !important; border-spacing: 0 !important; border: none;">
+=09=09=09=09<tr>
+=09=09=09=09=09<td valign=3D"top" style=3D"border-collapse: collapse !impor=
+tant; border-spacing: 0 !important; padding: 15px 0 20px; border: none;"><a=
+ href=3D"https://rover.ebay.com/rover/0/e11050.m1831.l3127/7?euid=3De1d4724=
+0f2904dd0b423df09a7282ccd&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fwww.ebay.com=
+.au%2Fulk%2Fstart%2Fshop&sojTags=3Dbu=3Dbu" style=3D"text-decoration: none;=
+ color: #0654ba; display: block;"><img src=3D"https://p.ebaystatic.com/aw/e=
+mail/eBayLogo.png" width=3D"133" border=3D"0" alt=3D"eBay" style=3D"display=
+: inline block; outline: none; text-decoration: none; -ms-interpolation-mod=
+e: bicubic; border: none;" /></a><img src=3D"https://rover.ebay.com/roverop=
+en/0/e11050/7?euid=3De1d47240f2904dd0b423df09a7282ccd&bu=3D44317500519&sojT=
+ags=3Dbu=3Dbu" alt=3D"" aria-hidden=3D"true" role=3D"presentation" style=3D=
+"border:0; height:1;"/></td>
+=09=09=09=09</tr>
+=09=09=09</table>
+=09=09</td>
+=09</tr>
+</table>=20
+<table id=3D"areaRTWContent" width=3D"100%" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" align=3D"center" style=3D"border-collapse: collapse !impo=
+rtant; border-spacing: 0 !important; border: none; background-color:#f9f9f9=
+">
+    </table>=20
+       =20
+       =20
+   =20
+
+   =20
+<table id=3D"area5Container" width=3D"100%" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" align=3D"center" style=3D"border-collapse: collapse !impo=
+rtant; border-spacing: 0 !important; background-color:#f9f9f9">
+
+  <tr>
+
+    <td width=3D"100%" valign=3D"top"   style=3D"border-collapse: collapse =
+!important; border-spacing: 0 !important; border: none;">
+=20
+   =20
+   =20
+   =20
+   =20
+
+   =20
+    <table id=3D"PrimaryMessage" width=3D"600" class=3D"device-width" borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" bgcolor=3D"#f9=
+f9f9" style=3D"border-collapse: collapse !important; border-spacing: 0 !imp=
+ortant; border: none;">
+   =20
+      <tr>
+        <td valign=3D"top" class=3D"secondary-headline" style=3D"border-col=
+lapse: collapse !important; border-spacing: 0 !important; padding: 20px 0 5=
+px;">
+          <h1 style=3D"font-family: Helvetica, Arial, sans-serif; font-weig=
+ht: normal; line-height: 15px; color: #808284; text-align: left; font-size:=
+ 13px; margin: 0 0 4px;" align=3D"left">New message from:
+            <a href=3D"https://rover.ebay.com/rover/0/e11050.m44.l1181/7?eu=
+id=3De1d47240f2904dd0b423df09a7282ccd&bu=3D44317500519&loc=3Dhttp%3A%2F%2Fw=
+ww.ebay.com.au%2Fulk%2Fusr%2Fostf754&sojTags=3Dbu=3Dbu" style=3D"text-decor=
+ation: none; font-weight: bold; color: #336fb7;">ostf754</a>
+            <a href=3D"https://rover.ebay.com/rover/0/e11050.m44.l1183/7?eu=
+id=3De1d47240f2904dd0b423df09a7282ccd&bu=3D44317500519&loc=3Dhttp%3A%2F%2Ff=
+eedback.ebay.com.au%2Fws%2FeBayISAPI.dll%3FViewFeedback%26userid%3Dostf754%=
+26ssPageName%3DSTRK%3AME%3AUFS&sojTags=3Dbu=3Dbu" style=3D"text-decoration:=
+ none; color: #888888;">(434<img src=3D"https://pics.ebaystatic.com/aw/pics=
+/icon/iconTealStar_25x25.gif" alt=3D"Turquoise Star" width=3D"18" height=3D=
+"18" class=3D"inline-image" style=3D"position: relative; top: -2px; display=
+: inline !important; outline: none; text-decoration: none; -ms-interpolatio=
+n-mode: bicubic; vertical-align: middle !important; border: none;" />)</a><=
+/h1></td>
+      </tr>
+
+   =20
+   =20
+        <tr>
+          <td valign=3D"top" class=3D"viewing-problem-block" style=3D"borde=
+r-collapse: collapse !important; border-spacing: 0 !important; border-botto=
+m-width: 1px; border-bottom-color: #f9f9f9; padding: 10px 0 30px; border-st=
+yle: none none solid;">
+         =20
+          <table width=3D"600" class=3D"device-width" style=3D"border-colla=
+pse: collapse !important; border-spacing: 0 !important; border: none; borde=
+r:0; cellpadding:0; cellspacing:0; align:center; bgcolor:#f9f9f9;">
+
+               <tr>
+                <td width=3D"100%" class=3D"wrapText device-width" valign=
+=3D"top" style=3D"overflow: hidden; border-collapse: collapse !important; b=
+order-spacing: 0 !important; border: none; display: inline-block; max-width=
+:600px;"><h3 style=3D"font-family: Helvetica, Arial, sans-serif; font-weigh=
+t: normal; line-height: 19px; color: #231f20; text-align: left; font-size: =
+14px; margin: 0 0 2px; font-weight:none;" align=3D"left"><div id=3D"UserInp=
+uttedText">Dear Aohan,<br /><br />I apologize that I have to refund this ti=
+me. Because The customs denied delivering this item due to Alcohol percenta=
+ge.<br /><br />Please feel free to contact whenever you need anything else.=
+ I will do my best.<br /><br />Apologies for inconvenience<br /><br />ostf7=
+54 - Yuta<br /></div></h3>
+
+                    <span style=3D"color:#666666">
+=09=09=09=09=09</span>
+=09=09=09=09=09   =20
+=09=09=09=09</td>
+              </tr>
+   =20
+              <tr>
+                <td valign=3D"top" width=3D"15" height=3D"15" style=3D"bord=
+er-collapse: collapse !important; border-spacing: 20 !important; border: no=
+ne;"></td>
+              </tr>
+   =20
+   =20
+              <tr>
+                <td valign=3D"top" class=3D"cta-block" style=3D"border-coll=
+apse: collapse !important; border-spacing: 0 !important; padding: 5px 0 5px=
+; border: none;">
+                  <table align=3D"left" cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0" class=3D"mobile-full-width" style=3D"border-collapse: collaps=
+e !important; border-spacing: 0 !important; border: none;">
+                    <tr>
+                      <td valign=3D"top" class=3D"center cta-button primary=
+-cta-button" align=3D"center" style=3D"border-collapse: collapse !important=
+; border-spacing: 0 !important; font-size: 14px; line-height: normal; font-=
+weight: bold; box-shadow: 2px 3px 0 #e5e5e5; filter: progid:DXImageTransfor=
+m.Microsoft.gradient( startColorstr=3D'#0079bc', endColorstr=3D'#00519e',Gr=
+adientType=3D0 ); background-image: linear-gradient(to bottom,  #0079bc 0%,=
+#00519e 100%); background-color: #0079bc; padding: 10px 17px; border: 1px s=
+olid #00519e;" bgcolor=3D"#0079bc"><a href=3D"https://rover.ebay.com/rover/=
+0/e11050.m44.l1139/7?euid=3De1d47240f2904dd0b423df09a7282ccd&bu=3D443175005=
+19&loc=3Dhttp%3A%2F%2Fwww.ebay.com.au%2Fulk%2Fmessages%2Freply%3FM2MContact=
+%26item%3D292544081910%26requested%3Dostf754%26qid%3D1753339864018%26redire=
+ct%3D0%26self%3Daohawan0&sojTags=3Dbu=3Dbu" style=3D"text-decoration: none;=
+ color: #ffffff; font-size: 14px; line-height: normal; font-weight: bold; f=
+ont-family: Helvetica, Arial, sans-serif; text-shadow: 1px 1px 0 #00519e;">=
+<span style=3D"padding: 0px 10px">Reply</span></a></td>
+                    </tr>
+                  </table>
+   =20
+                </td>
+              </tr>=20
+            =20
+          </table>
+        </td>
+      </tr>
+    </table>
+   =20
+    <!--[if !mso]><!-->
+    <div id=3D"V4PrimaryMessage"  style=3D"max-height: 0px; font-size: 0; o=
+verflow:hidden; display: none !important;">
+      <div>
+        <table border=3D"0" cellpadding=3D"2" cellspacing=3D"3" width=3D"10=
+0%">
+          <tr>
+            <td>
+              <font style=3D"font-size:10pt; font-family:arial, sans-serif;=
+ color:#000"><strong>Dear aohawan0,</strong><br><br>Dear Aohan,<br /><br />=
+I apologize that I have to refund this time. Because The customs denied del=
+ivering this item due to Alcohol percentage.<br /><br />Please feel free to=
+ contact whenever you need anything else. I will do my best.<br /><br />Apo=
+logies for inconvenience<br /><br />ostf754 - Yuta<br /><br><br></font><div=
+ style=3D"font-weight:bold; font-size:10pt; font-family:arial, sans-serif; =
+color:#000">- ostf754</div>
+            </td>
+            <td valign=3D"top" width=3D"185">
+              <div></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!--<![endif]-->
+
+=09</td>
+
+  </tr>
+
+</table> <table id=3D"area7Container" width=3D"100%" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" align=3D"center" style=3D"border-collapse: colla=
+pse !important; border-spacing: 0 !important; border: none; background-colo=
+r:#f9f9f9;">
+
+  <tr>
+
+    <td width=3D"100%" valign=3D"top"   style=3D"border-collapse: collapse =
+!important; border-spacing: 0 !important; border: none;">
+
+ =20
+ =20
+ =20
+
+ =20
+
+
+ =20
+<table class=3D"device-width" style=3D"border-collapse: collapse !important=
+; border-spacing: 0 !important; border: none;" align=3D"center" bgcolor=3D"=
+#f9f9f9" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"600">
+  <tr>
+    <td style=3D"border-collapse: collapse !important; border-spacing: 0 !i=
+mportant; border: none;" valign=3D"top"><h1 style=3D"font-family: Helvetica=
+, Arial, sans-serif; font-weight: normal; line-height: 28px; color: #2258a7=
+; text-align: left; font-size: 24px; margin: 1px;" align=3D"left"><br><a hr=
+ef=3D"https://rover.ebay.com/rover/0/e11050.m43.l1123/7?euid=3De1d47240f290=
+4dd0b423df09a7282ccd&bu=3D44317500519&loc=3Dhttp%3A%2F%2Fwww.ebay.com.au%2F=
+ulk%2Fitm%2F292544081910&sojTags=3Dbu=3Dbu" style=3D"text-decoration: none;=
+ color: #0654ba;">YANAGIYA Hair Tonic Citrus 240ml Hair Loss /  Hair Growth=
+ Made in Japan NEW</a></h1></td>
+  </tr>
+  <tr>
+    <td valign=3D"top" class=3D"secondary-headline" style=3D"border-collaps=
+e: collapse !important; border-spacing: 0 !important; border-bottom-color: =
+#dddddd; border-bottom-width: 1px; border-style: none none solid;"><h1 styl=
+e=3D"font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-h=
+eight: 28px; color: #00a550; font-weight: bold; text-align: left; font-size=
+: 20px; margin: 0 0 14px;" align=3D"left"></h1></td>
+  </tr>
+</table>
+<table class=3D"device-width" style=3D"border-collapse: collapse !important=
+; border-spacing: 0 !important; border: none;" align=3D"center" bgcolor=3D"=
+#f9f9f9" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"600">
+  <tr>
+    <td class=3D"single-product-block" style=3D"border-collapse: collapse !=
+important; border-spacing: 0 !important; padding: 15px 0 50px; border: none=
+;" valign=3D"top">
+      <table class=3D"single-product-table" style=3D"align: left; border-co=
+llapse: collapse !important; border-spacing: 0 !important; border: none;" a=
+lign=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"215=
+">
+        <tr>
+          <td valign=3D"middle" width=3D"200" height=3D"200" align=3D"cente=
+r" class=3D"single-product-image" style=3D"border-collapse: collapse !impor=
+tant; border-spacing: 0 !important; border: 1px solid #dddddd; background-c=
+olor: #ffffff;"><a href=3D"https://rover.ebay.com/rover/0/e11050.m43.l1123/=
+7?euid=3De1d47240f2904dd0b423df09a7282ccd&bu=3D44317500519&loc=3Dhttp%3A%2F=
+%2Fwww.ebay.com.au%2Fulk%2Fitm%2F292544081910&sojTags=3Dbu=3Dbu" style=3D"t=
+ext-decoration: none; color: #0654ba;"><img src=3D"https://i.ebayimg.com/im=
+ages/g/zycAAOSwkbxa5yDB/s-l200.jpg" alt=3D"YANAGIYA Hair Tonic Citrus 240ml=
+ H" class=3D"product-image" border=3D"0" style=3D"display: block; outline: =
+none; text-decoration: none; -ms-interpolation-mode: bicubic; margin: 0; bo=
+rder: none;" /></a></td>
+          <td class=3D"single-product-pad" style=3D"padding: 0 15px 0 0; bo=
+rder-collapse: collapse !important; border-spacing: 0 !important; border: n=
+one;"></td>
+        </tr>
+      </table>
+
+
+ =20
+ =20
+ =20
+   =20
+   =20
+   =20
+ =20
+
+ =20
+
+ =20
+ =20
+ =20
+
+ =20
+
+  <table class=3D"twoColumnSixty" style=3D"border-collapse: collapse !impor=
+tant; border-spacing: 0 !important; border: none;" align=3D"left" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"380">
+
+    <tr>
+      <td class=3D"product-price" style=3D"border-collapse: collapse !impor=
+tant; border-spacing: 0 !important; font-family: Helvetica, Arial, sans-ser=
+if; text-align: left; font-size: 20px; line-height: 18px; font-weight: bold=
+; border: none;" align=3D"left">Order status: Paid</td>
+    </tr>
+ =20
+    <tr>
+      <td class=3D"product-shipping" style=3D"border-collapse: collapse !im=
+portant; border-spacing: 0 !important; font-family: Helvetica, Arial, sans-=
+serif; text-align: left; font-size: 13px; padding-bottom: 8px; padding-top:=
+ 2px; border: none;" align=3D"left">Paid US $29.80 with PAYPAL on 17 Jul, 2=
+018 01:56 AEST</td>
+    </tr>
+
+    <tr>
+      <td class=3D"product-bids" style=3D"border-collapse: collapse !import=
+ant; border-spacing: 0 !important; font-family: Helvetica, Arial, sans-seri=
+f; text-align: left; font-size: 12px; color: #666666; border: none;" align=
+=3D"left">
+
+    Estimated delivery: Mon. 30 Jul. - Wed. 15 Aug.<br>
+
+        Tracking number: <a href=3D"https://rover.ebay.com/rover/0/e11050.m=
+43.l1503/7?euid=3De1d47240f2904dd0b423df09a7282ccd&bu=3D44317500519&loc=3Dh=
+ttp%3A%2F%2Fpayments.ebay.com.au%2Fws%2FeBayISAPI.dll%3FViewPaymentStatus%2=
+6transId%3D1587187043019%26qu%3D1%26itemId%3D292544081910&sojTags=3Dbu=3Dbu=
+" style=3D"text-decoration: none; color: #0654ba;">RX016489272JP</a><br>
+
+
+      </td>
+    </tr>
+  <tr>
+      <td style=3D"border-collapse: collapse !important; border-spacing: 0 =
+!important; font-family: Helvetica, Arial, sans-serif; text-align: left; fo=
+nt-size: 12px; color: #666666; border: none;" align=3D"left">
+         =20
+      </td>
+    </tr>
+ =20
+    <tr>
+      <td valign=3D"top" class=3D"cta-block" style=3D"border-collapse: coll=
+apse !important; border-spacing: 0 !important; padding: 25px 0 40px; border=
+: none;">
+
+        <table align=3D"left" cellpadding=3D"0" cellspacing=3D"0" border=3D=
+"0" class=3D"mobile-full-width" style=3D"border-collapse: collapse !importa=
+nt; border-spacing: 0 !important; border: none;">
+          <tr>
+            <td valign=3D"top" class=3D"center cta-button primary-cta-butto=
+n" align=3D"center" style=3D"border-collapse: collapse !important; border-s=
+pacing: 0 !important; font-size: 14px; line-height: normal; font-weight: bo=
+ld; box-shadow: 2px 3px 0 #e5e5e5; filter: progid:DXImageTransform.Microsof=
+t.gradient( startColorstr=3D'#0079bc', endColorstr=3D'#00519e',GradientType=
+=3D0 ); background-image: linear-gradient(to bottom,  #0079bc 0%,#00519e 10=
+0%); background-color: #0079bc; padding: 10px 17px; border: 1px solid #0051=
+9e;" bgcolor=3D"#0079bc"><a href=3D"https://rover.ebay.com/rover/0/e11050.m=
+43.l1503/7?euid=3De1d47240f2904dd0b423df09a7282ccd&bu=3D44317500519&loc=3Dh=
+ttp%3A%2F%2Fpayments.ebay.com.au%2Fws%2FeBayISAPI.dll%3FViewPaymentStatus%2=
+6transId%3D1587187043019%26qu%3D1%26itemId%3D292544081910&sojTags=3Dbu=3Dbu=
+" style=3D"text-decoration: none; color: #ffffff; font-size: 14px; line-hei=
+ght: normal; font-weight: bold; font-family: Helvetica, Arial, sans-serif; =
+text-shadow: 1px 1px 0 #00519e;"><span style=3D"padding: 0px 10px">View ord=
+er details</span></a></td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+
+    </td>
+  </tr>
+</table>
+
+
+=09</td>
+
+  </tr>
+
+</table>
+
+=20
+ <table id=3D"area8Container" width=3D"100%" border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" align=3D"center" style=3D"border-collapse: collapse !imp=
+ortant; border-spacing: 0 !important; border: none; border-top: solid 1px #=
+dddddd; background-color: #ffffff"><tr><td style=3D"font-size:0px; line-hei=
+ght:0px" height=3D"1">&nbsp;</td></tr></table>  <table id=3D"area8Container=
+" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" style=3D"border-collapse: collapse !important; border-spacing: 0 !i=
+mportant; border: none; border-top: solid 1px #dddddd; background-color: #f=
+fffff"><tr><td style=3D"font-size:0px; line-height:0px" height=3D"1" aria-h=
+idden =3D "true">&nbsp;</td></tr></table> <table id=3D"area10Container" cla=
+ss=3D"whiteSection" width=3D"100%" border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" align=3D"center" style=3D"border-collapse: collapse !important; bo=
+rder-spacing: 0 !important; border: none; background-color: #ffffff">
+
+  <tr>
+
+    <td width=3D"100%" valign=3D"top"   style=3D"border-collapse: collapse =
+!important; border-spacing: 0 !important; border: none;">
+
+    =09=09<table width=3D"600" class=3D"device-width" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" align=3D"center" bgcolor=3D"#ffffff" style=3D"b=
+order-collapse: collapse !important; border-spacing: 0 !important; border: =
+none;">
+              <tr>
+                <td valign=3D"top" class=3D"viewing-problem-block" style=3D=
+"border-collapse: collapse !important; border-spacing: 0 !important; border=
+-bottom-width: 1px; border-bottom-color: #dddddd; padding: 40px 0 30px; bor=
+der-style: none none solid;"><p style=3D"font-family: Helvetica, Arial, san=
+s-serif; font-weight: normal; line-height: normal; color: #888888; text-ali=
+gn: left; font-size: 11px; margin: 0 0 10px;" align=3D"center">We scan mess=
+ages to enforce policies. Only purchases on eBay are covered by eBay Money =
+Back Guarantee. Asking your trading partner to complete a transaction outsi=
+de of eBay is not allowed.</p></td>=20
+              </tr>
+            </table>
+
+=09</td>
+
+  </tr>=20
+
+</table> <table id=3D"area11Container" class=3D"whiteSection" width=3D"100%=
+" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" style=
+=3D"border-collapse: collapse !important; border-spacing: 0 !important; bor=
+der: none; background-color: #ffffff">
+<tr>
+<td width=3D"100%" valign=3D"top" style=3D"border-collapse: collapse !impor=
+tant; border-spacing: 0 !important; border: none;">
+<table width=3D"600" class=3D"device-width header-logo" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0" align=3D"center" style=3D"border-collapse: co=
+llapse !important; border-spacing: 0 !important; border: none;">
+<tr>
+<td class=3D"ebay-footer-block" style=3D"border-collapse: collapse !importa=
+nt; border-spacing: 0 !important; padding: 20px 0 60px; border: none;">
+<div id=3D"ReferenceId">
+<p style=3D"font-family: Helvetica, Arial, sans-serif; font-weight: normal;=
+ line-height: normal; color: #707070; text-align: left; font-size: 11px; ma=
+rgin: 0 0 10px;" align=3D"left">
+<strong>Email reference ID: [#a00-hnjomp9rfu#]_[#e1d47240f2904dd0b423df09a7=
+282ccd#]</strong>
+</p>
+</div>
+<p style=3D"font-family: Helvetica, Arial, sans-serif; font-weight: normal;=
+ line-height: normal; color: #707070; text-align: left; font-size: 11px; ma=
+rgin: 0 0 10px;" align=3D"left">
+We don't check this mailbox, so please don't reply to this message. If you =
+have a question, go to <a style=3D"text-decoration: underline; color: #5555=
+55;" href=3D"https://rover.ebay.com/rover/0/e11050.m1852.l6369/7?euid=3De1d=
+47240f2904dd0b423df09a7282ccd&bu=3D44317500519&loc=3Dhttps%3A%2F%2Focsnext.=
+ebay.com.au%2Focs%2Fhome&sojTags=3Dbu=3Dbu" target=3D"_blank">Help & Contac=
+t</a>.
+</p>
+<p style=3D"font-family: Helvetica, Arial, sans-serif; font-weight: normal;=
+ line-height: normal; color: #707070; text-align: left; font-size: 11px; ma=
+rgin: 0 0 10px;" align=3D"left">
+eBay sent this message to Aohan Wang (aohawan0). Learn more about <a href =
+=3D 'https://rover.ebay.com/rover/0/e11050.m1852.l3167/7?euid=3De1d47240f29=
+04dd0b423df09a7282ccd&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fpages.ebay.com.a=
+u%2Fhelp%2Faccount%2Fprotecting-account.html&sojTags=3Dbu=3Dbu' style=3D'te=
+xt-decoration: underline; color: #555555;'>account protection</a>. eBay is =
+committed to your privacy. Learn more about our <a href =3D 'https://rover.=
+ebay.com/rover/0/e11050.m1852.l3168/7?euid=3De1d47240f2904dd0b423df09a7282c=
+cd&bu=3D44317500519&loc=3Dhttps%3A%2F%2Fpages.ebay.com.au%2Fhelp%2Fpolicies=
+%2Fprivacy-policy.html&sojTags=3Dbu=3Dbu' style=3D'text-decoration: underli=
+ne; color: #555555;'>privacy notice</a> and <a href =3D 'https://rover.ebay=
+.com/rover/0/e11050.m1852.l3165/7?euid=3De1d47240f2904dd0b423df09a7282ccd&b=
+u=3D44317500519&loc=3Dhttps%3A%2F%2Fpages.ebay.com.au%2Fhelp%2Fpolicies%2Fu=
+ser-agreement.html&sojTags=3Dbu=3Dbu' style=3D'text-decoration: underline; =
+color: #555555;'>user agreement</a><span aria-hidden=3D'true'>.</span>
+</p>
+<p style=3D"font-family: Helvetica, Arial, sans-serif; font-weight: normal;=
+ line-height: normal; color: #707070; text-align: left; font-size: 11px; ma=
+rgin: 0 0 10px;" align=3D"left">
+&copy;1995-2018 eBay Inc., eBay Marketplaces GmbH, Helvetiastrasse 15/17, 3=
+005 Bern, Switzerland
+</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table></body>
+</html>

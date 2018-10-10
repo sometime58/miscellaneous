@@ -1,0 +1,1313 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 2002:a9d:30a8:0:0:0:0:0 with SMTP id s40csp2379otc;
+        Thu, 4 Oct 2018 17:30:53 -0700 (PDT)
+X-Google-Smtp-Source: ACcGV629pfY/K7RQRTaVQ/Diul/vigld7INrTksKKCdIWf3i4+4aewtsOLPU986lxcASOJ4ejn3S
+X-Received: by 2002:ac8:37a2:: with SMTP id d31-v6mr7463191qtc.20.1538699453184;
+        Thu, 04 Oct 2018 17:30:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1538699453; cv=none;
+        d=google.com; s=arc-20160816;
+        b=CA0/47e412pc2iDsNhrjzpDBZf74pNYWZ7gzxNpF1WnNzxYes5glclzAVFVnNd3Sd7
+         BBmuaySEldEOcKODD2OSqoG7sqE1ENPoDzhedBXABckSmNC3l/LVunvIZvgMVfzuVLRN
+         F2mWcNpPAvs+iytc03lcNDqCaDOuzBdZEB+sA6Sdwqp1nBP/TMUGAkvYspBR6KgIPZH5
+         BrkBZ0E7mO4Ev1Sx2am4rJw8gLcsiNN3/kLWfjzuUXiCXbymnJuDPzrPDriRjbWpiuHE
+         6iFcb/SUPO1zjI3Lv8hSI9VH7w8Ivu4IZZhbxp5R229pv6EdTE0YrGRvMAhGi9FP1bbz
+         tsjA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:mime-version:subject:message-id:to:from:date
+         :dkim-signature;
+        bh=ACAfsJxrrNngQ5ljtkxu9ENL/pLQb/5CWHzN6LIbBxo=;
+        b=E84RkUcgOzfwe53YW1JrIXjosAnIPBYs5vviHgbFVnx6KbIQz5Xk5oK3qTTXb12cOI
+         BYGrkPZkZ6OCzgsc82gT2/PVuRAit+ufhX0DHzZqzt6LOUgTO+BMZkwjl5sySML7UB9a
+         1xyYZibNxMyMeR1QqH7+Q8M0VARHMshec/kgfsKg7t/Oex8mShL32luiarLxIJsRlv2I
+         ieBHX3xbnYXhphxN+dIEp673UKfdjZV8ndYo6AHaFCVzeq+ApteymMjlsQmYb71C/+Rt
+         HHSeeIQ26Klj+wSeeEmxg5FMiMLSSSNjC+Q+gYXAjBuVu5pAYP3nCZ7ZfLyIxVfGZ6Tt
+         xiDQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@insideapple.apple.com header.s=insideapple2048 header.b=hauc8Dxj;
+       spf=pass (google.com: domain of n_ausnz_i_bounces@insideapple.apple.com designates 17.171.23.66 as permitted sender) smtp.mailfrom=n_ausnz_i_bounces@insideapple.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=insideapple.apple.com
+Return-Path: <n_ausnz_i_bounces@insideapple.apple.com>
+Received: from mdn-msbadger0507.apple.com (mdn-msbadger0507.apple.com. [17.171.23.66])
+        by mx.google.com with ESMTPS id f34-v6si4260461qtb.125.2018.10.04.17.30.52
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 04 Oct 2018 17:30:53 -0700 (PDT)
+Received-SPF: pass (google.com: domain of n_ausnz_i_bounces@insideapple.apple.com designates 17.171.23.66 as permitted sender) client-ip=17.171.23.66;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@insideapple.apple.com header.s=insideapple2048 header.b=hauc8Dxj;
+       spf=pass (google.com: domain of n_ausnz_i_bounces@insideapple.apple.com designates 17.171.23.66 as permitted sender) smtp.mailfrom=n_ausnz_i_bounces@insideapple.apple.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=insideapple.apple.com
+DKIM-Signature: v=1; a=rsa-sha1; d=insideapple.apple.com; s=insideapple2048; c=relaxed/simple;
+	q=dns/txt; i=@insideapple.apple.com; t=1538699452;
+	h=From:Subject:Date:To:MIME-Version:Content-Type;
+	bh=tVQmNzNjnCwrSQhPMIu4HTrhMvc=;
+	b=hauc8DxjTQlJ744LmEBUFg0YoiX/mt7QLwRWBWe0q+8yXPOqJKEXwpRAhHdRo/Aq
+	k2OknqUbwisoqimD0wp1VxBi3+5c4NyxBdVyH9ZJmV7VirpK5B9sfhDHgFgWXEIO
+	E2m3RSYx7ixDUGMV4q+MMOtxlYHdh7KpF+REcoLzjHnG5vpEbBjSzfHy4XewoisK
+	hK1Umgh/o2pBLsSOL0o+9QbjwPrGmia06Mr26cYpebHyNmILbwDifVhBS3O+6IB/
+	2qvpMTOFEjRiG4aeqRnRPe5KI5INCSBQK0y8lvsGamL8VG26cM91+eahSTqMlsQJ
+	RhE3dzxajJxi4PwuueexZg==;
+Date: Fri, 05 Oct 2018 00:30:52 +0000
+From: Apple <News_AUS_NZ@InsideApple.Apple.com>
+To: sometime5858@gmail.com
+Message-ID: <1654053579.3622493.1538699452667.JavaMail.cboxp@ma4-cboxp-lapp03.corp.apple.com>
+Subject: =?UTF-8?Q?Apple=C2=A0Watch_Series=C2=A04_is_here.?=
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_3622492_106401463.1538699452667"
+X-Broadcast-Id: 170743
+List-Unsubscribe: <https://mynews.apple.com/subscriptions?v=2&la=en_au&a=sPjHd9VoF1x94ydOpb0V4BED%2F%2BBHGFyGxz%2BC4EZn7EW8hcnnkYd6dSbPNi9AHqKsEsF49rIAC%2FIbJAiwHoaka3jgA1JwjWWiSGQre9SwRSJuP%2FOMl1Ibj3kSpZ842BQf28Al9GTfJVuf3A8Vk0pPuYrfh5QPZSsRLhc34lAOQ3%2BovN2GQjiWoAEHFThMeNiOK1yBp0wPSkLGyBk1Ue4oBA%3D%3D>
+X-Sent-To: sometime5858@gmail.com,2,%2FPmZYHad3fBB33xzElcauLeSvx3sqKyozB75jiVUDxYiJoLeiTI6SDUD3TQik%2B3MvpEsysjiEquMGlOF2cFhFdnOWm%2FyUiW7atLxkrPZGI9ZK02Nc8rCUYvbgDaVxJSIR8CVot%2BdFc%2FYESX9qav60f4p0qbk4FnleAwse42eAhvE2U2SetHUqnV3hRZoe03A
+X-mp: d
+X-TUID: yjHeBjKBXA1t
+
+------=_Part_3622492_106401463.1538699452667
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+Apple Watch Series 4
+
+Buy
+https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%=
+2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%=
+2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1R=
+CZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7A2i7=
+e1T
+
+All new. For a better you.
+
+Fundamentally redesigned and re=E2=80=91engineered. The largest Apple Watch=
+ display yet. Advanced heart monitoring capabilities. And new features to h=
+elp you become even more active, healthy and connected.
+
+Learn more
+https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%=
+2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%=
+2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1R=
+CZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7r9G5=
+q8N
+
+Find a store
+https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%=
+2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%=
+2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1R=
+CZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7A0G3=
+b7P
+
+-------------------
+
+Apple Watch Series 4 Nike+
+
+Learn more
+https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%=
+2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%=
+2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1R=
+CZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7y0G6=
+m4P
+
+Buy
+https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%=
+2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%=
+2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1R=
+CZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7t9B0=
+r2v
+
+-------------------
+
+Apple Watch Series 4 Herm=C3=A8s
+
+Learn more
+https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%=
+2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%=
+2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1R=
+CZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7e2n5=
+y6T
+
+Buy
+https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%=
+2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%=
+2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1R=
+CZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7j7V4=
+W7C
+
+-------------------
+
+New bands. Fresh looks.
+
+Shop new bands
+https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%=
+2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%=
+2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1R=
+CZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7A0w3=
+K3Y
+
+-------------------
+
+Trade in your current watch with Apple GiveBack and you could get up to A$2=
+95 in credit.(1)
+With Apple GiveBack, trade in your eligible Apple watch and you could get c=
+redit towards a new watch. It=E2=80=99s good for you and the planet.
+
+See how it works
+https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%=
+2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%=
+2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1R=
+CZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7A5x6=
+a8k
+
+-------------------
+
+Financing
+
+0% interest available
+
+Learn more
+https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%=
+2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%=
+2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1R=
+CZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7A2B5=
+A8P
+
+-------------------
+
+Apple Store app
+
+A more personal way to shop for the latest Apple products and accessories.
+
+Download
+https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%=
+2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%=
+2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1R=
+CZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7X5V8=
+L3M
+
+-------------------
+
+Delivery
+
+Choose free delivery or pick up available items at an Apple Store.
+
+Learn more
+https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%=
+2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%=
+2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1R=
+CZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7r7a7=
+h1h
+
+-------------------
+
+Shop Online
+https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%=
+2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%=
+2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1R=
+CZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7t2G2=
+L3h
+
+Find a Store
+https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%=
+2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%=
+2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1R=
+CZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7e9a4=
+d5M
+
+133-622
+
+Get the Apple Store App
+https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%=
+2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%=
+2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1R=
+CZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7X8c9=
+U2h
+
+-------------------
+
+1. Trade-in values may vary based on the condition and model of your Apple&=
+nbsp;Watch trade-in. You must be at least 18 years old. Offer may not be av=
+ailable in all stores, and not all devices are eligible for credit. Apple r=
+eserves the right to refuse or limit the quantity of any device for any rea=
+son. The value of your current device may be applied towards the purchase o=
+f a new Apple device. Additional terms at www.apple.com/au/trade-in.
+
+Some bands are sold separately.
+
+Apple Watch Series 4 (GPS + Cellular) requires an iPhone 6 or later with iO=
+S 12 or later.
+
+Apple Watch Series 4 (GPS) requires an iPhone 5s or later with iOS 12 or la=
+ter.
+
+Carrier plan is required for mobile service. Apple Watch and iPhone service=
+ provider must be the same. Not available with all service providers. Not a=
+ll service providers support corporate plans; check with your employer and =
+service provider. Legacy plans may not be compatible. Prepaid plans are not=
+ supported. Coverage is dependent on your carrier=E2=80=99s network. Roamin=
+g is not available outside your carrier=E2=80=99s network coverage area. Co=
+ntact your service provider for more details. Check www.apple.com/au/watch/=
+cellular for participating carriers and eligibility.
+http://www.apple.com/au/watch/cellular/
+
+-------------------
+
+TM and =C2=A9 2018 Apple Pty Ltd. PO Box A2629, South Sydney NSW 1235. ABN:=
+ 46 002 510 054. Tel: 133-622.
+
+-------------------
+
+All Rights Reserved=20
+http://www.apple.com/au/legal/
+
+Privacy Policy
+http://www.apple.com/au/privacy/privacy-policy/
+
+My Apple ID
+https://appleid.apple.com/en_AU
+
+-------------------
+
+If you prefer not to receive commercial email from Apple, or if you=E2=80=
+=99ve changed your email address, please click here.
+https://mynews.apple.com/subscriptions?v=3D2&la=3Den_au&a=3DsPjHd9VoF1x94yd=
+Opb0V4BED%2F%2BBHGFyGxz%2BC4EZn7EWPQXb6rUr2FQQYeIuCCBFwBx9g9w%2F9ydiCaUAvh%=
+2B6I1VKy1W7AcStD6iEcdd73ZJ58WbVHb2t1kJJMQqFTWgKu2E%2FRhSEKdVENpngMllnFOsnbK=
+jrguLPUl8n6Flbt2R9tReBI7mG%2Fd8U3yJhaSGBE7l8L1ZwjDFQdIBWd5N3Sbg%3D%3D
+------=_Part_3622492_106401463.1538699452667
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+    <title>P0018822-406661</title>
+    <meta http-equiv=3D"content-type" content=3D"text/html;charset=3DUTF-8"=
+>
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width">=20
+<style type=3D"text/css">
+a, a:link { color: #0070c9; text-decoration: none; }
+
+a:hover { color: #0070c9; text-decoration: underline; }
+
+a[x-apple-data-detectors], a[x-apple-data-detectors]:link, a[x-apple-data-d=
+etectors]:hover { color: inherit; text-decoration: none; }
+
+body { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI=
+', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: normal; tex=
+t-rendering: optimizelegibility; -webkit-font-smoothing: antialiased; }
+
+h1, h2, h3, h4 { border: none; margin: 0; }
+
+img { -webkit-touch-callout: none; }
+
+sup { font-size: .65em; line-height: 0; position: relative; }
+
+td { color: #333333; }
+
+p, ul { margin: 0; padding: 0; }
+
+li { list-style-type: none; }
+
+.cta { margin-top: 13px; }
+
+.f-complete { color: #888888; font-size: 11px; line-height: 15px; padding: =
+19px 0 20px 0; }
+
+.f-complete p { margin-bottom: 9px; }
+
+.f-links-shop a, .f-links-shop a:visited, .f-legal a, .f-legal a:visited, .=
+f-complete a, .f-complete a:visited { color: #555555; }
+
+.f-links-legal { color: #d6d6d6; }
+
+.f-links-shop a:hover, .f-legal a:hover { text-decoration: underline; }
+
+.preheader-hide { display: none !important; mso-hide: all !important; }
+
+@media only screen and (max-device-width: 568px) { sup { font-size: .55em; =
+}
+  h1 { font-size: 31px; line-height: 34px; }
+  h2 { padding: 20px 0 32px 0; }
+  h3 { padding: 17px 0 4px 0; }
+  h4 { font-size: 19px; font-weight: 500; }
+  .desktop { display: none; }
+  .mobile { background: #ffffff; display: block !important; font-size: 17px=
+; font-weight: normal; line-height: 25px; margin: 0 auto; max-height: inher=
+it !important; max-width: 414px; overflow: visible; width: 100% !important;=
+ }
+  .m-gutter, .m-gutter-centered { margin: 0 6.25%; }
+  .m-gutter-centered { text-align: center; }
+  .m-footer { background: #f2f2f2; padding: 12px 0 28px; color: #888888; }
+  .m-footer p { font-size: 11px; line-height: 15px; padding-bottom: 9px; }
+  .m-footer { background: #f2f2f2; padding: 12px 0 28px; color: #888888; }
+  ul.m-bnav { color: #555555; margin: 0; padding-bottom: 1px; text-align: c=
+enter; }
+  ul.m-bnav li { border-bottom: 1px solid #d6d6d6; font-size: 12px; font-we=
+ight: normal; line-height: 16px; margin: 0 0 11px 0; padding: 0 0 12px 0; }
+  ul.m-bnav li a, ul.m-bnav li a:visited { color: #555555; }
+  .m-vert { padding: 0 6px; color: #d6d6d6; }
+  /* auto css gen for bleed */
+  .mobile .m_availability_trade_in_watch { overflow: hidden; width: 100%; h=
+eight: 133px; background: url(https://images.apple.com/dm/anzsea/2018/09/wa=
+tch-series-4-availability/au/m_availability_trade_in_watch_2x.jpg) no-repea=
+t center center; background-size: 414px 133px; }
+  /* eof auto css gen for bleed */
+  /*dm specific*/
+  .m-hero-copy { padding: 0 18px 14px; } }
+
+/* iphone 6 plus */
+/* iphone 6*/
+/* iphone 5*/
+@media only screen and (max-device-width: 320px) { .m-hero-copy { padding: =
+0 10px 14px; } }
+
+</style>
+   =20
+
+    <!--[if gte mso 9]>
+<style type=3D"text/css">
+
+  sup
+  { font-size:100% !important }
+
+</style>
+<!--<![endif]-->
+</head>
+
+<body bgcolor=3D"#ffffff" style=3D"margin:0; padding:0;">
+    <div style=3D"position:absolute; max-height:0; font-size:0; overflow:hi=
+dden;"><img src=3D"https://c.apple.com/img/APPLE_EMAIL_LINK/spacer2.gif?v=
+=3D2&a=3D%2FPmZYHad3fBB33xzElcauLeSvx3sqKyozB75jiVUDxYiJoLeiTI6SDUD3TQik%2B=
+3MvpEsysjiEquMGlOF2cFhFdnOWm%2FyUiW7atLxkrPZGI%2FGvtGwo%2FdwiuuP2OsI4QAw9No=
+O5o8w1YuVNOXvfB51czXXuOApkO05insnhuIHaZs%3D" alt=3D"" width=3D"1" height=3D=
+"1" ></div>
+    <!-- MOBILE VERSION -->
+    <!--[if !mso]><\!-->
+    <div style=3D"width:0; max-height:0; overflow:hidden; display:none;" cl=
+ass=3D"mobile">
+        <div style=3D"background:#ffffff;">
+            <div class=3D"sf_19" style=3D"color: #333333; font-size: 19px; =
+line-height: 27px; text-align: center;">
+                <p style=3D"padding: 31px 0 22px 0;"><img src=3D"https://im=
+ages.apple.com/dm/anzsea/2018/09/watch-series-4-availability/au/m_availabil=
+ity_apple_watch_series4_logo_2x.png" class=3D"more" width=3D"142" height=3D=
+"56" style=3D"margin:0;" border=3D"0" alt=3D"Apple Watch Series 4">
+                </p>
+                <p style=3D"padding: 0 0 39px 4px;">
+                    <a style=3D"border: 0; display: inline-block; outline: =
+0;" href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHz=
+iyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa=
+2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9Z=
+G7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&=
+ct=3DaI7A7a8l8P" class=3D"aapl-link"><img src=3D"https://images.apple.com/d=
+m/anzsea/2018/09/watch-series-4-availability/au/m_availability_buy_button_2=
+x.png" class=3D"more" width=3D"64" height=3D"36" style=3D"margin:0;" border=
+=3D"0" alt=3D"Buy"></a>
+                </p>
+                <p style=3D"padding: 0 0 0 0; background-color: #fafafa;">
+                    <a style=3D"border: 0; display: block; outline: 0;" hre=
+f=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRY=
+NxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5C=
+HN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGIC=
+FXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI=
+7j0E3M5p" class=3D"aapl-link"><img src=3D"https://images.apple.com/dm/anzse=
+a/2018/09/watch-series-4-availability/au/m_availability_hero_2x.jpg" class=
+=3D"more" width=3D"320" height=3D"450" style=3D"margin:0; auto; display:blo=
+ck;" border=3D"0" alt=3D""></a>
+                </p>
+                <p style=3D"padding: 70px 0 7px 0;"><img src=3D"https://ima=
+ges.apple.com/dm/anzsea/2018/09/watch-series-4-availability/au/m_availabili=
+ty_all_new_header_2x.png" class=3D"more" width=3D"320" height=3D"72" style=
+=3D"margin:0;" border=3D"0" alt=3D"All new. For a better you.">
+                </p>
+                <p class=3D"m-hero-copy" style=3D"letter-spacing: -0.02em;"=
+>Fundamentally redesigned and re=E2=80=91engineered. The largest Apple&nbsp=
+;Watch display yet. Advanced heart monitoring capabilities. And new&nbsp;fe=
+atures to help you become even more active, healthy and connected.</p>
+                <p style=3D"padding: 0 0 7px 0;"><a href=3D"https://c.apple=
+.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81J=
+OPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H=
+7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXe=
+Xj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7A7b4X0k" class=3D"a=
+apl-link" style=3D"border: 0; color: #0070c9; outline: 0;">Learn more<img s=
+rc=3D"https://images.apple.com/dm/anzsea/2018/09/watch-series-4-availabilit=
+y/au/38_chevron_007_alpha_2x.png" class=3D"more" width=3D"12" height=3D"12"=
+ style=3D"display:inline; margin:0;" border=3D"0" alt=3D""></a>
+                </p>
+                <p style=3D"padding: 0 0 68px 0;"><a href=3D"https://c.appl=
+e.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81=
+JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4=
+H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtX=
+eXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7t3L5H2h" class=3D"=
+aapl-link" style=3D"border: 0; color: #0070c9; outline: 0;">Find a store<im=
+g src=3D"https://images.apple.com/dm/anzsea/2018/09/watch-series-4-availabi=
+lity/au/38_chevron_007_alpha_2x.png" class=3D"more" width=3D"12" height=3D"=
+12" style=3D"display:inline; margin:0;" border=3D"0" alt=3D""></a>
+                </p>
+                <div style=3D"background-color: #f1f6f6; color: #333333; fo=
+nt-size: 17px; line-height: 25px; margin-bottom: 20px;" class=3D"sf_17">
+                    <p style=3D"padding: 52px 0 16px 0;"><img src=3D"https:=
+//images.apple.com/dm/anzsea/2018/09/watch-series-4-availability/au/m_avail=
+ability_apple_watch_nike_series4_logo_2x.png" class=3D"more" width=3D"266" =
+height=3D"44" style=3D"margin:0;" border=3D"0" alt=3D"Apple Watch Series 4 =
+Nike+">
+                    </p>
+                    <p style=3D"padding: 0 0 0 0; display: inline-block;"><=
+a href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziy=
+JtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2g=
+Gxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7=
+hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=
+=3DaI7j7I9g0p" class=3D"aapl-link" style=3D"border: 0; color: #0070c9; outl=
+ine: 0;">Learn more<img src=3D"https://images.apple.com/dm/anzsea/2018/09/w=
+atch-series-4-availability/au/34_chevron_007_alpha_2x.png" class=3D"more" w=
+idth=3D"12" height=3D"10" style=3D"display:inline; margin:0;" border=3D"0" =
+alt=3D""></a>
+                    </p>
+                    <p style=3D"padding: 0 0 0 21px; display: inline-block;=
+"><a href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoH=
+ziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmY=
+a2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9=
+ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D=
+&ct=3DaI7e3n8I2C" class=3D"aapl-link" style=3D"border: 0; color: #0070c9; o=
+utline: 0;">Buy<img src=3D"https://images.apple.com/dm/anzsea/2018/09/watch=
+-series-4-availability/au/34_chevron_007_alpha_2x.png" class=3D"more" width=
+=3D"12" height=3D"10" style=3D"display:inline; margin:0;" border=3D"0" alt=
+=3D""></a>
+                    </p>
+                    <p style=3D"padding: 24px 0 30px 0;"><img src=3D"https:=
+//images.apple.com/dm/anzsea/2018/09/watch-series-4-availability/au/m_avail=
+ability_nike_watch_2x.jpg" class=3D"more" width=3D"320" height=3D"335" styl=
+e=3D"margin:0;" border=3D"0" alt=3D"">
+                    </p>
+                </div>
+                <div style=3D"background-color: #fdf8f2; color: #333333; fo=
+nt-size: 17px; line-height: 25px; margin-bottom: 20px;" class=3D"sf_17">
+                    <p style=3D"padding: 52px 0 16px 0;"><img src=3D"https:=
+//images.apple.com/dm/anzsea/2018/09/watch-series-4-availability/au/m_avail=
+ability_apple_watch_hermes_series4_logo_2x.png" class=3D"more" width=3D"266=
+" height=3D"44" style=3D"margin:0;" border=3D"0" alt=3D"Apple Watch Series =
+4 Herm=C3=A8s">
+                    </p>
+                    <p style=3D"padding: 0 0 0 0; display: inline-block;"><=
+a href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziy=
+JtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2g=
+Gxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7=
+hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=
+=3DaI7A5l9W5k" class=3D"aapl-link" style=3D"border: 0; color: #0070c9; outl=
+ine: 0;">Learn more<img src=3D"https://images.apple.com/dm/anzsea/2018/09/w=
+atch-series-4-availability/au/34_chevron_007_alpha_2x.png" class=3D"more" w=
+idth=3D"12" height=3D"10" style=3D"display:inline; margin:0;" border=3D"0" =
+alt=3D""></a>
+                    </p>
+                    <p style=3D"padding: 0 0 0 21px; display: inline-block;=
+"><a href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoH=
+ziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmY=
+a2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9=
+ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D=
+&ct=3DaI7e0B2w6h" class=3D"aapl-link" style=3D"border: 0; color: #0070c9; o=
+utline: 0;">Buy<img src=3D"https://images.apple.com/dm/anzsea/2018/09/watch=
+-series-4-availability/au/34_chevron_007_alpha_2x.png" class=3D"more" width=
+=3D"12" height=3D"10" style=3D"display:inline; margin:0;" border=3D"0" alt=
+=3D""></a>
+                    </p>
+                    <p style=3D"padding: 32px 0 39px 0;"><img src=3D"https:=
+//images.apple.com/dm/anzsea/2018/09/watch-series-4-availability/au/m_avail=
+ability_hermes_watch_2x.jpg" class=3D"more" width=3D"320" height=3D"340" st=
+yle=3D"margin:0;" border=3D"0" alt=3D"">
+                    </p>
+                </div>
+                <div style=3D"background-color: #fafafa; color: #333333; fo=
+nt-size: 17px; line-height: 25px; margin-bottom: 20px;" class=3D"sf_17">
+                    <p style=3D"padding: 56px 0 15px 0;"><img src=3D"https:=
+//images.apple.com/dm/anzsea/2018/09/watch-series-4-availability/au/m_avail=
+ability_new_bands_2x.png" class=3D"more" width=3D"320" height=3D"28" style=
+=3D"margin:0;" border=3D"0" alt=3D"New bands. Fresh looks.">
+                    </p>
+                    <p style=3D"padding: 0 0 51px 0;"><a href=3D"https://c.=
+apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvG=
+SC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iii=
+zzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu=
+8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7r1b4L9Y" class=
+=3D"aapl-link" style=3D"border: 0; color: #0070c9; outline: 0;">Shop new ba=
+nds<img src=3D"https://images.apple.com/dm/anzsea/2018/09/watch-series-4-av=
+ailability/au/34_chevron_007_alpha_2x.png" class=3D"more" width=3D"12" heig=
+ht=3D"10" style=3D"display:inline; margin:0;" border=3D"0" alt=3D""></a>
+                    </p>
+                    <div style=3D"padding: 0 0 0 0; background-color: #f2f2=
+f2;">
+                        <a style=3D"border: 0; display: block; outline: 0;"=
+ href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJ=
+tbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gG=
+xe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7h=
+SGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=
+=3DaI7A3x0R5P" class=3D"aapl-link"><img src=3D"https://images.apple.com/dm/=
+anzsea/2018/09/watch-series-4-availability/au/m_availability_bands_2x.jpg" =
+class=3D"more" width=3D"320" height=3D"275" style=3D"margin:0 auto; display=
+:block;" border=3D"0" alt=3D""></a>
+                    </div>
+                </div>
+                <div style=3D"background-color: #fafafa; color: #333333; fo=
+nt-size: 17px; line-height: 25px; margin-bottom: 20px;" class=3D"sf_17">
+                    <p style=3D"padding: 59px 0 19px 0;"><img src=3D"https:=
+//images.apple.com/dm/anzsea/2018/09/watch-series-4-availability/au/m_avail=
+ability_trade_in_2x.png" class=3D"more" width=3D"268" height=3D"152" style=
+=3D"margin:0;" border=3D"0" alt=3D"Trade in your current watch with Apple G=
+iveBack and you could get up to A$295 in credit.1">
+                    </p>
+                    <p style=3D"padding: 0 40px 20px 40px;">With Apple Give=
+Back, trade in your eligible Apple&nbsp;Watch and you could get credit towa=
+rds a new one. It=E2=80=99s good for you and the planet.</p>
+                    <p style=3D"padding: 0 0 51px 0;"><a href=3D"https://c.=
+apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvG=
+SC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iii=
+zzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu=
+8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7A5I2T4p" class=
+=3D"aapl-link" style=3D"border: 0; color: #0070c9; outline: 0;">See how it =
+works<img src=3D"https://images.apple.com/dm/anzsea/2018/09/watch-series-4-=
+availability/au/34_chevron_007_alpha_2x.png" class=3D"more" width=3D"12" he=
+ight=3D"10" style=3D"display:inline; margin:0;" border=3D"0" alt=3D""></a>
+                    </p>
+                    <div style=3D"padding: 0 0 0 0;">
+                        <div class=3D"m_availability_trade_in_watch">
+
+                            <img src=3D"https://images.apple.com/dm/anzsea/=
+2018/09/watch-series-4-availability/au/i.png" width=3D"100%" height=3D"133"=
+ alt=3D"" border=3D"0" style=3D"display:block;">
+
+                        </div>
+                    </div>
+                </div>
+                <div class=3D"sf_14" style=3D"color: #333333; font-size: 14=
+px; line-height: 20px; padding-top: 49px;">
+                    <p style=3D"padding: 0 0 7px 0; text-align: left;"><img=
+ src=3D"https://images.apple.com/dm/anzsea/2018/09/watch-series-4-availabil=
+ity/au/m_availability_delivery_2x.png" class=3D"more" width=3D"320" height=
+=3D"24" style=3D"margin:0;" border=3D"0" alt=3D"Financing">
+                    </p>
+                    <p style=3D"padding: 0 20px 10px; text-align: left;">0%=
+ interest available.</p>
+                    <p style=3D"padding: 0 20px 46px; text-align: left;"><a=
+ href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJ=
+tbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gG=
+xe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7h=
+SGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=
+=3DaI7e4c5t8v" class=3D"aapl-link" style=3D"border: 0; color: #0070c9; outl=
+ine: 0;">Learn more<img src=3D"https://images.apple.com/dm/anzsea/2018/09/w=
+atch-series-4-availability/au/28_chevron_007_alpha_2x.png" class=3D"more" w=
+idth=3D"12" height=3D"8" style=3D"display:inline; margin:0;" border=3D"0" a=
+lt=3D""></a>
+                    </p>
+                    <p style=3D"padding: 0 0 7px 0; text-align: left;"><img=
+ src=3D"https://images.apple.com/dm/anzsea/2018/09/watch-series-4-availabil=
+ity/au/m_availability_apple_store_2x.png" class=3D"more" width=3D"320" heig=
+ht=3D"24" style=3D"margin:0;" border=3D"0" alt=3D"Apple Store app">
+                    </p>
+                    <p style=3D"padding: 0 20px 10px; text-align: left;">A =
+more personal way to shop&nbsp;for&nbsp;the latest&nbsp;Apple products&nbsp=
+;and accessories.</p>
+                    <p style=3D"padding: 0 20px 46px; text-align: left;"><a=
+ href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJ=
+tbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gG=
+xe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7h=
+SGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=
+=3DaI7A8V3r6P" class=3D"aapl-link" style=3D"border: 0; color: #0070c9; outl=
+ine: 0;">Download<img src=3D"https://images.apple.com/dm/anzsea/2018/09/wat=
+ch-series-4-availability/au/m_availability_apple_store_download_icon_2x.png=
+" class=3D"more" width=3D"24" height=3D"16" style=3D"display:inline; margin=
+:0;vertical-align:-15%;" border=3D"0" alt=3D""></a>
+                    </p>
+                    <p style=3D"padding: 0 0 7px 0; text-align: left;"><img=
+ src=3D"https://images.apple.com/dm/anzsea/2018/09/watch-series-4-availabil=
+ity/au/m_availability_personal_setup_2x.png" class=3D"more" width=3D"320" h=
+eight=3D"24" style=3D"margin:0;" border=3D"0" alt=3D"Delivery">
+                    </p>
+                    <p style=3D"padding: 0 20px 10px; text-align: left;">Ch=
+oose free delivery or pick&nbsp;up available items in an&nbsp;hour at an Ap=
+ple&nbsp;Store.</p>
+                    <p style=3D"padding: 0 20px 46px; text-align: left;"><a=
+ href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJ=
+tbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gG=
+xe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7h=
+SGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=
+=3DaI7X7q1e4T" class=3D"aapl-link" style=3D"border: 0; color: #0070c9; outl=
+ine: 0;">Learn more<img src=3D"https://images.apple.com/dm/anzsea/2018/09/w=
+atch-series-4-availability/au/28_chevron_007_alpha_2x.png" class=3D"more" w=
+idth=3D"12" height=3D"8" style=3D"display:inline; margin:0;" border=3D"0" a=
+lt=3D""></a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- <![endif]-->
+
+    <!-- DESKTOP VERSION -->
+    <table width=3D"100%" role=3D"presentation" cellspacing=3D"0" cellpaddi=
+ng=3D"0" border=3D"0" class=3D"desktop">
+        <tr>
+            <td align=3D"center" bgcolor=3D"#fafafa" style=3D"margin: 0 aut=
+o;background-color: #fafafa;">
+                <table role=3D"presentation" width=3D"712" cellpadding=3D"0=
+" cellspacing=3D"0" align=3D"center" border=3D"0" bgcolor=3D"#fafafa" class=
+=3D"reset-fa" style=3D"background-color: #fafafa; margin: 0 auto;">
+                    <tr>
+                        <td valign=3D"top">
+                            <table role=3D"presentation" cellspacing=3D"0" =
+cellpadding=3D"0" border=3D"0">
+                                <tr>
+                                    <td align=3D"center" style=3D"padding: =
+201px 0 23px 54px;">
+                                        <picture>
+                                            <source media=3D"(max-device-wi=
+dth: 568px)" srcset=3D"data:"><img src=3D"https://images.apple.com/dm/anzse=
+a/2018/09/watch-series-4-availability/au/availability_apple_watch_series4_l=
+ogo_2x.png" width=3D"142" height=3D"56" style=3D"margin:0;" border=3D"0" al=
+t=3D"Apple Watch Series 4"></picture>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align=3D"center" style=3D"padding: =
+0 0 0 59px;">
+                                        <a href=3D"https://c.apple.com/r?v=
+=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u=
+4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNy=
+ZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTiz=
+preL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7X6E1n3T" style=3D"border: 0=
+; display: inline-block; outline: 0;">
+                                            <picture>
+                                                <source media=3D"(max-devic=
+e-width: 568px)" srcset=3D"data:"><img src=3D"https://images.apple.com/dm/a=
+nzsea/2018/09/watch-series-4-availability/au/availability_buy_button_2x.png=
+" width=3D"64" height=3D"36" style=3D"margin:0;" border=3D"0" alt=3D"Buy"><=
+/picture>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style=3D"padding: 0 0 0 6px; line-height: 0;">
+                            <a href=3D"https://c.apple.com/r?v=3D2&la=3Den&=
+lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2Z=
+iR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0=
+Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2F=
+oJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7j7n7I6P" style=3D"border: 0; display: in=
+line-block; outline: 0;">
+                                <picture>
+                                    <source media=3D"(max-device-width: 568=
+px)" srcset=3D"data:"><img src=3D"https://images.apple.com/dm/anzsea/2018/0=
+9/watch-series-4-availability/au/availability_hero_2x.jpg" width=3D"400" he=
+ight=3D"499" style=3D"margin:0;" border=3D"0" alt=3D""></picture>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td align=3D"center" style=3D"text-align: center; padding:0 0 4=
+0px 0;">
+                <table role=3D"presentation" width=3D"712" cellspacing=3D"0=
+" cellpadding=3D"0" border=3D"0" align=3D"center" bgcolor=3D"#ffffff" class=
+=3D"reset-ff" style=3D"background-color: #ffffff; margin: 0 auto;">
+                    <tr>
+                        <td>
+                            <table role=3D"presentation" cellspacing=3D"0" =
+cellpadding=3D"0" border=3D"0">
+                                <tr>
+                                    <td align=3D"center" style=3D"padding: =
+77px 0 19px 0;">
+                                        <picture>
+                                            <source media=3D"(max-device-wi=
+dth: 568px)" srcset=3D"data:"><img src=3D"https://images.apple.com/dm/anzse=
+a/2018/09/watch-series-4-availability/au/availability_all_new_header_2x.png=
+" width=3D"428" height=3D"44" style=3D"margin:0;" border=3D"0" alt=3D"All n=
+ew. For a better you."></picture>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign=3D"top" align=3D"center" cla=
+ss=3D"sf_19 d-4240887" style=3D"color: #333333; font-size: 19px; line-heigh=
+t: 27px; padding: 0 131px 14px;">Fundamentally redesigned and re=E2=80=91en=
+gineered. The=C2=A0largest Apple&nbsp;Watch display yet. Advanced heart mon=
+itoring capabilities. And new&nbsp;features to help you become even more ac=
+tive, healthy and connected.</td>
+                                </tr>
+                            </table>
+                            <table role=3D"presentation" cellspacing=3D"0" =
+cellpadding=3D"0" border=3D"0">
+                                <tr>
+                                    <td valign=3D"top" class=3D"sf_19 d-480=
+5341" style=3D"color: #333333; font-size: 19px; line-height: 27px; padding:=
+ 0 0 0 233px;"><a href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3D=
+z2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0p=
+Y9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPSh=
+Le%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkk=
+IpJqq2g%3D%3D&ct=3DaI7X5L4t0k" class=3D"aapl-link" style=3D"border: 0; colo=
+r: #0070c9; outline: 0;">Learn more<img src=3D"https://images.apple.com/dm/=
+anzsea/2018/09/watch-series-4-availability/au/38_chevron_007_alpha_2x.png" =
+class=3D"more" width=3D"12" height=3D"12" style=3D"display:inline; margin:0=
+;" border=3D"0" alt=3D""></a>
+                                    </td>
+                                    <td valign=3D"top" class=3D"sf_19 d-866=
+8397" style=3D"color: #333333; font-size: 19px; line-height: 27px; padding:=
+ 0 0 0 33px;"><a href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz=
+2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY=
+9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShL=
+e%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkI=
+pJqq2g%3D%3D&ct=3DaI7e9i0h7C" class=3D"aapl-link" style=3D"border: 0; color=
+: #0070c9; outline: 0;">Find a store<img src=3D"https://images.apple.com/dm=
+/anzsea/2018/09/watch-series-4-availability/au/38_chevron_007_alpha_2x.png"=
+ class=3D"more" width=3D"12" height=3D"12" style=3D"display:inline; margin:=
+0;" border=3D"0" alt=3D""></a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table role=3D"presentation" cellspacing=3D"0" =
+cellpadding=3D"0" border=3D"0">
+                                <tr>
+                                    <td colspan=3D"3" height=3D"73"></td>
+                                </tr>
+                                <tr>
+                                    <td valign=3D"top" align=3D"center" wid=
+th=3D"346" bgcolor=3D"#f1f6f6">
+                                        <table role=3D"presentation" cellsp=
+acing=3D"0" cellpadding=3D"0" border=3D"0">
+                                            <tr>
+                                                <td align=3D"center" style=
+=3D"padding: 50px 0 16px 0;">
+                                                    <picture>
+                                                        <source media=3D"(m=
+ax-device-width: 568px)" srcset=3D"data:"><img src=3D"https://images.apple.=
+com/dm/anzsea/2018/09/watch-series-4-availability/au/availability_apple_wat=
+ch_hermes_series4_logo_2x.png" width=3D"240" height=3D"44" style=3D"margin:=
+0;" border=3D"0" alt=3D"Apple Watch Series 4 Nike+"></picture>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table role=3D"presenta=
+tion" cellspacing=3D"0" cellpadding=3D"0" border=3D"0">
+                                                        <tr>
+                                                            <td class=3D"sf=
+_17 d-4252746" style=3D"color: #333333; font-size: 17px; line-height: 25px;=
+ padding: 0 0 0 81px;"><a href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3D=
+aus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q0=
+35Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2F=
+ReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nD=
+I7dCtCkkIpJqq2g%3D%3D&ct=3DaI7A1c9V9N" class=3D"aapl-link" style=3D"border:=
+ 0; color: #0070c9; outline: 0;">Learn more<img src=3D"https://images.apple=
+.com/dm/anzsea/2018/09/watch-series-4-availability/au/34_chevron_007_alpha_=
+2x.png" class=3D"more" width=3D"12" height=3D"10" style=3D"display:inline; =
+margin:0;" border=3D"0" alt=3D""></a>
+                                                            </td>
+                                                            <td class=3D"sf=
+_17 d-7247188" style=3D"color: #333333; font-size: 17px; line-height: 25px;=
+ padding: 0 0 0 29px;"><a href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3D=
+aus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q0=
+35Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2F=
+ReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nD=
+I7dCtCkkIpJqq2g%3D%3D&ct=3DaI7t3n0d3k" class=3D"aapl-link" style=3D"border:=
+ 0; color: #0070c9; outline: 0;">Buy<img src=3D"https://images.apple.com/dm=
+/anzsea/2018/09/watch-series-4-availability/au/34_chevron_007_alpha_2x.png"=
+ class=3D"more" width=3D"12" height=3D"10" style=3D"display:inline; margin:=
+0;" border=3D"0" alt=3D""></a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align=3D"center" style=
+=3D"padding-bottom: 3px;">
+                                                    <picture>
+                                                        <source media=3D"(m=
+ax-device-width: 568px)" srcset=3D"data:"><img src=3D"https://images.apple.=
+com/dm/anzsea/2018/09/watch-series-4-availability/au/availability_nike_watc=
+h_2x.jpg" width=3D"346" height=3D"361" style=3D"margin:0;" border=3D"0" alt=
+=3D""></picture>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width=3D"20"></td>
+                                    <td valign=3D"top" align=3D"center" wid=
+th=3D"346" bgcolor=3D"#fdf8f2">
+                                        <table role=3D"presentation" cellsp=
+acing=3D"0" cellpadding=3D"0" border=3D"0">
+                                            <tr>
+                                                <td align=3D"center" style=
+=3D"padding: 50px 0 16px 0;">
+                                                    <picture>
+                                                        <source media=3D"(m=
+ax-device-width: 568px)" srcset=3D"data:"><img src=3D"https://images.apple.=
+com/dm/anzsea/2018/09/watch-series-4-availability/au/availability_apple_wat=
+ch_nike_series4_logo_2x.png" width=3D"240" height=3D"44" style=3D"margin:0;=
+" border=3D"0" alt=3D"Apple Watch Series 4 Herm=C3=A8s"></picture>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table role=3D"presenta=
+tion" cellspacing=3D"0" cellpadding=3D"0" border=3D"0">
+                                                        <tr>
+                                                            <td class=3D"sf=
+_17 d-4252746" style=3D"color: #333333; font-size: 17px; line-height: 25px;=
+ padding: 0 0 0 90px;"><a href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3D=
+aus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q0=
+35Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2F=
+ReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nD=
+I7dCtCkkIpJqq2g%3D%3D&ct=3DaI7t5w4H5h" class=3D"aapl-link" style=3D"border:=
+ 0; color: #0070c9; outline: 0;">Learn more<img src=3D"https://images.apple=
+.com/dm/anzsea/2018/09/watch-series-4-availability/au/34_chevron_007_alpha_=
+2x.png" class=3D"more" width=3D"12" height=3D"10" style=3D"display:inline; =
+margin:0;" border=3D"0" alt=3D""></a>
+                                                            </td>
+                                                            <td class=3D"sf=
+_17 d-7247188" style=3D"color: #333333; font-size: 17px; line-height: 25px;=
+ padding: 0 0 0 27px;"><a href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3D=
+aus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q0=
+35Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2F=
+ReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nD=
+I7dCtCkkIpJqq2g%3D%3D&ct=3DaI7t2G0c7P" class=3D"aapl-link" style=3D"border:=
+ 0; color: #0070c9; outline: 0;">Buy<img src=3D"https://images.apple.com/dm=
+/anzsea/2018/09/watch-series-4-availability/au/34_chevron_007_alpha_2x.png"=
+ class=3D"more" width=3D"12" height=3D"10" style=3D"display:inline; margin:=
+0;" border=3D"0" alt=3D""></a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align=3D"center" style=
+=3D"padding-bottom: 3px;">
+                                                    <picture>
+                                                        <source media=3D"(m=
+ax-device-width: 568px)" srcset=3D"data:"><img src=3D"https://images.apple.=
+com/dm/anzsea/2018/09/watch-series-4-availability/au/availability_hermes_wa=
+tch_2x.jpg" width=3D"346" height=3D"361" style=3D"margin:0;" border=3D"0" a=
+lt=3D""></picture>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan=3D"3" height=3D"20"></td>
+                                </tr>
+                            </table>
+                            <table role=3D"presentation" width=3D"712" cell=
+padding=3D"0" cellspacing=3D"0" align=3D"center" border=3D"0" bgcolor=3D"#f=
+afafa" class=3D"reset-fa" style=3D"background-color: #fafafa; margin: 0 aut=
+o;">
+                                <tr>
+                                    <td valign=3D"top">
+                                        <table role=3D"presentation" cellsp=
+acing=3D"0" cellpadding=3D"0" border=3D"0">
+                                            <tr>
+                                                <td valign=3D"top" style=3D=
+"padding: 128px 0 0 48px;">
+                                                    <picture>
+                                                        <source media=3D"(m=
+ax-device-width: 568px)" srcset=3D"data:"><img src=3D"https://images.apple.=
+com/dm/anzsea/2018/09/watch-series-4-availability/au/availability_new_bands=
+_2x.png" width=3D"152" height=3D"58" style=3D"margin:0;" border=3D"0" alt=
+=3D"New bands. Fresh looks."></picture>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign=3D"top" class=3D=
+"sf_17 d-9508794" style=3D"color: #333333; font-size: 17px; line-height: 25=
+px; padding: 14px 0 0 48px;"><a href=3D"https://c.apple.com/r?v=3D2&la=3Den=
+&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2=
+ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw=
+0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2=
+FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7A2w9k7T" class=3D"aapl-link" style=3D"b=
+order: 0; color: #0070c9; outline: 0;">Shop new bands<img src=3D"https://im=
+ages.apple.com/dm/anzsea/2018/09/watch-series-4-availability/au/34_chevron_=
+007_alpha_2x.png" class=3D"more" width=3D"12" height=3D"10" style=3D"displa=
+y:inline; margin:0;" border=3D"0" alt=3D""></a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td valign=3D"top">
+                                        <table role=3D"presentation" cellsp=
+acing=3D"0" cellpadding=3D"0" border=3D"0">
+                                            <tr>
+                                                <td align=3D"center" style=
+=3D"padding: 0 0 0 52px; line-height: 0;">
+                                                    <a href=3D"https://c.ap=
+ple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC=
+81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizz=
+p4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8K=
+tXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7X9c9G7Y" style=
+=3D"border: 0; display: inline-block; outline: 0;">
+                                                        <picture>
+                                                            <source media=
+=3D"(max-device-width: 568px)" srcset=3D"data:"><img src=3D"https://images.=
+apple.com/dm/anzsea/2018/09/watch-series-4-availability/au/availability_ban=
+ds_2x.jpg" width=3D"354" height=3D"350" style=3D"margin:0;" border=3D"0" al=
+t=3D""></picture>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table role=3D"presentation" cellspacing=3D"0" =
+cellpadding=3D"0" border=3D"0">
+                                <tr>
+                                    <td height=3D"20"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table role=3D"presentation" width=
+=3D"712" cellpadding=3D"0" cellspacing=3D"0" align=3D"center" border=3D"0" =
+bgcolor=3D"#fafafa" class=3D"reset-fa" style=3D"background-color: #fafafa; =
+margin: 0 auto;">
+                                            <tr>
+                                                <td align=3D"center" style=
+=3D"padding: 60px 0 12px 0;">
+                                                    <picture>
+                                                        <source media=3D"(m=
+ax-device-width: 568px)" srcset=3D"data:"><img src=3D"https://images.apple.=
+com/dm/anzsea/2018/09/watch-series-4-availability/au/availability_trade_in_=
+2x.png" width=3D"435" height=3D"89" style=3D"margin:0;" border=3D"0" alt=3D=
+"Trade in your current watch with Apple GiveBack and you could get up to A$=
+295 in credit.1"></picture>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign=3D"top" align=3D=
+"center" class=3D"sf_17" style=3D"color: #333333; font-size: 17px; line-hei=
+ght: 25px; padding: 0 140px 12px;">With Apple GiveBack, trade in your eligi=
+ble Apple&nbsp;Watch and you could get credit towards a new one. It=E2=80=
+=99s good for you and the&nbsp;planet.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign=3D"top" align=3D=
+"center" class=3D"sf_17" style=3D"color: #333333; font-size: 17px; line-hei=
+ght: 25px; padding-bottom: 42px;">
+                                                    <a href=3D"https://c.ap=
+ple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC=
+81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizz=
+p4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8K=
+tXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7e0V7h4C" class=
+=3D"aapl-link" style=3D"border: 0; color: #0070c9; outline: 0;">See how it =
+works<img src=3D"https://images.apple.com/dm/anzsea/2018/09/watch-series-4-=
+availability/au/34_chevron_007_alpha_2x.png" class=3D"more" width=3D"12" he=
+ight=3D"10" style=3D"display:inline; margin:0;" border=3D"0" alt=3D""></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align=3D"center">
+                                                    <picture>
+                                                        <source media=3D"(m=
+ax-device-width: 568px)" srcset=3D"data:"><img src=3D"https://images.apple.=
+com/dm/anzsea/2018/09/watch-series-4-availability/au/availability_trade_in_=
+watch_2x.jpg" width=3D"472" height=3D"147" style=3D"margin:0; display: bloc=
+k;" border=3D"0" alt=3D""></picture>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height=3D"68"></td>
+                                </tr>
+                            </table>
+                            <table role=3D"presentation" width=3D"712" cell=
+spacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"center" bgcolor=3D"#f=
+fffff" class=3D"reset-ff" style=3D"background-color: #ffffff; margin: 0 aut=
+o;">
+                                <tr>   =20
+                                    <td width=3D"48"></td>
+                                    <td width=3D"192" valign=3D"top">
+                                        <table role=3D"presentation" cellsp=
+acing=3D"0" cellpadding=3D"0" border=3D"0">
+                                            <tr>
+                                                <td align=3D"left" style=3D=
+"padding-bottom: 5px;">
+                                                    <picture>
+                                                        <source media=3D"(m=
+ax-device-width: 568px)" srcset=3D"data:"><img src=3D"https://images.apple.=
+com/dm/anzsea/2018/09/watch-series-4-availability/au/availability_delivery_=
+2x.png" width=3D"154" height=3D"24" style=3D"margin:0;" border=3D"0" alt=3D=
+"Financing"></picture>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align=3D"left" class=3D=
+"sf_14 d-6020258" style=3D"color: #333333; font-size: 14px; line-height: 20=
+px; padding-bottom: 14px; text-align: left;">0% interest available.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align=3D"left" class=3D=
+"sf_14 d-7728784" style=3D"color: #333333; font-size: 14px; line-height: 20=
+px; padding-bottom: 23px;"><a href=3D"https://c.apple.com/r?v=3D2&la=3Den&l=
+c=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2Zi=
+R1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0O=
+p%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2Fo=
+J4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7X3u0Q5k" class=3D"aapl-link" style=3D"bor=
+der: 0; color: #0070c9; outline: 0;">Learn more<img src=3D"https://images.a=
+pple.com/dm/anzsea/2018/09/watch-series-4-availability/au/28_chevron_007_al=
+pha_2x.png" class=3D"more" width=3D"12" height=3D"8" style=3D"display:inlin=
+e; margin:0;" border=3D"0" alt=3D""></a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width=3D"20"></td>
+                                    <td width=3D"192" valign=3D"top">
+                                        <table role=3D"presentation" cellsp=
+acing=3D"0" cellpadding=3D"0" border=3D"0">
+                                            <tr>
+                                                <td align=3D"left" style=3D=
+"padding-bottom: 5px;">
+                                                    <picture>
+                                                        <source media=3D"(m=
+ax-device-width: 568px)" srcset=3D"data:"><img src=3D"https://images.apple.=
+com/dm/anzsea/2018/09/watch-series-4-availability/au/availability_apple_sto=
+re_2x.png" width=3D"154" height=3D"24" style=3D"margin:0;" border=3D"0" alt=
+=3D"Apple Store app"></picture>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align=3D"left" class=3D=
+"sf_14 d-6020258" style=3D"color: #333333; font-size: 14px; line-height: 20=
+px; padding-bottom: 14px; text-align: left;">A more personal way to shop&nb=
+sp;for&nbsp;the latest Apple products&nbsp;and accessories.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align=3D"left" class=3D=
+"sf_14 d-7728784" style=3D"color: #333333; font-size: 14px; line-height: 20=
+px; padding-bottom: 23px;"><a href=3D"https://c.apple.com/r?v=3D2&la=3Den&l=
+c=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2Zi=
+R1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0O=
+p%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2Fo=
+J4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7e3x9t1T" class=3D"aapl-link" style=3D"bor=
+der: 0; color: #0070c9; outline: 0;">Download<img src=3D"https://images.app=
+le.com/dm/anzsea/2018/09/watch-series-4-availability/au/availability_apple_=
+store_download_icon_2x.png" class=3D"more" width=3D"24" height=3D"16" style=
+=3D"display:inline; margin:0;vertical-align:-15%;" border=3D"0" alt=3D""></=
+a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width=3D"20"></td>
+                                    <td width=3D"192" valign=3D"top">
+                                        <table role=3D"presentation" cellsp=
+acing=3D"0" cellpadding=3D"0" border=3D"0">
+                                            <tr>
+                                                <td align=3D"left" style=3D=
+"padding-bottom: 5px;">
+                                                    <picture>
+                                                        <source media=3D"(m=
+ax-device-width: 568px)" srcset=3D"data:"><img src=3D"https://images.apple.=
+com/dm/anzsea/2018/09/watch-series-4-availability/au/availability_personal_=
+setup_2x.png" width=3D"154" height=3D"24" style=3D"margin:0;" border=3D"0" =
+alt=3D"Delivery"></picture>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align=3D"left" class=3D=
+"sf_14 d-6020258" style=3D"color: #333333; font-size: 14px; line-height: 20=
+px; padding-bottom: 14px; text-align: left;">Choose free delivery or pick=
+=C2=A0up available items at=C2=A0an=C2=A0Apple=C2=A0Store.</td>
+                                            </tr>
+                                            <tr>
+                                                <td align=3D"left" class=3D=
+"sf_14 d-7728784" style=3D"color: #333333; font-size: 14px; line-height: 20=
+px; padding-bottom: 23px;"><a href=3D"https://c.apple.com/r?v=3D2&la=3Den&l=
+c=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2Zi=
+R1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0O=
+p%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2Fo=
+J4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7t1E8W2N" class=3D"aapl-link" style=3D"bor=
+der: 0; color: #0070c9; outline: 0;">Learn more<img src=3D"https://images.a=
+pple.com/dm/anzsea/2018/09/watch-series-4-availability/au/28_chevron_007_al=
+pha_2x.png" class=3D"more" width=3D"12" height=3D"8" style=3D"display:inlin=
+e; margin:0;" border=3D"0" alt=3D""></a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width=3D"48"></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <!-- DESKTOP FOOTER -->
+        <tr>
+            <td align=3D"center" bgcolor=3D"#f2f2f2" style=3D"margin: 0 aut=
+o;background-color: #f2f2f2;padding:0 20px 0 20px;">
+                <table role=3D"presentation" width=3D"660" cellspacing=3D"0=
+" cellpadding=3D"0" border=3D"0" class=3D"footer">
+                    <tr>
+                        <td class=3D"f-links-shop" style=3D"border-bottom:1=
+px solid #d6d6d6;color: #d6d6d6;font-size: 14px;line-height: 18px;padding: =
+18px 0 16px 0;text-align: center;">
+                            <p>
+                                <a href=3D"https://c.apple.com/r?v=3D2&la=
+=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9=
+w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2=
+FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vG=
+wem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7A9L8N4h" style=3D"border: 0; outli=
+ne: 0;">Shop Online</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; <a href=
+=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYN=
+xDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CH=
+N5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICF=
+Xl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7=
+r7x0T7Y" style=3D"border: 0; outline: 0;">Find a Store</a>&nbsp;&nbsp;&nbsp=
+;&nbsp;|&nbsp;&nbsp;&nbsp; <span style=3D"color:#555555;white-space:nowrap"=
+><span class=3D"format-detection">133-622</span></span>&nbsp;&nbsp;&nbsp;&n=
+bsp;|&nbsp;&nbsp;&nbsp;
+                                <a href=3D"https://c.apple.com/r?v=3D2&la=
+=3Den&lc=3Daus&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9=
+w7ZL2ZiR1q035Y7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2=
+FCuaw0Op%2FReKVHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vG=
+wem%2FoJ4nDI7dCtCkkIpJqq2g%3D%3D&ct=3DaI7j5G2Q9C" style=3D"border: 0; outli=
+ne: 0;">Get the Apple Store App</a>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align=3D"left" class=3D"f-complete">
+                            <div class=3D"f-legal">
+=09=09=09=09=09=09=09=09<p>1. Trade-in values may vary based on the conditi=
+on and model of your Apple&nbsp;Watch trade-in. You must be at least 18 yea=
+rs old. Offer may not be available in all stores, and not all devices are e=
+ligible for credit. Apple reserves the right to refuse or limit the quantit=
+y of any device for any reason. The value of your current device may be app=
+lied towards the purchase of a new Apple device. Additional terms at
+                                    <a href=3D"http://www.apple.com/au/trad=
+e-in" style=3D"border: 0; outline: 0;"><span style=3D"white-space:nowrap;">=
+www.apple.com/au/trade-in</span></a>.</p>
+=09=09=09=09=09=09=09=09<p>Some bands are sold separately.</p>
+                                <p>Apple&nbsp;Watch Series&nbsp;4 (GPS&nbsp=
+;+ Cellular) requires an iPhone&nbsp;6 or later with iOS&nbsp;12 or later.<=
+/p>
+                                <p>Apple&nbsp;Watch Series&nbsp;4 (GPS) req=
+uires an iPhone&nbsp;5s or later with iOS&nbsp;12 or later.</p>
+                                <p>Carrier plan is required for mobile serv=
+ice. Apple&nbsp;Watch and iPhone service provider must be the same. Not ava=
+ilable with all service providers. Not all service providers support corpor=
+ate plans; check with your employer and service provider. Legacy plans may =
+not be compatible. Prepaid plans are not supported. Coverage is dependent o=
+n your carrier=E2=80=99s network. Roaming is not available outside your car=
+rier=E2=80=99s network coverage area. Contact your service provider for mor=
+e details. Check <a href=3D"http://www.apple.com/au/watch/cellular/" style=
+=3D"border: 0; outline: 0;">www.apple.com/au/watch/cellular</a> for partici=
+pating carriers and eligibility.</p>
+                                <p>TM and =C2=A9 2018 Apple Pty Ltd. PO Box=
+ A2629, South Sydney NSW 1235. ABN: 46 002 510 054. <span style=3D"white-sp=
+ace:nowrap">Tel: 133-622.</span></p>
+                                <p class=3D"f-links-legal">
+                                    <a style=3D"border: 0; color: #555; out=
+line: 0;" href=3D"http://www.apple.com/au/legal/" class=3D"aapl-link">All&n=
+bsp;Rights&nbsp;Reserved</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+                                     <a style=3D"border: 0; color: #555; ou=
+tline: 0;" href=3D"http://www.apple.com/au/privacy/privacy-policy/" class=
+=3D"aapl-link">Privacy&nbsp;Policy</a> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp=
+;
+                                      <a style=3D"border: 0; color: #555; o=
+utline: 0;" href=3D"https://appleid.apple.com/en_AU" class=3D"aapl-link">My=
+&nbsp;Apple&nbsp;ID</a>
+
+                                </p>
+                                <p>If you prefer not to receive commercial =
+email from Apple, or if you=E2=80=99ve changed your email address, please <=
+a href=3D"https://mynews.apple.com/subscriptions?v=3D2&la=3Den_au&a=3DsPjHd=
+9VoF1x94ydOpb0V4BED%2F%2BBHGFyGxz%2BC4EZn7EW8hcnnkYd6dSbPNi9AHqKsEsF49rIAC%=
+2FIbJAiwHoaka3jgA1JwjWWiSGQre9SwRSJuP%2FOMl1Ibj3kSpZ842BQf28Al9GTfJVuf3A8Vk=
+0pPuYrfh5QPZSsRLhc34lAOQ3%2BovN2GQjiWoAEHFThMeNiOK1yBp0wPSkLGyBk1Ue4oBA%3D%=
+3D" class=3D"aapl-link" style=3D"border: 0; color: #666666; outline: 0;"><s=
+pan style=3D"white-space:nowrap;">click&nbsp;here</span></a>.</p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <!-- MOBILE FOOTER -->
+    <!--[if !mso]><\!-->
+    <div style=3D"margin-top: 22px; width:0; max-height:0; overflow:hidden;=
+ display:none; background-color: #f2f2f2;" class=3D"mobile m-footer">
+        <div class=3D"m-gutter">
+            <ul class=3D"m-bnav">
+                <li><a href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus=
+&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y=
+7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReK=
+VHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7d=
+CtCkkIpJqq2g%3D%3D&ct=3DaI7t8E5u9p" style=3D"border: 0; outline: 0;">Shop O=
+nline</a></li>
+                <li><a href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus=
+&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y=
+7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReK=
+VHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7d=
+CtCkkIpJqq2g%3D%3D&ct=3DaI7r6a4j0v" style=3D"border: 0; outline: 0;">Find a=
+ Store</a></li>
+                <li><span class=3D"format-detection">133-622</span></li>
+                <li><a href=3D"https://c.apple.com/r?v=3D2&la=3Den&lc=3Daus=
+&a=3Dz2%2Bnb8HWCoHziyJtbRYNxDd%2FkgyZjZvGSC81JOPXnyq2u4bVIfq9w7ZL2ZiR1q035Y=
+7rQ0pY9eJNG2Ym0OmYa2gGxe5CHN5n%2Bmbqw2iiizzp4H7FvG6jNyZWkUC%2FCuaw0Op%2FReK=
+VHPShLe%2BJDYdEov9ZG7hSGICFXl1RCZn%2BJbVu8KtXeXj%2BTizpreL1vGwem%2FoJ4nDI7d=
+CtCkkIpJqq2g%3D%3D&ct=3DaI7r0E6H1N" style=3D"border: 0; outline: 0;">Get th=
+e Apple Store App</a></li>
+            </ul>
+            <div class=3D"f-legal">
+=09=09=09=09<p>1. Trade-in values may vary based on the condition and model=
+ of your Apple&nbsp;Watch trade-in. You must be at least 18 years old. Offe=
+r may not be available in all stores, and not all devices are eligible for =
+credit. Apple reserves the right to refuse or limit the quantity of any dev=
+ice for any reason. Value of your current device may be applied toward the =
+purchase of a new Apple device. Additional terms at <a href=3D"http://www.a=
+pple.com/au/trade-in" style=3D"border: 0; outline: 0;"><span style=3D"white=
+-space:nowrap;">www.apple.com/au/trade-in</span></a>.</p>
+=09=09=09=09<p>Some bands are sold separately.</p>
+                <p>Apple&nbsp;Watch Series&nbsp;4 (GPS&nbsp;+ Cellular) req=
+uires an iPhone&nbsp;6 or later with iOS&nbsp;12 or later.</p>
+                <p>Apple&nbsp;Watch Series&nbsp;4 (GPS) requires an iPhone&=
+nbsp;5s or later with iOS&nbsp;12 or later.</p>
+                <p>Carrier plan is required for mobile service. Apple&nbsp;=
+Watch and iPhone service provider must be the same. Not available with all =
+service providers. Not all service providers support corporate plans; check=
+ with your employer and service provider. Legacy plans may not be compatibl=
+e. Prepaid plans are not supported. Coverage is dependent on your carrier=
+=E2=80=99s network. Roaming is not available outside your carrier=E2=80=99s=
+ network coverage area. Contact your service provider for more details. Che=
+ck <a href=3D"http://www.apple.com/au/watch/cellular/" style=3D"border: 0; =
+outline: 0;">www.apple.com/au/watch/cellular</a> for participating carriers=
+ and eligibility.</p>
+                <p>TM and =C2=A9 2018 Apple Pty Ltd. PO Box A2629, South Sy=
+dney NSW 1235. ABN: 46 002 510 054. Tel: 133-622.</p>
+                <p><a href=3D"http://www.apple.com/au/legal/" style=3D"bord=
+er: 0; outline: 0;">All&nbsp;Rights&nbsp;Reserved</a><span class=3D"m-vert"=
+>|</span><a href=3D"http://www.apple.com/au/privacy/privacy-policy/" style=
+=3D"border: 0; outline: 0;">Privacy&nbsp;Policy</a><span class=3D"m-vert">|=
+</span><a href=3D"https://appleid.apple.com/en_AU" style=3D"border: 0; outl=
+ine: 0;">My&nbsp;Apple&nbsp;ID</a></p>
+                <p>If you prefer not to receive commercial email from Apple=
+, or if you=E2=80=99ve changed your email address, please <a href=3D"https:=
+//mynews.apple.com/subscriptions?v=3D2&la=3Den_au&a=3DsPjHd9VoF1x94ydOpb0V4=
+BED%2F%2BBHGFyGxz%2BC4EZn7EW8hcnnkYd6dSbPNi9AHqKsEsF49rIAC%2FIbJAiwHoaka3jg=
+A1JwjWWiSGQre9SwRSJuP%2FOMl1Ibj3kSpZ842BQf28Al9GTfJVuf3A8Vk0pPuYrfh5QPZSsRL=
+hc34lAOQ3%2BovN2GQjiWoAEHFThMeNiOK1yBp0wPSkLGyBk1Ue4oBA%3D%3D" class=3D"aap=
+l-link" style=3D"border: 0; color: #666666; outline: 0;"><span style=3D"whi=
+te-space:nowrap;">click&nbsp;here</span></a>.</p>
+            </div>
+        </div>
+    </div>
+    <!-- <![endif]-->
+</body>
+
+</html>
+------=_Part_3622492_106401463.1538699452667--

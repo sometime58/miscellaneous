@@ -1,0 +1,997 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 2002:a9d:6153:0:0:0:0:0 with SMTP id c19-v6csp337174otk;
+        Wed, 29 Aug 2018 21:05:59 -0700 (PDT)
+X-Google-Smtp-Source: ANB0VdY6/M6kKCDSz+ax0ddmhXrK2ut2CIvjuTfCBfj6rKiQTMdlEHAKdkj3Ag4YUnHYHpkmZylv
+X-Received: by 2002:adf:eb0d:: with SMTP id s13-v6mr6123771wrn.174.1535601959374;
+        Wed, 29 Aug 2018 21:05:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1535601959; cv=none;
+        d=google.com; s=arc-20160816;
+        b=rloTueqwJ2vSwOkj92j3jnZHlJItUlcu4iApFqFpgvfRwk6f5petMDBYoH0WPr1gVA
+         rfjqLkELmTy7Ewt+k8d9GhocaRZnFPTGmH9LdalaWuVI495FxAlqjJFaNSkTO9Eg3dF6
+         xiNmFTL6UpTvv2vT+FZrgxAuLWE4PXynN35CIRaXB/iUuCBiWTRIYgY7fmY5kHDmBNlv
+         mlLwqN2/rOQYiEkPCdBcDROBUr+TD+f45/oXA9vzgd08ozW8b6Ryotz31GXkF5RMSLLX
+         cvK5gNLU1zoSxnkHFoiRwTv6yMZnIt04BCTiW4VkGgzEMun0KWc3Z+HbJTCCMKH3J2x/
+         4tnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:subject:message-id:to:reply-to:from:date
+         :dkim-signature:dkim-signature;
+        bh=dwXp33gdi5k9RY6q6wwaHpKnILyPjVrQNK0vqd53QQo=;
+        b=DICB/LSN7EDOuYt15h8sShWe4BrzWbJj5ZfFP8Y24Nu+nPXMFq/eRGUTICu8X7tT/y
+         vKxd8iabt19z6wX6sCMdMzCXjxf9Lu2SHvsa6qvj/q1YWRj2YtmtvwvPYsNXQZF+Ey1r
+         FNlAhprONnRO4u0uFu2xZ5DDHe8OCyQ0k0sThGMrlY089FhbIvZlHVzIQJtWKRcdM6SB
+         Fjw76nnSwoEd8HJzaYjFII1gfZAiwA7oQ4Ze5dqI6Tu1FZHLcFJEJ+g5k5+k1rx9vrwH
+         NWYrEtqbK/0il7onjOpjIIQF1nhMi7zurl4V+srCLMXWZUgBg7xEJG605XTowcyN0KcP
+         nNxA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@jetbrains.com header.s=m1 header.b=UW++1PDy;
+       dkim=pass header.i=@mktdns.com header.s=m1 header.b=kr8CPPeV;
+       spf=pass (google.com: domain of 426-qvd-114.0.20012.0.0.18495.9.92057785-1@mkto-mailer.jetbrains.com designates 185.28.196.44 as permitted sender) smtp.mailfrom=426-QVD-114.0.20012.0.0.18495.9.92057785-1@mkto-mailer.jetbrains.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=jetbrains.com
+Return-Path: <426-QVD-114.0.20012.0.0.18495.9.92057785-1@mkto-mailer.jetbrains.com>
+Received: from mkto-mailer.jetbrains.com (mkto-mailer.jetbrains.com. [185.28.196.44])
+        by mx.google.com with ESMTPS id o128-v6si522807wme.154.2018.08.29.21.05.58
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 29 Aug 2018 21:05:59 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 426-qvd-114.0.20012.0.0.18495.9.92057785-1@mkto-mailer.jetbrains.com designates 185.28.196.44 as permitted sender) client-ip=185.28.196.44;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@jetbrains.com header.s=m1 header.b=UW++1PDy;
+       dkim=pass header.i=@mktdns.com header.s=m1 header.b=kr8CPPeV;
+       spf=pass (google.com: domain of 426-qvd-114.0.20012.0.0.18495.9.92057785-1@mkto-mailer.jetbrains.com designates 185.28.196.44 as permitted sender) smtp.mailfrom=426-QVD-114.0.20012.0.0.18495.9.92057785-1@mkto-mailer.jetbrains.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=jetbrains.com
+X-MSFBL: c29tZXRpbWU1ODU4QGdtYWlsLmNvbUBkdnAtMTg1LTI4LTE5Ni00NEBiZy1sb25k
+	LTMwQDQyNi1RVkQtMTE0OjA6MTI2NDM6NTAyNzE6MDoxODQ5NTo5OjIwMDEyOjky
+	MDU3Nzg1LTE=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1535601958;
+	s=m1; d=jetbrains.com; i=@jetbrains.com;
+	h=Date:From:To:Subject:MIME-Version:Content-Type;
+	bh=dwXp33gdi5k9RY6q6wwaHpKnILyPjVrQNK0vqd53QQo=;
+	b=UW++1PDyu+sCYMPsLa7BPkBZy/N+k6ri0OjQFPnJNVpnPm+6rr1L4TqrJTYApuoT
+	qzb9otuIl4U5OreVS/kdreTUqtvZptXqPgKN3LZOl95yBOn6HBAo9CjbHCqCloslLRG
+	u2T6ZEp7K+ScVf5EnmLQzY+RU60lQpUu108AExjE=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1535601958;
+	s=m1; d=mktdns.com; i=@mktdns.com;
+	h=Date:From:To:Subject:MIME-Version:Content-Type;
+	bh=dwXp33gdi5k9RY6q6wwaHpKnILyPjVrQNK0vqd53QQo=;
+	b=kr8CPPeVntmJa/rqmGh2JEtYtu0G4I7rBymUVDi/3WBMdo7Ikraon19doFcQg97h
+	Jo7WYTPU5MKX0YqzsYzTtIPjzs50ITDcBnxAXFeAR/uYEa4b/cgSSrPPa2AetnjOBYm
+	5I3Ywhv4reylZmjj81XslwtTggi2tYBBHRQTQILU=
+Date: Wed, 29 Aug 2018 23:05:58 -0500 (CDT)
+From: PyCharm Team <pycharm-support@jetbrains.com>
+Reply-To: pycharm-support@jetbrains.com
+To: sometime5858@gmail.com
+Message-ID: <242765043.313954661.1535601958831.JavaMail.root@lon-mas2.marketo.org>
+Subject: JetBrains PyCharm: Welcome to the PyCharm Ecosystem!
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_313954659_1468358869.1535601958824"
+X-Binding: bg-lond-30
+X-MarketoID: 426-QVD-114:0:12643:50271:0:18495:9:20012:92057785-1
+X-MktArchive: false
+X-Mailfrom: 426-QVD-114.0.20012.0.0.18495.9.92057785-1@mkto-mailer.jetbrains.com
+X-MSYS-API: {"options":{"open_tracking":false,"click_tracking":false}}
+X-MktMailDKIM: true
+X-TUID: 1DSrwbpCx87s
+
+------=_Part_313954659_1468358869.1535601958824
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml" style=3D"width: 100%;">
+<head>=20
+<!-- Marketo Variable Definitions -->=20
+<!--img-text-button-->  =20
+<!--spacer-->  =20
+<!--text-editor-->     =20
+<!--cta-->            =20
+<!--CTA 2 buttons variables-->         =20
+<!--Speaker variables-->   =20
+<!--logo-with-3-links.html variables-->       =20
+<!--button-with-text-right.html-->       =20
+<!--separator.html--> =20
+<!--kotlin-conf-footer.html-->  =20
+<!-- footer.html -->  =20
+<!-- img70x70-text.html -->        =20
+<!-- Other Meta Tags -->=20
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8" />=
+=20
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1,=
+ minimum-scale=3D1, maximum-scale=3D1" />=20
+<meta name=3D"robots" content=3D"noindex,nofollow" />=20
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge" />=20
+<link href=3D"https://fonts.googleapis.com/css?family=3DRaleway:300,400,700=
+" rel=3D"stylesheet" type=3D"text/css" />=20
+<link href=3D"https://fonts.googleapis.com/css?family=3DLato:300,400,700" r=
+el=3D"stylesheet" type=3D"text/css" />=20
+<style type=3D"text/css">
+    /*trying to apply Lato font with fallback to standard fonts*/
+    [style*=3D"Lato"] {
+      font-family: 'Lato', Arial, sans-serif !important
+    }
+  </style>=20
+</head>=20
+<body style=3D"margin-bottom: 0; -webkit-text-size-adjust: 100%; padding-bo=
+ttom: 0; min-width: 100%; margin-top: 0; margin-right: 0; -ms-text-size-adj=
+ust: 100%; margin-left: 0; padding-top: 0; padding-right: 0; padding-left: =
+0; width: 100%;"><style type=3D"text/css">div#emailPreHeader{ display: none=
+ !important; }</style><div id=3D"emailPreHeader" style=3D"mso-hide:all; vis=
+ibility:hidden; opacity:0; color:transparent; mso-line-height-rule:exactly;=
+ line-height:0; font-size:0px; overflow:hidden; border-width:0; display:non=
+e !important;">Thanks for downloading PyCharm! We have prepared a few email=
+s introducing you to the world of productive Python, Web and Scientific dev=
+elopment with PyCharm.</div>=20
+<div style=3D"display:none; white-space:nowrap; font:15px courier; line-hei=
+ght:0;">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+</div>=20
+<!-- Outer table START -->=20
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-=
+lspace: 0pt; mso-table-rspace: 0pt; border-spacing: 0; border-collapse: col=
+lapse;">=20
+<tbody>=20
+<tr>=20
+<td class=3D"outer" valign=3D"top" style=3D"-webkit-text-size-adjust: 100%;=
+ -ms-text-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; =
+word-break: break-word; -webkit-hyphens: none; -moz-hyphens: none; hyphens:=
+ none; min-width: 600px; border-collapse: collapse; background-color: #eeee=
+ee;">=20
+<center data-parsed=3D"" style=3D"min-width:650px;width:100%">=20
+<table width=3D"650" align=3D"center" id=3D"boxing" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" style=3D"-webkit-text-size-adjust: 100%; -ms-text=
+-size-adjust: 100%; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-sp=
+acing: 0; border-collapse: collapse;">=20
+<tbody>=20
+<tr>=20
+<td class=3D"mktoContainer boxedbackground" id=3D"template-wrapper" style=
+=3D"-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-table-l=
+space: 0pt; mso-table-rspace: 0pt; word-break: break-word; -webkit-hyphens:=
+ none; -moz-hyphens: none; hyphens: none; border-collapse: collapse;">
+<table class=3D"body mktoModule" id=3D"logo-with-3-links2dd9a889-e895-42b2-=
+b125-dff10dcd657a" style=3D"Margin:0;background:#eee;border-collapse:collap=
+se;border-spacing:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;fo=
+nt-size:16px;font-weight:400;height:100%;line-height:1.3;margin:0 auto;padd=
+ing:0;table-layout:fixed;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td class=3D"center" align=3D"center" valign=3D"top" style=3D"-moz-hyphens:=
+auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color=
+:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:=
+400;hyphens:auto;line-height:1.3;margin:0;padding:0;text-align:left;vertica=
+l-align:top;word-wrap:break-word">=20
+<center data-parsed=3D"" style=3D"min-width:650px;width:100%">=20
+<table align=3D"center" class=3D"container email-container float-center" st=
+yle=3D"Margin:0 auto;background:#fff;border-collapse:collapse;border-spacin=
+g:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top=
+;width:650px">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td style=3D"-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collaps=
+e:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;f=
+ont-size:16px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding=
+:0;text-align:left;vertical-align:top;word-wrap:break-word">=20
+<table class=3D"row lead-nurturing-header" style=3D"background-color:#fff;b=
+order-collapse:collapse;border-spacing:0;display:table;padding:0;position:r=
+elative;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th class=3D"small-12 large-12 columns first last" style=3D"Margin:0 auto;c=
+olor:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-wei=
+ght:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:0;padding-le=
+ft:20px;padding-right:0;text-align:left;width:650px">=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;=
+font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-alig=
+n:left">=20
+<table class=3D"row" style=3D"border-collapse:collapse;border-spacing:0;dis=
+play:table;padding:0;position:relative;text-align:left;vertical-align:top;w=
+idth:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th class=3D"vertical-align-middle small-12 large-9 columns first" valign=
+=3D"middle" style=3D"Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Aria=
+l,sans-serif;font-size:16px;font-weight:400;line-height:1.3;margin:0 auto;p=
+adding:0;padding-bottom:0;padding-left:0!important;padding-right:0!importan=
+t;text-align:left;vertical-align:middle;width:75%">=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;=
+font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-alig=
+n:left">=20
+<table class=3D"row" style=3D"border-collapse:collapse;border-spacing:0;dis=
+play:table;padding:0;position:relative;text-align:left;vertical-align:top;w=
+idth:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th class=3D"vertical-align-middle small-12 large-3 columns first" valign=
+=3D"middle" style=3D"Margin:0 auto;color:#0a0a0a;font-family:Helvetica,Aria=
+l,sans-serif;font-size:16px;font-weight:400;line-height:1.3;margin:0 auto;p=
+adding:0;padding-bottom:0;padding-left:0!important;padding-right:0!importan=
+t;text-align:left;vertical-align:middle;width:25%">=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;=
+font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-alig=
+n:left">=20
+<!--image container start-->=20
+<div class=3D"mktoImg" id=3D"logo-img2dd9a889-e895-42b2-b125-dff10dcd657a" =
+mktolockimgsize=3D"true">=20
+<a href=3D
+"http://go.jetbrains.com/re010D1E0V5OqQQCZ06g0M0" target=3D"_blank"
+> <img align=3D"center" class=3D"lead-nurturing-product-logo float-center l=
+ead-nurturing-product-logo float-center lead-nurturing-product-logo float-c=
+enter lead-nurturing-product-logo float-center" width=3D"90" height=3D"90" =
+style=3D"-ms-interpolation-mode:bicubic;clear:both;display:block;height:aut=
+o!important;max-height:90px!important;max-width:90px!important;outline:0;te=
+xt-decoration:none;width:100%!important" src=3D"https://info.jetbrains.com/=
+rs/426-QVD-114/images/pycharm%402x.png" /> </a>=20
+</div>=20
+<!--image container end--> </th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+<th class=3D"vertical-align-middle show-for-large small-12 large-9 columns =
+last" valign=3D"middle" style=3D"Margin:0 auto;color:#0a0a0a;font-family:He=
+lvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-height:1.3;mar=
+gin:0 auto;padding:0;padding-bottom:0;padding-left:0!important;padding-righ=
+t:0!important;text-align:left;vertical-align:middle;width:75%">=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;=
+font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-alig=
+n:left">=20
+<table class=3D"menu" style=3D"border-collapse:collapse;border-spacing:0;pa=
+dding:0;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td style=3D"-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collaps=
+e:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;f=
+ont-size:16px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding=
+:0;text-align:left;vertical-align:top;word-wrap:break-word">=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th class=3D"menu-item lead-nurturing-links float-center" style=3D"Margin:0=
+ auto;color:#0a0a0a;float:none;font-family:Helvetica,Arial,sans-serif;font-=
+size:16px;font-weight:400;line-height:1.3;margin:0 auto;padding:10px;paddin=
+g-right:10px;text-align:center"><a href=3D
+"http://go.jetbrains.com/z0gq1MO006eVQ2ECQZ60D00" style=3D"Margin:0;color:#=
+0e0e0e;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:70=
+0;line-height:1.3;margin:0;padding:0;text-align:left;text-decoration:none"
+>SCREENCASTS</a></th>=20
+<th class=3D"menu-item lead-nurturing-links float-center" style=3D"Margin:0=
+ auto;color:#0a0a0a;float:none;font-family:Helvetica,Arial,sans-serif;font-=
+size:16px;font-weight:400;line-height:1.3;margin:0 auto;padding:10px;paddin=
+g-right:10px;text-align:center"><a href=3D
+"http://go.jetbrains.com/wVqDQeMQO0000ZC760g130E" style=3D"Margin:0;color:#=
+0e0e0e;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:70=
+0;line-height:1.3;margin:0;padding:0;text-align:left;text-decoration:none"
+>DOCUMENTATION</a></th>=20
+<th class=3D"menu-item lead-nurturing-links float-center" style=3D"Margin:0=
+ auto;color:#0a0a0a;float:none;font-family:Helvetica,Arial,sans-serif;font-=
+size:16px;font-weight:400;line-height:1.3;margin:0 auto;padding:10px;paddin=
+g-right:10px;text-align:center"><a href=3D
+"http://go.jetbrains.com/AE680eQV10QMCZg00O040qD" style=3D"Margin:0;color:#=
+0e0e0e;font-family:Helvetica,Arial,sans-serif;font-size:12px;font-weight:70=
+0;line-height:1.3;margin:0;padding:0;text-align:left;text-decoration:none"
+>BLOG</a></th>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+<th class=3D"show-for-large small-12 large-3 columns last" style=3D"Margin:=
+0 auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:16px;=
+font-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:0;pa=
+dding-left:0!important;padding-right:0!important;text-align:left;width:25%"=
+>=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;=
+font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-alig=
+n:left"></th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+</center> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table class=3D"body mktoModule" id=3D"custom-text-wrapper" style=3D"Margin=
+:0;background:#eee;border-collapse:collapse;border-spacing:0;color:#000000;=
+font-family:Arial,sans-serif,Lato;font-size:16px;font-weight:400;height:100=
+%;line-height:1.3;margin:0 auto;padding:0;table-layout:fixed;text-align:lef=
+t;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td class=3D"center" align=3D"center" valign=3D"top" style=3D"-moz-hyphens:=
+auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color=
+:#000000;font-family:Arial,sans-serif,Lato;font-size:16px;font-weight:400;h=
+yphens:auto;line-height:1.3;margin:0;padding:0;text-align:left;vertical-ali=
+gn:top;word-wrap:break-word">=20
+<center data-parsed=3D"" style=3D"min-width:650px;width:100%">=20
+<table align=3D"center" class=3D"container email-container float-center" st=
+yle=3D"Margin:0 auto;background:#FFFFFF;border-collapse:collapse;border-spa=
+cing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:=
+top;width:650px">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td style=3D"-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collaps=
+e:collapse!important;color:#000000;font-family:Arial,sans-serif,Lato;font-s=
+ize:16px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding:0;te=
+xt-align:left;vertical-align:top;word-wrap:break-word">=20
+<table class=3D"row" style=3D"border-collapse:collapse;border-spacing:0;dis=
+play:table;padding:0;position:relative;text-align:left;vertical-align:top;w=
+idth:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th class=3D"text-editor small-12 large-12 columns first last" style=3D"Mar=
+gin:0 auto;background-color:#FFFFFF;color:#FFFFFF;font-family:Arial,sans-se=
+rif,Lato;font-size:16px;font-weight:400;line-height:1.3;margin:0 auto;paddi=
+ng:0;padding-bottom:0;padding-left:20px;padding-right:20px;text-align:left;=
+width:650px">=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#000000;font-family:Arial,sans-serif,Lato;font-=
+size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:lef=
+t">=20
+<!--spacer start-->=20
+<table class=3D"spacer" style=3D"border-collapse:collapse;border-spacing:0;=
+padding:0;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td height=3D"10px" style=3D"-moz-hyphens:auto;-webkit-hyphens:auto;Margin:=
+0;border-collapse:collapse!important;color:#0a0a0a;font-family:Arial,sans-s=
+erif,Lato;font-size:10px;font-weight:400;hyphens:auto;line-height:10px;marg=
+in:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:=
+top;word-wrap:break-word"> &nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+<!--spacer end-->=20
+<div class=3D"mktoText" id=3D"text-editor-content">=20
+<p>Hello,
+</p>=20
+<p>Thanks for downloading PyCharm Community Edition! We have prepared a few=
+ emails introducing you to the world of productive Python, Web and Scientif=
+ic development with PyCharm.</p>=20
+<p><strong>Getting Started</strong></p>=20
+<p>If you prefer a video format, we have an amazing set of screencasts that=
+ walk you through PyCharm=E2=80=99s core concepts and functionality <a href=
+=3D
+"http://go.jetbrains.com/wVqDQeMQO0000ZC760g130E" target=3D"_blank" style=
+=3D"color: #18a3fa;"
+>available on our website</a>.</p>=20
+<p>Once you=E2=80=99ve <a href=3D
+"http://go.jetbrains.com/c0e01gZQ0OQV6CMD90q5E00" target=3D"_blank" style=
+=3D"color: #18a3fa;"
+>installed&nbsp;and initially configured</a>&nbsp;your PyCharm, you=E2=80=
+=99re ready to create your first Python project. Simply follow the <a href=
+=3D
+"http://go.jetbrains.com/MQ0D6g0qQEeCM00aO0ZV061" target=3D"_blank" style=
+=3D"color: #18a3fa;"
+>First steps tutorial</a> that teaches you some of the PyCharm essentials.<=
+br /></p>=20
+<p>If you=E2=80=99re going to work on Django projects, we recommend that yo=
+u start using <a href=3D
+"http://go.jetbrains.com/kQ6bO0Q00EZ01VMgqC07e0D" target=3D"_blank" style=
+=3D"color: #18a3fa;"
+>PyCharm Professional Edition</a> right away. It has a 30-day free trial an=
+d includes many helpful web development features <a href=3D
+"http://go.jetbrains.com/P000Q6MQOV0Z8e0E0qcDCg1" target=3D"_blank" id=3D""=
+ style=3D"color: #18a3fa;"
+>in addition to PyCharm Community Edition</a>. With PyCharm Pro you can go =
+through the <a href=3D
+"http://go.jetbrains.com/Lge1DV00C09E6QdqZ0O0M0Q" target=3D"_blank" style=
+=3D"color: #18a3fa;"
+>Creating and running your first Django app</a> tutorial.<br /></p>=20
+</div>=20
+<!--spacer start-->=20
+<table class=3D"spacer" style=3D"border-collapse:collapse;border-spacing:0;=
+padding:0;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td height=3D"10px" style=3D"-moz-hyphens:auto;-webkit-hyphens:auto;Margin:=
+0;border-collapse:collapse!important;color:#000000;font-family:Arial,sans-s=
+erif,Lato;font-size:10px;font-weight:400;hyphens:auto;line-height:10px;marg=
+in:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:=
+top;word-wrap:break-word"> &nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+<!--spacer end--> </th>=20
+<th class=3D"expander" style=3D"Margin:0;color:#0a0a0a;font-family:Arial,sa=
+ns-serif,Lato;font-size:16px;font-weight:400;line-height:1.3;margin:0;paddi=
+ng:0!important;text-align:left;visibility:hidden;width:0"></th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+</center> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table class=3D"body mktoModule" id=3D"custom-text-wrapper63774b02-91eb-43f=
+b-9d0b-eaf05b65c8b4" style=3D"Margin:0;background:#eee;border-collapse:coll=
+apse;border-spacing:0;color:#000000;font-family:Arial,sans-serif,Lato;font-=
+size:16px;font-weight:400;height:100%;line-height:1.3;margin:0 auto;padding=
+:0;table-layout:fixed;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td class=3D"center" align=3D"center" valign=3D"top" style=3D"-moz-hyphens:=
+auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color=
+:#000000;font-family:Arial,sans-serif,Lato;font-size:16px;font-weight:400;h=
+yphens:auto;line-height:1.3;margin:0;padding:0;text-align:left;vertical-ali=
+gn:top;word-wrap:break-word">=20
+<center data-parsed=3D"" style=3D"min-width:650px;width:100%">=20
+<table align=3D"center" class=3D"container email-container float-center" st=
+yle=3D"Margin:0 auto;background:#E0E0E0;border-collapse:collapse;border-spa=
+cing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:=
+top;width:650px">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td style=3D"-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collaps=
+e:collapse!important;color:#000000;font-family:Arial,sans-serif,Lato;font-s=
+ize:16px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding:0;te=
+xt-align:left;vertical-align:top;word-wrap:break-word">=20
+<table class=3D"row" style=3D"border-collapse:collapse;border-spacing:0;dis=
+play:table;padding:0;position:relative;text-align:left;vertical-align:top;w=
+idth:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th class=3D"text-editor small-12 large-12 columns first last" style=3D"Mar=
+gin:0 auto;background-color:#E0E0E0;color:#E0E0E0;font-family:Arial,sans-se=
+rif,Lato;font-size:16px;font-weight:400;line-height:1.3;margin:0 auto;paddi=
+ng:0;padding-bottom:0;padding-left:20px;padding-right:20px;text-align:left;=
+width:650px">=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#000000;font-family:Arial,sans-serif,Lato;font-=
+size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:lef=
+t">=20
+<!--spacer start-->=20
+<table class=3D"spacer" style=3D"border-collapse:collapse;border-spacing:0;=
+padding:0;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td height=3D"0px" style=3D"-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0=
+;border-collapse:collapse!important;color:#0a0a0a;font-family:Arial,sans-se=
+rif,Lato;font-size:0px;font-weight:400;hyphens:auto;line-height:0px;margin:=
+0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:top=
+;word-wrap:break-word"> &nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+<!--spacer end-->=20
+<div class=3D"mktoText" id=3D"text-editor-content63774b02-91eb-43fb-9d0b-ea=
+f05b65c8b4">=20
+<p><strong>Questions?</strong><br />Reply to this email, or <a href=3D
+"http://go.jetbrains.com/E0M0Q6ZeVaq0Q0gD1E0eO0C" target=3D"_blank" id=3D""=
+ style=3D"color: #18a3fa;"
+>contact our support team</a>.<br />For the latest news and helpful tips, c=
+heck out the product blog or follow us on Twitter <a href=3D
+"http://go.jetbrains.com/yCEQqgZQ0M0ODVb0ef00610" target=3D"_blank" style=
+=3D"color: #18a3fa;"
+>@pycharm</a>.<br /></p>=20
+</div>=20
+<!--spacer start-->=20
+<table class=3D"spacer" style=3D"border-collapse:collapse;border-spacing:0;=
+padding:0;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td height=3D"10px" style=3D"-moz-hyphens:auto;-webkit-hyphens:auto;Margin:=
+0;border-collapse:collapse!important;color:#000000;font-family:Arial,sans-s=
+erif,Lato;font-size:10px;font-weight:400;hyphens:auto;line-height:10px;marg=
+in:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:=
+top;word-wrap:break-word"> &nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+<!--spacer end--> </th>=20
+<th class=3D"expander" style=3D"Margin:0;color:#0a0a0a;font-family:Arial,sa=
+ns-serif,Lato;font-size:16px;font-weight:400;line-height:1.3;margin:0;paddi=
+ng:0!important;text-align:left;visibility:hidden;width:0"></th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+</center> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table class=3D"body mktoModule" id=3D"custom-text-wrapperbd894158-a704-483=
+6-8b8c-575f2a1d10b2" style=3D"Margin:0;background:#eee;border-collapse:coll=
+apse;border-spacing:0;color:#000000;font-family:Arial,sans-serif,Lato;font-=
+size:16px;font-weight:400;height:100%;line-height:1.3;margin:0 auto;padding=
+:0;table-layout:fixed;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td class=3D"center" align=3D"center" valign=3D"top" style=3D"-moz-hyphens:=
+auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color=
+:#000000;font-family:Arial,sans-serif,Lato;font-size:16px;font-weight:400;h=
+yphens:auto;line-height:1.3;margin:0;padding:0;text-align:left;vertical-ali=
+gn:top;word-wrap:break-word">=20
+<center data-parsed=3D"" style=3D"min-width:650px;width:100%">=20
+<table align=3D"center" class=3D"container email-container float-center" st=
+yle=3D"Margin:0 auto;background:#FFFFFF;border-collapse:collapse;border-spa=
+cing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:=
+top;width:650px">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td style=3D"-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collaps=
+e:collapse!important;color:#000000;font-family:Arial,sans-serif,Lato;font-s=
+ize:16px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding:0;te=
+xt-align:left;vertical-align:top;word-wrap:break-word">=20
+<table class=3D"row" style=3D"border-collapse:collapse;border-spacing:0;dis=
+play:table;padding:0;position:relative;text-align:left;vertical-align:top;w=
+idth:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th class=3D"text-editor small-12 large-12 columns first last" style=3D"Mar=
+gin:0 auto;background-color:#FFFFFF;color:#FFFFFF;font-family:Arial,sans-se=
+rif,Lato;font-size:16px;font-weight:400;line-height:1.3;margin:0 auto;paddi=
+ng:0;padding-bottom:0;padding-left:20px;padding-right:20px;text-align:left;=
+width:650px">=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#000000;font-family:Arial,sans-serif,Lato;font-=
+size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:lef=
+t">=20
+<!--spacer start-->=20
+<table class=3D"spacer" style=3D"border-collapse:collapse;border-spacing:0;=
+padding:0;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td height=3D"0px" style=3D"-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0=
+;border-collapse:collapse!important;color:#0a0a0a;font-family:Arial,sans-se=
+rif,Lato;font-size:0px;font-weight:400;hyphens:auto;line-height:0px;margin:=
+0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:top=
+;word-wrap:break-word"> &nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+<!--spacer end-->=20
+<div class=3D"mktoText" id=3D"text-editor-contentbd894158-a704-4836-8b8c-57=
+5f2a1d10b2">=20
+<p>Enjoy your journey with PyCharm!&nbsp;</p>=20
+<p>Your JetBrains Team<br /><em>The Drive to Develop</em></p>=20
+</div>=20
+<!--spacer start-->=20
+<table class=3D"spacer" style=3D"border-collapse:collapse;border-spacing:0;=
+padding:0;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td height=3D"20px" style=3D"-moz-hyphens:auto;-webkit-hyphens:auto;Margin:=
+0;border-collapse:collapse!important;color:#000000;font-family:Arial,sans-s=
+erif,Lato;font-size:20px;font-weight:400;hyphens:auto;line-height:20px;marg=
+in:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:=
+top;word-wrap:break-word"> &nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+<!--spacer end--> </th>=20
+<th class=3D"expander" style=3D"Margin:0;color:#0a0a0a;font-family:Arial,sa=
+ns-serif,Lato;font-size:16px;font-weight:400;line-height:1.3;margin:0;paddi=
+ng:0!important;text-align:left;visibility:hidden;width:0"></th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+</center> </td>=20
+</tr>=20
+</tbody>=20
+</table>
+<table class=3D"body mktoModule" id=3D"generic-footer" style=3D"Margin:0;ba=
+ckground:#eee;border-collapse:collapse;border-spacing:0;color:#0a0a0a;font-=
+family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;height:100=
+%;line-height:1.3;margin:0 auto;padding:0;table-layout:fixed;text-align:lef=
+t;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td class=3D"center" align=3D"center" valign=3D"top" style=3D"-moz-hyphens:=
+auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color=
+:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:=
+400;hyphens:auto;line-height:1.3;margin:0;padding:0;text-align:left;vertica=
+l-align:top;word-wrap:break-word">=20
+<center data-parsed=3D"" style=3D"min-width:650px;width:100%">=20
+<table align=3D"center" class=3D"container email-container float-center" st=
+yle=3D"Margin:0 auto;background:#fff;border-collapse:collapse;border-spacin=
+g:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top=
+;width:650px">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td style=3D"-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collaps=
+e:collapse!important;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;f=
+ont-size:16px;font-weight:400;hyphens:auto;line-height:1.3;margin:0;padding=
+:0;text-align:left;vertical-align:top;word-wrap:break-word">=20
+<table class=3D"row generic-footer" style=3D"background-color:#eee;border-c=
+ollapse:collapse;border-spacing:0;display:table;height:240px;padding:0;posi=
+tion:relative;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th class=3D"small-12 large-12 columns first last" style=3D"Margin:0 auto;c=
+olor:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-wei=
+ght:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:0;padding-le=
+ft:0;padding-right:0;text-align:left;width:650px">=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;=
+font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-alig=
+n:left">=20
+<table class=3D"row generic-footer-section" style=3D"background-color:#eee;=
+border-collapse:collapse;border-spacing:0;display:table;padding:0;position:=
+relative;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th class=3D"small-6 large-4 columns first" style=3D"Margin:0 auto;color:#0=
+a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400=
+;line-height:1.3;margin:0 auto;padding:0;padding-bottom:0;padding-left:0!im=
+portant;padding-right:0!important;text-align:left;width:33.33333%">=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;=
+font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-alig=
+n:left">=20
+<table class=3D"spacer" style=3D"border-collapse:collapse;border-spacing:0;=
+padding:0;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td height=3D"30px" style=3D"-moz-hyphens:auto;-webkit-hyphens:auto;Margin:=
+0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Ar=
+ial,sans-serif;font-size:30px;font-weight:400;hyphens:auto;line-height:30px=
+;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-a=
+lign:top;word-wrap:break-word"> &nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table> <img width=3D"200" class=3D"generic-footer-logo" src=3D"https://in=
+fo.jetbrains.com/rs/426-QVD-114/images/logo-footer.png" style=3D"-ms-interp=
+olation-mode:bicubic;clear:both;display:block;height:auto!important;max-wid=
+th:200px!important;outline:0;padding-left:10px;text-decoration:none;width:1=
+00%!important" /> </th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+<th class=3D"small-1 large-1 columns" style=3D"Margin:0 auto;color:#0a0a0a;=
+font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-=
+height:1.3;margin:0 auto;padding:0;padding-bottom:0;padding-left:0!importan=
+t;padding-right:0!important;text-align:left;width:8.33333%">=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;=
+font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-alig=
+n:left"></th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+<th class=3D"small-5 large-4 columns" style=3D"Margin:0 auto;color:#0a0a0a;=
+font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-=
+height:1.3;margin:0 auto;padding:0;padding-bottom:0;padding-left:0!importan=
+t;padding-right:0!important;text-align:left;width:33.33333%">=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;=
+font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-alig=
+n:left">=20
+<table class=3D"spacer" style=3D"border-collapse:collapse;border-spacing:0;=
+padding:0;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td height=3D"30px" style=3D"-moz-hyphens:auto;-webkit-hyphens:auto;Margin:=
+0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Ar=
+ial,sans-serif;font-size:30px;font-weight:400;hyphens:auto;line-height:30px=
+;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-a=
+lign:top;word-wrap:break-word"> &nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+<table class=3D"spacer show-for-large" style=3D"border-collapse:collapse;bo=
+rder-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td height=3D"20px" style=3D"-moz-hyphens:auto;-webkit-hyphens:auto;Margin:=
+0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Ar=
+ial,sans-serif;font-size:20px;font-weight:400;hyphens:auto;line-height:20px=
+;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-a=
+lign:top;word-wrap:break-word"> &nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table> <p class=3D"generic-footer-address" style=3D"Margin:0;Margin-botto=
+m:10px;color:#0a0a0a;font-family:Arial,sans-serif,Lato;font-size:12px!impor=
+tant;font-weight:400;line-height:1.3;margin:0;margin-bottom:10px;padding:0;=
+text-align:left"> Our mailing address: JetBrains s.r.o.<br />Na hrebenech I=
+I 1718/10<br />Prague 4 147 00, Czech Republic</p>=20
+<table class=3D"row" style=3D"border-collapse:collapse;border-spacing:0;dis=
+play:table;padding:0;position:relative;text-align:left;vertical-align:top;w=
+idth:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th class=3D"small-3 large-2 columns first" style=3D"Margin:0 auto;color:#0=
+a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400=
+;line-height:1.3;margin:0 auto;padding:0;padding-bottom:0;padding-left:0!im=
+portant;padding-right:0!important;text-align:left;width:16.66667%">=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;=
+font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-alig=
+n:left">=20
+<!--image container start-->=20
+<div class=3D"mktoImg" id=3D"footer-social-1" mktolockimgsize=3D"true">
+<a href=3D
+"http://go.jetbrains.com/yCEQqgZQ0M0ODVb0ef00610" target=3D"_blank"
+> <img class=3D"social-icon" width=3D"20" height=3D"20" style=3D"-ms-interp=
+olation-mode:bicubic;clear:both;display:block;height:auto!important;max-hei=
+ght:20px!important;max-width:20px!important;outline:0;text-decoration:none;=
+width:100%!important" src=3D"https://info.jetbrains.com/rs/426-QVD-114/imag=
+es/icons_mail_twitter_retina.png" /> </a>
+</div>=20
+<!--image container end--> </th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+<th class=3D"small-3 large-2 columns" style=3D"Margin:0 auto;color:#0a0a0a;=
+font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-=
+height:1.3;margin:0 auto;padding:0;padding-bottom:0;padding-left:0!importan=
+t;padding-right:0!important;text-align:left;width:16.66667%">=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;=
+font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-alig=
+n:left">=20
+<!--image container start-->=20
+<div class=3D"mktoImg" id=3D"footer-social-2" mktolockimgsize=3D"true">
+<a href=3D
+"http://go.jetbrains.com/AE680eQV10QMCZg00O040qD" target=3D"_blank"
+> <img class=3D"social-icon-google-plus" width=3D"25" height=3D"20" style=
+=3D"-ms-interpolation-mode:bicubic;clear:both;display:block;height:auto!imp=
+ortant;max-height:20px!important;max-width:25px!important;outline:0;text-de=
+coration:none;width:100%!important" src=3D"https://info.jetbrains.com/rs/42=
+6-QVD-114/images/blog_icon.png" /> </a>
+</div>=20
+<!--image container end--> </th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+<th class=3D"small-3 large-2 columns" style=3D"Margin:0 auto;color:#0a0a0a;=
+font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;line-=
+height:1.3;margin:0 auto;padding:0;padding-bottom:0;padding-left:0!importan=
+t;padding-right:0!important;text-align:left;width:16.66667%">=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;=
+font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-alig=
+n:left">=20
+<!--image container start-->=20
+<div class=3D"mktoImg" id=3D"footer-social-3" mktolockimgsize=3D"true">
+<a href=3D
+"http://go.jetbrains.com/igEQ0QVCZcO00M060qg1D0e" target=3D"_blank"
+> <img class=3D"social-icon" width=3D"20" height=3D"20" style=3D"-ms-interp=
+olation-mode:bicubic;clear:both;display:block;height:auto!important;max-hei=
+ght:20px!important;max-width:20px!important;outline:0;text-decoration:none;=
+width:100%!important" src=3D"https://info.jetbrains.com/rs/426-QVD-114/imag=
+es/icons_mail_facebook_retina.png" /> </a>
+</div>=20
+<!--image container end--> </th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+<th class=3D"small-3 large-6 columns last" style=3D"Margin:0 auto;color:#0a=
+0a0a;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:400;=
+line-height:1.3;margin:0 auto;padding:0;padding-bottom:0;padding-left:0!imp=
+ortant;padding-right:0!important;text-align:left;width:50%">=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;=
+font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-alig=
+n:left"></th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+<th class=3D"show-for-large small-1 large-3 columns last" style=3D"Margin:0=
+ auto;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:16px;f=
+ont-weight:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:0;pad=
+ding-left:0!important;padding-right:0!important;text-align:left;width:25%">=
+=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;=
+font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-alig=
+n:left"></th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+</tr>=20
+</tbody>=20
+</table>=20
+<table class=3D"row generic-footer-section" style=3D"background-color:#eee;=
+border-collapse:collapse;border-spacing:0;display:table;padding:0;position:=
+relative;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th class=3D"small-12 large-12 columns first last" style=3D"Margin:0 auto;c=
+olor:#0a0a0a;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-wei=
+ght:400;line-height:1.3;margin:0 auto;padding:0;padding-bottom:0;padding-le=
+ft:0!important;padding-right:0!important;text-align:left;width:100%">=20
+<table style=3D"border-collapse:collapse;border-spacing:0;padding:0;text-al=
+ign:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<th style=3D"Margin:0;color:#0a0a0a;font-family:Helvetica,Arial,sans-serif;=
+font-size:16px;font-weight:400;line-height:1.3;margin:0;padding:0;text-alig=
+n:left">=20
+<table class=3D"spacer generic-footer-section" style=3D"background-color:#e=
+ee;border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vert=
+ical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td height=3D"20px" style=3D"-moz-hyphens:auto;-webkit-hyphens:auto;Margin:=
+0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Ar=
+ial,sans-serif;font-size:20px;font-weight:400;hyphens:auto;line-height:20px=
+;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-a=
+lign:top;word-wrap:break-word"> &nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table> <p class=3D"generic-footer-disclaimer" style=3D"Margin:0;Margin-bo=
+ttom:10px;color:#0a0a0a;font-family:Arial,sans-serif,Lato;font-size:12px!im=
+portant;font-weight:400;line-height:1.3;margin:0;margin-bottom:10px;padding=
+:0;padding-left:10px;text-align:left"> Copyright =C2=A9 2018 JetBrains. All=
+ rights reserved.</p> <p class=3D"generic-footer-disclaimer" style=3D"Margi=
+n:0;Margin-bottom:10px;color:#0a0a0a;font-family:Arial,sans-serif,Lato;font=
+-size:12px!important;font-weight:400;line-height:1.3;margin:0;margin-bottom=
+:10px;padding:0;padding-left:10px;text-align:left">You received this email =
+because you've opted in on our website or inside one of our products.<br />=
+Unsubscribe from <a class=3D"link" href=3D
+"http://go.jetbrains.com/dc/oZkb5IUc2Y-gs3UFyHbi_yKkj2Zt1OYjKafjKF7scDm2_3A=
+LBSdSLCmgqgbHPDIzbnkWVtnxeZqDxgzFkQF2bSBJXvn683J4Cl7ZQAsWH8wmbaHcNaXkwqNEtZ=
+qEHmhu/a0106O0CgQ0q00hDdVQEeZM" style=3D"Margin:0;color:#0e0e0e;font-family=
+:Arial,sans-serif,Lato;font-weight:400;line-height:1.3;margin:0;padding:0;t=
+ext-align:left;text-decoration:underline"
+>PyCharm evaluation materials</a> or adjust <a class=3D"link" href=3D
+"http://go.jetbrains.com/dc/w-cHSxoZVqTBpk7GHns_y3Gx76QelV6fzbPLcPbi6l3d30K=
+_DTUa6__Dt9ZsLlbiEHBGEwJ5DzF57qMaoa0UjJJ5i6Atyj1h4x_TTivxtW4=3D/a0106O0CgQ0=
+q00hDdVQEeZM" style=3D"Margin:0;color:#0e0e0e;font-family:Arial,sans-serif,=
+Lato;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left;tex=
+t-decoration:underline"
+>mailing preferences</a> in your Communication Center account.</p>=20
+<table class=3D"spacer" style=3D"border-collapse:collapse;border-spacing:0;=
+padding:0;text-align:left;vertical-align:top;width:100%">=20
+<tbody>=20
+<tr style=3D"padding:0;text-align:left;vertical-align:top">=20
+<td height=3D"20px" style=3D"-moz-hyphens:auto;-webkit-hyphens:auto;Margin:=
+0;border-collapse:collapse!important;color:#0a0a0a;font-family:Helvetica,Ar=
+ial,sans-serif;font-size:20px;font-weight:400;hyphens:auto;line-height:20px=
+;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-a=
+lign:top;word-wrap:break-word"> &nbsp;</td>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+<th class=3D"expander" style=3D"Margin:0;color:#0a0a0a;font-family:Helvetic=
+a,Arial,sans-serif;font-size:16px;font-weight:400;line-height:1.3;margin:0;=
+padding:0!important;text-align:left;visibility:hidden;width:0"></th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+</tr>=20
+</tbody>=20
+</table> </th>=20
+</tr>=20
+</tbody>=20
+</table> </td>=20
+</tr>=20
+</tbody>=20
+</table>=20
+</center> </td>=20
+</tr>=20
+</tbody>=20
+</table></td>=20
+</tr>=20
+</tbody>
+</table>=20
+<!--img-text-button.html start-->=20
+<!--Marketo modules end-->=20
+</center></td>=20
+</tr>=20
+</tbody>=20
+</table>     =20
+<!-- Outer Table END -->=20
+<!-- prevent Gmail on iOS font size manipulation -->=20
+<div style=3D"display:none;white-space:nowrap;font:15px courier;line-height=
+:0">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+</div>  =20
+<a href=3D
+"http://go.jetbrains.com/o01eQ00iE00CZQ0eqDVMgO6"
+></a>
+<img src=3D"http://go.jetbrains.com/trk?t=3D1&mid=3DNDI2LVFWRC0xMTQ6MDoxMjY=
+0Mzo1MDI3MTowOjE4NDk1Ojk6MjAwMTI6OTIwNTc3ODUtMTpudWxs" width=3D"1" height=
+=3D"1" style=3D"display:none !important;" alt=3D"" />
+</body>
+</html>
+------=_Part_313954659_1468358869.1535601958824--

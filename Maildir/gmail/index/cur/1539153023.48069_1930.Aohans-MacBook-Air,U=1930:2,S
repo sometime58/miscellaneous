@@ -1,0 +1,654 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 10.31.50.88 with SMTP id y85csp1302081vky;
+        Wed, 9 Aug 2017 14:09:38 -0700 (PDT)
+X-Received: by 10.80.153.198 with SMTP id n6mr9912160edb.16.1502312978015;
+        Wed, 09 Aug 2017 14:09:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1502312977; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ccyI5RRBbHXOlUvBK/T6cZunfzDF84V0X4wYquolk1rldIBz4DV2CNJmxUHrPUul2l
+         LJJOUtqvtQwAMmr8c3KC8gbEnWVFPf6CkwP8R+WhA4Qh+aMXcWM/XLoEg33JOyM/LQlw
+         rSo248a3zf6D40LAcLnROpqB5LYsiUNJI19+2pDTGsZeGRp4zG9q75uA6fHDLDwkm8CA
+         IKVde3+ntbqWr3AIENOwya4E+P5YdZzt5DVdSGO9r+Xdqz73Bhb4t7JJWNq2FjAg11QM
+         CGqFODVC13n0h3ttzyBNFwcL0qPdIm6+hQeovhHD4JOWziQEe+M8QV8br6+xRGPK9PrT
+         JYlA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=list-unsubscribe:precedence:mime-version:subject:message-id:to
+         :reply-to:from:date:dkim-signature:dkim-signature
+         :arc-authentication-results;
+        bh=/7UBO2vmMo3kMFAwhaR8uWHg3TLuJRrUMOHU9jHRHn0=;
+        b=ZS4Aqlr0UquHxfl1Q0/G/c6ZHix28saKV/rRXVyLeYX2oEO/uHRLkzfUU5QQUtVAXU
+         /xg2pIn9r/caSV60TXJhGSEOGYk5aZqGQC6DoFUVGGnj2O/9yeHkKZ3WXECEXTkyP1Pq
+         Jbyo5UYMeKZasaT6CG72T8gudakmg6arSIPQBvpV0rmhRHftOw14Vt7keyt1Iw6PF0El
+         yVqLbsqM0jeXshhD+zuJVyE5QQn50J7ov/Kavnp5eVEvZmW7HKUmvGMD126+3XNb3NSE
+         U4tr5ndONFNan7yQzwNwlCw5wz7aZmPTI4lV+wJYWSovsA269kMg+qDaqkobvp0mEIyQ
+         DW/w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@pmta.sailthru.com header.s=mt header.b=ImHuJeco;
+       dkim=pass header.i=@dictionary.com header.s=sailthru header.b=wRpuE17l;
+       spf=pass (google.com: domain of delivery@mx.sailthru.com designates 192.64.236.74 as permitted sender) smtp.mailfrom=delivery@mx.sailthru.com
+Return-Path: <delivery@mx.sailthru.com>
+Received: from pmta236-74.sailthru.com (pmta236-74.sailthru.com. [192.64.236.74])
+        by mx.google.com with ESMTPS id r15si5858054edk.229.2017.08.09.14.09.37
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 09 Aug 2017 14:09:37 -0700 (PDT)
+Received-SPF: pass (google.com: domain of delivery@mx.sailthru.com designates 192.64.236.74 as permitted sender) client-ip=192.64.236.74;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@pmta.sailthru.com header.s=mt header.b=ImHuJeco;
+       dkim=pass header.i=@dictionary.com header.s=sailthru header.b=wRpuE17l;
+       spf=pass (google.com: domain of delivery@mx.sailthru.com designates 192.64.236.74 as permitted sender) smtp.mailfrom=delivery@mx.sailthru.com
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; s=mt; d=pmta.sailthru.com;
+ h=Date:From:Reply-To:To:Message-ID:Subject:MIME-Version:Content-Type:List-Unsubscribe;
+ bh=fNlDMz4PDIEEf6j5pBxIuzI32IY=;
+ b=ImHuJecopzsDCLLFaalZ6ONbu3OpfYfowHwXmDKqBsjVUlC9GVEHwJHAHeoM0WWYrlIEqcxrFaEV
+   kj+L4st9WU1OezETym+czG2zzmOf33S4BmRfPv8Sri82ZVH7DeeKd4JGYlHQC4GD4dHuVxcZdhA3
+   jbPd9mBcX06LSstc1Ug=
+Received: from nj2mta-15.sailthru.com (204.153.121.15) by pmta236-74.sailthru.com id hhdt121qqbs5 for <sometime5858@gmail.com>; Wed, 9 Aug 2017 17:05:33 -0400 (envelope-from <delivery@mx.sailthru.com>)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple; t=1502312733;
+	s=sailthru; d=dictionary.com;
+	h=Date:From:Reply-To:To:Message-ID:Subject:MIME-Version:Content-Type:List-Unsubscribe;
+	bh=82/NmSXAu1tRgVuMiazWOAXXhIVtbsF5wUolw/0/rrY=;
+	b=wRpuE17lzcptEeWZy6rr5jRnvIAIeuvxm2Q1aDhQNbvvOj5zL/PLFgLNiGglJMfa
+	YbEjUb8UDWN/gnOGxxLer8qFzMP+oiLRlV+AP7zqGT3jUWPgpmUefmwG9Q6v29CL9N3
+	DvGHcqDTepUfaaIvtsJBcfvar9JAMpAEXm+i7m3Y=
+Date: Wed, 9 Aug 2017 17:05:33 -0400 (EDT)
+From: "Dictionary.com" <doctor@dictionary.com>
+Reply-To: doctor@dictionary.com
+To: sometime5858@gmail.com
+Message-ID: <20170809170533.10289665.847268@sailthru.com>
+Subject: ventifact | Word of the Day
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1969810_1729210528.1502312733491"
+Precedence: bulk
+X-Feedback-ID: 6343:10289665:campaign:sailthru
+X-TM-ID: 20170809170533.10289665.847268
+X-Info: Message sent by sailthru.com customer Dictionary.com, LLC
+X-Info: We do not permit unsolicited commercial email
+X-Info: Please report abuse by forwarding complete headers to
+X-Info: abuse@sailthru.com
+X-Mailer: sailthru.com
+X-Unsubscribe-Web: http://link.dictionary.com/oc/5519e05a3b35d06d728b74f664jk1.i5r8/9abd28be
+List-Unsubscribe: <http://link.dictionary.com/oc/5519e05a3b35d06d728b74f664jk1.i5r8/9abd28be>, <mailto:unsubscribe_20170809170533.10289665.847268@mx.sailthru.com>
+X-rpcampaign: stjjz10289665
+X-TUID: FTsFnTbirJf0
+
+------=_Part_1969810_1729210528.1502312733491
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+
+
+Dictionary.com Word of the Day for Wednesday August 09, 2017
+
+ \\
+
+
+Origin
+
+
+See full entry:
+http://link.reference.com/click/10289665.847268/aHR0cDovL2RpY3Rpb25hcnkucmVmZXJlbmNlLmNvbS93b3Jkb2Z0aGVkYXkvYXJjaGl2ZS8yMDE3LzA4LzA5Lmh0bWw/5519e05a3b35d06d728b74f6B17ccc36a
+
+--------------------------------------------------------------------------
+
+You are subscribed to the Word of the Day as:
+sometime5858@gmail.com
+
+Subscriber since:
+March 30, 2015
+
+Unsubscribe:
+http://link.dictionary.com/oc/5519e05a3b35d06d728b74f664jk1.i5r8/9abd28be
+
+(c)2017 by Dictionary, LLC.
+
+555 12th Street
+Suite 500
+Oakland CA 94607
+
+------=_Part_1969810_1729210528.1502312733491
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!--
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+<head>
+<title>Dictionary.com Word Of The Day</title>
+<meta content=3D"text/html; charset=3Dutf-8" http-equiv=3D"Content-Type" />
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0">
+<style type=3D"text/css">
+@media only screen and (max-width: 700px){
+.editorial-tile {
+width: 400px !important;
+background-color: #F5F5F5;
+margin: 2px 0 !important;
+}
+.editorial-tile img {
+width: 400px !important;
+height: 280px !important;
+}
+.tile-container {
+padding: 0 100px;
+}}
+.editorial-tile:hover {
+box-shadow: 3px 3px 5px grey;
+}
+@media only screen and (max-width: 700px){
+.powerinbox-tile {
+width: 300px !important;
+margin: 2px 6px;
+padding: 3%;
+float: none;
+padding-left: 50px !important;
+} }
+</style>
+</head>
+<body style=3D"background-color: #EEEEEE;
+margin: auto;
+padding: 0;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 12px;
+color: #4A4A4A;
+max-width:950px;">
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D775 style=3D"marg=
+in:auto;">
+<tr>    <td width=3D19>&nbsp;</td><td>
+<!--HEADER-->
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;">
+<tr><td style=3D"width: 187px;" >&nbsp;</td>
+<td bgcolor=3D#3d7bbf style=3D"width: 376px; color: white; padding-top: 7px=
+; "><center>
+<a href=3D"http://link.dictionary.com/click/10289665.847268/aHR0cDovL2NsaWN=
+rLmRpY3Rpb25hcnkuY29tL2NsaWNrL2NhNzdyaD9jbGtkZXN0PWh0dHA6Ly93d3cuZGljdGlvbm=
+FyeS5jb20vd29yZG9mdGhlZGF5LzIwMTcvMDgvMDkvdmVudGlmYWN0P3BhcmFtPXdvdGQtZW1ha=
+Ww/5519e05a3b35d06d728b74f6Bcc98236f"><img src=3D"http://static.sfdict.com/=
+static/email/LOGO_Header.png" alt=3D"Dictionary.com Word of the Day" style=
+=3D"width:80%;"></a></center>
+</td>
+<td style=3D"width: 187px;" >&nbsp; </td>
+</tr>
+<tr>
+<td bgcolor=3D#FFFFFF  style=3D"width: 169px; min-height: 40px;">&nbsp;</td=
+>
+<td bgcolor=3D#3d7bbf style=3D"width: 376px; text-transform: uppercase; col=
+or: white; padding-top: 10px; padding-bottom: 10px;  min-height: 40px;"><fo=
+nt size=3D2>
+<center>August 09, 2017</center></font>
+</td>
+<td bgcolor=3D#FFFFFF  style=3D"width: 169px; min-height: 40px;">&nbsp;</td=
+>
+</tr>
+</table>
+<!--WOTD-->
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-top:=
+ 5px; text-decoration:none; font:35px/35px Verdana, Arial, Helvetica, sans-=
+serif; color:#4A4A4A; font-weight:300;"><a href=3D"http://link.dictionary.c=
+om/click/10289665.847268/aHR0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2NsaWNrL2NhNz=
+dyaD9jbGtkZXN0PWh0dHA6Ly93d3cuZGljdGlvbmFyeS5jb20vd29yZG9mdGhlZGF5LzIwMTcvM=
+DgvMDkvP3BhcmFtPXdvdGQtZW1haWw/5519e05a3b35d06d728b74f6Cc785193b" style=3D"=
+text-decoration: none; color: #4A4A4A;">ventifact</a>  <font size=3D1><a hr=
+ef=3D"http://link.dictionary.com/click/10289665.847268/aHR0cDovL2NsaWNrLmRp=
+Y3Rpb25hcnkuY29tL2NsaWNrL2NhNzdyaD9jbGtkZXN0PWh0dHA6Ly93d3cuZGljdGlvbmFyeS5=
+jb20vd29yZG9mdGhlZGF5LzIwMTcvMDgvMDkvdmVudGlmYWN0P3BhcmFtPXdvdGQtZW1haWw/55=
+19e05a3b35d06d728b74f6Dcc98236f"><img src=3D"http://static.sfdict.com/stati=
+c/email/sound_icon.png" style=3D"width: 25px; height: 25px; margin-left: 5p=
+x;" alt=3D"Audio" /></font></a></td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-top:=
+ 10px; padding-bottom: 10px; color: #AAAAAA; font:16px/24px Verdana, Arial,=
+ Helvetica, sans-serif; ">noun  [<strong>ven</strong>-tuh-fakt]</td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"color: #666; padding-left: 20px;=
+ padding-bottom: 10px; color: #666; font:16px/26px Verdana, Arial, Helvetic=
+a, sans-serif;">
+<!-- DEFINITIONS -->
+1. <em>Geology</em>. a pebble or cobble that has been faceted, grooved, and=
+ polished by the erosive action of wind-driven sand.<br>
+<!-- END: DEFINITIONS -->
+</td>
+</tr>
+</table>
+<!--EDITORIAL-->
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#F5F5F5 style=3D"color: #666; padding-left: 20px;=
+ border-width: 0 20px; border-style: solid; border-color: white; padding: 1=
+0px; text-align: center; color:#505251;"><font size=3D3>MORE FROM DICTIONAR=
+Y.COM</font></td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td bgcolor=3D#F5F5F5 width=3D712 style=3D"border-width: 0 20px; border-sty=
+le: solid; border-color: white; padding: 10px 0; text-align: center; color:=
+#505251;">
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 style=3D"margin:auto;" cl=
+ass=3D"tile-container"><tr>
+<td bgcolor=3D#FFFFFF valign=3Dtop align=3Dleft width=3D215 style=3D"float:=
+ left; margin: 0 4px;" class=3D"editorial-tile"><a style=3D"text-decoration=
+: none; color: #4A4A4A;" href=3D"http://link.dictionary.com/click/10289665.=
+847268/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzL3dyaXRpbmdfcXVvdGVz=
+P3BhcmFtPXdvdGQtZW1haWwmY2xpY2s9NGZyaXJi/5519e05a3b35d06d728b74f6Bee10d2d7"=
+><img src=3D"http://static.sfdict.com/static/email/contentlibrary/jorge_100=
+0x700.jpg" alt=3D"Moving Quotes to Help Overcome Writing Woes" border=3D"0"=
+ width=3D215 height=3D150></a><div style=3D"padding:0 5px; height:120px;">
+<span style=3D"text-transform: uppercase; padding-top: 5px; text-decoration=
+:none;"><font size=3D2 color=3D#CCCCCC><a style=3D"text-decoration: none; c=
+olor: #CCCCCC;" href=3D"http://link.dictionary.com/click/10289665.847268/aH=
+R0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzL3dyaXRpbmdfcXVvdGVzP3BhcmFtP=
+XdvdGQtZW1haWwmY2xpY2s9NGZyaXJi/5519e05a3b35d06d728b74f6Cee10d2d7">quotes</=
+a></font></span><br>
+<a style=3D"text-decoration: none; color: #4A4A4A;" href=3D"http://link.dic=
+tionary.com/click/10289665.847268/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZ=
+XNob3dzL3dyaXRpbmdfcXVvdGVzP3BhcmFtPXdvdGQtZW1haWwmY2xpY2s9NGZyaXJi/5519e05=
+a3b35d06d728b74f6Dee10d2d7"><span style=3D"color: #4A4A4A; font-weight: bol=
+d; text-decoration:none;"><font size=3D3>Moving Quotes to Help Overcome Wri=
+ting Woes </font></span></a><br>
+<a style=3D"text-decoration: none; color: #4A4A4A;" href=3D"http://link.dic=
+tionary.com/click/10289665.847268/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZ=
+XNob3dzL3dyaXRpbmdfcXVvdGVzP3BhcmFtPXdvdGQtZW1haWwmY2xpY2s9NGZyaXJi/5519e05=
+a3b35d06d728b74f6Eee10d2d7"><span style=3D"color: #4A4A4A; padding-bottom: =
+7px;  text-decoration:none;"><font size=3D2>Get started and get ahead with =
+these important words of wisdom</font></span></a></div>
+</td>
+<td bgcolor=3D#FFFFFF valign=3Dtop align=3Dleft width=3D215 style=3D"float:=
+ left; margin: 0 0;" class=3D"editorial-tile"><a style=3D"text-decoration: =
+none; color: #4A4A4A;" href=3D"http://link.dictionary.com/click/10289665.84=
+7268/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzL3NsYW5nLXdhdGNoLTIwMT=
+c_cGFyYW09d290ZC1lbWFpbCZjbGljaz00ZnJpcmI/5519e05a3b35d06d728b74f6B66777605=
+"><img src=3D"http://static.sfdict.com/static/email/contentlibrary/xyz_1000=
+x700.jpg" alt=3D"Cracking The Code of Millennial Slang" border=3D"0" width=
+=3D215 height=3D150><div style=3D"padding:0 5px; height:120px;">
+<span style=3D"text-transform: uppercase; padding-top: 5px; text-decoration=
+:none; "><font size=3D2 color=3D#CCCCCC>language</font></span><br>
+<span style=3D"color: #4A4A4A; font-weight: bold; text-decoration:none;"><f=
+ont size=3D3>Cracking The Code of Millennial Slang </font></span><br>
+<span style=3D"color: #4A4A4A; padding-bottom: 7px; height: 35px; text-deco=
+ration:none;"><font size=3D2>Understand the language of Gen X, Y and Z</fon=
+t></span></div></a>
+</td>
+<td bgcolor=3D#FFFFFF valign=3Dtop align=3Dleft width=3D215 style=3D"float:=
+ left; margin: 0 4px;" class=3D"editorial-tile"><a style=3D"text-decoration=
+: none; color: #4A4A4A;" href=3D"http://link.dictionary.com/click/10289665.=
+847268/aHR0cDovL3d3dy5kaWN0aW9uYXJ5LmNvbS9zbGlkZXNob3dzL3BvdGVudGlhbC1qb2It=
+aW50ZXJ2aWV3LXBpdGZhbGxzP3BhcmFtPXdvdGQtZW1haWwmY2xpY2s9NGZyaXJi/5519e05a3b=
+35d06d728b74f6B82d5b6ba"><img src=3D"http://static.sfdict.com/static/email/=
+contentlibrary/major_no_1000x700-.jpg" alt=3D"Words to Avoid In a Job Inter=
+view" border=3D"0" width=3D215 height=3D150><div style=3D"padding:0 5px; he=
+ight:120px;">
+<span style=3D"text-transform: uppercase; padding-top: 5px; text-decoration=
+:none;"><font size=3D2 color=3D#CCCCCC>language</font></span><br>
+<span style=3D"font-size:14px; color: #4A4A4A; font-weight: bold; text-deco=
+ration:none;"><font size=3D3>Words to Avoid In a Job Interview</font></span=
+><br>
+<span style=3D"color: #4A4A4A; padding-bottom: 7px; height: 35px; text-deco=
+ration:none;"><font size=3D2>Your handy list of words to avoid during that =
+important interview</font></span></div></a>
+</td></tr></table></td>
+</tr>
+</table>
+<!--WOTD CONTD -->
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-top:=
+ 10px; padding-bottom: 10px; font-size: 16px; color: #AAAAAA;">QUOTES</td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-bott=
+om: 10px; font-size: 14px; color: #666666;">
+<!-- QUOTES -->
+The surface was a fine trash of <strong>ventifacts</strong>--stones that ha=
+d been polished into smooth facets by blowing grit ...<br>
+<font color=3D"#AAAAAA" size=3D"2"> -- Sarah Andrews, <cite>In Cold Pursuit=
+</cite>, 2007</font>
+<!-- END: QUOTES -->
+</td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-top:=
+ 10px; padding-bottom: 10px; color: #AAAAAA;"><font size=3D3>ORIGIN</font><=
+/td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"padding-left: 20px; padding-bott=
+om: 10px; color: #666666; font-size: 14px;">
+<!-- ORIGIN -->
+<em>Ventifact</em>, =E2=80=9Cstone shaped by the wind or sandstorms,=E2=80=
+=9D is a rare word, used in geology and physical geography, and is modeled =
+on the much earlier noun <em>artifact</em> (<em>artefact</em>), which dates=
+ from the mid-17th century. <em>Ventifact</em> derives straightforwardly fr=
+om Latin <em>ventum</em> =E2=80=9Cwind=E2=80=9D (<em>venti-</em> is the Lat=
+in combining form) and <em>factum</em>, the past participle, also used as a=
+ noun, of the verb <em>facere</em> =E2=80=9Cto make, do=E2=80=9D (with as m=
+any senses as the English verbs). Latin <em>ventum</em> is related to Engli=
+sh <em>wind</em>, <em>winnow</em>, and <em>weather</em>. Latin <em>facere</=
+em> and the adjective <em>facilis</em> =E2=80=9Ceasy, easy to do=E2=80=9D d=
+erive from a very common Proto-Indo-European root <em>dh=C4=93-</em> =E2=80=
+=9Cto put, place, set,=E2=80=9D from which Germanic (English) derives <em>d=
+o</em> and <em>deed</em>, Greek <em>tith=C3=A9nai</em> =E2=80=9Cto set, put=
+,=E2=80=9D and Slavic (Polish) <em>dzieje</em> =E2=80=9Chistory=E2=80=9D (i=
+.e., things done, deeds). <em>Ventifact</em> entered English in the early 2=
+0th century.
+<!-- END: ORIGIN -->
+</td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#FFFFFF style=3D"color: #666666; padding: 20px; "=
+>
+<center>
+<!-- SOCIAL 1 -->
+<a href=3D"http://link.dictionary.com/click/10289665.847268/aHR0cHM6Ly93d3c=
+uZmFjZWJvb2suY29tL3NoYXJlci5waHA_dT1odHRwJTNBJTJGJTJGd3d3LmRpY3Rpb25hcnkuY2=
+9tJTJGd29yZG9mdGhlZGF5JTJGMjAxNyUyRjglMkYwOSUyRnZlbnRpZmFjdA/5519e05a3b35d0=
+6d728b74f6Beac5ba7c"><img src=3D"http://static.sfdict.com/static/email/face=
+book.png" alt=3D"Share on Facebook" style=3D"border: 5px solid #FFFFFF; hei=
+ght: 35px;" /></a>
+<!-- END: SOCIAL 1 -->
+<!-- SOCIAL 2 -->
+<a href=3D"http://link.dictionary.com/click/10289665.847268/aHR0cHM6Ly90d2l=
+0dGVyLmNvbS9pbnRlbnQvdHdlZXQ_dGV4dD1Xb3JkJTIwb2YlMjB0aGUlMjBEYXklMjBmcm9tJT=
+IwJTQwRGljdGlvbmFyeWNvbSUyMC0lMjB2ZW50aWZhY3QlMjAtJTIwYSUyMHBlYmJsZSUyMG9yJ=
+TIwY29iYmxlJTIwdGhhdCUyMGhhcyUyMGJlZW4lMjBmYWNldGVkJTJDJTIwZ3Jvb3ZlZCUyQyUy=
+MGFuZCUyMHBvbGlzaGVkJTIwYnklMjB0aGUlMjBlcm9zaXZlJTIwYWN0aW9uJTIwb2YlMjB3aW5=
+kLWRyaXZlbiUyMHNhbmQuJTIwaHR0cCUzQSUyRiUyRnd3dy5kaWN0aW9uYXJ5LmNvbSUyRndvcm=
+RvZnRoZWRheSUyRjIwMTclMkY4JTJGMDklMkZ2ZW50aWZhY3Q/5519e05a3b35d06d728b74f6B=
+c3b86cc5"><img src=3D"http://static.sfdict.com/static/email/twitter.png"  a=
+lt=3D"Share on Twitter" style=3D"border: 5px solid #FFFFFF; height: 35px;" =
+/></a>
+<!-- END: SOCIAL 2 -->
+<!-- SOCIAL 3 -->
+<a href=3D"http://link.dictionary.com/click/10289665.847268/aHR0cHM6Ly93d3c=
+uaW5zdGFncmFtLmNvbS9kaWN0aW9uYXJ5Y29tLw/5519e05a3b35d06d728b74f6Be8d68fb1">=
+<img src=3D"http://static.sfdict.com/static/email/instagram.png" alt=3D"Fol=
+low us on Instagram"  style=3D"border: 5px solid #FFFFFF; height: 35px;"/><=
+/a>
+<!-- END: SOCIAL 3 -->
+<!-- SOCIAL 4 -->
+<a href=3D"http://link.dictionary.com/click/10289665.847268/aHR0cHM6Ly93d3c=
+ucGludGVyZXN0LmNvbS9kaWN0aW9uYXJ5Y29tLw/5519e05a3b35d06d728b74f6B330bd339">=
+<img src=3D"http://static.sfdict.com/static/email/pinterest.png"  alt=3D"Fo=
+llow us on Pinterest"  style=3D"border: 5px solid #FFFFFF; height: 35px;"/>=
+</a>
+<!-- END: SOCIAL 4 -->
+</center></td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712>&nbsp;</td >
+</tr>
+</table>
+<!--POWERINBOX-->
+<tr>
+<td bgcolor=3D"#EEE" width=3D"30">&nbsp;</td>
+<td bgcolor=3D"#FFF">
+<table bgcolor=3D"#FFF" cellspacing=3D"0" border=3D0 style=3D"margin:0 auto=
+ !important;" cellpadding=3D"0" align=3D"center">
+<tr>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td bgcolor=3D"#f5f5f5" style=3D"padding:5px 5px 20px;" class=3D"block4">
+<table border=3D"0" width=3D"674" cellspacing=3D"0" style=3D"margin:0 auto =
+!important;" class=3D"flexible" cellpadding=3D"0" align=3D"center">
+<tbody>
+<tr>
+<td style=3D"padding:0 0 1px 1px;" class=3D"block2">
+<table class=3D"flexible" width=3D"674" cellpadding=3D"0" cellspacing=3D"5"=
+ border=3D"0" style=3D"border-collapse:collapse; mso-table-lspace:0pt; mso-=
+table-rspace:0pt;">
+<tbody>
+<tr>
+<td style=3D"font:21px/30px Verdana,Arial, Helvetica, sans-serif; color:#50=
+5251; padding:0 0 13px;text-decoration:none;" align=3D"center" colspan=3D"5=
+">MORE FROM THE WEB</td>
+</tr>
+<tr>
+<td align=3D"center" valign=3D"top">
+<div class=3D"powerinbox">
+<!-- domain: rs-stripe.dictionary.com -->
+<!-- branding: rs-branding.dictionary.com -->
+<table width=3D"674" class=3D"fallback" border=3D"0" cellspacing=3D"0" cell=
+padding=3D"0" style=3D"width:100%;max-width:674px;">
+<tbody>
+<tr>
+<td style=3D"border-collapse: collapse;">
+<table width=3D"214" align=3D"left" class=3D"col" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"width:32%;max-width:214px;">
+<tbody>
+<tr>
+<td style=3D"border-collapse: collapse;">
+<a href=3D"http://link.dictionary.com/click/10289665.847268/aHR0cDovL3JzLXN=
+0cmlwZS5kaWN0aW9uYXJ5LmNvbS9zdHJpcGUvcmVkaXJlY3Q_Y3NfZW1haWw9c29tZXRpbWU1OD=
+U4QGdtYWlsLmNvbSZjc19zZW5kaWQ9MTAyODk2NjUmY3NfZXNwPXNhaWx0aHJ1JmNzX29mZnNld=
+D0wJmNzX3N0cmlwZWlkPTQ5NTY/5519e05a3b35d06d728b74f6Bee7f7224" style=3D"bord=
+er-style: none;outline: none;text-decoration: none;" target=3D"_blank" ref=
+=3D"nofollow"><img alt=3D"" height=3D"auto" style=3D"display:block;border:0=
+;height:auto;line-height:100%;outline:none;text-decoration:none;width:100%;=
+max-width:100%;" width=3D"214" src=3D"http://rs-stripe.dictionary.com/strip=
+e/image?cs_email=3Dsometime5858@gmail.com&cs_sendid=3D10289665&cs_esp=3Dsai=
+lthru&cs_offset=3D0&cs_stripeid=3D4956"></a>
+</td>
+</tr>
+</tbody>
+</table>
+<!--[if mso]></td><td valign=3D"top"><![endif]-->
+<table width=3D"13" align=3D"left" class=3D"colspace" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" style=3D"width:2%;max-width:13px;">
+<tbody>
+<tr>
+<td align=3D"center" height=3D"15" valign=3D"top" style=3D"font-size:15px; =
+height:15px; line-height:15px; vertical-align:top">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<!--[if mso]></td><td valign=3D"top"><![endif]-->
+<table width=3D"214" align=3D"left" class=3D"col" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"width:32%;max-width:214px;">
+<tbody>
+<tr>
+<td style=3D"border-collapse: collapse;">
+<a href=3D"http://link.dictionary.com/click/10289665.847268/aHR0cDovL3JzLXN=
+0cmlwZS5kaWN0aW9uYXJ5LmNvbS9zdHJpcGUvcmVkaXJlY3Q_Y3NfZW1haWw9c29tZXRpbWU1OD=
+U4QGdtYWlsLmNvbSZjc19zZW5kaWQ9MTAyODk2NjUmY3NfZXNwPXNhaWx0aHJ1JmNzX29mZnNld=
+D0xJmNzX3N0cmlwZWlkPTQ5NTY/5519e05a3b35d06d728b74f6Cbcae9829" style=3D"bord=
+er-style: none;outline: none;text-decoration: none;" target=3D"_blank" ref=
+=3D"nofollow"><img alt=3D"" height=3D"auto" style=3D"display:block;border:0=
+;height:auto;line-height:100%;outline:none;text-decoration:none;width:100%;=
+max-width:100%;" width=3D"214" src=3D"http://rs-stripe.dictionary.com/strip=
+e/image?cs_email=3Dsometime5858@gmail.com&cs_sendid=3D10289665&cs_esp=3Dsai=
+lthru&cs_offset=3D1&cs_stripeid=3D4956"></a>
+</td>
+</tr>
+</tbody>
+</table>
+<!--[if mso]></td><td valign=3D"top"><![endif]-->
+<table width=3D"13" align=3D"left" class=3D"colspace" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" style=3D"width:2%;max-width:13px;">
+<tbody>
+<tr>
+<td align=3D"center" height=3D"15" valign=3D"top" style=3D"font-size:15px; =
+height:15px; line-height:15px; vertical-align:top">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<!--[if mso]></td><td valign=3D"top"><![endif]-->
+<table width=3D"214" align=3D"left" class=3D"col" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" style=3D"width:32%;max-width:214px;">
+<tbody>
+<tr>
+<td style=3D"border-collapse: collapse;">
+<a href=3D"http://link.dictionary.com/click/10289665.847268/aHR0cDovL3JzLXN=
+0cmlwZS5kaWN0aW9uYXJ5LmNvbS9zdHJpcGUvcmVkaXJlY3Q_Y3NfZW1haWw9c29tZXRpbWU1OD=
+U4QGdtYWlsLmNvbSZjc19zZW5kaWQ9MTAyODk2NjUmY3NfZXNwPXNhaWx0aHJ1JmNzX29mZnNld=
+D0yJmNzX3N0cmlwZWlkPTQ5NTY/5519e05a3b35d06d728b74f6D8f377dd4" style=3D"bord=
+er-style: none;outline: none;text-decoration: none;" target=3D"_blank" ref=
+=3D"nofollow"><img alt=3D"" height=3D"auto" style=3D"display:block;border:0=
+;height:auto;line-height:100%;outline:none;text-decoration:none;width:100%;=
+max-width:100%;" width=3D"214" src=3D"http://rs-stripe.dictionary.com/strip=
+e/image?cs_email=3Dsometime5858@gmail.com&cs_sendid=3D10289665&cs_esp=3Dsai=
+lthru&cs_offset=3D2&cs_stripeid=3D4956"></a>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table width=3D"674" class=3D"container" border=3D"0" cellspacing=3D"0" cel=
+lpadding=3D"0" style=3D"width:100%;max-width:674px;">
+<tbody>
+<tr>
+<td align=3D"right">
+<a href=3D"http://link.dictionary.com/click/10289665.847268/aHR0cDovL3JzLWJ=
+yYW5kaW5nLmRpY3Rpb25hcnkuY29tLz91dG1fc291cmNlPWNvbnRlbnRzdHJpcGUmdXRtX21lZG=
+l1bT1lbWFpbCZ1dG1fY2FtcGFpZ249cnNfNDk1NiZ1dG1fY29udGVudD1hbmltYXRlZGxvZ28/5=
+519e05a3b35d06d728b74f6Bb0a3e52c" style=3D"display: inline-block; border: 0=
+; outline: none; text-decoration: none;" target=3D"_blank" ref=3D"nofollow"=
+><img src=3D"http://rs-branding.dictionary.com/recommend/transparent.gif" w=
+idth=3D"143" height=3D"40" border=3D"0" alt=3D"Learn more about RevenueStri=
+pe..."></a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+</tr>
+</table>
+</td>
+<td bgcolor=3D"#EEE" width=3D"30">&nbsp;</td>
+</tr>
+<!--END POWERINBOX-->
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td bgcolor=3D#444444 width=3D356 style=3D"padding-left: 40px; border-top: =
+10px; color: #FFFFFF; padding: 15px;"><font size=3D2>&copy; 2017 DICTIONARY=
+.COM</font></td>
+<td bgcolor=3D#444444 width=3D356 style=3D"padding-left: 40px; border-top: =
+10px; color: #FFFFFF; padding: 15px; position: relative; right: 0px; text-a=
+lign: right;"><font size=3D2><a style=3D"text-decoration: none; color: #FFF=
+FFF;" href=3D"http://link.dictionary.com/click/10289665.847268/aHR0cDovL2Ns=
+aWNrLmRpY3Rpb25hcnkuY29tL2NsaWNrL2Nia2gzdw/5519e05a3b35d06d728b74f6B5dd92f6=
+c">ABOUT</a> <img src=3D"http://static.sfdict.com/assets/1823-1506493-0.gif=
+" height=3D"1" border=3D0 width=3D"25">  <a style=3D"text-decoration: none;=
+ color: #FFFFFF;" href=3D"http://link.dictionary.com/click/10289665.847268/=
+aHR0cDovL2NsaWNrLmRpY3Rpb25hcnkuY29tL2NsaWNrL3ZxNjg1NA/5519e05a3b35d06d728b=
+74f6B714c8921">CONTACT</a></font></td>
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td width=3D712 bgcolor=3D#AAAAAA style=3D"color: #666666; padding-left: 40=
+px;">&nbsp;</td >
+</tr>
+</table>
+<table cellpadding=3D0 border=3D0 cellspacing=3D0 width=3D750 style=3D"marg=
+in:auto; margin-left:auto; margin-right:auto;"><tr>
+<td bgcolor=3D#FFFFFF valign=3Dtop style=3D"width: 356px; padding-left: 40p=
+x; border-top: 10px; padding: 15px; color: #4A4A4A; "> You are subscribed t=
+o the <br/>Word of the Day as: <br/><a href=3D"mailto:sometime5858@gmail.co=
+m">sometime5858@gmail.com</a><br/>Subscriber since: <br>March 30, 2015<br/>
+<a href=3D"http://link.dictionary.com/oc/5519e05a3b35d06d728b74f664jk1.i5r8=
+/9abd28be">Unsubscribe</a></td>
+<td bgcolor=3D#FFFFFF valign=3Dtop style=3D"width: 356px; padding-left: 40p=
+x; border-top: 10px; padding: 15px; color: #4A4A4A; text-align: right;">
+Dictionary.com, LLC. <br/>555 12th Street <br/>Suite 500 <br/>Oakland CA 94=
+607 <br/><br/><a  href=3D"http://link.dictionary.com/manage/prefcenter-js?e=
+mail=3Dsometime5858@gmail.com&hash=3D9101f6746407d5fc6c0ca08c0a3296fd">Mana=
+ge your subscription</a>
+</td>
+</tr>
+</table>
+</td>
+<td width=3D19>&nbsp;</td></tr></table>
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"24" height=
+=3D"6">
+<tbody>
+<tr>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528600&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D11136933"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528601&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D11136933"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528602&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D11136933"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528603&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D11136933"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528604&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D11136933"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528605&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D11136933"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528606&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D11136933"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528607&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D11136933"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528608&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D11136933"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528609&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D11136933"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528610&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D11136933"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+<td><img src=3D"http://li.dictionary.com/imp?s=3D123528611&t=3Dnewsletter&s=
+z=3D2x1&li=3DWoTDSafeRTB&m=3D3bcc3d7455d12b1d189e0be695170d77&p=3D11136933"=
+ width=3D"2" height=3D"6" border=3D"0" /></td>
+</tr>
+</tbody>
+</table>
+<!-- END: RTB -->
+<a href=3D"www.dictionary.com"><img src=3D"http://link.dictionary.com/img/5=
+519e05a3b35d06d728b74f664jk1.i5r8/99b8676c.gif" alt=3D"" border=3D"0" /></a=
+>
+</body>
+</html>
+
+------=_Part_1969810_1729210528.1502312733491--
+

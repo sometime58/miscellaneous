@@ -1,0 +1,65 @@
+<p><strong>Update</strong>: <a class="reference external" href="http://lists.gnu.org/archive/html/bug-gnu-emacs/2018-06/msg00720.html">Bug report</a> thread with a workaround.</p>
+<p><em>(This is a contributed post by</em> <a class="reference external" href="https://github.com/thblt/">thblt</a> <em>)</em></p>
+<p>Trivia: How can you determine if the current Emacs instance has the
+Emacs server running?</p>
+<p>A quick search gives us three potential candidates: <tt class="docutils literal"><span class="pre">server-mode</span></tt>,
+<tt class="docutils literal">(daemonp)</tt> and <tt class="docutils literal"><span class="pre">(server-running-p)</span></tt>.  That’s way too much, but
+surely one of them is the right one, isn’t it?  Well, no.  Because the
+real answer to this trivial question is: <em>you can’t</em>.</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">server-mode</span></tt> is <tt class="docutils literal">t</tt> if, and only if, the server was started
+using the function with the same name.  But there are other ways to
+run the server, like <tt class="docutils literal"><span class="pre">M-x</span> <span class="pre">server-start</span></tt> or <tt class="docutils literal">emacs <span class="pre">--daemon</span></tt>.</li>
+<li><tt class="docutils literal">(daemonp)</tt> returns t if, and only if, Emacs was started in daemon
+mode.</li>
+</ul>
+<p>What about <tt class="docutils literal"><span class="pre">(server-running-p)</span></tt>, then?  Well, it may look friendly,
+but here be monsters.</p>
+<p>It starts by looking promising: after <tt class="docutils literal"><span class="pre">M-x</span> <span class="pre">server-start</span></tt>,
+<tt class="docutils literal"><span class="pre">(server-running-p)</span></tt> now returns <tt class="docutils literal">t</tt>!  Do we have a winner?  Not yet!
+Let’s pop a <em>new</em> Emacs instance and eval <tt class="docutils literal"><span class="pre">(server-running-p)</span></tt> without
+starting the server.  <tt class="docutils literal">t</tt> again!</p>
+<p>What’s happening?  The truth is that <tt class="docutils literal"><span class="pre">(server-running-p)</span></tt> is not
+what it seems to be.  Here’s its complete source code:</p>
+<pre class="code elisp literal-block"><span class="p">(</span><span class="nb">defun</span> <span class="nv">server-running-p</span> <span class="p">(</span><span class="kp">&amp;optional</span> <span class="nv">name</span><span class="p">)</span>
+  <span class="s">"Test whether server NAME is running.
+
+Return values:
+  nil              the server is definitely not running.
+  t                the server seems to be running.
+  something else   we cannot determine whether it's running without using
+                   commands which may have to wait for a long time."</span>
+  <span class="p">(</span><span class="nb">unless</span> <span class="nv">name</span> <span class="p">(</span><span class="k">setq</span> <span class="nv">name</span> <span class="nv">server-name</span><span class="p">))</span>
+  <span class="p">(</span><span class="k">condition-case</span> <span class="no">nil</span>
+      <span class="p">(</span><span class="k">if</span> <span class="nv">server-use-tcp</span>
+          <span class="p">(</span><span class="nb">with-temp-buffer</span>
+            <span class="p">(</span><span class="nv">insert-file-contents-literally</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="nv">name</span> <span class="nv">server-auth-dir</span><span class="p">))</span>
+            <span class="p">(</span><span class="k">or</span> <span class="p">(</span><span class="k">and</span> <span class="p">(</span><span class="nf">looking-at</span> <span class="s">"127\\.0\\.0\\.1:[0-9]+ \\([0-9]+\\)"</span><span class="p">)</span>
+                     <span class="p">(</span><span class="nf">assq</span> <span class="ss">'comm</span>
+                           <span class="p">(</span><span class="nf">process-attributes</span>
+                            <span class="p">(</span><span class="nf">string-to-number</span> <span class="p">(</span><span class="nv">match-string</span> <span class="mi">1</span><span class="p">))))</span>
+                     <span class="no">t</span><span class="p">)</span>
+                <span class="nb">:other</span><span class="p">))</span>
+        <span class="p">(</span><span class="nf">delete-process</span>
+         <span class="p">(</span><span class="nf">make-network-process</span>
+          <span class="nb">:name</span> <span class="s">"server-client-test"</span> <span class="nb">:family</span> <span class="ss">'local</span> <span class="nb">:server</span> <span class="no">nil</span> <span class="nb">:noquery</span> <span class="no">t</span>
+          <span class="nb">:service</span> <span class="p">(</span><span class="nf">expand-file-name</span> <span class="nv">name</span> <span class="nv">server-socket-dir</span><span class="p">)))</span>
+        <span class="no">t</span><span class="p">)</span>
+    <span class="p">(</span><span class="nv">file-error</span> <span class="no">nil</span><span class="p">)))</span>
+</pre>
+<p>The horror starts as soon as the docstring.  The <tt class="docutils literal"><span class="pre">-p</span></tt> suffix in the
+name promises a predicate, that is, a boolean function.  But in
+<tt class="docutils literal"><span class="pre">server-running-p</span></tt>, non-<tt class="docutils literal">nil</tt> is not a loud and clear “Yes!”, it’s a
+mumbled “well, maybe, who knows?”.  Ternary logic, because Emacs is
+above the law of excluded middle.</p>
+<p>But what does this function <em>do</em>?  It tries to determine if a server
+called <tt class="docutils literal">NAME</tt> is running, by assuming that this server would be
+configured exactly the same as the running instance.  It may end up
+looking at the socket file of the current server, or it may try to
+initiate a TCP connection, which is extremely expensive.
+<tt class="docutils literal"><span class="pre">server-running-p</span></tt> is the kind of function you may be tempted to
+call while building the mode line: try it, and get an instant and
+unrecoverable Emacs freeze.  What it’s supposed to be useful for is
+extremely unclear.  It’s unable to determine if the running instance
+has a server — but it uses this server’s config to search for a
+potentially completely different server.</p>

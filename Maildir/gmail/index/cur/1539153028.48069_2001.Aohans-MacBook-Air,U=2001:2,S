@@ -1,0 +1,578 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 10.31.50.88 with SMTP id y85csp4633042vky;
+        Mon, 11 Sep 2017 03:25:18 -0700 (PDT)
+X-Google-Smtp-Source: ADKCNb4di5x/0DwtKu2csJdx8DkbeWMOnFZ7Kkc0m4JHKWccTKTAXGhOnXyMCY/uzyXKlgJY4jD0
+X-Received: by 10.99.119.11 with SMTP id s11mr10963299pgc.398.1505125518070;
+        Mon, 11 Sep 2017 03:25:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1505125518; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Fqt02pCGatWf9bKrKUUDaPowRyvigKNgzYZfq0ISrI4+oj/SRYIJF5dYN0EJ+tZC6H
+         ZuDvbsGxE64eYBLZjxbWlICtrc24nbo9hzw4c6uyavxAN6UMF0qk4TU/z/c95RGbK7kk
+         5FWEb1LOrX7+JNPDxRjwNFQsaFvhn4kYG8e6ZfxyuR2XAS3+fyxYLQzxHSsltqD+uB+x
+         Web2Z0usHWa14ICcKvCw0PaATjBGPmn3t8UAvdKDRjm/Cna09RfXSkYMvFspAKwXeN3I
+         JL1N29s+GPaS7MB82uYj2Eejs4V2z8Nk8c9dxmgSMLK6m+c14+hCwsLjw7WgPcqdSeLV
+         y22g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=from:subject:mime-version:date:message-id:to:dkim-signature
+         :arc-authentication-results;
+        bh=919fGG+i4mnPIWa44y3fSzCUS2RAN/jNhcM/tPOsQFQ=;
+        b=whveEOZAWAXAXiTVd4T1nMzlQUyL0Zw8v065W4Bqo61B9aeCLUCL4G4QxjDRsZszS5
+         a1jqaQhwVS9PaHYeVXhmUb8wSH3QkzHRyKXu0jniqiTJP9ba0fS5Vj3gshCG6rxBD0ck
+         /H7Q2wcTzswsBdUz+/R/MhdfHQm7qXodMmxlWT6AtRo+th6UDBaGtAxmrdHf/fR8MC4b
+         mq9STJ6Pi4cGfux7p7DmR5qk7woNqmKtArsEuwerfFVExpcxcfEG1fbdMdSUyvLf8+Pd
+         2V93KrTihw8E4C8+3CcTwKg26Fv7U9DiKEVm885yNWLf4phUzidwHUfiaoS+5slTULXo
+         mjnA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@t.mail.coursera.org header.s=scph0616 header.b=XL8gBTi3;
+       spf=pass (google.com: domain of bounce@t.mail.coursera.org designates 52.40.63.39 as permitted sender) smtp.mailfrom=bounce@t.mail.coursera.org
+Return-Path: <bounce@t.mail.coursera.org>
+Received: from mta1b3.mail.coursera.org (mta1b3.mail.coursera.org. [52.40.63.39])
+        by mx.google.com with ESMTPS id k70si5716061pga.497.2017.09.11.03.25.17
+        for <sometime5858@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 11 Sep 2017 03:25:18 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce@t.mail.coursera.org designates 52.40.63.39 as permitted sender) client-ip=52.40.63.39;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@t.mail.coursera.org header.s=scph0616 header.b=XL8gBTi3;
+       spf=pass (google.com: domain of bounce@t.mail.coursera.org designates 52.40.63.39 as permitted sender) smtp.mailfrom=bounce@t.mail.coursera.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=t.mail.coursera.org;
+	s=scph0616; t=1505125516; i=@t.mail.coursera.org;
+	bh=919fGG+i4mnPIWa44y3fSzCUS2RAN/jNhcM/tPOsQFQ=;
+	h=To:Message-ID:Date:Content-Type:Subject:From;
+	b=XL8gBTi3sDOOyizosUA78IYfWljoKMT/8Sk9j0Z0J9sfjd0gzdV4kNUxxe+SAH6+B
+	 VWOV2dFe3oM/BiYr2hIHIZ7rTwtaL7aN+eFrXP9KHG8SQlmQmY2IJHI4aW1+FN+X2H
+	 MUbQrsfF03Hl+RZsBX8ulMAABmatpH3+9fFu/jO4=
+X-MSFBL: LQlCRoTGTS5DF04uSu9EMNVxAWBz1yAErjbdJyvUWIs=|eyJzdWJhY2NvdW50X2l
+	kIjoiMCIsInJjcHRfdGFncyI6WyBdLCJjdXN0b21lcl9pZCI6IjEiLCJ0cmFuc21
+	pc3Npb25faWQiOiI2NjY2NDkxNDg0NTA0NTQxMCIsIm1lc3NhZ2VfaWQiOiIwMDA
+	zOGM2NGI2NTlkNDE0MTVhOSIsInRlbXBsYXRlX3ZlcnNpb24iOiIwIiwiZnJpZW5
+	kbHlfZnJvbSI6Im5vLXJlcGx5QHQubWFpbC5jb3Vyc2VyYS5vcmciLCJyIjoic29
+	tZXRpbWU1ODU4QGdtYWlsLmNvbSIsInRlbXBsYXRlX2lkIjoidGVtcGxhdGVfNjY
+	2NjQ5MTQ4NDUwNDU0MTAiLCJyY3B0X21ldGEiOnsgInByZWZlcmVuY2UiOiAib3B
+	lbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLnJlbWluZGVycyIsICJjYW1
+	wYWlnbl9ncm91cCI6ICJvcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1E
+	ud2Vla2FoZWFkLm9uX3NjaGVkdWxlIiwgImNoYW5uZWwiOiAiRU1BSUwiLCAiYml
+	uZGluZyI6ICJ0cmFuc2FjdGlvbmFsIiwgIm5vdGlmaWNhdGlvbl90ZW1wbGF0ZSI
+	6ICJ3ZWVrYWhlYWQub25fc2NoZWR1bGUiIH0sInRlbmFudF9pZCI6ImNvdXJzZXJ
+	hIiwiZyI6InRyYW5zYWN0aW9uYWwiLCJjYW1wYWlnbl9pZCI6Im9wZW5jb3Vyc2U
+	ubVNoUWk4WWZFZVdnMFFvSHEzSmpvUS5ZaHVoNVFCSkVlZWM5aEthWG95bFZBIiw
+	idHJhbnNhY3Rpb25hbCI6IjEiLCJiIjoiaXBfNTIuNDAuNjMuMzkifQ==
+To: "Aohan Wang" <sometime5858@gmail.com>
+Message-ID: <51.9A.05332.C8466B95@c.plat1.coursera.aws-usw2c.prd.sparkpost>
+Date: Mon, 11 Sep 2017 10:25:16 +0000
+Content-Type: multipart/alternative; boundary="_----6C9PSu+9y1UU9aQw/xB9VA===_F0/9A-05332-C8466B95"
+MIME-Version: 1.0
+Subject: Get ready for Week 2
+From: "Roman Architecture" <no-reply@t.mail.coursera.org>
+X-TUID: Fs+DDY+iMLYU
+
+--_----6C9PSu+9y1UU9aQw/xB9VA===_F0/9A-05332-C8466B95
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+
+Your Progress in Week 1=0D=0A[Ready to learn something new=3F]=0D=0A<https:=
+//eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2=
+YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvP3V0bV9tZWRpdW09ZW1haWw=
+mdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249b3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW=
+9IcTNKam9RLndlZWthaGVhZC5vbl9zY2hlZHVsZSU3RW9wZW5jb3Vyc2UubVNoUWk4WWZFZVdnM=
+FFvSHEzSmpvUS5ZaHVoNVFCSkVlZWM5aEthWG95bFZBIiwidHJhY2tpbmciOnsidXNlcklkIjoy=
+MDI3MzYzOSwidXNlckVtYWlsIjoic29tZXRpbWU1ODU4QGdtYWlsLmNvbSIsIm5vdGlmaWNhdGl=
+vblR5cGUiOiJ3ZWVrYWhlYWQub25fc2NoZWR1bGUiLCJjYW1wYWlnbklkIjoib3BlbmNvdXJzZS=
+5tU2hRaThZZkVlV2cwUW9IcTNKam9RLllodWg1UUJKRWVlYzloS2FYb3lsVkEiLCJjYW1wYWlnb=
+kdyb3VwIjoib3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLndlZWthaGVhZC5vbl9z=
+Y2hlZHVsZSIsImxpbmtzIjpbXX19LCJ1c2VySWQiOjIwMjczNjM5fQ.4XWnaK5RNE4gT59dm7qD=
+YVJjILRuGc_adHXubKAMXqQ> =09=0D=0AMy Courses=0D=0A<https://eventing.courser=
+a.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOi=
+JodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vd=
+GhlciZ1dG1fY2FtcGFpZ249b3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLndlZWth=
+aGVhZC5vbl9zY2hlZHVsZSU3RW9wZW5jb3Vyc2UubVNoUWk4WWZFZVdnMFFvSHEzSmpvUS5ZaHV=
+oNVFCSkVlZWM5aEthWG95bFZBIiwidHJhY2tpbmciOnsidXNlcklkIjoyMDI3MzYzOSwidXNlck=
+VtYWlsIjoic29tZXRpbWU1ODU4QGdtYWlsLmNvbSIsIm5vdGlmaWNhdGlvblR5cGUiOiJ3ZWVrY=
+WhlYWQub25fc2NoZWR1bGUiLCJjYW1wYWlnbklkIjoib3BlbmNvdXJzZS5tU2hRaThZZkVlV2cw=
+UW9IcTNKam9RLllodWg1UUJKRWVlYzloS2FYb3lsVkEiLCJjYW1wYWlnbkdyb3VwIjoib3BlbmN=
+vdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLndlZWthaGVhZC5vbl9zY2hlZHVsZSIsImxpbm=
+tzIjpbXX19LCJ1c2VySWQiOjIwMjczNjM5fQ.4XWnaK5RNE4gT59dm7qDYVJjILRuGc_adHXubK=
+AMXqQ> =0D=0ACourse Catalog=0D=0A<https://eventing.coursera.org/redirectSig=
+ned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5=
+jb3Vyc2VyYS5vcmcvY291cnNlcz91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b3RoZXImdX=
+RtX2NhbXBhaWduPW9wZW5jb3Vyc2UubVNoUWk4WWZFZVdnMFFvSHEzSmpvUS53ZWVrYWhlYWQub=
+25fc2NoZWR1bGUlN0VvcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1EuWWh1aDVRQkpF=
+ZWVjOWhLYVhveWxWQSIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI=
+6InNvbWV0aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlIjoid2Vla2FoZWFkLm=
+9uX3NjaGVkdWxlIiwiY2FtcGFpZ25JZCI6Im9wZW5jb3Vyc2UubVNoUWk4WWZFZVdnMFFvSHEzS=
+mpvUS5ZaHVoNVFCSkVlZWM5aEthWG95bFZBIiwiY2FtcGFpZ25Hcm91cCI6Im9wZW5jb3Vyc2Uu=
+bVNoUWk4WWZFZVdnMFFvSHEzSmpvUS53ZWVrYWhlYWQub25fc2NoZWR1bGUiLCJsaW5rcyI6W11=
+9fSwidXNlcklkIjoyMDI3MzYzOX0.uQtsTrZK4ViQF9U1pdWP_l2NtTRyJMeQpjnoRSFZTdU>=
+=0D=0A=0D=0A=0D=0A[coursera logo]Your Progress in Week 1=0D=0A=0D=0AYou've =
+successfully completed all of this week's items in Roman =0D=0AArchitecture=
+.=0D=0AKeep up the great work by getting started on Week 2.=0D=0AGo to Cou=
+rse=0D=0A<https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5s=
+aW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvbGVhcm4=
+vcm9tYW4tYXJjaGl0ZWN0dXJlL2hvbWUvd2Vlay8yP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdX=
+JjZT1vdGhlciZ1dG1fY2FtcGFpZ249b3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RL=
+ndlZWthaGVhZC5vbl9zY2hlZHVsZSU3RW9wZW5jb3Vyc2UubVNoUWk4WWZFZVdnMFFvSHEzSmpv=
+US5ZaHVoNVFCSkVlZWM5aEthWG95bFZBIiwidHJhY2tpbmciOnsidXNlcklkIjoyMDI3MzYzOSw=
+idXNlckVtYWlsIjoic29tZXRpbWU1ODU4QGdtYWlsLmNvbSIsIm5vdGlmaWNhdGlvblR5cGUiOi=
+J3ZWVrYWhlYWQub25fc2NoZWR1bGUiLCJjYW1wYWlnbklkIjoib3BlbmNvdXJzZS5tU2hRaThZZ=
+kVlV2cwUW9IcTNKam9RLllodWg1UUJKRWVlYzloS2FYb3lsVkEiLCJjYW1wYWlnbkdyb3VwIjoi=
+b3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLndlZWthaGVhZC5vbl9zY2hlZHVsZSI=
+sImxpbmtzIjpbXX19LCJ1c2VySWQiOjIwMjczNjM5fQ.hs2GTA3dinh3rJpXd0niWUxTV4V9kb8=
+sPIa7c2FB7yc>=0D=0A=0D=0A=0D=0AGet ready for Week 2=0D=0A=0D=0AIn this comp=
+elling week, we will concentrate on the lost (and rediscovered) =0D=0Acitie=
+s of Pompeii and Herculaneum.=0D=0A=0D=0A=0D=0AWe will explore the civic li=
+fe of Pompeii, which occurred in the forum, =0D=0Abasilica, amphitheater, t=
+heater, and public baths. We will get a picture of =0D=0Adaily life, with a=
+ quick stop at a Roman fast food stand. We will walk =0D=0APompeii=E2=80=99=
+s distinctive stepping stones and see sidewalks and drains that =0D=0Aresem=
+ble our own. We will ask: was there a =E2=80=9Crush hour=E2=80=9D in Pompei=
+i=3F For an =0D=0Aarchaeologist=E2=80=99s opinion, see Eric Poehler at: =0D=
+=0Ahttp://archive.archaeology.org/0811/etc/conversation.html=0D=0A<https://=
+eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YW=
+x1ZSI6eyJ1cmwiOiJodHRwOi8vYXJjaGl2ZS5hcmNoYWVvbG9neS5vcmcvMDgxMS9ldGMvY29ud=
+mVyc2F0aW9uLmh0bWw_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0bV9jYW1w=
+YWlnbj1vcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1Eud2Vla2FoZWFkLm9uX3NjaGV=
+kdWxlJTdFb3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLllodWg1UUJKRWVlYzloS2=
+FYb3lsVkEiLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwiOiJzb21ld=
+GltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6IndlZWthaGVhZC5vbl9zY2hl=
+ZHVsZSIsImNhbXBhaWduSWQiOiJvcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1EuWWh=
+1aDVRQkpFZWVjOWhLYVhveWxWQSIsImNhbXBhaWduR3JvdXAiOiJvcGVuY291cnNlLm1TaFFpOF=
+lmRWVXZzBRb0hxM0pqb1Eud2Vla2FoZWFkLm9uX3NjaGVkdWxlIiwibGlua3MiOltdfX0sInVzZ=
+XJJZCI6MjAyNzM2Mzl9.9QRSgxtU76gE2KpeUcm4UwA-grt-e1OuPk8ueWBgNNU> =0D=0A. On=
+e of the highlights will be our exploration of Pompeii=E2=80=99s Amphitheat=
+er. =0D=0AWe will see how the Pompeians honored their departed relatives an=
+d will end =0D=0Awith the high drama of the devastating earthquake of A.D. =
+62 and the =0D=0Aunthinkable eruption of Mt. Vesuvius 17 years later (A.D. =
+79).=0D=0A=0D=0A=0D=0AOnce we have a grasp of Pompeii=E2=80=99s public buil=
+dings, we will explore some of =0D=0Aits most notable houses, among them th=
+e Houses of the Vettii and the Faun, =0D=0Aand then make a stop at the Vill=
+a of the Mysteries with its striking =0D=0Apaintings of a mysterious cult t=
+hat encircles the walls of a small but =0D=0Aremarkable room.=0D=0A=0D=0A=
+=0D=0AOnce we have a grasp of public and private life in Pompeii, we will t=
+ravel =0D=0Athe short distance to Herculaneum. Less of Herculaneum has been=
+ excavated =0D=0Asince the modern city surrounds the excavation site. Littl=
+e evidence of =0D=0AHerculaneum=E2=80=99s civic life survives but the prese=
+rved houses make clear that =0D=0Aincreased verticality appeared in domesti=
+c architecture in Campania after =0D=0Athe earthquake. We will also experie=
+nce stunning examples of First and =0D=0ASecond Style Roman wall painting.=
+=0D=0A=0D=0A=0D=0AThis week will culminate with your first writing assignme=
+nt, which you can =0D=0Aaccess here.=0D=0A<https://eventing.coursera.org/re=
+directSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwcz=
+ovL3d3dy5jb3Vyc2VyYS5vcmcvbGVhcm4vcm9tYW5hcmNoaXRlY3R1cmUvcGVlci9ERmI0eS93a=
+GF0LWRvZXMtcG9tcGVpaS10ZWxsLXVzLWFib3V0LXRoZS1hcmNoaXRlY3R1cmUtb2YtZGFpbHkt=
+bGlmZS1pbi1hbmNpZW50LXJvbWU_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV=
+0bV9jYW1wYWlnbj1vcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1Eud2Vla2FoZWFkLm=
+9uX3NjaGVkdWxlJTdFb3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLllodWg1UUJKR=
+WVlYzloS2FYb3lsVkEiLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwi=
+OiJzb21ldGltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6IndlZWthaGVhZC5=
+vbl9zY2hlZHVsZSIsImNhbXBhaWduSWQiOiJvcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0=
+pqb1EuWWh1aDVRQkpFZWVjOWhLYVhveWxWQSIsImNhbXBhaWduR3JvdXAiOiJvcGVuY291cnNlL=
+m1TaFFpOFlmRWVXZzBRb0hxM0pqb1Eud2Vla2FoZWFkLm9uX3NjaGVkdWxlIiwibGlua3MiOltd=
+fX0sInVzZXJJZCI6MjAyNzM2Mzl9.NOuhIQkSQvrMV7AprSyxpU3Dk3IRHCEW86-Dul6azqk> =
+=0D=0AEntitled =E2=80=9CWhat Does Pompeii Tell Us About the Architecture of=
+ Daily Life in =0D=0AAncient Rome,=E2=80=9D it is intended as a thought que=
+stion, for which you must =0D=0Aselect pertinent examples to support your a=
+rgument. Since you will be =0D=0Adiscussing the city of Pompeii, be sure to=
+ listen to lectures 4 and 5 =0D=0Abefore you begin your paper. Please also =
+remember that if you submit a =0D=0Awriting assignment, you will be request=
+ed to peer grade five of your =0D=0Aclassmates papers. You can read about t=
+he peer-review grading policies =0D=0Awithin the assignment.=0D=0A=0D=0A=0D=
+=0AWe look forward to your contributions to our discussions and to the resu=
+lt =0D=0Aof your first paper.=0D=0A=0D=0A=0D=0AMy best,=0D=0A=0D=0A=0D=0ADi=
+ana E. E. Kleiner=0D=0A=0D=0A=0D=0ADownload our App:  iOS=0D=0A<https://eve=
+nting.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1Z=
+SI6eyJ1cmwiOiJodHRwczovL2l0dW5lcy5hcHBsZS5jb20vYXBwL2FwcGxlLXN0b3JlL2lkNzM2=
+NTM1OTYxP2N0PU1vYmlsZSUyMFByb21vJTIwRW1haWwmdXRtX3NvdXJjZT1vdGhlciZtdD04JnB=
+0PTIzMzQxNTAmdXRtX2NhbXBhaWduPW9wZW5jb3Vyc2UubVNoUWk4WWZFZVdnMFFvSHEzSmpvUS=
+53ZWVrYWhlYWQub25fc2NoZWR1bGUlN0VvcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb=
+1EuWWh1aDVRQkpFZWVjOWhLYVhveWxWQSZ1dG1fbWVkaXVtPWVtYWlsIiwidHJhY2tpbmciOnsi=
+dXNlcklkIjoyMDI3MzYzOSwidXNlckVtYWlsIjoic29tZXRpbWU1ODU4QGdtYWlsLmNvbSIsIm5=
+vdGlmaWNhdGlvblR5cGUiOiJ3ZWVrYWhlYWQub25fc2NoZWR1bGUiLCJjYW1wYWlnbklkIjoib3=
+BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLllodWg1UUJKRWVlYzloS2FYb3lsVkEiL=
+CJjYW1wYWlnbkdyb3VwIjoib3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLndlZWth=
+aGVhZC5vbl9zY2hlZHVsZSIsImxpbmtzIjpbXX19LCJ1c2VySWQiOjIwMjczNjM5fQ.De2CYTUO=
+v6y_apDaN_D5ou8riVvGdta4YNdzBG6vMKA> =0D=0A  |  Android=0D=0A<https://event=
+ing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI=
+6eyJ1cmwiOiJodHRwczovL3BsYXkuZ29vZ2xlLmNvbS9zdG9yZS9hcHBzL2RldGFpbHM_aWQ9b3=
+JnLmNvdXJzZXJhLmFuZHJvaWQmdXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0b=
+V9jYW1wYWlnbj1vcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1Eud2Vla2FoZWFkLm9u=
+X3NjaGVkdWxlJTdFb3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLllodWg1UUJKRWV=
+lYzloS2FYb3lsVkEiLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwiOi=
+Jzb21ldGltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6IndlZWthaGVhZC5vb=
+l9zY2hlZHVsZSIsImNhbXBhaWduSWQiOiJvcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pq=
+b1EuWWh1aDVRQkpFZWVjOWhLYVhveWxWQSIsImNhbXBhaWduR3JvdXAiOiJvcGVuY291cnNlLm1=
+TaFFpOFlmRWVXZzBRb0hxM0pqb1Eud2Vla2FoZWFkLm9uX3NjaGVkdWxlIiwibGlua3MiOltdfX=
+0sInVzZXJJZCI6MjAyNzM2Mzl9.wjtx-lHTNLlM5CbcmLovr9ZuUu4PNvRzs4KRFVTfT_Q>=0D=
+=0ALearner Help Center=0D=0A<https://eventing.coursera.org/redirectSigned/e=
+yJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL2xlYXJuZXIu=
+Y291cnNlcmEuaGVscC8_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0bV9jYW1=
+wYWlnbj1vcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1Eud2Vla2FoZWFkLm9uX3NjaG=
+VkdWxlJTdFb3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLllodWg1UUJKRWVlYzloS=
+2FYb3lsVkEiLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwiOiJzb21l=
+dGltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6IndlZWthaGVhZC5vbl9zY2h=
+lZHVsZSIsImNhbXBhaWduSWQiOiJvcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1EuWW=
+h1aDVRQkpFZWVjOWhLYVhveWxWQSIsImNhbXBhaWduR3JvdXAiOiJvcGVuY291cnNlLm1TaFFpO=
+FlmRWVXZzBRb0hxM0pqb1Eud2Vla2FoZWFkLm9uX3NjaGVkdWxlIiwibGlua3MiOltdfX0sInVz=
+ZXJJZCI6MjAyNzM2Mzl9.Oycr-YoN1jub6VS6LOJw7uWq96m5qhIcND4pXy4z8WQ> =0D=0A  |=
+ Please do not reply directly to this email=0D=0ATo opt out of receiving th=
+is type of email, Unsubscribe=0D=0A<https://eventing.coursera.org/redirectS=
+igned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3d=
+y5jb3Vyc2VyYS5vcmcvYWNjb3VudC91bnN1YnNjcmliZS9jZjB0NV9yeUZqN19HWmFyVHA2cm1p=
+SHJTNHlOM1FnUG9TVkpFQVNjdS1rYS1udGtFTi1ENU9DRXVYckUzMS1iNmFKdHlaTDlLdzEwZER=
+OdVBGT0l0Zy4zUTlncW1QcXgzOXhZTU5PczVrbEdRLlRUY3daMklYd0JNcnpwQ1BnUWFxYU1WRm=
+9LRElSclg5Wko0OG9CUGNKbEd3bC1PUnRFcnRIa3QyTHVBU1AwcjdELXYwU3dwaU9NMlJLbHpkY=
+nNXS3BKemZUSnV6cWkxZDdUZTVzMFBNZFhZeUhpX3BPUElZYk5nZ2ZDb1ZtZFhSbEY0dTE4TzBL=
+NW1aSU5GWEVMVDFoQT91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b3RoZXImdXRtX2NhbXB=
+haWduPW9wZW5jb3Vyc2UubVNoUWk4WWZFZVdnMFFvSHEzSmpvUS53ZWVrYWhlYWQub25fc2NoZW=
+R1bGUlN0VvcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1EuWWh1aDVRQkpFZWVjOWhLY=
+VhveWxWQSIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI6InNvbWV0=
+aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlIjoid2Vla2FoZWFkLm9uX3NjaGV=
+kdWxlIiwiY2FtcGFpZ25JZCI6Im9wZW5jb3Vyc2UubVNoUWk4WWZFZVdnMFFvSHEzSmpvUS5ZaH=
+VoNVFCSkVlZWM5aEthWG95bFZBIiwiY2FtcGFpZ25Hcm91cCI6Im9wZW5jb3Vyc2UubVNoUWk4W=
+WZFZVdnMFFvSHEzSmpvUS53ZWVrYWhlYWQub25fc2NoZWR1bGUiLCJsaW5rcyI6W119fSwidXNl=
+cklkIjoyMDI3MzYzOX0.j6K2IySY2PfVPqiMUovoZdBVAgyu7ZAl6-_FhZcj8GQ>=0D=0ACopyr=
+ight =C2=A9 2017, Coursera Inc. | 381 E. Evelyn Ave, Mountain View, CA =0D=
+=0A94041 USA
+--_----6C9PSu+9y1UU9aQw/xB9VA===_F0/9A-05332-C8466B95
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="UTF-8"
+
+<!--Helper mixin, not used outside of this file--><!--Helper mixin for lear=
+ner, not used outside of this file--><!--Helper mixin for enterprise admin,=
+ not used outside of this file--><!--Helper mixin, not used outside of this=
+ file--><!--Helper mixin, not used outside of this file--><!--Helper mixin,=
+ not used outside of this file--><!--Helper mixin, not used outside of this=
+ file--><!--Helper mixin, not used outside of this file--><!--Helper mixin,=
+ not used outside of this file--><!--URL MIXINS--><!--Helper mixin, not use=
+d outside of this file--><!--"style" argument should be a variable defined =
+on a separate line and take one of the values:--><!--- {'type': 'button'}--=
+><!--- {'type': 'image', 'imageUrl': '...', 'imageAlt': '...'}--><!--- {'ty=
+pe': 'imageOnLeft', 'imageUrl': '...', 'imageAlt': '...'}--><!--- {'type': =
+'imageWithPlay', 'imageUrl': '...', 'imageAlt': '...'}--><!--- {'type': 'in=
+line', 'linkStyle': '...'}--><!--link to the s12n upgrade dashboard, where =
+learner can choose to stay on--><!--current version or upgrade to new versi=
+on--><!--Given a question, go to the page where you can unsubscribe--><!--i=
+tem discussions are nested under items themselves--><!--item discussions ar=
+e nested under items themselves--><!--item discussions are nested under ite=
+ms themselves--><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//=
+EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head><=
+meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/><m=
+eta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge"/><meta name=3D"vie=
+wport" content=3D"width=3Ddevice-width"/><link rel=3D"stylesheet" href=3D"h=
+ttps://fonts.googleapis.com/css=3Ffamily=3DOpen+Sans:100,200,400,300,700" t=
+ype=3D"text/css"/></head><body><style type=3D"text/css">/***** RESET STYLES=
+ ******/=0Abody, #bodyTable, #bodyCell {=0A  height:100% !important;=0A  ma=
+rgin:0;=0A  padding:0;=0A  width:100% !important;=0A}=0Ah1, h2, h3, h4, h5,=
+ h6 {=0A  margin:0;=0A  padding:0;=0A}=0Ap {=0A  margin: 1em 0;=0A}=0A=0A/*=
+***** CLIENT-SPECIFIC STYLES ******/=0A/* Stops email clients resizing smal=
+l text. */=0A* {=0A  -ms-text-size-adjust: 100%;=0A  -webkit-text-size-adju=
+st: 100%;=0A}=0A.ReadMsgBody {=0A  width:100%;=0A}=0A/* Forces Outlook.com =
+to display emails full width. */=0A.ExternalClass {=0A  width:100%;=0A}=0A/=
+* Fixes Outlook.com line height. */=0A.ExternalClass, .ExternalClass * {=0A=
+  line-height:100%;=0A}=0A/* Stops Outlook from adding extra spacing to tab=
+les. */=0Atable, td {=0A  mso-table-lspace:0pt;=0A  mso-table-rspace:0pt;=
+=0A}=0A/* Fixes webkit padding issue. */=0Atable {=0A  border-spacing:0 !im=
+portant;=0A}=0A/* Fix for Yahoo mail table alignment bug. */=0Atable {=0A  =
+border-collapse: collapse;=0A  margin: 0 auto;=0A}=0A/* Remove spacing betw=
+een tables in Outlook 2007 and up. */=0A#outlook a {=0A  padding:0;=0A}=0A/=
+* Force Outlook 2007 and up to provide a "view in browser" message. */=0Aim=
+g {=0A  -ms-interpolation-mode: bicubic;=0A}=0A/* Overrides styles added wh=
+en Yahoo's auto-senses a link. */=0A.preheaderContent div a:link, .preheade=
+rContent div a:visited, .preheaderContent div a .yshortcuts {=0A    color: =
+#3b6e8f;=0A    font-weight:normal;=0A    text-decoration:underline;=0A}=0A.=
+yshortcuts a {=0A  border-bottom: none !important;=0A}=0A=0A/* Overrides bl=
+ue, underlined link auto-detected by iOS Mail. */=0A/* Create a class for e=
+very link style needed; this template needs only one for the link in the fo=
+oter. */=0A.appleBody a {=0A    color:#68440A;=0A    text-decoration: none;=
+=0A}=0A.appleFooter a {=0A    color:#999999;=0A    text-decoration: none;=
+=0A}=0A=0A/* Overrides styles added images. */=0Aimg, a img {=0A  border:0 =
+!important;=0A  outline:none !important;=0A  text-decoration:none !importan=
+t;=0A}=0A=0A/****** MOBILE STYLES ******/=0A/* Media Queries */=0A@media sc=
+reen and (max-device-width: 600px), screen and (max-width: 600px) {=0A=0A  =
+/* Overrides email-container's desktop width and forces it into a 100% flui=
+d width. */=0A  .email-container {=0A    width: 100% !important;=0A  }=0A=
+=0A  /* Forces images to resize to the width of their container. */=0A  img=
+[class=3D"fluid"],=0A  img[class=3D"fluid-centered"] {=0A    width: 100% !i=
+mportant;=0A    max-width: 100% !important;=0A    height: auto !important;=
+=0A    margin: auto !important;=0A  }=0A  /* And center justify these ones.=
+ */=0A  img[class=3D"fluid-centered"] {=0A    margin: auto !important;=0A  =
+}=0A=0A  /* Forces table cells into full-width rows. */=0A  td[class=3D"sta=
+ck-column"],=0A  td[class=3D"stack-column-center"] {=0A    display: block !=
+important;=0A    width: 100% !important;=0A    direction: ltr !important;=
+=0A  }=0A  /* And center justify these ones. */=0A  td[class=3D"stack-colum=
+n-center"] {=0A    text-align: center !important;=0A  }=0A}</style><center>=
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" styl=
+e=3D"background-color: #F8F8F8; font-family:&quot;Open Sans&quot;,&quot;Hel=
+vetica&quot;, Arial, sans-serif !important;mso-font-alt:&quot;Arial&quot;;"=
+ height=3D"100%"><tr><td valign=3D"top" style=3D"padding-top: 30px;" align=
+=3D"center"><div class=3D"preheaderContent" style=3D"display: none; font-si=
+ze: 1px; color: #3E3E3E; line-height: 1px; max-height: 0px; max-width: 0px;=
+ opacity: 0; overflow: hidden; mso-hide: all;">Your Progress in Week 1</div=
+><!--Email Body--><table class=3D"email-container" cellpadding=3D"0" cellsp=
+acing=3D"0" width=3D"600" style=3D"border: 1px #F2F2F2 solid;"><tr><td vali=
+gn=3D"top" style=3D"background-color: #FFFFFF; border: 1px solid #F2F2F2;">=
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%"><tr>=
+<td class=3D"stack-column-center" valign=3D"middle" align=3D"left"><a href=
+=3D"https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm=
+9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvP3V0bV9tZWRpd=
+W09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249b3BlbmNvdXJzZS5tU2hRaThZ=
+ZkVlV2cwUW9IcTNKam9RLndlZWthaGVhZC5vbl9zY2hlZHVsZSU3RW9wZW5jb3Vyc2UubVNoUWk=
+4WWZFZVdnMFFvSHEzSmpvUS5ZaHVoNVFCSkVlZWM5aEthWG95bFZBIiwidHJhY2tpbmciOnsidX=
+NlcklkIjoyMDI3MzYzOSwidXNlckVtYWlsIjoic29tZXRpbWU1ODU4QGdtYWlsLmNvbSIsIm5vd=
+GlmaWNhdGlvblR5cGUiOiJ3ZWVrYWhlYWQub25fc2NoZWR1bGUiLCJjYW1wYWlnbklkIjoib3Bl=
+bmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLllodWg1UUJKRWVlYzloS2FYb3lsVkEiLCJ=
+jYW1wYWlnbkdyb3VwIjoib3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLndlZWthaG=
+VhZC5vbl9zY2hlZHVsZSIsImxpbmtzIjpbXX19LCJ1c2VySWQiOjIwMjczNjM5fQ.4XWnaK5RNE=
+4gT59dm7qDYVJjILRuGc_adHXubKAMXqQ" target=3D"_blank"><img src=3D"https://d3=
+njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-mi=
+sc.s3.amazonaws.com/emails/coursera_logo.png=3Fw=3D150&amp;h=3D22&amp;fit=
+=3Dscale" alt=3D"Ready to learn something new=3F" style=3D"padding:25px 20p=
+x 20px 15px;"/></a></td><td class=3D"stack-column-center" valign=3D"middle"=
+ align=3D"right"><a href=3D"https://eventing.coursera.org/redirectSigned/ey=
+JrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc=
+2VyYS5vcmcvP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249=
+b3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLndlZWthaGVhZC5vbl9zY2hlZHVsZSU=
+3RW9wZW5jb3Vyc2UubVNoUWk4WWZFZVdnMFFvSHEzSmpvUS5ZaHVoNVFCSkVlZWM5aEthWG95bF=
+ZBIiwidHJhY2tpbmciOnsidXNlcklkIjoyMDI3MzYzOSwidXNlckVtYWlsIjoic29tZXRpbWU1O=
+DU4QGdtYWlsLmNvbSIsIm5vdGlmaWNhdGlvblR5cGUiOiJ3ZWVrYWhlYWQub25fc2NoZWR1bGUi=
+LCJjYW1wYWlnbklkIjoib3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLllodWg1UUJ=
+KRWVlYzloS2FYb3lsVkEiLCJjYW1wYWlnbkdyb3VwIjoib3BlbmNvdXJzZS5tU2hRaThZZkVlV2=
+cwUW9IcTNKam9RLndlZWthaGVhZC5vbl9zY2hlZHVsZSIsImxpbmtzIjpbXX19LCJ1c2VySWQiO=
+jIwMjczNjM5fQ.4XWnaK5RNE4gT59dm7qDYVJjILRuGc_adHXubKAMXqQ" style=3D"text-de=
+coration: none; color: #787878; border-right: 1px gray solid; padding-right=
+: 8px;" target=3D"_blank">My Courses</a><a href=3D"https://eventing.courser=
+a.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOi=
+JodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvY291cnNlcz91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb=
+3VyY2U9b3RoZXImdXRtX2NhbXBhaWduPW9wZW5jb3Vyc2UubVNoUWk4WWZFZVdnMFFvSHEzSmpv=
+US53ZWVrYWhlYWQub25fc2NoZWR1bGUlN0VvcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0p=
+qb1EuWWh1aDVRQkpFZWVjOWhLYVhveWxWQSIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2Mz=
+ksInVzZXJFbWFpbCI6InNvbWV0aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlI=
+joid2Vla2FoZWFkLm9uX3NjaGVkdWxlIiwiY2FtcGFpZ25JZCI6Im9wZW5jb3Vyc2UubVNoUWk4=
+WWZFZVdnMFFvSHEzSmpvUS5ZaHVoNVFCSkVlZWM5aEthWG95bFZBIiwiY2FtcGFpZ25Hcm91cCI=
+6Im9wZW5jb3Vyc2UubVNoUWk4WWZFZVdnMFFvSHEzSmpvUS53ZWVrYWhlYWQub25fc2NoZWR1bG=
+UiLCJsaW5rcyI6W119fSwidXNlcklkIjoyMDI3MzYzOX0.uQtsTrZK4ViQF9U1pdWP_l2NtTRyJ=
+MeQpjnoRSFZTdU" style=3D"text-decoration: none; color: #787878; padding-lef=
+t: 8px; padding-right: 15px;" target=3D"_blank">Course Catalog</a></td></tr=
+></table></td></tr><tr><td bgcolor=3D"#F8F8F8" style=3D"border-width: 1px; =
+border-style: solid; border-color: #F8F8F8; border-top-color: #F2F2F2; bord=
+er-bottom-color: #F2F2F2;"><table style=3D"border-collapse: collapse; float=
+: left;"><tr><td valign=3D"middle" style=3D"padding: 0 10px 0 10px;"><tr st=
+yle=3D"height:20px"></tr></td></tr></table></td></tr><tr><td bgcolor=3D"#FF=
+FFFF" style=3D"vertical-align: top; padding: 25px 8px 15px 8px;"><table sty=
+le=3D"border-collapse: collapse; float: left;"><tr><td valign=3D"middle" st=
+yle=3D"padding: 0 10px 0 10px;"><h1 style=3D"color: #B18767; font-weight: 4=
+00; line-height: 30px; font-size: 26px; text-align: left;"><img src=3D"http=
+://coursera-assets.s3.amazonaws.com/coursera_logoonly_50.png" alt=3D"course=
+ra logo" style=3D"width: 50px; height: 50px; max-height:50px; -webkit-borde=
+r-radius: 50%; border-radius: 50%; vertical-align: middle;"/><span style=3D=
+"vertical-align:middle;margin-left:10px;"></span>Your Progress in Week 1</h=
+1></td></tr></table></td></tr><tr><td bgcolor=3D"#FFFFFF" style=3D"vertical=
+-align: top; padding: 10px 8px 10px 8px;"><table style=3D"border-collapse: =
+collapse; float: left;"><tr><td valign=3D"middle" style=3D"padding: 0 10px =
+0 10px;"><div style=3D"color: #3E3E3E; font-weight: 400; line-height: 24px;=
+ font-size: 14px; text-align: left;">You've successfully completed all of t=
+his week's items in  Roman Architecture.</div></td></tr></table></td></tr><=
+tr><td bgcolor=3D"#FFFFFF" style=3D"vertical-align: top; padding: 10px 8px =
+10px 8px;"><table style=3D"border-collapse: collapse; float: left;"><tr><td=
+ valign=3D"middle" style=3D"padding: 0 10px 0 10px;"><div style=3D"color: #=
+3E3E3E; font-weight: 400; line-height: 24px; font-size: 14px; text-align: l=
+eft;">Keep up the great work by getting started on Week 2.</div></td></tr><=
+/table></td></tr><tr bgcolor=3D"#FFFFFF" style=3D"border: 0px none;"><td va=
+lign=3D"top" style=3D"padding: 15px 15px 15px 15px;"><table border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"float: left;"><tr=
+><td class=3D"stack-column" valign=3D"middle" align=3D"left"><a href=3D"htt=
+ps://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iL=
+CJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvbGVhcm4vcm9tYW4tYXJj=
+aGl0ZWN0dXJlL2hvbWUvd2Vlay8yP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ=
+1dG1fY2FtcGFpZ249b3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLndlZWthaGVhZC=
+5vbl9zY2hlZHVsZSU3RW9wZW5jb3Vyc2UubVNoUWk4WWZFZVdnMFFvSHEzSmpvUS5ZaHVoNVFCS=
+kVlZWM5aEthWG95bFZBIiwidHJhY2tpbmciOnsidXNlcklkIjoyMDI3MzYzOSwidXNlckVtYWls=
+Ijoic29tZXRpbWU1ODU4QGdtYWlsLmNvbSIsIm5vdGlmaWNhdGlvblR5cGUiOiJ3ZWVrYWhlYWQ=
+ub25fc2NoZWR1bGUiLCJjYW1wYWlnbklkIjoib3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcT=
+NKam9RLllodWg1UUJKRWVlYzloS2FYb3lsVkEiLCJjYW1wYWlnbkdyb3VwIjoib3BlbmNvdXJzZ=
+S5tU2hRaThZZkVlV2cwUW9IcTNKam9RLndlZWthaGVhZC5vbl9zY2hlZHVsZSIsImxpbmtzIjpb=
+XX19LCJ1c2VySWQiOjIwMjczNjM5fQ.hs2GTA3dinh3rJpXd0niWUxTV4V9kb8sPIa7c2FB7yc"=
+ style=3D"text-decoration: none; vertical-align: top; display: block;"><spa=
+n style=3D"font-size: 14px !important; line-height: 54px; display: inline-b=
+lock; color: #FFFFFF; border-radius: 1px; text-align: center; padding: 0 30=
+px 0 30px; background-color: #2774D0">Go to Course</span></a></td></tr></ta=
+ble></td></tr><tr><td bgcolor=3D"#F8F8F8" style=3D"border-width: 1px; borde=
+r-style: solid; border-color: #F8F8F8; border-top-color: #F2F2F2; border-bo=
+ttom-color: #F2F2F2;"><table style=3D"border-collapse: collapse; float: lef=
+t;"><tr><td valign=3D"middle" style=3D"padding: 0 10px 0 10px;"><tr style=
+=3D"height:20px"></tr></td></tr></table></td></tr><tr><td bgcolor=3D"#FFFFF=
+F" style=3D"vertical-align: top; padding: 25px 8px 15px 8px;"><table style=
+=3D"border-collapse: collapse; float: left;"><tr><td valign=3D"middle" styl=
+e=3D"padding: 0 10px 0 10px;"><h1 style=3D"color: #B18767; font-weight: 400=
+; line-height: 30px; font-size: 26px; text-align: left;"><img src=3D"https:=
+//d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://courser=
+a-instructor-photos.s3.amazonaws.com/ba/522ed7be0e89e3ccbd1d7d6e68e080/hsar=
+252_diana_kleiner600.jpg=3Fauto=3Dformat&amp;dpr=3D1&amp;w=3D50&amp;h=3D50&=
+amp;fit=3Dcrop" style=3D"max-width:50px;max-height:50px;-webkit-border-radi=
+us:50%;border-radius:50%;vertical-align:middle;"/><span style=3D"margin-lef=
+t:10px;vertical-align:middle;"></span>Get ready for Week 2</h1></td></tr></=
+table></td></tr><tr><td bgcolor=3D"#FFFFFF" style=3D"vertical-align: top; p=
+adding: 10px 8px 10px 8px;"><table style=3D"border-collapse: collapse; floa=
+t: left;"><tr><td valign=3D"middle" style=3D"padding: 0 10px 0 10px;"><div =
+style=3D"color: #3E3E3E; font-weight: 400; line-height: 24px; font-size: 14=
+px; text-align: left;"><div>=0A <p style=3D"margin-bottom:14px;min-height:2=
+0px;">In this compelling week, we will concentrate on the lost (and redisco=
+vered) cities of Pompeii and Herculaneum.</p>=0A <p style=3D"margin-bottom:=
+14px;min-height:20px;">We will explore the civic life of Pompeii, which occ=
+urred in the forum, basilica, amphitheater, theater, and public baths. We w=
+ill get a picture of daily life, with a quick stop at a Roman fast food sta=
+nd. We will walk Pompeii=E2=80=99s distinctive stepping stones and see side=
+walks and drains that resemble our own. We will ask: was there a =E2=80=9Cr=
+ush hour=E2=80=9D in Pompeii=3F For an archaeologist=E2=80=99s opinion, see=
+ Eric Poehler at: <a href=3D"https://eventing.coursera.org/redirectSigned/e=
+yJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vYXJjaGl2ZS5h=
+cmNoYWVvbG9neS5vcmcvMDgxMS9ldGMvY29udmVyc2F0aW9uLmh0bWw_dXRtX21lZGl1bT1lbWF=
+pbCZ1dG1fc291cmNlPW90aGVyJnV0bV9jYW1wYWlnbj1vcGVuY291cnNlLm1TaFFpOFlmRWVXZz=
+BRb0hxM0pqb1Eud2Vla2FoZWFkLm9uX3NjaGVkdWxlJTdFb3BlbmNvdXJzZS5tU2hRaThZZkVlV=
+2cwUW9IcTNKam9RLllodWg1UUJKRWVlYzloS2FYb3lsVkEiLCJ0cmFja2luZyI6eyJ1c2VySWQi=
+OjIwMjczNjM5LCJ1c2VyRW1haWwiOiJzb21ldGltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2F=
+0aW9uVHlwZSI6IndlZWthaGVhZC5vbl9zY2hlZHVsZSIsImNhbXBhaWduSWQiOiJvcGVuY291cn=
+NlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1EuWWh1aDVRQkpFZWVjOWhLYVhveWxWQSIsImNhbXBha=
+WduR3JvdXAiOiJvcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1Eud2Vla2FoZWFkLm9u=
+X3NjaGVkdWxlIiwibGlua3MiOltdfX0sInVzZXJJZCI6MjAyNzM2Mzl9.9QRSgxtU76gE2KpeUc=
+m4UwA-grt-e1OuPk8ueWBgNNU" >http://archive.archaeology.org/0811/etc/convers=
+ation.html</a>. One of the highlights will be our exploration of Pompeii=E2=
+=80=99s Amphitheater. We will see how the Pompeians honored their departed =
+relatives and will end with the high drama of the devastating earthquake of=
+ A.D. 62 and the unthinkable eruption of Mt. Vesuvius 17 years later (A.D. =
+79).</p>=0A <p style=3D"margin-bottom:14px;min-height:20px;">Once we have a=
+ grasp of Pompeii=E2=80=99s public buildings, we will explore some of its m=
+ost notable houses, among them the Houses of the Vettii and the Faun, and t=
+hen make a stop at the Villa of the Mysteries with its striking paintings o=
+f a mysterious cult that encircles the walls of a small but remarkable room=
+.</p>=0A <p style=3D"margin-bottom:14px;min-height:20px;">Once we have a g=
+rasp of public and private life in Pompeii, we will travel the short distan=
+ce to Herculaneum. Less of Herculaneum has been excavated since the modern =
+city surrounds the excavation site. Little evidence of Herculaneum=E2=80=99=
+s civic life survives but the preserved houses make clear that increased ve=
+rticality appeared in domestic architecture in Campania after the earthquak=
+e. We will also experience stunning examples of First and Second Style Roma=
+n wall painting.</p>=0A <p style=3D"margin-bottom:14px;min-height:20px;">Th=
+is week will culminate with your first writing assignment, which you can ac=
+cess <a href=3D"https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbW=
+FpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvb=
+GVhcm4vcm9tYW5hcmNoaXRlY3R1cmUvcGVlci9ERmI0eS93aGF0LWRvZXMtcG9tcGVpaS10ZWxs=
+LXVzLWFib3V0LXRoZS1hcmNoaXRlY3R1cmUtb2YtZGFpbHktbGlmZS1pbi1hbmNpZW50LXJvbWU=
+_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0bV9jYW1wYWlnbj1vcGVuY291cn=
+NlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1Eud2Vla2FoZWFkLm9uX3NjaGVkdWxlJTdFb3BlbmNvd=
+XJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLllodWg1UUJKRWVlYzloS2FYb3lsVkEiLCJ0cmFj=
+a2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwiOiJzb21ldGltZTU4NThAZ21haWw=
+uY29tIiwibm90aWZpY2F0aW9uVHlwZSI6IndlZWthaGVhZC5vbl9zY2hlZHVsZSIsImNhbXBhaW=
+duSWQiOiJvcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1EuWWh1aDVRQkpFZWVjOWhLY=
+VhveWxWQSIsImNhbXBhaWduR3JvdXAiOiJvcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pq=
+b1Eud2Vla2FoZWFkLm9uX3NjaGVkdWxlIiwibGlua3MiOltdfX0sInVzZXJJZCI6MjAyNzM2Mzl=
+9.NOuhIQkSQvrMV7AprSyxpU3Dk3IRHCEW86-Dul6azqk" >here.</a> Entitled =E2=80=
+=9CWhat Does Pompeii Tell Us About the Architecture of Daily Life in Ancien=
+t Rome,=E2=80=9D it<em> </em>is intended as a thought question, for which y=
+ou must select pertinent examples to support your argument. Since you will =
+be discussing the city of Pompeii, be sure to listen to lectures 4 and 5 be=
+fore you begin your paper. Please also remember that if you submit a writin=
+g assignment, you will be requested to peer grade five of your classmates p=
+apers. You can read about the peer-review grading policies within the assig=
+nment.</p>=0A <p style=3D"margin-bottom:14px;min-height:20px;">We look forw=
+ard to your contributions to our discussions and to the result of your firs=
+t paper.</p>=0A <p style=3D"margin-bottom:14px;min-height:20px;">My best,</=
+p>=0A <p style=3D"margin-bottom:14px;min-height:20px;">Diana E. E. Kleiner<=
+/p>=0A</div></div></td></tr></table></td></tr><tr><td bgcolor=3D"#F8F8F8" s=
+tyle=3D"border-width: 1px; border-style: solid; border-color: #F8F8F8; bord=
+er-top-color: #F2F2F2; border-bottom-color: #F2F2F2;"><table style=3D"borde=
+r-collapse: collapse; float: left;"><tr><td valign=3D"middle" style=3D"padd=
+ing: 0 10px 0 10px;"><tr style=3D"height:20px"></tr></td></tr></table></td>=
+</tr><tr><td bgcolor=3D"#F2F2F2" style=3D"height: 1px;"></td></tr><tr style=
+=3D"background-color: #FFFFFF;"><td valign=3D"top" style=3D"padding: 15px 1=
+5px 0px 15px;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" widt=
+h=3D"100%"><tr><td class=3D"stack-column" valign=3D"middle" style=3D"font-s=
+ize: 14px;" align=3D"left"><span style=3D"color: #3E3E3E;">Download our App=
+:&nbsp;&nbsp;</span><a href=3D"https://eventing.coursera.org/redirectSigned=
+/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL2l0dW5lcy=
+5hcHBsZS5jb20vYXBwL2FwcGxlLXN0b3JlL2lkNzM2NTM1OTYxP2N0PU1vYmlsZSUyMFByb21vJ=
+TIwRW1haWwmdXRtX3NvdXJjZT1vdGhlciZtdD04JnB0PTIzMzQxNTAmdXRtX2NhbXBhaWduPW9w=
+ZW5jb3Vyc2UubVNoUWk4WWZFZVdnMFFvSHEzSmpvUS53ZWVrYWhlYWQub25fc2NoZWR1bGUlN0V=
+vcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1EuWWh1aDVRQkpFZWVjOWhLYVhveWxWQS=
+Z1dG1fbWVkaXVtPWVtYWlsIiwidHJhY2tpbmciOnsidXNlcklkIjoyMDI3MzYzOSwidXNlckVtY=
+WlsIjoic29tZXRpbWU1ODU4QGdtYWlsLmNvbSIsIm5vdGlmaWNhdGlvblR5cGUiOiJ3ZWVrYWhl=
+YWQub25fc2NoZWR1bGUiLCJjYW1wYWlnbklkIjoib3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9=
+IcTNKam9RLllodWg1UUJKRWVlYzloS2FYb3lsVkEiLCJjYW1wYWlnbkdyb3VwIjoib3BlbmNvdX=
+JzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLndlZWthaGVhZC5vbl9zY2hlZHVsZSIsImxpbmtzI=
+jpbXX19LCJ1c2VySWQiOjIwMjczNjM5fQ.De2CYTUOv6y_apDaN_D5ou8riVvGdta4YNdzBG6vM=
+KA" >iOS</a><span style=3D"color: #3E3E3E;">&nbsp;&nbsp;|&nbsp;&nbsp;</span=
+><a href=3D"https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC=
+5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3BsYXkuZ29vZ2xlLmNvbS9zdG9yZ=
+S9hcHBzL2RldGFpbHM_aWQ9b3JnLmNvdXJzZXJhLmFuZHJvaWQmdXRtX21lZGl1bT1lbWFpbCZ1=
+dG1fc291cmNlPW90aGVyJnV0bV9jYW1wYWlnbj1vcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0h=
+xM0pqb1Eud2Vla2FoZWFkLm9uX3NjaGVkdWxlJTdFb3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW=
+9IcTNKam9RLllodWg1UUJKRWVlYzloS2FYb3lsVkEiLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwM=
+jczNjM5LCJ1c2VyRW1haWwiOiJzb21ldGltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9u=
+VHlwZSI6IndlZWthaGVhZC5vbl9zY2hlZHVsZSIsImNhbXBhaWduSWQiOiJvcGVuY291cnNlLm1=
+TaFFpOFlmRWVXZzBRb0hxM0pqb1EuWWh1aDVRQkpFZWVjOWhLYVhveWxWQSIsImNhbXBhaWduR3=
+JvdXAiOiJvcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1Eud2Vla2FoZWFkLm9uX3Nja=
+GVkdWxlIiwibGlua3MiOltdfX0sInVzZXJJZCI6MjAyNzM2Mzl9.wjtx-lHTNLlM5CbcmLovr9Z=
+uUu4PNvRzs4KRFVTfT_Q" >Android</a></td></tr></table></td></tr><tr style=3D"=
+background-color: #FFFFFF;"><td valign=3D"top" style=3D"padding: 5px 15px 1=
+5px 15px;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%"><tr><td class=3D"stack-column" valign=3D"middle" style=3D"font-size:=
+ 14px;" align=3D"left"><a href=3D"https://eventing.coursera.org/redirectSig=
+ned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL2xlYXJ=
+uZXIuY291cnNlcmEuaGVscC8_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0bV=
+9jYW1wYWlnbj1vcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1Eud2Vla2FoZWFkLm9uX=
+3NjaGVkdWxlJTdFb3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9RLllodWg1UUJKRWVl=
+YzloS2FYb3lsVkEiLCJ0cmFja2luZyI6eyJ1c2VySWQiOjIwMjczNjM5LCJ1c2VyRW1haWwiOiJ=
+zb21ldGltZTU4NThAZ21haWwuY29tIiwibm90aWZpY2F0aW9uVHlwZSI6IndlZWthaGVhZC5vbl=
+9zY2hlZHVsZSIsImNhbXBhaWduSWQiOiJvcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb=
+1EuWWh1aDVRQkpFZWVjOWhLYVhveWxWQSIsImNhbXBhaWduR3JvdXAiOiJvcGVuY291cnNlLm1T=
+aFFpOFlmRWVXZzBRb0hxM0pqb1Eud2Vla2FoZWFkLm9uX3NjaGVkdWxlIiwibGlua3MiOltdfX0=
+sInVzZXJJZCI6MjAyNzM2Mzl9.Oycr-YoN1jub6VS6LOJw7uWq96m5qhIcND4pXy4z8WQ" >Lea=
+rner Help Center</a><span style=3D"color: #3E3E3E;">&#32;&#32;|  Please do =
+not reply directly to this email</span></td></tr></table></td></tr><tr styl=
+e=3D"border-width: 1px; border-style: solid; border-color: #F8F8F8; border-=
+top-color: #F2F2F2;"><td valign=3D"top" style=3D"padding: 15px 15px 0px 15p=
+x;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">=
+<tr><td class=3D"stack-column" valign=3D"middle" style=3D"font-size: 12px;"=
+ align=3D"left"><span style=3D"color: #3E3E3E;">To opt out of receiving thi=
+s type of email,&nbsp;</span><a href=3D"https://eventing.coursera.org/redir=
+ectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL=
+3d3dy5jb3Vyc2VyYS5vcmcvYWNjb3VudC91bnN1YnNjcmliZS9jZjB0NV9yeUZqN19HWmFyVHA2=
+cm1pSHJTNHlOM1FnUG9TVkpFQVNjdS1rYS1udGtFTi1ENU9DRXVYckUzMS1iNmFKdHlaTDlLdzE=
+wZEROdVBGT0l0Zy4zUTlncW1QcXgzOXhZTU5PczVrbEdRLlRUY3daMklYd0JNcnpwQ1BnUWFxYU=
+1WRm9LRElSclg5Wko0OG9CUGNKbEd3bC1PUnRFcnRIa3QyTHVBU1AwcjdELXYwU3dwaU9NMlJLb=
+HpkYnNXS3BKemZUSnV6cWkxZDdUZTVzMFBNZFhZeUhpX3BPUElZYk5nZ2ZDb1ZtZFhSbEY0dTE4=
+TzBLNW1aSU5GWEVMVDFoQT91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b3RoZXImdXRtX2N=
+hbXBhaWduPW9wZW5jb3Vyc2UubVNoUWk4WWZFZVdnMFFvSHEzSmpvUS53ZWVrYWhlYWQub25fc2=
+NoZWR1bGUlN0VvcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1EuWWh1aDVRQkpFZWVjO=
+WhLYVhveWxWQSIsInRyYWNraW5nIjp7InVzZXJJZCI6MjAyNzM2MzksInVzZXJFbWFpbCI6InNv=
+bWV0aW1lNTg1OEBnbWFpbC5jb20iLCJub3RpZmljYXRpb25UeXBlIjoid2Vla2FoZWFkLm9uX3N=
+jaGVkdWxlIiwiY2FtcGFpZ25JZCI6Im9wZW5jb3Vyc2UubVNoUWk4WWZFZVdnMFFvSHEzSmpvUS=
+5ZaHVoNVFCSkVlZWM5aEthWG95bFZBIiwiY2FtcGFpZ25Hcm91cCI6Im9wZW5jb3Vyc2UubVNoU=
+Wk4WWZFZVdnMFFvSHEzSmpvUS53ZWVrYWhlYWQub25fc2NoZWR1bGUiLCJsaW5rcyI6W119fSwi=
+dXNlcklkIjoyMDI3MzYzOX0.j6K2IySY2PfVPqiMUovoZdBVAgyu7ZAl6-_FhZcj8GQ" rel=3D=
+"nofollow" target=3D"_blank">Unsubscribe</a></td></tr></table></td></tr><tr=
+ style=3D"border-width: 1px; border-style: solid; border-color: #F8F8F8;"><=
+td valign=3D"top" style=3D"padding: 2px 15px 15px 15px;"><table border=3D"0=
+" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%"><tr><td class=3D"stack=
+-column" valign=3D"middle" align=3D"left"><span style=3D"font-size: 12px; c=
+olor: #3E3E3E;">Copyright =C2=A9 2017, Coursera Inc. | 381 E. Evelyn Ave, M=
+ountain View, CA 94041 USA</span></td></tr></table></td></tr></table></td><=
+/tr></table></center><img src=3D"https://eventing.coursera.org/img/kHUKfd2n=
+aGJFsI-hUgC-BT5ykwyizlwvI19OEbCxrrEdw33dF4BsLXtE7XiCYQKWrCAVowUcam8Vyo4pFs3=
+Cvw.SW5tg6uyLF8MpIC_Tp-tug.7p1IAoDW8vBI4qXgIPsflPuRRm-zEJn7BOe46AQDfyJHqBhr=
+mSrpIbuI406T-i8PCk18GF6HJ1_RC-JYnriLjBcA8RCW9UFIWqYpov0bh1BkdSox1fmci51WqxQ=
+vLcrsI6KDXwYu7PcFX28Ll-2ibAy6YoWw5jeN9Qtlwrjm2YLTSkuIwl74NPaGNfnLQYD8xzSuz3=
+1JGkRDLdg9fOl4q7CfWcaVCwry2usL_KIRB_fUtAyc1Wy6_4Zel8hPZwpcydFn4-Jvky8FcpClD=
+Qn_drzpX-Qtx00e7mS3NW2WvPcXcc7czlak_AvvsOPyHNSHjxY7BTKYYbc0Mff3FLpV6storkuK=
+jaPi47y-UXUh_trOEg9WecsaaKBVBHHQ0f-PsL457DBHyBiK2qKt4yAG6S0BT9BJigBjBs-6j4h=
+EYYJba6TKZIR7gYsBnLAhuZfE" border=3D"0" width=3D"1" height=3D"1">=0D=0A<img=
+ border=3D"0" width=3D"1" height=3D"1" alt=3D"" src=3D"http://click.mail.co=
+ursera.org/q/gQq9ttkXSMO8ZpSkRvp4yA~~/AAAAAQA~/RgRbmOmMPkEIAOzXYwhSEqJXCGNv=
+dXJzZXJhWAQAAAAASDhvcGVuY291cnNlLm1TaFFpOFlmRWVXZzBRb0hxM0pqb1EuWWh1aDVRQkp=
+FZWVjOWhLYVhveWxWQUIKAAOMZLZZ1BQVqVIWc29tZXRpbWU1ODU4QGdtYWlsLmNvbQlRBAAAAA=
+BH43siY2hhbm5lbCI6IkVNQUlMIiwiY2FtcGFpZ25fZ3JvdXAiOiJvcGVuY291cnNlLm1TaFFpO=
+FlmRWVXZzBRb0hxM0pqb1Eud2Vla2FoZWFkLm9uX3NjaGVkdWxlIiwiYmluZGluZyI6InRyYW5z=
+YWN0aW9uYWwiLCJwcmVmZXJlbmNlIjoib3BlbmNvdXJzZS5tU2hRaThZZkVlV2cwUW9IcTNKam9=
+RLnJlbWluZGVycyIsIm5vdGlmaWNhdGlvbl90ZW1wbGF0ZSI6IndlZWthaGVhZC5vbl9zY2hlZH=
+VsZSJ9Ew~~">=0D=0A</body></html>
+--_----6C9PSu+9y1UU9aQw/xB9VA===_F0/9A-05332-C8466B95--
+

@@ -1,0 +1,528 @@
+Delivered-To: sometime5858@gmail.com
+Received: by 2002:a9d:6153:0:0:0:0:0 with SMTP id c19-v6csp372368otk;
+        Sat, 8 Sep 2018 01:47:06 -0700 (PDT)
+X-Received: by 2002:a81:3056:: with SMTP id w83-v6mr5821069yww.238.1536396426740;
+        Sat, 08 Sep 2018 01:47:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1536396426; cv=none;
+        d=google.com; s=arc-20160816;
+        b=bJDmryVZuBUF3tvSFcNeT6Pck1SpPAtc13JTLs1rFMH9LpnWGy2A+7axrn1x5Qk3oM
+         mosWNiH3dXpUK+YvmHidzrkd2zLkoTGMxQQc383XJDQWrKG2wzwVOWXuS7gioO6bfiWp
+         D+lPnBEwjfA9eb8dahQMkZOLL1lOb0g7LGNdyGmHpkeEOgahJO2FsG4vmEyklrg21seO
+         uF0R1o3C8HPsHThSjBlHMcPxurTuGwPZIZqmt5OXt+H4ZGphYszHJmethbalhhtUKWUb
+         9KCnW8dPw1H5gv299yDcvHTMpNR0xhdqD0ubQ0G2rSDnX20ehZNWGAB69rjNmqxdDej9
+         A5mQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:from:subject:date:message-id:mime-version:dkim-signature;
+        bh=qSh15yaR7HcbnEAftHGcD+ooykajTvoRxgicZvEcLvs=;
+        b=jEJL7Ni3q0G4sKGvTWrOM4zIu7zQb7fc5mkVahkaP+/hk+5EPCYRjKeEpO5XjgOGRK
+         7GPgGvhpdWkOj3HAFpoT4lIK4DcRbY0kN3myugBmMBDF7hCvZsQxqfDjrDaRIvdqqOoZ
+         yP4kG2pWk6txMuS1DUSNM3JTQuBB72N16ukGMwbyRFAN0v0zAlMcxGfABhYObAB2LOu4
+         XaED7DN31vaH6nPMGWXb31QUinjoeGk4/wPafqQWWUDII8Mxc8AF8PMUwFpRLsi/mqeF
+         hCiU1xmUt7S5XABvtx1lWeO7TpKabC/uPt1opb7p0+h16wZp0pCOGT+cDORroZSihH6W
+         PhNw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b=Hbad9WM4;
+       spf=pass (google.com: domain of 3ioytwxykanm4dgbh-g3137eih-cdg3ean5dd5a3.1db@trix.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3ioyTWxYKANM4DGBH-G3137EIH-CDG3EAN5DD5A3.1DB@trix.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+Return-Path: <3ioyTWxYKANM4DGBH-G3137EIH-CDG3EAN5DD5A3.1DB@trix.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id j1-v6sor1844290ywg.556.2018.09.08.01.47.06
+        for <sometime5858@gmail.com>
+        (Google Transport Security);
+        Sat, 08 Sep 2018 01:47:06 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 3ioytwxykanm4dgbh-g3137eih-cdg3ean5dd5a3.1db@trix.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20161025 header.b=Hbad9WM4;
+       spf=pass (google.com: domain of 3ioytwxykanm4dgbh-g3137eih-cdg3ean5dd5a3.1db@trix.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=3ioyTWxYKANM4DGBH-G3137EIH-CDG3EAN5DD5A3.1DB@trix.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:message-id:date:subject:from:to;
+        bh=qSh15yaR7HcbnEAftHGcD+ooykajTvoRxgicZvEcLvs=;
+        b=Hbad9WM4cnXx2u7TQoaCPGWlgX9MrP18btVRw6/o+LjXAw64MLTe258Me3xDilWDip
+         LsU8vVJRxlpC7l2xJVncmj4OQZ0Gk4mptJULcsV4qDkPlTPXnuDZj+MEWDre1G2ksXCG
+         oFAyfvVZJWd47FFffDB3CGd3w40TFiPVIEEfYVDYbW7PCWCIaWlCZUqdqREwStHbmF5j
+         ntQ7UrX05K+x8aBrn6bIazBcQ9f6jgtpo/ZfF/a4X53n79pXATNeqwASctEfom9p+S8H
+         2qiDwrtDGtHK3lw+x6aTiwVVeFjU/qkFso3/kv8pH7pfPIeRxSrW42aGTreCM21t4Rot
+         zRyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:message-id:date:subject:from:to;
+        bh=qSh15yaR7HcbnEAftHGcD+ooykajTvoRxgicZvEcLvs=;
+        b=KypvFmk5/Bw8wiYJ2ywt/gncx74NzI9KnC8fX1K5PkEnHvR5t1tLM6DmnhGRtQ4pq+
+         93nFN5hK6r2dpLLEt5guiMGhxdckz/BChV9rzD0Aa3y6AaUKANtQEDFEfexYdwG6NpoR
+         BFIVxQS/HwNW7gtufZfyugoTkZpMdnkHEM7AgUHK86h1szUWqDYDvo8XZ/+i8ylRUMS+
+         mJLisXnyOz6+TwPs3O3AOeS7UGaW77rKDhhzXuiY1k+IyDTYszbpSv8hGgG3bCEo7z2o
+         AwgUwWj2xiMCjQGG6I6sXduuJBnuwMARdM5ZC7RwABu6T+at1+rqA4MOeSrppFD6xqJq
+         z9wA==
+X-Gm-Message-State: APzg51D2wUQyuzM9rDgj6fVr3v0fJIDUhsQCGO+M0bLIsoZ46GJDtOsc
+	jRWlCd2biRFF9bUNy5z1Xw+AMgtfCpJ1uEVbHfpM/w==
+X-Google-Smtp-Source: ANB0VdYTQSxoto6D3EO2ISZ3Y7PgZRXGpL4wx0f0mS97BODTfvRHfAUmmtdlv68l3Uo5gjBwvjVlA49m4UmUqXr8rOMryw==
+MIME-Version: 1.0
+X-Received: by 2002:a81:ac52:: with SMTP id z18-v6mr2688306ywj.160.1536396426175;
+ Sat, 08 Sep 2018 01:47:06 -0700 (PDT)
+Message-ID: <000000000000376fef0575582b93@google.com>
+Date: Sat, 08 Sep 2018 08:47:06 +0000
+Subject: Liven Elite Registration
+From: Google Forms <forms-receipts-noreply@google.com>
+To: sometime5858@gmail.com
+Content-Type: multipart/alternative; boundary="000000000000376fda0575582b90"
+X-TUID: 53BsoVcCZPEz
+
+--000000000000376fda0575582b90
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+
+Google Forms
+
+
+Thanks for filling out Liven Elite Registration
+
+
+
+
+
+Here's what we got from you:
+
+
+
+
+Liven Elite Registration
+
+This form registers you as a Liven Elite member, giving you access to  
+exclusive invitations, surprise free food, news when it breaks, and  
+everything in between. We're building the world's tightest foodie  
+community, and you're invited.
+
+
+Email address *
+
+sometime5858@gmail.com
+
+
+Name *
+
+
+Han
+
+
+Mobile Number *
+
+
+0404626535
+
+
+Referral Code *
+
+This can be found in your app's refer & earn section. It also helps us give  
+you more freebies (if we feel like it!)
+
+ulcq6d
+
+
+How did you find out about us? *
+
+
+Friends
+Fliers
+Ads
+App Store
+News
+Digital Currency Communities
+
+
+What's your favourite Liven restaurant!? *
+
+
+8 bit.
+
+
+What changes do you want to see most with the product? *
+
+
+Reviews and ratings of the restaurants and close restaurants shown on a map
+
+
+How Interested Are You in The LVN Project? *
+
+This one: https://medium.com/livenpay/announcing-lvn-814fb2708b70
+
+
+1 2 3 4 5
+
+
+The what?
+
+
+Obsessed with it.
+
+
+Would you like to become an affiliate and get paid to refer users at a  
+bigger scale? *
+
+
+Yes
+Not at this point
+Maybe
+
+
+Create your own Google Form
+
+
+
+--000000000000376fda0575582b90
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><body style=3D"font-family: Roboto,Helvetica,Arial,sans-serif; margin=
+: 0; padding: 0; height: 100%; width: 100%;"><table border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" style=3D"background-color:rgb(133,0,38);" width=
+=3D"100%" role=3D"presentation"><tbody><tr height=3D"64px"><td style=3D"pad=
+ding-left: 24px"><img alt=3D"Google Forms" height=3D"26px" style=3D"display=
+: inline-block; margin: 0; vertical-align: middle;" width=3D"143px" src=3D"=
+https://www.gstatic.com/docs/forms/google_forms_logo_lockup_white_2x.png"><=
+/td></tr></tbody></table><div style=3D"padding: 24px; background-color:rgb(=
+218,179,190)"><div align=3D"center" style=3D"background-color: #fff; border=
+-bottom: 1px solid #e0e0e0; margin: 0 auto; max-width: 624px; min-width: 15=
+4px; padding: 0 24px;"><table align=3D"center" cellpadding=3D"0" cellspacin=
+g=3D"0" style=3D"background-color: #fff;" width=3D"100%" role=3D"presentati=
+on"><tbody><tr height=3D"24px"><td></td></tr><tr><td><div style=3D"font-siz=
+e: 13px; line-height: 18px; color: #424242; font-weight: 700">Thanks for fi=
+lling out <a href=3D"https://docs.google.com/forms/d/e/1FAIpQLScHdWBKfLlP62=
+D-Y3qxFl2AuLdEjStB9M2dO6y7z67YDpI3Qg/viewform?usp=3Dmail_form_link">Liven E=
+lite Registration</a></div></td></tr><tr height=3D"12px"></tr><tr><td><div =
+style=3D"font-size: 13px; line-height: 18px; color: #424242;">Here's what w=
+e got from you:</div></td></tr><tr><td><div class=3D"ss-form-container" sty=
+le=3D""><div class=3D"ss-form-heading" style=3D""><h1 class=3D"ss-form-titl=
+e" dir=3D"ltr" style=3D"margin:.67em 0;">Liven Elite Registration</h1>
+<div class=3D"ss-form-desc ss-no-ignore-whitespace" style=3D"font:inherit;w=
+idth:99%;margin:0 0 1em;white-space:pre-wrap;word-wrap:break-word;">This fo=
+rm registers you as a Liven Elite member, giving you access to exclusive in=
+vitations, surprise free food, news when it breaks, and everything in betwe=
+en. We&#39;re building the world&#39;s tightest foodie community, and you&#=
+39;re invited.</div>
+</div>
+<div class=3D"ss-form" style=3D""><form action=3D"" method=3D"GET" id=3D"ss=
+-form" style=3D""><br>
+<div class=3D"ss-form-question errorbox-good" role=3D"listitem" style=3D"">
+<div dir=3D"auto" class=3D"ss-item ss-item-required ss-text" style=3D"margi=
+n:12px 0;"><div class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;vertic=
+al-align:middle;margin-left:0;margin-top:0;max-width:100%;"><label class=3D=
+"ss-q-item-label" for=3D"emailAddress" style=3D""><div class=3D"ss-q-title"=
+ style=3D"display:block;font-weight:bold;margin-top:.83em;margin-bottom:.83=
+em;">Email address
+<label for=3D"emailAddress" aria-label=3D"(Required field)" style=3D""></la=
+bel>
+<span class=3D"ss-required-asterisk" aria-hidden=3D"true" style=3D"color:#c=
+43b1d;">*</span></div></label>
+<div class=3D"ss-q-text ss-printable-text-line" dir=3D"auto" style=3D"backg=
+round-color:#eee;max-width:90%;border:1px solid #c0c0c0;padding:5px;white-s=
+pace:pre-wrap;color:#545454;width:70%;">sometime5858@gmail.com</div>
+
+
+</div></div></div>
+<div class=3D"ss-form-question errorbox-good" role=3D"listitem" style=3D"">
+<div dir=3D"auto" class=3D"ss-item ss-item-required ss-text" style=3D"margi=
+n:12px 0;"><div class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;vertic=
+al-align:middle;margin-left:0;margin-top:0;max-width:100%;">
+<label class=3D"ss-q-item-label" for=3D"entry_1119319946" style=3D""><div c=
+lass=3D"ss-q-title" style=3D"display:block;font-weight:bold;margin-top:.83e=
+m;margin-bottom:.83em;">Name
+<label for=3D"itemView.getDomIdToLabel()" aria-label=3D"(Required field)" s=
+tyle=3D""></label>
+<span class=3D"ss-required-asterisk" aria-hidden=3D"true" style=3D"color:#c=
+43b1d;">*</span></div>
+<div class=3D"ss-q-help ss-secondary-text" dir=3D"auto" style=3D"display:bl=
+ock;margin:.1em 0 .25em 0;color:#666;"></div></label>
+
+<div class=3D"ss-q-text" dir=3D"auto" style=3D"background-color:#eee;max-wi=
+dth:90%;border:1px solid #c0c0c0;padding:5px;white-space:pre-wrap;color:#54=
+5454;width:70%;">Han</div>
+
+
+</div></div></div>
+<br> <div class=3D"ss-form-question errorbox-good" role=3D"listitem" style=
+=3D"">
+<div dir=3D"auto" class=3D"ss-item ss-item-required ss-text" style=3D"margi=
+n:12px 0;"><div class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;vertic=
+al-align:middle;margin-left:0;margin-top:0;max-width:100%;">
+<label class=3D"ss-q-item-label" for=3D"entry_686324297" style=3D""><div cl=
+ass=3D"ss-q-title" style=3D"display:block;font-weight:bold;margin-top:.83em=
+;margin-bottom:.83em;">Mobile Number
+<label for=3D"itemView.getDomIdToLabel()" aria-label=3D"(Required field)" s=
+tyle=3D""></label>
+<span class=3D"ss-required-asterisk" aria-hidden=3D"true" style=3D"color:#c=
+43b1d;">*</span></div>
+<div class=3D"ss-q-help ss-secondary-text" dir=3D"auto" style=3D"display:bl=
+ock;margin:.1em 0 .25em 0;color:#666;"></div></label>
+
+<div class=3D"ss-q-text" dir=3D"auto" style=3D"background-color:#eee;max-wi=
+dth:90%;border:1px solid #c0c0c0;padding:5px;white-space:pre-wrap;color:#54=
+5454;width:70%;">0404626535</div>
+
+
+</div></div></div>
+<br> <div class=3D"ss-form-question errorbox-good" role=3D"listitem" style=
+=3D"">
+<div dir=3D"auto" class=3D"ss-item ss-item-required ss-text" style=3D"margi=
+n:12px 0;"><div class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;vertic=
+al-align:middle;margin-left:0;margin-top:0;max-width:100%;">
+<label class=3D"ss-q-item-label" for=3D"entry_241887507" style=3D""><div cl=
+ass=3D"ss-q-title" style=3D"display:block;font-weight:bold;margin-top:.83em=
+;margin-bottom:.83em;">Referral Code
+<label for=3D"itemView.getDomIdToLabel()" aria-label=3D"(Required field)" s=
+tyle=3D""></label>
+<span class=3D"ss-required-asterisk" aria-hidden=3D"true" style=3D"color:#c=
+43b1d;">*</span></div>
+<div class=3D"ss-q-help ss-secondary-text" dir=3D"auto" style=3D"display:bl=
+ock;margin:.1em 0 .25em 0;color:#666;">This can be found in your app&#39;s =
+refer &amp; earn section. It also helps us give you more freebies (if we fe=
+el like it!)</div></label>
+
+<div class=3D"ss-q-text" dir=3D"auto" style=3D"background-color:#eee;max-wi=
+dth:90%;border:1px solid #c0c0c0;padding:5px;white-space:pre-wrap;color:#54=
+5454;width:70%;">ulcq6d</div>
+
+
+</div></div></div>
+<br> <div class=3D"ss-form-question errorbox-good" role=3D"listitem" style=
+=3D"">
+<div dir=3D"auto" class=3D"ss-item ss-item-required ss-radio" style=3D"marg=
+in:12px 0;"><div class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;verti=
+cal-align:middle;margin-left:0;margin-top:0;max-width:100%;">
+<label class=3D"ss-q-item-label" for=3D"entry_1172675074" style=3D""><div c=
+lass=3D"ss-q-title" style=3D"display:block;font-weight:bold;margin-top:.83e=
+m;margin-bottom:.83em;">How did you find out about us?
+<label for=3D"itemView.getDomIdToLabel()" aria-label=3D"(Required field)" s=
+tyle=3D""></label>
+<span class=3D"ss-required-asterisk" aria-hidden=3D"true" style=3D"color:#c=
+43b1d;">*</span></div>
+<div class=3D"ss-q-help ss-secondary-text" dir=3D"auto" style=3D"display:bl=
+ock;margin:.1em 0 .25em 0;color:#666;"></div></label>
+
+
+<ul class=3D"ss-choices" role=3D"radiogroup" aria-label=3D"How did you find=
+ out about us?  " style=3D"list-style:none;padding:0;margin:.5em 0 0;"><li =
+class=3D"ss-choice-item" style=3D"margin:0;line-height:1.3em;padding-bottom=
+:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+728175959" disabled value=3D"Friends" id=3D"group_728175959_1" role=3D"radi=
+o" class=3D"ss-q-radio" aria-label=3D"Friends" aria-required=3D"true" style=
+=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">Friends</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+728175959" disabled value=3D"Fliers" id=3D"group_728175959_2" role=3D"radio=
+" class=3D"ss-q-radio" aria-label=3D"Fliers" aria-required=3D"true" style=
+=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">Fliers</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+728175959" disabled value=3D"Ads" id=3D"group_728175959_3" role=3D"radio" c=
+lass=3D"ss-q-radio" aria-label=3D"Ads" aria-required=3D"true" style=3D""></=
+span>
+<span class=3D"ss-choice-label" style=3D"">Ads</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+728175959" disabled checked value=3D"App Store" id=3D"group_728175959_4" ro=
+le=3D"radio" class=3D"ss-q-radio" aria-label=3D"App Store" aria-required=3D=
+"true" style=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">App Store</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+728175959" disabled value=3D"News" id=3D"group_728175959_5" role=3D"radio" =
+class=3D"ss-q-radio" aria-label=3D"News" aria-required=3D"true" style=3D"">=
+</span>
+<span class=3D"ss-choice-label" style=3D"">News</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+728175959" disabled value=3D"Digital Currency Communities" id=3D"group_7281=
+75959_6" role=3D"radio" class=3D"ss-q-radio" aria-label=3D"Digital Currency=
+ Communities" aria-required=3D"true" style=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">Digital Currency Communities</sp=
+an>
+</label></li></ul>
+
+</div></div></div>
+<br> <div class=3D"ss-form-question errorbox-good" role=3D"listitem" style=
+=3D"">
+<div dir=3D"auto" class=3D"ss-item ss-item-required ss-text" style=3D"margi=
+n:12px 0;"><div class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;vertic=
+al-align:middle;margin-left:0;margin-top:0;max-width:100%;">
+<label class=3D"ss-q-item-label" for=3D"entry_1912944755" style=3D""><div c=
+lass=3D"ss-q-title" style=3D"display:block;font-weight:bold;margin-top:.83e=
+m;margin-bottom:.83em;">What&#39;s your favourite Liven restaurant!?
+<label for=3D"itemView.getDomIdToLabel()" aria-label=3D"(Required field)" s=
+tyle=3D""></label>
+<span class=3D"ss-required-asterisk" aria-hidden=3D"true" style=3D"color:#c=
+43b1d;">*</span></div>
+<div class=3D"ss-q-help ss-secondary-text" dir=3D"auto" style=3D"display:bl=
+ock;margin:.1em 0 .25em 0;color:#666;"></div></label>
+
+<div class=3D"ss-q-text" dir=3D"auto" style=3D"background-color:#eee;max-wi=
+dth:90%;border:1px solid #c0c0c0;padding:5px;white-space:pre-wrap;color:#54=
+5454;width:70%;">8 bit.</div>
+
+
+</div></div></div>
+<br> <div class=3D"ss-form-question errorbox-good" role=3D"listitem" style=
+=3D"">
+<div dir=3D"auto" class=3D"ss-item ss-item-required ss-text" style=3D"margi=
+n:12px 0;"><div class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;vertic=
+al-align:middle;margin-left:0;margin-top:0;max-width:100%;">
+<label class=3D"ss-q-item-label" for=3D"entry_1910316016" style=3D""><div c=
+lass=3D"ss-q-title" style=3D"display:block;font-weight:bold;margin-top:.83e=
+m;margin-bottom:.83em;">What changes do you want to see most with the produ=
+ct?
+<label for=3D"itemView.getDomIdToLabel()" aria-label=3D"(Required field)" s=
+tyle=3D""></label>
+<span class=3D"ss-required-asterisk" aria-hidden=3D"true" style=3D"color:#c=
+43b1d;">*</span></div>
+<div class=3D"ss-q-help ss-secondary-text" dir=3D"auto" style=3D"display:bl=
+ock;margin:.1em 0 .25em 0;color:#666;"></div></label>
+
+<div class=3D"ss-q-text" dir=3D"auto" style=3D"background-color:#eee;max-wi=
+dth:90%;border:1px solid #c0c0c0;padding:5px;white-space:pre-wrap;color:#54=
+5454;width:70%;">Reviews and ratings of the restaurants and close restauran=
+ts shown on a map</div>
+
+
+</div></div></div>
+<br> <div class=3D"ss-form-question errorbox-good" role=3D"listitem" style=
+=3D"">
+<div dir=3D"auto" class=3D"ss-item ss-item-required ss-scale" style=3D"marg=
+in:12px 0;overflow-x:auto;"><div class=3D"ss-form-entry" style=3D"margin-bo=
+ttom:1.5em;vertical-align:middle;margin-left:0;margin-top:0;max-width:100%;=
+">
+<label class=3D"ss-q-item-label" for=3D"entry_294134484" style=3D""><div cl=
+ass=3D"ss-q-title" style=3D"display:block;font-weight:bold;margin-top:.83em=
+;margin-bottom:.83em;">How Interested Are You in The LVN Project?
+<label for=3D"itemView.getDomIdToLabel()" aria-label=3D"(Required field)" s=
+tyle=3D""></label>
+<span class=3D"ss-required-asterisk" aria-hidden=3D"true" style=3D"color:#c=
+43b1d;">*</span></div>
+<div class=3D"ss-q-help ss-secondary-text" dir=3D"auto" style=3D"display:bl=
+ock;margin:.1em 0 .25em 0;color:#666;">This one: <a href=3D"https://www.goo=
+gle.com/url?q=3Dhttps://medium.com/livenpay/announcing-lvn-814fb2708b70&amp=
+;sa=3DD&amp;ust=3D1536400026159000&amp;usg=3DAFQjCNHobr98nl_jAwC7b_z8mVijA1=
+98tQ" style=3D"">https://medium.com/livenpay/announcing-lvn-814fb2708b70</a=
+></div></label>
+
+
+<table border=3D"0" cellpadding=3D"5" cellspacing=3D"0" id=3D"entry_5544017=
+56" style=3D""><tr aria-hidden=3D"true" style=3D""><td class=3D"ss-scalenum=
+bers" style=3D"text-align:center;"></td>
+<td class=3D"ss-scalenumbers" style=3D"text-align:center;"><label class=3D"=
+ss-scalenumber" for=3D"group_554401756_1" style=3D"display:block;padding:0.=
+5em 0 .5em;">1</label></td> <td class=3D"ss-scalenumbers" style=3D"text-ali=
+gn:center;"><label class=3D"ss-scalenumber" for=3D"group_554401756_2" style=
+=3D"display:block;padding:0.5em 0 .5em;">2</label></td> <td class=3D"ss-sca=
+lenumbers" style=3D"text-align:center;"><label class=3D"ss-scalenumber" for=
+=3D"group_554401756_3" style=3D"display:block;padding:0.5em 0 .5em;">3</lab=
+el></td> <td class=3D"ss-scalenumbers" style=3D"text-align:center;"><label =
+class=3D"ss-scalenumber" for=3D"group_554401756_4" style=3D"display:block;p=
+adding:0.5em 0 .5em;">4</label></td> <td class=3D"ss-scalenumbers" style=3D=
+"text-align:center;"><label class=3D"ss-scalenumber" for=3D"group_554401756=
+_5" style=3D"display:block;padding:0.5em 0 .5em;">5</label></td>
+<td class=3D"ss-scalenumbers" style=3D"text-align:center;"></td></tr>
+<tr role=3D"radiogroup" aria-label=3D"How Interested Are You in The LVN Pro=
+ject? This one: https://medium.com/livenpay/announcing-lvn-814fb2708b70 Sel=
+ect a value from a range of 1,The what?, to 5,Obsessed with it.,." style=3D=
+""><td class=3D"ss-scalerow ss-leftlabel" style=3D"text-align:right;color:#=
+666;border:1px solid #d3d8d3;border-left:0;border-right:0;padding:.5em .25e=
+m;padding-left:0;"><div aria-hidden=3D"true" class=3D"aria-todo" style=3D""=
+>The what?</div></td>
+<td class=3D"ss-scalerow" style=3D"text-align:center;color:#666;border:1px =
+solid #d3d8d3;border-left:0;border-right:0;padding:.5em .25em;"><div class=
+=3D"ss-scalerow-fieldcell" style=3D""><input type=3D"radio" name=3D"entry.5=
+54401756" disabled value=3D"1" id=3D"group_554401756_1" role=3D"radio" clas=
+s=3D"ss-q-radio" aria-label=3D"1" aria-required=3D"true" style=3D""></div><=
+/td> <td class=3D"ss-scalerow" style=3D"text-align:center;color:#666;border=
+:1px solid #d3d8d3;border-left:0;border-right:0;padding:.5em .25em;"><div c=
+lass=3D"ss-scalerow-fieldcell" style=3D""><input type=3D"radio" name=3D"ent=
+ry.554401756" disabled value=3D"2" id=3D"group_554401756_2" role=3D"radio" =
+class=3D"ss-q-radio" aria-label=3D"2" aria-required=3D"true" style=3D""></d=
+iv></td> <td class=3D"ss-scalerow" style=3D"text-align:center;color:#666;bo=
+rder:1px solid #d3d8d3;border-left:0;border-right:0;padding:.5em .25em;"><d=
+iv class=3D"ss-scalerow-fieldcell" style=3D""><input type=3D"radio" name=3D=
+"entry.554401756" disabled checked value=3D"3" id=3D"group_554401756_3" rol=
+e=3D"radio" class=3D"ss-q-radio" aria-label=3D"3" aria-required=3D"true" st=
+yle=3D""></div></td> <td class=3D"ss-scalerow" style=3D"text-align:center;c=
+olor:#666;border:1px solid #d3d8d3;border-left:0;border-right:0;padding:.5e=
+m .25em;"><div class=3D"ss-scalerow-fieldcell" style=3D""><input type=3D"ra=
+dio" name=3D"entry.554401756" disabled value=3D"4" id=3D"group_554401756_4"=
+ role=3D"radio" class=3D"ss-q-radio" aria-label=3D"4" aria-required=3D"true=
+" style=3D""></div></td> <td class=3D"ss-scalerow" style=3D"text-align:cent=
+er;color:#666;border:1px solid #d3d8d3;border-left:0;border-right:0;padding=
+:.5em .25em;"><div class=3D"ss-scalerow-fieldcell" style=3D""><input type=
+=3D"radio" name=3D"entry.554401756" disabled value=3D"5" id=3D"group_554401=
+756_5" role=3D"radio" class=3D"ss-q-radio" aria-label=3D"5" aria-required=
+=3D"true" style=3D""></div></td>
+<td class=3D"ss-scalerow ss-rightlabel" aria-hidden=3D"true" style=3D"text-=
+align:left;color:#666;border:1px solid #d3d8d3;border-left:0;border-right:0=
+;padding:.5em .25em;padding-right:0;">Obsessed with it.</td></tr></table>
+</div></div></div>
+<br> <div class=3D"ss-form-question errorbox-good" role=3D"listitem" style=
+=3D"">
+<div dir=3D"auto" class=3D"ss-item ss-item-required ss-radio" style=3D"marg=
+in:12px 0;"><div class=3D"ss-form-entry" style=3D"margin-bottom:1.5em;verti=
+cal-align:middle;margin-left:0;margin-top:0;max-width:100%;">
+<label class=3D"ss-q-item-label" for=3D"entry_2117735297" style=3D""><div c=
+lass=3D"ss-q-title" style=3D"display:block;font-weight:bold;margin-top:.83e=
+m;margin-bottom:.83em;">Would you like to become an affiliate and get paid =
+to refer users at a bigger scale?
+<label for=3D"itemView.getDomIdToLabel()" aria-label=3D"(Required field)" s=
+tyle=3D""></label>
+<span class=3D"ss-required-asterisk" aria-hidden=3D"true" style=3D"color:#c=
+43b1d;">*</span></div>
+<div class=3D"ss-q-help ss-secondary-text" dir=3D"auto" style=3D"display:bl=
+ock;margin:.1em 0 .25em 0;color:#666;"></div></label>
+
+
+<ul class=3D"ss-choices" role=3D"radiogroup" aria-label=3D"Would you like t=
+o become an affiliate and get paid to refer users at a bigger scale?  " sty=
+le=3D"list-style:none;padding:0;margin:.5em 0 0;"><li class=3D"ss-choice-it=
+em" style=3D"margin:0;line-height:1.3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+1858773509" disabled value=3D"Yes" id=3D"group_1858773509_1" role=3D"radio"=
+ class=3D"ss-q-radio" aria-label=3D"Yes" aria-required=3D"true" style=3D"">=
+</span>
+<span class=3D"ss-choice-label" style=3D"">Yes</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+1858773509" disabled checked value=3D"Not at this point" id=3D"group_185877=
+3509_2" role=3D"radio" class=3D"ss-q-radio" aria-label=3D"Not at this point=
+" aria-required=3D"true" style=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">Not at this point</span>
+</label></li> <li class=3D"ss-choice-item" style=3D"margin:0;line-height:1.=
+3em;padding-bottom:.5em;">
+<label><span class=3D"ss-choice-item-control goog-inline-block" style=3D"po=
+sition:relative;display:inline-block;"><input type=3D"radio" name=3D"entry.=
+1858773509" disabled value=3D"Maybe" id=3D"group_1858773509_3" role=3D"radi=
+o" class=3D"ss-q-radio" aria-label=3D"Maybe" aria-required=3D"true" style=
+=3D""></span>
+<span class=3D"ss-choice-label" style=3D"">Maybe</span>
+</label></li></ul>
+
+</div></div></div>
+<br></form></div></div></td></tr><tr height=3D"24px"></tr></tbody></table><=
+/div><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" style=3D"m=
+ax-width: 672px; min-width: 154px;" width=3D"100%" role=3D"presentation"><t=
+body><tr height=3D"24px"><td></td></tr><tr><td><a href=3D"https://docs.goog=
+le.com/forms?usp=3Dmail_form_link" style=3D"color: #424242; font-size: 13px=
+;">Create your own Google Form</a></td></tr></tbody></table></div></body></=
+html>
+--000000000000376fda0575582b90--
